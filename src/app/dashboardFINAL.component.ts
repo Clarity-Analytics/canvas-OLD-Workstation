@@ -521,7 +521,7 @@ console.log ('chg el', leftorRight,newValue)
                     });
                 }
             } 
-
+     
             if (property == 'horisontalDecreaseDistance') {
             
                 // Subtract 3px to all lefts, except the first one
