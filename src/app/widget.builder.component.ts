@@ -56,6 +56,8 @@ export class WidgetBuilderComponent implements OnInit {
     // How a Default Layout?  Need a RESET button?
     // Create from - copy/clone or just pointer to object?
 
+// Separate standalone WB 
+
 // Action
     // Create new 
     // Create from 
