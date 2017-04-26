@@ -1,0 +1,472 @@
+<!--dashboardMenu-->
+<div
+    class="dashboardMenu"
+    style="font-size:0.8em"
+    >
+
+    <!--Chart Types to add-->
+    <div
+        class="newWidgetTypeDivLeft">
+
+            <span
+                >
+                <button 
+                    class="newWidgetTypeButton"
+                    pButton 
+                    type="button" 
+                    icon="fa-bar-chart"
+                    pDraggable="barChart"
+                    (onDragStart)="ondragStartBarChart($event)"
+                    (onDragEnd)="ondragEndBarChart($event)"
+                    (click)="onDashboardCancel()"
+                    >
+                </button>
+                <button 
+                    class="newWidgetTypeButton"
+                    pButton 
+                    pDraggable="lineChart"
+                    type="button" 
+                    icon="fa-line-chart"
+                    pDraggable="lineChart"
+                    (onDragStart)="ondragStartLineChart($event)"
+                    (onDragEnd)="ondragEndLineChart()"
+                    (click)="onDashboardCancel()"
+                    >
+                </button>
+                <button 
+                    class="newWidgetTypeButton"
+                    pButton 
+                    pDraggable="pieChart"
+                    type="submit" 
+                    icon="fa-pie-chart"
+                    pDraggable="pieChart"
+                    (onDragStart)="ondragStartPieChart($event)"
+                    (onDragEnd)="ondragEndPieChart()"
+                    (click)="onDashboardSubmit()"
+                    >
+                </button>
+            </span>
+    <!--END Chart Types to add-->
+    </div>
+
+    <!--Current Selected Dashboard-->
+    <div
+        class="currentDashboard"
+        >
+        <div 
+            class="currentDashboardHeading"
+            >
+            Current Dashboard
+        </div>
+
+        <p-dropdown 
+            [options]="dashboardList" 
+            [(ngModel)]="selectedDashboard" 
+            [style]="{
+                        'font-size':'0.65em',
+                        'margin-bottom':'4px',
+                        'margin-left':'4px',
+                        'padding':'0',
+                        'width':'178px'
+                        }" 
+            filter="filter"
+            >
+        </p-dropdown>
+
+        <p-dataTable 
+            [value]="dataSourceFields"
+            scrollable="true"
+            scrollWidth="100%"
+            [style]="{
+                'width':'150px',
+                'margin-bottom':'4px',
+                'font-size':'0.65em'
+                }" 
+            >
+            <p-column 
+                field="name" 
+                [style]="{'width':'25%'}"
+                header="Name">
+            </p-column>
+            <p-column 
+                field="type" 
+                [style]="{'width':'25%'}"
+                header="Type">
+            </p-column>
+            <p-column 
+                field="description" 
+                [style]="{'width':'50%'}"
+                header="Description">
+            </p-column>
+        </p-dataTable>
+
+    <!--END Current Selected Dashboard-->
+    </div>
+
+    <!--Dashboard Quick Viewer-->
+    <div
+        class="dasbhboardQuickViewer"
+        >
+        <div 
+            class="currentDashboardHeading"
+            >
+            Dashboard QuickView
+        </div>
+        
+        <input 
+            class="inputDashboard" 
+            type="text" 
+            
+            placeholder="Type to Filter" 
+            [(ngModel)]="filterDashboard" 
+            (keyup)="onKeyDashboard($event)"
+        >
+
+        <!--Toolbar for Add / Del buttons-->
+        <p-toolbar
+            [style]="{
+                        'background-color':'darkpink',
+                        'font-size':'0.65em',
+                        'margin-left':'4px',
+                        'margin-right':'0',
+                        'margin-top':'4px',
+                        'padding':'0',
+                        'width':'178px'
+                    }"
+            >
+            <div class="ui-toolbar-group-left divToolbar">
+                <button 
+                    class="buttonDashboard"
+                    pButton 
+                    type="button" 
+                    label="Delete"
+                    icon="fa-minus"
+                    style="
+                        background-color: white;
+                        color:black;
+                        width:100%;
+                        border: 1px solid black
+                        "
+                    (click)="onDashboardDelete()"
+                    >
+                </button>
+            </div>
+            
+            <div class="ui-toolbar-group-right divToolbar">
+                <button 
+                    class="buttonDashboard"
+                    pButton 
+                    type="submit" 
+                    label="Add" 
+                    icon="fa-plus"
+                    style="
+                        background-color: white;
+                        color:black;
+                        width:100%;
+                        border: 1px solid black
+                        "
+                    (click)="onDashboardAdd()"
+                    >
+                </button>
+            </div>
+        <!--Toolbar for Add / Del buttons-->
+        </p-toolbar>
+
+        <!--Table with Fields and Sample rows-->
+        <p-treeTable 
+            [value]="dashboards" 
+            selectionMode="single" 
+            [(selection)]="selectedFile"
+            (onNodeSelect)="nodeSelect($event)" 
+            (onNodeUnselect)="nodeUnselect($event)" 
+            [style]="{
+                        'background-color':' #667292',
+                        'font-size':'0.65em',
+                        'margin':'4px',
+                        'padding':'0',
+                        'width':'182px'
+                    }"
+            > 
+            <p-column 
+                field="name"
+                header="Dashboard"
+                [style]="{
+                            'margin-left':'10px',
+                            'width':'50%'
+                        }"
+                >
+                <template let-node="rowData" pTemplate="body">
+                    <input 
+                        type="text" 
+                        [(ngModel)]="node.data.name" 
+                        style="width:100%;border-width:0px 0px 1px 0px">
+                </template>
+            </p-column>
+            <p-column field="size" header="Widget"></p-column>
+
+        <!--Table with Fields and Sample rows-->
+        </p-treeTable>
+
+    <!--END Dashboard Quick Viewer-->
+    </div>
+
+<!--END dashboardMenu-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Popup Widgets-->
+
+<p-dialog 
+    [(visible)]="lineChartIsVisible"
+    [header]="lineChartHeader"
+    closeOnEscape=false
+    [closable]="false"
+    [modal]="false"
+    responsive="true"
+    resizable="true"
+    >
+    This is where our Line Chart goes
+</p-dialog>
+
+<p-dialog 
+    [(visible)]="pieChartIsVisible"
+    [header]="pieChartHeader"
+    closeOnEscape=false
+    [closable]="false"
+    [modal]="false"
+    responsive="true"
+    resizable="true"
+    >
+    This is where our Pie Chart goes
+</p-dialog>
+<!--END Popup Widgets-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Palette-->
+<div
+    class="palette"
+    style="font-size:0.8em"
+    *ngIf="showPalette"
+    >
+    <span
+        class="paletteHeading"
+        >
+
+    Palette for {{ currentBarChart }}
+    </span>
+    <p-accordion
+        [style]="{
+            'background-color':'darkgray',
+            'font-size':'0.7em',
+            'color':'green',
+            'font-style':'normal'
+            }"
+         [multiple]="true"
+         (onOpen)="onOpenPaletteTab($event)"
+         (onClose)="onClosePaletteTab($event)" 
+         >
+        <p-accordionTab 
+            header="Visualisation for "
+            [selected]="true"
+            > 
+            
+        <span
+            class="paletteTabContent">
+            <button 
+                [style]="{'margin-top':'3px'}"
+                pButton type="text" 
+                label="Apply"
+                (click)="clickPaletteApply()"
+            > 
+            </button>
+            <button 
+                [style]="{'margin-top':'3px'}"
+                pButton type="text" 
+                label="Hide"
+                (click)="clickPaletteHide()"
+            > 
+            </button>
+            <br>    
+            <p-dropdown
+                [style]="{'width':'160px','margin-top':'7px'}"
+                [options]="chartBackgroundColor" 
+                [(ngModel)]="selectedBackgroundColor" 
+                placeholder="Background">
+            </p-dropdown>
+
+            <p-slider 
+                [(ngModel)]="chartWidth" 
+                [style]="{'width':'160px','margin-top':'7px'}"
+                [min]="100" 
+                [max]="400"
+                (onChange)="onChangeChartWidth($event)"
+                >
+            </p-slider>
+
+            <div class="ui-g" style="width:250px;margin-bottom:10px">
+                <div class="radioButtonDiv">
+                
+                    <p-radioButton 
+                        name="group1" 
+                        value="Option 1" 
+                        label="Option 1" 
+                        [(ngModel)]="radioLabelval1"
+                        (onClick)="clickRadioButtonScale()"
+                        >
+                    </p-radioButton>
+                    
+                    <p-radioButton 
+                        name="group1" 
+                        value="Option 2" 
+                        label="Option 2" 
+                        [(ngModel)]="radioLabelval1"
+                        (onClick)="clickRadioButtonScale()"
+                        >
+                    </p-radioButton>
+                    
+                    <p-radioButton 
+                        name="group1" 
+                        value="Option 3" 
+                        label="Option 3" 
+                        [(ngModel)]="radioLabelval1"
+                        (onClick)="clickRadioButtonScale()"
+                        >
+                    </p-radioButton>
+                </div>
+            </div>
+            <p-inputSwitch 
+                [(ngModel)]="checkedScale"
+                (onChange)="handleChangeScale($event)" 
+                >
+            </p-inputSwitch>
+
+        </span>
+        </p-accordionTab>
+        <p-accordionTab header="Data">
+            Content 2
+        </p-accordionTab>
+        <p-accordionTab header="Chart">
+            Content 3    
+        </p-accordionTab>
+    </p-accordion>    
+</div>
+
+ <div 
+    vegaBarChart1
+    #vegaBarChart1
+    *ngIf="showBarChart1"
+    pDraggable="barChart"
+    (mousedown)="mousedownVegaBarChart1($event)"
+    (onDragStart)="onDragStartVegaBarChart1($event)"
+    (onDragEnd)="onDragEndVegaBarChart1($event)"
+    [style.left]="barChartLeft1 + 'px'" 
+    [style.top]="barChartTop1 + 'em'" 
+    class="barChartWidget">
+</div>
+
+ <div 
+    vegaBarChart2
+    #vegaBarChart2
+    *ngIf="showBarChart2"
+    pDraggable="barChart"
+    (mousedown)="mousedownVegaBarChart2($event)"
+    (onDragStart)="onDragStartVegaBarChart2($event)"
+    (onDragEnd)="onDragEndVegaBarChart2($event)"
+    [style.left]="barChartLeft2 + 'px'" 
+    [style.top]="barChartTop2 + 'em'" 
+    class="barChartWidget">
+</div>
+
+
+    
+
+<div
+    class="filterBackground"
+    *ngIf="checkedScale"
+    >
+    Filters
+    <p-multiSelect 
+        [options]="months" 
+        [(ngModel)]="selectedMonth"
+        >
+    </p-multiSelect>
+
+
+    <!--Range: {{rangeValues}}
+    <p-slider 
+        [(ngModel)]="rangeValues" 
+        [style]="{'width':'200px'}" 
+        [range]="true">
+    </p-slider>-->
+
+</div>
+
+<!--<img 
+    src="../assets/pitr-green-arrows-set-4-2400px.png"
+    width="20"
+    height="20"
+    draggable="true"    
+    >-->
+
+<!--<p-tabView 
+    orientation="bottom"
+    (onChange)="onTabChange($event)"
+    >
+    <p-tabPanel 
+        header="Godfather I" 
+        [selected]="true"
+        leftIcon="fa-bell-o" 
+        rightIcon="fa-bookmark-o"
+        [headerStyleClass]="tabHeaderClass"
+        >
+        The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. T hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
+    </p-tabPanel>
+     <p-tabPanel header="Godfather II">
+        Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows.
+    </p-tabPanel>
+    <p-tabPanel header="Godfather III">
+        After a break of more than  15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate.
+    </p-tabPanel>
+</p-tabView>-->
+
+<svg viewBox="250 250 250 250">
+  <polygon points="125,30 125,30 125,30 31.9,63.2 46.1,186.3 125,230 125,230 125,230 203.9,186.3 218.1,63.2" />
+  <polygon points="125,30 125,52.2 125,52.1 125,153.4 125,153.4 125,230 125,230 203.9,186.3 218.1,63.2 125,30" />
+  <path d="M125,52.1L66.8,182.6h0h21.7h0l11.7-29.2h49.4l11.7,29.2h0h21.7h0L125,52.1L125,52.1L125,52.1L125,52.1
+      L125,52.1z M142,135.4H108l17-40.9L142,135.4z"/>
+</svg>
+
+<div *ngFor="let t of testing; let i = index">
+    <div 
+        class="testing"
+        #testing
+        #i
+        pDraggable="testing"
+        (mousedown)="onTestingMouseDown($event,i)"
+        (onDragStart)="onTestingDragStart($event,i)"
+        (onDragEnd)="onTestingDragEnd($event,i)"
+        class="testing">
+        {{t}}
+    </div>
+</div>

@@ -1,0 +1,64 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      
+    {
+      "name": "Lunch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceRoot}/src/app",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./~/*": "${workspaceRoot}/node_modules/*",
+        "webpack:///./src/*": "${workspaceRoot}/src/*"
+      },
+      "userDataDir": "${workspaceRoot}/.vscode/chrome",
+      "runtimeArgs": [
+        "--disable-session-crashed-bubble"
+      ]
+    },
+    {
+      "name": "Attach Chrome",
+      "type": "chrome",
+      "request": "attach",
+      "url": "http://localhost:4200",
+      "port": 9222,
+      "webRoot": "${workspaceRoot}/src/app",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./~/*": "${workspaceRoot}/node_modules/*",
+        "webpack:///./src/*": "${workspaceRoot}/src/*"
+      }
+    }
+  ]
+}
+
+// launch.json for angular/cli >= 1.0.0-beta.32
+
+// {
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "type": "chrome",
+//       "request": "launch",
+//       "name": "Launch Chrome",
+//       "url": "http://localhost:4200",
+//       "webRoot": "${workspaceRoot}",
+//       "sourceMaps": true,
+//       "userDataDir": "${workspaceRoot}/.vscode/chrome",
+//       "runtimeArgs": [
+//         "--disable-session-crashed-bubble"
+//       ]
+//     },
+//     {
+//       "name": "Attach Chrome",
+//       "type": "chrome",
+//       "request": "attach",
+//       "url": "http://localhost:4200",
+//       "port": 9222,
+//       "webRoot": "${workspaceRoot}",
+//       "sourceMaps": true
+//     }
+//   ]
+// }

@@ -1,0 +1,13 @@
+{
+    "vsicons.presets.angular": true,
+    "angulardoc.repoId": "66fb7dae-31b9-4ad3-9406-3fa259c83372",
+    "angulardoc.directoryFilter": [
+        "!typings",
+        "!node_modules",
+        "!.vscode"
+    ],
+    "angulardoc.fileFilter": [
+        "**/!(*.*spec).ts"
+    ],
+    "angulardoc.lastSync": 0
+}

@@ -1,0 +1,15 @@
+p {
+    color: lightgray;
+    font-size: 1.9em;
+    text-align: center;
+    /*margin-left: 120px;*/
+    font-family: "Courier New", Courier, monospace;
+}
+
+.detailline {
+   text-align: center;
+}
+
+span {
+    text-align: center;
+}

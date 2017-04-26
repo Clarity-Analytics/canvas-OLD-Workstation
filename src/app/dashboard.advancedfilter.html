@@ -1,0 +1,56 @@
+<form 
+    [formGroup]="userform" 
+    (ngSubmit)="onSubmit(userform.value)"
+    >
+    <div 
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        style="margin: 10px 0px"
+        >
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                Owner :
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                       type="text" 
+                       formControlName="owner" 
+                       placeholder="Optional portion of owner"
+                       autofocus
+                       autocomplete="on"
+                       >
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                Description :
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                       type="text" 
+                       formControlName="description" 
+                       placeholder="Optional portion of description"
+                       >
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2"></div>
+            <div class="ui-grid-col-3">
+                <button pButton 
+                        type="button" 
+                        label="Clear"
+                        (click)="clearForm()" 
+                        >
+                </button>
+            </div>
+            <div class="ui-grid-col-2"></div>
+            <div class="ui-grid-col-3">
+                <button pButton 
+                        type="submit" 
+                        label="Submit" 
+                        >
+                </button>
+            </div>
+            <div class="ui-grid-col-2"></div>
+        </div>
+    </div>   
+</form> 

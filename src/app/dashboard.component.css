@@ -1,0 +1,140 @@
+.dashboardMenu {
+    /*background-color: gray;*/
+    border: 2px solid gray;
+    border-radius: 4px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+
+.currentDashboardHeading {
+    margin: 0;
+    padding-left: 4px;
+}
+
+.newWidgetTypeDivLeft {
+    background-color:   #264d73;
+    border: 2px solid   #264d73;
+    border-radius: 3px;
+    display: block;
+    margin: 4px;
+    padding: 0;
+    width: 188px;
+}
+
+.dasbhboardQuickViewer {
+    background-color:   #264d73;
+    border: 2px solid   #264d73;
+    border-radius: 3px;
+    display: block;
+    margin: 4px;
+    padding: 0;
+    width: 188px;
+}
+
+.currentDashboard {
+    background-color:   #264d73;
+    border: 2px solid   #264d73;
+    border-radius: 3px;
+    display: block;
+    margin: 4px;
+    padding: 0;
+    width: 188px;
+}
+ 
+.newWidgetTypeButton {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    font-size: 1em;
+    height: 25px;
+    margin: 4px;
+    padding: 1px;
+    width: 25px;
+}
+
+.inputDashboard {
+    background-color: lightgray;
+    font-size: 0.6em;
+    margin: 4px;
+    padding: 0;
+    width: 178px;
+}
+
+.divToolbar {
+    background-color:   #264d73;
+}
+
+
+
+
+.palette {
+    background-color: #264d73;
+    border: 2px solid #264d73;
+    border-radius: 4px;
+    display: block;
+    float: right;
+    font-size: 0.6em;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 4.5em;
+    right: 7px;
+    width: 200px;
+}
+
+.paletteHeading {
+    margin: 4px;
+}
+
+.paletteTabContent{
+    background-color: white;
+}
+
+.barChartWidget {
+    background-color: darkred;
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 4.5em;
+    /*cursor: move;*/
+    resize: both;
+    overflow: auto;    
+}
+
+
+.filterBackground {
+    background-color: #c2d6d6;
+    /*z-index: -1;*/
+    position: absolute;
+    top: 4.5em;
+    left: 215px;
+    height: 3em;
+    text-align: center;
+    width: 868px;
+}
+
+.radioButtonDiv {
+    margin-top: 11px;
+    padding: 3px;
+    border: 1px solid darkgray;
+    border-radius: 2px;
+}
+
+/*.tabHeaderClass {
+    background-color: darkred;
+}*/
+
+/*body {
+    background-image: '../assets/red-2191601__340.jpg';
+    background-color: #cccccc;
+    resize: both;
+    overflow: auto;    
+}*/
+
+.testingNOT {
+    border: 1px solid darkgray;
+    box-shadow: 2px 2px 12px black;
+    background-color: lightgray;
+}

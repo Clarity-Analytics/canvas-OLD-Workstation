@@ -1,0 +1,61 @@
+<form 
+    [formGroup]="userform" 
+    (ngSubmit)="onSubmit(userform.value)"
+    >
+    <div 
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        style="margin: 10px 0px"
+        >
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                First Name *:
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                       type="text" 
+                       formControlName="firstname" 
+                       placeholder="Required"
+                       autofocus
+                       autocomplete="on"/>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                Password *:
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                       type="password" 
+                       formControlName="password" 
+                       placeholder="Required - minimum 6 characters"/>
+            </div>
+        </div>
+            <div class="ui-grid-col-4"></div>
+            <div class="ui-grid-col-10">
+                <div class="ui-message 
+                            ui-messages-error 
+                            ui-corner-all" 
+                            *ngIf="!userform.controls['password'].valid
+                                &&  userform.controls['password'].dirty">
+                    <i class="fa fa-close"></i>
+                    <span *ngIf="userform.controls['password'].errors['required']">
+                        Password is required
+                    </span>
+                    <span *ngIf="userform.controls['password'].errors['minlength']">
+                        Must be longer than 6 characters
+                    </span>
+                </div>
+            </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"></div>
+            <div class="ui-grid-col-4">
+                <button pButton 
+                        type="submit" 
+                        label="Submit" 
+                        [disabled]="!userform.valid">
+                </button>
+            </div>
+            <div class="ui-grid-col-4"></div>
+        </div>
+    </div>   
+</form> 

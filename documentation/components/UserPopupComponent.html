@@ -1,0 +1,1180 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>canvas-ng documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	    <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">canvas-ng documentation</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../">canvas-ng documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/LoginComponent.html" >LoginComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PageNotFoundComponent.html" >PageNotFoundComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/UserComponent.html" >UserComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/UserPopupComponent.html"  class="active" >UserPopupComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-classes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="../classes/Notification.html" >Notification</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/User.html" >User</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/AuthGuard.html" >AuthGuard</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/CanvasDate.html" >CanvasDate</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/EazlService.html" >EazlService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/GlobalErrorHandler.html" >GlobalErrorHandler</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/GlobalFunctionService.html" >GlobalFunctionService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/GlobalVariableService.html" >GlobalVariableService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/NotificationService.html" >NotificationService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/WebSocketService.html" >WebSocketService</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../">canvas-ng documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/LoginComponent.html" >LoginComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PageNotFoundComponent.html" >PageNotFoundComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/UserComponent.html" >UserComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/UserPopupComponent.html"  class="active" >UserPopupComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#classes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../classes/Notification.html" >Notification</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/User.html" >User</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/AuthGuard.html" >AuthGuard</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/CanvasDate.html" >CanvasDate</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/EazlService.html" >EazlService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/GlobalErrorHandler.html" >GlobalErrorHandler</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/GlobalFunctionService.html" >GlobalFunctionService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/GlobalVariableService.html" >GlobalVariableService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/NotificationService.html" >NotificationService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/WebSocketService.html" >WebSocketService</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content component">
+                   <div class="content-data">
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>UserPopupComponent</li>
+</ol>
+
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+        </li>
+        <li>
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="infos"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/user.popup.component.ts</code>
+</p>
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>user-popup</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>user.popup.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>user.popup.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>addEditMode</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>displayUserPopup</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code>boolean</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>selectedUser</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>userPopupFormClosed</code>
+                        </td>
+                        <td class="col-md-10">
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>constructor(eazlService: <a href="../injectables/EazlService.html" >EazlService</a>, fb: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html" target="_blank" >FormBuilder</a>, globalVariableService: <a href="../injectables/GlobalVariableService.html" >GlobalVariableService</a>, globalFunctionService: <a href="../injectables/GlobalFunctionService.html" >GlobalFunctionService</a>)</code>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="methods">Methods</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> subscribeToValue</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>subscribeToValue()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> onCancel</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>onCancel()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> onSubmit</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>onSubmit()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> currentUser</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>currentUser:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> description</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>description:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> errorMessageOnForm</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>errorMessageOnForm:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> formIsValid</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>formIsValid:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> isLoadingForm</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>isLoadingForm:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> isStaffOptions</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>isStaffOptions:     <code>SelectItem[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> newUser</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>newUser:     <code><a href="../classes/User.html" target="_self" >User</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> numberErrors</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>numberErrors:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>0</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> submitted</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>submitted:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> tooltippieUserID</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>tooltippieUserID:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>Enter your UserID (or UserName)</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> userformActivity</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>userformActivity:     <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> userformID</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>userformID:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
+        <div class="tab-pane fade tab-source-code" id="source">
+            <pre><code class="hljs javascript">import { Component }                  from &#x27;@angular/core&#x27;;
+import { EventEmitter }               from &#x27;@angular/core&#x27;;
+import { FormGroup }                  from &#x27;@angular/forms&#x27;;
+import { FormBuilder }                from &#x27;@angular/forms&#x27;;
+import { FormControl }                from &#x27;@angular/forms&#x27;;
+import { Input }                      from &#x27;@angular/core&#x27;;
+import { OnInit }                     from &#x27;@angular/core&#x27;;
+import { Output }                     from &#x27;@angular/core&#x27;;
+import { Validators }                 from &#x27;@angular/forms&#x27;;
+
+// PrimeNG
+import { Message }                    from &#x27;primeng/primeng&#x27;;
+import { SelectItem }                 from &#x27;primeng/primeng&#x27;;
+
+// Our Componenets
+
+// Our Services
+import { EazlService } from &#x27;./eazl.service&#x27;;
+import { GlobalFunctionService } from &#x27;./global.function.service&#x27;;
+import { GlobalVariableService } from &#x27;./global.variable.service&#x27;;
+
+// Our models
+import { User } from &#x27;./model.user&#x27;;
+
+@Component({
+    selector: &#x27;user-popup&#x27;,
+    templateUrl: &#x27;user.popup.component.html&#x27;,
+    styleUrls: [&#x27;user.popup.component.css&#x27;]
+})
+export class UserPopupComponent implements OnInit {
+
+    // Variables received from the parent HTML tag
+    @Input() addEditMode: string;
+    @Input() displayUserPopup: boolean;
+    @Input() selectedUser: User;
+
+    // Event emitter sends event back to parent component once Submit button was clicked
+    @Output() userPopupFormClosed: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+
+    // Local properties
+    currentUser: string &#x3D; &#x27;&#x27;;
+    description: string;
+    errorMessageOnForm: string &#x3D; &#x27;&#x27;;
+    formIsValid: boolean &#x3D; false;
+    isLoadingForm: boolean &#x3D; false;
+    isStaffOptions: SelectItem[];
+    newUser: User;
+    numberErrors: number &#x3D; 0;
+    submitted: boolean;
+    tooltippieUserID: string &#x3D; &#x27;Enter your UserID (or UserName)&#x27;;
+    userformID: any;
+    userformActivity: FormGroup;
+
+    constructor(
+        private eazlService: EazlService,
+        private fb: FormBuilder,
+        private globalVariableService: GlobalVariableService,
+        private globalFunctionService: GlobalFunctionService, 
+        ) {
+
+        // FormBuilder - must be before subscribeToValue ...
+        this.userformID &#x3D; this.fb.group({
+            // &#x27;lastname&#x27;: new FormControl(&#x27;&#x27;, Validators.required),
+            // &#x27;password&#x27;: new FormControl(&#x27;&#x27;, Validators.compose([Validators.required, Validators.minLength(6)])),
+
+            &#x27;userID&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;firstName&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;lastName&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;nickName&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;photoPath&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;emailAddress&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;cellNumber&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;workTelephoneNumber&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;workExtension&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;isStaff&#x27;: new FormControl(&#x27;&#x27;)
+        }
+        );
+
+        this.userformActivity &#x3D; this.fb.group({
+            &#x27;lastDatetimeLoggedIn&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;lastDatetimeReportWasRun&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;activeFromDate&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;inactiveDate&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;dateCreated&#x27;: new FormControl(&#x27;&#x27;),
+            &#x27;userIDLastUpdated&#x27;: new FormControl(&#x27;&#x27;)
+        }
+        );
+
+        this.subscribeToValue();
+    }
+
+    ngOnInit() {
+        this.globalFunctionService.printToConsole(this.constructor.name, &#x27;ngOnInit&#x27;, &#x27;@Start&#x27;);
+
+        this.isStaffOptions &#x3D; [];
+        this.isStaffOptions.push({ label: &#x27;Select option&#x27;, value: &#x27;&#x27; });
+        this.isStaffOptions.push({ label: &#x27;Is Staff Member&#x27;, value: &#x27;True&#x27; });
+        this.isStaffOptions.push({ label: &#x27;Non-staff&#x27;, value: &#x27;False&#x27; });
+    }
+
+    subscribeToValue() {
+        // Listens to changes in the form - ie when the user types
+        this.globalFunctionService.printToConsole(this.constructor.name, &#x27;subscribeToValue&#x27;, &#x27;@Start&#x27;);
+
+        this.userformID.valueChanges.subscribe((formContent: FormGroup) &#x3D;&gt; {
+
+            // // Only worry about changes when we are not loading
+            // if (!this.isLoadingForm) {
+            //     this.globalFunctionService.printToConsole(this.constructor.name,&#x27;subscribeToValue&#x27;, &#x27;@userformID.valueChanges&#x27;);
+
+            //     this.selectedUser.userID &#x3D; formContent[&#x27;userID&#x27;];
+            //     this.selectedUser.firstName &#x3D; formContent[&#x27;firstName&#x27;];
+            //     this.selectedUser.lastName &#x3D; formContent[&#x27;lastName&#x27;];
+            //     this.selectedUser.nickName &#x3D; formContent[&#x27;nickName&#x27;];
+            //     this.selectedUser.photoPath &#x3D; formContent[&#x27;photoPath&#x27;];
+            //     this.selectedUser.emailAddress &#x3D; formContent[&#x27;emailAddress&#x27;];
+            //     this.selectedUser.cellNumber &#x3D; formContent[&#x27;cellNumber&#x27;];
+            //     this.selectedUser.workTelephoneNumber &#x3D; formContent[&#x27;workTelephoneNumber&#x27;];
+            //     this.selectedUser.workExtension &#x3D; formContent[&#x27;workExtension&#x27;];
+            //     this.selectedUser.isStaff &#x3D; formContent[&#x27;isStaff&#x27;];
+            // }
+        });
+
+        this.userformActivity.valueChanges.subscribe((formContent) &#x3D;&gt; {
+
+            // Only worry about changes when we are not loading
+            // if (!this.isLoadingForm) {
+            //     this.globalFunctionService.printToConsole(this.constructor.name,&#x27;subscribeToValue&#x27;, &#x27;@userformActivity.valueChanges&#x27;);
+
+            //     this.selectedUser.lastDatetimeLoggedIn &#x3D; formContent[&#x27;lastDatetimeLoggedIn&#x27;];
+            //     this.selectedUser.lastDatetimeReportWasRun &#x3D; formContent[&#x27;lastDatetimeReportWasRun&#x27;];
+            //     this.selectedUser.activeFromDate &#x3D; formContent[&#x27;activeFromDate&#x27;];
+            //     this.selectedUser.inactiveDate &#x3D; formContent[&#x27;inactiveDate&#x27;];
+            //     this.selectedUser.dateCreated &#x3D; formContent[&#x27;dateCreated&#x27;];
+            //     this.selectedUser.userIDLastUpdated &#x3D; formContent[&#x27;userIDLastUpdated&#x27;];
+            // }    
+        });
+    }
+
+    ngOnChanges() {
+        // Reacts to changes in selectedUser
+        this.globalFunctionService.printToConsole(this.constructor.name, &#x27;ngOnChanges&#x27;, &#x27;@Start&#x27;);
+
+        this.globalFunctionService.printToConsole(this.constructor.name, &#x27;ngOnChanges&#x27;,
+            &#x27;Mode (Add / Edit) is: &#x27; + this.addEditMode);
+        this.globalFunctionService.printToConsole(this.constructor.name, &#x27;ngOnChanges&#x27;,
+            &#x27;Popup User Form is open: &#x27; + this.displayUserPopup.toString());
+
+        // Clear the form for new one
+        if (this.addEditMode &#x3D;&#x3D; &#x27;Add&#x27; &amp;&amp; this.displayUserPopup) {
+            // this.userformID.reset({
+            //     userID: &#x27;&#x27;,
+            //     firstName: &#x27;&#x27;,
+            //     lastName: &#x27;&#x27;,
+            //     nickName: &#x27;&#x27;,
+            //     photoPath: &#x27;&#x27;,
+            //     lastDatetimeLoggedIn: &#x27;&#x27;,
+            //     lastDatetimeReportWasRun: &#x27;&#x27;,
+            //     emailAddress: &#x27;&#x27;,
+            //     cellNumber: &#x27;&#x27;,
+            //     workTelephoneNumber: &#x27;&#x27;,
+            //     workExtension: &#x27;&#x27;,
+            //     activeFromDate: &#x27;&#x27;,
+            //     inactiveDate: &#x27;&#x27;,
+            //     dateCreated: &#x27;&#x27;,
+            //     userIDLastUpdated: &#x27;&#x27;,
+            //     isStaff: false,
+            //     extraString1: &#x27;&#x27;,
+            //     extraString10: &#x27;&#x27;,
+            //     extraDate1: &#x27;&#x27;,
+            //     extraDate10: &#x27;&#x27;,
+            //     extraBoolean1: false,
+            //     extraBoolean10: false,
+            // });
+            this.userformID.reset();
+            this.userformActivity.reset()
+        }
+
+        // Populate the popup form when it is opened, and in Edit mode only
+        if (this.addEditMode &#x3D;&#x3D; &#x27;Edit&#x27; &amp;&amp; this.displayUserPopup) {
+
+            // Indicate we loading form -&gt; valueChange routine dont fire
+            this.isLoadingForm &#x3D; true;
+            if (this.selectedUser) {
+
+                if (this.selectedUser.userID) {
+                    this.userformID.controls[&#x27;userID&#x27;].setValue(this.selectedUser.userID);
+                }
+                if (this.selectedUser.firstName) {
+                    this.userformID.controls[&#x27;firstName&#x27;].setValue(this.selectedUser.firstName);
+                }
+                if (this.selectedUser.lastName) {
+                    this.userformID.controls[&#x27;lastName&#x27;].setValue(this.selectedUser.lastName);
+                }
+                if (this.selectedUser.nickName) {
+                    this.userformID.controls[&#x27;nickName&#x27;].setValue(this.selectedUser.nickName);
+                }
+                if (this.selectedUser.photoPath) {
+                    this.userformID.controls[&#x27;photoPath&#x27;].setValue(this.selectedUser.photoPath);
+                }
+                if (this.selectedUser.lastDatetimeLoggedIn) {
+                    this.userformActivity.controls[&#x27;lastDatetimeLoggedIn&#x27;].setValue(this.selectedUser.lastDatetimeLoggedIn);
+                }
+                if (this.selectedUser.lastDatetimeReportWasRun) {
+                    this.userformActivity.controls[&#x27;lastDatetimeReportWasRun&#x27;].setValue(this.selectedUser.lastDatetimeReportWasRun);
+                }
+                if (this.selectedUser.emailAddress) {
+                    this.userformID.controls[&#x27;emailAddress&#x27;].setValue(this.selectedUser.emailAddress);
+                }
+                if (this.selectedUser.cellNumber) {
+                    this.userformID.controls[&#x27;cellNumber&#x27;].setValue(this.selectedUser.cellNumber);
+                }
+                if (this.selectedUser.workTelephoneNumber) {
+                    this.userformID.controls[&#x27;workTelephoneNumber&#x27;].setValue(this.selectedUser.workTelephoneNumber);
+                }
+                if (this.selectedUser.workExtension) {
+                    this.userformID.controls[&#x27;workExtension&#x27;].setValue(this.selectedUser.workExtension);
+                }
+                if (this.selectedUser.activeFromDate) {
+                    this.userformActivity.controls[&#x27;activeFromDate&#x27;].setValue(this.selectedUser.activeFromDate);
+                }
+                if (this.selectedUser.inactiveDate) {
+                    this.userformActivity.controls[&#x27;inactiveDate&#x27;].setValue(this.selectedUser.inactiveDate);
+                }
+                if (this.selectedUser.dateCreated) {
+                    this.userformActivity.controls[&#x27;dateCreated&#x27;].setValue(this.selectedUser.dateCreated);
+                }
+                if (this.selectedUser.userIDLastUpdated) {
+                    this.userformActivity.controls[&#x27;userIDLastUpdated&#x27;].setValue(this.selectedUser.userIDLastUpdated);
+                }
+                if (this.selectedUser.isStaff) {
+                    this.userformID.controls[&#x27;isStaff&#x27;].setValue(this.selectedUser.isStaff);
+                }
+
+                // Indicate we are done loading form
+                this.isLoadingForm &#x3D; false;
+            }
+        }
+
+        this.globalFunctionService.printToConsole(this.constructor.name, &#x27;ngOnChanges&#x27;, &#x27;@End&#x27;);
+    }
+
+    onCancel() {
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: &#x27;info&#x27;,
+            summary:  &#x27;Cancel&#x27;,
+            detail:   &#x27;No changes as requested&#x27;
+        });
+        
+        this.userPopupFormClosed.emit(&#x27;Cancel&#x27;);
+    }
+
+    onSubmit() {
+        // User clicked submit button
+        this.globalFunctionService.printToConsole(this.constructor.name, &#x27;onSubmit&#x27;, &#x27;@Start&#x27;);
+
+        // Validation: note that &#x3D;&#x3D; null tests for undefined as well
+        this.formIsValid &#x3D; false;
+        this.errorMessageOnForm &#x3D; &#x27;&#x27;;
+        this.numberErrors &#x3D; 0;
+        if (this.userformID.controls[&#x27;userID&#x27;].value &#x3D;&#x3D; &#x27;&#x27;  || 
+            this.userformID.controls[&#x27;userID&#x27;].value &#x3D;&#x3D; null) {
+            this.formIsValid &#x3D; false;
+            this.numberErrors &#x3D; this.numberErrors + 1;
+            this.errorMessageOnForm &#x3D; this.errorMessageOnForm + &#x27; &#x27; + &#x27;The UserID is compulsory.&#x27;
+        }
+        if (this.userformID.controls[&#x27;firstName&#x27;].value &#x3D;&#x3D; null ||
+            this.userformID.controls[&#x27;firstName&#x27;].value &#x3D;&#x3D; &#x27;&#x27;) {
+            this.formIsValid &#x3D; false;
+            this.numberErrors &#x3D; this.numberErrors + 1;
+            this.errorMessageOnForm &#x3D; this.errorMessageOnForm + &#x27; &#x27; + &#x27;The First Name is compulsory.&#x27;
+        }
+        if (this.errorMessageOnForm !&#x3D; &#x27;&#x27;) {
+            this.formIsValid &#x3D; true;
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: &#x27;error&#x27;,
+                summary: &#x27;Error&#x27;,
+                detail: this.numberErrors.toString() + &#x27; error(s) encountered&#x27;
+            });
+            return;
+        }
+
+        // Adding new user
+        if (this.addEditMode &#x3D;&#x3D; &#x27;Add&#x27; &amp;&amp; this.displayUserPopup) {
+            this.eazlService.addUser({
+                userID:                     this.userformID.controls[&#x27;userID&#x27;].value,
+                firstName:                  this.userformID.controls[&#x27;firstName&#x27;].value,
+                lastName:                   this.userformID.controls[&#x27;lastName&#x27;].value,
+                nickName:                   this.userformID.controls[&#x27;nickName&#x27;].value,
+                photoPath:                  this.userformID.controls[&#x27;photoPath&#x27;].value,
+                lastDatetimeLoggedIn:       this.userformActivity.controls[&#x27;lastDatetimeLoggedIn&#x27;].value,
+                lastDatetimeReportWasRun:   this.userformActivity.controls[&#x27;lastDatetimeReportWasRun&#x27;].value,
+                emailAddress:               this.userformID.controls[&#x27;emailAddress&#x27;].value,
+                cellNumber:                 this.userformID.controls[&#x27;cellNumber&#x27;].value,
+                workTelephoneNumber:        this.userformID.controls[&#x27;workTelephoneNumber&#x27;].value,
+                workExtension:              this.userformID.controls[&#x27;workExtension&#x27;].value,
+                activeFromDate:             this.userformActivity.controls[&#x27;activeFromDate&#x27;].value,
+                inactiveDate:               this.userformActivity.controls[&#x27;inactiveDate&#x27;].value,
+                dateCreated:                this.userformActivity.controls[&#x27;dateCreated&#x27;].value,
+                userIDLastUpdated:          this.userformActivity.controls[&#x27;userIDLastUpdated&#x27;].value,
+                isStaff:                    this.userformID.controls[&#x27;isStaff&#x27;].valuel,
+                extraString1: &#x27;&#x27;,
+                extraString10: &#x27;&#x27;,
+                extraDate1: &#x27;&#x27;,
+                extraDate10: &#x27;&#x27;,
+                extraBoolean1: false,
+                extraBoolean10: false,
+            });
+
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: &#x27;info&#x27;,
+            summary:  &#x27;Success&#x27;,
+            detail:   &#x27;User added&#x27;
+        });
+        }
+
+        //     this.selectedUser.userIDLastUpdated &#x3D; this.userformActivity.controls[&#x27;&#x27;].value;
+        // } 
+
+        // Editing existing user
+        if (this.addEditMode &#x3D;&#x3D; &#x27;Edit&#x27; &amp;&amp; this.displayUserPopup) {
+
+            // Only worry about changes when we are not loading
+            if (!this.isLoadingForm) {
+                this.selectedUser.userID &#x3D; this.userformID.controls[&#x27;userID&#x27;].value;
+                this.selectedUser.firstName &#x3D; this.userformID.controls[&#x27;firstName&#x27;].value;
+                this.selectedUser.lastName &#x3D; this.userformID.controls[&#x27;lastName&#x27;].value;
+                this.selectedUser.nickName &#x3D; this.userformID.controls[&#x27;nickName&#x27;].value;
+                this.selectedUser.photoPath &#x3D; this.userformID.controls[&#x27;photoPath&#x27;].value;
+                this.selectedUser.emailAddress &#x3D; this.userformID.controls[&#x27;emailAddress&#x27;].value;
+                this.selectedUser.cellNumber &#x3D; this.userformID.controls[&#x27;cellNumber&#x27;].value;
+                this.selectedUser.workTelephoneNumber &#x3D; this.userformID.controls[&#x27;workTelephoneNumber&#x27;].value;
+                this.selectedUser.workExtension &#x3D; this.userformID.controls[&#x27;workExtension&#x27;].value;
+                this.selectedUser.isStaff &#x3D; this.userformID.controls[&#x27;isStaff&#x27;].value;
+            }
+
+            if (!this.isLoadingForm) {
+                this.selectedUser.lastDatetimeLoggedIn &#x3D; this.userformActivity.controls[&#x27;lastDatetimeLoggedIn&#x27;].value;
+                this.selectedUser.lastDatetimeReportWasRun &#x3D; this.userformActivity.controls[&#x27;lastDatetimeReportWasRun&#x27;].value;
+                this.selectedUser.activeFromDate &#x3D; this.userformActivity.controls[&#x27;activeFromDate&#x27;].value;
+                this.selectedUser.inactiveDate &#x3D; this.userformActivity.controls[&#x27;inactiveDate&#x27;].value;
+                this.selectedUser.dateCreated &#x3D; this.userformActivity.controls[&#x27;dateCreated&#x27;].value;
+                this.selectedUser.userIDLastUpdated &#x3D; this.userformActivity.controls[&#x27;userIDLastUpdated&#x27;].value;
+            }
+
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: &#x27;info&#x27;,
+                summary:  &#x27;Success&#x27;,
+                detail:   &#x27;User updated&#x27;
+            });
+        }
+
+        // Trigger event emitter &#x27;emit&#x27; method
+        this.userPopupFormClosed.emit(&#x27;Submit&#x27;);
+
+        //  Note: Do NOT set &#x27;this.displayUserPopup &#x3D; false&#x27; here - it has to change in the parent
+        //        componenent to take effect (and thus close Dialogue)
+    }
+}</code></pre>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
+
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/highlight.pack.js"></script>
+       <script src="../js/libs/highlightjs-line-numbers.min.js"></script>
+       <script src="../js/search/search_index.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
+
+    </body>
+</html>

@@ -1,0 +1,20 @@
+.widgetCommentButton {
+    float: right;
+    width: 50px;
+}
+
+.panel {
+    font-size: 0.85em;
+}
+
+.formButton {
+    background-color:  white;
+    border: 1px solid  #204060;
+    border-radius: 2px;
+    color: black;
+    float: right;
+    height: 22px;
+    margin: 0 3px 0 0;
+    padding: 0;
+    width: 50px;
+}

@@ -1,0 +1,309 @@
+<p 
+    class="iserror" 
+    *ngIf="formIsValid"> 
+    {{ errorMessageOnForm }}
+</p>
+
+<p-tabView>
+    <p-tabPanel 
+        header="Identification" 
+        [selected]="true">
+ 
+        <form 
+            [formGroup]="userformID" 
+            >
+            <div 
+                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+                style="margin: 10px 0px">
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        User ID *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="userID" 
+                               placeholder="Required"
+                               [pTooltip]="tooltippieUserID"
+                               autofocus
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        First Name *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="firstName" 
+                               placeholder="Required"
+                               pTooltip="Enter your first name"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Last Name *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="lastName" 
+                               placeholder="Required"
+                               pTooltip="Enter your surname"
+                               />
+                    </div>
+                </div>
+                
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Nickname:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="nickName" 
+                               placeholder="Required - minimum 6 characters"
+                               pTooltip="Enter an optional nick name"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Photo Path:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="photoPath"
+                               pTooltip="Enter the full path to your profile picture"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Email Address:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText    
+                               type="text" 
+                               formControlName="emailAddress"
+                               pTooltip="Enter your full email address"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        cellNumber:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="cellNumber"
+                               pTooltip="Enter your cell phone number"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Work Telephone:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                            type="text" 
+                            formControlName="workTelephoneNumber"
+                               pTooltip="Enter your work telephone number (no ext)"
+                            >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Work Extension:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="workExtension"
+                               pTooltip="Enter an optional extension at work"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+                
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Is Staff ? *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <p-dropdown [options]="isStaffOptions" 
+                                    formControlName="isStaff" 
+                                    [autoWidth]="false"
+                                    pTooltip="Select if a staff member"
+                                    >
+                        </p-dropdown>
+                    </div>
+                </div>
+
+            </div>   
+        </form> 
+    </p-tabPanel>
+    
+    <p-tabPanel header="Activity" [selected]="false">
+        <form 
+            [formGroup]="userformActivity" 
+            (ngSubmit)="onSubmit(userformActivity.value)"
+            >
+            <div 
+                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+                style="margin: 10px 0px">
+
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Last Login:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="lastDatetimeLoggedIn"
+                               pTooltip="Last date that the user logged in"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Last Report Ran:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="lastDatetimeReportWasRun"
+                               pTooltip="Last date on which user ran a report"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Active From Date:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="activeFromDate"
+                               pTooltip="Date from which user is Active (can be in the future)"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Inactive Date:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="inactiveDate"
+                               pTooltip="Date from which user is inactive (cannot work)"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Date Created:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="dateCreated"
+                               pTooltip="Date this user account was created"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        UserID Last Upd:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="userIDLastUpdated"
+                               pTooltip="UserID who created this user account"
+                               >
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+            </div>
+        </form> 
+    </p-tabPanel>
+    
+    <p-tabPanel header="Header 3">
+        <h3>Bar Chart</h3>
+        <div vegaChart></div>
+     <!--ngx-Chart Options-->
+        <!--<ngx-charts-bar-vertical-->
+            <!--[view]="view"-->
+            <!--[scheme]="colorScheme"-->
+            <!--[results]="single"-->
+            <!--[gradient]="gradient"-->
+            <!--[xAxis]="showXAxis"-->
+            <!--[yAxis]="showYAxis"-->
+            <!--[legend]="showLegend"-->
+            <!--[showXAxisLabel]="showXAxisLabel"-->
+            <!--[showYAxisLabel]="showYAxisLabel"-->
+            <!--[xAxisLabel]="xAxisLabel"-->
+            <!--[yAxisLabel]="yAxisLabel"-->
+            <!--(select)="onSelect($event)">-->
+        <!--</ngx-charts-bar-vertical>-->
+    </p-tabPanel>
+
+</p-tabView>
+<div *ngIf="selecteduser">   {{ selecteduser.firstName }}  ....  </div>
+
+<p-toolbar>
+
+    <div class="ui-toolbar-group-left">
+        <button 
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onCancel()"
+            >
+        </button>
+        <!--<p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>-->
+    </div>
+    
+    <div class="ui-toolbar-group-right">
+        <button 
+            pButton 
+            type="submit" 
+            label="Submit" 
+            icon="fa-refresh"
+            (click)="onSubmit()"
+            >
+        </button>
+    </div>
+</p-toolbar>
+

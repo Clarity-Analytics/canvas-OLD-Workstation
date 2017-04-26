@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: darkgray;
+    /*background-image: url('./assets/red-2191601__340.jpg');*/
+}
+
+.vega-actions a {
+    margin-right: 5px;
+} 

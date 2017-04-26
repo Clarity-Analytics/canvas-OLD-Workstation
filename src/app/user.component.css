@@ -1,0 +1,13 @@
+.ui-datatable tbody {
+    font-size: 0.9em !important;
+}
+
+/*ui-datatable-footer {
+    margin: 20px 20px 0 0;
+    padding: 20px 20px 0 0;
+    background: darkorange;
+}*/
+
+.csvButton {
+    margin: -5px 20px 0 20px;
+}

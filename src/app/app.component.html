@@ -1,3 +1,35 @@
-<h1>
-  {{title}}
-</h1>
+<p-growl 
+    [value]="growlMsgs" 
+    [sticky]="growlSticky" 
+    [life]="growlLife">
+</p-growl>
+
+<div appVchart></div>
+
+
+<div class="menubar">
+    <p-menubar [model]="menuItems"> </p-menubar>
+</div>
+ 
+<button (click)="sendNotificationToServer()">
+    Generate a Notification via the Web Socket
+</button>
+
+<div class="router-outlet">
+    <router-outlet 
+        (formSubmit)="handleFormSubmit($event)">
+    </router-outlet>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
+
+<p-dialog header="Login" 
+    [(visible)]="displayNewMessage" 
+    modal="modal" 
+    width="450" 
+    responsive="true"
+    >
+
+    <login (formSubmit)="handleFormSubmit($event)" ></login>
+
+</p-dialog>
