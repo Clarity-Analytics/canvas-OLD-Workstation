@@ -367,6 +367,21 @@
                     >
                 </p-toggleButton>
 
+                <p-toggleButton 
+                    [(ngModel)]="showContainerHeader" 
+                    onLabel="Head" 
+                    offLabel="Off" 
+                    [style]="{
+                                'border':'1px solid darkgray',
+                                'border-radius':'2px',
+                                'height': '2em',
+                                'margin': '0px',
+                                'padding':'0px',
+                                'width':'50px'
+                             }"                     
+                    >
+                </p-toggleButton>
+
                 <div
                     class="paletteLabel"
                     >
@@ -477,68 +492,78 @@
     (click)="onWidgetMouseDown($event, w.properties.widgetID)"
     >
 
-    <!--Widget Drag Handle    -->
-    <button
-        class="widgetDragHandle"
-        pButton
-        type="button"
-        icon="fa-arrows"
-        pTooltip="Click and drag widget" 
-        tooltipPosition="right" 
-        tooltipEvent="hover"
-        (mousedown)="onWidgetDragHandleMouseDown()"
-        (mouseup)="onWidgetDragHandleMouseUp()"
+    <!--Container Header boxie-->
+    <div
+        class=widgetContainerHeader
+        [style.height.em]="showContainerHeader == true ? '1' : '0'"
         >
-    </button> 
 
-    <!--Widget Edit button-->
-    <button
-        class="widgetEditHandle"
-        pButton
-        type="button"
-        icon="fa-edit"
-        pTooltip="Click to edit widget" 
-        tooltipPosition="right" 
-        tooltipEvent="hover"
-        (click)="editWidgetComment(w.properties.widgetID)"
-        >
-    </button> 
+        <!--Widget Drag Handle    -->
+        <button
+            class="widgetDragHandle"
+            *ngIf="showContainerHeader"
+            pButton
+            type="button"
+            icon="fa-arrows"
+            pTooltip="Click and drag widget" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (mousedown)="onWidgetDragHandleMouseDown()"
+            (mouseup)="onWidgetDragHandleMouseUp()"
+            >
+        </button> 
 
-    <!--Widget Title-->
-    <span
-        class="widgetTitle"
-        >
-        Title: {{w.properties.widgetName}}
-    </span>
+        <!--Widget Edit button-->
+        <button
+            class="widgetEditHandle"
+            *ngIf="showContainerHeader"
+            pButton
+            type="button"
+            icon="fa-edit"
+            pTooltip="Click to edit widget" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="editWidgetComment(w.properties.widgetID)"
+            >
+        </button> 
 
-    <!--Widget shift selected-->
-    <button
-        *ngIf="widgetShiftSelected(w.properties.widgetID)"
-        class="widgetShiftSelected"
-        pButton
-        #cm
-        type="button"
-        icon="fa-check-square-o"
-        pTooltip="This widget has been selected with shift-click" 
-        tooltipPosition="right" 
-        tooltipEvent="hover"
-        >
-    </button> 
+        <!--Widget Title-->
+        <span
+            class="widgetTitle"
+            *ngIf="showContainerHeader"
+            >
+            Title: {{w.properties.widgetName}}
+        </span>
 
-    <!--Widget Comment button-->
-    <button
-        *ngIf="w.properties.widgetComments"
-        class="widgetCommentButton"
-        pButton
-        #cm
-        type="button"
-        icon="fa-lightbulb-o"
-        pTooltip="This widget has a comment" 
-        tooltipPosition="right" 
-        tooltipEvent="hover"
-        (click)="showWidgetComment(w.properties.widgetID)"
-        >
-    </button>         
+        <!--Widget shift selected-->
+        <button
+            *ngIf="widgetShiftSelected(w.properties.widgetID)"
+            class="widgetShiftSelected"
+            pButton
+            #cm
+            type="button"
+            icon="fa-check-square-o"
+            pTooltip="This widget has been selected with shift-click" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            >
+        </button> 
+
+        <!--Widget Comment button-->
+        <button
+            *ngIf="w.properties.widgetComments  &&  showContainerHeader"
+            class="widgetCommentButton"
+            pButton
+            #cm
+            type="button"
+            icon="fa-lightbulb-o"
+            pTooltip="This widget has a comment" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="showWidgetComment(w.properties.widgetID)"
+            >
+        </button>         
+    <div>          <!--Container Header boxie-->
 
     <!--Graph content -->
     <div 

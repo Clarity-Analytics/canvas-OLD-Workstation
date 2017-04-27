@@ -158,7 +158,10 @@
         resize: both;
         top: 4.5em;
         width: 200px;            
+    }
 
+    .widgetContainerHeader {
+        background-color: inherit;
     }
 
     .widgetGraph {

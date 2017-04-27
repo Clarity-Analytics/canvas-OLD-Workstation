@@ -75,6 +75,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     selectedCommentWidgetID: number;        // Current WidgetID for Comment
 
     // Currently selected properties for a Widget, in the Palette
+    showContainerHeader: boolean = true;
     selectedBackgroundColor: string;
     selectedBorder: string;
     selectedBoxShadow: string;
@@ -1160,6 +1161,8 @@ console.log ('chg el', leftorRight,newValue)
         this.widgetDraggingEnabled = false;
 
     }
+
+    on
 
     loadDashboardTabs(event) {
         // Load the Tabs for the selected Dashboard
