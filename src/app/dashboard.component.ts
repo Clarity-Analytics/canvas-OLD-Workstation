@@ -1225,6 +1225,21 @@ console.log ('chg el', leftorRight,newValue)
 
     }
 
+    onWidgetSelectAll() {
+        // Select all the widgets
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onWidgetSelectAll', '@Start');
+        
+        // Kill and rebuild.  This destroys select-order, but for now I think it is okay ...
+        this.selectedWidgetIDs = [];
+
+        // Loop and build
+        for (var idWidget = 0; idWidget < this.widgets.length; idWidget++) {
+                this.selectedWidgetIDs.push(this.widgets[idWidget].properties.widgetID);
+        }
+
+console.log (this.selectedWidgetIDs)
+
+    }
     loadDashboardTabs(event) {
         // Load the Tabs for the selected Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
