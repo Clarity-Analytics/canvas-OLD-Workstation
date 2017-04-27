@@ -758,7 +758,7 @@ export const WIDGETS: Widget[] =
                 widgetDefaultExportFileType: '',
                 widgetDescription: '',              
                 widgetIndex: 1,                 
-                widgetIsLocked: true,           
+                widgetIsLocked: false,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',  
                 widgetIsLiked: false,

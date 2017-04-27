@@ -232,6 +232,29 @@
         width: 15px;
     }
 
+    .widgetIsLiked:hover {
+        background-color: transparent;
+        border: transparent;
+        color: black;
+    }
+
+    .widgetIsLocked {
+        background-color: transparent;
+        border: transparent;
+        color: lightgray;
+        float: right;
+        font-size: 1em !important;
+        margin: 0 0 0 4px;
+        padding: 0;
+        width: 15px;
+    }
+
+    .widgetIsLocked:hover {
+        background-color: transparent;
+        border: transparent;
+        color: black;
+    }
+
     .widgetShiftSelected {
         background-color: transparent;
         border: transparent;

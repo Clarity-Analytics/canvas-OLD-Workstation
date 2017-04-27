@@ -406,6 +406,17 @@ console.log ('chg el', leftorRight,newValue)
         this.displayEditWidget = true;
     }
 
+    clickWidgetLockToggle(idWidget: number) {
+        // Toggle widgetIsLocked on a Widget
+        // TODO - when to DB, update on DB (of kors)
+        for (var i = 0, len = this.widgets.length; i < len; i++) {
+            if (this.widgets[i].properties.widgetID == idWidget) {
+                this.widgets[i].properties.widgetIsLocked = 
+                    !this.widgets[i].properties.widgetIsLocked;
+            }
+        }
+    }
+
     clickWidgetIsLiked(idWidget: number) {
         // Toggle IsLiked on a Widget
         // TODO - when to DB, update properties.widgetLiked[j].widgetLikedUserID

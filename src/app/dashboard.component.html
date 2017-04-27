@@ -569,10 +569,37 @@
             pButton
             type="button"
             icon="fa-heart-o"
-            pTooltip="You like this, click to UnLike" 
+            pTooltip="Click to toggle between Liked and UnLiked" 
             tooltipPosition="right" 
             tooltipEvent="hover"
             (click)="clickWidgetIsLiked(w.properties.widgetID)"
+            >
+        </button>         
+
+        <!--Widget Locked -->
+        <button
+            *ngIf="w.properties.widgetIsLocked"
+            class="widgetIsLocked"
+            pButton
+            type="button"
+            icon="fa-lock"
+            pTooltip="Click to UNlock.  Cannot edit when locked" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="clickWidgetLockToggle(w.properties.widgetID)"
+            >
+        </button> 
+        <!--Widget UNLocked -->
+        <button
+            *ngIf="!w.properties.widgetIsLocked"
+            class="widgetIsLocked"
+            pButton
+            type="button"
+            icon="fa-unlock"
+            pTooltip="Click to lock.  Cannot edit when locked" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="clickWidgetLockToggle(w.properties.widgetID)"
             >
         </button>         
     <div>          <!--Container Header boxie-->
