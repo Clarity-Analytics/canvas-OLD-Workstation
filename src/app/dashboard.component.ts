@@ -110,9 +110,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
-
+    deleteMode: boolean = false;                // True while busy deleting
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
-
 
     constructor(
         private canvasColors: CanvasColors,
@@ -401,14 +400,38 @@ console.log ('chg el', leftorRight,newValue)
 
     }
 
+    clickDeleteWidget (idWidget: number) {
+        // Delete the Widget, with confirmation of kors
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
+
+        // See earlier note on deleteMode; its a whole story ...
+        this.deleteMode = true;
+        if (this.deleteMode) {
+            this.confirmationService.confirm({
+                message: 'Are you sure that you want to delete this Widget?',
+                accept: () => {
+                    this.widgetDeleteIt(idWidget);
+                    this.deleteMode = false;
+                },
+                reject: () => {
+                    this.deleteMode = false;
+                }
+            });
+        }
+    }
+
     editWidgetComment (idWidget: number) {
         // Show the Comment popup window
+        this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetDistanceChange', '@Start');
+
         this.displayEditWidget = true;
     }
 
     clickWidgetLockToggle(idWidget: number) {
         // Toggle widgetIsLocked on a Widget
         // TODO - when to DB, update on DB (of kors)
+        this.globalFunctionService.printToConsole(this.constructor.name,'editWidgetComment', '@Start');
+
         for (var i = 0, len = this.widgets.length; i < len; i++) {
             if (this.widgets[i].properties.widgetID == idWidget) {
                 this.widgets[i].properties.widgetIsLocked = 
@@ -421,6 +444,8 @@ console.log ('chg el', leftorRight,newValue)
         // Toggle IsLiked on a Widget
         // TODO - when to DB, update properties.widgetLiked[j].widgetLikedUserID
         //        by adding user, or removing depending on likedness
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetIsLiked', '@Start');
+
         for (var i = 0, len = this.widgets.length; i < len; i++) {
             if (this.widgets[i].properties.widgetID == idWidget) {
                 this.widgets[i].properties.widgetIsLiked = 
@@ -431,6 +456,8 @@ console.log ('chg el', leftorRight,newValue)
 
     showWidgetComment (idWidget: number) {
         // Show the Comment popup window
+        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetComment', '@Start');
+
         let widgetComment: string = this.widgets.filter(
                     widget => widget.properties.widgetID === idWidget)[0].properties.widgetComments;
         this.selectedCommentWidgetID = idWidget;
@@ -922,12 +949,40 @@ console.log ('chg el', leftorRight,newValue)
     onDashboardDelete() {
         // Confirm if user really wants to delete
         // TODO - this guy needs Two clicks to close dialogue, but then deletes twice!!
+        this.deleteMode = true;
+        
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this Dashboard?',
             accept: () => {
                 this.DashboardDeleteIt();
+                this.deleteMode = false;
+            },
+            reject: () => {
+                this.deleteMode = false;
             }
         });
+    }
+
+    widgetDeleteIt(idWidget: number) {
+        // Delete Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'widgetDeleteIt', '@Start');
+
+        // Bring back the value field of the selected item.
+        // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
+        //       I had to make a workaround
+        // Note: deleteMode is important to switch the loop off since we are in an *ngFor
+        //       So, switch on when Delete Button is clicked, and switch off after 
+        //       delete routine is invoked.  Also, the popup is *ngIf-ed to it
+        if (this.deleteMode) {
+            for (var i = 0; i < this.widgets.length; i++ ) {
+                if (this.widgets[i].properties.widgetID == idWidget) {
+                    this.globalFunctionService.printToConsole(
+                        this.constructor.name,'widgetDeleteIt', 'Deleting Widget ID ' + idWidget + ' ...')
+                    this.widgets.splice(i, 1);
+            this.deleteMode = false;
+                }
+            }
+        }
     }
 
     DashboardDeleteIt() {
@@ -953,6 +1008,10 @@ console.log ('chg el', leftorRight,newValue)
                 }
             }
         }
+
+        // Reset Delete Mode
+        this.deleteMode = false;
+        
     }
 
     onDashboardAdd() {

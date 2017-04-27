@@ -527,6 +527,20 @@
             >
         </button> 
 
+        <!--Delete Widget-->
+        <button
+            class="widgetEditHandle"
+            *ngIf="showContainerHeader"
+            pButton
+            type="button"
+            icon="fa-minus-square"
+            pTooltip="Click to DELETE the widget" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="clickDeleteWidget(w.properties.widgetID)"
+            >
+        </button> 
+
         <!--Widget Title-->
         <span
             class="widgetTitle"
@@ -537,12 +551,12 @@
 
         <!--Widget (shift) selected-->
         <button
-            *ngIf="widgetShiftSelected(w.properties.widgetID)"
+            *ngIf="widgetShiftSelected(w.properties.widgetID)  &&  showContainerHeader"
             class="widgetShiftSelected"
             pButton
             type="button"
             icon="fa-check-square-o"
-            pTooltip="This widget has been selected with shift-click" 
+            pTooltip="This widget has been selected with shift-click  &&  showContainerHeader" 
             tooltipPosition="right" 
             tooltipEvent="hover"
             >
@@ -565,6 +579,7 @@
         <!--Widget liked -->
         <button
             class="widgetIsLiked"
+            *ngIf="showContainerHeader"
             [style.color]="w.properties.widgetIsLiked ? 'red' : 'lightgray'"
             pButton
             type="button"
@@ -578,7 +593,7 @@
 
         <!--Widget Locked -->
         <button
-            *ngIf="w.properties.widgetIsLocked"
+            *ngIf="w.properties.widgetIsLocked  &&  showContainerHeader"
             class="widgetIsLocked"
             pButton
             type="button"
@@ -591,7 +606,7 @@
         </button> 
         <!--Widget UNLocked -->
         <button
-            *ngIf="!w.properties.widgetIsLocked"
+            *ngIf="!w.properties.widgetIsLocked  &&  showContainerHeader"
             class="widgetIsLocked"
             pButton
             type="button"
@@ -602,6 +617,7 @@
             (click)="clickWidgetLockToggle(w.properties.widgetID)"
             >
         </button>         
+
     <div>          <!--Container Header boxie-->
 
     <!--Graph content -->
@@ -645,7 +661,13 @@
 
 
     <!--Confirmation Dialogue Box-->
-    <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #cd>
+    <p-confirmDialog 
+        *ngIf="deleteMode"
+        header="Confirmation" 
+        icon="fa fa-question-circle" 
+        width="425" 
+        #cd
+        >
         <p-footer>
             <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
             <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
