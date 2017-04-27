@@ -276,11 +276,11 @@ changeWidgetGraph() {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContainerApply', '@Start');
 
         // Loop on the Array of selected IDs, and do things to TheMan
-        for (var idWidget = 0; idWidget < this.selectedWidgetIDs.length; idWidget++) {
+        for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
 
             // Loop on the ViewChildren, and act for the Selected One
             let selectedElement = this.childrenWidgetContainers.filter(
-                child  => child.nativeElement.id ==  this.selectedWidgetIDs[idWidget].toString())[0] 
+                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0] 
 
             if (selectedElement != undefined) {
 
@@ -293,7 +293,7 @@ changeWidgetGraph() {
                     // Update the data
                     this.widgets.filter(
                         widget => widget.properties.widgetID === 
-                            this.selectedWidgetIDs[idWidget])[0].
+                            this.selectedWidgetIDs[i])[0].
                                     container.backgroundColor = 
                                 this.selectedBackgroundColor['name'];
                 }
@@ -307,7 +307,7 @@ changeWidgetGraph() {
                     // Update the data
                     this.widgets.filter(
                         widget => widget.properties.widgetID === 
-                            this.selectedWidgetIDs[idWidget])[0].
+                            this.selectedWidgetIDs[i])[0].
                                     container.border = 
                                 this.selectedBorder['name'];
                 }
@@ -321,7 +321,7 @@ changeWidgetGraph() {
                     // Update the data
                     this.widgets.filter(
                         widget => widget.properties.widgetID === 
-                            this.selectedWidgetIDs[idWidget])[0].
+                            this.selectedWidgetIDs[i])[0].
                                     container.boxShadow = 
                                 this.selectedBoxShadow['name'];
                 }
@@ -335,7 +335,7 @@ changeWidgetGraph() {
                     // Update the data
                     this.widgets.filter(
                         widget => widget.properties.widgetID === 
-                            this.selectedWidgetIDs[idWidget])[0].
+                            this.selectedWidgetIDs[i])[0].
                                     container.color = 
                                 this.selectedColor['name'];
                 }
@@ -349,7 +349,7 @@ changeWidgetGraph() {
                     // Update the data
                     this.widgets.filter(
                         widget => widget.properties.widgetID === 
-                            this.selectedWidgetIDs[idWidget])[0].
+                            this.selectedWidgetIDs[i])[0].
                                     container.fontSize = 
                                 this.selectedContainerFontSize['name'];
                 }
@@ -420,9 +420,21 @@ console.log ('chg el', leftorRight,newValue)
         }
     }
 
-    editWidgetComment (idWidget: number) {
+    editWidget (idWidget: number) {
         // Show the Comment popup window
-        this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetDistanceChange', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'editWidget', '@Start');
+
+        // Respect the Lock
+        if (this.widgets.filter(
+            widget => widget.properties.widgetID === 
+                idWidget)[0].properties.widgetIsLocked) {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'info', 
+                    summary:  'Locked', 
+                    detail:   'First unlock the Widget by clicking on lock, then edit'
+                });
+                return;
+            }
 
         this.displayEditWidget = true;
     }
@@ -430,7 +442,7 @@ console.log ('chg el', leftorRight,newValue)
     clickWidgetLockToggle(idWidget: number) {
         // Toggle widgetIsLocked on a Widget
         // TODO - when to DB, update on DB (of kors)
-        this.globalFunctionService.printToConsole(this.constructor.name,'editWidgetComment', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetLockToggle', '@Start');
 
         for (var i = 0, len = this.widgets.length; i < len; i++) {
             if (this.widgets[i].properties.widgetID == idWidget) {
@@ -1167,12 +1179,12 @@ console.log ('chg el', leftorRight,newValue)
         let newTop = 0;
 
         // Loop on the Array of selected IDs, and do things to TheMan
-        for (var idWidget = 0; idWidget < this.selectedWidgetIDs.length; idWidget++) {
+        for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
             // Get the Selected One
             this.selectedWidget = this.widgets.filter(
-                widget => widget.properties.widgetID === this.selectedWidgetIDs[idWidget])[0] ;
+                widget => widget.properties.widgetID === this.selectedWidgetIDs[i])[0] ;
             let selectedElement = this.childrenWidgetContainers.filter(
-                child  => child.nativeElement.id ==  this.selectedWidgetIDs[idWidget].toString())[0] 
+                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0] 
 
             // Loop on the ViewChildren, and act for the Selected One
             if (selectedElement != undefined) {
@@ -1202,7 +1214,7 @@ console.log ('chg el', leftorRight,newValue)
                 // Update the Left data
                 this.widgets.filter(
                     widget => widget.properties.widgetID === 
-                        this.selectedWidgetIDs[idWidget])[0].
+                        this.selectedWidgetIDs[i])[0].
                                 container.left = newLeft;
 
                 // Move Widget Top
@@ -1214,7 +1226,7 @@ console.log ('chg el', leftorRight,newValue)
                 // Update the Top data
                 this.widgets.filter(
                     widget => widget.properties.widgetID === 
-                        this.selectedWidgetIDs[idWidget])[0].
+                        this.selectedWidgetIDs[i])[0].
                                 container.top = newTop;
 
             }
@@ -1233,8 +1245,8 @@ console.log ('chg el', leftorRight,newValue)
         this.selectedWidgetIDs = [];
 
         // Loop and build
-        for (var idWidget = 0; idWidget < this.widgets.length; idWidget++) {
-                this.selectedWidgetIDs.push(this.widgets[idWidget].properties.widgetID);
+        for (var i = 0; i < this.widgets.length; i++) {
+                this.selectedWidgetIDs.push(this.widgets[i].properties.widgetID);
         }
 
 console.log (this.selectedWidgetIDs)
