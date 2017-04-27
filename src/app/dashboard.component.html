@@ -535,12 +535,11 @@
             Title: {{w.properties.widgetName}}
         </span>
 
-        <!--Widget shift selected-->
+        <!--Widget (shift) selected-->
         <button
             *ngIf="widgetShiftSelected(w.properties.widgetID)"
             class="widgetShiftSelected"
             pButton
-            #cm
             type="button"
             icon="fa-check-square-o"
             pTooltip="This widget has been selected with shift-click" 
@@ -554,13 +553,26 @@
             *ngIf="w.properties.widgetComments  &&  showContainerHeader"
             class="widgetCommentButton"
             pButton
-            #cm
             type="button"
             icon="fa-lightbulb-o"
             pTooltip="This widget has a comment" 
             tooltipPosition="right" 
             tooltipEvent="hover"
             (click)="showWidgetComment(w.properties.widgetID)"
+            >
+        </button>         
+
+        <!--Widget liked -->
+        <button
+            class="widgetIsLiked"
+            [style.color]="w.properties.widgetIsLiked ? 'red' : 'lightgray'"
+            pButton
+            type="button"
+            icon="fa-heart-o"
+            pTooltip="You like this, click to UnLike" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="clickWidgetIsLiked(w.properties.widgetID)"
             >
         </button>         
     <div>          <!--Container Header boxie-->

@@ -34,7 +34,8 @@ export class Widget {
         widgetIsLocked: boolean;                // Protected against changes
         widgetHyperLinkTabNr: string;           // Optional Tab Nr to jump to
         widgetHyperLinkWidgetID: string;        // Optional Widget ID to jump to
-        widgetLiked: [                          // Array of UserIDs that likes this
+        widgetIsLiked: boolean;                 // True if Widget is liked by me
+        widgetLiked: [                          // Array of UserIDs that likes this Widget
             {
                 widgetLikedUserID: string; 
             }

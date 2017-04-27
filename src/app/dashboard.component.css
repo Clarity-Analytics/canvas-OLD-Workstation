@@ -221,6 +221,17 @@
         font-size: 1em !important;
     }
 
+    .widgetIsLiked {
+        background-color: transparent;
+        border: transparent;
+        color: lightgray;
+        float: right;
+        font-size: 1em !important;
+        margin: 0 4px 0 4px;
+        padding: 0;
+        width: 15px;
+    }
+
     .widgetShiftSelected {
         background-color: transparent;
         border: transparent;

@@ -279,13 +279,6 @@ changeWidgetGraph() {
         // Loop on the Array of selected IDs, and do things to TheMan
         for (var idWidget = 0; idWidget < this.selectedWidgetIDs.length; idWidget++) {
 
-        // this.selectedWidget = this.widgets.filter(
-        //     widget => widget.properties.widgetID === idWidget)[0] ;
-
-
-            // this.childrenWidgetContainers.forEach((child) => {
-            //     if (child.nativeElement.id == idWidget.toString()) {
-
             // Loop on the ViewChildren, and act for the Selected One
             let selectedElement = this.childrenWidgetContainers.filter(
                 child  => child.nativeElement.id ==  this.selectedWidgetIDs[idWidget].toString())[0] 
@@ -411,6 +404,18 @@ console.log ('chg el', leftorRight,newValue)
     editWidgetComment (idWidget: number) {
         // Show the Comment popup window
         this.displayEditWidget = true;
+    }
+
+    clickWidgetIsLiked(idWidget: number) {
+        // Toggle IsLiked on a Widget
+        // TODO - when to DB, update properties.widgetLiked[j].widgetLikedUserID
+        //        by adding user, or removing depending on likedness
+        for (var i = 0, len = this.widgets.length; i < len; i++) {
+            if (this.widgets[i].properties.widgetID == idWidget) {
+                this.widgets[i].properties.widgetIsLiked = 
+                    !this.widgets[i].properties.widgetIsLiked;
+            }
+        }
     }
 
     showWidgetComment (idWidget: number) {
@@ -1000,11 +1005,6 @@ console.log ('chg el', leftorRight,newValue)
 
         this.containerStartX = event.x;
         this.containerStartY = event.y;
-        // if (this.selectedWidget == null) {
-        //             // Set the new, the latest Selected One
-        //     this.selectedWidget = this.widgets.filter(
-        //         widget => widget.properties.widgetID === idWidget)[0] ;
-        // }
     }
 
     onWidgetResizeMouseUp(event, idWidget: number) {
@@ -1071,10 +1071,6 @@ console.log ('chg el', leftorRight,newValue)
     onWidgetDragStart(event: DragEvent, idWidget: number) {
         // Starting of Widget dragging - IF dragging is enabled
         this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetDragStart', '@Start');
-
-        // // Set the Selected One
-        // this.selectedWidget = this.widgets.filter(
-        //     widget => widget.properties.widgetID === idWidget)[0] ;
 
         // Store the Start X, Y
         this.widgetStartDragX = event.x;
@@ -1205,7 +1201,6 @@ console.log ('chg el', leftorRight,newValue)
         // Set to review in ngAfterViewChecked
         this.refreshDashboard = true;
     }
-
 
     dashboardRefresh() {
         // Render the widgets according to their properties

@@ -1,3 +1,4 @@
+// Service that provides all data (from the DB)
 import { Injectable }                 from '@angular/core';
 
 // Our Services
@@ -759,10 +760,14 @@ export const WIDGETS: Widget[] =
                 widgetIndex: 1,                 
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetHyperLinkWidgetID: '',  
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: 'JessyB' 
+                    },
+                    {
+                        widgetLikedUserID: 'JonnyC' 
                     }
                 ],
                 widgetPassword: '',             
@@ -907,6 +912,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -1042,6 +1048,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -1216,6 +1223,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -1435,6 +1443,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -1553,6 +1562,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -1693,6 +1703,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -1819,6 +1830,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -1985,6 +1997,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -2116,6 +2129,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -2343,6 +2357,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLocked: true,           
                 widgetHyperLinkTabNr: '',       
                 widgetHyperLinkWidgetID: '',    
+                widgetIsLiked: false,
                 widgetLiked: [                  
                     {
                         widgetLikedUserID: '', 
@@ -2364,8 +2379,6 @@ export const WIDGETS: Widget[] =
             }
         }
     ];
-
-
 
 export const WIDGETCOMMENTS: WidgetComment[] =
     [
@@ -2424,8 +2437,8 @@ export class EazlService {
     users: User[] = USERS;                              // List of Users
     dashboards: Dashboard[] = DASHBOARDS;               // List of Dashboards
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;      // List of Dashboard Tabs
-    widgets: Widget[] = WIDGETS;                        // List of Widgets for a selected Dashboard
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;   // List of Widget Comments
+    widgets: Widget[] = WIDGETS;                        // List of Widgets for a selected Dashboard
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -2450,6 +2463,24 @@ export class EazlService {
     getDashboards() {
         // Return a list of Dashboards
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
+
+        // Calc certain fields, as it is easy to use in *ngIf or *ngFor
+            // this.childrenWidgetContainers.forEach((child) => {
+            //     if (child.nativeElement.id == idWidget.toString()) {
+
+        for (var i = 0, len = this.widgets.length; i < len; i++) {
+
+            // Set properties.widgetIsLiked if there are users who liked it
+            for (var j = 0, len = this.widgets[i].properties.widgetLiked.length; j < len; j++) {
+            
+                if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID != '') {
+                    this.widgets[i].properties.widgetIsLiked = true;
+                } else {
+                    this.widgets[i].properties.widgetIsLiked = false;
+                }
+            }
+        }
+// widgetComments
 
         return this.dashboards;        
     }
@@ -2482,7 +2513,7 @@ export class EazlService {
         inputWidgetCommentBody: string
         ) {
         // Add a Widget Comment to the DB
-console.log('eazl.addWidgetsComments')
+        this.globalFunctionService.printToConsole(this.constructor.name,'addWidgetsComments', '@Start');
         this.widgetComments.push(
             {
                 widgetCommentID: inputWidgetCommentID,
@@ -2503,7 +2534,6 @@ console.log('eazl.addWidgetsComments')
         return this.widgetComments.filter(widgetComment => 
             widgetComment.widgetID == selectedWidgetID
         );        
-       
     }
 
 }
