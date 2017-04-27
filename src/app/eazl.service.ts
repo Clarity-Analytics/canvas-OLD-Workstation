@@ -2480,7 +2480,9 @@ export class EazlService {
                 }
             }
         }
-// widgetComments
+
+        // TODO - when from DB, fill the properties.widgetComments field with the latest
+        //        comment from the widgetComments table.  This is used in *ngIf
 
         return this.dashboards;        
     }

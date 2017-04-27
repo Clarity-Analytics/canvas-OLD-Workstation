@@ -1156,79 +1156,74 @@ console.log ('chg el', leftorRight,newValue)
             return;
         }
 
-        // Set the Selected One
-        this.selectedWidget = this.widgets.filter(
-            widget => widget.properties.widgetID === idWidget)[0] ;
-
         // Store the End X, Y
         this.widgetEndDragX = event.x;
         this.widgetEndDragY = event.y;
 
-        // Calc new X, Y
-        let newLeft = this.selectedWidget.container.left
-            + this.widgetEndDragX - this.widgetStartDragX;
-        let newTop  = this.selectedWidget.container.top
-            + this.widgetEndDragY - this.widgetStartDragY;
+        // Calc (x,y) offset, and new new X, Y
+        let offsetLeft = this.widgetEndDragX - this.widgetStartDragX;
+        let offsetTop  = this.widgetEndDragY - this.widgetStartDragY;
+        let newLeft = 0;
+        let newTop = 0;
 
-        // Snap to grid if so desired
-        if (this.snapToGrid) {
-            if ( (newLeft % this.gridSize) >= (this.gridSize / 2)) {
-                newLeft = newLeft + this.gridSize - (newLeft % this.gridSize)
-            } else {
-                newLeft = newLeft - (newLeft % this.gridSize)
+        // Loop on the Array of selected IDs, and do things to TheMan
+        for (var idWidget = 0; idWidget < this.selectedWidgetIDs.length; idWidget++) {
+            // Get the Selected One
+            this.selectedWidget = this.widgets.filter(
+                widget => widget.properties.widgetID === this.selectedWidgetIDs[idWidget])[0] ;
+            let selectedElement = this.childrenWidgetContainers.filter(
+                child  => child.nativeElement.id ==  this.selectedWidgetIDs[idWidget].toString())[0] 
+
+            // Loop on the ViewChildren, and act for the Selected One
+            if (selectedElement != undefined) {
+
+                // Get new left + top, adjusted for grid-snapping if so desired
+                newLeft = this.selectedWidget.container.left + offsetLeft;
+                newTop = this.selectedWidget.container.top + offsetTop;
+
+                if (this.snapToGrid) {
+                    if ( (newLeft % this.gridSize) >= (this.gridSize / 2)) {
+                        newLeft = newLeft + this.gridSize - (newLeft % this.gridSize)
+                    } else {
+                        newLeft = newLeft - (newLeft % this.gridSize)
+                    }
+                }
+                if ( (newTop % this.gridSize) >= (this.gridSize / 2)) {
+                    newTop = newTop + this.gridSize - (newTop % this.gridSize)
+                } else {
+                    newTop = newTop - (newTop % this.gridSize)
+                }
+
+                // Move Widget Left 
+                this.renderer.setElementStyle(selectedElement.nativeElement,
+                    'left', newLeft.toString() + "px"
+                );
+
+                // Update the Left data
+                this.widgets.filter(
+                    widget => widget.properties.widgetID === 
+                        this.selectedWidgetIDs[idWidget])[0].
+                                container.left = newLeft;
+
+                // Move Widget Top
+                this.renderer.setElementStyle(selectedElement.nativeElement,
+                    'top', newTop.toString() + "px"
+                );
+
+
+                // Update the Top data
+                this.widgets.filter(
+                    widget => widget.properties.widgetID === 
+                        this.selectedWidgetIDs[idWidget])[0].
+                                container.top = newTop;
+
             }
         }
-            if ( (newTop % this.gridSize) >= (this.gridSize / 2)) {
-                newTop = newTop + this.gridSize - (newTop % this.gridSize)
-            } else {
-                newTop = newTop - (newTop % this.gridSize)
-            }
-        
-        this.selectedWidget.container.left = newLeft;
-        this.selectedWidget.container.top  = newTop;
-
-        // Update Widget Array
-        // TODO - there must be a pure way to update Selected One & the Array.
-        //      - and where does the good old DB fits in?
-        this.widgets.filter(
-            widget => widget.properties.widgetID === 
-                this.selectedWidget.properties.widgetID)[0].
-                    container.left = this.selectedWidget.container.left;
-        this.widgets.filter(
-            widget => widget.properties.widgetID === 
-                this.selectedWidget.properties.widgetID)[0].
-                    container.top = this.selectedWidget.container.top;
-// alert ('selt one: ID = ' + this.selectedWidget.properties.widgetID.toString() + 
-//     ', L= ' + this.selectedWidget.container.left.toString() + 
-//     ', T = ' +this.selectedWidget.container.top.toString())
-// alert ('1st widgets: ID = ' + this.widgets[0].properties.widgetID.toString() + 
-//     ', L= ' + this.widgets[0].container.left.toString() + 
-//     ', T = ' +this.widgets[0].container.top.toString())
-// alert ('2nd widgets: ID = ' + this.widgets[1].properties.widgetID.toString() + 
-//     ', L= ' + this.widgets[1].container.left.toString() + 
-//     ', T = ' +this.widgets[1].container.top.toString())
-
-        // Move the Container
-        // Loop on the ViewChildren, and act for the Selected One
-        this.childrenWidgetContainers.forEach((child) => {
-            if (child.nativeElement.id ==
-                this.selectedWidget.properties.widgetID) {
-                    this.renderer.setElementStyle(child.nativeElement,
-                        'left', (this.selectedWidget.container.left).toString() + "px"
-                    );
-
-                    this.renderer.setElementStyle(child.nativeElement,
-                        'top', this.selectedWidget.container.top.toString() + "px"
-                    );
-            }
-        });
 
         // Dont do it again
         this.widgetDraggingEnabled = false;
 
     }
-
-    on
 
     loadDashboardTabs(event) {
         // Load the Tabs for the selected Dashboard
