@@ -13,10 +13,6 @@ import { Validators }                 from '@angular/forms';
 import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
-// ngx-charts
-import { NgxChartsModule }            from '@swimlane/ngx-charts';
-import { single }                     from '../assets/data.ngxchart.bar';
-
 // Our Componenets
 
 // Our Services
@@ -33,25 +29,6 @@ import { User } from './model.user';
     styleUrls:  ['user.popup.component.css']
 })
 export class UserPopupComponent implements OnInit {
-
-    //ngx-chart properties
-    single: any[];
-    multi: any[];
-
-
-    // ngx-Chart Options
-    // view: any[] = [700, 400];
-    // showXAxis = true;
-    // showYAxis = true;
-    // gradient = false;
-    // showLegend = true;
-    // showXAxisLabel = true;
-    // xAxisLabel = 'Country';
-    // showYAxisLabel = true;
-    // yAxisLabel = 'Population';
-    // colorScheme = {
-    //     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-    // };   
 
     // Variables received from the parent HTML tag
     @Input() addEditMode: string;
@@ -81,9 +58,6 @@ export class UserPopupComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService, 
         ) {
-        
-        // ngx-charts
-        Object.assign(this, {single});
 
         // FormBuilder - must be before subscribeToValue ...
         this.userformID = this.fb.group({
@@ -124,11 +98,6 @@ export class UserPopupComponent implements OnInit {
         this.isStaffOptions.push({ label: 'Is Staff Member', value: 'True' });
         this.isStaffOptions.push({ label: 'Non-staff', value: 'False' });
     }
-
-    // ngx-Chart Options
-    // onSelect(event) {
-    //     console.log(event);
-    // }
 
     subscribeToValue() {
         // Listens to changes in the form - ie when the user types

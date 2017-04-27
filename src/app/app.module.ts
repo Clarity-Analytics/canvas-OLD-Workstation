@@ -88,14 +88,10 @@ import { TreeTableModule }            from 'primeng/primeng';  // p-treeTable, p
 import { TriStateCheckboxModule }     from 'primeng/primeng';  // p-triStateCheckbox
 import { StepsModule }                from 'primeng/primeng';  // p-steps
 
-// ngx-charts
-import {NgxChartsModule}              from '@swimlane/ngx-charts';
-
 // Our Components
 import { AppComponent }               from './app.component';
 import { DashboardAdvFilterComponent} from './dashboard.advancedfilter';
 import { DashboardComponent }         from './dashboard.component';
-import { DashboardFINALComponent }    from './dashboardFINAL.component';
 import { LoginComponent }             from './login.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { UserComponent}               from './user.component';
@@ -104,9 +100,6 @@ import { WidgetBuilderComponent }     from './widget.builder.component';
 import { WidgetCommentComponent }     from './widget.comment.component';
 
 // Our Directives
-import { VegaChart }                  from './vega.directive';
-import { VegaLiteBarChart1 }          from './dashboard.component';
-import { VegaLiteBarChart2 }          from './dashboard.component';
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -130,14 +123,10 @@ import { routes }                     from './app.routes';
     AppComponent,
     DashboardAdvFilterComponent,
     DashboardComponent,
-    DashboardFINALComponent,
     LoginComponent,
     PageNotFoundComponent,
     UserComponent,
     UserPopupComponent,
-    VegaChart,
-    VegaLiteBarChart1,
-    VegaLiteBarChart2,
     WidgetBuilderComponent,
     WidgetCommentComponent,
     // BarCharBuilder,
@@ -218,9 +207,6 @@ import { routes }                     from './app.routes';
     ToggleButtonModule,
     ToolbarModule,
     TooltipModule,
-
-    // ngx-charts
-    NgxChartsModule,
 
   ],
   providers: [

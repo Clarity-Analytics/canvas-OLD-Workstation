@@ -40,136 +40,212 @@
                 class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
                 style="margin: 10px 0px"
                 >
-                <div class="ui-grid-row">
+                <div class="SectionHeader ui-grid-row">
                     Container:
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">
-                        Tab Name <input type="text" />
+                        Tab * 
+
+
+                        <p-dropdown 
+                            [options]="dashboardTabsDropDown" 
+                            [style]="{
+                                        'autofocus':'true',
+                                        'background-color':'538cc6',
+                                        'border':'1px solid #204060',
+                                        'border-radius':'2px',
+                                        'font-size':'0.85em',
+                                        'margin-bottom':'4px',
+                                        'margin-left':'4px',
+                                        'padding':'0',
+                                        'width':'147px'
+                                    }" 
+                            placeholder="Select a Tab"
+                            editable="true"
+                            >
+                        </p-dropdown>
+
                     </div>
                     <div class="ui-grid-col-4">
                         Title <input type="text" />
                     </div>
+                </div>
+
+               <div class="SectionHeader ui-grid-row">
+                   Data (Specify the report and parameters) :
+                </div>
+                <div class="ui-grid-row">
                     <div class="ui-grid-col-4">
-                        Bg Color <input type="text" />
+                        Name 
+
+
+                        <p-dropdown 
+                            [options]="dashboardTabsDropDown" 
+                            [style]="{
+                                        'autofocus':'true',
+                                        'background-color':'538cc6',
+                                        'border':'1px solid #204060',
+                                        'border-radius':'2px',
+                                        'font-size':'0.85em',
+                                        'margin-bottom':'4px',
+                                        'margin-left':'4px',
+                                        'padding':'0',
+                                        'width':'147px'
+                                    }" 
+                            placeholder="Select a Tab"
+                            editable="true"
+                            >
+                        </p-dropdown>
+
+
+
                     </div>
                 </div>
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">
-                        Border <input type="text" />
+                        Parameters <input type="text" />
                     </div>
                     <div class="ui-grid-col-4">
-                        Shadow <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Color <input type="text" />
+                        Limit 
+
+                        <p-spinner 
+                            formControlName="reportparameters"
+                            [min]="0" 
+                            [max]="100"
+                            >
+                        </p-spinner>
+
+
                     </div>
                 </div>
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">
-                        Font Size <input type="text" />
+                        Add R-Row 
+
+                        <p-checkbox 
+                            name="groupname" 
+                            value="val1" 
+                            >
+                        </p-checkbox>    
+
+
                     </div>
-                    <div class="ui-grid-col-4">
-                        Height <input type="text" />
+                <div class="ui-grid-row">
+                        Use existing presentation or create a new Widget?
+                        <p-toggleButton 
+                            onLabel="Use" 
+                            offLabel="New" 
+                            [style]="{
+                                        'border':'1px solid darkgray',
+                                        'border-radius':'2px',
+                                        'height': '2em',
+                                        'margin': '0px',
+                                        'padding':'0px',
+                                        'width':'50px'
+                                    }"                     
+                            >
+                        </p-toggleButton>
                     </div>
-                    <div class="ui-grid-col-4">
-                        Left <input type="text" />
-                    </div>
+
+
                 </div>
 
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">
-                        Top <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Width <input type="text" />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                        Data:
-                </div>
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">
-                        Data Src <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        DS Pars <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Rpt Name <input type="text" />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">
-                        Rpt Pars <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Limit <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Size <input type="text" />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">
-                        Add R-Row <input type="text" />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                        Graph Type:
-                </div>
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">
-                        Type <input type="text" />
-                    </div>
-                <div class="ui-grid-col-4">
-                    <img 
-                        src="../assets/StackedBar.png" 
-                        alt="Stacked Bar" 
-                        style="width:60px;height:45px;"
+                <!--Use existing presentations-->
+                <div>
+                    <p-dropdown 
+                        [options]="dashboardTabsDropDown" 
+                        [style]="{
+                                    'autofocus':'true',
+                                    'background-color':'538cc6',
+                                    'border':'1px solid #204060',
+                                    'border-radius':'2px',
+                                    'font-size':'0.85em',
+                                    'margin-bottom':'4px',
+                                    'margin-left':'4px',
+                                    'padding':'0',
+                                    'width':'147px'
+                                }" 
+                        placeholder="Select a Tab"
+                        editable="true"
                         >
-                </div>
-                </div>
-
-                <div class="ui-grid-row">
-                        Graph Identification and Description:
-                </div>
-                <div class="ui-grid-row">
+                    </p-dropdown>
                     <div class="ui-grid-col-4">
-                        Code <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Name <input type="text" />
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Title <input type="text" />
+                        Parameters <input type="text" />
                     </div>
                 </div>
 
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">
-                        Description <input type="text" />
+                <!--Create new Widget, for this Dashboard only-->
+                <div>
+                    <div class="SectionHeader ui-grid-row">
+                    Graph Type:
                     </div>
-                </div>
-                
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">
-                        Widget behaviour & treatment:
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-4">
+                            Type 
+
+
+                            <p-dropdown 
+                                [options]="dashboardTabsDropDown" 
+                                [style]="{
+                                            'autofocus':'true',
+                                            'background-color':'538cc6',
+                                            'border':'1px solid #204060',
+                                            'border-radius':'2px',
+                                            'font-size':'0.85em',
+                                            'margin-bottom':'4px',
+                                            'margin-left':'4px',
+                                            'padding':'0',
+                                            'width':'147px'
+                                        }" 
+                                placeholder="Select a Tab"
+                                editable="true"
+                                >
+                            </p-dropdown>
+
+
+                        </div>
+                        <div class="ui-grid-col-4">
+                            <img 
+                                src="../assets/StackedBar.png" 
+                                alt="Stacked Bar" 
+                                style="width:60px;height:45px;"
+                                >
+                        </div>
                     </div>
-                </div>
-                <div class="ui-grid-row">
+                    <div class="SectionHeader ui-grid-row">
+                    Graph Identification and Description:
+                    </div>
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-4">
+                            Code <input type="text" />
+                        </div>
+                        <div class="ui-grid-col-4">
+                            Name <input type="text" />
+                        </div>
+
+                    </div>
+
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-4">
+                            Description <input type="text" />
+                        </div>
+                    </div>
                     <div class="ui-grid-col-4">
                         Exprt Type <input type="text" />
                     </div>
-                    <div class="ui-grid-col-4">
-                        IsLocked <input type="text" />
-                    </div>
+                </div>
+
+
+
+
+                
+                <div class="SectionHeader ui-grid-row">
+                   Widget behaviour & treatment:
+                </div>
+                <div class="ui-grid-row">
                     <div class="ui-grid-col-4">
                         Password <input type="text" />
                     </div>
@@ -183,10 +259,7 @@
                         Hypr Widget <input type="text" />
                     </div>
                     <div class="ui-grid-col-4">
-                        Liked By me
-                    </div>
-                    <div class="ui-grid-col-4">
-                        Liked others
+                        Liked By Others - readonly
                     </div>
                 </div>
 

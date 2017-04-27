@@ -1,140 +1,255 @@
-.dashboardMenu {
-    /*background-color: gray;*/
-    border: 2px solid gray;
-    border-radius: 4px;
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-}
 
-.currentDashboardHeading {
-    margin: 0;
-    padding-left: 4px;
-}
+ /*Palette ~ area on left  */
+    .paletteContainer {
+        background-color:   white;
+        border: 2px solid   #264d73;
+        border-radius: 4px;
+        display: block;
+        font-size:0.85em;
+        left: 4px;
+        margin: 4px;
+        padding: 0;
+        position: absolute;
+        width: 200px;
+    }
 
-.newWidgetTypeDivLeft {
-    background-color:   #264d73;
-    border: 2px solid   #264d73;
-    border-radius: 3px;
-    display: block;
-    margin: 4px;
-    padding: 0;
-    width: 188px;
-}
+    /*Dashboard*/
+        .dashboardHeading {
+            background-color: #204060;
+            font-size: 1em;
+            font-weight: bold;
+            margin: 0;
+            padding: 4px 0 2px 4px;
+        }
 
-.dasbhboardQuickViewer {
-    background-color:   #264d73;
-    border: 2px solid   #264d73;
-    border-radius: 3px;
-    display: block;
-    margin: 4px;
-    padding: 0;
-    width: 188px;
-}
+        .filteredQuantity {
+            display: block;
+            float: right;
+            font-size: 0.7em;
+            margin: 0;
+            padding: 3px 5px 0 0;
+        }
 
-.currentDashboard {
-    background-color:   #264d73;
-    border: 2px solid   #264d73;
-    border-radius: 3px;
-    display: block;
-    margin: 4px;
-    padding: 0;
-    width: 188px;
-}
- 
-.newWidgetTypeButton {
-    background-color: white;
-    border: 1px solid black;
-    color: black;
-    font-size: 1em;
-    height: 25px;
-    margin: 4px;
-    padding: 1px;
-    width: 25px;
-}
+        .dashboardFilter {
+            margin-top: 3px;
+        }
 
-.inputDashboard {
-    background-color: lightgray;
-    font-size: 0.6em;
-    margin: 4px;
-    padding: 0;
-    width: 178px;
-}
+        .dashboardAdvancedFilter {
+            background-color:  white;
+            border: 1px solid  #204060;
+            border-radius: 2px;
+            color: black;
+            float: right;
+            height: 22px;
+            margin: 0 3px 0 0;
+            padding: 0;
+        }
 
-.divToolbar {
-    background-color:   #264d73;
-}
+        .dashboardDivButtons {
+            background-color: white;
+            border: transparent;
+            color:black;
+            font-size: 0.85em;
+            margin: 4px 0 0 15px;
+            padding: 0;
+        }
 
+        .dashboardButton {
+            background-color: white;
+            border: 1px solid #204060;
+            color:black;
+            font-size: 0.85em;
+            padding: 0;
+        }
+    /*END Dashboard*/
 
+    /*Widgets (on palette)*/
 
+        .widgetHeading {
+                background-color: #204060;
+                font-size: 1em;
+                font-weight: bold;
+                margin: 11px 0 0 0;
+                padding: 4px 0 2px 4px;
+        }
 
-.palette {
-    background-color: #264d73;
-    border: 2px solid #264d73;
-    border-radius: 4px;
-    display: block;
-    float: right;
-    font-size: 0.6em;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 4.5em;
-    right: 7px;
-    width: 200px;
-}
+        .widgetAddNewWidgetButton {
+            background-color: white;
+            border: 1px solid darkgray;
+            color: black;
+            font-size: 1em;
+            height: 25px;
+            margin: 4px;
+            padding: 1px;
+            width: 25px;
+        }
 
-.paletteHeading {
-    margin: 4px;
-}
+        .widgetFormatingButton {
+            background-color: white;
+            border: 1px solid darkgray;
+            color: gray;
+            margin: 2px;
+            padding: 0;
+        }
 
-.paletteTabContent{
-    background-color: white;
-}
-
-.barChartWidget {
-    background-color: darkred;
-    display: block;
-    width: 300px;
-    position: absolute;
-    top: 4.5em;
-    /*cursor: move;*/
-    resize: both;
-    overflow: auto;    
-}
+        .widgetNrSelected {
+            color: darkgray;
+        }
+        
+    /*END Widgets (on palette)*/
 
 
-.filterBackground {
-    background-color: #c2d6d6;
-    /*z-index: -1;*/
-    position: absolute;
-    top: 4.5em;
-    left: 215px;
-    height: 3em;
-    text-align: center;
-    width: 868px;
-}
 
-.radioButtonDiv {
-    margin-top: 11px;
-    padding: 3px;
-    border: 1px solid darkgray;
-    border-radius: 2px;
-}
+    /*Widget Container*/
 
-/*.tabHeaderClass {
-    background-color: darkred;
-}*/
+        .widgetContainerHeading {
+            background-color: #204060;
+            font-size: 1em;
+            font-weight: bold;
+            margin: 11px 0 0 0;
+            padding: 4px 0 2px 4px;
+        }
 
-/*body {
-    background-image: '../assets/red-2191601__340.jpg';
-    background-color: #cccccc;
-    resize: both;
-    overflow: auto;    
-}*/
+        .containerButton {
+            background-color: white;
+            border: 1px solid darkgray;
+            color: black;
+            font-size: 1em;
+            height: 25px;
+            margin: 4px;
+            padding: 1px;
+            width: 25px;
+        }
 
-.testingNOT {
-    border: 1px solid darkgray;
-    box-shadow: 2px 2px 12px black;
-    background-color: lightgray;
-}
+        .widgetContentAccordionTab{
+            background-color: white;
+        }
+
+        .radioButtonDiv {
+            margin-top: 11px;
+            padding: 3px;
+            border: 1px solid darkgray;
+            border-radius: 2px;
+        }
+
+        .paletteLabel {
+            font-weight: bold;
+            margin: 9px 0 0 0;
+        }
+    /*END Widget Container*/
+
+/*END Dashboard*/
+
+
+/*Widgets - shown on Canvas ~ graphs*/
+
+    .widgetContainer {
+        background-color: white;
+        border: 2px solid   #204060;
+        border-radius: 4px;
+        color: black;
+        display: block;
+        font-size: 1em;
+        left: 20px;
+        margin: 4px;
+        padding: 0;
+        overflow: auto;
+        position: absolute;
+        resize: both;
+        top: 4.5em;
+        width: 200px;            
+
+    }
+
+    .widgetGraph {
+        background-color: transparent;
+        border: transparent;
+        color: black;
+        display: block;
+        font: 1em;
+        height: 20px;
+        left: 5px;
+        margin: 0px;
+        padding: 0;
+        position: absolute;
+        top: 25px;
+        width: 60px;
+    }
+
+    .widgetTitle {
+        background-color: transparent;
+        border-color: transparent;
+        color: inherit;
+        font-size: inherit;
+        height: 22px;
+        margin: 0 0 0 4px;
+        padding: 0;
+    }
+
+    .widgetDragHandle {
+        background-color: transparent;
+        border: transparent;
+        color: lightgray;
+        margin: 0 0 0 4px;
+        padding: 0;
+        width: 15px;
+    }
+
+    .widgetDragHandle:hover {
+        background-color: transparent;
+        border: transparent;
+        color: black;
+    }
+
+    .widgetEditHandle {
+        background-color: transparent;
+        border: transparent;
+        color: lightgray;
+        font-size: 1em !important;
+        margin: 0 0 0 4px;
+        padding: 0;
+        width: 15px;
+    }
+
+    .widgetEditHandle:hover {
+        background-color: transparent;
+        border: transparent;
+        color: darkgray;
+        font-size: 1em !important;
+    }
+
+    .widgetShiftSelected {
+        background-color: transparent;
+        border: transparent;
+        color: red;    
+        float: right;
+        font-size: 0.85em;
+        height: 1em;
+        margin: 5px;
+        padding-top: 2px;
+        width: 15px;
+    }
+
+    .widgetCommentButton {
+        background-color: transparent;
+        border-color: transparent;
+        color: lightgray;
+        float: right;
+        font-size: 1em;
+        height: 1em;
+        margin: 4px;
+        padding: 0;
+        width: 15px;
+    }
+
+    .widgetCommentButton:hover {
+        background-color: transparent;
+        border-color: transparent;
+        color: darkgray;
+        font-size: 1em;
+    }
+
+
+
+/*END Widgets*/
+

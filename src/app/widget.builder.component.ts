@@ -9,13 +9,17 @@ import { OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 import { Validators } from '@angular/forms';
 
+//  PrimeNG stuffies
+import { SelectItem }                 from 'primeng/primeng';
+
 // Our Services
 import { EazlService } from './eazl.service';
-import { GlobalFunctionService } from './global.function.service';
-import { GlobalVariableService } from './global.variable.service';
+import { GlobalFunctionService }      from './global.function.service';
+import { GlobalVariableService }      from './global.variable.service';
 
 // Our models
-import { WidgetComment } from './model.widget.comment';
+import { DashboardTab }               from './model.dashboardTabs';
+import { WidgetComment }              from './model.widget.comment';
 
 @Component({
     selector:    'widget-builder',
@@ -24,17 +28,17 @@ import { WidgetComment } from './model.widget.comment';
 })
 export class WidgetBuilderComponent implements OnInit {
 
-    @Input() selectedWidgetID: number;
+    @Input() selectedDashboardID: number;
+    
     @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
 
     addingNew: boolean = true;                  // True if adding a new Comment, used in *ngIf
     addToSameThread: boolean = false;           // True if adding to same Thread
-    lastWidgetComment: string = '';             // Comment of latest Comment
-    lastWidgetCommentID: number = 0;            // CommentID of latest Comment
-    lastWidgetCommentThreadID: number = 0;      // ThreadID of latest Comment
     submitted: boolean;                         // True if form submitted
     userform: FormGroup;                        // user form object for FBuilder
-    widgetComments: WidgetComment[] = [];       // Array of Widget Comments
+    selectedTabName: any;
+    dashboardTabsDropDown:  SelectItem[];
+    dashboardTabs: DashboardTab[];
 
     constructor(
         private eazlService: EazlService,
@@ -69,12 +73,9 @@ export class WidgetBuilderComponent implements OnInit {
 
 
 // Data
-    //     widgetDataSourceName: string;           // DS Name in Eazl
-    //     widgetDataSourceParameters: string;     // Optional DS parameters
     //     widgetReportName: string;               // Report (query) name in Eazl
     //     widgetReportParameters: string;         // Optional Report parameters
     //     widgetShowLimitedRows: number;          // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
-    //     widgetSize: string;                     // Small, Medium, Large
     //     widgetAddRestRow: boolean;              // True means add a row to data = SUM(rest)
 
 // Type
@@ -110,7 +111,10 @@ export class WidgetBuilderComponent implements OnInit {
     //     widgetRefreshedUserID: string;          // Date Refreshed by
     //     widgetSystemMessage: string;            // Optional for Canvas to say something to user
     //     widgetComments: string;                 // Optional comments
+    //     widgetSize: string;                     // Small, Medium, Large
+// background, color, boxshadow, border, font-size, etc => defaults
 
+// TODO - store defaults in DB !!!
 
 
 
@@ -120,6 +124,7 @@ export class WidgetBuilderComponent implements OnInit {
         this.userform = this.fb.group({
             'commentheader': new FormControl('', Validators.required),
             'commentbody': new FormControl(''),
+            'reportparameters': new FormControl(''),
         });
     }
 
@@ -127,30 +132,8 @@ export class WidgetBuilderComponent implements OnInit {
         // Respond when Angular (re)sets data-bound input properties.
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
-        // Populate data for the Widget that is currently selected
-        this.getWidgetComments()
-    }
-
-    getWidgetComments() {
-        // TODO - get this sort to work, preferably on DB
-        this.globalFunctionService.printToConsole(this.constructor.name, 'getWidgetComments', '@Start');
-
-        // Get a sorted list from the backend
-        this.widgetComments = this.eazlService.getWidgetsComments(this.selectedWidgetID).sort(
-            function (a, b) {
-                return +b.widgetCommentCreateDateTime.substring(6, 2) -
-                    +a.widgetCommentCreateDateTime.substring(6, 2);
-            })
-
-        // Load some detail for the lastest Comment
-        if (this.widgetComments.length > 0 ) {
-            this.lastWidgetComment = 
-                this.widgetComments[this.widgetComments.length - 1].widgetCommentHeading;
-            this.lastWidgetCommentID =
-                this.widgetComments[this.widgetComments.length - 1].widgetCommentID;
-            this.lastWidgetCommentThreadID =
-                this.widgetComments[this.widgetComments.length - 1].widgetCommentThreadID;
-        }
+        // Populate Tabs for the Dashboard that is currently selected
+        this.loadDashboardTabs()
     }
 
     addNewThread() {
@@ -183,21 +166,6 @@ export class WidgetBuilderComponent implements OnInit {
         // User clicked submit button, so Add to DB
         this.globalFunctionService.printToConsole(this.constructor.name, 'onSubmit', '@Start');
 
-        // Add the Comment
-        this.lastWidgetCommentID = this.lastWidgetCommentID + 1;
-        if (!this.addToSameThread) {
-            this.lastWidgetCommentThreadID = this.lastWidgetCommentThreadID + 1;
-        }
-
-        this.eazlService.addWidgetsComments( 
-                this.lastWidgetCommentID, 
-                this.selectedWidgetID,
-                this.lastWidgetCommentThreadID,
-                '2017/05/03 12:04',
-                'JohnDeerT',
-                this.userform.get('commentheader').value,
-                this.userform.get('commentbody').value
-        )
 
         // TODO - use later or delete
         // 1. To clear the commentbody:
@@ -205,11 +173,29 @@ export class WidgetBuilderComponent implements OnInit {
         // 2. To Trigger event emitter 'emit' method
         //    this.formSubmit.emit(true);
 
-        // Refresh the data
-        this.getWidgetComments()
-
         // Close the input portion of form
         this.addingNew = false;
 
     }
+
+    loadDashboardTabs() {
+        // Load the Tabs for the selected Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
+
+        // Get its Tabs in this Dashboard
+        this.dashboardTabsDropDown = [];
+        this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
+
+        // Fill the dropdown on the form
+        for (var i = 0; i < this.dashboardTabs.length; i++) {
+                this.dashboardTabsDropDown.push({
+                    label: this.dashboardTabs[i].widgetTabName,
+                    value: {
+                        id: this.dashboardTabs[i].dashboardID,
+                        name: this.dashboardTabs[i].widgetTabName
+                    }
+                });
+        }
+    }
+
 }

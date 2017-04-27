@@ -272,7 +272,7 @@ this.router.navigate(['pagenotfound']);
                     {
                         label: 'Dashboards', 
                         icon:  'fa-table',
-                        routerLink: ['dashboardFINAL'],
+                        routerLink: ['dashboard'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
@@ -477,3 +477,5 @@ this.router.navigate(['pagenotfound']);
         return this.menuItems;       
     }
 }
+
+
