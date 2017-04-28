@@ -1284,6 +1284,9 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
         // - show all the Widgets as per their properties
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
 
+        // Reset the list of selected Widgets
+        this.selectedWidgetIDs = [];
+
         // Set the Selected One
         this.selectedDashboardID = event.value.id;
         this.selectedDashboardName = event.value.name;
