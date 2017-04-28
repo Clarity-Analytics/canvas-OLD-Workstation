@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     deleteMode: boolean = false;                // True while busy deleting
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
-    addEditModeWidgetEditor: string = 'Add';    // Add or Edit was called
+    addEditModeWidgetEditor: string = 'Edit';    // Add or Edit was called
     
     constructor(
         private canvasColors: CanvasColors,
@@ -219,6 +219,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Close the popup form for the Widget Builder
         this.displayEditWidget = false;
+console.log ('refresh widgets ... ?')
     }
 
     onOpenPaletteTab(event) {
@@ -1222,13 +1223,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {
-                this.dashboardTabsDropDown.push({
-                    label: this.dashboardTabs[i].widgetTabName,
-                    value: {
-                        id: this.dashboardTabs[i].dashboardID,
-                        name: this.dashboardTabs[i].widgetTabName
-                    }
-                });
+            this.dashboardTabsDropDown.push({
+                label: this.dashboardTabs[i].widgetTabName,
+                value: {
+                    id: this.dashboardTabs[i].dashboardID,
+                    name: this.dashboardTabs[i].widgetTabName
+                }
+            });
         }
     }
 

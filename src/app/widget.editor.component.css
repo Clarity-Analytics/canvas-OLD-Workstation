@@ -1,5 +1,15 @@
-
 .SectionHeader {
     font-weight: bold;
     margin-top: 6px;
 } 
+
+form {
+    width: 900px;
+}
+
+.iserror {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 0;
+    padding: 0;
+}

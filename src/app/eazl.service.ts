@@ -2537,4 +2537,10 @@ export class EazlService {
         );        
     }
 
+    addWidget (widget: Widget) {
+        // Add a new Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'addWidget', '@Start');
+        this.widgets.push(widget)
+    }
+
 }
