@@ -433,7 +433,6 @@
                     [(ngModel)]="selectedBackgroundColor" 
                     placeholder="Background"
                     filter="true"
-                    (onChange)="userMadeChanges()"
                     >
                 </p-dropdown>
 
@@ -549,7 +548,7 @@
             pTooltip="Click and drag widget" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (mousedown)="onWidgetDragHandleMouseDown()"
+            (mousedown)="onWidgetDragHandleMouseDown(w.properties.widgetID)"
             (mouseup)="onWidgetDragHandleMouseUp()"
             >
         </button> 

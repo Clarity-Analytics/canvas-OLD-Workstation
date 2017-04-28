@@ -216,50 +216,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Is triggered after the Advanced Filter form is submitted
         this.globalFunctionService.printToConsole(this.constructor.name,'handleWidgetBuilderFormSubmit', '@Start');
 
-        // Further actions ... ?
-console.log('result is',success)
         // Close the popup form for the Widget Builder
         this.displayEditWidget = false;
     }
 
-
-    handleChangeScale(event) {
-        this.checkedScale = event.checked;
-
-        // if (this.checkedScale) {showMonths = t}
-console.log('handleChangeScale - State is: ' + this.checkedScale)
-    }
-
-    clickRadioButtonScale() {
-console.log('clickRadioButtonScale - Selected: ' + this.radioLabelval1)
-    }
-
     onOpenPaletteTab(event) {
         // Palette tab has been opened
-console.log('onOpenPaletteTab')
+        this.globalFunctionService.printToConsole(this.constructor.name,'onOpenPaletteTab', '@Start');
     }
 
     onClosePaletteTab(event) {
-console.log('onClosePaletteTab')
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClosePaletteTab', '@Start');
     }
 
-    onChangeChartWidth(event) {
-console.log('onChangeChartWidth')
-    }
-
-changeWidgetGraph() {
-        // if (this.childrenWidgets.toArray().length > 0) {
-        //     for (var i = 0; i < this.widgets.length; i++) {
-
-        //         var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
-        //         view.renderer('svg')
-        //             .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-        //             .hover()
-        //             .scheme('blues-9')
-        //             .run();
-        //     }
-        // }
-}
 
     clickContainerClear() {
         // Clears the all widget style selections
@@ -358,10 +327,6 @@ changeWidgetGraph() {
         }
     }
 
-userMadeChanges() {
-    // Indicate we were changing things
-}
-
     dashboardAdvanceFilter() {
         // Pops up Advance Dashboard Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardAdvanceFilter', '@Start');
@@ -386,7 +351,8 @@ userMadeChanges() {
         leftorRight: string,
         newValue:string) {
         // Update the property of a given ElementRef BOTH in the array and in the DOM
-console.log ('chg el', leftorRight,newValue)
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeElementRefProperty', '@Start');
+
         // Update DOM
         if (leftorRight == 'left') {
             this.renderer.setElementStyle(elementRef.nativeElement,
@@ -487,7 +453,6 @@ console.log ('chg el', leftorRight,newValue)
             return
         }
 
-// console.log('here we go, property = ', property, ' #IDs = ',this.selectedWidgetIDs.length, 'numberDistances = ',numberDistances)
         if (property == 'horisontalEquiDistant'         ||
             property == 'horisontalDecreaseDistance'    ||
             property == 'horisontalIncreaseDistance') {
@@ -517,12 +482,10 @@ console.log ('chg el', leftorRight,newValue)
                 function (a, b) {
                     return a.widgetLeft - b.widgetLeft;
             })
-// console.log('selectedWidgetIDsLeftSorted', selectedWidgetIDsLeftSorted)
 
             // Calc total between distance between first and last horisontal center in px
             let firstWidgetID: number = selectedWidgetIDsLeftSorted[0].widgetID
             let lastWidgetID: number = selectedWidgetIDsLeftSorted[numberDistances].widgetID
-// console.log('first/last IDs', firstWidgetID, lastWidgetID)
 
             let firstWidget: Widget = this.widgets.filter(
                     widget => widget.properties.widgetID === firstWidgetID
@@ -535,7 +498,6 @@ console.log ('chg el', leftorRight,newValue)
                 (firstWidget.container.width / 2)
             let lastCenter: number =  lastWidget.container.left +
                 (lastWidget.container.width / 2)
-// console.log('first/last Centers', firstCenter, lastCenter)
 
             if (property == 'horisontalEquiDistant') {
             
@@ -546,7 +508,6 @@ console.log ('chg el', leftorRight,newValue)
                     let currentLeft: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.left;
-    // console.log('2nd loop i = ', i,'ID=',thisWidgetID,'left',currentLeft,'move',( (lastCenter - firstCenter) / numberDistances ))
 
                     let currentWidth: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
@@ -564,8 +525,6 @@ console.log ('chg el', leftorRight,newValue)
                     this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.left = newLeft;
-
-    // console.log('newLeft', newLeft, this.childrenWidgetContainers.toArray().length)                           
 
                     // Move the Container
                     this.childrenWidgetContainers.forEach((child) => {
@@ -588,7 +547,6 @@ console.log ('chg el', leftorRight,newValue)
                     let currentLeft: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.left;
-    // console.log('2nd loop i = ', i,'ID=',thisWidgetID,'left',currentLeft,'move',( (lastCenter - firstCenter) / numberDistances ))
 
                     // L = currentLeft + 3i (move 3px at a time)
                     let newLeft = currentLeft - (i * 3);
@@ -596,8 +554,6 @@ console.log ('chg el', leftorRight,newValue)
                     this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.left = newLeft;
-
-    // console.log('newLeft', newLeft, this.childrenWidgetContainers.toArray().length)                           
 
                     // Move the Container
                     this.childrenWidgetContainers.forEach((child) => {
@@ -620,7 +576,6 @@ console.log ('chg el', leftorRight,newValue)
                     let currentLeft: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.left;
-    // console.log('2nd loop i = ', i,'ID=',thisWidgetID,'left',currentLeft,'move',( (lastCenter - firstCenter) / numberDistances ))
 
                     // L = currentLeft + 3i (move 3px at a time)
                     let newLeft = currentLeft + (i * 3);
@@ -628,8 +583,6 @@ console.log ('chg el', leftorRight,newValue)
                     this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.left = newLeft;
-
-    // console.log('newLeft', newLeft, this.childrenWidgetContainers.toArray().length)                           
 
                     // Move the Container
                     this.childrenWidgetContainers.forEach((child) => {
@@ -642,9 +595,6 @@ console.log ('chg el', leftorRight,newValue)
                     });
                 }
             }
-    // console.log('0',this.widgets[0].container.left)
-    // console.log('1',this.widgets[1].container.left)
-    // console.log('2',this.widgets[2].container.left)
         }
 
         if (property == 'verticalEquiDistant'           || 
@@ -675,12 +625,10 @@ console.log ('chg el', leftorRight,newValue)
                 function (a, b) {
                     return a.widgetTop - b.widgetTop;
             })
-// console.log('selectedWidgetIDsTopSorted', selectedWidgetIDsTopSorted)
 
             // Calc total between distance between first and last vertical middle in px
             let firstWidgetID: number = selectedWidgetIDsTopSorted[0].widgetID
             let lastWidgetID: number = selectedWidgetIDsTopSorted[numberDistances].widgetID
-// console.log('first/last IDs', firstWidgetID, lastWidgetID)
 
             let firstWidget: Widget = this.widgets.filter(
                     widget => widget.properties.widgetID === firstWidgetID
@@ -693,7 +641,7 @@ console.log ('chg el', leftorRight,newValue)
                 (firstWidget.container.height / 2)
             let lastMiddle: number =  lastWidget.container.top +
                 (lastWidget.container.height / 2)
-// console.log('first/last Middles', firstMiddle, lastMiddle)
+
             if (property == 'verticalEquiDistant') { 
             
                 // Adjust middles of middle lot, not first or last ones
@@ -703,7 +651,6 @@ console.log ('chg el', leftorRight,newValue)
                     let currentTop: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.top;
-    // console.log('2nd loop i = ', i,'ID=',thisWidgetID,'Top',currentTop,'move',( (lastMiddle - firstMiddle) / numberDistances ))
 
                     let currentHeight: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
@@ -721,8 +668,6 @@ console.log ('chg el', leftorRight,newValue)
                     this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.top = newTop;
-
-    // console.log('newTop', newTop, this.childrenWidgetContainers.toArray().length)                           
 
                     // Move the Container
                     // Loop on the ViewChildren, and act for the Selected One
@@ -744,8 +689,6 @@ console.log ('chg el', leftorRight,newValue)
                     let currentTop: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.top;
-    // console.log('2nd loop i = ', i,'ID=',thisWidgetID,'Top',currentTop,'move',( (lastMiddle - firstMiddle) / numberDistances ))
-
 
                     // T = Top is moved with 3i (i times 3px)
                     let newTop = currentTop - (i * 3);
@@ -753,8 +696,6 @@ console.log ('chg el', leftorRight,newValue)
                     this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.top = newTop;
-
-    // console.log('newTop', newTop, this.childrenWidgetContainers.toArray().length)                           
 
                     // Move the Container
                     // Loop on the ViewChildren, and act for the Selected One
@@ -776,8 +717,6 @@ console.log ('chg el', leftorRight,newValue)
                     let currentTop: number = this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.top;
-    // console.log('2nd loop i = ', i,'ID=',thisWidgetID,'Top',currentTop,'move',( (lastMiddle - firstMiddle) / numberDistances ))
-
 
                     // T = Top is moved with 3i (i times 3px)
                     let newTop = currentTop + (i * 3);
@@ -785,8 +724,6 @@ console.log ('chg el', leftorRight,newValue)
                     this.widgets.filter(
                         widget => widget.properties.widgetID === thisWidgetID
                     )[0].container.top = newTop;
-
-    // console.log('newTop', newTop, this.childrenWidgetContainers.toArray().length)                           
 
                     // Move the Container
                     // Loop on the ViewChildren, and act for the Selected One
@@ -802,11 +739,6 @@ console.log ('chg el', leftorRight,newValue)
 
             }
         }
-
-    // console.log('0',this.widgets[0].container.top)
-    // console.log('1',this.widgets[1].container.top)
-    // console.log('2',this.widgets[2].container.top)
-
     } 
 
     onWidgetAlign(property: string) {
@@ -882,9 +814,6 @@ console.log ('chg el', leftorRight,newValue)
                     newValue = lastTop + lastHeight - currentHeight;
                 };
 
-console.log('left', lastLeft, (lastWidth / 2),currentLeft, (currentWidth / 2), property, newValue)
-console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), property, newValue)
-
                 // Update widget - we only set left or top
                 if (leftOrRight == 'left') {
                     this.widgets.filter(
@@ -909,6 +838,7 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
     }
 
     // See Netbasal: https://netbasal.com/angular-2-improve-performance-with-trackby-cc147b5104e5
+    // NB: dont call this.globalFunctionService.printToConsole inside - Ng gets grumpy
     trackByFn(index, item) {
         return index; // or item.id
     }
@@ -916,6 +846,9 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
     onWidgetMouseDown(event: MouseEvent,idWidget: number) {
         // When mouse (with or without shift) is pressed on a Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetMouseDown', '@Start');
+
+        // Kill dragging
+        this.widgetDraggingEnabled = false;
 
         // If Shift was hold down, add to Array of Widgets selected
         if (event.shiftKey) {
@@ -953,6 +886,7 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
     onDashboardDetail () {
         // Show detail about the selected Dashboard
         // TODO - design in detail, no duplications ...
+        this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDetail', '@Start');
 
         if (this.selectedDashboardName != undefined) {
             this.displayDashboardDetails = true;
@@ -969,6 +903,8 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
     onDashboardDelete() {
         // Confirm if user really wants to delete
         // TODO - this guy needs Two clicks to close dialogue, but then deletes twice!!
+        this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDelete', '@Start');
+
         this.deleteMode = true;
         
         this.confirmationService.confirm({
@@ -1087,9 +1023,10 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
 
     onWidgetResizeMouseDown(event, idWidget: number) {
         // Registers mouse position at mouse Dropdown
+        this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetResizeMouseDown', '@Start');
 
-        // Leave if not on the resize handle
-        if (!this.widgetDraggingEnabled) {
+        // Leave if on move handle
+        if (this.widgetDraggingEnabled) {
             return
         }
 
@@ -1099,9 +1036,10 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
 
     onWidgetResizeMouseUp(event, idWidget: number) {
         // After resizing, set width and height of widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetResizeMouseUp', '@Start');
 
-        // Leave if not on the resize handle
-        if (!this.widgetDraggingEnabled) {
+        // Leave if on move handle, or something bad
+        if (this.widgetDraggingEnabled) {
             return
         }
 
@@ -1114,23 +1052,28 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
             let endHeight: number = this.selectedWidget.container.height + event.y - 
                 this.containerStartY;
 
-            // Update the source data
+            // Left if bad stuff
+            if (endWith == NaN  ||  endHeight == NaN) {
+                return;
+            }
+
+            // Update the source data:
+            //   There is no resize event, so it is difficult to know when the user
+            //   was really, really resizing.  As a result, we cheat:
+            //   - take the real Width & Height (from the DOM) and apply to the data.
+            let realWidth = this.childrenWidgetContainers.filter(
+                child  => child.nativeElement.id ==  idWidget)[0].
+                    nativeElement.clientWidth;
+            let realHeight = this.childrenWidgetContainers.filter(
+                child  => child.nativeElement.id ==  idWidget)[0].
+                    nativeElement.clientHeight;
+
             this.widgets.filter(
                 widget => widget.properties.widgetID === idWidget)[0].
-                container.width = endWith;        
+                container.width = realWidth;        
             this.widgets.filter(
                 widget => widget.properties.widgetID === idWidget)[0].
-                container.height = endHeight;        
-
-            // Update the Selected One
-            this.selectedWidget.container.width = endWith;
-            this.selectedWidget.container.height = endHeight;
-
-            this.selectedWidget.graph.spec.width = endWith * 0.8; 
-            this.selectedWidget.graph.spec.height = endHeight * 0.8; 
-
-            this.changeWidgetGraph()
-
+                container.height = realHeight;
         }
     }
 
@@ -1143,10 +1086,19 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
 // pass event.clientX + event.clientY
     }
 
-
-    onWidgetDragHandleMouseDown() {
+    onWidgetDragHandleMouseDown(idWidget: number) {
         // Enables dragging
         this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetDragHandleMouseDown', '@Start');
+
+        // If nothing is selected, make this makker selected
+        if (this.selectedWidgetIDs.length == 0) {
+            this.selectedWidgetIDs.push(idWidget);
+        }
+
+        // If this Widget is not in the selection, bail
+        if (this.selectedWidgetIDs.indexOf(idWidget) < 0) {
+            return
+        }
 
         this.widgetDraggingEnabled = true;
     }
@@ -1258,7 +1210,7 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
     }
     loadDashboardTabs(event) {
         // Load the Tabs for the selected Dashboard
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');
 
         // Get its Tabs in this Dashboard
         this.dashboardTabsDropDown = [];
@@ -1440,6 +1392,7 @@ console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), p
     resetTabsDropDown () {
         // Reset the tabs for the selected Dashboard
         // TODO - fix content, layout + when / where to call
+        this.globalFunctionService.printToConsole(this.constructor.name,'resetTabsDropDown', '@Start');
         alert ('refresh tabs for sel. Dashboard')
     }
 
