@@ -521,7 +521,7 @@
 <!--Widgets on the Canvas-->
 <div 
     class="widgetContainer"
-    *ngFor="let w of widgets; trackBy: trackByFn;  let i = index"
+    *ngFor="let w of widgets; let i = index"
     #widgetContainter
     pDraggable="widget"
     (mousedown)="onWidgetResizeMouseDown($event, w.properties.widgetID)"

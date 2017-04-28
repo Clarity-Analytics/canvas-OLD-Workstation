@@ -837,12 +837,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         });
     }
 
-    // See Netbasal: https://netbasal.com/angular-2-improve-performance-with-trackby-cc147b5104e5
-    // NB: dont call this.globalFunctionService.printToConsole inside - Ng gets grumpy
-    trackByFn(index, item) {
-        return index; // or item.id
-    }
-
     onWidgetMouseDown(event: MouseEvent,idWidget: number) {
         // When mouse (with or without shift) is pressed on a Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetMouseDown', '@Start');
