@@ -96,7 +96,7 @@ import { LoginComponent }             from './login.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { UserComponent}               from './user.component';
 import { UserPopupComponent }         from './user.popup.component';
-import { WidgetBuilderComponent }     from './widget.builder.component';
+import { WidgetBuilderComponent }     from './widget.editor.component';
 import { WidgetCommentComponent }     from './widget.comment.component';
 
 // Our Directives

@@ -723,20 +723,21 @@
 
 
     <!--Form to edit Widget -->
-    <p-dialog header="Widget Builder" 
+    <p-dialog header="Widget Editor" 
         [(visible)]="displayEditWidget" 
         modal="modal" 
-        width="1200px"
         resizable="true"
         height="100vw"
         responsive="true"
         >
-        <widget-builder 
+        <widget-editor 
             [selectedDashboardID]="selectedDashboardID" 
             (formSubmit)="handleWidgetBuilderFormSubmit($event)" 
+            [addEditMode]="addEditModeWidgetEditor"
+            [displayEditWidget]="displayEditWidget"
             >
             Loading Widget Builder ...
-        </widget-builder>
+        </widget-editor>
         
     </p-dialog>
 

@@ -1,0 +1,372 @@
+<p 
+    class="iserror" 
+    *ngIf="formIsValid"> 
+    {{ errorMessageOnForm }}
+</p>
+
+<p-tabView
+    [style]="{'width':'900px'}"
+    >
+    <p-tabPanel 
+        header="Identification" 
+        [selected]="true"
+        >
+ 
+        <form 
+            [formGroup]="identificationForm" 
+            >
+            <div 
+                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+                style="margin: 10px 0px"
+                >
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        TabName *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetTabName" 
+                               placeholder="Required"
+                               pTooltip="Tab Name where Widget lives"
+                               autofocus
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Title *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetTitle" 
+                               placeholder="Required"
+                               pTooltip="Short Title to be displayed at the top of the container"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        widgetCode *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetCode" 
+                               placeholder="Required"
+                               pTooltip="Short Widget Code"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        widgetName *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetName" 
+                               placeholder="Required"
+                               pTooltip="Descriptive Name of the Widget"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        widgetDescription *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetDescription" 
+                               placeholder="Required"
+                               pTooltip="Detailed description of the Widget"
+                               />
+                    </div>
+                </div>
+
+
+            </div>   
+        </form> 
+    </p-tabPanel>
+    
+    <p-tabPanel 
+        header="Behaviour (optional)" 
+        [selected]="false"
+        >
+        <form 
+            [formGroup]="behaviourForm" 
+            (ngSubmit)="onSubmit(behaviourForm.value)"
+            >
+            <div 
+                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+                style="margin: 10px 0px">
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Deflt. Exp Type: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetDefaultExportFileType" 
+                               placeholder="(optional)"
+                               pTooltip="Default File Type on Export"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Hyperlink TabNr: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetHyperLinkTabNr" 
+                               placeholder="(optional)"
+                               pTooltip="Tab Nr to which this Widget hyperlinks"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Hyperlink Widget ID: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetHyperLinkWidgetID" 
+                               placeholder="(optional)"
+                               pTooltip="Widget ID to which this Widget hyperlinks"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Refresh hMode: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetRefreshMode" 
+                               placeholder="(optional)"
+                               pTooltip="Refresh Mode of Widget: Manual, OnOpen, Repeatedly"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Refresh Frequency: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetRefreshFrequency" 
+                               placeholder="(optional)"
+                               pTooltip="Refresh Frequency (if Refresh Mode is Repeatedly)"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Password: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetPassword" 
+                               placeholder="(optional)"
+                               pTooltip="Password to show Widget content"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Nr Liked: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="NrwidgetLiked" 
+                               placeholder="(optional)"
+                               pTooltip="Nr of users that Liked this Widget"
+                               />
+                    </div>
+                </div>
+
+            </div>
+        </form> 
+    </p-tabPanel>
+
+    <p-tabPanel 
+        header="Data & Graph" 
+        [selected]="false"
+        >
+        <form 
+            [formGroup]="dataAndGraphForm" 
+            (ngSubmit)="onSubmit(dataAndGraphForm.value)"
+            >
+            <div 
+                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+                style="margin: 10px 0px"
+                >
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        widgetReportName *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetReportName" 
+                               placeholder="Required"
+                               pTooltip="Report Name (query) that contains the data"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Rpt Parameters: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetReportParameters" 
+                               placeholder="(Optional)"
+                               pTooltip="Optional Report Parameters"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Limited Rows: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetShowLimitedRows" 
+                               placeholder="(Optional)"
+                               pTooltip="Indicate the (limited) number of rows to show from the data"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Add Rest Row: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetAddRestRow" 
+                               placeholder="(Optional)"
+                               pTooltip="Check to add a Rest Row (aggregate of the rows above the Limited Rows)"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        New / Existing *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="newExisting" 
+                               placeholder="Required"
+                               pTooltip="Add a new Widget, or select from an existing Widget Set (1 or more Widgets) for this data"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Widget Type *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="widgetType" 
+                               placeholder="Required"
+                               pTooltip="Type of Widget / Graph (ie Bar Char)"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Encoding: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="encodingNew" 
+                               placeholder="(Optional)"
+                               pTooltip="Encoding for new Widget"
+                               />
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Existing List: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                               type="text" 
+                               formControlName="existingList" 
+                               placeholder="(Optional)"
+                               pTooltip="List of existing Widget Sets for this data"
+                               />
+                    </div>
+                </div>
+
+            </div>
+        </form> 
+
+    </p-tabPanel>
+
+</p-tabView>
+
+<!--<div *ngIf="selecteduser">   {{ selecteduser.firstName }}  ....  </div>-->
+
+<p-toolbar>
+
+    <div class="ui-toolbar-group-left">
+        <button 
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onCancel()"
+            >
+        </button>
+        <!--<p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>-->
+    </div>
+    
+    <div class="ui-toolbar-group-right">
+        <button 
+            pButton 
+            type="submit" 
+            label="Submit" 
+            icon="fa-refresh"
+            (click)="onSubmit()"
+            >
+        </button>
+    </div>
+</p-toolbar>
+

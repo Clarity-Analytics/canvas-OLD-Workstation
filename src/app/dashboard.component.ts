@@ -113,7 +113,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     deleteMode: boolean = false;                // True while busy deleting
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
-
+    addEditModeWidgetEditor: string = 'Add';    // Add or Edit was called
+    
     constructor(
         private canvasColors: CanvasColors,
         private confirmationService: ConfirmationService,
@@ -1017,6 +1018,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     onWidgetResizeMouseDown(event, idWidget: number) {
         // Registers mouse position at mouse Dropdown
+        // Just a note:  When the mouse is clicked, the sequence is:
+        // 1. DragWidgetMouseDown
+        // 2. ResizeMouseDown
+        // Then 3 or 4
+        // 3a. Drag Start
+        // 3b. Drag End
+        // 4.ResizeMouseUp
+
         this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetResizeMouseDown', '@Start');
 
         // Leave if on move handle
