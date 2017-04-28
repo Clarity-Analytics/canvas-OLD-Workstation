@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     deleteMode: boolean = false;                // True while busy deleting
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
-    addEditModeWidgetEditor: string = 'Edit';    // Add or Edit was called
+    addEditModeWidgetEditor: string = '';       // Add or Edit was called
     
     constructor(
         private canvasColors: CanvasColors,
@@ -405,6 +405,11 @@ console.log ('refresh widgets ... ?')
                 return;
             }
 
+        // Set the environment for Edit: current widget + mode
+        this.selectedWidget = this.widgets.filter(
+            widget => widget.properties.widgetID === idWidget)[0] ;
+
+        this.addEditModeWidgetEditor = 'Edit';
         this.displayEditWidget = true;
     }
 
@@ -1085,6 +1090,7 @@ console.log ('refresh widgets ... ?')
         // Create new widget - End of dragging BarChart
         this.globalFunctionService.printToConsole(this.constructor.name,'onDragEndNewWidget', '@Start');
 
+        this.addEditModeWidgetEditor = 'Add';
         this.displayEditWidget = true;
 
 // pass event.clientX + event.clientY

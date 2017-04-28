@@ -134,34 +134,10 @@ export class WidgetBuilderComponent implements OnInit {
 
         // Clear the form for new one
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
-            // this.userformID.reset({
-            //     userID: '',
-            //     firstName: '',
-            //     lastName: '',
-            //     nickName: '',
-            //     photoPath: '',
-            //     lastDatetimeLoggedIn: '',
-            //     lastDatetimeReportWasRun: '',
-            //     emailAddress: '',
-            //     cellNumber: '',
-            //     workTelephoneNumber: '',
-            //     workExtension: '',
-            //     activeFromDate: '',
-            //     inactiveDate: '',
-            //     dateCreated: '',
-            //     userIDLastUpdated: '',
-            //     isStaff: false,
-            //     extraString1: '',
-            //     extraString10: '',
-            //     extraDate1: '',
-            //     extraDate10: '',
-            //     extraBoolean1: false,
-            //     extraBoolean10: false,
-            // });
 
-            // this.identificationForm.reset();
-            // this.behaviourForm.reset()
-            // this.dataAndGraphForm.reset()
+            this.identificationForm.reset();
+            this.behaviourForm.reset()
+            this.dataAndGraphForm.reset()
         }
 
         // Populate the popup form when it is opened, and in Edit mode only
@@ -170,16 +146,76 @@ export class WidgetBuilderComponent implements OnInit {
             // Indicate we loading form -> valueChange routine dont fire
             this.isLoadingForm = true;
 
-            // TODO - for ALL fields
-            // if (this.selectedUser) {
+            if (this.selectedWidget) {
 
-            //     if (this.selectedUser.userID) {
-            //         this.userformID.controls['userID'].setValue(this.selectedUser.userID);
-            //     }
+                if (this.selectedWidget.properties.widgetTabName) {
+                    this.identificationForm.controls['widgetTabName']
+                        .setValue(this.selectedWidget.properties.widgetTabName);
+                }
+                if (this.selectedWidget.container.widgetTitle) {
+                    this.identificationForm.controls['widgetTitle']
+                        .setValue(this.selectedWidget.container.widgetTitle);
+                }
+                if (this.selectedWidget.properties.widgetCode) {
+                    this.identificationForm.controls['widgetCode']
+                        .setValue(this.selectedWidget.properties.widgetCode);
+                }
+                if (this.selectedWidget.properties.widgetName) {
+                    this.identificationForm.controls['widgetName']
+                        .setValue(this.selectedWidget.properties.widgetName);
+                }
+                if (this.selectedWidget.properties.widgetDescription) {
+                    this.identificationForm.controls['widgetDescription']
+                        .setValue(this.selectedWidget.properties.widgetDescription);
+                }
+                if (this.selectedWidget.properties.widgetDefaultExportFileType) {
+                    this.behaviourForm.controls['widgetDefaultExportFileType']
+                        .setValue(this.selectedWidget.properties.widgetDefaultExportFileType);
+                }
+                if (this.selectedWidget.properties.widgetHyperLinkTabNr) {
+                    this.behaviourForm.controls['widgetHyperLinkTabNr']
+                        .setValue(this.selectedWidget.properties.widgetHyperLinkTabNr);
+                }
+                if (this.selectedWidget.properties.widgetHyperLinkWidgetID) {
+                    this.behaviourForm.controls['widgetHyperLinkWidgetID']
+                        .setValue(this.selectedWidget.properties.widgetHyperLinkWidgetID);
+                }
+                if (this.selectedWidget.properties.widgetPassword) {
+                    this.behaviourForm.controls['widgetPassword']
+                        .setValue(this.selectedWidget.properties.widgetPassword);
+                }
+                if (this.selectedWidget.properties.widgetRefreshFrequency) {
+                    this.behaviourForm.controls['widgetRefreshFrequency']
+                        .setValue(this.selectedWidget.properties.widgetRefreshFrequency);
+                }
+                if (this.selectedWidget.properties.widgetRefreshMode) {
+                    this.behaviourForm.controls['widgetRefreshMode']
+                        .setValue(this.selectedWidget.properties.widgetRefreshMode);
+                }
+                if (this.selectedWidget.properties.widgetReportName) {
+                    this.dataAndGraphForm.controls['widgetReportName']
+                        .setValue(this.selectedWidget.properties.widgetReportName);
+                }
+                if (this.selectedWidget.properties.widgetReportParameters) {
+                    this.dataAndGraphForm.controls['widgetReportParameters']
+                        .setValue(this.selectedWidget.properties.widgetReportParameters);
+                }
+                if (this.selectedWidget.properties.widgetShowLimitedRows) {
+                    this.dataAndGraphForm.controls['widgetShowLimitedRows']
+                        .setValue(this.selectedWidget.properties.widgetShowLimitedRows);
+                }
+                if (this.selectedWidget.properties.widgetAddRestRow) {
+                    this.dataAndGraphForm.controls['widgetAddRestRow']
+                        .setValue(this.selectedWidget.properties.widgetAddRestRow);
+                }
+                if (this.selectedWidget.properties.widgetType) {
+                    this.dataAndGraphForm.controls['widgetType']
+                        .setValue(this.selectedWidget.properties.widgetType);
+                }
 
                 // Indicate we are done loading form
                 this.isLoadingForm = false;
-            // }
+            }
         }
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@End');
@@ -204,7 +240,6 @@ console.log('mode',this.addEditMode)
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
-        // TODO - for ALL Required fields
         if (this.identificationForm.controls['widgetTabName'].value == ''  || 
             this.identificationForm.controls['widgetTabName'].value == null) {
             this.formIsValid = false;
@@ -273,7 +308,6 @@ console.log('mode',this.addEditMode)
             return;
         }
 
-        // TODO - sort all fields, also auto ones + Nr liked
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
 
@@ -344,10 +378,8 @@ console.log('mode',this.addEditMode)
         // Editing existing user
         if (this.addEditMode == 'Edit' && this.displayEditWidget) {
 
-            // TODO - load into 3 DIFF forms
             // Only worry about changes when we are not loading
             if (!this.isLoadingForm) {
-                // this.selectedUser.userID = this.userformID.controls['userID'].value;
                 this.selectedWidget.properties.widgetTabName = 
                     this.identificationForm.controls['widgetTabName'].value,
                 this.selectedWidget.container.widgetTitle = 
@@ -361,7 +393,6 @@ console.log('mode',this.addEditMode)
             }
 
             if (!this.isLoadingForm) {
-                // this.selectedUser.lastDatetimeLoggedIn = this.userformActivity.controls['lastDatetimeLoggedIn'].value;
                 this.selectedWidget.properties.widgetDefaultExportFileType = 
                     this.behaviourForm.controls['widgetDefaultExportFileType'].value,
                 this.selectedWidget.properties.widgetHyperLinkTabNr = 
@@ -377,7 +408,6 @@ console.log('mode',this.addEditMode)
             }
 
             if (!this.isLoadingForm) {
-                // this.selectedUser.lastDatetimeLoggedIn = this.userformActivity.controls['lastDatetimeLoggedIn'].value;
                 this.selectedWidget.properties.widgetReportName = 
                     this.dataAndGraphForm.controls['widgetReportName'].value,
                 this.selectedWidget.properties.widgetReportParameters = 

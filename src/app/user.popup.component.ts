@@ -48,7 +48,6 @@ export class UserPopupComponent implements OnInit {
     newUser: User;
     numberErrors: number = 0;
     submitted: boolean;
-    tooltippieUserID: string = 'Enter your UserID (or UserName)';
     userformID: any;
     userformActivity: FormGroup;
 
@@ -149,30 +148,7 @@ export class UserPopupComponent implements OnInit {
 
         // Clear the form for new one
         if (this.addEditMode == 'Add' && this.displayUserPopup) {
-            // this.userformID.reset({
-            //     userID: '',
-            //     firstName: '',
-            //     lastName: '',
-            //     nickName: '',
-            //     photoPath: '',
-            //     lastDatetimeLoggedIn: '',
-            //     lastDatetimeReportWasRun: '',
-            //     emailAddress: '',
-            //     cellNumber: '',
-            //     workTelephoneNumber: '',
-            //     workExtension: '',
-            //     activeFromDate: '',
-            //     inactiveDate: '',
-            //     dateCreated: '',
-            //     userIDLastUpdated: '',
-            //     isStaff: false,
-            //     extraString1: '',
-            //     extraString10: '',
-            //     extraDate1: '',
-            //     extraDate10: '',
-            //     extraBoolean1: false,
-            //     extraBoolean10: false,
-            // });
+
             this.userformID.reset();
             this.userformActivity.reset()
         }
