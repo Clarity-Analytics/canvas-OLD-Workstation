@@ -105,6 +105,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     boxShadowOptions: SelectItem[]; // Options for Box-Shadow DropDown
     snapToGrid: boolean = true;     // If true, snap widgets to gridSize
     gridSize: number;               // Size of grid blocks, ie 3px x 3px
+    isDark: boolean = false;        // Widget Header icons black if true
 
     // True / False to show popup forms
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
@@ -153,7 +154,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Set startup stuffies
         // TODO: read from DB
         this.snapToGrid = true;
-        this.gridSize = 30;
+        this.gridSize = 3;
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -856,7 +857,6 @@ console.log ('chg el', leftorRight,newValue)
                         +child.nativeElement.id)[0].container.height;
 
                 let leftOrRight: string = 'left';
-
                 if (property == 'left') { 
                     leftOrRight = 'left';
                     newValue = lastLeft;
@@ -882,6 +882,9 @@ console.log ('chg el', leftorRight,newValue)
                     newValue = lastTop + lastHeight - currentHeight;
                 };
 
+console.log('left', lastLeft, (lastWidth / 2),currentLeft, (currentWidth / 2), property, newValue)
+console.log('top', lastTop, (lastHeight / 2), currentTop, (currentHeight / 2), property, newValue)
+
                 // Update widget - we only set left or top
                 if (leftOrRight == 'left') {
                     this.widgets.filter(
@@ -903,6 +906,11 @@ console.log ('chg el', leftorRight,newValue)
 
             }
         });
+    }
+
+    // See Netbasal: https://netbasal.com/angular-2-improve-performance-with-trackby-cc147b5104e5
+    trackByFn(index, item) {
+        return index; // or item.id
     }
 
     onWidgetMouseDown(event: MouseEvent,idWidget: number) {
@@ -1215,7 +1223,7 @@ console.log ('chg el', leftorRight,newValue)
                 this.widgets.filter(
                     widget => widget.properties.widgetID === 
                         this.selectedWidgetIDs[i])[0].
-                                container.left = newLeft;
+                            container.left = newLeft;
 
                 // Move Widget Top
                 this.renderer.setElementStyle(selectedElement.nativeElement,
@@ -1227,8 +1235,7 @@ console.log ('chg el', leftorRight,newValue)
                 this.widgets.filter(
                     widget => widget.properties.widgetID === 
                         this.selectedWidgetIDs[i])[0].
-                                container.top = newTop;
-
+                            container.top = newTop;
             }
         }
 
@@ -1248,9 +1255,6 @@ console.log ('chg el', leftorRight,newValue)
         for (var i = 0; i < this.widgets.length; i++) {
                 this.selectedWidgetIDs.push(this.widgets[i].properties.widgetID);
         }
-
-console.log (this.selectedWidgetIDs)
-
     }
     loadDashboardTabs(event) {
         // Load the Tabs for the selected Dashboard

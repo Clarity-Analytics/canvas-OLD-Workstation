@@ -1,35 +1,42 @@
-<!--Buttons to add new Comments-->
-    <button
-        pButton
-        type="button"
-        icon="fa-plus"
-        label="Cancel"
-        style="float: left; margin: 4px;"
-        pTooltip="Ignore all changes made" 
-        tooltipPosition="left" 
-        tooltipEvent="hover"
-        (click)="addNewThread()" 
-        >
-    </button> 
 
-    <button
-        pButton
-        type="button"
-        icon="fa-plus-square"
-        label="Save"
-        style="float: right; margin: 4px;"
-        pTooltip="Save the data" 
-        tooltipPosition="left" 
-        tooltipEvent="hover"
-        (click)="addSameThread()" 
-        >
-    </button> 
-<!--END Buttons to add new Comments-->
 
 <!--Form to add a new Comment-->
 <div
     *ngIf="addingNew"
+    style="
+           background-color: lightseagreen;
+           margin: 0; 
+           width: 1100px;
+          "
     >
+
+    <!--Buttons to add new Comments-->
+        <button
+            pButton
+            type="button"
+            icon="fa-plus"
+            label="Cancel"
+            style="float: left; margin: 4px;"
+            pTooltip="Ignore all changes made" 
+            tooltipPosition="left" 
+            tooltipEvent="hover"
+            (click)="addNewThread()" 
+            >
+        </button> 
+
+        <button
+            pButton
+            type="button"
+            icon="fa-plus-square"
+            label="Save"
+            style="float: right; margin: 4px;"
+            pTooltip="Save the data" 
+            tooltipPosition="left" 
+            tooltipEvent="hover"
+            (click)="addSameThread()" 
+            >
+        </button> 
+    <!--END Buttons to add new Comments-->
 
     <div>
         <form 
