@@ -1177,9 +1177,28 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Create new widget - End of dragging BarChart
         this.globalFunctionService.printToConsole(this.constructor.name,'onDragEndNewWidget', '@Start');
 
+        // Get the X,Y from the mouse, and adjust for snapping to grid IF applied
+console.log('X Y oL oT',event.x,event.y,event.offsetLeft, event.offsetTop)        
         this.widgetToEditX = event.x;
         this.widgetToEditY = event.y;
 
+        if (this.snapToGrid) {
+            if ( (this.widgetToEditX % this.gridSize) >= (this.gridSize / 2)) {
+                this.widgetToEditX = this.widgetToEditX + 
+                    this.gridSize - (this.widgetToEditX % this.gridSize)
+            } else {
+                this.widgetToEditX = this.widgetToEditX - 
+                    (this.widgetToEditX % this.gridSize)
+            }
+        }
+        if ( (this.widgetToEditY % this.gridSize) >= (this.gridSize / 2)) {
+            this.widgetToEditY = this.widgetToEditY + 
+                this.gridSize - (this.widgetToEditY % this.gridSize)
+        } else {
+            this.widgetToEditY = this.widgetToEditY - 
+                (this.widgetToEditY % this.gridSize)
+        }
+console.log('post grid', this.widgetToEditX, this.widgetToEditY)
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
         this.displayEditWidget = true;

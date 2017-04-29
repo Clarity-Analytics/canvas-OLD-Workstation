@@ -95,13 +95,13 @@ export class WidgetBuilderComponent implements OnInit {
 
         this.dataAndGraphForm = this.fb.group(
             {
-                'widgetReportName':       new FormControl('', Validators.required),
+                'widgetReportName':       new FormControl(''),
                 'widgetReportParameters': new FormControl(''),
                 'widgetShowLimitedRows':  new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetAddRestRow':       new FormControl(''),
                 'newExisting':            new FormControl('new'),
                 'widgetType':             new FormControl(''),
-                'widgetReportWidgetSet':       new FormControl(''),
+                'widgetReportWidgetSet':  new FormControl(''),
                 'encodingNew':            new FormControl(''),
                 'existingList':           new FormControl('')
             }
@@ -117,7 +117,7 @@ export class WidgetBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
             'Edit Widget Form is open: ' + this.displayEditWidget.toString());
 
-            this.loadReports();
+        this.loadReports();
 
         // Clear the form for new one
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
@@ -238,80 +238,82 @@ export class WidgetBuilderComponent implements OnInit {
 
         if (this.identificationForm.controls['widgetTabName'].value == ''  || 
             this.identificationForm.controls['widgetTabName'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Widget Tab Name is compulsory.'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Widget Tab Name is compulsory.'
         }
         if (this.identificationForm.controls['widgetTitle'].value == ''  || 
             this.identificationForm.controls['widgetTitle'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Widget Title is compulsory.'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Widget Title is compulsory.'
         }
         if (this.identificationForm.controls['widgetCode'].value == ''  || 
             this.identificationForm.controls['widgetCode'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Widget Code is compulsory.'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Widget Code is compulsory.'
         }
         if (this.identificationForm.controls['widgetName'].value == ''  || 
             this.identificationForm.controls['widgetName'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Widget Name is compulsory.'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Widget Name is compulsory.'
         }
         if (this.identificationForm.controls['widgetDescription'].value == ''  || 
             this.identificationForm.controls['widgetDescription'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Widget Description is compulsory.'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Widget Description is compulsory.'
         }
         if (this.dataAndGraphForm.controls['widgetReportName'].value == ''  || 
             this.dataAndGraphForm.controls['widgetReportName'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Widget Report Name (data source) is compulsory.'
+                if (this.addEditMode == 'Add') {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Widget Report Name (data source) is compulsory when Adding.'
+                }
         }
         if (this.dataAndGraphForm.controls['newExisting'].value == ''  || 
             this.dataAndGraphForm.controls['newExisting'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The New / Existing selection is compulsory.'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The New / Existing selection is compulsory.'
         }
         if (this.dataAndGraphForm.controls['widgetType'].value == ''  || 
             this.dataAndGraphForm.controls['widgetType'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Widget Type is compulsory.'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Widget Type is compulsory.'
         }
         if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
             !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Hyperlinked Widget ID must be numberic'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Hyperlinked Widget ID must be numberic'
         }
         if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
             !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The Refresh Frequency must be numberic'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Refresh Frequency must be numberic'
         }
         if (this.dataAndGraphForm.controls['widgetShowLimitedRows'].touched  && 
             !this.dataAndGraphForm.controls['widgetShowLimitedRows'].valid) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                'The number of limited rows to show must be numberic'
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The number of limited rows to show must be numberic'
         }        
 
         // Oi, something is not right
@@ -421,25 +423,33 @@ export class WidgetBuilderComponent implements OnInit {
             });
         }
 
-        // Amend the specs, according to the Widget Sets
-        for (var i = 0; i < this.reportWidgetSets.length; i++) {
-            if (this.reportWidgetSets[i].widgetSetID == 
-                this.dataAndGraphForm.controls['widgetReportWidgetSet'].value.id) {
-                    this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
+        // Amend the specs IF given, according to the Widget Sets
+        if (this.dataAndGraphForm.controls['widgetReportWidgetSet'].value != '' &&
+            this.dataAndGraphForm.controls['widgetReportWidgetSet'].value != undefined) {
+            for (var i = 0; i < this.reportWidgetSets.length; i++) {
+                if (this.reportWidgetSets[i].widgetSetID == 
+                    this.dataAndGraphForm.controls['widgetReportWidgetSet'].value.id) {
+                        this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
+                }
             }
-        }
 
-        // Then wack in the data from the Report
-        for (var i = 0; i < this.reports.length; i++) {
-            if (this.reports[i].repordID == 
-                this.dataAndGraphForm.controls['widgetReportName'].value.id) {
-                    this.widgetToEdit.graph.spec.data[0].values = 
-                        this.reports[i].reportData;
+            // Then wack in the data from the Report
+            if (this.dataAndGraphForm.controls['widgetReportName'].value != '' &&
+                this.dataAndGraphForm.controls['widgetReportName'].value != undefined) {
+                for (var i = 0; i < this.reports.length; i++) {
+                    if (this.reports[i].repordID == 
+                        this.dataAndGraphForm.controls['widgetReportName'].value.id) {
+                            this.widgetToEdit.graph.spec.data[0].values = 
+                                this.reports[i].reportData;
+                    }
+                }
             }
         }
 
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
+
+this.dataAndGraphForm.reset()
 
         //  Note: Do NOT set 'this.displayEditWidget = false' here - it has to change in the parent
         //        componenent to take effect (and thus close Dialogue)
