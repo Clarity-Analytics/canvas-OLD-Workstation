@@ -68,9 +68,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     currentFilter: Filter;
     numberUntitledDashboards: number = 0;   // Suffix in naming new dashboards, Untitled + n
     selectedCommentWidgetID: number;        // Current WidgetID for Comment
-    selectedDashboardID: number;
-    selectedDashboardName: any;
-    selectedTabName: any;
+    selectedDashboardID: number;            // Currely Dashboard
+    selectedDashboardTabName: any;          // Current DashboardTab
+    selectedTabName: any;                   // Tab Name selected in DropDown
     selectedWidget: Widget = null;          // Selected widget during dragging
     selectedWidgetIDs: number[] = [];       // Array of WidgetIDs selected with mouse
 
@@ -221,6 +221,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // to ensure we only update the correct and proper one
         this.globalFunctionService.printToConsole(this.constructor.name,'handleWidgetBuilderFormSubmit', '@Start');
 
+        // Add new Widget to Array
+        if (this.addEditModeWidgetEditor == "Add") {
+            // Add the new guy to the Array
+
+            // Only render our own
+            if (this.widgetToEdit.properties.widgetTabName == this.selectedDashboardTabName) {
+
+                // TODO - this is crude & error prone: do it properly in DB
+                let lastWidgetID = this.widgets[this.widgets.length - 1].properties.widgetID
+
+                // Set the Widget ID & Add to Array
+                // TODO - do via Eazl into DB
+                this.widgetToEdit.properties.widgetID = lastWidgetID + 1;
+                this.widgets.push(this.widgetToEdit);
+
+                // Refresh the Dashboard
+                this.refreshDashboard = true;
+            }
+        
+            // Inform the user
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Success',
+                detail:   'Widget added'
+            });
+
+            // Close the popup form for the Widget Builder
+            this.displayEditWidget = false;
+        }
+
         // Save the editted Widget back to the Array
         if (this.addEditModeWidgetEditor == "Edit") {
 
@@ -274,8 +304,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
             }
         }
-
-console.log ('refresh widgets ... ?')
     }
 
     onOpenPaletteTab(event) {
@@ -946,7 +974,7 @@ console.log ('refresh widgets ... ?')
         // TODO - design in detail, no duplications ...
         this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDetail', '@Start');
 
-        if (this.selectedDashboardName != undefined) {
+        if (this.selectedDashboardTabName != undefined) {
             this.displayDashboardDetails = true;
         } else {
             this.globalVariableService.growlGlobalMessage.next({
@@ -1006,10 +1034,10 @@ console.log ('refresh widgets ... ?')
         // Bring back the value field of the selected item.
         // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
         //       I had to make a workaround
-        let TM: any = this.selectedDashboardName;
+        let TM: any = this.selectedDashboardTabName;
 
         // If something was selected, loop and find the right one
-        if (this.selectedDashboardName != undefined) {
+        if (this.selectedDashboardTabName != undefined) {
             // this.dashboards.splice(this.dashboards .indexOf(msg), 1);
 
             // Travers
@@ -1147,7 +1175,7 @@ console.log ('refresh widgets ... ?')
         // Create new widget - End of dragging BarChart
         this.globalFunctionService.printToConsole(this.constructor.name,'onDragEndNewWidget', '@Start');
 
-        this.widgetToEdit = null;
+        this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
         this.displayEditWidget = true;
 
@@ -1309,12 +1337,12 @@ console.log ('refresh widgets ... ?')
 
         // Set the Selected One
         this.selectedDashboardID = event.value.id;
-        this.selectedDashboardName = event.value.name;
+        this.selectedDashboardTabName = event.value.name;
 
         // Get its Widgets
         this.widgets = this.eazlService.getWidgetsForDashboard(
             this.selectedDashboardID, 
-            this.selectedDashboardName
+            this.selectedDashboardTabName
         );
 
         // Set to review in ngAfterViewChecked
