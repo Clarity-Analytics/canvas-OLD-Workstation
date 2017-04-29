@@ -112,6 +112,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     deleteMode: boolean = false;                // True while busy deleting
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
+    widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
     
@@ -409,6 +410,7 @@ console.log ('refresh widgets ... ?')
         this.selectedWidget = this.widgets.filter(
             widget => widget.properties.widgetID === idWidget)[0] ;
 
+        this.widgetIDtoEdit = idWidget;
         this.addEditModeWidgetEditor = 'Edit';
         this.displayEditWidget = true;
     }

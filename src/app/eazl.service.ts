@@ -754,12 +754,12 @@ export const WIDGETS: Widget[] =
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
                 widgetComments: 'Just a common comment',
-                widgetDefaultExportFileType: '',
-                widgetDescription: '',
+                widgetDefaultExportFileType: '.png',
+                widgetDescription: 'This graph show empirical bla-bla-bla ..',
                 widgetIndex: 1,
                 widgetIsLocked: false,
-                widgetHyperLinkTabNr: '',
-                widgetHyperLinkWidgetID: '',
+                widgetHyperLinkTabNr: 'Volume',
+                widgetHyperLinkWidgetID: '22',
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
@@ -769,17 +769,17 @@ export const WIDGETS: Widget[] =
                         widgetLikedUserID: 'JonnyC'
                     }
                 ],
-                widgetPassword: '',
+                widgetPassword: '***',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
-                widgetRefreshMode: '',
-                widgetReportName: '',
-                widgetReportParameters: '',
-                widgetShowLimitedRows: 0,
-                widgetSize: '',
+                widgetRefreshMode: 'Repeat',
+                widgetReportName: 'Weekly Stats',
+                widgetReportParameters: 'today()',
+                widgetShowLimitedRows: 5,
+                widgetSize: 'Small',
                 widgetSystemMessage: '',
-                widgetType: '',
+                widgetType: 'barChart',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -2544,6 +2544,9 @@ export class EazlService {
     }
 
     getDefaultWidgetConfig (): Widget {
+        // Set default config for a new Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDefaultWidgetConfig', '@Start');
+
         let DefaultWidgetConfig: Widget = {
             container: {
                 backgroundColor: 'white',

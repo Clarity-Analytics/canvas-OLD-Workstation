@@ -33,17 +33,17 @@ export class WidgetBuilderComponent implements OnInit {
     @Input() selectedWidget: Widget;
     @Input() addEditMode: string;
     @Input() displayEditWidget: boolean;
-    
+    @Input() widgetIDtoEdit: number;
+
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formSubmit: EventEmitter<string> = new EventEmitter();
 
-    addingNew: boolean = true;                  // True if adding a new Comment, used in *ngIf
-    addToSameThread: boolean = false;           // True if adding to same Thread
     submitted: boolean;                         // True if form submitted
-    userform: FormGroup;                        // user form object for FBuilder
     selectedTabName: any;
     dashboardTabsDropDown:  SelectItem[];
     dashboardTabs: DashboardTab[];
+
+    // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
     behaviourForm: FormGroup;
     dataAndGraphForm: FormGroup;
@@ -63,29 +63,6 @@ export class WidgetBuilderComponent implements OnInit {
 
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
-
-// Questions:
-    // widgetIndex necessary?  To show sequence, can be used to re-arrange??
-    // Need a z-Index to indicate depth, or NOT ?
-    // How a Default Layout?  Need a RESET button?
-    // Create from - copy/clone or just pointer to object?
-
-// Not filled in / AUTO
-    //     widgetIsLocked: boolean;                // Protected against changes
-    //     widgetID: number;                       // Unique ID from DB
-    //     dashboardID: number;                    // FK to DashboardID to which widget belongs
-    //     widgetCreatedDateTime: string;          // Created on
-    //     widgetCreatedUserID: string;            // Created by
-    //     widgetUpdatedDateTime: string;          // Updated on
-    //     widgetUpdatedUserID: string;            // Updated by
-    //     widgetRefreshedDateTime: string;        // Data Refreshed on
-    //     widgetRefreshedUserID: string;          // Date Refreshed by
-    //     widgetSystemMessage: string;            // Optional for Canvas to say something to user
-    //     widgetComments: string;                 // Optional comments
-    //     widgetSize: string;                     // Small, Medium, Large
-// background, color, boxshadow, border, font-size, etc => defaults
-
-// TODO - store defaults in DB !!!
 
         this.identificationForm = this.fb.group(
             {
@@ -124,13 +101,13 @@ export class WidgetBuilderComponent implements OnInit {
     }
 
     ngOnChanges() {
-        // Reacts to changes in selectedUser
+        // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
             'Mode (Add / Edit) is: ' + this.addEditMode);
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
-            'Popup User Form is open: ' + this.displayEditWidget.toString());
+            'Edit Widget Form is open: ' + this.displayEditWidget.toString());
 
         // Clear the form for new one
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
@@ -146,7 +123,7 @@ export class WidgetBuilderComponent implements OnInit {
             // Indicate we loading form -> valueChange routine dont fire
             this.isLoadingForm = true;
 
-            if (this.selectedWidget) {
+            if (this.selectedWidget.properties.widgetID == this.widgetIDtoEdit) {
 
                 if (this.selectedWidget.properties.widgetTabName) {
                     this.identificationForm.controls['widgetTabName']
@@ -192,6 +169,15 @@ export class WidgetBuilderComponent implements OnInit {
                     this.behaviourForm.controls['widgetRefreshMode']
                         .setValue(this.selectedWidget.properties.widgetRefreshMode);
                 }
+
+                let LikedUsers: any = this.selectedWidget.properties.widgetLiked.filter (
+                    user => user.widgetLikedUserID != '')
+                this.behaviourForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
+                
+                this.selectedWidget.properties.widgetRefreshMode = 
+                    this.behaviourForm.controls['widgetRefreshMode'].value
+
+
                 if (this.selectedWidget.properties.widgetReportName) {
                     this.dataAndGraphForm.controls['widgetReportName']
                         .setValue(this.selectedWidget.properties.widgetReportName);
@@ -234,7 +220,7 @@ export class WidgetBuilderComponent implements OnInit {
     onSubmit() {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name, 'onSubmit', '@Start');
-console.log('mode',this.addEditMode)
+
         // Validation: note that == null tests for undefined as well
         this.formIsValid = false;
         this.errorMessageOnForm = '';
@@ -355,11 +341,11 @@ console.log('mode',this.addEditMode)
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
                 summary:  'Success',
-                detail:   'User added'
+                detail:   'Widget added'
             });
         }
 
-        // Editing existing user
+        // Editing existing Widget
         if (this.addEditMode == 'Edit' && this.displayEditWidget) {
 
             // Only worry about changes when we are not loading
@@ -389,6 +375,7 @@ console.log('mode',this.addEditMode)
                     this.behaviourForm.controls['widgetRefreshFrequency'].value,
                 this.selectedWidget.properties.widgetRefreshMode = 
                     this.behaviourForm.controls['widgetRefreshMode'].value
+                    
             }
 
             if (!this.isLoadingForm) {
@@ -407,7 +394,7 @@ console.log('mode',this.addEditMode)
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
                 summary:  'Success',
-                detail:   'User updated'
+                detail:   'Widget updated'
             });
         }
 
