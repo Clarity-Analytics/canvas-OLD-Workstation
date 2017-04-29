@@ -494,7 +494,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             widget => widget.properties.widgetID === idWidget)[0] ;
 
         this.widgetIDtoEdit = idWidget;
-        this.globalVariableService.widgetEditorToLoad = true;
         this.addEditModeWidgetEditor = 'Edit';
         this.displayEditWidget = true;
     }
@@ -1178,7 +1177,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
-        this.globalVariableService.widgetEditorToLoad = true;
         this.displayEditWidget = true;
     }
 

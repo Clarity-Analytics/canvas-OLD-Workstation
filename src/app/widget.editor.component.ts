@@ -93,7 +93,7 @@ export class WidgetBuilderComponent implements OnInit {
 
         this.dataAndGraphForm = this.fb.group(
             {
-                'widgetReportName':       new FormControl(''),
+                'widgetReportName':       new FormControl('', Validators.required),
                 'widgetReportParameters': new FormControl(''),
                 'widgetShowLimitedRows':  new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetAddRestRow':       new FormControl(''),
@@ -214,8 +214,6 @@ export class WidgetBuilderComponent implements OnInit {
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@End');
     }
-
-
 
     onCancel() {
         this.globalVariableService.growlGlobalMessage.next({
@@ -415,6 +413,23 @@ export class WidgetBuilderComponent implements OnInit {
                 summary:  'Success',
                 detail:   'Widget updated'
             });
+        }
+
+        // Amend the specs, according to the Widget Sets
+        for (var i = 0; i < this.reportWidgetSets.length; i++) {
+            if (this.reportWidgetSets[i].widgetSetID == 
+                this.dataAndGraphForm.controls['widgetReportWidgetSet'].value.id) {
+                    this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
+            }
+        }
+
+        // Then wack in the data from the Report
+        for (var i = 0; i < this.reports.length; i++) {
+            if (this.reports[i].repordID == 
+                this.dataAndGraphForm.controls['widgetReportName'].value.id) {
+                    this.widgetToEdit.graph.spec.data[0].values = 
+                        this.reports[i].reportData;
+            }
         }
 
         // Trigger event emitter 'emit' method

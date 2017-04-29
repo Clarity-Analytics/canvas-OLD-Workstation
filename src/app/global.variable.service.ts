@@ -29,7 +29,6 @@ export class GlobalVariableService {
   sessionDebugging = new BehaviorSubject(false);
   sessionLogging = new BehaviorSubject(false);
   isCurrentUserAdmin = new BehaviorSubject(false);
-  widgetEditorToLoad: boolean;
   growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
 
   // At startup

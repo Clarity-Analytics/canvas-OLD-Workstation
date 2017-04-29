@@ -2441,7 +2441,14 @@ export const REPORTS: Report[] =
             dataSourceParameters: '',
             reportData: 
                 [
-
+                    {"category": "A0", "amount": 38},
+                    {"category": "B0", "amount": 45},
+                    {"category": "C0", "amount": 53},
+                    {"category": "D0", "amount": 61},
+                    {"category": "E0", "amount": 71},
+                    {"category": "F0", "amount": 83},
+                    {"category": "G0", "amount": 99},
+                    {"category": "H0", "amount": 107}
                 ]
         },
         {
@@ -2453,7 +2460,14 @@ export const REPORTS: Report[] =
             dataSourceParameters: '',
             reportData: 
                 [
-
+                    {"category": "A22", "amount": 108},
+                    {"category": "B22", "amount": 115},
+                    {"category": "C22", "amount": 123},
+                    {"category": "D22", "amount": 131},
+                    {"category": "E22", "amount": 144},
+                    {"category": "F22", "amount": 153},
+                    {"category": "G22", "amount": 169},
+                    {"category": "H22", "amount": 177}
                 ]
         }
     ]
@@ -2465,21 +2479,297 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
             widgetSetID: 1,
             widgetSetName: 'Blue Value per week',
             widgetSetDescription: 'Description blue ...',
-            vegaSpec: {}
+            vegaSpec: {
+                "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+                "width": 290,
+                "height": 220,
+                "padding": 5,
+
+                "data": [
+                    {
+                    "name": "table",
+                    "values": [
+                        {"category": "A1", "amount": 28},
+                        {"category": "B1", "amount": 55},
+                        {"category": "C1", "amount": 43},
+                        {"category": "D1", "amount": 91},
+                        {"category": "E1", "amount": 81},
+                        {"category": "F1", "amount": 53},
+                        {"category": "G1", "amount": 19},
+                        {"category": "H1", "amount": 87}
+                    ]
+                    }
+                ],
+
+                "signals": [
+                    {
+                    "name": "tooltip",
+                    "value": {},
+                    "on": [
+                        {"events": "rect:mouseover", "update": "datum"},
+                        {"events": "rect:mouseout",  "update": "{}"}
+                    ]
+                    }
+                ],
+
+                "scales": [
+                    {
+                    "name": "xscale",
+                    "type": "band",
+                    "domain": {"data": "table", "field": "category"},
+                    "range": "width"
+                    },
+                    {
+                    "name": "yscale",
+                    "domain": {"data": "table", "field": "amount"},
+                    "nice": true,
+                    "range": "height"
+                    }
+                ],
+
+                "axes": [
+                    { "orient": "bottom", "scale": "xscale" },
+                    { "orient": "left", "scale": "yscale" }
+                ],
+
+                "marks": [
+                    {
+                    "type": "rect",
+                    "from": {"data":"table"},
+                    "encode": {
+                        "enter": {
+                        "x": {"scale": "xscale", "field": "category", "offset": 1},
+                        "width": {"scale": "xscale", "band": 1, "offset": -1},
+                        "y": {"scale": "yscale", "field": "amount"},
+                        "y2": {"scale": "yscale", "value": 0}
+                        },
+                        "update": {
+                        "fill": {"value": "blue"}
+                        },
+                        "hover": {
+                        "fill": {"value": "red"}
+                        }
+                    }
+                    },
+                    {
+                    "type": "text",
+                    "encode": {
+                        "enter": {
+                        "align": {"value": "center"},
+                        "baseline": {"value": "bottom"},
+                        "fill": {"value": "#333"}
+                        },
+                        "update": {
+                        "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+                        "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
+                        "text": {"signal": "tooltip.amount"},
+                        "fillOpacity": [
+                            {"test": "datum === tooltip", "value": 0},
+                            {"value": 1}
+                        ]
+                        }
+                    }
+                    }
+                ]
+            }
         },
         {
             repordID: 1,
             widgetSetID: 2,
             widgetSetName: 'Green Value per week',
             widgetSetDescription: 'Description green ...',
-            vegaSpec: {}
+            vegaSpec: {
+                "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+                "width": 290,
+                "height": 220,
+                "padding": 5,
+
+                "data": [
+                    {
+                    "name": "table",
+                    "values": [
+                        {"category": "A1", "amount": 28},
+                        {"category": "B1", "amount": 55},
+                        {"category": "C1", "amount": 43},
+                        {"category": "D1", "amount": 91},
+                        {"category": "E1", "amount": 81},
+                        {"category": "F1", "amount": 53},
+                        {"category": "G1", "amount": 19},
+                        {"category": "H1", "amount": 87}
+                    ]
+                    }
+                ],
+
+                "signals": [
+                    {
+                    "name": "tooltip",
+                    "value": {},
+                    "on": [
+                        {"events": "rect:mouseover", "update": "datum"},
+                        {"events": "rect:mouseout",  "update": "{}"}
+                    ]
+                    }
+                ],
+
+                "scales": [
+                    {
+                    "name": "xscale",
+                    "type": "band",
+                    "domain": {"data": "table", "field": "category"},
+                    "range": "width"
+                    },
+                    {
+                    "name": "yscale",
+                    "domain": {"data": "table", "field": "amount"},
+                    "nice": true,
+                    "range": "height"
+                    }
+                ],
+
+                "axes": [
+                    { "orient": "bottom", "scale": "xscale" },
+                    { "orient": "left", "scale": "yscale" }
+                ],
+
+                "marks": [
+                    {
+                    "type": "rect",
+                    "from": {"data":"table"},
+                    "encode": {
+                        "enter": {
+                        "x": {"scale": "xscale", "field": "category", "offset": 1},
+                        "width": {"scale": "xscale", "band": 1, "offset": -1},
+                        "y": {"scale": "yscale", "field": "amount"},
+                        "y2": {"scale": "yscale", "value": 0}
+                        },
+                        "update": {
+                        "fill": {"value": "green"}
+                        },
+                        "hover": {
+                        "fill": {"value": "white"}
+                        }
+                    }
+                    },
+                    {
+                    "type": "text",
+                    "encode": {
+                        "enter": {
+                        "align": {"value": "center"},
+                        "baseline": {"value": "bottom"},
+                        "fill": {"value": "#333"}
+                        },
+                        "update": {
+                        "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+                        "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
+                        "text": {"signal": "tooltip.amount"},
+                        "fillOpacity": [
+                            {"test": "datum === tooltip", "value": 0},
+                            {"value": 1}
+                        ]
+                        }
+                    }
+                    }
+                ]
+            }
         },
         {
             repordID: 1,
             widgetSetID: 3,
             widgetSetName: 'Red Value per week',
             widgetSetDescription: 'Description red ...',
-            vegaSpec: {}
+            vegaSpec: {
+                "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+                "width": 290,
+                "height": 220,
+                "padding": 5,
+
+                "data": [
+                    {
+                    "name": "table",
+                    "values": [
+                        {"category": "A1", "amount": 28},
+                        {"category": "B1", "amount": 55},
+                        {"category": "C1", "amount": 43},
+                        {"category": "D1", "amount": 91},
+                        {"category": "E1", "amount": 81},
+                        {"category": "F1", "amount": 53},
+                        {"category": "G1", "amount": 19},
+                        {"category": "H1", "amount": 87}
+                    ]
+                    }
+                ],
+
+                "signals": [
+                    {
+                    "name": "tooltip",
+                    "value": {},
+                    "on": [
+                        {"events": "rect:mouseover", "update": "datum"},
+                        {"events": "rect:mouseout",  "update": "{}"}
+                    ]
+                    }
+                ],
+
+                "scales": [
+                    {
+                    "name": "xscale",
+                    "type": "band",
+                    "domain": {"data": "table", "field": "category"},
+                    "range": "width"
+                    },
+                    {
+                    "name": "yscale",
+                    "domain": {"data": "table", "field": "amount"},
+                    "nice": true,
+                    "range": "height"
+                    }
+                ],
+
+                "axes": [
+                    { "orient": "bottom", "scale": "xscale" },
+                    { "orient": "left", "scale": "yscale" }
+                ],
+
+                "marks": [
+                    {
+                    "type": "rect",
+                    "from": {"data":"table"},
+                    "encode": {
+                        "enter": {
+                        "x": {"scale": "xscale", "field": "category", "offset": 1},
+                        "width": {"scale": "xscale", "band": 1, "offset": -1},
+                        "y": {"scale": "yscale", "field": "amount"},
+                        "y2": {"scale": "yscale", "value": 0}
+                        },
+                        "update": {
+                        "fill": {"value": "darkred"}
+                        },
+                        "hover": {
+                        "fill": {"value": "gray"}
+                        }
+                    }
+                    },
+                    {
+                    "type": "text",
+                    "encode": {
+                        "enter": {
+                        "align": {"value": "center"},
+                        "baseline": {"value": "bottom"},
+                        "fill": {"value": "#333"}
+                        },
+                        "update": {
+                        "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+                        "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
+                        "text": {"signal": "tooltip.amount"},
+                        "fillOpacity": [
+                            {"test": "datum === tooltip", "value": 0},
+                            {"value": 1}
+                        ]
+                        }
+                    }
+                    }
+                ]
+            }
         }
     ]
 
