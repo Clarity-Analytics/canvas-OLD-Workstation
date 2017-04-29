@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     isDark: boolean = false;        // Widget Header icons black if true
     snapToGrid: boolean = true;     // If true, snap widgets to gridSize
 
-    // True / False to show popup forms
+    // Popup forms stuffies
     addEditModeWidgetEditor: string = '';       // Add or Edit was called
     deleteMode: boolean = false;                // True while busy deleting
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
@@ -115,7 +115,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
-    
+    widgetToEdit: Widget;                       // Widget to edit
+
     constructor(
         private canvasColors: CanvasColors,
         private confirmationService: ConfirmationService,
@@ -216,10 +217,64 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     public handleWidgetBuilderFormSubmit(success: boolean): void {
         // Is triggered after the Advanced Filter form is submitted
+        // TODO - due to the *ngFor, this thing runs 3 times. So, it is essential
+        // to ensure we only update the correct and proper one
         this.globalFunctionService.printToConsole(this.constructor.name,'handleWidgetBuilderFormSubmit', '@Start');
 
-        // Close the popup form for the Widget Builder
-        this.displayEditWidget = false;
+        // Save the editted Widget back to the Array
+        if (this.addEditModeWidgetEditor == "Edit") {
+
+            // Loop on the Array, find the editted one and update
+            for (var i = 0; i < this.widgets.length; i++) {
+
+                if (this.widgets[i].properties.widgetID === 
+                    this.widgetToEdit.properties.widgetID) {
+
+                        // Update individual fields: if you replace the whole Array
+                        // entry, everything dies.  Including position, svg rendered, etc
+                        this.widgets[i].container.widgetTitle = 
+                            this.widgetToEdit.container.widgetTitle;
+                        this.widgets[i].properties.widgetTabName = 
+                            this.widgetToEdit.properties.widgetTabName;
+                        this.widgets[i].properties.widgetCode = 
+                            this.widgetToEdit.properties.widgetCode;
+                        this.widgets[i].properties.widgetName = 
+                            this.widgetToEdit.properties.widgetName;
+                        this.widgets[i].properties.widgetDescription = 
+                            this.widgetToEdit.properties.widgetDescription;
+                        this.widgets[i].properties.widgetHyperLinkTabNr = 
+                            this.widgetToEdit.properties.widgetHyperLinkTabNr;
+                        this.widgets[i].properties.widgetHyperLinkWidgetID = 
+                            this.widgetToEdit.properties.widgetHyperLinkWidgetID;
+                        this.widgets[i].properties.widgetRefreshMode = 
+                            this.widgetToEdit.properties.widgetRefreshMode;
+                        this.widgets[i].properties.widgetRefreshFrequency = 
+                            this.widgetToEdit.properties.widgetRefreshFrequency;
+                        this.widgets[i].properties.widgetDefaultExportFileType = 
+                            this.widgetToEdit.properties.widgetDefaultExportFileType;
+                        this.widgets[i].properties.widgetPassword = 
+                            this.widgetToEdit.properties.widgetPassword;
+                        this.widgets[i].properties.widgetReportName = 
+                            this.widgetToEdit.properties.widgetReportName;
+                        this.widgets[i].properties.widgetReportParameters = 
+                            this.widgetToEdit.properties.widgetReportParameters;
+                        this.widgets[i].properties.widgetShowLimitedRows = 
+                            this.widgetToEdit.properties.widgetShowLimitedRows;
+                        this.widgets[i].properties.widgetAddRestRow = 
+                            this.widgetToEdit.properties.widgetAddRestRow;
+                        this.widgets[i].properties.widgetType = 
+                            this.widgetToEdit.properties.widgetType;
+                        this.widgets[i].properties.widgetUpdatedDateTime = 
+                            '2017/11/11 11:11';
+                        this.widgets[i].properties.widgetUpdatedUserID = 
+                            'JustinX;'
+
+                    // Close the popup form for the Widget Builder
+                    this.displayEditWidget = false;
+                }
+            }
+        }
+
 console.log ('refresh widgets ... ?')
     }
 
@@ -407,7 +462,7 @@ console.log ('refresh widgets ... ?')
             }
 
         // Set the environment for Edit: current widget + mode
-        this.selectedWidget = this.widgets.filter(
+        this.widgetToEdit = this.widgets.filter(
             widget => widget.properties.widgetID === idWidget)[0] ;
 
         this.widgetIDtoEdit = idWidget;
@@ -1092,6 +1147,7 @@ console.log ('refresh widgets ... ?')
         // Create new widget - End of dragging BarChart
         this.globalFunctionService.printToConsole(this.constructor.name,'onDragEndNewWidget', '@Start');
 
+        this.widgetToEdit = null;
         this.addEditModeWidgetEditor = 'Add';
         this.displayEditWidget = true;
 

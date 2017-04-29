@@ -30,7 +30,7 @@ import { Widget }                     from './model.widget';
 export class WidgetBuilderComponent implements OnInit {
 
     @Input() selectedDashboardID: number;
-    @Input() selectedWidget: Widget;
+    @Input() widgetToEdit: Widget;
     @Input() addEditMode: string;
     @Input() displayEditWidget: boolean;
     @Input() widgetIDtoEdit: number;
@@ -78,9 +78,9 @@ export class WidgetBuilderComponent implements OnInit {
             {
                 'widgetDefaultExportFileType': new FormControl(''),
                 'widgetHyperLinkTabNr':    new FormControl(''),
-                'widgetHyperLinkWidgetID': new FormControl(''),
+                'widgetHyperLinkWidgetID': new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetRefreshMode':       new FormControl(''),
-                'widgetRefreshFrequency':  new FormControl(''),
+                'widgetRefreshFrequency':  new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetPassword':          new FormControl(''),
                 'NrwidgetLiked':           new FormControl('')
             }
@@ -90,9 +90,9 @@ export class WidgetBuilderComponent implements OnInit {
             {
                 'widgetReportName':       new FormControl(''),
                 'widgetReportParameters': new FormControl(''),
-                'widgetShowLimitedRows':  new FormControl(''),
+                'widgetShowLimitedRows':  new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetAddRestRow':       new FormControl(''),
-                'newExisting':            new FormControl(''),
+                'newExisting':            new FormControl('new'),
                 'widgetType':             new FormControl(''),
                 'encodingNew':            new FormControl(''),
                 'existingList':           new FormControl('')
@@ -123,80 +123,80 @@ export class WidgetBuilderComponent implements OnInit {
             // Indicate we loading form -> valueChange routine dont fire
             this.isLoadingForm = true;
 
-            if (this.selectedWidget.properties.widgetID == this.widgetIDtoEdit) {
+            if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
 
-                if (this.selectedWidget.properties.widgetTabName) {
+                if (this.widgetToEdit.properties.widgetTabName) {
                     this.identificationForm.controls['widgetTabName']
-                        .setValue(this.selectedWidget.properties.widgetTabName);
+                        .setValue(this.widgetToEdit.properties.widgetTabName);
                 }
-                if (this.selectedWidget.container.widgetTitle) {
+                if (this.widgetToEdit.container.widgetTitle) {
                     this.identificationForm.controls['widgetTitle']
-                        .setValue(this.selectedWidget.container.widgetTitle);
+                        .setValue(this.widgetToEdit.container.widgetTitle);
                 }
-                if (this.selectedWidget.properties.widgetCode) {
+                if (this.widgetToEdit.properties.widgetCode) {
                     this.identificationForm.controls['widgetCode']
-                        .setValue(this.selectedWidget.properties.widgetCode);
+                        .setValue(this.widgetToEdit.properties.widgetCode);
                 }
-                if (this.selectedWidget.properties.widgetName) {
+                if (this.widgetToEdit.properties.widgetName) {
                     this.identificationForm.controls['widgetName']
-                        .setValue(this.selectedWidget.properties.widgetName);
+                        .setValue(this.widgetToEdit.properties.widgetName);
                 }
-                if (this.selectedWidget.properties.widgetDescription) {
+                if (this.widgetToEdit.properties.widgetDescription) {
                     this.identificationForm.controls['widgetDescription']
-                        .setValue(this.selectedWidget.properties.widgetDescription);
+                        .setValue(this.widgetToEdit.properties.widgetDescription);
                 }
-                if (this.selectedWidget.properties.widgetDefaultExportFileType) {
+                if (this.widgetToEdit.properties.widgetDefaultExportFileType) {
                     this.behaviourForm.controls['widgetDefaultExportFileType']
-                        .setValue(this.selectedWidget.properties.widgetDefaultExportFileType);
+                        .setValue(this.widgetToEdit.properties.widgetDefaultExportFileType);
                 }
-                if (this.selectedWidget.properties.widgetHyperLinkTabNr) {
+                if (this.widgetToEdit.properties.widgetHyperLinkTabNr) {
                     this.behaviourForm.controls['widgetHyperLinkTabNr']
-                        .setValue(this.selectedWidget.properties.widgetHyperLinkTabNr);
+                        .setValue(this.widgetToEdit.properties.widgetHyperLinkTabNr);
                 }
-                if (this.selectedWidget.properties.widgetHyperLinkWidgetID) {
+                if (this.widgetToEdit.properties.widgetHyperLinkWidgetID) {
                     this.behaviourForm.controls['widgetHyperLinkWidgetID']
-                        .setValue(this.selectedWidget.properties.widgetHyperLinkWidgetID);
+                        .setValue(this.widgetToEdit.properties.widgetHyperLinkWidgetID);
                 }
-                if (this.selectedWidget.properties.widgetPassword) {
+                if (this.widgetToEdit.properties.widgetPassword) {
                     this.behaviourForm.controls['widgetPassword']
-                        .setValue(this.selectedWidget.properties.widgetPassword);
+                        .setValue(this.widgetToEdit.properties.widgetPassword);
                 }
-                if (this.selectedWidget.properties.widgetRefreshFrequency) {
+                if (this.widgetToEdit.properties.widgetRefreshFrequency) {
                     this.behaviourForm.controls['widgetRefreshFrequency']
-                        .setValue(this.selectedWidget.properties.widgetRefreshFrequency);
+                        .setValue(this.widgetToEdit.properties.widgetRefreshFrequency);
                 }
-                if (this.selectedWidget.properties.widgetRefreshMode) {
+                if (this.widgetToEdit.properties.widgetRefreshMode) {
                     this.behaviourForm.controls['widgetRefreshMode']
-                        .setValue(this.selectedWidget.properties.widgetRefreshMode);
+                        .setValue(this.widgetToEdit.properties.widgetRefreshMode);
                 }
 
-                let LikedUsers: any = this.selectedWidget.properties.widgetLiked.filter (
+                let LikedUsers: any = this.widgetToEdit.properties.widgetLiked.filter (
                     user => user.widgetLikedUserID != '')
                 this.behaviourForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
                 
-                this.selectedWidget.properties.widgetRefreshMode = 
+                this.widgetToEdit.properties.widgetRefreshMode = 
                     this.behaviourForm.controls['widgetRefreshMode'].value
 
 
-                if (this.selectedWidget.properties.widgetReportName) {
+                if (this.widgetToEdit.properties.widgetReportName) {
                     this.dataAndGraphForm.controls['widgetReportName']
-                        .setValue(this.selectedWidget.properties.widgetReportName);
+                        .setValue(this.widgetToEdit.properties.widgetReportName);
                 }
-                if (this.selectedWidget.properties.widgetReportParameters) {
+                if (this.widgetToEdit.properties.widgetReportParameters) {
                     this.dataAndGraphForm.controls['widgetReportParameters']
-                        .setValue(this.selectedWidget.properties.widgetReportParameters);
+                        .setValue(this.widgetToEdit.properties.widgetReportParameters);
                 }
-                if (this.selectedWidget.properties.widgetShowLimitedRows) {
+                if (this.widgetToEdit.properties.widgetShowLimitedRows) {
                     this.dataAndGraphForm.controls['widgetShowLimitedRows']
-                        .setValue(this.selectedWidget.properties.widgetShowLimitedRows);
+                        .setValue(this.widgetToEdit.properties.widgetShowLimitedRows);
                 }
-                if (this.selectedWidget.properties.widgetAddRestRow) {
+                if (this.widgetToEdit.properties.widgetAddRestRow) {
                     this.dataAndGraphForm.controls['widgetAddRestRow']
-                        .setValue(this.selectedWidget.properties.widgetAddRestRow);
+                        .setValue(this.widgetToEdit.properties.widgetAddRestRow);
                 }
-                if (this.selectedWidget.properties.widgetType) {
+                if (this.widgetToEdit.properties.widgetType) {
                     this.dataAndGraphForm.controls['widgetType']
-                        .setValue(this.selectedWidget.properties.widgetType);
+                        .setValue(this.widgetToEdit.properties.widgetType);
                 }
 
                 // Indicate we are done loading form
@@ -282,6 +282,27 @@ export class WidgetBuilderComponent implements OnInit {
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                 'The Widget Type is compulsory.'
         }
+        if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
+            !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
+            this.formIsValid = false;
+            this.numberErrors = this.numberErrors + 1;
+            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                'The Hyperlinked Widget ID must be numberic'
+        }
+        if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
+            !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
+            this.formIsValid = false;
+            this.numberErrors = this.numberErrors + 1;
+            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                'The Refresh Frequency must be numberic'
+        }
+        if (this.dataAndGraphForm.controls['widgetShowLimitedRows'].touched  && 
+            !this.dataAndGraphForm.controls['widgetShowLimitedRows'].valid) {
+            this.formIsValid = false;
+            this.numberErrors = this.numberErrors + 1;
+            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                'The number of limited rows to show must be numberic'
+        }        
 
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
@@ -346,48 +367,49 @@ export class WidgetBuilderComponent implements OnInit {
         }
 
         // Editing existing Widget
-        if (this.addEditMode == 'Edit' && this.displayEditWidget) {
+        if (this.addEditMode == 'Edit' && this.displayEditWidget &&
+            this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
 
             // Only worry about changes when we are not loading
             if (!this.isLoadingForm) {
-                this.selectedWidget.properties.widgetTabName = 
+                this.widgetToEdit.properties.widgetTabName = 
                     this.identificationForm.controls['widgetTabName'].value,
-                this.selectedWidget.container.widgetTitle = 
+                this.widgetToEdit.container.widgetTitle = 
                     this.identificationForm.controls['widgetTitle'].value,
-                this.selectedWidget.properties.widgetCode = 
+                this.widgetToEdit.properties.widgetCode = 
                     this.identificationForm.controls['widgetCode'].value,
-                this.selectedWidget.properties.widgetName = 
+                this.widgetToEdit.properties.widgetName = 
                     this.identificationForm.controls['widgetName'].value,
-                this.selectedWidget.properties.widgetDescription = 
+                this.widgetToEdit.properties.widgetDescription = 
                     this.identificationForm.controls['widgetDescription'].value
             }
 
             if (!this.isLoadingForm) {
-                this.selectedWidget.properties.widgetDefaultExportFileType = 
+                this.widgetToEdit.properties.widgetDefaultExportFileType = 
                     this.behaviourForm.controls['widgetDefaultExportFileType'].value,
-                this.selectedWidget.properties.widgetHyperLinkTabNr = 
+                this.widgetToEdit.properties.widgetHyperLinkTabNr = 
                     this.behaviourForm.controls['widgetHyperLinkTabNr'].value,
-                this.selectedWidget.properties.widgetHyperLinkWidgetID = 
+                this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
                     this.behaviourForm.controls['widgetHyperLinkWidgetID'].value,
-                this.selectedWidget.properties.widgetPassword = 
+                this.widgetToEdit.properties.widgetPassword = 
                     this.behaviourForm.controls['widgetPassword'].value,
-                this.selectedWidget.properties.widgetRefreshFrequency = 
+                this.widgetToEdit.properties.widgetRefreshFrequency = 
                     this.behaviourForm.controls['widgetRefreshFrequency'].value,
-                this.selectedWidget.properties.widgetRefreshMode = 
+                this.widgetToEdit.properties.widgetRefreshMode = 
                     this.behaviourForm.controls['widgetRefreshMode'].value
                     
             }
 
             if (!this.isLoadingForm) {
-                this.selectedWidget.properties.widgetReportName = 
+                this.widgetToEdit.properties.widgetReportName = 
                     this.dataAndGraphForm.controls['widgetReportName'].value,
-                this.selectedWidget.properties.widgetReportParameters = 
+                this.widgetToEdit.properties.widgetReportParameters = 
                     this.dataAndGraphForm.controls['widgetReportParameters'].value,
-                this.selectedWidget.properties.widgetShowLimitedRows = 
+                this.widgetToEdit.properties.widgetShowLimitedRows = 
                     this.dataAndGraphForm.controls['widgetShowLimitedRows'].value,
-                this.selectedWidget.properties.widgetAddRestRow = 
+                this.widgetToEdit.properties.widgetAddRestRow = 
                     this.dataAndGraphForm.controls['widgetAddRestRow'].value,
-                this.selectedWidget.properties.widgetType = 
+                this.widgetToEdit.properties.widgetType = 
                     this.dataAndGraphForm.controls['widgetType'].value
             }
 
