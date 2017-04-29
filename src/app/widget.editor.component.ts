@@ -19,6 +19,8 @@ import { GlobalVariableService }      from './global.variable.service';
 
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
+import { Report }                     from './model.report';
+import { ReportWidgetSet }            from './model.report.widgetSets';
 import { WidgetComment }              from './model.widget.comment';
 import { Widget }                     from './model.widget';
 
@@ -40,9 +42,12 @@ export class WidgetBuilderComponent implements OnInit {
     @Output() formSubmit: EventEmitter<string> = new EventEmitter();
 
     submitted: boolean;                         // True if form submitted
-    selectedTabName: any;
-    dashboardTabsDropDown:  SelectItem[];
-    dashboardTabs: DashboardTab[];
+    selectedTabName: any;                       // Current selected Tab
+    reports: Report[];                          // List of Reports
+    reportsDropDown:  SelectItem[];             // Drop Down options
+    reportWidgetSets: ReportWidgetSet[];        // List of Report WidgetSets
+    reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
+    selectedReportID: number;                   // Selected in DropDown
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
@@ -59,7 +64,6 @@ export class WidgetBuilderComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
     ) {
-
     }
 
     ngOnInit() {
@@ -95,6 +99,7 @@ export class WidgetBuilderComponent implements OnInit {
                 'widgetAddRestRow':       new FormControl(''),
                 'newExisting':            new FormControl('new'),
                 'widgetType':             new FormControl(''),
+                'widgetReportWidgetSet':       new FormControl(''),
                 'encodingNew':            new FormControl(''),
                 'existingList':           new FormControl('')
             }
@@ -109,6 +114,8 @@ export class WidgetBuilderComponent implements OnInit {
             'Mode (Add / Edit) is: ' + this.addEditMode);
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
             'Edit Widget Form is open: ' + this.displayEditWidget.toString());
+
+            this.loadReports();
 
         // Clear the form for new one
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
@@ -207,6 +214,8 @@ export class WidgetBuilderComponent implements OnInit {
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@End');
     }
+
+
 
     onCancel() {
         this.globalVariableService.growlGlobalMessage.next({
@@ -414,25 +423,47 @@ export class WidgetBuilderComponent implements OnInit {
         //  Note: Do NOT set 'this.displayEditWidget = false' here - it has to change in the parent
         //        componenent to take effect (and thus close Dialogue)
     }
-    
-    loadDashboardTabs() {
+
+    loadReportWidgetSets(event) {
         // Load the Tabs for the selected Dashboard
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportWidgetSets', '@Start');
 
         // Get its Tabs in this Dashboard
-        this.dashboardTabsDropDown = [];
-        this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
+        this.reportWidgetSetsDropDown = [];
+        this.selectedReportID = event.value.id;
+        this.reportWidgetSets = this.eazlService.getReportWidgetSets(this.selectedReportID);
 
         // Fill the dropdown on the form
-        for (var i = 0; i < this.dashboardTabs.length; i++) {
-            this.dashboardTabsDropDown.push({
-                label: this.dashboardTabs[i].widgetTabName,
+        for (var i = 0; i < this.reportWidgetSets.length; i++) {
+            this.reportWidgetSetsDropDown.push({
+                label: this.reportWidgetSets[i].widgetSetName,
                 value: {
-                    id: this.dashboardTabs[i].dashboardID,
-                    name: this.dashboardTabs[i].widgetTabName
+                    id: this.reportWidgetSets[i].widgetSetID,
+                    name: this.reportWidgetSets[i].widgetSetName
                 }
             });
         }
     }
+
+        
+        loadReports() {
+
+            // Load the Report, etc DropDowns
+            this.reports = this.eazlService.getReports();
+            
+            // Fill its dropdown
+            this.reportsDropDown = [];
+
+            // Fill the dropdown on the form
+            for (var i = 0; i < this.reports.length; i++) {
+                this.reportsDropDown.push({
+                    label: this.reports[i].reportName,
+                    value: {
+                        id: this.reports[i].repordID,
+                        name: this.reports[i].reportName
+                    }
+                });
+            }
+        }
 
 }

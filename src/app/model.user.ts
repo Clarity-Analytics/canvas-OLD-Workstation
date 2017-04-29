@@ -1,4 +1,4 @@
-// Model for the User class
+// Schema for the User class
 
 export class User {
     // Defines data model for User Entity

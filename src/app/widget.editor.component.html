@@ -50,7 +50,7 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-3">
-                        widgetCode *: 
+                        Code *: 
                     </div>
                     <div class="ui-grid-col-6">
                         <input pInputText 
@@ -64,7 +64,7 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-3">
-                        widgetName *: 
+                        Name *: 
                     </div>
                     <div class="ui-grid-col-6">
                         <input pInputText 
@@ -78,7 +78,7 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-3">
-                        widgetDescription *: 
+                        Description *: 
                     </div>
                     <div class="ui-grid-col-6">
                         <input pInputText 
@@ -225,15 +225,46 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-3">
-                        widgetReportName *: 
+                        ReportName *: 
                     </div>
                     <div class="ui-grid-col-6">
-                        <input pInputText 
+                        <!--<input pInputText 
                                type="text" 
                                formControlName="widgetReportName" 
                                placeholder="Required"
                                pTooltip="Report Name (query) that contains the data"
-                               />
+                               />-->
+                        <p-dropdown 
+                            [options]="reportsDropDown" 
+                            [style]="{
+                                        'width':'100%'
+                                    }" 
+                            placeholder="Select a Report"
+                            formControlName="widgetReportName" 
+                            pTooltip="Widget Set for the selected Report"
+                            filter="true"
+                            (onChange)="loadReportWidgetSets($event)"
+                            >
+                        </p-dropdown>
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Rpt Widget Set *: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <p-dropdown 
+                            [options]="reportWidgetSetsDropDown" 
+                            inputId="S2" 
+                            [style]="{
+                                        'width':'100%'
+                                    }" 
+                            pTooltip="Widget Set for the selected Report"
+                            filter="true"
+                            formControlName="widgetReportWidgetSet" 
+                            >
+                        </p-dropdown>
                     </div>
                 </div>
 

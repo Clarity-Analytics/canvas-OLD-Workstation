@@ -1,4 +1,4 @@
-// Layout of each Widget Comment object
+// Schema for Widget Comment object
 
 export class WidgetComment {
     widgetCommentID: number;                        // Unique DB ID

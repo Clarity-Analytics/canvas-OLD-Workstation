@@ -1,4 +1,4 @@
-// Layout of each Widget object
+// Schema for Widget object
 
 export class Widget {
     // Widget layout - all dimensions in px EXCEPT font-size in em

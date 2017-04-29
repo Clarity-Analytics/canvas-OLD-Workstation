@@ -1,4 +1,4 @@
-// Layout of each Dashboard object
+// Schema for Dashboard object
 
 export class Dashboard {
     dashboardID: number;                        // Unique DB ID

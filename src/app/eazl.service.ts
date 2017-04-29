@@ -8,6 +8,8 @@ import { GlobalVariableService }      from './global.variable.service';
 // Our models
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
+import { Report }                     from './model.report';
+import { ReportWidgetSet }            from './model.report.widgetSets';
 import { User }                       from './model.user';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
@@ -794,7 +796,7 @@ export const WIDGETS: Widget[] =
                 fontSize: 1,
                 height: 310,
                 left: 640,
-                widgetTitle: 'Heacount Comparison',
+                widgetTitle: 'Headcount Comparison',
                 top: 80,
                 width: 380,
             },
@@ -2428,16 +2430,69 @@ export const WIDGETCOMMENTS: WidgetComment[] =
         },
     ];
 
+export const REPORTS: Report[] =
+    [
+        {
+            repordID: 1,
+            reportName: 'EDM weekly Values',
+            description: 'Description ...  etc',
+            reportParameters: '',
+            dataSourceID: 12,
+            dataSourceParameters: '',
+            reportData: 
+                [
 
+                ]
+        },
+        {
+            repordID: 2,
+            reportName: 'Bond monthly Values',
+            description: 'Description ...  etc',
+            reportParameters: '',
+            dataSourceID: 143,
+            dataSourceParameters: '',
+            reportData: 
+                [
+
+                ]
+        }
+    ]
+
+export const REPORTWIDGETSET: ReportWidgetSet[] =
+    [
+        {
+            repordID: 1,
+            widgetSetID: 1,
+            widgetSetName: 'Blue Value per week',
+            widgetSetDescription: 'Description blue ...',
+            vegaSpec: {}
+        },
+        {
+            repordID: 1,
+            widgetSetID: 2,
+            widgetSetName: 'Green Value per week',
+            widgetSetDescription: 'Description green ...',
+            vegaSpec: {}
+        },
+        {
+            repordID: 1,
+            widgetSetID: 3,
+            widgetSetName: 'Red Value per week',
+            widgetSetDescription: 'Description red ...',
+            vegaSpec: {}
+        }
+    ]
 
 @Injectable()
 export class EazlService {
 
-    users: User[] = USERS;                              // List of Users
-    dashboards: Dashboard[] = DASHBOARDS;               // List of Dashboards
-    dashboardTabs: DashboardTab[] = DASHBOARDTABS;      // List of Dashboard Tabs
-    widgetComments: WidgetComment[] = WIDGETCOMMENTS;   // List of Widget Comments
-    widgets: Widget[] = WIDGETS;                        // List of Widgets for a selected Dashboard
+    users: User[] = USERS;                                  // List of Users
+    dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
+    dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
+    reports: Report[] = REPORTS;                            // List of Reports
+    reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
+    widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
+    widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -2604,6 +2659,20 @@ export class EazlService {
         }
 
         return DefaultWidgetConfig;
+    }
+
+    getReports(): Report[] {
+        // Return a list of Reports
+        this.globalFunctionService.printToConsole(this.constructor.name,'getReports', '@Start');
+
+        return this.reports;
+    }
+
+    getReportWidgetSets(reportID: number): ReportWidgetSet[] {
+        // Return a list of WidgetSets per Report
+        this.globalFunctionService.printToConsole(this.constructor.name,'getReportWidgetSets', '@Start');
+
+        return this.reportWidgetSet.filter(wset => wset.repordID == reportID);
     }
 
 }

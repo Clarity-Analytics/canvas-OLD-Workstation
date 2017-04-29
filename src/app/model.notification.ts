@@ -1,4 +1,4 @@
-// Model for the Notification (message layout)
+// Schema for the Notification (message layout)
 
 export class Notification {
     author: string;

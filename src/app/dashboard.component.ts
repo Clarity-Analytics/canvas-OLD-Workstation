@@ -494,6 +494,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             widget => widget.properties.widgetID === idWidget)[0] ;
 
         this.widgetIDtoEdit = idWidget;
+        this.globalVariableService.widgetEditorToLoad = true;
         this.addEditModeWidgetEditor = 'Edit';
         this.displayEditWidget = true;
     }
@@ -1177,9 +1178,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
+        this.globalVariableService.widgetEditorToLoad = true;
         this.displayEditWidget = true;
-
-// pass event.clientX + event.clientY
     }
 
     onWidgetDragHandleMouseDown(idWidget: number) {
@@ -1304,6 +1304,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.selectedWidgetIDs.push(this.widgets[i].properties.widgetID);
         }
     }
+
     loadDashboardTabs(event) {
         // Load the Tabs for the selected Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');
