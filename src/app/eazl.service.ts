@@ -13,8 +13,8 @@ import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 
 // TODO - use RESTi
-export const USERS: User[] = 
-    [ 
+export const USERS: User[] =
+    [
         {
             userID: 'Gerh1',
             firstName: 'Gerhard1 Leopold',
@@ -377,7 +377,7 @@ export const USERS: User[] =
         }
     ];
 
-export const DASHBOARDS: Dashboard[] = 
+export const DASHBOARDS: Dashboard[] =
     [
         {
             dashboardID: 0,
@@ -389,26 +389,26 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedDateTime: '2017/07/08',
             dashboardCreatedUserID: 'BenVdMark',
             dashboardDefaultExportFileType: 'PowerPoint',
-            dashboardDescription: 'This is a unique and special dashboard, like all others',            
+            dashboardDescription: 'This is a unique and special dashboard, like all others',
             dashboardGroups: [
                 { dashboardGroupName: 'Favourites' },
                 { dashboardGroupName: 'Everyone'}
             ],
             dashboardIsLocked: false,
-            dashboardLiked: [                           
+            dashboardLiked: [
                 { dashboardLikedUserID: 'AnnieA' },
                 { dashboardLikedUserID: 'BennieB' },
                 { dashboardLikedUserID: 'CharlesC' }
             ],
             dashboardOpenTabNr: 1,
             dashboardOwnerUserID: 'JohnH',
-            dashboardPassword: 'StudeBaker',  
+            dashboardPassword: 'StudeBaker',
             dashboardRefreshedDateTime: '',
-            dashboardRefreshMode: 'Manual',              
+            dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
-                    dashboardSharedWithUserID: 'PeterP',               
-                    dashboardSharedWithType: 'Full'     
+                    dashboardSharedWithUserID: 'PeterP',
+                    dashboardSharedWithType: 'Full'
                 }
             ],
             dashboardSystemMessage: '',
@@ -425,24 +425,24 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
-            dashboardDescription: 'Just another Dashboard',            
+            dashboardDescription: 'Just another Dashboard',
             dashboardGroups: [
                 { dashboardGroupName: 'Stats' },
                 { dashboardGroupName: 'Everyone'}
             ],
             dashboardIsLocked: true,
-            dashboardLiked: [                           
+            dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
-            dashboardPassword: '',  
+            dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
-            dashboardRefreshMode: 'Manual',              
+            dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
-                    dashboardSharedWithUserID: '',               
-                    dashboardSharedWithType: ''     
+                    dashboardSharedWithUserID: '',
+                    dashboardSharedWithType: ''
                 }
             ],
             dashboardSystemMessage: '',
@@ -459,24 +459,24 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
-            dashboardDescription: 'Just another Dashboard',            
+            dashboardDescription: 'Just another Dashboard',
             dashboardGroups: [
                 { dashboardGroupName: 'Stats' },
                 { dashboardGroupName: 'Everyone'}
             ],
             dashboardIsLocked: true,
-            dashboardLiked: [                           
+            dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
-            dashboardPassword: '',  
+            dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
-            dashboardRefreshMode: 'Manual',              
+            dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
-                    dashboardSharedWithUserID: '',               
-                    dashboardSharedWithType: ''     
+                    dashboardSharedWithUserID: '',
+                    dashboardSharedWithType: ''
                 }
             ],
             dashboardSystemMessage: '',
@@ -493,24 +493,24 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
-            dashboardDescription: 'Just another Dashboard',            
+            dashboardDescription: 'Just another Dashboard',
             dashboardGroups: [
                 { dashboardGroupName: 'Stats' },
                 { dashboardGroupName: 'Everyone'}
             ],
             dashboardIsLocked: true,
-            dashboardLiked: [                           
+            dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
-            dashboardPassword: '',  
+            dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
-            dashboardRefreshMode: 'Manual',              
+            dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
-                    dashboardSharedWithUserID: '',               
-                    dashboardSharedWithType: ''     
+                    dashboardSharedWithUserID: '',
+                    dashboardSharedWithType: ''
                 }
             ],
             dashboardSystemMessage: '',
@@ -527,24 +527,24 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
-            dashboardDescription: 'Just another Dashboard',            
+            dashboardDescription: 'Just another Dashboard',
             dashboardGroups: [
                 { dashboardGroupName: 'Stats' },
                 { dashboardGroupName: 'Everyone'}
             ],
             dashboardIsLocked: true,
-            dashboardLiked: [                           
+            dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
-            dashboardPassword: '',  
+            dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
-            dashboardRefreshMode: 'Manual',              
+            dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
-                    dashboardSharedWithUserID: '',               
-                    dashboardSharedWithType: ''     
+                    dashboardSharedWithUserID: '',
+                    dashboardSharedWithType: ''
                 }
             ],
             dashboardSystemMessage: '',
@@ -561,30 +561,30 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
-            dashboardDescription: 'Just another Dashboard',            
+            dashboardDescription: 'Just another Dashboard',
             dashboardGroups: [
                 { dashboardGroupName: 'Stats' },
                 { dashboardGroupName: 'Everyone'}
             ],
             dashboardIsLocked: true,
-            dashboardLiked: [                           
+            dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
-            dashboardPassword: '',  
+            dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
-            dashboardRefreshMode: 'Manual',              
+            dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
-                    dashboardSharedWithUserID: '',               
-                    dashboardSharedWithType: ''     
+                    dashboardSharedWithUserID: '',
+                    dashboardSharedWithType: ''
                 }
             ],
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
-        }            
+        }
     ];
 
 export const DASHBOARDTABS: DashboardTab[] =
@@ -638,14 +638,14 @@ export const WIDGETS: Widget[] =
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "description": "Yes, Bradley",
-                "scheme": "greys-9",                        
+                "scheme": "greys-9",
                 "width": 250,
                 "height": 200,
                 "padding": 5,
 
                 "data": [
                     {
-                        
+
                     "name": "table",
                     "values": [
                         {"category": "A1", "amount": 28},
@@ -688,20 +688,20 @@ export const WIDGETS: Widget[] =
                 ],
 
                 "axes": [
-                    { 
-                        "orient": "bottom", 
+                    {
+                        "orient": "bottom",
                         "scale": "xscale",
-                        "title": "bottom Axis" 
+                        "title": "bottom Axis"
                     },
-                    { 
-                        "orient": "left", 
-                        "scale": "yscale", 
+                    {
+                        "orient": "left",
+                        "scale": "yscale",
                         "title": "left Axis"
                     }
                 ],
 
                 "marks": [
-                    
+
                     {
                         "type": "rect",
                         "from": {"data":"table"},
@@ -739,47 +739,47 @@ export const WIDGETS: Widget[] =
                             }
                         }
                     }
-                    
-                    
+
+
                 ]
                 }
             },
             properties: {
-                widgetID: 1, 
+                widgetID: 1,
                 dashboardID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'FirstBar',
                 widgetName: 'Bar Chart 1',
-                widgetAddRestRow: true,      
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: 'Just a common comment',          
+                widgetComments: 'Just a common comment',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 1,                 
-                widgetIsLocked: false,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',  
+                widgetDescription: '',
+                widgetIndex: 1,
+                widgetIsLocked: false,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: 'JessyB' 
+                        widgetLikedUserID: 'JessyB'
                     },
                     {
-                        widgetLikedUserID: 'JonnyC' 
+                        widgetLikedUserID: 'JonnyC'
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -895,39 +895,39 @@ export const WIDGETS: Widget[] =
                 }
             },
             properties: {
-                widgetID: 2, 
+                widgetID: 2,
                 dashboardID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'SecondBar',
                 widgetName: 'Bar Chart 2',
 
-                widgetAddRestRow: true,      
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',          
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 1,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 1,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -1031,39 +1031,39 @@ export const WIDGETS: Widget[] =
                 }
             },
             properties: {
-                widgetID: 3, 
+                widgetID: 3,
                 dashboardID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'ThirdBar',
                 widgetName: 'Bar Chart 3',
 
-                widgetAddRestRow: true,      
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',          
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 1,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 1,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -1206,39 +1206,39 @@ export const WIDGETS: Widget[] =
                 }
             },
             properties: {
-                widgetID: 4, 
+                widgetID: 4,
                 dashboardID: 0,
                 widgetTabName: "Volume",
                 widgetCode: 'FourthBar',
                 widgetName: 'Bar Chart 4',
 
-                widgetAddRestRow: true,      
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',          
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 1,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 1,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -1426,43 +1426,43 @@ export const WIDGETS: Widget[] =
                 }
             },
             properties: {
-                widgetID: 5, 
+                widgetID: 5,
                 dashboardID: 0,
                 widgetTabName: "Volume",
                 widgetCode: 'FifthBar',
                 widgetName: 'Bar Chart 5',
 
-                widgetAddRestRow: true,      
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: 'Just simple comments',          
+                widgetComments: 'Just simple comments',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 1,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 1,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
-        },                                
+        },
 
         {
             container: {
@@ -1547,37 +1547,37 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 11,
                 dashboardID: 1,
-                widgetTabName: "Value",             
-                widgetCode: 'FirstPie',         
-                widgetName: 'Pie contracts per Broker 2',   
+                widgetTabName: "Value",
+                widgetCode: 'FirstPie',
+                widgetName: 'Pie contracts per Broker 2',
 
-                widgetAddRestRow: true,         
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',             
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 3,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 3,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -1603,7 +1603,7 @@ export const WIDGETS: Widget[] =
                 "width": 170,
                 "height": 400,
                 "autosize": "none",
-                "padding": 40,                   
+                "padding": 40,
                 "signals": [
                     {
                     "name": "startAngle", "value": 0,
@@ -1688,37 +1688,37 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 12,
                 dashboardID: 1,
-                widgetTabName: "Value",             
-                widgetCode: 'SecondBar',         
-                widgetName: 'Line Volume 1',   
+                widgetTabName: "Value",
+                widgetCode: 'SecondBar',
+                widgetName: 'Line Volume 1',
 
-                widgetAddRestRow: true,         
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',             
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 2,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 2,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -1815,42 +1815,42 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 21,
                 dashboardID: 3,
-                widgetTabName: "Value",             
-                widgetCode: 'FirstPie',         
-                widgetName: 'Pie contracts per Broker 2',   
+                widgetTabName: "Value",
+                widgetCode: 'FirstPie',
+                widgetName: 'Pie contracts per Broker 2',
 
-                widgetAddRestRow: true,         
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',             
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 4,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 4,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             },
         },
-        
+
         {
             container: {
                 backgroundColor: 'powderblue',
@@ -1982,37 +1982,37 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 6,
                 dashboardID: 3,
-                widgetTabName: "Value",             
-                widgetCode: 'FirstPie',         
-                widgetName: 'Pie contracts per Broker 2',   
+                widgetTabName: "Value",
+                widgetCode: 'FirstPie',
+                widgetName: 'Pie contracts per Broker 2',
 
-                widgetAddRestRow: true,         
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',             
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 4,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 4,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -2114,37 +2114,37 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 41,
                 dashboardID: 4,
-                widgetTabName: "Value",             
-                widgetCode: 'FirstPie',         
-                widgetName: 'Pie contracts per Broker 2',   
+                widgetTabName: "Value",
+                widgetCode: 'FirstPie',
+                widgetName: 'Pie contracts per Broker 2',
 
-                widgetAddRestRow: true,         
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',             
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 4,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 4,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -2342,37 +2342,37 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 51,
                 dashboardID: 5,
-                widgetTabName: "Value",             
-                widgetCode: 'FirstPie',         
-                widgetName: 'Pie contracts per Broker 2',   
+                widgetTabName: "Value",
+                widgetCode: 'FirstPie',
+                widgetName: 'Pie contracts per Broker 2',
 
-                widgetAddRestRow: true,         
+                widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserID: '',
-                widgetComments: '',             
+                widgetComments: '',
                 widgetDefaultExportFileType: '',
-                widgetDescription: '',              
-                widgetIndex: 4,                 
-                widgetIsLocked: true,           
-                widgetHyperLinkTabNr: '',       
-                widgetHyperLinkWidgetID: '',    
+                widgetDescription: '',
+                widgetIndex: 4,
+                widgetIsLocked: true,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
                 widgetIsLiked: false,
-                widgetLiked: [                  
+                widgetLiked: [
                     {
-                        widgetLikedUserID: '', 
+                        widgetLikedUserID: '',
                     }
                 ],
-                widgetPassword: '',             
+                widgetPassword: '',
                 widgetRefreshedDateTime: '',
                 widgetRefreshedUserID: '',
-                widgetRefreshFrequency: 3,      
-                widgetRefreshMode: '',          
-                widgetReportName: '',           
-                widgetReportParameters: '',     
-                widgetShowLimitedRows: 0,       
-                widgetSize: '',                 
-                widgetSystemMessage: '',        
-                widgetType: '',                 
+                widgetRefreshFrequency: 3,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -2455,7 +2455,7 @@ export class EazlService {
     getUsers(){
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
-        
+
         return this.users;
     }
 
@@ -2471,7 +2471,7 @@ export class EazlService {
 
             // Set properties.widgetIsLiked if there are users who liked it
             for (var j = 0, len = this.widgets[i].properties.widgetLiked.length; j < len; j++) {
-            
+
                 if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID != '') {
                     this.widgets[i].properties.widgetIsLiked = true;
                 } else {
@@ -2483,25 +2483,25 @@ export class EazlService {
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
 
-        return this.dashboards;        
+        return this.dashboards;
     }
 
     getDashboardTabs(selectedDashboardID: number) {
         // Return a list of Dashboards
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabs', '@Start');
 
-        return this.dashboardTabs.filter(tab => tab.dashboardID == selectedDashboardID);        
+        return this.dashboardTabs.filter(tab => tab.dashboardID == selectedDashboardID);
     }
 
     getWidgetsForDashboard(selectedDashboardID: number, selectedDashboarTabName: string) {
         // Return a list of Dashboards
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
 
-        return this.widgets.filter(widget => 
+        return this.widgets.filter(widget =>
             widget.properties.dashboardID == selectedDashboardID &&
             widget.properties.widgetTabName == selectedDashboarTabName
-        );        
-       
+        );
+
     }
 
     addWidgetsComments(
@@ -2525,22 +2525,82 @@ export class EazlService {
                 widgetCommentHeading: inputWidgetCommentHeading,
                 widgetCommentBody: inputWidgetCommentBody
             }
-        )        
+        )
     }
 
     getWidgetsComments(selectedWidgetID: number) {
         // Return a list of Widget Comments
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsComments', '@Start');
 
-        return this.widgetComments.filter(widgetComment => 
+        return this.widgetComments.filter(widgetComment =>
             widgetComment.widgetID == selectedWidgetID
-        );        
+        );
     }
 
     addWidget (widget: Widget) {
         // Add a new Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'addWidget', '@Start');
         this.widgets.push(widget)
+    }
+
+    getDefaultWidgetConfig (): Widget {
+        let DefaultWidgetConfig: Widget = {
+            container: {
+                backgroundColor: 'white',
+                border: '1px solid white',
+                boxShadow: 'none',
+                color: 'black',
+                fontSize: 1,
+                height: 310,
+                left: 240,
+                widgetTitle: '',
+                top: 80,
+                width: 380,
+            },
+            graph: {
+                graphID: 0,
+                spec: {
+                }
+            },
+            properties: {
+                widgetID: 1,
+                dashboardID: 0,
+                widgetTabName: '',
+                widgetCode: '',
+                widgetName: '',
+                widgetAddRestRow: false,
+                widgetCreatedDateTime: '',
+                widgetCreatedUserID: '',
+                widgetComments: '',
+                widgetDefaultExportFileType: '',
+                widgetDescription: '',
+                widgetIndex: 0,
+                widgetIsLocked: false,
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
+                widgetIsLiked: false,
+                widgetLiked: [
+                    {
+                        widgetLikedUserID: ''
+                    }
+                ],
+                widgetPassword: '',
+                widgetRefreshedDateTime: '',
+                widgetRefreshedUserID: '',
+                widgetRefreshFrequency: 0,
+                widgetRefreshMode: '',
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetType: '',
+                widgetUpdatedDateTime: '',
+                widgetUpdatedUserID: ''
+            }
+        }
+
+        return DefaultWidgetConfig;
     }
 
 }

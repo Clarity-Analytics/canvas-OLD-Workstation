@@ -1,14 +1,14 @@
 // Dashboard
-import { Component }                  from '@angular/core';
-import { OnInit }                     from '@angular/core';
 import { AfterViewInit }              from '@angular/core';
-import { ViewEncapsulation }          from '@angular/core';
+import { Component }                  from '@angular/core';
 import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
+import { OnInit }                     from '@angular/core';
+import { QueryList }                  from '@angular/core';
 import { Renderer }                   from '@angular/core';
+import { ViewEncapsulation }          from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 import { ViewChildren }               from '@angular/core';
-import { QueryList }                  from '@angular/core';
 
 //  PrimeNG stuffies
 import { ConfirmationService }        from 'primeng/primeng';
@@ -21,10 +21,10 @@ import { GlobalFunctionService }      from './global.function.service';
 import { GlobalVariableService }      from './global.variable.service';
 
 // Our models
-import { Filter }                     from './model.filter';
 import { CanvasColors }               from './data.chartcolors';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
+import { Filter }                     from './model.filter';
 import { Widget }                     from './model.widget';
 
 // Vega stuffies
@@ -57,72 +57,72 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
 
     // Current status of Dashboard
-    refreshDashboard: boolean = false;
+    chartWidth: number;
+    checkedScale: number;
     displayAdvancedDashboardFilter: boolean = false;
     hasAdvancedFilter: boolean = false;
-    chartWidth: number;
     radioLabelval1: number;
-    checkedScale: number;
+    refreshDashboard: boolean = false;
 
     // Currently selected stuffies
+    currentFilter: Filter;
+    numberUntitledDashboards: number = 0;   // Suffix in naming new dashboards, Untitled + n
+    selectedCommentWidgetID: number;        // Current WidgetID for Comment
     selectedDashboardID: number;
     selectedDashboardName: any;
     selectedTabName: any;
-    currentFilter: Filter;
     selectedWidget: Widget = null;          // Selected widget during dragging
-    numberUntitledDashboards: number = 0;   // Suffix in naming new dashboards, Untitled + n
     selectedWidgetIDs: number[] = [];       // Array of WidgetIDs selected with mouse
-    selectedCommentWidgetID: number;        // Current WidgetID for Comment
 
     // Currently selected properties for a Widget, in the Palette
-    showContainerHeader: boolean = true;
     selectedBackgroundColor: string;
     selectedBorder: string;
     selectedBoxShadow: string;
     selectedColor: string;
     selectedContainerFontSize: number;      // In em
+    showContainerHeader: boolean = true;
 
     // List of Dashboards read from DB
     dashboardDropDown: SelectItem[];
     dashboards: Dashboard[];
 
     // Tab stuffies, per Dashboard
-    dashboardTabsDropDown:  SelectItem[];
     dashboardTabs: DashboardTab[];
+    dashboardTabsDropDown:  SelectItem[];
 
     // Widget stuffies, per Dashboard
-    widgets: Widget[];              // List of Widgets for a selected Dashboard
-    widgetStartDragX: number;       // Start coordinates during dragging
-    widgetStartDragY: number;       // Start coordinates during dragging
-    widgetEndDragX: number;         // End coordinates during dragging
-    widgetEndDragY: number;         // End coordinates during dragging
     containerStartX: number;        // X of widget at drag start
     containerStartY: number;        // Y of widget at drag start
+    widgets: Widget[];              // List of Widgets for a selected Dashboard
+    widgetEndDragX: number;         // End coordinates during dragging
+    widgetEndDragY: number;         // End coordinates during dragging
+    widgetStartDragX: number;       // Start coordinates during dragging
+    widgetStartDragY: number;       // Start coordinates during dragging
 
     // Vars for Startup properties of a Widget
-    chartColor: SelectItem[];       // Options for Backgroun-dColor DropDown
     borderOptions: SelectItem[];    // Options for Border DropDown
     boxShadowOptions: SelectItem[]; // Options for Box-Shadow DropDown
-    snapToGrid: boolean = true;     // If true, snap widgets to gridSize
+    chartColor: SelectItem[];       // Options for Backgroun-dColor DropDown
     gridSize: number;               // Size of grid blocks, ie 3px x 3px
     isDark: boolean = false;        // Widget Header icons black if true
+    snapToGrid: boolean = true;     // If true, snap widgets to gridSize
 
     // True / False to show popup forms
+    addEditModeWidgetEditor: string = '';       // Add or Edit was called
+    deleteMode: boolean = false;                // True while busy deleting
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
-    deleteMode: boolean = false;                // True while busy deleting
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
-    addEditModeWidgetEditor: string = '';       // Add or Edit was called
     
     constructor(
         private canvasColors: CanvasColors,
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
+        private element : ElementRef,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private renderer : Renderer,
-        private element : ElementRef
+        private renderer : Renderer
     ) {
      }
 

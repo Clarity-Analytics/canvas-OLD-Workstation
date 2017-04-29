@@ -311,63 +311,47 @@ console.log('mode',this.addEditMode)
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
 
-            this.eazlService.addWidget(
-                {
-                    container: {
-                        backgroundColor: 'white',
-                        border: '1px solid black',
-                        boxShadow: 'none',
-                        color: 'xxx',
-                        fontSize: 1,
-                        height: 280,
-                        left: 220,
-                        widgetTitle: this.identificationForm.controls['widgetTitle'].value,
-                        top: 80,
-                        width: 300
-                    },
-                    graph: {
-                        graphID: 0,
-                        spec: '',
-                    },
-                    properties: {
-                        widgetID: 9,
-                        dashboardID: 1,
-                        widgetTabName: this.identificationForm.controls['widgetTabName'].value,
-                        widgetCode: this.identificationForm.controls['widgetCode'].value,
-                        widgetName: this.identificationForm.controls['widgetName'].value,
-                        widgetAddRestRow: this.dataAndGraphForm.controls['widgetAddRestRow'].value,
-                        widgetCreatedDateTime: '2017/04/04 12:57',
-                        widgetCreatedUserID: 'JohnD',
-                        widgetComments: '',
-                        widgetDefaultExportFileType: this.behaviourForm.controls['widgetDefaultExportFileType'].value,
-                        widgetDescription: this.identificationForm.controls['widgetDescription'].value,
-                        widgetIndex: 0,
-                        widgetIsLocked: false,
-                        widgetHyperLinkTabNr: this.behaviourForm.controls['widgetHyperLinkTabNr'].value,
-                        widgetHyperLinkWidgetID: this.behaviourForm.controls['widgetHyperLinkWidgetID'].value,
-                        widgetIsLiked: false,
-                        widgetLiked: [       
-                            {
-                                widgetLikedUserID: '',
-                            }
-                        ],
-                        widgetPassword: this.behaviourForm.controls['widgetPassword'].value,
-                        widgetRefreshedDateTime: '',
-                        widgetRefreshedUserID: '',
-                        widgetRefreshFrequency: this.behaviourForm.controls['widgetRefreshFrequency'].value,
-                        widgetRefreshMode: this.behaviourForm.controls['widgetRefreshMode'].value,
-                        widgetReportName: this.dataAndGraphForm.controls['widgetReportName'].value,
-                        widgetReportParameters: this.dataAndGraphForm.controls['widgetReportParameters'].value,
-                        widgetShowLimitedRows: this.dataAndGraphForm.controls['widgetShowLimitedRows'].value,
-                        widgetSize: '',
-                        widgetSystemMessage: '',
-                        widgetType: this.dataAndGraphForm.controls['widgetType'].value,
-                        widgetUpdatedDateTime: '',
-                        widgetUpdatedUserID: ''
-                    }
-                }
-            );
+            // First, set then Default Config
+            let newWidget: Widget = this.eazlService.getDefaultWidgetConfig()
+            
+            // Then, load from form what wass indeed provided on the form
+            newWidget.container.widgetTitle = 
+                this.identificationForm.controls['widgetTitle'].value,
+            newWidget.properties.widgetTabName = 
+                this.identificationForm.controls['widgetTabName'].value,
+            newWidget.properties.widgetCode = 
+                this.identificationForm.controls['widgetCode'].value,
+            newWidget.properties.widgetName = 
+                this.identificationForm.controls['widgetName'].value,
+            newWidget.properties.widgetAddRestRow = 
+                this.dataAndGraphForm.controls['widgetAddRestRow'].value,
+            newWidget.properties.widgetDefaultExportFileType = 
+                this.behaviourForm.controls['widgetDefaultExportFileType'].value,
+            newWidget.properties.widgetDescription = 
+                this.identificationForm.controls['widgetDescription'].value,
+            newWidget.properties.widgetHyperLinkTabNr = 
+                this.behaviourForm.controls['widgetHyperLinkTabNr'].value,
+            newWidget.properties.widgetHyperLinkWidgetID = 
+                this.behaviourForm.controls['widgetHyperLinkWidgetID'].value,
+            newWidget.properties.widgetPassword = 
+                this.behaviourForm.controls['widgetPassword'].value,
+            newWidget.properties.widgetRefreshFrequency = 
+                this.behaviourForm.controls['widgetRefreshFrequency'].value,
+            newWidget.properties.widgetRefreshMode = 
+                this.behaviourForm.controls['widgetRefreshMode'].value,
+            newWidget.properties.widgetReportName = 
+                this.dataAndGraphForm.controls['widgetReportName'].value,
+            newWidget.properties.widgetReportParameters = 
+                this.dataAndGraphForm.controls['widgetReportParameters'].value,
+            newWidget.properties.widgetShowLimitedRows = 
+                this.dataAndGraphForm.controls['widgetShowLimitedRows'].value,
+            newWidget.properties.widgetType = 
+                this.dataAndGraphForm.controls['widgetType'].value,
 
+            // Add to DB
+            this.eazlService.addWidget(newWidget);
+
+            // Inform the user
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
                 summary:  'Success',
