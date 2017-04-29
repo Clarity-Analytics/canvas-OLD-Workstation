@@ -116,6 +116,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
     widgetToEdit: Widget;                       // Widget to edit
+    widgetToEditX: number;                      // X coordinate where new widget belongs
+    widgetToEditY: number;                      // Y coordinate where new widget belongs
 
     constructor(
         private canvasColors: CanvasColors,
@@ -1174,6 +1176,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     onDragEndNewWidget(event) {
         // Create new widget - End of dragging BarChart
         this.globalFunctionService.printToConsole(this.constructor.name,'onDragEndNewWidget', '@Start');
+
+        this.widgetToEditX = event.x;
+        this.widgetToEditY = event.y;
 
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';

@@ -37,6 +37,8 @@ export class WidgetBuilderComponent implements OnInit {
     @Input() addEditMode: string;
     @Input() displayEditWidget: boolean;
     @Input() widgetIDtoEdit: number;
+    @Input() widgetToEditX: number;
+    @Input() widgetToEditY: number;
 
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formSubmit: EventEmitter<string> = new EventEmitter();
@@ -359,6 +361,10 @@ export class WidgetBuilderComponent implements OnInit {
                 this.dataAndGraphForm.controls['widgetShowLimitedRows'].value;
             this.widgetToEdit.properties.widgetType = 
                 this.dataAndGraphForm.controls['widgetType'].value;
+
+            // Add x,y from where Icon was dropped
+            this.widgetToEdit.container.left = this.widgetToEditX;
+            this.widgetToEdit.container.top = this.widgetToEditY;
         }
 
         // Editing existing Widget
