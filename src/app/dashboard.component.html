@@ -586,9 +586,21 @@
         <!--Widget liked -->
         <button
             class="widgetIsLiked"
+            *ngIf="w.properties.widgetIsLiked  &&  showContainerHeader"
             [style.color]="isDark ? 'black' : 'lightgray'"
-            *ngIf="showContainerHeader"
-            [style.color]="w.properties.widgetIsLiked ? 'red' : 'lightgray'"
+            pButton
+            type="button"
+            icon="fa-heart"
+            pTooltip="Click to toggle between Liked and UnLiked" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="clickWidgetIsLiked(w.properties.widgetID)"
+            >
+        </button>         
+        <button
+            class="widgetIsLiked"
+            *ngIf="!w.properties.widgetIsLiked  &&  showContainerHeader"
+            [style.color]="isDark ? 'black' : 'lightgray'"
             pButton
             type="button"
             icon="fa-heart-o"
