@@ -1,19 +1,19 @@
 // Widget Builder - Popup form to Add / Edit Widget
-import { Component } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { Input } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { Output } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Component }                  from '@angular/core';
+import { EventEmitter }               from '@angular/core';
+import { FormBuilder }                from '@angular/forms';
+import { FormControl }                from '@angular/forms';
+import { FormGroup }                  from '@angular/forms';
+import { Input }                      from '@angular/core';
+import { OnInit }                     from '@angular/core';
+import { Output }                     from '@angular/core';
+import { Validators }                 from '@angular/forms';
 
 //  PrimeNG stuffies
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
-import { EazlService } from './eazl.service';
+import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global.function.service';
 import { GlobalVariableService }      from './global.variable.service';
 
@@ -45,11 +45,16 @@ export class WidgetBuilderComponent implements OnInit {
 
     submitted: boolean;                         // True if form submitted
     selectedTabName: any;                       // Current selected Tab
+    selectedReportID: number;                   // Selected in DropDown
+    
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
+
     reportWidgetSets: ReportWidgetSet[];        // List of Report WidgetSets
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
-    selectedReportID: number;                   // Selected in DropDown
+
+    dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
+    dashboardTabsDropDown: SelectItem[];        // Drop Down options
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
@@ -59,7 +64,13 @@ export class WidgetBuilderComponent implements OnInit {
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
-        
+
+    // ToolTippies stays after popup form closes, so setting in vars works for now ...
+    // TODO - find BUG, our side or PrimeNG side
+    dashboardsTabsTooltip: string = ""   //'Selected Tab where Widget will live';
+    reportsDropDownTooltip: string = ""; //'Selected Report (query) with data';
+    reportWidgetSetDropToolTip: string = "" //'Widget Set for the selected Report';
+            
     constructor(
         private eazlService: EazlService,
         private fb: FormBuilder,
@@ -117,14 +128,16 @@ export class WidgetBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
             'Edit Widget Form is open: ' + this.displayEditWidget.toString());
 
+        // Load the Reports, and Dashboard Tabs
         this.loadReports();
+        this.loadDashboardTabs();
 
         // Clear the form for new one
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
 
             this.identificationForm.reset();
-            this.behaviourForm.reset()
-            this.dataAndGraphForm.reset()
+            this.behaviourForm.reset();
+            this.dataAndGraphForm.reset();
         }
 
         // Populate the popup form when it is opened, and in Edit mode only
@@ -185,7 +198,7 @@ export class WidgetBuilderComponent implements OnInit {
                 this.behaviourForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
                 
                 this.widgetToEdit.properties.widgetRefreshMode = 
-                    this.behaviourForm.controls['widgetRefreshMode'].value
+                    this.behaviourForm.controls['widgetRefreshMode'].value;
 
 
                 if (this.widgetToEdit.properties.widgetReportName) {
@@ -219,7 +232,7 @@ export class WidgetBuilderComponent implements OnInit {
 
     onCancel() {
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
+            severity: 'warn',
             summary:  'Cancel',
             detail:   'No changes as requested'
         });
@@ -241,35 +254,35 @@ export class WidgetBuilderComponent implements OnInit {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Tab Name is compulsory.'
+                    'The Widget Tab Name is compulsory.';
         }
         if (this.identificationForm.controls['widgetTitle'].value == ''  || 
             this.identificationForm.controls['widgetTitle'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Title is compulsory.'
+                    'The Widget Title is compulsory.';
         }
         if (this.identificationForm.controls['widgetCode'].value == ''  || 
             this.identificationForm.controls['widgetCode'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Code is compulsory.'
+                    'The Widget Code is compulsory.';
         }
         if (this.identificationForm.controls['widgetName'].value == ''  || 
             this.identificationForm.controls['widgetName'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Name is compulsory.'
+                    'The Widget Name is compulsory.';
         }
         if (this.identificationForm.controls['widgetDescription'].value == ''  || 
             this.identificationForm.controls['widgetDescription'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Description is compulsory.'
+                    'The Widget Description is compulsory.';
         }
         if (this.dataAndGraphForm.controls['widgetReportName'].value == ''  || 
             this.dataAndGraphForm.controls['widgetReportName'].value == null) {
@@ -277,7 +290,7 @@ export class WidgetBuilderComponent implements OnInit {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Widget Report Name (data source) is compulsory when Adding.'
+                        'The Widget Report Name (data source) is compulsory when Adding.';
                 }
         }
         if (this.dataAndGraphForm.controls['newExisting'].value == ''  || 
@@ -285,35 +298,35 @@ export class WidgetBuilderComponent implements OnInit {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The New / Existing selection is compulsory.'
+                    'The New / Existing selection is compulsory.';
         }
         if (this.dataAndGraphForm.controls['widgetType'].value == ''  || 
             this.dataAndGraphForm.controls['widgetType'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Type is compulsory.'
+                    'The Widget Type is compulsory.';
         }
         if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
             !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Hyperlinked Widget ID must be numberic'
+                    'The Hyperlinked Widget ID must be numberic';
         }
         if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
             !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Refresh Frequency must be numberic'
+                    'The Refresh Frequency must be numberic';
         }
         if (this.dataAndGraphForm.controls['widgetShowLimitedRows'].touched  && 
             !this.dataAndGraphForm.controls['widgetShowLimitedRows'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The number of limited rows to show must be numberic'
+                    'The number of limited rows to show must be numberic';
         }        
 
         // Oi, something is not right
@@ -376,44 +389,44 @@ export class WidgetBuilderComponent implements OnInit {
             // Only worry about changes when we are not loading
             if (!this.isLoadingForm) {
                 this.widgetToEdit.properties.widgetTabName = 
-                    this.identificationForm.controls['widgetTabName'].value,
+                    this.identificationForm.controls['widgetTabName'].value;
                 this.widgetToEdit.container.widgetTitle = 
-                    this.identificationForm.controls['widgetTitle'].value,
+                    this.identificationForm.controls['widgetTitle'].value;
                 this.widgetToEdit.properties.widgetCode = 
-                    this.identificationForm.controls['widgetCode'].value,
+                    this.identificationForm.controls['widgetCode'].value;
                 this.widgetToEdit.properties.widgetName = 
-                    this.identificationForm.controls['widgetName'].value,
+                    this.identificationForm.controls['widgetName'].value;
                 this.widgetToEdit.properties.widgetDescription = 
-                    this.identificationForm.controls['widgetDescription'].value
+                    this.identificationForm.controls['widgetDescription'].value;
             }
 
             if (!this.isLoadingForm) {
                 this.widgetToEdit.properties.widgetDefaultExportFileType = 
-                    this.behaviourForm.controls['widgetDefaultExportFileType'].value,
+                    this.behaviourForm.controls['widgetDefaultExportFileType'].value;
                 this.widgetToEdit.properties.widgetHyperLinkTabNr = 
-                    this.behaviourForm.controls['widgetHyperLinkTabNr'].value,
+                    this.behaviourForm.controls['widgetHyperLinkTabNr'].value;
                 this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
-                    this.behaviourForm.controls['widgetHyperLinkWidgetID'].value,
+                    this.behaviourForm.controls['widgetHyperLinkWidgetID'].value;
                 this.widgetToEdit.properties.widgetPassword = 
-                    this.behaviourForm.controls['widgetPassword'].value,
+                    this.behaviourForm.controls['widgetPassword'].value;
                 this.widgetToEdit.properties.widgetRefreshFrequency = 
-                    this.behaviourForm.controls['widgetRefreshFrequency'].value,
+                    this.behaviourForm.controls['widgetRefreshFrequency'].value;
                 this.widgetToEdit.properties.widgetRefreshMode = 
-                    this.behaviourForm.controls['widgetRefreshMode'].value
+                    this.behaviourForm.controls['widgetRefreshMode'].value;
                     
             }
 
             if (!this.isLoadingForm) {
                 this.widgetToEdit.properties.widgetReportName = 
-                    this.dataAndGraphForm.controls['widgetReportName'].value,
+                    this.dataAndGraphForm.controls['widgetReportName'].value;
                 this.widgetToEdit.properties.widgetReportParameters = 
-                    this.dataAndGraphForm.controls['widgetReportParameters'].value,
+                    this.dataAndGraphForm.controls['widgetReportParameters'].value;
                 this.widgetToEdit.properties.widgetShowLimitedRows = 
-                    this.dataAndGraphForm.controls['widgetShowLimitedRows'].value,
+                    this.dataAndGraphForm.controls['widgetShowLimitedRows'].value;
                 this.widgetToEdit.properties.widgetAddRestRow = 
-                    this.dataAndGraphForm.controls['widgetAddRestRow'].value,
+                    this.dataAndGraphForm.controls['widgetAddRestRow'].value;
                 this.widgetToEdit.properties.widgetType = 
-                    this.dataAndGraphForm.controls['widgetType'].value
+                    this.dataAndGraphForm.controls['widgetType'].value;
             }
 
             this.globalVariableService.growlGlobalMessage.next({
@@ -449,8 +462,6 @@ export class WidgetBuilderComponent implements OnInit {
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
 
-this.dataAndGraphForm.reset()
-
         //  Note: Do NOT set 'this.displayEditWidget = false' here - it has to change in the parent
         //        componenent to take effect (and thus close Dialogue)
     }
@@ -476,25 +487,45 @@ this.dataAndGraphForm.reset()
         }
     }
 
+    
+    loadReports() {
+
+        // Load the Report, etc DropDowns
+        this.reports = this.eazlService.getReports();
         
-        loadReports() {
+        // Fill its dropdown
+        this.reportsDropDown = [];
 
-            // Load the Report, etc DropDowns
-            this.reports = this.eazlService.getReports();
-            
-            // Fill its dropdown
-            this.reportsDropDown = [];
-
-            // Fill the dropdown on the form
-            for (var i = 0; i < this.reports.length; i++) {
-                this.reportsDropDown.push({
-                    label: this.reports[i].reportName,
-                    value: {
-                        id: this.reports[i].repordID,
-                        name: this.reports[i].reportName
-                    }
-                });
-            }
+        // Fill the dropdown on the form
+        for (var i = 0; i < this.reports.length; i++) {
+            this.reportsDropDown.push({
+                label: this.reports[i].reportName,
+                value: {
+                    id: this.reports[i].repordID,
+                    name: this.reports[i].reportName
+                }
+            });
         }
+    }
+
+    loadDashboardTabs() {
+        // Load the Tabs for the selected Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');
+
+        // Get its Tabs in this Dashboard
+        this.dashboardTabsDropDown = [];
+        this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
+
+        // Fill the dropdown on the form
+        for (var i = 0; i < this.dashboardTabs.length; i++) {
+            this.dashboardTabsDropDown.push({
+                label: this.dashboardTabs[i].widgetTabName,
+                value: {
+                    id: this.dashboardTabs[i].dashboardID,
+                    name: this.dashboardTabs[i].widgetTabName
+                }
+            });
+        }
+    }
 
 }

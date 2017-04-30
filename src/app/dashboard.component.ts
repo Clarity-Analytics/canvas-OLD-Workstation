@@ -1,4 +1,4 @@
-// Dashboard
+// Dashboard Builder
 import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
 import { Directive }                  from '@angular/core';
@@ -91,21 +91,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     dashboardTabsDropDown:  SelectItem[];
 
     // Widget stuffies, per Dashboard
-    containerStartX: number;        // X of widget at drag start
-    containerStartY: number;        // Y of widget at drag start
-    widgets: Widget[];              // List of Widgets for a selected Dashboard
-    widgetEndDragX: number;         // End coordinates during dragging
-    widgetEndDragY: number;         // End coordinates during dragging
-    widgetStartDragX: number;       // Start coordinates during dragging
-    widgetStartDragY: number;       // Start coordinates during dragging
+    containerStartX: number;                    // X of widget at drag start
+    containerStartY: number;                    // Y of widget at drag start
+    widgets: Widget[];                          // List of Widgets for a selected Dashboard
+    widgetEndDragX: number;                     // End coordinates during dragging
+    widgetEndDragY: number;                     // End coordinates during dragging
+    widgetStartDragX: number;                   // Start coordinates during dragging
+    widgetStartDragY: number;                   // Start coordinates during dragging
 
     // Vars for Startup properties of a Widget
-    borderOptions: SelectItem[];    // Options for Border DropDown
-    boxShadowOptions: SelectItem[]; // Options for Box-Shadow DropDown
-    chartColor: SelectItem[];       // Options for Backgroun-dColor DropDown
-    gridSize: number;               // Size of grid blocks, ie 3px x 3px
-    isDark: boolean = false;        // Widget Header icons black if true
-    snapToGrid: boolean = true;     // If true, snap widgets to gridSize
+    borderOptions: SelectItem[];                // Options for Border DropDown
+    boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
+    chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
+    gridSize: number;                           // Size of grid blocks, ie 3px x 3px
+    isDark: boolean = false;                    // Widget Header icons black if true
+    snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
 
     // Popup forms stuffies
     addEditModeWidgetEditor: string = '';       // Add or Edit was called
@@ -217,21 +217,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.displayAdvancedDashboardFilter = false;
     }
 
-    public handleWidgetBuilderFormSubmit(success: boolean): void {
+    public handleWidgetBuilderFormSubmit(returnCode: string): void {
         // Is triggered after the Advanced Filter form is submitted
         // TODO - due to the *ngFor, this thing runs 3 times. So, it is essential
         // to ensure we only update the correct and proper one
         this.globalFunctionService.printToConsole(this.constructor.name,'handleWidgetBuilderFormSubmit', '@Start');
+
+        // Bail if Popup was Cancelled
+        if (returnCode == "Cancel") {
+
+            // Close the popup form for the Widget Builder
+            this.displayEditWidget = false;
+
+            return;
+        }
 
         // Add new Widget to Array
         if (this.addEditModeWidgetEditor == "Add") {
             // Add the new guy to the Array
 
             // Only render our own
-            if (this.widgetToEdit.properties.widgetTabName == this.selectedDashboardTabName) {
+            if (this.widgetToEdit.properties.widgetTabName['name'] == 
+                this.selectedDashboardTabName.toString()) {
 
                 // TODO - this is crude & error prone: do it properly in DB
-                let lastWidgetID = this.widgets[this.widgets.length - 1].properties.widgetID
+                let lastWidgetID = 
+                    this.widgets[this.widgets.length - 1].properties.widgetID;
 
                 // Set the Widget ID & Add to Array
                 // TODO - do via Eazl into DB
@@ -589,9 +600,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 )[0];
 
             let firstCenter: number = firstWidget.container.left +
-                (firstWidget.container.width / 2)
+                (firstWidget.container.width / 2);
             let lastCenter: number =  lastWidget.container.left +
-                (lastWidget.container.width / 2)
+                (lastWidget.container.width / 2);
 
             if (property == 'horisontalEquiDistant') {
             
@@ -897,7 +908,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 };
                 if (property == 'top') { 
                     leftOrRight = 'top';
-                    newValue = lastTop 
+                    newValue = lastTop ;
                 };
                 if (property == 'middle') { 
                     leftOrRight = 'top';
@@ -911,13 +922,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 // Update widget - we only set left or top
                 if (leftOrRight == 'left') {
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === +child.nativeElement.id)[0].
-                        container.left = newValue;
+                        widget => widget.properties.widgetID === 
+                            +child.nativeElement.id)[0].container.left = newValue;
                     }
                 if (leftOrRight == 'top') {
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === +child.nativeElement.id)[0].
-                        container.top = newValue;
+                        widget => widget.properties.widgetID === 
+                            +child.nativeElement.id)[0].container.top = newValue;
                     }
 
                 // Change DOM
@@ -1040,7 +1051,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // If something was selected, loop and find the right one
         if (this.selectedDashboardTabName != undefined) {
-            // this.dashboards.splice(this.dashboards .indexOf(msg), 1);
 
             // Travers
             for (var i = 0; i < this.dashboards.length; i++ ) {
@@ -1178,25 +1188,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onDragEndNewWidget', '@Start');
 
         // Get the X,Y from the mouse, and adjust for snapping to grid IF applied
-console.log('X Y oL oT',event.x,event.y,event.offsetLeft, event.offsetTop)        
+
         this.widgetToEditX = event.x;
         this.widgetToEditY = event.y;
 
         if (this.snapToGrid) {
             if ( (this.widgetToEditX % this.gridSize) >= (this.gridSize / 2)) {
                 this.widgetToEditX = this.widgetToEditX + 
-                    this.gridSize - (this.widgetToEditX % this.gridSize)
+                    this.gridSize - (this.widgetToEditX % this.gridSize);
             } else {
                 this.widgetToEditX = this.widgetToEditX - 
-                    (this.widgetToEditX % this.gridSize)
+                    (this.widgetToEditX % this.gridSize);
             }
         }
         if ( (this.widgetToEditY % this.gridSize) >= (this.gridSize / 2)) {
             this.widgetToEditY = this.widgetToEditY + 
-                this.gridSize - (this.widgetToEditY % this.gridSize)
+                this.gridSize - (this.widgetToEditY % this.gridSize);
         } else {
             this.widgetToEditY = this.widgetToEditY - 
-                (this.widgetToEditY % this.gridSize)
+                (this.widgetToEditY % this.gridSize);
         }
 console.log('post grid', this.widgetToEditX, this.widgetToEditY)
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
@@ -1215,7 +1225,7 @@ console.log('post grid', this.widgetToEditX, this.widgetToEditY)
 
         // If this Widget is not in the selection, bail
         if (this.selectedWidgetIDs.indexOf(idWidget) < 0) {
-            return
+            return;
         }
 
         this.widgetDraggingEnabled = true;
@@ -1273,15 +1283,15 @@ console.log('post grid', this.widgetToEditX, this.widgetToEditY)
 
                 if (this.snapToGrid) {
                     if ( (newLeft % this.gridSize) >= (this.gridSize / 2)) {
-                        newLeft = newLeft + this.gridSize - (newLeft % this.gridSize)
+                        newLeft = newLeft + this.gridSize - (newLeft % this.gridSize);
                     } else {
-                        newLeft = newLeft - (newLeft % this.gridSize)
+                        newLeft = newLeft - (newLeft % this.gridSize);
                     }
                 }
                 if ( (newTop % this.gridSize) >= (this.gridSize / 2)) {
-                    newTop = newTop + this.gridSize - (newTop % this.gridSize)
+                    newTop = newTop + this.gridSize - (newTop % this.gridSize);
                 } else {
-                    newTop = newTop - (newTop % this.gridSize)
+                    newTop = newTop - (newTop % this.gridSize);
                 }
 
                 // Move Widget Left 
@@ -1512,7 +1522,7 @@ console.log('post grid', this.widgetToEditX, this.widgetToEditY)
         // Reset the tabs for the selected Dashboard
         // TODO - fix content, layout + when / where to call
         this.globalFunctionService.printToConsole(this.constructor.name,'resetTabsDropDown', '@Start');
-        alert ('refresh tabs for sel. Dashboard')
+        alert ('refresh tabs for sel. Dashboard');
     }
 
 }
