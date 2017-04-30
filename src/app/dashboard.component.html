@@ -306,6 +306,84 @@
             (click)="onWidgetDistanceChange('verticalDecreaseDistance')"
             >
         </button> 
+        
+        <!--Same width for selected Widgets-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-exchange"
+            pTooltip="Set the same width for selected widgets (shift-click)" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onWidgetAlign('sameWidth')"
+            >
+        </button> 
+        
+        <!--Increment width for selected Widgets-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-arrow-right"
+            pTooltip="Increment width for selected widgets (shift-click)" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onWidgetAlign('incrementWidth')"
+            >
+        </button> 
+        
+        <!--Decrement width for selected Widgets-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-arrow-left"
+            pTooltip="Decrement width for selected widgets (shift-click)" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onWidgetAlign('decrementWidth')"
+            >
+        </button> 
+        
+        <!--Same height for selected Widgets-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-expand"
+            pTooltip="Same height for selected widgets (shift-click)" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onWidgetAlign('sameHeight')"
+            >
+        </button> 
+        
+        <!--Increment height for selected Widgets-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-arrow-up"
+            pTooltip="Increment height for selected widgets (shift-click)" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onWidgetAlign('incrementHeight')"
+            >
+        </button> 
+        
+        <!--Decrement height for selected Widgets-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-arrow-down"
+            pTooltip="Decrement height for selected widgets (shift-click)" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onWidgetAlign('decrementHeight')"
+            >
+        </button> 
 
         <!--Toggle to select all the Widgets-->
         <button
@@ -528,7 +606,9 @@
     (mouseup)="onWidgetResizeMouseUp($event, w.properties.widgetID)"
     (onDragStart)="onWidgetDragStart($event, w.properties.widgetID)"
     (onDragEnd)="onWidgetDragEnd($event, w.properties.widgetID)"
+    (keypress)="onWidgetKeyUp($event, w.properties.widgetID)"
     (click)="onWidgetMouseDown($event, w.properties.widgetID)"
+
     >
 
     <!--Container Header boxie-->

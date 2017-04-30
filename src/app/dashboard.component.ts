@@ -446,21 +446,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
-    changeElementRefProperty(elementRef: ElementRef,
-        leftorRight: string,
+    changeElementRefProperty(
+        elementRef: ElementRef,
+        attributeToChange: string,
         newValue:string) {
         // Update the property of a given ElementRef BOTH in the array and in the DOM
         this.globalFunctionService.printToConsole(this.constructor.name,'changeElementRefProperty', '@Start');
 
         // Update DOM
-        if (leftorRight == 'left') {
+        if (attributeToChange == 'left') {
             this.renderer.setElementStyle(elementRef.nativeElement,
                 'left', newValue + "px"
             );
         }
-        if (leftorRight == 'top') {
+        if (attributeToChange == 'top') {
             this.renderer.setElementStyle(elementRef.nativeElement,
                 'top', newValue + "px"
+            );
+        }
+        if (attributeToChange == 'width') {
+            this.renderer.setElementStyle(elementRef.nativeElement,
+                'width', newValue + "px"
+            );
+        }
+        if (attributeToChange == 'height') {
+            this.renderer.setElementStyle(elementRef.nativeElement,
+                'height', newValue + "px"
             );
         }
 
@@ -893,48 +904,88 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     widget => widget.properties.widgetID === 
                         +child.nativeElement.id)[0].container.height;
 
-                let leftOrRight: string = 'left';
+                let attributeToChange: string = 'left';
                 if (property == 'left') { 
-                    leftOrRight = 'left';
+                    attributeToChange = 'left';
                     newValue = lastLeft;
                 };
                 if (property == 'center') { 
-                    leftOrRight = 'left';
+                    attributeToChange = 'left';
                     newValue = lastLeft + (lastWidth / 2) - (currentWidth / 2);
                 };
                 if (property == 'right') { 
-                    leftOrRight = 'left';
+                    attributeToChange = 'left';
                     newValue = lastLeft + lastWidth - currentWidth;
                 };
                 if (property == 'top') { 
-                    leftOrRight = 'top';
+                    attributeToChange = 'top';
                     newValue = lastTop ;
                 };
                 if (property == 'middle') { 
-                    leftOrRight = 'top';
+                    attributeToChange = 'top';
                     newValue = lastTop + (lastHeight / 2) - (currentHeight / 2);
                 };
                 if (property == 'bottom') { 
-                    leftOrRight = 'top';
+                    attributeToChange = 'top';
                     newValue = lastTop + lastHeight - currentHeight;
+                };
+                
+                if (property == 'sameWidth') { 
+                    attributeToChange = 'width';
+                    newValue = lastWidth;
+                };
+                if (property == 'incrementWidth') { 
+                    attributeToChange = 'width';
+                    newValue = currentWidth + this.gridSize;
+                };
+                if (property == 'decrementWidth') { 
+                    if (currentWidth > this.gridSize) {
+                        attributeToChange = 'width';
+                        newValue = currentWidth - this.gridSize;
+                    }
+                };
+                if (property == 'sameHeight') { 
+                    attributeToChange = 'height';
+                    newValue = lastHeight;
+                };
+                if (property == 'incrementHeight') { 
+                    attributeToChange = 'height';
+                    newValue = currentHeight + this.gridSize;
+                };
+                if (property == 'decrementHeight') { 
+                    if (currentHeight > this.gridSize) {
+                        attributeToChange = 'height';
+                        newValue = currentHeight - this.gridSize;
+                    }
                 };
 
                 // Update widget - we only set left or top
-                if (leftOrRight == 'left') {
+                if (attributeToChange == 'left') {
                     this.widgets.filter(
                         widget => widget.properties.widgetID === 
                             +child.nativeElement.id)[0].container.left = newValue;
                     }
-                if (leftOrRight == 'top') {
+                if (attributeToChange == 'top') {
                     this.widgets.filter(
                         widget => widget.properties.widgetID === 
                             +child.nativeElement.id)[0].container.top = newValue;
                     }
 
+                if (attributeToChange == 'width') {
+                    this.widgets.filter(
+                        widget => widget.properties.widgetID === 
+                            +child.nativeElement.id)[0].container.width = newValue;
+                    }
+                if (attributeToChange == 'height') {
+                    this.widgets.filter(
+                        widget => widget.properties.widgetID === 
+                            +child.nativeElement.id)[0].container.height = newValue;
+                    }
+
                 // Change DOM
                 this.changeElementRefProperty(
                     child, 
-                    leftOrRight, 
+                    attributeToChange, 
                     newValue.toString()
                 );
 
@@ -980,6 +1031,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedWidgetIDs = [];
             this.selectedWidgetIDs.push(idWidget);
         }
+    }
+
+    onWidgetKeyUp(event: MouseEvent,idWidget: number) {
+        // TODO - the idea is to move the Widgets with the keyboard.  But I dont know 
+        // how to catch it on a Widget
+        console.log(event)
+        
     }
 
     onDashboardDetail () {
@@ -1208,7 +1266,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.widgetToEditY = this.widgetToEditY - 
                 (this.widgetToEditY % this.gridSize);
         }
-console.log('post grid', this.widgetToEditX, this.widgetToEditY)
+
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
         this.displayEditWidget = true;
