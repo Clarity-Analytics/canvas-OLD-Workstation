@@ -1310,6 +1310,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         let newLeft = 0;
         let newTop = 0;
 
+        // Snap to grid
+        offsetLeft = this.alignToGripPoint(offsetLeft);
+        offsetTop = this.alignToGripPoint(offsetTop);
+
         // Loop on the Array of selected IDs, and do things to TheMan
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
             // Get the Selected One
