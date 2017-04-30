@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Set startup stuffies
         // TODO: read from DB
         this.snapToGrid = true;
-        this.gridSize = 3;
+        this.gridSize = 30;
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -1250,22 +1250,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetToEditX = event.x;
         this.widgetToEditY = event.y;
 
-        if (this.snapToGrid) {
-            if ( (this.widgetToEditX % this.gridSize) >= (this.gridSize / 2)) {
-                this.widgetToEditX = this.widgetToEditX + 
-                    this.gridSize - (this.widgetToEditX % this.gridSize);
-            } else {
-                this.widgetToEditX = this.widgetToEditX - 
-                    (this.widgetToEditX % this.gridSize);
-            }
-        }
-        if ( (this.widgetToEditY % this.gridSize) >= (this.gridSize / 2)) {
-            this.widgetToEditY = this.widgetToEditY + 
-                this.gridSize - (this.widgetToEditY % this.gridSize);
-        } else {
-            this.widgetToEditY = this.widgetToEditY - 
-                (this.widgetToEditY % this.gridSize);
-        }
+        this.widgetToEditX = this.alignToGripPoint(this.widgetToEditX);
+        this.widgetToEditY = this.alignToGripPoint(this.widgetToEditY);
 
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
@@ -1339,18 +1325,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 newLeft = this.selectedWidget.container.left + offsetLeft;
                 newTop = this.selectedWidget.container.top + offsetTop;
 
-                if (this.snapToGrid) {
-                    if ( (newLeft % this.gridSize) >= (this.gridSize / 2)) {
-                        newLeft = newLeft + this.gridSize - (newLeft % this.gridSize);
-                    } else {
-                        newLeft = newLeft - (newLeft % this.gridSize);
-                    }
-                }
-                if ( (newTop % this.gridSize) >= (this.gridSize / 2)) {
-                    newTop = newTop + this.gridSize - (newTop % this.gridSize);
-                } else {
-                    newTop = newTop - (newTop % this.gridSize);
-                }
+                newLeft = this.alignToGripPoint(newLeft);
+                newTop = this.alignToGripPoint(newTop);
 
                 // Move Widget Left 
                 this.renderer.setElementStyle(selectedElement.nativeElement,
@@ -1382,6 +1358,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     }
 
+    alignToGripPoint(inputValue: number) {
+        // This routine recalcs a value to a gridpoint IF if snapping is enabled
+        this.globalFunctionService.printToConsole(this.constructor.name, 'snapToGrid', '@Start');
+
+        if (this.snapToGrid) {
+            if ( (inputValue % this.gridSize) >= (this.gridSize / 2)) {
+                inputValue = inputValue + this.gridSize - (inputValue % this.gridSize);
+            } else {
+                inputValue = inputValue - (inputValue % this.gridSize);
+            }
+        }
+
+        // Return the value
+        return inputValue;
+    }
     onWidgetSelectAll() {
         // Select all the widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'onWidgetSelectAll', '@Start');
