@@ -49,7 +49,7 @@ export class WidgetBuilderComponent implements OnInit {
     selectedDashboardTab: any;                  // Selected in DropDown
     selectedTabDescription: string;             // Description of the selected Tab
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
-
+    
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
 
@@ -58,6 +58,8 @@ export class WidgetBuilderComponent implements OnInit {
 
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
+    widgetCreationDropDown: SelectItem[];       // Drop Down options
+    selectedWidgetCreation: SelectItem;         // Selected option to create Widget
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
@@ -252,6 +254,7 @@ export class WidgetBuilderComponent implements OnInit {
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
+        // First, validate the compulsory fields
         if (this.identificationForm.controls['widgetTabName'].value == ''  || 
             this.identificationForm.controls['widgetTabName'].value == null) {
                 this.formIsValid = false;
@@ -296,13 +299,6 @@ export class WidgetBuilderComponent implements OnInit {
                         'The Widget Report Name (data source) is compulsory when Adding.';
                 }
         }
-        if (this.dataAndGraphForm.controls['newExisting'].value == ''  || 
-            this.dataAndGraphForm.controls['newExisting'].value == null) {
-                this.formIsValid = false;
-                this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The New / Existing selection is compulsory.';
-        }
         if (this.dataAndGraphForm.controls['widgetType'].value == ''  || 
             this.dataAndGraphForm.controls['widgetType'].value == null) {
                 this.formIsValid = false;
@@ -310,27 +306,54 @@ export class WidgetBuilderComponent implements OnInit {
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Widget Type is compulsory.';
         }
-        if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
-            !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
-                this.formIsValid = false;
-                this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Hyperlinked Widget ID must be numberic';
+
+        // Tricksy bit: validate per Widget Type.  I know its a lot of work, but 
+        // its the only solution for now
+
+        // Widget Set field validation
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'WidgetSet') {
+
+            if (this.dataAndGraphForm.controls['widgetReportWidgetSet'].value == ''  || 
+                this.dataAndGraphForm.controls['widgetReportWidgetSet'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Report Widget Set is compulsory.';
+            }
         }
-        if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
-            !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
-                this.formIsValid = false;
-                this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Refresh Frequency must be numberic';
+
+        // BarChart field validation
+        if (this.dataAndGraphForm.controls['widgetType'].value == 'BarChart') {
+
+            if (this.dataAndGraphForm.controls['newExisting'].value == ''  || 
+                this.dataAndGraphForm.controls['newExisting'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The New / Existing selection is compulsory.';
+            }
+            if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
+                !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Hyperlinked Widget ID must be numberic';
+            }
+            if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
+                !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Refresh Frequency must be numberic';
+            }
+            if (this.dataAndGraphForm.controls['widgetShowLimitedRows'].touched  && 
+                !this.dataAndGraphForm.controls['widgetShowLimitedRows'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The number of limited rows to show must be numberic';
+            }        
         }
-        if (this.dataAndGraphForm.controls['widgetShowLimitedRows'].touched  && 
-            !this.dataAndGraphForm.controls['widgetShowLimitedRows'].valid) {
-                this.formIsValid = false;
-                this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The number of limited rows to show must be numberic';
-        }        
 
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
@@ -501,8 +524,6 @@ export class WidgetBuilderComponent implements OnInit {
         
         // Fill its dropdown
         this.reportsDropDown = [];
-
-        // Fill the dropdown on the form
         for (var i = 0; i < this.reports.length; i++) {
             this.reportsDropDown.push({
                 label: this.reports[i].reportName,
@@ -512,6 +533,38 @@ export class WidgetBuilderComponent implements OnInit {
                 }
             });
         }
+
+        // Fill the options on how to create Widgets
+        this.widgetCreationDropDown = [];
+        this.widgetCreationDropDown.push({
+            label: 'WidgetSet',
+            value: {
+                id: 0,
+                name: 'WidgetSet'
+            }
+        });
+        this.widgetCreationDropDown.push({
+            label: 'BarChart',
+            value: {
+                id: 1,
+                name: 'BarChart'
+            }
+        });
+        this.widgetCreationDropDown.push({
+            label: 'PieChart',
+            value: {
+                id: 2,
+                name: 'PieChart'
+            }
+        });
+        this.widgetCreationDropDown.push({
+            label: 'LineChart',
+            value: {
+                id: 3,
+                name: 'LineChart'
+            }
+        });
+
     }
 
     changeTabDropDown(event) {
