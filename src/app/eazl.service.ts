@@ -555,7 +555,7 @@ export const DASHBOARDS: Dashboard[] =
         },
         {
             dashboardID: 6,
-            dashboardCode: 'Untitled 1',
+            dashboardCode: 'Another Dash',
             dashboardName: '',
 
             dashboardBackgroundPicturePath: '',
@@ -603,6 +603,10 @@ export const DASHBOARDTABS: DashboardTab[] =
             widgetTabName: 'Value'
         },
         {
+            dashboardID: 1,
+            widgetTabName: 'Value'
+        },
+        {
             dashboardID: 3,
             widgetTabName: 'Value'
         },
@@ -612,10 +616,6 @@ export const DASHBOARDTABS: DashboardTab[] =
         },
         {
             dashboardID: 5,
-            widgetTabName: 'Value'
-        },
-        {
-            dashboardID: 6,
             widgetTabName: 'Value'
         },
     ];

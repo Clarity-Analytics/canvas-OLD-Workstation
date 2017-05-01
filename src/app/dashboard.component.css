@@ -61,7 +61,26 @@
             font-size: 0.85em;
             padding: 0;
         }
+
+        .tabDiv {
+            margin-top: 4px;
+            margin-left: 2px;
+            margin-right: 2px;
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .tabButton {
+            background-color: white;
+            border: 1px solid darkgray;
+            color: gray;
+            height: 22px;
+            margin-top: 4px;
+            padding: 0;
+            width: 22px;
+        }
     /*END Dashboard*/
+
 
     /*Widgets (on palette)*/
 

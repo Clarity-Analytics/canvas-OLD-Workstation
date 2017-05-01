@@ -69,6 +69,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     numberUntitledDashboards: number = 0;   // Suffix in naming new dashboards, Untitled + n
     selectedCommentWidgetID: number;        // Current WidgetID for Comment
     selectedDashboardID: number;            // Currely Dashboard
+    selectedDashboardName: any;             // Select Dashboard name in DropDown
     selectedDashboardTabName: any;          // Current DashboardTab
     selectedTabName: any;                   // Tab Name selected in DropDown
     selectedWidget: Widget = null;          // Selected widget during dragging
@@ -159,7 +160,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Set startup stuffies
         // TODO: read from DB
         this.snapToGrid = true;
-        this.gridSize = 30;
+        this.gridSize = 3;
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -494,6 +495,28 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     this.deleteMode = false;
                 }
             });
+        }
+    }
+
+    widgetDeleteIt(idWidget: number) {
+        // Delete Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'widgetDeleteIt', '@Start');
+
+        // Bring back the value field of the selected item.
+        // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
+        //       I had to make a workaround
+        // Note: deleteMode is important to switch the loop off since we are in an *ngFor
+        //       So, switch on when Delete Button is clicked, and switch off after 
+        //       delete routine is invoked.  Also, the popup is *ngIf-ed to it
+        if (this.deleteMode) {
+            for (var i = 0; i < this.widgets.length; i++ ) {
+                if (this.widgets[i].properties.widgetID == idWidget) {
+                    this.globalFunctionService.printToConsole(
+                        this.constructor.name,'widgetDeleteIt', 'Deleting Widget ID ' + idWidget + ' ...')
+                    this.widgets.splice(i, 1);
+            this.deleteMode = false;
+                }
+            }
         }
     }
 
@@ -1032,7 +1055,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedWidgetIDs.push(idWidget);
         }
     }
-
+ 
     onWidgetKeyUp(event: MouseEvent,idWidget: number) {
         // TODO - the idea is to move the Widgets with the keyboard.  But I dont know 
         // how to catch it on a Widget
@@ -1040,12 +1063,29 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         
     }
 
-    onDashboardDetail () {
+    addNewTab() {
+        // Add a new tab to this Dashboard
+console.log('add')
+    }
+
+    deleteTab() {
+        // Delete selected Tab, provided its empty
+console.log('del')
+    }
+
+editTab() {
+        // Edit properties for the selected Tab
+console.log('edit')
+    }
+
+
+
+    onDashboardDetail (event) {
         // Show detail about the selected Dashboard
         // TODO - design in detail, no duplications ...
         this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDetail', '@Start');
 
-        if (this.selectedDashboardTabName != undefined) {
+        if (this.selectedDashboardName['name'] != undefined) {
             this.displayDashboardDetails = true;
         } else {
             this.globalVariableService.growlGlobalMessage.next({
@@ -1076,46 +1116,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         });
     }
 
-    widgetDeleteIt(idWidget: number) {
-        // Delete Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'widgetDeleteIt', '@Start');
-
-        // Bring back the value field of the selected item.
-        // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
-        //       I had to make a workaround
-        // Note: deleteMode is important to switch the loop off since we are in an *ngFor
-        //       So, switch on when Delete Button is clicked, and switch off after 
-        //       delete routine is invoked.  Also, the popup is *ngIf-ed to it
-        if (this.deleteMode) {
-            for (var i = 0; i < this.widgets.length; i++ ) {
-                if (this.widgets[i].properties.widgetID == idWidget) {
-                    this.globalFunctionService.printToConsole(
-                        this.constructor.name,'widgetDeleteIt', 'Deleting Widget ID ' + idWidget + ' ...')
-                    this.widgets.splice(i, 1);
-            this.deleteMode = false;
-                }
-            }
-        }
-    }
-
     DashboardDeleteIt() {
         // Delete Dashboard button
-        this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'DashboardDeleteIt', '@Start');
 
         // Bring back the value field of the selected item.
         // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
         //       I had to make a workaround
-        let TM: any = this.selectedDashboardTabName;
+        let TM: any = this.selectedDashboardName;
 
         // If something was selected, loop and find the right one
-        if (this.selectedDashboardTabName != undefined) {
+        if (TM != undefined) {
 
             // Travers
             for (var i = 0; i < this.dashboards.length; i++ ) {
                 if (this.dashboards[i].dashboardID - TM.id == 0) {
-                    this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDelete', 'Deleting ' + TM.name + ' ...')
+                    this.globalFunctionService.printToConsole(this.constructor.name,'DashboardDeleteIt', 'Deleting ' + TM.name + ' ...');
                     this.dashboards.splice(i, 1);
                     this.resetDashboardDropDowns(this.currentFilter);
+
+                    // Tell the user
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info', 
+                        summary:  'Dashboard deleted', 
+                        detail:   'The Dashboard has been deleted: ' + TM.name
+                    });
+
                     break;
                 }
             }
@@ -1128,12 +1154,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     onDashboardAdd() {
         // Add Dashboard button
+        // TODO - set IDs properly when going to DB - this is error prone
         this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardAdd', '@Start');
 
+        // Get Max ID
+        let maxID: number = -1;
+        if (this.dashboards.length > 0) {
+            this.dashboards[this.dashboards.length - 1].dashboardID
+        }
+
+        // Add
+        // TODO - do via DB RESTi
         this.numberUntitledDashboards = this.numberUntitledDashboards + 1;
         this.dashboards.push (
             {
-                dashboardID: this.numberUntitledDashboards,
+                dashboardID: maxID + 1,
                 dashboardCode: 'Untitled - ' + this.numberUntitledDashboards.toLocaleString(),
                 dashboardName: '',
 
@@ -1175,6 +1210,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             let emptyFilter: Filter = null;
             this.resetDashboardDropDowns(emptyFilter);
         }
+
+        // Tell the user
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info', 
+            summary:  'Dashboard added', 
+            detail:   'A new, empty Dashboard has been added: ' + 'Untitled - ' + 
+                this.numberUntitledDashboards.toLocaleString()
+        });
+
     }
 
     onWidgetResizeMouseDown(event, idWidget: number) {
@@ -1232,6 +1276,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 child  => child.nativeElement.id ==  idWidget)[0].
                     nativeElement.clientHeight;
 
+            // TODO - consider if this should snap to the grid.  If so, remember to
+            // render the Widget to the new dimensions
             this.widgets.filter(
                 widget => widget.properties.widgetID === idWidget)[0].
                 container.width = realWidth;        

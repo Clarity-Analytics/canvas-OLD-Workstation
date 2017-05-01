@@ -15,7 +15,7 @@
             {{ dashboardDropDown.length }} / {{ dashboards.length }}
         </span>
     </div>         <!--END Dashboard Heading-->
-
+ 
     <!--Dashboard Filters-->
     <div
         class="dashboardFilter"
@@ -55,7 +55,7 @@
         </button>
     </div>         <!--END Dashboard Filters-->
 
-    <!--Dashboard Buttons (Add, Del, ...)-->
+    <!--Dashboard Buttons (Detail, Add, Del, ...)-->
     <div 
         class="dashboardDivButtons"
         >
@@ -68,7 +68,7 @@
             pTooltip="Show the detail of the Dashboard selected above" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="onDashboardDetail()"
+            (click)="onDashboardDetail($event)"
             >
         </button>
 
@@ -100,10 +100,8 @@
 
     </div>         <!--END Dashboards Buttons (Add, Del, ...)--> 
 
+<div class="tabDiv">
     <!--Tab DropDown    -->
-        <span>
-            Tab:
-        </span>
         <p-dropdown 
             [options]="dashboardTabsDropDown" 
             [(ngModel)]="selectedTabName"
@@ -115,8 +113,8 @@
                         'border-radius':'2px',
                         'font-size':'0.85em',
                         'margin-bottom':'4px',
-                        'margin-left':'4px',
-                        'margin-top':'6px',
+                        'margin-left':'2px',
+                        'margin-top':'2px',
                         'padding':'0',
                         'width':'110px'
                     }" 
@@ -125,7 +123,47 @@
             (onChange)="loadDashboard($event)"
             >
         </p-dropdown>  
-    <!--END Tab DropDown-->
+
+        <!--Add Tab button-->
+        <button
+            class="tabButton"
+            pButton
+            type="button"
+            icon="fa-plus-square-o"
+            pTooltip="Add a new Tab to this Dashboard" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="addNewTab()"
+            >
+        </button> 
+        
+        <!--Delete Tab button-->
+        <button
+            class="tabButton"
+            pButton
+            type="button"
+            icon="fa-minus-square-o"
+            pTooltip="Delete a Tab from this Dashboard" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="deleteTab()"
+            >
+        </button> 
+        
+        <!--Edit Tab button-->
+        <button
+            class="tabButton"
+            pButton
+            type="button"
+            icon="fa-edit"
+            pTooltip="Edit properties for the selected Tab" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="editTab()"
+            >
+        </button> </div>
+
+
 
     <!--Widget Heading-->
     <div
@@ -795,7 +833,7 @@
         width="450" 
         responsive="true"
         >
-        Form to show detail about selected Dashboard, using another component.
+        Form to show detail about Dashboard {{ selectedDashboardName['name'] }}, using another component.
     </p-dialog>
 
 

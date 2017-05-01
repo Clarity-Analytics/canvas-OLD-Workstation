@@ -458,7 +458,7 @@ export class WidgetBuilderComponent implements OnInit {
                 }
             }
         }
-
+ 
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
 
@@ -467,10 +467,10 @@ export class WidgetBuilderComponent implements OnInit {
     }
 
     loadReportWidgetSets(event) {
-        // Load the Tabs for the selected Dashboard
+        // Load the tWidgetSets for the selected Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportWidgetSets', '@Start');
 
-        // Get its Tabs in this Dashboard
+        // Get its tWidgetSets in this Dashboard
         this.reportWidgetSetsDropDown = [];
         this.selectedReportID = event.value.id;
         this.reportWidgetSets = this.eazlService.getReportWidgetSets(this.selectedReportID);
@@ -486,7 +486,6 @@ export class WidgetBuilderComponent implements OnInit {
             });
         }
     }
-
     
     loadReports() {
 
@@ -508,6 +507,10 @@ export class WidgetBuilderComponent implements OnInit {
         }
     }
 
+    changeTabDropDown(event) {
+console.log (event.value.id, event)
+    }
+    
     loadDashboardTabs() {
         // Load the Tabs for the selected Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');
