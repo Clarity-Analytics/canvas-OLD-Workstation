@@ -67,6 +67,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // Currently selected stuffies
     currentFilter: Filter;
     numberUntitledDashboards: number = 0;   // Suffix in naming new dashboards, Untitled + n
+    numberUntitledTabs: number = 0;         // Suffix in naming new tabs, Untitled + n
     selectedCommentWidgetID: number;        // Current WidgetID for Comment
     selectedDashboardID: number;            // Currely Dashboard
     selectedDashboardName: any;             // Select Dashboard name in DropDown
@@ -113,6 +114,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     deleteMode: boolean = false;                // True while busy deleting
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
+    displayTabDetails: boolean = false;         // T/F to show Tab Details form
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
@@ -1065,20 +1067,148 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     addNewTab() {
         // Add a new tab to this Dashboard
-console.log('add')
+
+        // Add Dashboard button
+        // TODO - set IDs properly when going to DB - this is error prone
+        this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardAdd', '@Start');
+
+        // Bail if nothing selected
+        if (this.selectedDashboardName == undefined) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn', 
+                summary:  'No Dashboard selected', 
+                detail:   'First select a Dashboard'
+            });
+
+            return;
+        }
+
+        // Set Name
+        this.numberUntitledTabs = this.numberUntitledDashboards + 1;
+        let newWidgetTabName: string = 'Untitled - ' + this.numberUntitledTabs.toString();
+
+        // Add
+        // TODO - do via DB RESTi
+        this.dashboardTabs.push (
+            {
+                dashboardID: this.selectedDashboardName.id,
+                widgetTabName: newWidgetTabName
+            }
+        );
+
+        // Refresh the Array of Dashboards IF no current filter
+        this.dashboardTabsDropDown.push({
+            label: newWidgetTabName,
+            value: {
+                id: this.selectedDashboardName.id,
+                name: newWidgetTabName
+            }
+        });
+
+        // Tell the user
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info', 
+            summary:  'Tab added', 
+            detail:   'A new, empty Tab has been added: ' + 'Untitled - ' + 
+                this.numberUntitledDashboards.toLocaleString()
+        });
     }
 
     deleteTab() {
         // Delete selected Tab, provided its empty
-console.log('del')
+
+        // Confirm if user really wants to delete
+        // TODO - this guy needs Two clicks to close dialogue, but then deletes twice!!
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteTab', '@Start');
+
+        this.deleteMode = true;
+        
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this Tab?',
+            accept: () => {
+                this.TabDeleteIt();
+                this.deleteMode = false;
+            },
+            reject: () => {
+                this.deleteMode = false;
+            }
+        });
     }
 
-editTab() {
-        // Edit properties for the selected Tab
-console.log('edit')
+    TabDeleteIt() {
+        // Delete Dashboard button
+        this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', '@Start');
+
+        // Bring back the value field of the selected item.
+        // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
+        //       I had to make a workaround
+        // TODO: for now I dont have a Tab-ID field, as I thought the name must be unique 
+        //       anyway.  Is this a really, really good idea?
+        let TM: any = this.selectedTabName;
+
+        // If something was selected, loop and find the right one
+        if (TM != undefined) {
+
+            // Can only delete Widgetless Tabs
+            if (this.widgets.filter( w => w.properties.widgetTabName == TM.name).length >0) {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn', 
+                    summary:  'Tab NOT empty', 
+                    detail:   'A Tab can only be deleted if it has no Widgets: ' + TM.name
+                });
+
+            // Bail
+            return;
+                
+            }
+            // Travers
+            for (var i = 0; i < this.dashboardTabs.length; i++ ) {
+                if (this.dashboardTabs[i].widgetTabName == TM.name) {
+                    this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', 'Deleting ' + TM.name + ' ...');
+                    this.dashboardTabs.splice(i, 1);
+
+                    // Tell the user
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info', 
+                        summary:  'Tab deleted', 
+                        detail:   'The Tab has been deleted: ' + TM.name
+                    });
+
+                    break;
+                }
+            }
+
+            for (var i = 0; i < this.dashboardTabsDropDown.length; i++ ) {
+                if (this.dashboardTabsDropDown[i].value.name == TM.name) {
+                    this.dashboardTabsDropDown.splice(i, 1);
+
+                    break;
+                }
+            }
+        }
+
+        // Reset Delete Mode
+        this.deleteMode = false;
+        
     }
 
+    detailTab() {
+        // Show form with properties for the selected Tab
 
+        // TODO - design in detail, no duplications ...
+        this.globalFunctionService.printToConsole(this.constructor.name,'detailTab', '@Start');
+
+        if (this.selectedTabName != undefined) {
+            this.displayTabDetails = true;
+        } else {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn', 
+                summary:  'No Tab', 
+                detail:   'Please select a Tab from the dropdown, then click to see its detail'
+            });
+            
+        }
+    }
 
     onDashboardDetail (event) {
         // Show detail about the selected Dashboard
@@ -1160,7 +1290,7 @@ console.log('edit')
         // Get Max ID
         let maxID: number = -1;
         if (this.dashboards.length > 0) {
-            this.dashboards[this.dashboards.length - 1].dashboardID
+            maxID = this.dashboards[this.dashboards.length - 1].dashboardID;
         }
 
         // Add
@@ -1218,7 +1348,6 @@ console.log('edit')
             detail:   'A new, empty Dashboard has been added: ' + 'Untitled - ' + 
                 this.numberUntitledDashboards.toLocaleString()
         });
-
     }
 
     onWidgetResizeMouseDown(event, idWidget: number) {

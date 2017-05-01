@@ -123,6 +123,19 @@
             (onChange)="loadDashboard($event)"
             >
         </p-dropdown>  
+        
+        <!--Edit Tab button-->
+        <button
+            class="tabButton"
+            pButton
+            type="button"
+            icon="fa-edit"
+            pTooltip="Edit properties for the selected Tab" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="detailTab()"
+            >
+        </button> 
 
         <!--Add Tab button-->
         <button
@@ -149,20 +162,7 @@
             (click)="deleteTab()"
             >
         </button> 
-        
-        <!--Edit Tab button-->
-        <button
-            class="tabButton"
-            pButton
-            type="button"
-            icon="fa-edit"
-            pTooltip="Edit properties for the selected Tab" 
-            tooltipPosition="right" 
-            tooltipEvent="hover"
-            (click)="editTab()"
-            >
-        </button> </div>
-
+</div>
 
 
     <!--Widget Heading-->
@@ -825,7 +825,6 @@
 
     </p-dialog>
 
-
     <!--Detail for selected Dashboard -->
     <p-dialog header="Dashboard Details" 
         [(visible)]="displayDashboardDetails" 
@@ -835,6 +834,18 @@
         >
         Form to show detail about Dashboard {{ selectedDashboardName['name'] }}, using another component.
     </p-dialog>
+
+    <!--Detail for selected Tab-->
+    <p-dialog header="Tab Editor" 
+        [(visible)]="displayTabDetails" 
+        modal="modal" 
+        resizable="true"
+        height="100vw"
+        responsive="true"
+        >
+        Form to show detail for Tab
+    </p-dialog>
+
 
 
     <!--Confirmation Dialogue Box-->
