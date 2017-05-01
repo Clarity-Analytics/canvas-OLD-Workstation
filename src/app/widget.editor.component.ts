@@ -48,6 +48,7 @@ export class WidgetBuilderComponent implements OnInit {
     selectedReportID: number;                   // Selected in DropDown
     selectedDashboardTab: any;                  // Selected in DropDown
     selectedTabDescription: string;             // Description of the selected Tab
+    selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
 
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
@@ -469,10 +470,13 @@ export class WidgetBuilderComponent implements OnInit {
     }
 
     loadReportWidgetSets(event) {
-        // Load the tWidgetSets for the selected Dashboard
+        // Load the WidgetSets for the selected Report
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportWidgetSets', '@Start');
 
-        // Get its tWidgetSets in this Dashboard
+        // Show description details
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeTabDropDown', '@Start');
+
+        // Get its WidgetSets in this Dashboard
         this.reportWidgetSetsDropDown = [];
         this.selectedReportID = event.value.id;
         this.reportWidgetSets = this.eazlService.getReportWidgetSets(this.selectedReportID);
@@ -487,6 +491,7 @@ export class WidgetBuilderComponent implements OnInit {
                 }
             });
         }
+
     }
     
     loadReports() {
@@ -520,7 +525,19 @@ export class WidgetBuilderComponent implements OnInit {
             this.selectedTabDescription = '';
         }
     }
-    
+
+    changeWidgetSet(event) {
+        // Sets the description as the user selects a new WidgetSet in the DropDown
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeWidgetSet', '@Start');
+
+        if (this.reportWidgetSets.length > 0) {
+            this.selectedWidgetSetDescription = this.reportWidgetSets.filter( 
+                w => w.widgetSetID == event.value.id)[0].widgetSetDescription;
+        } else {
+            this.selectedWidgetSetDescription = '';
+        }
+    }
+
     loadDashboardTabs() {
         // Load the Tabs for the selected Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');

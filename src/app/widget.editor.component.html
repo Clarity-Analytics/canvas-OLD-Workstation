@@ -11,21 +11,11 @@
         header="Identification" 
         [selected]="true"
         >
-<div 
-    class="Explanations"
-    style="
-        background-color: lightgray;
-        color: darkgray;
-        height: 210px;
-        position: absolute;
-        top: 80px;
-        right: 28px;
-        width: 232px;
-        z-Index: 2;
-        "
-    >
-{{ selectedTabDescription }}   
-</div>
+        <div 
+            class="IdentificationExplanations"
+            >
+        {{ selectedTabDescription }}   
+        </div>
 
         <form 
             [formGroup]="identificationForm" 
@@ -129,6 +119,7 @@
         header="Behaviour (optional)" 
         [selected]="false"
         >
+        
         <form 
             [formGroup]="behaviourForm" 
             (ngSubmit)="onSubmit(behaviourForm.value)"
@@ -244,6 +235,13 @@
         header="Data & Graph" 
         [selected]="false"
         >
+
+        <div 
+            class="GraphExplanations"
+            >
+        {{ selectedWidgetSetDescription }}   
+        </div>
+
         <form 
             [formGroup]="dataAndGraphForm" 
             (ngSubmit)="onSubmit(dataAndGraphForm.value)"
@@ -287,6 +285,7 @@
                             [pTooltip]="reportWidgetSetDropToolTip"
                             filter="true"
                             formControlName="widgetReportWidgetSet" 
+                            (onChange)="changeWidgetSet($event)"
                             >
                         </p-dropdown>
                     </div>

@@ -1753,3 +1753,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
 }
+
+// Grid Layout Notes
+// Just notes if we every decide to make a Grid layout (remember, think it through first,
+// particularly how it will be editted afterwards) ....
+// 1. get nr of cols as input, set to C
+// 2. call function to Select All widgets
+// 3. call function to sameWidth and sameHeight all widgets
+// 4. set L, T of first widget - tricky as which one is best.  User decides?
+// 5. calc r = number of rows: adjust for extras, so 15 widgets give 4 rows (r=0,1,2,3)
+//         n = number of widgets, k = n // C (integer divide, so 15 // 4 = 3)
+//         k: if n % C = 0 then r = r +1
+// 6. Loop on r:
+//         Loop on Wi (all widgets in row = r)
+//                 i = [ (r + k) * ci)] + ci
+//                 r = 0, 1 ... k (k = number of rows)
+//                 ci = 0, 1 ... (C-1) (C is number of cols)
+//                 say n=15, C = 4.  Then k = 4, r = 0,1,2,3
+//                 First rows: [ (0 * 4) * 0] + 0 = 0,   [(0 * 4) * 0] + 1 = 1, etc
+//             left = L * i (adjust horisontally in equal increments )
+//             top = T * i  (all the same) 
