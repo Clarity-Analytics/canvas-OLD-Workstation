@@ -1067,10 +1067,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     addNewTab() {
         // Add a new tab to this Dashboard
-
-        // Add Dashboard button
         // TODO - set IDs properly when going to DB - this is error prone
-        this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'addNewTab', '@Start');
 
         // Bail if nothing selected
         if (this.selectedDashboardName == undefined) {
@@ -1092,7 +1090,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.dashboardTabs.push (
             {
                 dashboardID: this.selectedDashboardName.id,
-                widgetTabName: newWidgetTabName
+                widgetTabName: newWidgetTabName,
+                widgetTabDescription: ''
             }
         );
 

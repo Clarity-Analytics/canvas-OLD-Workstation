@@ -24,7 +24,7 @@
         z-Index: 2;
         "
     >
-Div text   
+{{ selectedTabDescription }}   
 </div>
 
         <form 
@@ -49,6 +49,7 @@ Div text
                                />-->
                         <p-dropdown 
                             [options]="dashboardTabsDropDown" 
+                            [(ngModel)]="selectedDashboardTab"
                             [style]="{
                                         'width':'100%'
                                     }" 

@@ -590,33 +590,40 @@ export const DASHBOARDS: Dashboard[] =
     ];
 
 export const DASHBOARDTABS: DashboardTab[] =
-    [
+    [ 
         {
             dashboardID: 0,
-            widgetTabName: 'Value'
+            widgetTabName: 'Value',
+            widgetTabDescription: '0-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 0,
-            widgetTabName: 'Volume'
+            widgetTabName: 'Volume',
+            widgetTabDescription: '0-Volume: Full and detailed desription of tab - purpose'
         },        {
             dashboardID: 1,
-            widgetTabName: 'Value'
+            widgetTabName: 'Value',
+            widgetTabDescription: 'Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 1,
-            widgetTabName: 'Value'
+            widgetTabName: 'Value',
+            widgetTabDescription: '1-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 3,
-            widgetTabName: 'Value'
+            widgetTabName: 'Value',
+            widgetTabDescription: '3-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 4,
-            widgetTabName: 'Value'
+            widgetTabName: 'Value',
+            widgetTabDescription: '4-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 5,
-            widgetTabName: 'Value'
+            widgetTabName: 'Value',
+            widgetTabDescription: '5-Value: Full and detailed desription of tab - purpose'
         },
     ];
 

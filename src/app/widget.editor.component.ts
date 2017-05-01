@@ -46,7 +46,9 @@ export class WidgetBuilderComponent implements OnInit {
     submitted: boolean;                         // True if form submitted
     selectedTabName: any;                       // Current selected Tab
     selectedReportID: number;                   // Selected in DropDown
-    
+    selectedDashboardTab: any;                  // Selected in DropDown
+    selectedTabDescription: string;             // Description of the selected Tab
+
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
 
@@ -508,7 +510,15 @@ export class WidgetBuilderComponent implements OnInit {
     }
 
     changeTabDropDown(event) {
-console.log (event.value.id, event)
+        // Sets the description as the user selects a new Tab in the DropDown
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeTabDropDown', '@Start');
+
+        if (this.dashboardTabs.length > 0) {
+            this.selectedTabDescription = this.dashboardTabs.filter( 
+                t => t.widgetTabName == event.value.name)[0].widgetTabDescription;
+        } else {
+            this.selectedTabDescription = '';
+        }
     }
     
     loadDashboardTabs() {
