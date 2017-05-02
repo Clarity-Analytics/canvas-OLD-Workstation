@@ -269,7 +269,7 @@
                             formControlName="widgetReportName" 
                             [pTooltip]="reportsDropDownTooltip"
                             filter="true"
-                            (onChange)="loadReportWidgetSets($event)"
+                            (onChange)="loadReportRelatedInfo($event)"
                             >
                         </p-dropdown>
                     </div>
@@ -290,6 +290,36 @@
                     </div>
                 </div>      <!--END Report Paramters (optional)-->
 
+                <!--Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Limited Rows: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                            type="text" 
+                            formControlName="widgetShowLimitedRows" 
+                            placeholder="(Optional)"
+                            pTooltip="Indicate the (limited) number of rows to show from the data"
+                            />
+                    </div>
+                </div>      <!--END Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
+
+                <!--Indicate if extra row must be added with aggregate of the Rest -->
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                        Add Rest Row: 
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText 
+                            type="text" 
+                            formControlName="widgetAddRestRow" 
+                            placeholder="(Optional)"
+                            pTooltip="Check to add a Rest Row (aggregate of the rows above the Limited Rows)"
+                            />
+                    </div>
+                </div>      <!--END Indicate if extra row must be added with aggregate of the Rest -->
+
                 <!--DropDown to select method of creation, ie from WidgetSet-->
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-3">
@@ -306,6 +336,7 @@
                             placeholder="Required"
                             formControlName="widgetType" 
                             pTooltip=""
+                            (onChange)="loadWidgetTemplateFields($event)"
                             >
                         </p-dropdown>
 
@@ -343,75 +374,129 @@
 
                         <!--BarChar fields-->
                         <div *ngSwitchCase="'BarChart'" >
+
                             <div class="ui-grid-row">
                                 <div class="ui-grid-col-3">
-                                    Limited Rows: 
+                                    Graph Height: 
                                 </div>
                                 <div class="ui-grid-col-6">
                                     <input pInputText 
                                         type="text" 
-                                        formControlName="widgetShowLimitedRows" 
+                                        formControlName="graphHeight" 
                                         placeholder="(Optional)"
-                                        pTooltip="Indicate the (limited) number of rows to show from the data"
+                                        pTooltip="Height of the graph, inside the container"
                                         />
                                 </div>
                             </div>
 
                             <div class="ui-grid-row">
                                 <div class="ui-grid-col-3">
-                                    Add Rest Row: 
+                                    Graph Width: 
                                 </div>
                                 <div class="ui-grid-col-6">
                                     <input pInputText 
                                         type="text" 
-                                        formControlName="widgetAddRestRow" 
+                                        formControlName="graphWidth" 
                                         placeholder="(Optional)"
-                                        pTooltip="Check to add a Rest Row (aggregate of the rows above the Limited Rows)"
+                                        pTooltip="Width of the graph, inside the container"
                                         />
                                 </div>
                             </div>
 
                             <div class="ui-grid-row">
                                 <div class="ui-grid-col-3">
-                                    New / Existing *: 
+                                    Graph Padding: 
                                 </div>
                                 <div class="ui-grid-col-6">
                                     <input pInputText 
                                         type="text" 
-                                        formControlName="newExisting" 
-                                        placeholder="Required"
-                                        pTooltip="Add a new Widget, or select from an existing Widget Set (1 or more Widgets) for this data"
+                                        formControlName="graphPadding" 
+                                        placeholder="(Optional)"
+                                        pTooltip="Padding of the graph, inside the container"
                                         />
                                 </div>
                             </div>
 
                             <div class="ui-grid-row">
                                 <div class="ui-grid-col-3">
-                                    Encoding: 
+                                    X axis Field: 
                                 </div>
                                 <div class="ui-grid-col-6">
-                                    <input pInputText 
-                                        type="text" 
-                                        formControlName="encodingNew" 
-                                        placeholder="(Optional)"
-                                        pTooltip="Encoding for new Widget"
-                                        />
+                                    <p-dropdown 
+                                        [options]="reportFieldsDropDown" 
+                                        inputId="S2" 
+                                        [style]="{
+                                                    'width':'100%'
+                                                }" 
+                                        [pTooltip]="reportWidgetSetDropToolTip"
+                                        filter="true"
+                                        formControlName="vegaXcolumn" 
+                                        placeholder="Required X axis field"
+                                        >
+                                    </p-dropdown>
                                 </div>
-                            </div>
+                            </div>  
 
                             <div class="ui-grid-row">
                                 <div class="ui-grid-col-3">
-                                    Existing List: 
+                                    Y axis Field: 
                                 </div>
                                 <div class="ui-grid-col-6">
-                                    <input pInputText 
-                                        type="text" 
-                                        formControlName="existingList" 
-                                        placeholder="(Optional)"
-                                        pTooltip="List of existing Widget Sets for this data"
-                                        />
+                                    <p-dropdown 
+                                        [options]="reportFieldsDropDown" 
+                                        inputId="S2" 
+                                        [style]="{
+                                                    'width':'100%'
+                                                }" 
+                                        [pTooltip]="reportWidgetSetDropToolTip"
+                                        filter="true"
+                                        placeholder="Required Y axis field"
+                                        formControlName="vegaYcolumn" 
+                                        >
+                                    </p-dropdown>
                                 </div>
-                            </div>
+                            </div>  
+   
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-3">
+                                    Fill Color:  
+                                </div>
+                                <div class="ui-grid-col-6">
+                                    <p-dropdown 
+                                        [options]="chartColor" 
+                                        inputId="S2" 
+                                        [style]="{
+                                                    'width':'100%'
+                                                }" 
+                                        [pTooltip]=""
+                                        filter="true"
+                                        formControlName="vegaFillColor" 
+                                        placeholder="(Optional) fill color"
+                                        >
+                                    </p-dropdown>
+                                </div>
+                            </div>  
+
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-3">
+                                    Hover Color:  
+                                </div>
+                                <div class="ui-grid-col-6">
+                                    <p-dropdown 
+                                        [options]="chartColor" 
+                                        inputId="S2" 
+                                        [style]="{
+                                                    'width':'100%'
+                                                }" 
+                                        [pTooltip]="reportWidgetSetDropToolTip"
+                                        filter="true"
+                                        formControlName="vegaHoverColor" 
+                                        placeholder="(Optional) hover color"
+                                        >
+                                    </p-dropdown>
+                                </div>
+                            </div>  
+
                         </div>       <!--END BarChar fields-->
 
                         <!--PieChart-->

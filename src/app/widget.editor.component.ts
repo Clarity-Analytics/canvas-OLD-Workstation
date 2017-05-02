@@ -18,6 +18,7 @@ import { GlobalFunctionService }      from './global.function.service';
 import { GlobalVariableService }      from './global.variable.service';
 
 // Our models
+import { CanvasColors }               from './data.chartcolors';
 import { DashboardTab }               from './model.dashboardTabs';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
@@ -47,6 +48,8 @@ export class WidgetBuilderComponent implements OnInit {
     submitted: boolean;                         // True if form submitted
     selectedTabName: any;                       // Current selected Tab
     selectedReportID: number;                   // Selected in DropDown
+    selectedReportFieldX: string;               // Selected in DropDown
+    selectedReportFieldY: string;               // Selected in DropDown
     selectedDashboardTab: any;                  // Selected in DropDown
     selectedTabDescription: string;             // Description of the selected Tab
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
@@ -55,7 +58,10 @@ export class WidgetBuilderComponent implements OnInit {
     reportsDropDown:  SelectItem[];             // Drop Down options
     widgetTemplates: WidgetTemplate;            // List of Widget Templates
     reportWidgetSets: ReportWidgetSet[];        // List of Report WidgetSets
+    reportFields: string[];                     // List of Report Fields
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
+    reportFieldsDropDown:  SelectItem[];        // Drop Down options
+
     widget
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
@@ -70,6 +76,7 @@ export class WidgetBuilderComponent implements OnInit {
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
+    chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
 
     // ToolTippies stays after popup form closes, so setting in vars works for now ...
     // TODO - find BUG, our side or PrimeNG side
@@ -78,6 +85,7 @@ export class WidgetBuilderComponent implements OnInit {
     reportWidgetSetDropToolTip: string = "" //'Widget Set for the selected Report';
             
     constructor(
+        private canvasColors: CanvasColors,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
@@ -88,6 +96,7 @@ export class WidgetBuilderComponent implements OnInit {
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
+        // Define form group for first tab
         this.identificationForm = this.fb.group(
             {
                 'widgetTabName':     new FormControl(''),
@@ -98,6 +107,7 @@ export class WidgetBuilderComponent implements OnInit {
             }
         );
 
+        // Define form group for second tab
         this.behaviourForm = this.fb.group(
             {
                 'widgetDefaultExportFileType': new FormControl(''),
@@ -110,19 +120,30 @@ export class WidgetBuilderComponent implements OnInit {
             }
         );
 
+        // Define form group for third tab
         this.dataAndGraphForm = this.fb.group(
             {
                 'widgetReportName':       new FormControl(''),
                 'widgetReportParameters': new FormControl(''),
                 'widgetShowLimitedRows':  new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetAddRestRow':       new FormControl(''),
-                'newExisting':            new FormControl('new'),
                 'widgetType':             new FormControl(''),
                 'widgetReportWidgetSet':  new FormControl(''),
-                'encodingNew':            new FormControl(''),
-                'existingList':           new FormControl('')
+                'graphHeight':            new FormControl('', Validators.pattern('^[0-9]*$')),
+                'graphWidth':             new FormControl('', Validators.pattern('^[0-9]*$')),
+                'graphPadding':           new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaHasSignals':         new FormControl(''),
+                'vegaXcolumn':            new FormControl(''),
+                'vegaYcolumn':            new FormControl(''),
+                'vegaFillColor':          new FormControl(''),
+                'vegaHoverColor':         new FormControl('')
+                
             }
         );
+
+        // Background Colors Options
+        this.chartColor = [];
+        this.chartColor = this.canvasColors.getColors();
     }
 
     ngOnChanges() {
@@ -255,7 +276,7 @@ export class WidgetBuilderComponent implements OnInit {
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
-        // First, validate the compulsory fields
+        // First tab validation
         if (this.identificationForm.controls['widgetTabName'].value == ''  || 
             this.identificationForm.controls['widgetTabName'].value == null) {
                 this.formIsValid = false;
@@ -291,6 +312,24 @@ export class WidgetBuilderComponent implements OnInit {
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Widget Description is compulsory.';
         }
+
+        // Second tab validation
+        if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
+            !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Hyperlinked Widget ID must be numberic';
+        }
+        if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
+            !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Refresh Frequency must be numberic';
+        }
+        
+        // Third tab validation
         if (this.dataAndGraphForm.controls['widgetReportName'].value == ''  || 
             this.dataAndGraphForm.controls['widgetReportName'].value == null) {
                 if (this.addEditMode == 'Add') {
@@ -325,28 +364,6 @@ export class WidgetBuilderComponent implements OnInit {
 
         // BarChart field validation
         if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'BarChart') {
-
-            if (this.dataAndGraphForm.controls['newExisting'].value == ''  || 
-                this.dataAndGraphForm.controls['newExisting'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The New / Existing selection is compulsory.';
-            }
-            if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
-                !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Hyperlinked Widget ID must be numberic';
-            }
-            if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
-                !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Refresh Frequency must be numberic';
-            }
             if (this.dataAndGraphForm.controls['widgetShowLimitedRows'].touched  && 
                 !this.dataAndGraphForm.controls['widgetShowLimitedRows'].valid) {
                     this.formIsValid = false;
@@ -354,6 +371,43 @@ export class WidgetBuilderComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The number of limited rows to show must be numberic';
             }        
+            if (this.dataAndGraphForm.controls['graphHeight'].value == ''  ||
+                !this.dataAndGraphForm.controls['graphHeight'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The graph Height must be numberic';
+            }
+            if (this.dataAndGraphForm.controls['graphWidth'].value == ''  ||
+                !this.dataAndGraphForm.controls['graphWidth'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The graph Width must be numberic';
+            }
+            if (this.dataAndGraphForm.controls['graphPadding'].value == ''  || 
+                !this.dataAndGraphForm.controls['graphPadding'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The graph Padding must be numberic';
+            }
+
+            if (this.dataAndGraphForm.controls['vegaXcolumn'].value == ''  || 
+                this.dataAndGraphForm.controls['vegaXcolumn'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The X axis field is compulsory.';
+            }
+            if (this.dataAndGraphForm.controls['vegaYcolumn'].value == ''  || 
+                this.dataAndGraphForm.controls['vegaYcolumn'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Y axis field is compulsory.';
+            }
+
         }
 
         // Oi, something is not right
@@ -486,13 +540,57 @@ export class WidgetBuilderComponent implements OnInit {
         }
  
         if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'BarChart') {
-            // Get the corresponding widget template
-            this.widgetTemplates = this.eazlService.getWidgetTemplates (
-                this.dataAndGraphForm.controls['widgetType'].value['name']
-            );
+            // // Get the corresponding widget template
+            // this.widgetTemplates = this.eazlService.getWidgetTemplates (
+            //     this.dataAndGraphForm.controls['widgetType'].value['name']
+            // );
 
-            // Wack this spec into our working Widget
+            // Wack the whole Template spec into our working Widget
             this.widgetToEdit.graph.spec = this.widgetTemplates.vegaSpec;
+
+            // Now tweak according to the form
+            this.widgetToEdit.graph.spec.height = 
+                this.dataAndGraphForm.controls['graphHeight'].value;
+            this.widgetToEdit.graph.spec.width = 
+                this.dataAndGraphForm.controls['graphWidth'].value;
+            this.widgetToEdit.graph.spec.padding = 
+                this.dataAndGraphForm.controls['graphPadding'].value;                                        
+
+            if (this.dataAndGraphForm.controls['vegaXcolumn'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaXcolumn'].value.name != undefined) {
+                this.widgetToEdit.graph.spec.scales[0].domain.field =  
+                    this.dataAndGraphForm.controls['vegaXcolumn'].value.name;
+
+                this.widgetToEdit.graph.spec.marks[0].encode.enter.x.field =
+                    this.dataAndGraphForm.controls['vegaXcolumn'].value.name;
+
+                this.widgetToEdit.graph.spec.marks[1].encode.update.x.signal =
+                    'tooltip.' + this.dataAndGraphForm.controls['vegaXcolumn'].value.name;
+            }
+
+            if (this.dataAndGraphForm.controls['vegaYcolumn'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaYcolumn'].value.name != undefined) {
+                this.widgetToEdit.graph.spec.scales[1].domain.field =  
+                    this.dataAndGraphForm.controls['vegaYcolumn'].value.name;
+
+                this.widgetToEdit.graph.spec.marks[0].encode.enter.y.field =
+                    this.dataAndGraphForm.controls['vegaYcolumn'].value.name;
+
+                this.widgetToEdit.graph.spec.marks[1].encode.update.y.signal =
+                    'tooltip.' + this.dataAndGraphForm.controls['vegaYcolumn'].value.name;
+            }
+
+            if (this.dataAndGraphForm.controls['vegaFillColor'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaFillColor'].value.name != undefined) {
+
+                this.widgetToEdit.graph.spec.marks[0].encode.update.fill.value =
+                    this.dataAndGraphForm.controls['vegaFillColor'].value.name;
+            }
+            if (this.dataAndGraphForm.controls['vegaHoverColor'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaHoverColor'].value.name != undefined) {
+                this.widgetToEdit.graph.spec.marks[0].encode.hover.fill.value =
+                    this.dataAndGraphForm.controls['vegaHoverColor'].value.name;
+            }
 
             // Then wack in the data from the Report
             if (this.dataAndGraphForm.controls['widgetReportName'].value != '' &&
@@ -514,12 +612,28 @@ export class WidgetBuilderComponent implements OnInit {
         //        componenent to take effect (and thus close Dialogue)
     }
 
-    loadReportWidgetSets(event) {
+    loadReportRelatedInfo(event) {
         // Load the WidgetSets for the selected Report
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportWidgetSets', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportRelatedInfo', '@Start');
 
         // Show description details
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeTabDropDown', '@Start');
+
+        // Get ReportFields
+        this.reportFieldsDropDown = [];
+        this.selectedReportID = event.value.id;
+        this.reportFields = this.eazlService.getReportFields(this.selectedReportID);
+
+        // Fill the dropdown on the form
+        for (var i = 0; i < this.reportFields.length; i++) {
+            this.reportFieldsDropDown.push({
+                label: this.reportFields[i],
+                value: {
+                    id: this.reportFields[i],
+                    name: this.reportFields[i]
+                }
+            });
+        }
 
         // Get its WidgetSets in this Dashboard
         this.reportWidgetSetsDropDown = [];
@@ -610,6 +724,27 @@ export class WidgetBuilderComponent implements OnInit {
                 w => w.widgetSetID == event.value.id)[0].widgetSetDescription;
         } else {
             this.selectedWidgetSetDescription = '';
+        }
+    }
+
+    loadWidgetTemplateFields(event) {
+        // Load basic fields when a Widget template is selected
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadWidgetTemplateFields', '@Start');
+
+        // Only get this for non-WidgetSets, ie WidgetTemplates
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] != 'WidgetSet') {
+            // Get the corresponding widget template
+            this.widgetTemplates = this.eazlService.getWidgetTemplates (
+                this.dataAndGraphForm.controls['widgetType'].value['name']
+            );
+
+            // Basic stuffies
+            this.dataAndGraphForm.controls['graphHeight']
+                .setValue(this.widgetTemplates.vegaParameters.graphHeight);
+            this.dataAndGraphForm.controls['graphWidth']
+                .setValue(this.widgetTemplates.vegaParameters.graphWidth);
+            this.dataAndGraphForm.controls['graphPadding']
+                .setValue(this.widgetTemplates.vegaParameters.graphPadding);
         }
     }
 

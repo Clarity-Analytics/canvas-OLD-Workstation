@@ -2447,6 +2447,8 @@ export const REPORTS: Report[] =
             reportParameters: '',
             dataSourceID: 12,
             dataSourceParameters: '',
+            reportFields: 
+                [ "category", "amount"],
             reportData: 
                 [
                     {"category": "A0", "amount": 38},
@@ -2466,6 +2468,8 @@ export const REPORTS: Report[] =
             reportParameters: '',
             dataSourceID: 143,
             dataSourceParameters: '',
+            reportFields: 
+                [ "category", "amount"],
             reportData: 
                 [
                     {"category": "A22", "amount": 108},
@@ -3080,6 +3084,17 @@ export class EazlService {
         return this.reports;
     }
 
+    getReportFields(reportID: number): string[] {
+        // Return a list of Reports
+        this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldss', '@Start');
+
+        for (var i = 0; i < this.reports.length; i++) {
+            if (this.reports[i].repordID == reportID) {
+                return this.reports[i].reportFields;
+            }    
+        }
+    }
+
     getReportWidgetSets(reportID: number): ReportWidgetSet[] {
         // Return a list of WidgetSets per Report
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportWidgetSets', '@Start');
@@ -3096,7 +3111,7 @@ export class EazlService {
             wt => wt.widgetTemplateName == widgetTemplateName
         )[0];
 
-        // Replace the Template parameters.  Note: not all types have all parameters
+        // Replace the BASIC Template parameters.  Note: not all types have all parameters
         if (workingTemplate.vegaParameters.graphWidth) {
             workingTemplate.vegaSpec.width = workingTemplate.vegaParameters.graphWidth;
         }
@@ -3108,6 +3123,7 @@ export class EazlService {
             workingTemplate.vegaSpec.padding = workingTemplate.vegaParameters.graphPadding;
         }
 
+        // Bar Chart parameters
         if(widgetTemplateName == 'BarChart') {
             if (workingTemplate.vegaParameters.vegaXcolumn) {
                 workingTemplate.vegaSpec.scales[0].domain.field =  
@@ -3142,8 +3158,8 @@ export class EazlService {
                     workingTemplate.vegaParameters.vegaHoverColor;
             }
 
-// later: ...            vegaHasSignals: boolean;                // True/False to include Signals section
-           }
+           // later: ...  vegaHasSignals: boolean;   // True/False to include Signals section
+        }
 
         // End of story
         return workingTemplate;
