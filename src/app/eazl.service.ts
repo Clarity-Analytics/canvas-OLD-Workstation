@@ -3091,6 +3091,61 @@ export class EazlService {
         // Return a list of WidgetSets per Report
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTemplates', '@Start');
 
-        return this.widgetTemplates.filter(wt => wt.widgetTemplateName == widgetTemplateName)[0];
+        // Get the relevant template
+        let workingTemplate = this.widgetTemplates.filter(
+            wt => wt.widgetTemplateName == widgetTemplateName
+        )[0];
+
+        // Replace the Template parameters.  Note: not all types have all parameters
+        if (workingTemplate.vegaParameters.graphWidth) {
+            workingTemplate.vegaSpec.width = workingTemplate.vegaParameters.graphWidth;
+        }
+
+        if (workingTemplate.vegaParameters.graphHeight) {
+            workingTemplate.vegaSpec.height = workingTemplate.vegaParameters.graphHeight;
+        }
+        if (workingTemplate.vegaParameters.graphPadding) {
+            workingTemplate.vegaSpec.padding = workingTemplate.vegaParameters.graphPadding;
+        }
+
+        if(widgetTemplateName == 'BarChart') {
+            if (workingTemplate.vegaParameters.vegaXcolumn) {
+                workingTemplate.vegaSpec.scales[0].domain.field =  
+                    workingTemplate.vegaParameters.vegaXcolumn;
+            }
+            if (workingTemplate.vegaParameters.vegaYcolumn) {
+                workingTemplate.vegaSpec.scales[1].domain.field =  
+                    workingTemplate.vegaParameters.vegaYcolumn;
+            }
+            if (workingTemplate.vegaParameters.vegaXcolumn) {
+                workingTemplate.vegaSpec.marks[0].encode.enter.x.field =
+                    workingTemplate.vegaParameters.vegaXcolumn;
+            }
+            if (workingTemplate.vegaParameters.vegaYcolumn) {
+                workingTemplate.vegaSpec.marks[0].encode.enter.y.field =
+                    workingTemplate.vegaParameters.vegaYcolumn;
+            }
+            if (workingTemplate.vegaParameters.vegaXcolumn) {
+                workingTemplate.vegaSpec.marks[1].encode.update.x.signal =
+                    'tooltip.' + workingTemplate.vegaParameters.vegaXcolumn;
+            }
+            if (workingTemplate.vegaParameters.vegaYcolumn) {
+                workingTemplate.vegaSpec.marks[1].encode.update.y.signal =
+                    'tooltip.' + workingTemplate.vegaParameters.vegaYcolumn;
+            }
+            if (workingTemplate.vegaParameters.vegaFillColor) {
+                workingTemplate.vegaSpec.marks[0].encode.update.fill.value =
+                    workingTemplate.vegaParameters.vegaFillColor;
+            }
+            if (workingTemplate.vegaParameters.vegaFillColor) {
+                workingTemplate.vegaSpec.marks[0].encode.hover.fill.value =
+                    workingTemplate.vegaParameters.vegaHoverColor;
+            }
+
+// later: ...            vegaHasSignals: boolean;                // True/False to include Signals section
+           }
+
+        // End of story
+        return workingTemplate;
     }
 }

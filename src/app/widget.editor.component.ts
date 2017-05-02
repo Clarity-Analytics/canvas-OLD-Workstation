@@ -490,6 +490,8 @@ export class WidgetBuilderComponent implements OnInit {
             this.widgetTemplates = this.eazlService.getWidgetTemplates (
                 this.dataAndGraphForm.controls['widgetType'].value['name']
             );
+
+            // Wack this spec into our working Widget
             this.widgetToEdit.graph.spec = this.widgetTemplates.vegaSpec;
 
             // Then wack in the data from the Report
