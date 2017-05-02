@@ -323,7 +323,7 @@ export class WidgetBuilderComponent implements OnInit {
         }
 
         // BarChart field validation
-        if (this.dataAndGraphForm.controls['widgetType'].value == 'BarChart') {
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'BarChart') {
 
             if (this.dataAndGraphForm.controls['newExisting'].value == ''  || 
                 this.dataAndGraphForm.controls['newExisting'].value == null) {
@@ -463,8 +463,7 @@ export class WidgetBuilderComponent implements OnInit {
         }
 
         // Amend the specs IF given, according to the Widget Sets
-        if (this.dataAndGraphForm.controls['widgetReportWidgetSet'].value != '' &&
-            this.dataAndGraphForm.controls['widgetReportWidgetSet'].value != undefined) {
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'WidgetSet') {
             for (var i = 0; i < this.reportWidgetSets.length; i++) {
                 if (this.reportWidgetSets[i].widgetSetID == 
                     this.dataAndGraphForm.controls['widgetReportWidgetSet'].value.id) {

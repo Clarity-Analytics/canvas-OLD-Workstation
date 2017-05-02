@@ -643,10 +643,9 @@
     (mousedown)="onWidgetResizeMouseDown($event, w.properties.widgetID)"
     (mouseup)="onWidgetResizeMouseUp($event, w.properties.widgetID)"
     (onDragStart)="onWidgetDragStart($event, w.properties.widgetID)"
-    (onDragEnd)="onWidgetDragEnd($event, w.properties.widgetID)"
-    (keypress)="onWidgetKeyUp($event, w.properties.widgetID)"
+    (onDragEnd)="onWidgetDragEnd($event)"
+    (keydown)="onWidgetKeyUp($event, w.properties.widgetID)"
     (click)="onWidgetMouseDown($event, w.properties.widgetID)"
-
     >
 
     <!--Container Header boxie-->

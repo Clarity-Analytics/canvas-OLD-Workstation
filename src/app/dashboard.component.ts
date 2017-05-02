@@ -3,6 +3,7 @@ import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
 import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { QueryList }                  from '@angular/core';
 import { Renderer }                   from '@angular/core';
@@ -56,6 +57,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChildren('widgetContainter') childrenWidgetContainers: QueryList<ElementRef>;   // Attaches to # in DOM
     @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
 
+@HostListener('document:keyup', ['$event'])
+handleKeyboardEvent(event) { 
+    // Determines raw (x,y) change, and calls routine that does movement
+
+    if (event.code == 'ArrowUp') {
+        let offsetLeft = 0;
+        let offsetTop  = this.gridSize * -1;
+        this.moveWidgets(offsetLeft, offsetTop);
+    }
+    if (event.code == 'ArrowDown') {
+        let offsetLeft = 0;
+        let offsetTop  = this.gridSize;
+        this.moveWidgets(offsetLeft, offsetTop);
+    }
+    if (event.code == 'ArrowLeft') {
+        let offsetLeft = this.gridSize * -1;
+        let offsetTop  = 0;
+        this.moveWidgets(offsetLeft, offsetTop);
+    }
+    if (event.code == 'ArrowRight') {
+        let offsetLeft = this.gridSize;
+        let offsetTop  = 0;
+        this.moveWidgets(offsetLeft, offsetTop);
+    }
+    
+     }
     // Current status of Dashboard
     chartWidth: number;
     checkedScale: number;
@@ -1057,10 +1084,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedWidgetIDs.push(idWidget);
         }
     }
- 
+
     onWidgetKeyUp(event: MouseEvent,idWidget: number) {
         // TODO - the idea is to move the Widgets with the keyboard.  But I dont know 
-        // how to catch it on a Widget
+        // how to catch it on a Widget as it does not have focus ...
+        // Works if click delete, and then move arrows (its above a widget then methinks)
+        // KeyboardEvent {isTrusted: true, key: "ArrowRight", code: "ArrowRight", location: 0, ctrlKey: false, …}
         console.log(event)
         
     }
@@ -1465,7 +1494,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetStartDragY = event.y;
     }
 
-    onWidgetDragEnd(event: DragEvent,idWidget: number) {
+    onWidgetDragEnd(event: DragEvent) {
         // Dragging of Widget has ended - IF enabled !!
         this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetDragEnd', '@Start');
 
@@ -1478,15 +1507,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetEndDragX = event.x;
         this.widgetEndDragY = event.y;
 
-        // Calc (x,y) offset, and new new X, Y
+        // Calc raw (x,y) offset, and new new X, Y
         let offsetLeft = this.widgetEndDragX - this.widgetStartDragX;
         let offsetTop  = this.widgetEndDragY - this.widgetStartDragY;
-        let newLeft = 0;
-        let newTop = 0;
+
+        // Do the real moving
+        this.moveWidgets(offsetLeft, offsetTop);
+    }
+
+    moveWidgets(offsetLeft: number, offsetTop: number) {
+        // Actual movement of the selected Widgets - this is split off to make it easy
+        // to implement movement via arrow keys
+        this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
 
         // Snap to grid
         offsetLeft = this.alignToGripPoint(offsetLeft);
         offsetTop = this.alignToGripPoint(offsetTop);
+
+        let newLeft = 0;
+        let newTop = 0;
 
         // Loop on the Array of selected IDs, and do things to TheMan
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
