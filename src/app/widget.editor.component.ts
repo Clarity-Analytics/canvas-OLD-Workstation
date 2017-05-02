@@ -21,8 +21,9 @@ import { GlobalVariableService }      from './global.variable.service';
 import { DashboardTab }               from './model.dashboardTabs';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
-import { WidgetComment }              from './model.widget.comment';
 import { Widget }                     from './model.widget';
+import { WidgetComment }              from './model.widget.comment';
+import { WidgetTemplate }             from './model.widgetTemplates';
 
 @Component({
     selector:    'widget-editor',
@@ -52,10 +53,10 @@ export class WidgetBuilderComponent implements OnInit {
     
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
-
+    widgetTemplates: WidgetTemplate;            // List of Widget Templates
     reportWidgetSets: ReportWidgetSet[];        // List of Report WidgetSets
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
-
+    widget
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
@@ -484,6 +485,26 @@ export class WidgetBuilderComponent implements OnInit {
             }
         }
  
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'BarChart') {
+            // Get the corresponding widget template
+            this.widgetTemplates = this.eazlService.getWidgetTemplates (
+                this.dataAndGraphForm.controls['widgetType'].value['name']
+            );
+            this.widgetToEdit.graph.spec = this.widgetTemplates.vegaSpec;
+
+            // Then wack in the data from the Report
+            if (this.dataAndGraphForm.controls['widgetReportName'].value != '' &&
+                this.dataAndGraphForm.controls['widgetReportName'].value != undefined) {
+                for (var i = 0; i < this.reports.length; i++) {
+                    if (this.reports[i].repordID == 
+                        this.dataAndGraphForm.controls['widgetReportName'].value.id) {
+                            this.widgetToEdit.graph.spec.data[0].values = 
+                                this.reports[i].reportData;
+                    }
+                }
+            }
+        }
+
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
 

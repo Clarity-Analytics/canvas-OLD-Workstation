@@ -11,6 +11,10 @@ import { ViewEncapsulation }          from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 import { ViewChildren }               from '@angular/core';
 
+import { Inject } from "@angular/core";
+import { DOCUMENT } from '@angular/platform-browser';
+
+
 //  PrimeNG stuffies
 import { ConfirmationService }        from 'primeng/primeng';
 import { MenuItem }                   from 'primeng/primeng';  
@@ -156,7 +160,8 @@ handleKeyboardEvent(event) {
         private element : ElementRef,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private renderer : Renderer
+        private renderer : Renderer,
+        @Inject(DOCUMENT) private document: Document
     ) {
      }
 
@@ -1236,6 +1241,12 @@ handleKeyboardEvent(event) {
             });
             
         }
+
+        // // For one day
+        // let number = this.document.body.scrollTop;
+        // console.log(number);
+        // this.document.body.style.zoom='0.5';
+        // this.document.body.style.backgroundColor = 'darkred';
     }
 
     onDashboardDetail (event) {
