@@ -812,14 +812,26 @@
             class="widgetCommentButton"
             pButton
             type="button"
-            icon="fa-lightbulb-o"
+            icon="fa-comment"
             pTooltip="This widget has a comment" 
             tooltipPosition="right" 
             tooltipEvent="hover"
             (click)="showWidgetComment(w.properties.widgetID)"
             >
         </button>         
-
+        <button
+            *ngIf="!w.properties.widgetComments  &&  showContainerHeader"
+            [style.color]="isDark ? 'black' : 'lightgray'"
+            class="widgetCommentButton"
+            pButton
+            type="button"
+            icon="fa-comment-o"
+            pTooltip="This widget has a comment" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="showWidgetComment(w.properties.widgetID)"
+            >
+        </button> 
     <div>          <!--Container Header boxie-->
 
     <!--Graph content -->
