@@ -461,6 +461,19 @@
             (click)="copyWidget()"
             >
         </button> 
+        
+        <!--Bring Widget to Front-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-paper-plane-o"
+            pTooltip="Bring selected Widgets to front" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="bringWidgetToFront()"
+            >
+        </button> 
 
         <span
             class="widgetNrSelected"

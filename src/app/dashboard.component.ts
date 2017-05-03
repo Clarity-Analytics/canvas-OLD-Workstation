@@ -35,21 +35,6 @@ import { Widget }                     from './model.widget';
 // Vega stuffies
 let vg = require('vega/index.js');
 
-class DashboardSelectedItem {
-    label: string;
-    value: {
-                id: number;
-                code: string;
-                name: string;
-           }
-}
-
-class TheMan {
-    id: number;
-    code: string;
-    name: string;
-}
-
 @Component({
     moduleId: module.id,
     selector: 'dashboard-component',
@@ -379,7 +364,7 @@ handleKeyboardEvent(event) {
         // Apply the new values on the Palette -> Container tab to the selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContainerApply', '@Start');
 
-        // Loop on the Array of selected IDs, and do things to TheMan
+        // Loop on the Array of selected IDs, and do things to it
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
 
             // Loop on the ViewChildren, and act for the Selected One
@@ -1538,7 +1523,7 @@ handleKeyboardEvent(event) {
         let newLeft = 0;
         let newTop = 0;
 
-        // Loop on the Array of selected IDs, and do things to TheMan
+        // Loop on the Array of selected IDs, and do things to it
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
             // Get the Selected One
             this.selectedWidget = this.widgets.filter(
@@ -1600,6 +1585,40 @@ handleKeyboardEvent(event) {
 
         // Return the value
         return inputValue;
+    }
+    
+    bringWidgetToFront()  {
+        // Bring the selected Widgets to the front via z-index
+        this.globalFunctionService.printToConsole(this.constructor.name, 'bringWidgetToFront', '@Start');
+
+        // Get Max z-Index
+        let maxZindex: number = 0;
+        for (var i = 0; i < this.widgets.length; i++) {
+            maxZindex = Math.max(maxZindex, this.widgets[i].properties.widgetIndex);
+        }
+        maxZindex = maxZindex + 1;
+
+        // Loop on selected ones
+        for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
+
+            // Loop on the ViewChildren, and act for the Selected One
+            let selectedElement = this.childrenWidgetContainers.filter(
+                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0] 
+
+            if (selectedElement != undefined) {
+                this.renderer.setElementStyle(selectedElement.nativeElement,
+                    'z-index', '6'
+                );
+
+                // Update the data
+                this.widgets.filter(
+                    widget => widget.properties.widgetID === 
+                        this.selectedWidgetIDs[i])[0].properties.widgetIndex = maxZindex; 
+            }
+
+            // Refresh the Dashboard
+            this.refreshDashboard = true;
+        }
     }
 
     copyWidget() {
