@@ -249,6 +249,24 @@ export class WidgetBuilderComponent implements OnInit {
                         .setValue(this.widgetToEdit.properties.widgetType);
                 }
 
+
+this.selectedWidgetCreation = 
+    {
+        label: 'BarChart',
+        value: {
+            id: 0,
+            name: 'BarChart'
+        }
+    }
+this.dataAndGraphForm.controls['widgetType'].setValue(
+    {
+        label: 'BarChart',
+        value: {
+            id: 0,
+            name: 'BarChart'
+        }
+    })
+
                 // Indicate we are done loading form
                 this.isLoadingForm = false;
             }

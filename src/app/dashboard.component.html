@@ -448,6 +448,19 @@
             (click)="isDark=!isDark"
             >
         </button> 
+        
+        <!--Copy Widget-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-copy"
+            pTooltip="Copy selected Widgets" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="copyWidget()"
+            >
+        </button> 
 
         <span
             class="widgetNrSelected"

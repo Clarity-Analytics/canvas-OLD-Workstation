@@ -1601,6 +1601,50 @@ handleKeyboardEvent(event) {
         // Return the value
         return inputValue;
     }
+
+    copyWidget() {
+        // Copy (duplicate) selected Widgets
+        this.globalFunctionService.printToConsole(this.constructor.name, 'copyWidget', '@Start');
+
+        // Loop on selected ones
+        for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
+
+            // Make  a copy
+            let widgetOriginal: Widget[] = this.widgets.filter(
+                w => w.properties.widgetID == this.selectedWidgetIDs[i]);
+            let widgetToCopy: Widget = JSON.parse(JSON.stringify(widgetOriginal[0]));
+
+            // Minor adjustments
+            widgetToCopy.properties.widgetName = 
+                widgetToCopy.properties.widgetName + ' (Copy)'
+            widgetToCopy.container.widgetTitle = 
+                widgetToCopy.container.widgetTitle + ' (Copy)'
+            widgetToCopy.container.left = 
+                widgetToCopy.container.left + (this.gridSize * 2);
+            widgetToCopy.container.top = 
+                widgetToCopy.container.top + (this.gridSize * 2);
+
+            // TODO - this is crude & error prone: do it properly in DB
+            let lastWidgetID = 
+                this.widgets[this.widgets.length - 1].properties.widgetID;
+
+            // Set the Widget ID & Add to Array
+            // TODO - do via Eazl into DB
+            widgetToCopy.properties.widgetID = lastWidgetID + 1;
+            this.widgets.push(widgetToCopy);
+
+            // Refresh the Dashboard
+            this.refreshDashboard = true;
+        }
+
+        // Inform the user
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info',
+            summary:  'Success',
+            detail:   'Widgets copied'
+        });
+    }
+
     onWidgetSelectAll() {
         // Select all the widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'onWidgetSelectAll', '@Start');
