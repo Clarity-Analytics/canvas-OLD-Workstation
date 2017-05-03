@@ -93,7 +93,8 @@ handleKeyboardEvent(event) {
     selectedWidgetIDs: number[] = [];       // Array of WidgetIDs selected with mouse
 
     // Currently selected properties for a Widget, in the Palette
-    selectedBackgroundColor: string;
+    selectedBackgroundColor: any;           // Selected bg color
+    selectedBackgroundColorDashboard: any;  // Bg color for the Dashboard body
     selectedBorder: string;
     selectedBoxShadow: string;
     selectedColor: string;
@@ -1618,6 +1619,8 @@ handleKeyboardEvent(event) {
 
     changeDashboardSettings() {
         // Change the Dashboard Settings as selected on the form
+        // TODO: this must be done via DB
+        // TODO: there could be many more settings.  Decide.
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeDashboardSettings', '@Start');
 
         // // For one day
@@ -1626,8 +1629,8 @@ handleKeyboardEvent(event) {
         // this.document.body.style.zoom='0.5';
 
         // Set the document / body background color
-        if (this.selectedBackgroundColor) {
-            this.document.body.style.backgroundColor =  this.selectedBackgroundColor['name'];
+        if (this.selectedBackgroundColorDashboard) {
+            this.document.body.style.backgroundColor =  this.selectedBackgroundColorDashboard['name'];
         }
 
         // Hide popup form

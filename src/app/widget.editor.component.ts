@@ -92,7 +92,7 @@ export class WidgetBuilderComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
     ) {
     }
-
+// For later: this.selectedBackgroundColorDashboard = {id: 1, name: "Navy", code: "#000080"}
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
