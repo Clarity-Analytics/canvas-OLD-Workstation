@@ -59,6 +59,7 @@
     <div 
         class="dashboardDivButtons"
         >
+        
         <button 
             class="dashboardButton"
             pButton 
@@ -472,6 +473,20 @@
             tooltipPosition="right" 
             tooltipEvent="hover"
             (click)="bringWidgetToFront()"
+            >
+        </button> 
+
+        
+        <!--Show Dashboard Settings form-->
+        <button
+            class="widgetFormatingButton"
+            pButton
+            type="button"
+            icon="fa-gear"
+            pTooltip="Show the popup form to show the Dashboard Settings" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="displayDashboardSettings=true"
             >
         </button> 
 
@@ -937,4 +952,41 @@
             Loading widget comments ...
         </widget-comment>
     </p-dialog>
+
+    <!--Form to show / add Widget Comments-->
+    <p-dialog header="Comments" 
+        [(visible)]="displayDashboardSettings" 
+        height="400"
+        modal="modal" 
+        width="300" 
+        responsive="true"
+        >
+        
+        <button
+            class="changeDashboardSettingsButton"
+            pButton
+            type="button"
+            label="Change"
+            pTooltip="Click to change the Dashboard settings" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="changeDashboardSettings()"
+            >
+        </button>
+        <div
+            class="changeDashboardSettings"
+            >
+            <p-dropdown
+                [style]="{'width':'160px','margin-top':'3px'}"
+                [options]="chartColor" 
+                [(ngModel)]="selectedBackgroundColor" 
+                placeholder="Background"
+                filter="true"
+                >
+            </p-dropdown>
+        </div>
+
+    </p-dialog>
+
+
 <!--END Section for popup forms and dialogues-->

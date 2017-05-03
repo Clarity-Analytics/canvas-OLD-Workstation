@@ -77,7 +77,7 @@ export class WidgetBuilderComponent implements OnInit {
     formIsValid: boolean = false;
     numberErrors: number = 0;
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
-
+    // startWidgetType:string = 'BarChart'
     // ToolTippies stays after popup form closes, so setting in vars works for now ...
     // TODO - find BUG, our side or PrimeNG side
     dashboardsTabsTooltip: string = ""   //'Selected Tab where Widget will live';
@@ -249,23 +249,7 @@ export class WidgetBuilderComponent implements OnInit {
                         .setValue(this.widgetToEdit.properties.widgetType);
                 }
 
-
-this.selectedWidgetCreation = 
-    {
-        label: 'BarChart',
-        value: {
-            id: 0,
-            name: 'BarChart'
-        }
-    }
-this.dataAndGraphForm.controls['widgetType'].setValue(
-    {
-        label: 'BarChart',
-        value: {
-            id: 0,
-            name: 'BarChart'
-        }
-    })
+                
 
                 // Indicate we are done loading form
                 this.isLoadingForm = false;
@@ -670,7 +654,7 @@ this.dataAndGraphForm.controls['widgetType'].setValue(
         }
 
     }
-    
+startWidgetType() {return 'BarChart';}
     loadReports() {
 
         // Load the Report, etc DropDowns

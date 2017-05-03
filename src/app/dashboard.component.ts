@@ -131,6 +131,7 @@ handleKeyboardEvent(event) {
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayTabDetails: boolean = false;         // T/F to show Tab Details form
+    displayDashboardSettings: boolean = false;  // T/F to show the Dashboard Settings form
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
@@ -1226,12 +1227,6 @@ handleKeyboardEvent(event) {
             });
             
         }
-
-        // // For one day
-        // let number = this.document.body.scrollTop;
-        // console.log(number);
-        // this.document.body.style.zoom='0.5';
-        // this.document.body.style.backgroundColor = 'darkred';
     }
 
     onDashboardDetail (event) {
@@ -1607,7 +1602,7 @@ handleKeyboardEvent(event) {
 
             if (selectedElement != undefined) {
                 this.renderer.setElementStyle(selectedElement.nativeElement,
-                    'z-index', '6'
+                    'z-index', maxZindex.toString()
                 );
 
                 // Update the data
@@ -1619,6 +1614,24 @@ handleKeyboardEvent(event) {
             // Refresh the Dashboard
             this.refreshDashboard = true;
         }
+    }
+
+    changeDashboardSettings() {
+        // Change the Dashboard Settings as selected on the form
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeDashboardSettings', '@Start');
+
+        // // For one day
+        // let number = this.document.body.scrollTop;
+        // console.log(number);
+        // this.document.body.style.zoom='0.5';
+
+        // Set the document / body background color
+        if (this.selectedBackgroundColor) {
+            this.document.body.style.backgroundColor =  this.selectedBackgroundColor['name'];
+        }
+
+        // Hide popup form
+        this.displayDashboardSettings = false;
     }
 
     copyWidget() {
