@@ -146,8 +146,9 @@ export class AppComponent implements OnInit {
         // Pops up for new message
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
         
-        // Show it
-        this.displayNewMessage = true;        
+        // Send dummy
+        // TODO - create space for real message
+        this.sendNotificationToServer();
     }
 
     menuActionLoginLogout() {

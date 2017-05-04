@@ -46,32 +46,33 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChildren('widgetContainter') childrenWidgetContainers: QueryList<ElementRef>;   // Attaches to # in DOM
     @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
 
-@HostListener('document:keyup', ['$event'])
-handleKeyboardEvent(event) { 
-    // Determines raw (x,y) change, and calls routine that does movement
+// @HostListener('document:keyup', ['$event'])
+// handleKeyboardEvent(event) { 
+//     // Determines raw (x,y) change, and calls routine that does movement
 
-    if (event.code == 'ArrowUp') {
-        let offsetLeft = 0;
-        let offsetTop  = this.gridSize * -1;
-        this.moveWidgets(offsetLeft, offsetTop);
-    }
-    if (event.code == 'ArrowDown') {
-        let offsetLeft = 0;
-        let offsetTop  = this.gridSize;
-        this.moveWidgets(offsetLeft, offsetTop);
-    }
-    if (event.code == 'ArrowLeft') {
-        let offsetLeft = this.gridSize * -1;
-        let offsetTop  = 0;
-        this.moveWidgets(offsetLeft, offsetTop);
-    }
-    if (event.code == 'ArrowRight') {
-        let offsetLeft = this.gridSize;
-        let offsetTop  = 0;
-        this.moveWidgets(offsetLeft, offsetTop);
-    }
+//     if (event.code == 'ArrowUp') {
+//         let offsetLeft = 0;
+//         let offsetTop  = this.gridSize * -1;
+//         this.moveWidgets(offsetLeft, offsetTop);
+//     }
+//     if (event.code == 'ArrowDown') {
+//         let offsetLeft = 0;
+//         let offsetTop  = this.gridSize;
+//         this.moveWidgets(offsetLeft, offsetTop);
+//     }
+//     if (event.code == 'ArrowLeft') {
+//         let offsetLeft = this.gridSize * -1;
+//         let offsetTop  = 0;
+//         this.moveWidgets(offsetLeft, offsetTop);
+//     }
+//     if (event.code == 'ArrowRight') {
+//         let offsetLeft = this.gridSize;
+//         let offsetTop  = 0;
+//         this.moveWidgets(offsetLeft, offsetTop);
+//     }
     
-     }
+// }
+
     // Current status of Dashboard
     chartWidth: number;
     checkedScale: number;

@@ -2,7 +2,7 @@
  /*Palette ~ area on left  */
     .paletteContainer {
         background-color:   white;
-        border: 2px solid   #264d73;
+        border: 1px solid   #669999;
         border-radius: 4px;
         display: block;
         font-size:0.85em;
@@ -15,7 +15,7 @@
 
     /*Dashboard*/
         .dashboardHeading {
-            background-color: #204060;
+            background-color: #669999;
             font-size: 1em;
             font-weight: bold;
             margin: 0;
@@ -36,7 +36,7 @@
 
         .dashboardAdvancedFilter {
             background-color:  white;
-            border: 1px solid  #204060;
+            border: 1px solid  #669999;
             border-radius: 2px;
             color: black;
             float: right;
@@ -56,7 +56,7 @@
 
         .dashboardButton {
             background-color: white;
-            border: 1px solid #204060;
+            border: 1px solid #669999;
             color:black;
             font-size: 0.85em;
             padding: 0;
@@ -88,7 +88,7 @@
     /*Widgets (on palette)*/
 
         .widgetHeading {
-                background-color: #204060;
+                background-color: #669999;
                 font-size: 1em;
                 font-weight: bold;
                 margin: 11px 0 0 0;
@@ -125,7 +125,7 @@
     /*Widget Container*/
 
         .widgetContainerHeading {
-            background-color: #204060;
+            background-color: #669999;
             font-size: 1em;
             font-weight: bold;
             margin: 11px 0 0 0;
@@ -167,7 +167,7 @@
 
     .widgetContainer {
         background-color: white;
-        border: 2px solid   #204060;
+        border: 2px solid   #669999;
         border-radius: 4px;
         color: black;
         display: block;

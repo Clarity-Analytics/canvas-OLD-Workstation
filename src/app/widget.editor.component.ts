@@ -51,6 +51,7 @@ export class WidgetBuilderComponent implements OnInit {
     selectedReportFieldX: string;               // Selected in DropDown
     selectedReportFieldY: string;               // Selected in DropDown
     selectedDashboardTab: any;                  // Selected in DropDown
+    selectedReport: any;                         // Selected in Report DropDown
     selectedTabDescription: string;             // Description of the selected Tab
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
     
@@ -62,11 +63,10 @@ export class WidgetBuilderComponent implements OnInit {
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
     reportFieldsDropDown:  SelectItem[];        // Drop Down options
 
-    widget
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
-    selectedWidgetCreation: SelectItem;         // Selected option to create Widget
+    selectedWidgetCreation: any;         // Selected option to create Widget
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
@@ -141,6 +141,10 @@ export class WidgetBuilderComponent implements OnInit {
             }
         );
 
+this.dataAndGraphForm.controls['widgetType'].setValue({id: 1, name: "BarChart"})
+this.selectedWidgetCreation = {id: 1, name: "BarChart"}
+
+
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();
@@ -172,12 +176,14 @@ export class WidgetBuilderComponent implements OnInit {
 
             // Indicate we loading form -> valueChange routine dont fire
             this.isLoadingForm = true;
-
+//widgetReportName                        
+console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}")
             if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
 
                 if (this.widgetToEdit.properties.widgetTabName) {
                     this.identificationForm.controls['widgetTabName']
-                        .setValue(this.widgetToEdit.properties.widgetTabName);
+                        .setValue("{id: 0, name: 'Value'}");
+                        // .setValue("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}");
                 }
                 if (this.widgetToEdit.container.widgetTitle) {
                     this.identificationForm.controls['widgetTitle']
@@ -227,10 +233,10 @@ export class WidgetBuilderComponent implements OnInit {
                 this.widgetToEdit.properties.widgetRefreshMode = 
                     this.behaviourForm.controls['widgetRefreshMode'].value;
 
-
                 if (this.widgetToEdit.properties.widgetReportName) {
                     this.dataAndGraphForm.controls['widgetReportName']
-                        .setValue(this.widgetToEdit.properties.widgetReportName);
+                        .setValue("{id: 1, name: '" + 
+                            this.widgetToEdit.properties.widgetReportName + "'}");
                 }
                 if (this.widgetToEdit.properties.widgetReportParameters) {
                     this.dataAndGraphForm.controls['widgetReportParameters']
@@ -246,10 +252,8 @@ export class WidgetBuilderComponent implements OnInit {
                 }
                 if (this.widgetToEdit.properties.widgetType) {
                     this.dataAndGraphForm.controls['widgetType']
-                        .setValue(this.widgetToEdit.properties.widgetType);
+                        .setValue("{id: 1, name: '" + this.widgetToEdit.properties.widgetType + "'}");
                 }
-
-                
 
                 // Indicate we are done loading form
                 this.isLoadingForm = false;
@@ -425,7 +429,9 @@ export class WidgetBuilderComponent implements OnInit {
 
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
-
+console.log(this.identificationForm.controls['widgetTabName'])
+console.log(this.dataAndGraphForm.controls['widgetReportName'])
+console.log(this.dataAndGraphForm.controls['widgetType'])
             // First, load from form what wass indeed provided on the form
             this.widgetToEdit.container.widgetTitle = 
                 this.identificationForm.controls['widgetTitle'].value;

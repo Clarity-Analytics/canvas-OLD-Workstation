@@ -784,7 +784,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: 'Repeat',
-                widgetReportName: 'Weekly Stats',
+                widgetReportName: 'EDM weekly Values',
                 widgetReportParameters: 'today()',
                 widgetShowLimitedRows: 5,
                 widgetSize: 'Small',
