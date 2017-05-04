@@ -167,6 +167,7 @@
             (click)="deleteTab()"
             >
         </button> 
+
     </div>          <!-- END Tab DropDown-->
 
 
@@ -479,7 +480,6 @@
             (click)="bringWidgetToFront()"
             >
         </button> 
-
         
         <!--Show Dashboard Settings form-->
         <button
@@ -494,12 +494,90 @@
             >
         </button> 
 
-        <span
-            class="widgetNrSelected"
-            *ngIf="selectedWidgetIDs.length > 0"
+
+
+        <!--Expand Background Info-->
+        <button
+            class="paletteButton"
+            pButton
+            type="button"
+            icon="fa-star-o"
+            pTooltip="Expand the background color info" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="displayExpandBackgroundArea=true"
             >
-            {{ selectedWidgetIDs.length }}
-        </span>
+        </button> 
+
+        <div
+            *ngIf="displayExpandBackgroundArea"
+            >
+            <div
+                class="widgetNrSelected"
+                *ngIf="selectedWidgetIDs.length > 0"
+                >
+                Nr Widgets selected: {{ selectedWidgetIDs.length }}
+            </div>
+
+            <div
+                class="actionLabel"
+                >
+                Background Color
+            </div>
+
+            <p-dropdown
+                [style]="{
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                [options]="chartColor" 
+                [(ngModel)]="selectedBackgroundColor" 
+                placeholder="Background"
+                filter="true"
+                (onChange)="onSelectBackgroundColor()"
+                >
+            </p-dropdown>
+            <div>
+    
+                <button 
+                    class="sampleColor"
+                    [style.background-color]="sampleColorWidgetBackgroundColor"
+                    pButton 
+                    type="button" 
+                    label="Sample"
+                    pTooltip="Sample of color selected" 
+                    tooltipPosition="right" 
+                    tooltipEvent="hover"
+                    (click)="clickContainerApply()"
+                    > 
+                </button>
+
+                <button 
+                    class="paletteButtonWithLabel"
+                    pButton 
+                    type="button" 
+                    icon="fa-cube"
+                    label="Apply"
+                    pTooltip="Apply the styling to the selected Containters" 
+                    tooltipPosition="right" 
+                    tooltipEvent="hover"
+                    (click)="clickContainerApply()"
+                    > 
+                </button>
+            </div>
+            
+        </div>
+        <!--END Expand Background Info-->
+
+
+
     </div>         <!--Div for New Widget and Widget formatting buttons-->
 
 

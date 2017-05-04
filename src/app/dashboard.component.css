@@ -61,7 +61,7 @@
                 background-color: #669999;
                 font-size: 1em;
                 font-weight: bold;
-                margin: 11px 0 4px 0;
+                margin: 11px 0 4px   0;
                 padding: 4px 0 2px 4px;
         }
 
@@ -86,8 +86,30 @@
             width: 25px;
         }
 
+        .sampleColor {
+            background-color: white;
+            border: 1px solid darkgray;
+            border-radius: 2px;
+            color: gray;
+            height: 25px;
+            margin: 2px;
+            padding: 1px;
+            width: 75px;
+        }
+
+        .paletteButtonWithLabel {
+            background-color: white;
+            border: 1px solid darkgray;
+            border-radius: 2px;
+            color: gray;
+            height: 25px;
+            margin: 2px;
+            padding: 1px;
+            width: 85px;
+        }
+
         .widgetNrSelected {
-            color: darkgray;
+            margin: 10px 6px 4px 6px;
         }
         
     /*END Widgets (on palette)*/

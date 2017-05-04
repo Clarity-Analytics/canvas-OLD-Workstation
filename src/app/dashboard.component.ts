@@ -126,6 +126,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     isDark: boolean = false;                    // Widget Header icons black if true
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
+    sampleColorWidgetBackgroundColor: string;  // Sample color of that selected from DropDown
 
     // Popup forms stuffies
     addEditModeWidgetEditor: string = '';       // Add or Edit was called
@@ -134,6 +135,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayTabDetails: boolean = false;         // T/F to show Tab Details form
     displayDashboardSettings: boolean = false;  // T/F to show the Dashboard Settings form
+    displayExpandBackgroundArea: boolean = false; // T/F to expand area to update background color
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
@@ -1679,6 +1681,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             summary:  'Success',
             detail:   'Widgets copied'
         });
+    }
+
+    onSelectBackgroundColor() {
+        // Set the sample background color
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onSelectBackgroundColor', '@Start');
+
+        if (this.selectedBackgroundColor != undefined) {
+            this.sampleColorWidgetBackgroundColor = this.selectedBackgroundColor.name;
+        }
     }
 
     onWidgetSelectAll() {
