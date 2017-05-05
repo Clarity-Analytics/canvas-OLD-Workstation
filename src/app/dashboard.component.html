@@ -494,276 +494,479 @@
             >
         </button> 
 
+        <!--Buttons to toggle Snap to Grid-->
+        <button
+            class="paletteButton"
+            *ngIf="snapToGrid"
+            pButton
+            type="button"
+            icon="fa-minus"
+            pTooltip="Click to remove Snap to grid" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="snapToGrid=false"
+            >
+        </button> 
+        <button
+            class="paletteButton"
+            *ngIf="!snapToGrid"
+            pButton
+            type="button"
+            icon="fa-th"
+            pTooltip="Click to Snap to grid"
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="snapToGrid=true"
+            >
+        </button>         
 
+        <!--Button to toggle Show Widget Headers-->
+        <button
+            class="paletteButton"
+            *ngIf="showContainerHeader"
+            pButton
+            type="button"
+            icon="fa-minus"
+            pTooltip="Click to hide Widget Headers" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="showContainerHeader=false"
+            >
+        </button> 
+        <button
+            class="paletteButton"
+            *ngIf="!showContainerHeader"
+            pButton
+            type="button"
+            icon="fa-header"
+            pTooltip="Click to show Widget headers"
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="showContainerHeader=true"
+            >
+        </button>     
 
-        <!--Expand Background Info-->
+        <!--Button to Expand Background Color Area-->
         <button
             class="paletteButton"
             pButton
             type="button"
-            icon="fa-star-o"
+            icon="fa-square"
             pTooltip="Expand the background color info" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="displayExpandBackgroundArea=true"
+            (click)="onClickExpandArea('displayExpandBackgroundArea')"
             >
         </button> 
 
-        <div
-            *ngIf="displayExpandBackgroundArea"
+        <!--Button to Expand Border Area-->
+        <button
+            class="paletteButton"
+            pButton
+            type="button"
+            icon="fa-square-o"
+            pTooltip="Expand the area for border info" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onClickExpandArea('displayExpandBorder')"
             >
+        </button> 
+
+        <!--Button to Expand Box Shadow Area-->
+        <button
+            class="paletteButton"
+            pButton
+            type="button"
+            icon="fa-laptop"
+            pTooltip="Expand the box shadow info" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onClickExpandArea('displayExpandBoxShadow')"
+            >
+        </button> 
+
+        <!--Button to Expand Text Color Area-->
+        <button
+            class="paletteButton"
+            pButton
+            type="button"
+            icon="fa-tumblr-square"
+            pTooltip="Expand the text color info" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onClickExpandArea('displayExpandColor')"
+            >
+        </button> 
+
+        <!--Button to Expand Font Size Area-->
+        <button
+            class="paletteButton"
+            pButton
+            type="button"
+            icon="fa-text-height"
+            pTooltip="Expand the font size info" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onClickExpandArea('displayExpandFontSize')"
+            >
+        </button> 
+
+        <!--Expand Background Info-->
             <div
-                class="widgetNrSelected"
-                *ngIf="selectedWidgetIDs.length > 0"
+                *ngIf="displayExpandBackgroundArea"
                 >
-                Nr Widgets selected: {{ selectedWidgetIDs.length }}
-            </div>
-
-            <div
-                class="actionLabel"
-                >
-                Background Color
-            </div>
-
-            <p-dropdown
-                [style]="{
-                            'autofocus':'true',
-                            'background-color':'538cc6',
-                            'border':'1px solid #204060',
-                            'border-radius':'2px',
-                            'font-size':'0.85em',
-                            'margin-bottom':'4px',
-                            'margin-left':'4px',
-                            'padding':'0',
-                            'width':'197px'
-                        }" 
-                [options]="chartColor" 
-                [(ngModel)]="selectedBackgroundColor" 
-                placeholder="Background"
-                filter="true"
-                (onChange)="onSelectBackgroundColor()"
-                >
-            </p-dropdown>
-            <div>
-    
-                <button 
-                    class="paletteButtonWithLabel"
-                    [style.background-color]="sampleColorWidgetBackgroundColor"
-                    pButton 
-                    type="button" 
-                    label="Sample"
-                    pTooltip="Sample of color selected" 
-                    tooltipPosition="right" 
-                    tooltipEvent="hover"
-                    (click)="clickContainerApply()"
-                    > 
-                </button>
-
-                <button 
-                    class="paletteButton"
-                    pButton 
-                    type="button" 
-                    icon="fa-cube"
-                    pTooltip="Apply the styling to the selected Containters" 
-                    tooltipPosition="right" 
-                    tooltipEvent="hover"
-                    (click)="clickContainerApply()"
-                    > 
-                </button>
-
-                <button 
-                    class="paletteButton"
-                    pButton 
-                    type="button" 
-                    icon="fa-close"
-                    pTooltip="Close area for background info" 
-                    tooltipPosition="right" 
-                    tooltipEvent="hover"
-                    (click)="displayExpandBackgroundArea=false"
-                    > 
-                </button>
-            </div>
-            
-        </div>
-        <!--END Expand Background Info-->
-
-
-
-    </div>         <!--Div for New Widget and Widget formatting buttons-->
-
-
-    <!--Widget Container-->
-    <div
-        class="widgetContainerHeading"
-        >
-        Container
-    </div>         <!--END Widget Container-->
-    
-    <p-accordion
-        [style]="{
-            'font-size':'0.85em',
-            'font-style':'normal'
-            }"
-        [multiple]="true"
-        (onOpen)="onOpenPaletteTab($event)"
-        (onClose)="onClosePaletteTab($event)" 
-        >
-
-        <p-accordionTab 
-            header="Container Styling"
-            [selected]="true"
-            > 
-            
-            <div
-                class="widgetContentAccordionTab"
-                >
-
-                <!--Apply changes button-->
-                <button 
-                    class="paletteButton"
-                    pButton type="button" 
-                    icon="fa-cube"
-                    pTooltip="Apply the styling to the selected Containters" 
-                    tooltipPosition="right" 
-                    tooltipEvent="hover"
-                    (click)="clickContainerApply()"
-                    > 
-                </button>
-
-                <!--Clear all selections-->
-                <button 
-                    class="paletteButton"
-                    pButton type="button" 
-                    icon="fa-eraser"
-                    pTooltip="Clear the selections" 
-                    tooltipPosition="right" 
-                    tooltipEvent="hover"
-                    (click)="clickContainerClear()"
-                    > 
-                </button>
-
-                <p-toggleButton 
-                    [(ngModel)]="snapToGrid" 
-                    onLabel="Snap" 
-                    offLabel="Off" 
-                    [style]="{
-                                'border':'1px solid darkgray',
-                                'border-radius':'2px',
-                                'height': '2em',
-                                'margin': '0px',
-                                'padding':'0px',
-                                'width':'50px'
-                             }"                     
+                <div
+                    class="widgetNrSelected"
+                    *ngIf="selectedWidgetIDs.length > 0"
                     >
-                </p-toggleButton>
-
-                <p-toggleButton 
-                    [(ngModel)]="showContainerHeader" 
-                    onLabel="Head" 
-                    offLabel="Off" 
-                    [style]="{
-                                'border':'1px solid darkgray',
-                                'border-radius':'2px',
-                                'height': '2em',
-                                'margin': '0px',
-                                'padding':'0px',
-                                'width':'50px'
-                             }"                     
-                    >
-                </p-toggleButton>
+                    Nr Widgets selected: {{ selectedWidgetIDs.length }}
+                </div>
 
                 <div
-                    class="paletteLabel"
+                    class="actionLabel"
                     >
                     Background Color
                 </div>
+
                 <p-dropdown
-                    [style]="{'width':'160px','margin-top':'3px'}"
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
                     [options]="chartColor" 
                     [(ngModel)]="selectedBackgroundColor" 
                     placeholder="Background"
                     filter="true"
+                    (onChange)="onSelectBackgroundColor()"
                     >
                 </p-dropdown>
+                <div>
+        
+                    <button 
+                        class="paletteButtonWithLabel"
+                        [style.background-color]="sampleColorWidgetBackgroundColor"
+                        pButton 
+                        type="button" 
+                        label="Sample"
+                        pTooltip="Sample of color selected" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-cube"
+                        pTooltip="Apply the styling to the selected Containters" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-close"
+                        pTooltip="Close area for background info" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="displayExpandBackgroundArea=false"
+                        > 
+                    </button>
+                </div>
+                
+            </div>
+        <!--END Expand Background Info-->
+
+        <!--Expand Border Info-->
+            <div
+                *ngIf="displayExpandBorder"
+                >
+                <div
+                    class="widgetNrSelected"
+                    *ngIf="selectedWidgetIDs.length > 0"
+                    >
+                    Nr Widgets selected: {{ selectedWidgetIDs.length }}
+                </div>
 
                 <div
-                    class="paletteLabel"
+                    class="actionLabel"
                     >
                     Border
                 </div>
+
                 <p-dropdown
-                    [style]="{'width':'160px','margin-top':'3px'}"
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
                     [options]="borderOptions" 
                     [(ngModel)]="selectedBorder" 
                     placeholder="Border"
                     filter="true"
                     >
                 </p-dropdown>
+                <div>
+        
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-cube"
+                        pTooltip="Apply the styling to the selected Containters" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-close"
+                        pTooltip="Close area for border info" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="displayExpandBorder=false"
+                        > 
+                    </button>
+                </div>
+                
+            </div>
+        <!--END Expand Border Info-->
+
+        <!--Expand BoxShadow Info-->
+            <div
+                *ngIf="displayExpandBoxShadow"
+                >
+                <div
+                    class="widgetNrSelected"
+                    *ngIf="selectedWidgetIDs.length > 0"
+                    >
+                    Nr Widgets selected: {{ selectedWidgetIDs.length }}
+                </div>
 
                 <div
-                    class="paletteLabel"
+                    class="actionLabel"
                     >
-                    Shadow
+                    Box Shadow
                 </div>
+                    <!--[options]="" 
+                    [(ngModel)]="" -->
+
                 <p-dropdown
-                    [style]="{'width':'160px','margin-top':'3px'}"
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
                     [options]="boxShadowOptions" 
                     [(ngModel)]="selectedBoxShadow" 
                     placeholder="Box Shadow"
                     filter="true"
                     >
                 </p-dropdown>
+                <div>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-cube"
+                        pTooltip="Apply the styling to the selected Containters" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-close"
+                        pTooltip="Close area for box shadow info" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="displayExpandBoxShadow=false"
+                        > 
+                    </button>
+                </div>
+                
+            </div>
+        <!--END Expand BoxShadow Info-->
+
+        <!--Expand Color Info-->
+            <div
+                *ngIf="displayExpandColor"
+                >
+                <div
+                    class="widgetNrSelected"
+                    *ngIf="selectedWidgetIDs.length > 0"
+                    >
+                    Nr Widgets selected: {{ selectedWidgetIDs.length }}
+                </div>
 
                 <div
-                    class="paletteLabel"
+                    class="actionLabel"
                     >
                     Text Color
                 </div>
+
                 <p-dropdown
-                    [style]="{'width':'160px','margin-top':'3px'}"
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
                     [options]="chartColor" 
                     [(ngModel)]="selectedColor" 
-                    placeholder="Color"
+                    placeholder="Text color"
+                    filter="true"
+                    (onChange)="onSelectBackgroundColor()"
+                    >
+                </p-dropdown>
+                <div>
+        
+                    <button 
+                        class="paletteButtonWithLabel"
+                        [style.background-color]="sampleColorWidgetBackgroundColor"
+                        pButton 
+                        type="button" 
+                        label="Sample"
+                        pTooltip="Sample of color selected" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-cube"
+                        pTooltip="Apply the styling to the selected Containters" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-close"
+                        pTooltip="Close area for text color info" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="displayExpandColor=false"
+                        > 
+                    </button>
+                </div>
+                
+            </div>
+        <!--END Expand Color Info-->
+
+        <!--Expand FontSize Info-->
+            <div
+                *ngIf="displayExpandFontSize"
+                >
+                <div
+                    class="widgetNrSelected"
+                    *ngIf="selectedWidgetIDs.length > 0"
+                    >
+                    Nr Widgets selected: {{ selectedWidgetIDs.length }}
+                </div>
+
+                <div
+                    class="actionLabel"
+                    >
+                    Font Size
+                </div>
+
+                <p-dropdown
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
+                    [options]="fontSizeOptions" 
+                    [(ngModel)]="selectedContainerFontSize" 
+                    placeholder="Font Size"
                     filter="true"
                     >
                 </p-dropdown>
+                <div>
 
-                <div
-                    class="paletteLabel"
-                    >
-                    Font Size
-                    <span
-                        [style]="{
-                                    'margin-left':'6px',
-                                    'width':'10px'
-                                 }"
-                        >
-                        {{ selectedContainerFontSize }}
-                    </span>
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-cube"
+                        pTooltip="Apply the styling to the selected Containters" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-close"
+                        pTooltip="Close area for font size info" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="displayExpandFontSize=false"
+                        > 
+                    </button>
                 </div>
-                <p-slider 
-                    [(ngModel)]="selectedContainerFontSize" 
-                    [style]="{
-                        'width':'80px',
-                        'margin-bottom':'14px',
-                        'margin-left':'6px',
-                        'margin-top':'6px'
-                        }"
-                    [min]="0.5" 
-                    [max]="3"
-                    >
-                </p-slider>
-
-
+                
             </div>
-        </p-accordionTab>
+        <!--END Expand FontSize Info-->
 
-        <p-accordionTab 
-            header="Chart"
-            >
-            Reserved for future use
-        </p-accordionTab>
-    </p-accordion>    
+    </div>         <!--Div for New Widget and Widget formatting buttons-->
 
 </div>             <!--END Palette Container-->
 

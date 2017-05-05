@@ -1,5 +1,4 @@
-
- /*Palette ~ area on left  */
+/*Palette*/
     .paletteContainer {
         background-color:   white;
         border: 1px solid   #669999;
@@ -45,8 +44,8 @@
         .actionLabel {
             font-size: 0.85em;
             margin-left: 6px;
-            margin-top: 1px;
-            margin-bottom: 1px;
+            margin-top: 7px;
+            margin-bottom: 3px;
             margin-right: 3px;
             padding: 0;
             
@@ -98,39 +97,12 @@
         }
 
         .widgetNrSelected {
+            font-size: 0.85em;
             margin: 10px 6px 4px 6px;
         }
         
     /*END Widgets (on palette)*/
 
-
-
-    /*Widget Container*/
-
-        .widgetContainerHeading {
-            background-color: #669999;
-            font-size: 1em;
-            font-weight: bold;
-            margin: 11px 0 0 0;
-            padding: 4px 0 2px 4px;
-        }
-
-        .widgetContentAccordionTab{
-            background-color: white;
-        }
-
-        .radioButtonDiv {
-            margin-top: 11px;
-            padding: 3px;
-            border: 1px solid darkgray;
-            border-radius: 2px;
-        }
-
-        .paletteLabel {
-            font-weight: bold;
-            margin: 9px 0 0 0;
-        }
-    /*END Widget Container*/
 
 /*END Dashboard*/
 
@@ -278,18 +250,21 @@
         font-size: 1em;
     }
 
-/*END Widgets*/
+/*END Palette*/
 
-.changeDashboardSettings {
-    height: 360px;
-}
 
-.changeDashboardSettingsButton {
-        background-color: lightgray;
-        border: 1px solid  black;
-        border-radius: 2px;
-        color: black;
-        margin: 10px;
-        padding: auto;
-        width: 80px;
-}
+/*Dashboard Settings Form*/
+    .changeDashboardSettings {
+        height: 360px;
+    }
+
+    .changeDashboardSettingsButton {
+            background-color: lightgray;
+            border: 1px solid  black;
+            border-radius: 2px;
+            color: black;
+            margin: 10px;
+            padding: auto;
+            width: 80px;
+    }                   
+/*END Dashboard Settings Form*/

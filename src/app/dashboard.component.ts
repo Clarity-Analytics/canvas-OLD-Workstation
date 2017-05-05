@@ -98,7 +98,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     selectedBackgroundColorDashboard: any;  // Bg color for the Dashboard body
     selectedBorder: string;
     selectedBoxShadow: string;
-    selectedColor: string;
+    selectedColor: any;
     selectedContainerFontSize: number;      // In em
     showContainerHeader: boolean = true;
 
@@ -123,10 +123,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     borderOptions: SelectItem[];                // Options for Border DropDown
     boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
+    fontSizeOptions: SelectItem[];              // Options for Font Size
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     isDark: boolean = false;                    // Widget Header icons black if true
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
-    sampleColorWidgetBackgroundColor: string;  // Sample color of that selected from DropDown
+    sampleColorWidgetBackgroundColor: string;   // Sample color of that selected from DropDown
 
     // Popup forms stuffies
     addEditModeWidgetEditor: string = '';       // Add or Edit was called
@@ -135,13 +136,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayTabDetails: boolean = false;         // T/F to show Tab Details form
     displayDashboardSettings: boolean = false;  // T/F to show the Dashboard Settings form
-    displayExpandBackgroundArea: boolean = false; // T/F to expand area to update background color
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
     widgetToEdit: Widget;                       // Widget to edit
     widgetToEditX: number;                      // X coordinate where new widget belongs
     widgetToEditY: number;                      // Y coordinate where new widget belongs
+    
+    // Expansion Areas when Widget buttons are clicked
+    displayExpandBackgroundArea: boolean = false; 
+    displayExpandBorder: boolean = false; 
+    displayExpandBoxShadow: boolean = false; 
+    displayExpandColor: boolean = false; 
+    displayExpandFontSize: boolean = false; 
 
     constructor(
         private canvasColors: CanvasColors,
@@ -181,10 +188,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.boxShadowOptions.push({label:'Gray',       value:{id:1, name: '2px 2px 12px gray',     code: '2px 2px 12px gray'}});
         this.boxShadowOptions.push({label:'White',      value:{id:1, name: '2px 2px 12px white',    code: '2px 2px 12px white'}});
 
+        // Font Size Options
+        this.fontSizeOptions = [];
+        this.fontSizeOptions.push({label:'1',   value:{id:1, name: '1em'}});
+        this.fontSizeOptions.push({label:'2',   value:{id:1, name: '2em'}});
+
         // Set startup stuffies
         // TODO: read from DB
         this.snapToGrid = true;
-        this.gridSize = 3;
+        this.gridSize = 30;
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -342,27 +354,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
             }
         }
-    }
-
-    onOpenPaletteTab(event) {
-        // Palette tab has been opened
-        this.globalFunctionService.printToConsole(this.constructor.name,'onOpenPaletteTab', '@Start');
-    }
-
-    onClosePaletteTab(event) {
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClosePaletteTab', '@Start');
-    }
-
-
-    clickContainerClear() {
-        // Clears the all widget style selections
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickContainerClear', '@Start');
-
-        this.selectedBackgroundColor = '';
-        this.selectedBorder = '';
-        this.selectedBoxShadow = '';
-        this.selectedColor = '';
-        this.selectedContainerFontSize = 1;
     }
 
     clickContainerApply(){
@@ -1079,7 +1070,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedWidgetIDs.push(idWidget);
         }
     }
-
+ 
     onWidgetKeyUp(event: MouseEvent,idWidget: number) {
         // TODO - the idea is to move the Widgets with the keyboard.  But I dont know 
         // how to catch it on a Widget as it does not have focus ...
@@ -1690,8 +1681,37 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.selectedBackgroundColor != undefined) {
             this.sampleColorWidgetBackgroundColor = this.selectedBackgroundColor.name;
         }
+        if (this.selectedColor != undefined) {
+            this.sampleColorWidgetBackgroundColor = this.selectedColor.name;
+        }
+       
     }
 
+    onClickExpandArea(areaToExpand: string) {
+        // Expand the selected area in the widget palette, and close the rest
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickExpandArea', '@Start');
+        this.displayExpandBackgroundArea = false; 
+        this.displayExpandBorder = false; 
+        this.displayExpandBoxShadow = false; 
+        this.displayExpandColor = false; 
+        this.displayExpandFontSize = false; 
+
+        if (areaToExpand == 'displayExpandBackgroundArea') {
+            this.displayExpandBackgroundArea = true;
+        }
+        if (areaToExpand == 'displayExpandBorder') {
+            this.displayExpandBorder = true;
+        }        
+        if (areaToExpand == 'displayExpandBoxShadow') {
+            this.displayExpandBoxShadow = true;
+        }        
+        if (areaToExpand == 'displayExpandColor') {
+            this.displayExpandColor = true;
+        }        
+        if (areaToExpand == 'displayExpandFontSize') {
+            this.displayExpandFontSize = true;
+        }        
+    }
     onWidgetSelectAll() {
         // Select all the widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'onWidgetSelectAll', '@Start');
