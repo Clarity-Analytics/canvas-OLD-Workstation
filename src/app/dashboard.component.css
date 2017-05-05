@@ -86,17 +86,6 @@
             width: 25px;
         }
 
-        .sampleColor {
-            background-color: white;
-            border: 1px solid darkgray;
-            border-radius: 2px;
-            color: gray;
-            height: 25px;
-            margin: 2px;
-            padding: 1px;
-            width: 75px;
-        }
-
         .paletteButtonWithLabel {
             background-color: white;
             border: 1px solid darkgray;

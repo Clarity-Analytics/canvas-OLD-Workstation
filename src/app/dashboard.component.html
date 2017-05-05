@@ -547,7 +547,7 @@
             <div>
     
                 <button 
-                    class="sampleColor"
+                    class="paletteButtonWithLabel"
                     [style.background-color]="sampleColorWidgetBackgroundColor"
                     pButton 
                     type="button" 
@@ -560,15 +560,26 @@
                 </button>
 
                 <button 
-                    class="paletteButtonWithLabel"
+                    class="paletteButton"
                     pButton 
                     type="button" 
                     icon="fa-cube"
-                    label="Apply"
                     pTooltip="Apply the styling to the selected Containters" 
                     tooltipPosition="right" 
                     tooltipEvent="hover"
                     (click)="clickContainerApply()"
+                    > 
+                </button>
+
+                <button 
+                    class="paletteButton"
+                    pButton 
+                    type="button" 
+                    icon="fa-close"
+                    pTooltip="Close area for background info" 
+                    tooltipPosition="right" 
+                    tooltipEvent="hover"
+                    (click)="displayExpandBackgroundArea=false"
                     > 
                 </button>
             </div>
