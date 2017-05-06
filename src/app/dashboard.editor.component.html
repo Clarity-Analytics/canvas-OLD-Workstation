@@ -1,0 +1,261 @@
+<form 
+    [formGroup]="dashboardForm" 
+    (ngSubmit)="onSubmit(dashboardForm.value)"
+    >
+    <div 
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        style="margin: 10px 0px"
+        >
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                ID:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardID" 
+                       placeholder="(info)"
+                       autofocus
+                       autocomplete="on"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Code *:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardCode" 
+                       placeholder="Required"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Name *:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardName" 
+                       placeholder="Required"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Bg Pic Path:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardBackgroundPicturePath" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Comments:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardComments" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                CreatedDateTime:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardCreatedDateTime" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                CreatedUserID:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardCreatedUserID" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Dflt. F-Type:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardDefaultExportFileType" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Description:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardDescription" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Is Locked:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardIsLocked" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Open TabNr:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardOpenTabNr" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                OwnerUserID:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardOwnerUserID" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Password:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="password" 
+                       formControlName="dashboardPassword" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Refreshed on:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardRefreshedDateTime" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Refreshed by:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardRefreshMode" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                SystemMsg:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardSystemMessage" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Updated on:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardUpdatedDateTime" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Updated by:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="dashboardUpdatedUserID" 
+                       placeholder="(Optional)"/>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"></div>
+            <div class="ui-grid-col-4">
+                <button pButton 
+                        type="submit" 
+                        label="Submit" 
+                        [disabled]="!dashboardForm.valid">
+                </button>
+            </div>
+            <div class="ui-grid-col-4"></div>
+        </div>
+
+    </div>   
+</form> 
+
+
+
+
+            <!--dashboardGroups: [
+                { dashboardGroupName: 'Favourites' },
+                { dashboardGroupName: 'Everyone'}
+            ],
+
+            dashboardLiked: [
+                { dashboardLikedUserID: 'AnnieA' },
+                { dashboardLikedUserID: 'BennieB' },
+                { dashboardLikedUserID: 'CharlesC' }
+            ],
+            dashboardSharedWith: [
+                {
+                    dashboardSharedWithUserID: 'PeterP',
+                    dashboardSharedWithType: 'Full'
+                }
+            ],-->

@@ -1201,7 +1201,9 @@
         width="450" 
         responsive="true"
         >
-        Form to show detail about Dashboard {{ selectedDashboardName['name'] }}, using another component.
+        <dashboard-editor>
+            Loading Dashboard Editor ...
+        </dashboard-editor>
     </p-dialog>
 
     <!--Detail for selected Tab-->
@@ -1230,31 +1232,7 @@
             <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
         </p-footer>
     </p-confirmDialog>
-
-
-    <!--Form to edit Widget -->
-    <!--<p-dialog header="Widget Editor" 
-        [(visible)]="displayEditWidget" 
-        modal="modal" 
-        resizable="true"
-        height="100vw"
-        responsive="true"
-        >
-        <widget-editor 
-            [selectedDashboardID]="selectedDashboardID" 
-            [selectedDashboardTabName]="selectedDashboardTabName"
-            [widgetToEditX]="widgetToEditX"
-            [widgetToEditY]="widgetToEditY"
-            [widgetToEdit]="widgetToEdit"
-            (formSubmit)="handleWidgetBuilderFormSubmit($event)" 
-            [addEditMode]="addEditModeWidgetEditor"
-            [widgetIDtoEdit]="widgetIDtoEdit"
-            [displayEditWidget]="displayEditWidget"
-            >
-            Loading Widget Builder ...
-        </widget-editor>
-        
-    </p-dialog>-->
+    
 
     <!--Form to show / add Widget Comments-->
     <p-dialog header="Comments" 
@@ -1307,6 +1285,5 @@
         </div>
 
     </p-dialog>
-
 
 <!--END Section for popup forms and dialogues-->

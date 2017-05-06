@@ -618,7 +618,7 @@ console.log(this.identificationForm.controls['widgetType'])
                 for (var i = 0; i < this.reports.length; i++) {
                     if (this.reports[i].repordID == 
                         this.identificationForm.controls['widgetReportName'].value.id) {
-console.log('prior err',this.widgetToEdit.graph.spec)
+
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
                     }
