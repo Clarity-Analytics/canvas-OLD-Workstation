@@ -1038,6 +1038,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Kill dragging
         this.widgetDraggingEnabled = false;
 
+        // Close the Widget Editor if open: editor is for ONE widget only
+        if (this.selectedWidgetIDs.length > 0   &&   this.displayEditWidget == true) {
+            this.displayEditWidget = false;
+        }
+
         // If Shift was hold down, add to Array of Widgets selected
         if (event.shiftKey) {
 
