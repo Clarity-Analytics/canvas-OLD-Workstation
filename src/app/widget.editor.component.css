@@ -36,7 +36,7 @@
         background-color: white;
         border: 1px solid #669999;
         font-size: 0.85em;
-        margin: 6px 0 6px 0;
+        margin: 6px 0 12px 0;
         padding: 3px;
     }
 
@@ -54,14 +54,29 @@
 
     .panelLine {
         font-size: 1em;
-        margin: 4px 0 4px 0;
-        padding: 3px 0 3px 4px;
+        margin: 6px 0 4px 0;
+        padding: 12px 0 3px 0px;
     }
 
     .panelLineLabel {
         font-weight: bold;
         margin: 8px 0 0 0;
         padding: 8px 0 0 2px;
+    }
+
+    .panelButtonArea {
+        margin: 12px 0 4px 0;        
+    }
+    
+    .panelButtonWithLabel {
+        background-color: white;
+        border: 1px solid darkgray;
+        border-radius: 2px;
+        color: gray;
+        height: 25px;
+        margin: 2px;
+        padding: 1px;
+        width: 85px;
     }
 
 

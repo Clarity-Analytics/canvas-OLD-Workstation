@@ -1,10 +1,4 @@
-<p 
-    class="iserror" 
-    *ngIf="formIsValid"> 
-    {{ errorMessageOnForm }}
-</p>
-
-
+<!--Widget Editor-->
 <div
     class="widgetEditor"
     *ngIf="displayEditWidget"
@@ -415,11 +409,6 @@
         </div>
 
 
-
-
-
-
-
         <!--Data Panel Header-->
         <div
             class="PanelHeading"
@@ -571,44 +560,63 @@
 
 
 
-        <!--DropDown to select method of creation, ie from WidgetSet-->
-        <div >
-            Creation *: 
-            <p-dropdown 
-                [options]="widgetCreationDropDown" 
-                [(ngModel)]="selectedWidgetCreation"
-                    [style]="{
-                                'float':'right',
-                                'font-size':'0.85em',
-                                'margin-bottom':'0',
-                                'margin-right':'5px',
-                                'margin-top':'0',
-                                'padding':'0',
-                                'width':'200px'
-                             }" 
-                placeholder="Required"
-                formControlName="widgetType" 
-                pTooltip=""
-                inputId="label"
-                dataKey="BarChart"
-                (onChange)="loadWidgetTemplateFields($event)"
+
+
+
+
+
+        <!--Widget Type Panel Header-->
+        <div
+            class="PanelHeading"
+            >
+            Widget Type
+
+            <!--Open/Close buttons-->
+            <button
+                class="panelCaretButton"
+                *ngIf="widgetTypePanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-up"
+                pTooltip="Click to close panel" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="widgetTypePanelIsOpen=false"
                 >
-            </p-dropdown>
-        </div>      <!--END DropDown to select method of creation, ie from WidgetSet-->
+            </button>         
+            <button
+                class="panelCaretButton"
+                *ngIf="!widgetTypePanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-down"
+                pTooltip="Click to open panel"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="widgetTypePanelIsOpen=true"
+                >
+            </button>  
+        </div>
 
-        <!--The Rest of the DOM depends on what was selected above-->
-        <div *ngIf="selectedWidgetCreation">
+        <!--Data Panel Area-->
+        <div
+            class="panelArea"
+            *ngIf="widgetTypePanelIsOpen"
+            >
 
-            <!--ngIf since selectedWidgetCreation undefined at start-->
-            <div [ngSwitch]="this.selectedWidgetCreation['name']">
-
-                <!--WidgetSets-->
-                <div *ngSwitchCase="'WidgetSet'">
-                    <div >
-                        Rpt Widget Set *: 
-                        <p-dropdown 
-                            [options]="reportWidgetSetsDropDown" 
-                            inputId="S2" 
+            <!--Report selection-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    ReportName *:
+                </span>
+                            
+                <p-dropdown 
+                    [options]="widgetCreationDropDown" 
+                    [(ngModel)]="selectedWidgetCreation"
                     [style]="{
                                 'float':'right',
                                 'font-size':'0.85em',
@@ -618,184 +626,268 @@
                                 'padding':'0',
                                 'width':'200px'
                              }" 
-                            [pTooltip]="reportWidgetSetDropToolTip"
-                            filter="true"
-                            formControlName="widgetReportWidgetSet" 
-                            (onChange)="changeWidgetSet($event)"
+                    placeholder="Required"
+                    formControlName="widgetType" 
+                    pTooltip=""
+                    inputId="label"
+                    dataKey="BarChart"
+                    (onChange)="loadWidgetTemplateFields($event)"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--The Rest of the DOM depends on what was selected above-->
+            <div *ngIf="selectedWidgetCreation">
+
+                <!--ngIf since selectedWidgetCreation undefined at start-->
+                <div [ngSwitch]="this.selectedWidgetCreation['name']">
+
+                    <!--WidgetSets-->
+                    <div *ngSwitchCase="'WidgetSet'">
+                        <div 
+                            class="panelLine"
                             >
-                        </p-dropdown>
-                    </div>  
-                </div>        <!--END WidgetSets-->
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                Widget Sets:
+                            </span>
+                            <p-dropdown
+                                [options]="reportWidgetSetsDropDown" 
+                                inputId="S2" 
+                                [style]="{
+                                            'float':'right',
+                                            'font-size':'0.85em',
+                                            'margin-bottom':'0',
+                                            'margin-right':'5px',
+                                            'margin-top':'0',
+                                            'padding':'0',
+                                            'width':'200px'
+                                        }" 
+                                [pTooltip]="reportWidgetSetDropToolTip"
+                                filter="true"
+                                formControlName="widgetReportWidgetSet" 
+                                (onChange)="changeWidgetSet($event)"
+                                >
+                            </p-dropdown>
+                        </div>  
+                    </div>        <!--END WidgetSets-->
 
-                <!--BarChar fields-->
-                <div *ngSwitchCase="'BarChart'" >
+                    <!--BarChar fields-->
+                    <div *ngSwitchCase="'BarChart'" >
 
-                    <div >
-                        Graph Height: 
-                        <input pInputText 
-                    style="
-                                float: right;
-                                margin-bottom: 3px;
-                                margin-right: 5px;
-                                margin-top: 1px;
-                                padding: 0;
-                                width: 200px;
-                             " 
-                            type="text" 
-                            formControlName="graphHeight" 
-                            placeholder="(Optional)"
-                            pTooltip="Height of the graph, inside the container"
-                            />
-                    </div>
-
-                    <div >
-                        Graph Width: 
-                        <input pInputText 
-                    style="
-                                float: right;
-                                margin-bottom: 3px;
-                                margin-right: 5px;
-                                margin-top: 1px;
-                                padding: 0;
-                                width: 200px;
-                             " 
-                            type="text" 
-                            formControlName="graphWidth" 
-                            placeholder="(Optional)"
-                            pTooltip="Width of the graph, inside the container"
-                            />
-                    </div>
-
-                    <div >
-                        Graph Padding: 
-                        <input pInputText 
-                    style="
-                                float: right;
-                                margin-bottom: 3px;
-                                margin-right: 5px;
-                                margin-top: 1px;
-                                padding: 0;
-                                width: 200px;
-                             " 
-                            type="text" 
-                            formControlName="graphPadding" 
-                            placeholder="(Optional)"
-                            pTooltip="Padding of the graph, inside the container"
-                            />
-                    </div>
-
-                    <div >
-                        X axis Field: 
-                        <p-dropdown 
-                            [options]="reportFieldsDropDown" 
-                            inputId="S2" 
-                    [style]="{
-                                'float':'right',
-                                'font-size':'0.85em',
-                                'margin-bottom':'0',
-                                'margin-right':'5px',
-                                'margin-top':'0',
-                                'padding':'0',
-                                'width':'200px'
-                             }" 
-                            [pTooltip]="reportWidgetSetDropToolTip"
-                            filter="true"
-                            formControlName="vegaXcolumn" 
-                            placeholder="Required X axis field"
+                        <div 
+                            class="panelLine"
                             >
-                        </p-dropdown>
-                    </div>  
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                Graph Height:
+                            </span>
+                            <input pInputText 
+                                style="
+                                            float: right;
+                                            margin-bottom: 3px;
+                                            margin-right: 5px;
+                                            margin-top: 1px;
+                                            padding: 0;
+                                            width: 200px;
+                                        " 
+                                type="text" 
+                                formControlName="graphHeight" 
+                                placeholder="(Optional)"
+                                pTooltip="Height of the graph, inside the container"
+                                />
+                        </div>
 
-                    <div >
-                        Y axis Field: 
-                        <p-dropdown 
-                            [options]="reportFieldsDropDown" 
-                            inputId="S2" 
-                    [style]="{
-                                'float':'right',
-                                'font-size':'0.85em',
-                                'margin-bottom':'0',
-                                'margin-right':'5px',
-                                'margin-top':'0',
-                                'padding':'0',
-                                'width':'200px'
-                             }" 
-                            [pTooltip]="reportWidgetSetDropToolTip"
-                            filter="true"
-                            placeholder="Required Y axis field"
-                            formControlName="vegaYcolumn" 
+                        <div 
+                            class="panelLine"
                             >
-                        </p-dropdown>
-                    </div>  
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                Graph Width:
+                            </span>
+                            <input pInputText 
+                                style="
+                                            float: right;
+                                            margin-bottom: 3px;
+                                            margin-right: 5px;
+                                            margin-top: 1px;
+                                            padding: 0;
+                                            width: 200px;
+                                        " 
+                                type="text" 
+                                formControlName="graphWidth" 
+                                placeholder="(Optional)"
+                                pTooltip="Width of the graph, inside the container"
+                                />
+                        </div>
 
-                    <div >
-                        Fill Color:  
-                        <p-dropdown 
-                            [options]="chartColor" 
-                            inputId="S2" 
-                    [style]="{
-                                'float':'right',
-                                'font-size':'0.85em',
-                                'margin-bottom':'0',
-                                'margin-right':'5px',
-                                'margin-top':'0',
-                                'padding':'0',
-                                'width':'200px'
-                             }" 
-                            [pTooltip]=""
-                            filter="true"
-                            formControlName="vegaFillColor" 
-                            placeholder="(Optional) fill color"
+                        <div 
+                            class="panelLine"
                             >
-                        </p-dropdown>
-                    </div>  
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                Graph Padding:
+                            </span>
+                            <input pInputText 
+                                style="
+                                            float: right;
+                                            margin-bottom: 3px;
+                                            margin-right: 5px;
+                                            margin-top: 1px;
+                                            padding: 0;
+                                            width: 200px;
+                                        " 
+                                type="text" 
+                                formControlName="graphPadding" 
+                                placeholder="(Optional)"
+                                pTooltip="Padding of the graph, inside the container"
+                                />
+                        </div>
 
-                    <div >
-                        Hover Color:  
-                        <p-dropdown 
-                            [options]="chartColor" 
-                            inputId="S2" 
-                    [style]="{
-                                'float':'right',
-                                'font-size':'0.85em',
-                                'margin-bottom':'0',
-                                'margin-right':'5px',
-                                'margin-top':'0',
-                                'padding':'0',
-                                'width':'200px'
-                             }" 
-                            [pTooltip]="reportWidgetSetDropToolTip"
-                            filter="true"
-                            formControlName="vegaHoverColor" 
-                            placeholder="(Optional) hover color"
+                        <div 
+                            class="panelLine"
                             >
-                        </p-dropdown>
-                    </div>  
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                X Axis:
+                            </span>
+                            <p-dropdown 
+                                [options]="reportFieldsDropDown" 
+                                inputId="S2" 
+                                [style]="{
+                                            'float':'right',
+                                            'font-size':'0.85em',
+                                            'margin-bottom':'0',
+                                            'margin-right':'5px',
+                                            'margin-top':'0',
+                                            'padding':'0',
+                                            'width':'200px'
+                                        }" 
+                                [pTooltip]="reportWidgetSetDropToolTip"
+                                filter="true"
+                                formControlName="vegaXcolumn" 
+                                placeholder="Required X axis field"
+                                >
+                            </p-dropdown>
+                        </div>  
 
-                </div>       <!--END BarChar fields-->
+                        <div 
+                            class="panelLine"
+                            >
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                Y Axis:
+                            </span>
+                            <p-dropdown 
+                                [options]="reportFieldsDropDown" 
+                                inputId="S2" 
+                                [style]="{
+                                            'float':'right',
+                                            'font-size':'0.85em',
+                                            'margin-bottom':'0',
+                                            'margin-right':'5px',
+                                            'margin-top':'0',
+                                            'padding':'0',
+                                            'width':'200px'
+                                        }" 
+                                [pTooltip]="reportWidgetSetDropToolTip"
+                                filter="true"
+                                placeholder="Required Y axis field"
+                                formControlName="vegaYcolumn" 
+                                >
+                            </p-dropdown>
+                        </div>  
 
-                <!--PieChart-->
-                <div *ngSwitchCase="'PieChart'" >
-                    PieChart
-                </div>      <!--END PieChart-->
+                        <div 
+                            class="panelLine"
+                            >
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                Fill Color:
+                            </span>
+                            <p-dropdown 
+                                [options]="chartColor" 
+                                inputId="S2" 
+                                [style]="{
+                                            'float':'right',
+                                            'font-size':'0.85em',
+                                            'margin-bottom':'0',
+                                            'margin-right':'5px',
+                                            'margin-top':'0',
+                                            'padding':'0',
+                                            'width':'200px'
+                                        }" 
+                                [pTooltip]=""
+                                filter="true"
+                                formControlName="vegaFillColor" 
+                                placeholder="(Optional) fill color"
+                                >
+                            </p-dropdown>
+                        </div>  
 
-                <!--LineChart-->
-                <div *ngSwitchCase="'LineChart'">
-                    LineChart
-                </div>      <!--END LineChart-->
+                        <div 
+                            class="panelLine"
+                            >
+                            <span 
+                                class="panelLineLabel"
+                                >
+                                Hover Color:
+                            </span>
+                            <p-dropdown 
+                                [options]="chartColor" 
+                                inputId="S2" 
+                                [style]="{
+                                            'float':'right',
+                                            'font-size':'0.85em',
+                                            'margin-bottom':'0',
+                                            'margin-right':'5px',
+                                            'margin-top':'0',
+                                            'padding':'0',
+                                            'width':'200px'
+                                        }" 
+                                [pTooltip]="reportWidgetSetDropToolTip"
+                                filter="true"
+                                formControlName="vegaHoverColor" 
+                                placeholder="(Optional) hover color"
+                                >
+                            </p-dropdown>
+                        </div>  
 
-                <!--Default-->
-                <div *ngSwitchDefault           >
-                    No widget creation option selected
-                </div>      <!--END Default-->
+                    </div>       <!--END BarChar fields-->
 
-            </div>      <!--END ngSwitch-->
-        </div>      <!--END ngIF-->
+                    <!--PieChart-->
+                    <div *ngSwitchCase="'PieChart'" >
+                        PieChart
+                    </div>      <!--END PieChart-->
 
+                    <!--LineChart-->
+                    <div *ngSwitchCase="'LineChart'">
+                        LineChart
+                    </div>      <!--END LineChart-->
+
+                    <!--Default-->
+                    <div *ngSwitchDefault           >
+                        No widget creation option selected
+                    </div>      <!--END Default-->
+
+                </div>      <!--END ngSwitch-->
+            </div>      <!--END ngIF-->
+        </div>
     </form>     <!--END Form in this Panel-->
- 
-    <div >
+
+    <!--Buttun Area contains Cancel / Submit-->
+    <div
+        class="panelButtonArea"
+        >
         <button 
+            class="panelButtonWithLabel"
             pButton 
             type="button" 
             label="Cancel"
@@ -803,11 +895,8 @@
             (click)="onCancel()"
             >
         </button>
-        <!--<p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>-->
-    </div>
-    
-    <div >
         <button 
+            class="panelButtonWithLabel"
             pButton 
             type="submit" 
             label="Submit" 
@@ -816,5 +905,12 @@
             >
         </button>
     </div>
+
+    <!--Errors-->
+    <p 
+        class="iserror" 
+        *ngIf="formIsValid"> 
+        {{ errorMessageOnForm }}
+    </p>
 </div>
 
