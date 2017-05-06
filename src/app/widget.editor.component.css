@@ -1,29 +1,28 @@
-.IdentificationExplanations {
-        background-color: #e6e6e6;
-        color: #0d0d0d;
-        height: 210px;
-        padding: 5px;
-        position: absolute;
-        top: 80px;
-        right: 28px;
-        width: 232px;
+.widgetEditor {
+    background-color: white;
+    border-radius: 2px;
+    display: block;
+    font-size: 0.85em;
+    left: -4px;
+    margin: 0;
+    padding: 3px;
+    position: absolute; 
+    top: 2em;
+    width: 310px;
+    z-index: 999;
 }
 
-.GraphExplanations {
-        background-color: #e6e6e6;
-        color: #0d0d0d;
-        height: 210px;
-        padding: 5px;
-        position: absolute;
-        top: 80px;
-        right: 28px;
-        width: 232px;
+.dashboardHeading {
+    background-color: #669999;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+    padding: 4px 0 2px 4px;
 }
-
-form {
-    width: 900px;
+    
+.widgetEditorLabel {
+    font-size: 1em;
 }
-
 .iserror {
     color: #D8000C;
     background-color: #FFBABA;

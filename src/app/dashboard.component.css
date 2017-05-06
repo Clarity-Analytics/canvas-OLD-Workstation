@@ -268,3 +268,19 @@
             width: 80px;
     }                   
 /*END Dashboard Settings Form*/
+
+
+/*Widget Editor*/
+    .widgetEditor {
+        background-color:   white;
+        border: 1px solid   #669999;
+        border-radius: 4px;
+        display: block;
+        font-size:0.85em;
+        left: 10px;
+        margin: 4px;
+        padding: 0;
+        position: absolute;
+        width: 320px;
+    }
+/*END Widget Editor*/

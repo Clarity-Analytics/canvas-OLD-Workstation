@@ -51,7 +51,8 @@ export class WidgetBuilderComponent implements OnInit {
     selectedReportFieldX: string;               // Selected in DropDown
     selectedReportFieldY: string;               // Selected in DropDown
     selectedDashboardTab: any;                  // Selected in DropDown
-    selectedReport: any;                        // Selected in Report DropDown
+    selectedReport: any;                         // Selected in Report DropDown
+    selectedTabDescription: string;             // Description of the selected Tab
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
     
     reports: Report[];                          // List of Reports
@@ -69,6 +70,8 @@ export class WidgetBuilderComponent implements OnInit {
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
+    behaviourForm: FormGroup;
+    dataAndGraphForm: FormGroup;
     isLoadingForm: boolean = false;
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
@@ -89,7 +92,6 @@ export class WidgetBuilderComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
     ) {
     }
-    
 // For later: this.selectedBackgroundColorDashboard = {id: 1, name: "Navy", code: "#000080"}
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
@@ -97,36 +99,49 @@ export class WidgetBuilderComponent implements OnInit {
         // Define form group for first tab
         this.identificationForm = this.fb.group(
             {
-                'widgetTabName':                new FormControl(''),
-                'widgetTitle':                  new FormControl(''),
-                'widgetCode':                   new FormControl(''),
-                'widgetName':                   new FormControl(''),
-                'widgetDescription':            new FormControl(''),
-                'widgetDefaultExportFileType':  new FormControl(''),
-                'widgetHyperLinkTabNr':         new FormControl(''),
-                'widgetHyperLinkWidgetID':      new FormControl('', Validators.pattern('^[0-9]*$')),
-                'widgetRefreshMode':            new FormControl(''),
-                'widgetRefreshFrequency':       new FormControl('', Validators.pattern('^[0-9]*$')),
-                'widgetPassword':               new FormControl(''),
-                'NrwidgetLiked':                new FormControl(''),
-                'widgetReportName':             new FormControl(''),
-                'widgetReportParameters':       new FormControl(''),
-                'widgetShowLimitedRows':        new FormControl('', Validators.pattern('^[0-9]*$')),
-                'widgetAddRestRow':             new FormControl(''),
-                'widgetType':                   new FormControl(''),
-                'widgetReportWidgetSet':        new FormControl(''),
-                'graphHeight':                  new FormControl('', Validators.pattern('^[0-9]*$')),
-                'graphWidth':                   new FormControl('', Validators.pattern('^[0-9]*$')),
-                'graphPadding':                 new FormControl('', Validators.pattern('^[0-9]*$')),
-                'vegaHasSignals':               new FormControl(''),
-                'vegaXcolumn':                  new FormControl(''),
-                'vegaYcolumn':                  new FormControl(''),
-                'vegaFillColor':                new FormControl(''),
-                'vegaHoverColor':               new FormControl('')
+                'widgetTabName':     new FormControl(''),
+                'widgetTitle':       new FormControl(''),
+                'widgetCode':        new FormControl(''),
+                'widgetName':        new FormControl(''),
+                'widgetDescription': new FormControl('')
             }
         );
 
-this.identificationForm.controls['widgetType'].setValue({id: 1, name: "BarChart"})
+        // Define form group for second tab
+        this.behaviourForm = this.fb.group(
+            {
+                'widgetDefaultExportFileType': new FormControl(''),
+                'widgetHyperLinkTabNr':    new FormControl(''),
+                'widgetHyperLinkWidgetID': new FormControl('', Validators.pattern('^[0-9]*$')),
+                'widgetRefreshMode':       new FormControl(''),
+                'widgetRefreshFrequency':  new FormControl('', Validators.pattern('^[0-9]*$')),
+                'widgetPassword':          new FormControl(''),
+                'NrwidgetLiked':           new FormControl('')
+            }
+        );
+
+        // Define form group for third tab
+        this.dataAndGraphForm = this.fb.group(
+            {
+                'widgetReportName':       new FormControl(''),
+                'widgetReportParameters': new FormControl(''),
+                'widgetShowLimitedRows':  new FormControl('', Validators.pattern('^[0-9]*$')),
+                'widgetAddRestRow':       new FormControl(''),
+                'widgetType':             new FormControl(''),
+                'widgetReportWidgetSet':  new FormControl(''),
+                'graphHeight':            new FormControl('', Validators.pattern('^[0-9]*$')),
+                'graphWidth':             new FormControl('', Validators.pattern('^[0-9]*$')),
+                'graphPadding':           new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaHasSignals':         new FormControl(''),
+                'vegaXcolumn':            new FormControl(''),
+                'vegaYcolumn':            new FormControl(''),
+                'vegaFillColor':          new FormControl(''),
+                'vegaHoverColor':         new FormControl('')
+                
+            }
+        );
+
+this.dataAndGraphForm.controls['widgetType'].setValue({id: 1, name: "BarChart"})
 this.selectedWidgetCreation = {id: 1, name: "BarChart"}
 
 
@@ -152,8 +167,8 @@ this.selectedWidgetCreation = {id: 1, name: "BarChart"}
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
 
             this.identificationForm.reset();
-            this.identificationForm.reset();
-            this.identificationForm.reset();
+            this.behaviourForm.reset();
+            this.dataAndGraphForm.reset();
         }
 
         // Populate the popup form when it is opened, and in Edit mode only
@@ -187,56 +202,56 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
                         .setValue(this.widgetToEdit.properties.widgetDescription);
                 }
                 if (this.widgetToEdit.properties.widgetDefaultExportFileType) {
-                    this.identificationForm.controls['widgetDefaultExportFileType']
+                    this.behaviourForm.controls['widgetDefaultExportFileType']
                         .setValue(this.widgetToEdit.properties.widgetDefaultExportFileType);
                 }
                 if (this.widgetToEdit.properties.widgetHyperLinkTabNr) {
-                    this.identificationForm.controls['widgetHyperLinkTabNr']
+                    this.behaviourForm.controls['widgetHyperLinkTabNr']
                         .setValue(this.widgetToEdit.properties.widgetHyperLinkTabNr);
                 }
                 if (this.widgetToEdit.properties.widgetHyperLinkWidgetID) {
-                    this.identificationForm.controls['widgetHyperLinkWidgetID']
+                    this.behaviourForm.controls['widgetHyperLinkWidgetID']
                         .setValue(this.widgetToEdit.properties.widgetHyperLinkWidgetID);
                 }
                 if (this.widgetToEdit.properties.widgetPassword) {
-                    this.identificationForm.controls['widgetPassword']
+                    this.behaviourForm.controls['widgetPassword']
                         .setValue(this.widgetToEdit.properties.widgetPassword);
                 }
                 if (this.widgetToEdit.properties.widgetRefreshFrequency) {
-                    this.identificationForm.controls['widgetRefreshFrequency']
+                    this.behaviourForm.controls['widgetRefreshFrequency']
                         .setValue(this.widgetToEdit.properties.widgetRefreshFrequency);
                 }
                 if (this.widgetToEdit.properties.widgetRefreshMode) {
-                    this.identificationForm.controls['widgetRefreshMode']
+                    this.behaviourForm.controls['widgetRefreshMode']
                         .setValue(this.widgetToEdit.properties.widgetRefreshMode);
                 }
 
                 let LikedUsers: any = this.widgetToEdit.properties.widgetLiked.filter (
                     user => user.widgetLikedUserID != '')
-                this.identificationForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
+                this.behaviourForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
                 
                 this.widgetToEdit.properties.widgetRefreshMode = 
-                    this.identificationForm.controls['widgetRefreshMode'].value;
+                    this.behaviourForm.controls['widgetRefreshMode'].value;
 
                 if (this.widgetToEdit.properties.widgetReportName) {
-                    this.identificationForm.controls['widgetReportName']
+                    this.dataAndGraphForm.controls['widgetReportName']
                         .setValue("{id: 1, name: '" + 
                             this.widgetToEdit.properties.widgetReportName + "'}");
                 }
                 if (this.widgetToEdit.properties.widgetReportParameters) {
-                    this.identificationForm.controls['widgetReportParameters']
+                    this.dataAndGraphForm.controls['widgetReportParameters']
                         .setValue(this.widgetToEdit.properties.widgetReportParameters);
                 }
                 if (this.widgetToEdit.properties.widgetShowLimitedRows) {
-                    this.identificationForm.controls['widgetShowLimitedRows']
+                    this.dataAndGraphForm.controls['widgetShowLimitedRows']
                         .setValue(this.widgetToEdit.properties.widgetShowLimitedRows);
                 }
                 if (this.widgetToEdit.properties.widgetAddRestRow) {
-                    this.identificationForm.controls['widgetAddRestRow']
+                    this.dataAndGraphForm.controls['widgetAddRestRow']
                         .setValue(this.widgetToEdit.properties.widgetAddRestRow);
                 }
                 if (this.widgetToEdit.properties.widgetType) {
-                    this.identificationForm.controls['widgetType']
+                    this.dataAndGraphForm.controls['widgetType']
                         .setValue("{id: 1, name: '" + this.widgetToEdit.properties.widgetType + "'}");
                 }
 
@@ -305,15 +320,15 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
         }
 
         // Second tab validation
-        if (this.identificationForm.controls['widgetHyperLinkWidgetID'].touched  && 
-            !this.identificationForm.controls['widgetHyperLinkWidgetID'].valid) {
+        if (this.behaviourForm.controls['widgetHyperLinkWidgetID'].touched  && 
+            !this.behaviourForm.controls['widgetHyperLinkWidgetID'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Hyperlinked Widget ID must be numberic';
         }
-        if (this.identificationForm.controls['widgetRefreshFrequency'].touched  && 
-            !this.identificationForm.controls['widgetRefreshFrequency'].valid) {
+        if (this.behaviourForm.controls['widgetRefreshFrequency'].touched  && 
+            !this.behaviourForm.controls['widgetRefreshFrequency'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
@@ -321,8 +336,8 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
         }
         
         // Third tab validation
-        if (this.identificationForm.controls['widgetReportName'].value == ''  || 
-            this.identificationForm.controls['widgetReportName'].value == null) {
+        if (this.dataAndGraphForm.controls['widgetReportName'].value == ''  || 
+            this.dataAndGraphForm.controls['widgetReportName'].value == null) {
                 if (this.addEditMode == 'Add') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
@@ -330,8 +345,8 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
                         'The Widget Report Name (data source) is compulsory when Adding.';
                 }
         }
-        if (this.identificationForm.controls['widgetType'].value == ''  || 
-            this.identificationForm.controls['widgetType'].value == null) {
+        if (this.dataAndGraphForm.controls['widgetType'].value == ''  || 
+            this.dataAndGraphForm.controls['widgetType'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
@@ -342,10 +357,10 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
         // its the only solution for now
 
         // Widget Set field validation
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'WidgetSet') {
 
-            if (this.identificationForm.controls['widgetReportWidgetSet'].value == ''  || 
-                this.identificationForm.controls['widgetReportWidgetSet'].value == null) {
+            if (this.dataAndGraphForm.controls['widgetReportWidgetSet'].value == ''  || 
+                this.dataAndGraphForm.controls['widgetReportWidgetSet'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
@@ -354,45 +369,45 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
         }
 
         // BarChart field validation
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
-            if (this.identificationForm.controls['widgetShowLimitedRows'].touched  && 
-                !this.identificationForm.controls['widgetShowLimitedRows'].valid) {
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'BarChart') {
+            if (this.dataAndGraphForm.controls['widgetShowLimitedRows'].touched  && 
+                !this.dataAndGraphForm.controls['widgetShowLimitedRows'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The number of limited rows to show must be numberic';
             }        
-            if (this.identificationForm.controls['graphHeight'].value == ''  ||
-                !this.identificationForm.controls['graphHeight'].value == null) {
+            if (this.dataAndGraphForm.controls['graphHeight'].value == ''  ||
+                !this.dataAndGraphForm.controls['graphHeight'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The graph Height must be numberic';
             }
-            if (this.identificationForm.controls['graphWidth'].value == ''  ||
-                !this.identificationForm.controls['graphWidth'].value == null) {
+            if (this.dataAndGraphForm.controls['graphWidth'].value == ''  ||
+                !this.dataAndGraphForm.controls['graphWidth'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The graph Width must be numberic';
             }
-            if (this.identificationForm.controls['graphPadding'].value == ''  || 
-                !this.identificationForm.controls['graphPadding'].value == null) {
+            if (this.dataAndGraphForm.controls['graphPadding'].value == ''  || 
+                !this.dataAndGraphForm.controls['graphPadding'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The graph Padding must be numberic';
             }
 
-            if (this.identificationForm.controls['vegaXcolumn'].value == ''  || 
-                this.identificationForm.controls['vegaXcolumn'].value == null) {
+            if (this.dataAndGraphForm.controls['vegaXcolumn'].value == ''  || 
+                this.dataAndGraphForm.controls['vegaXcolumn'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The X axis field is compulsory.';
             }
-            if (this.identificationForm.controls['vegaYcolumn'].value == ''  || 
-                this.identificationForm.controls['vegaYcolumn'].value == null) {
+            if (this.dataAndGraphForm.controls['vegaYcolumn'].value == ''  || 
+                this.dataAndGraphForm.controls['vegaYcolumn'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
@@ -415,8 +430,8 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
 console.log(this.identificationForm.controls['widgetTabName'])
-console.log(this.identificationForm.controls['widgetReportName'])
-console.log(this.identificationForm.controls['widgetType'])
+console.log(this.dataAndGraphForm.controls['widgetReportName'])
+console.log(this.dataAndGraphForm.controls['widgetType'])
             // First, load from form what wass indeed provided on the form
             this.widgetToEdit.container.widgetTitle = 
                 this.identificationForm.controls['widgetTitle'].value;
@@ -427,29 +442,29 @@ console.log(this.identificationForm.controls['widgetType'])
             this.widgetToEdit.properties.widgetName = 
                 this.identificationForm.controls['widgetName'].value;
             this.widgetToEdit.properties.widgetAddRestRow = 
-                this.identificationForm.controls['widgetAddRestRow'].value;
+                this.dataAndGraphForm.controls['widgetAddRestRow'].value;
             this.widgetToEdit.properties.widgetDefaultExportFileType = 
-                this.identificationForm.controls['widgetDefaultExportFileType'].value;
+                this.behaviourForm.controls['widgetDefaultExportFileType'].value;
             this.widgetToEdit.properties.widgetDescription = 
                 this.identificationForm.controls['widgetDescription'].value;
             this.widgetToEdit.properties.widgetHyperLinkTabNr = 
-                this.identificationForm.controls['widgetHyperLinkTabNr'].value;
+                this.behaviourForm.controls['widgetHyperLinkTabNr'].value;
             this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
-                this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
+                this.behaviourForm.controls['widgetHyperLinkWidgetID'].value;
             this.widgetToEdit.properties.widgetPassword = 
-                this.identificationForm.controls['widgetPassword'].value;
+                this.behaviourForm.controls['widgetPassword'].value;
             this.widgetToEdit.properties.widgetRefreshFrequency = 
-                this.identificationForm.controls['widgetRefreshFrequency'].value;
+                this.behaviourForm.controls['widgetRefreshFrequency'].value;
             this.widgetToEdit.properties.widgetRefreshMode = 
-                this.identificationForm.controls['widgetRefreshMode'].value;
+                this.behaviourForm.controls['widgetRefreshMode'].value;
             this.widgetToEdit.properties.widgetReportName = 
-                this.identificationForm.controls['widgetReportName'].value;
+                this.dataAndGraphForm.controls['widgetReportName'].value;
             this.widgetToEdit.properties.widgetReportParameters = 
-                this.identificationForm.controls['widgetReportParameters'].value;
+                this.dataAndGraphForm.controls['widgetReportParameters'].value;
             this.widgetToEdit.properties.widgetShowLimitedRows = 
-                this.identificationForm.controls['widgetShowLimitedRows'].value;
+                this.dataAndGraphForm.controls['widgetShowLimitedRows'].value;
             this.widgetToEdit.properties.widgetType = 
-                this.identificationForm.controls['widgetType'].value;
+                this.dataAndGraphForm.controls['widgetType'].value;
 
             // Add x,y from where Icon was dropped
             this.widgetToEdit.container.left = this.widgetToEditX;
@@ -476,31 +491,31 @@ console.log(this.identificationForm.controls['widgetType'])
 
             if (!this.isLoadingForm) {
                 this.widgetToEdit.properties.widgetDefaultExportFileType = 
-                    this.identificationForm.controls['widgetDefaultExportFileType'].value;
+                    this.behaviourForm.controls['widgetDefaultExportFileType'].value;
                 this.widgetToEdit.properties.widgetHyperLinkTabNr = 
-                    this.identificationForm.controls['widgetHyperLinkTabNr'].value;
+                    this.behaviourForm.controls['widgetHyperLinkTabNr'].value;
                 this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
-                    this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
+                    this.behaviourForm.controls['widgetHyperLinkWidgetID'].value;
                 this.widgetToEdit.properties.widgetPassword = 
-                    this.identificationForm.controls['widgetPassword'].value;
+                    this.behaviourForm.controls['widgetPassword'].value;
                 this.widgetToEdit.properties.widgetRefreshFrequency = 
-                    this.identificationForm.controls['widgetRefreshFrequency'].value;
+                    this.behaviourForm.controls['widgetRefreshFrequency'].value;
                 this.widgetToEdit.properties.widgetRefreshMode = 
-                    this.identificationForm.controls['widgetRefreshMode'].value;
+                    this.behaviourForm.controls['widgetRefreshMode'].value;
                     
             }
 
             if (!this.isLoadingForm) {
                 this.widgetToEdit.properties.widgetReportName = 
-                    this.identificationForm.controls['widgetReportName'].value;
+                    this.dataAndGraphForm.controls['widgetReportName'].value;
                 this.widgetToEdit.properties.widgetReportParameters = 
-                    this.identificationForm.controls['widgetReportParameters'].value;
+                    this.dataAndGraphForm.controls['widgetReportParameters'].value;
                 this.widgetToEdit.properties.widgetShowLimitedRows = 
-                    this.identificationForm.controls['widgetShowLimitedRows'].value;
+                    this.dataAndGraphForm.controls['widgetShowLimitedRows'].value;
                 this.widgetToEdit.properties.widgetAddRestRow = 
-                    this.identificationForm.controls['widgetAddRestRow'].value;
+                    this.dataAndGraphForm.controls['widgetAddRestRow'].value;
                 this.widgetToEdit.properties.widgetType = 
-                    this.identificationForm.controls['widgetType'].value;
+                    this.dataAndGraphForm.controls['widgetType'].value;
             }
 
             this.globalVariableService.growlGlobalMessage.next({
@@ -511,20 +526,20 @@ console.log(this.identificationForm.controls['widgetType'])
         }
 
         // Amend the specs IF given, according to the Widget Sets
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'WidgetSet') {
             for (var i = 0; i < this.reportWidgetSets.length; i++) {
                 if (this.reportWidgetSets[i].widgetSetID == 
-                    this.identificationForm.controls['widgetReportWidgetSet'].value.id) {
+                    this.dataAndGraphForm.controls['widgetReportWidgetSet'].value.id) {
                         this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
                 }
             }
 
             // Then wack in the data from the Report
-            if (this.identificationForm.controls['widgetReportName'].value != '' &&
-                this.identificationForm.controls['widgetReportName'].value != undefined) {
+            if (this.dataAndGraphForm.controls['widgetReportName'].value != '' &&
+                this.dataAndGraphForm.controls['widgetReportName'].value != undefined) {
                 for (var i = 0; i < this.reports.length; i++) {
                     if (this.reports[i].repordID == 
-                        this.identificationForm.controls['widgetReportName'].value.id) {
+                        this.dataAndGraphForm.controls['widgetReportName'].value.id) {
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
                     }
@@ -532,10 +547,10 @@ console.log(this.identificationForm.controls['widgetType'])
             }
         }
  
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] == 'BarChart') {
             // // Get the corresponding widget template
             // this.widgetTemplates = this.eazlService.getWidgetTemplates (
-            //     this.identificationForm.controls['widgetType'].value['name']
+            //     this.dataAndGraphForm.controls['widgetType'].value['name']
             // );
 
             // Wack the whole Template spec into our working Widget
@@ -543,54 +558,54 @@ console.log(this.identificationForm.controls['widgetType'])
 
             // Now tweak according to the form
             this.widgetToEdit.graph.spec.height = 
-                this.identificationForm.controls['graphHeight'].value;
+                this.dataAndGraphForm.controls['graphHeight'].value;
             this.widgetToEdit.graph.spec.width = 
-                this.identificationForm.controls['graphWidth'].value;
+                this.dataAndGraphForm.controls['graphWidth'].value;
             this.widgetToEdit.graph.spec.padding = 
-                this.identificationForm.controls['graphPadding'].value;                                        
+                this.dataAndGraphForm.controls['graphPadding'].value;                                        
 
-            if (this.identificationForm.controls['vegaXcolumn'].value.name != '' &&
-                this.identificationForm.controls['vegaXcolumn'].value.name != undefined) {
+            if (this.dataAndGraphForm.controls['vegaXcolumn'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaXcolumn'].value.name != undefined) {
                 this.widgetToEdit.graph.spec.scales[0].domain.field =  
-                    this.identificationForm.controls['vegaXcolumn'].value.name;
+                    this.dataAndGraphForm.controls['vegaXcolumn'].value.name;
 
                 this.widgetToEdit.graph.spec.marks[0].encode.enter.x.field =
-                    this.identificationForm.controls['vegaXcolumn'].value.name;
+                    this.dataAndGraphForm.controls['vegaXcolumn'].value.name;
 
                 this.widgetToEdit.graph.spec.marks[1].encode.update.x.signal =
-                    'tooltip.' + this.identificationForm.controls['vegaXcolumn'].value.name;
+                    'tooltip.' + this.dataAndGraphForm.controls['vegaXcolumn'].value.name;
             }
 
-            if (this.identificationForm.controls['vegaYcolumn'].value.name != '' &&
-                this.identificationForm.controls['vegaYcolumn'].value.name != undefined) {
+            if (this.dataAndGraphForm.controls['vegaYcolumn'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaYcolumn'].value.name != undefined) {
                 this.widgetToEdit.graph.spec.scales[1].domain.field =  
-                    this.identificationForm.controls['vegaYcolumn'].value.name;
+                    this.dataAndGraphForm.controls['vegaYcolumn'].value.name;
 
                 this.widgetToEdit.graph.spec.marks[0].encode.enter.y.field =
-                    this.identificationForm.controls['vegaYcolumn'].value.name;
+                    this.dataAndGraphForm.controls['vegaYcolumn'].value.name;
 
                 this.widgetToEdit.graph.spec.marks[1].encode.update.y.signal =
-                    'tooltip.' + this.identificationForm.controls['vegaYcolumn'].value.name;
+                    'tooltip.' + this.dataAndGraphForm.controls['vegaYcolumn'].value.name;
             }
 
-            if (this.identificationForm.controls['vegaFillColor'].value.name != '' &&
-                this.identificationForm.controls['vegaFillColor'].value.name != undefined) {
+            if (this.dataAndGraphForm.controls['vegaFillColor'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaFillColor'].value.name != undefined) {
 
                 this.widgetToEdit.graph.spec.marks[0].encode.update.fill.value =
-                    this.identificationForm.controls['vegaFillColor'].value.name;
+                    this.dataAndGraphForm.controls['vegaFillColor'].value.name;
             }
-            if (this.identificationForm.controls['vegaHoverColor'].value.name != '' &&
-                this.identificationForm.controls['vegaHoverColor'].value.name != undefined) {
+            if (this.dataAndGraphForm.controls['vegaHoverColor'].value.name != '' &&
+                this.dataAndGraphForm.controls['vegaHoverColor'].value.name != undefined) {
                 this.widgetToEdit.graph.spec.marks[0].encode.hover.fill.value =
-                    this.identificationForm.controls['vegaHoverColor'].value.name;
+                    this.dataAndGraphForm.controls['vegaHoverColor'].value.name;
             }
 
             // Then wack in the data from the Report
-            if (this.identificationForm.controls['widgetReportName'].value != '' &&
-                this.identificationForm.controls['widgetReportName'].value != undefined) {
+            if (this.dataAndGraphForm.controls['widgetReportName'].value != '' &&
+                this.dataAndGraphForm.controls['widgetReportName'].value != undefined) {
                 for (var i = 0; i < this.reports.length; i++) {
                     if (this.reports[i].repordID == 
-                        this.identificationForm.controls['widgetReportName'].value.id) {
+                        this.dataAndGraphForm.controls['widgetReportName'].value.id) {
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
                     }
@@ -608,6 +623,9 @@ console.log(this.identificationForm.controls['widgetType'])
     loadReportRelatedInfo(event) {
         // Load the WidgetSets for the selected Report
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportRelatedInfo', '@Start');
+
+        // Show description details
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeTabDropDown', '@Start');
 
         // Get ReportFields
         this.reportFieldsDropDown = [];
@@ -693,6 +711,18 @@ startWidgetType() {return 'BarChart';}
 
     }
 
+    changeTabDropDown(event) {
+        // Sets the description as the user selects a new Tab in the DropDown
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeTabDropDown', '@Start');
+
+        if (this.dashboardTabs.length > 0) {
+            this.selectedTabDescription = this.dashboardTabs.filter( 
+                t => t.widgetTabName == event.value.name)[0].widgetTabDescription;
+        } else {
+            this.selectedTabDescription = '';
+        }
+    }
+
     changeWidgetSet(event) {
         // Sets the description as the user selects a new WidgetSet in the DropDown
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeWidgetSet', '@Start');
@@ -710,18 +740,18 @@ startWidgetType() {return 'BarChart';}
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadWidgetTemplateFields', '@Start');
 
         // Only get this for non-WidgetSets, ie WidgetTemplates
-        if (this.identificationForm.controls['widgetType'].value['name'] != 'WidgetSet') {
+        if (this.dataAndGraphForm.controls['widgetType'].value['name'] != 'WidgetSet') {
             // Get the corresponding widget template
             this.widgetTemplates = this.eazlService.getWidgetTemplates (
-                this.identificationForm.controls['widgetType'].value['name']
+                this.dataAndGraphForm.controls['widgetType'].value['name']
             );
 
             // Basic stuffies
-            this.identificationForm.controls['graphHeight']
+            this.dataAndGraphForm.controls['graphHeight']
                 .setValue(this.widgetTemplates.vegaParameters.graphHeight);
-            this.identificationForm.controls['graphWidth']
+            this.dataAndGraphForm.controls['graphWidth']
                 .setValue(this.widgetTemplates.vegaParameters.graphWidth);
-            this.identificationForm.controls['graphPadding']
+            this.dataAndGraphForm.controls['graphPadding']
                 .setValue(this.widgetTemplates.vegaParameters.graphPadding);
         }
     }

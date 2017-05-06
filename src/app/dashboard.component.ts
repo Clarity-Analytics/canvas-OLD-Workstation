@@ -536,7 +536,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     editWidget (idWidget: number) {
-        // Show the Comment popup window
+        // Show the Widget Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'editWidget', '@Start');
 
         // Respect the Lock

@@ -5,532 +5,383 @@
 </p>
 
 
-<p-tabView
+<div
+    class="widgetEditor"
+    *ngIf="displayEditWidget"
     >
-    <p-tabPanel 
-        header="Identification" 
-        [selected]="true"
+
+    <div
+        class="dashboardHeading"
         >
-        <div 
-            class="IdentificationExplanations"
-            >
-        {{ selectedTabDescription }}   
+        Widget Editor
+    </div>
+
+    <form 
+        [formGroup]="identificationForm" 
+        >
+
+        <!--Tab Name-->
+        <div >
+            <span class="widgetEditorLabel">TabName *:</span>
+            <p-dropdown 
+                [options]="dashboardTabsDropDown" 
+                [(ngModel)]="selectedDashboardTab"
+                [style]="{
+                            'float':'right',
+                            'margin-right':'5px',
+                            'width':'200px'
+                         }" 
+                placeholder="Required"
+                formControlName="widgetTabName" 
+                [pTooltip]="dashboardsTabsTooltip"
+                filter="true"
+                (onChange)="changeTabDropDown($event)"
+                >
+            </p-dropdown>
         </div>
 
-        <form 
-            [formGroup]="identificationForm" 
-            >
-            <div 
-                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
-                style="margin: 10px 0px"
-                >
+        <!--Title-->
+        <div >
+            Title *: 
+            <input pInputText 
+                   [style]="{
+                               'float':'right',
+                               'margin-right':'5px',
+                               'width':'200px'
+                           }" 
+                    type="text" 
+                    formControlName="widgetTitle" 
+                    placeholder="Required"
+                    pTooltip="Short Title to be displayed at the top of the container"
+                    />
+        </div>
 
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        TabName *: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <!--<input pInputText 
-                               type="text" 
-                               formControlName="widgetTabName" 
-                               placeholder="Required"
-                               pTooltip="Tab Name where Widget lives"
-                               autofocus
-                               />-->
-                        <p-dropdown 
-                            [options]="dashboardTabsDropDown" 
-                            [(ngModel)]="selectedDashboardTab"
-                            [style]="{
-                                        'width':'100%'
-                                    }" 
-                            placeholder="Required"
-                            formControlName="widgetTabName" 
-                            [pTooltip]="dashboardsTabsTooltip"
-                            filter="true"
-                            (onChange)="changeTabDropDown($event)"
-                            >
-                        </p-dropdown>
+        <!--Code-->
+        <div >
+            Code *: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetCode" 
+                    placeholder="Required"
+                    pTooltip="Short Widget Code"
+                    />
+        </div>
 
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Title *: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetTitle" 
-                               placeholder="Required"
-                               pTooltip="Short Title to be displayed at the top of the container"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Code *: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetCode" 
-                               placeholder="Required"
-                               pTooltip="Short Widget Code"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Name *: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetName" 
-                               placeholder="Required"
-                               pTooltip="Descriptive Name of the Widget"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Description *: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetDescription" 
-                               placeholder="Required"
-                               pTooltip="Detailed description of the Widget"
-                               />
-                    </div>
-                </div>
-
-
-            </div>   
-        </form> 
-    </p-tabPanel>
-    
-    <p-tabPanel 
-        header="Behaviour (optional)" 
-        [selected]="false"
-        >
-        
-        <form 
-            [formGroup]="behaviourForm" 
-            (ngSubmit)="onSubmit(behaviourForm.value)"
-            >
-            <div 
-                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
-                style="margin: 10px 0px">
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Deflt. Exp Type: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetDefaultExportFileType" 
-                               placeholder="(optional)"
-                               pTooltip="Default File Type on Export"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Hyperlink TabNr: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetHyperLinkTabNr" 
-                               placeholder="(optional)"
-                               pTooltip="Tab Nr to which this Widget hyperlinks"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Hyperlink Widget ID: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetHyperLinkWidgetID" 
-                               placeholder="(optional)"
-                               pTooltip="Widget ID to which this Widget hyperlinks"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Refresh Mode: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetRefreshMode" 
-                               placeholder="(optional)"
-                               pTooltip="Refresh Mode of Widget: Manual, OnOpen, Repeatedly"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Refresh Frequency: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetRefreshFrequency" 
-                               placeholder="(optional)"
-                               pTooltip="Refresh Frequency (if Refresh Mode is Repeatedly)"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Password: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetPassword" 
-                               placeholder="(optional)"
-                               pTooltip="Password to show Widget content"
-                               />
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Nr Liked: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               readonly
-                               formControlName="NrwidgetLiked" 
-                               placeholder="(optional)"
-                               pTooltip="Nr of users that Liked this Widget"
-                               />
-                    </div>
-                </div>
-
-            </div>
-        </form> 
-    </p-tabPanel>
-
-    <p-tabPanel 
-        header="Data & Graph" 
-        [selected]="false"
-        >
+        <!--Name-->
+        <div >
+            Name *: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetName" 
+                    placeholder="Required"
+                    pTooltip="Descriptive Name of the Widget"
+                    />
+        </div>
 
         <!--Description-->
-        <div 
-            class="GraphExplanations"
-            >
-        {{ selectedWidgetSetDescription }}   
-        </div>      <!--END Description-->
+        <div >
+            Description *: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetDescription" 
+                    placeholder="Required"
+                    pTooltip="Detailed description of the Widget"
+                    />
+        </div>
 
-        <!--Form in this Panel-->
-        <form 
-            [formGroup]="dataAndGraphForm" 
-            (ngSubmit)="onSubmit(dataAndGraphForm.value)"
-            >
-            <!--Div Container for form-->
-            <div 
-                class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
-                style="margin: 10px 0px"
+        <!--Default Export File Type-->
+        <div >
+            Deflt. Exp Type: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetDefaultExportFileType" 
+                    placeholder="(optional)"
+                    pTooltip="Default File Type on Export"
+                    />
+        </div>
+
+        <!--Hyperlink Tab Number-->
+        <div >
+            Hyperlink TabNr: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetHyperLinkTabNr" 
+                    placeholder="(optional)"
+                    pTooltip="Tab Nr to which this Widget hyperlinks"
+                    />
+        </div>
+
+        <!--Hyperlink Widget ID-->
+        <div >
+            Hyperlink Widget ID: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetHyperLinkWidgetID" 
+                    placeholder="(optional)"
+                    pTooltip="Widget ID to which this Widget hyperlinks"
+                    />
+        </div>
+
+        <!--Refresh Mode-->
+        <div >
+            Refresh Mode: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetRefreshMode" 
+                    placeholder="(optional)"
+                    pTooltip="Refresh Mode of Widget: Manual, OnOpen, Repeatedly"
+                    />
+        </div>
+
+        <!--Refresh Frequency-->
+        <div >
+            Refresh Frequency: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetRefreshFrequency" 
+                    placeholder="(optional)"
+                    pTooltip="Refresh Frequency (if Refresh Mode is Repeatedly)"
+                    />
+        </div>
+
+        <!--Password-->
+        <div >
+            Password: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetPassword" 
+                    placeholder="(optional)"
+                    pTooltip="Password to show Widget content"
+                    />
+        </div>
+
+        <!--Number Liked-->
+        <div >
+            Nr Liked: 
+            <input pInputText 
+                    type="text" 
+                    readonly
+                    formControlName="NrwidgetLiked" 
+                    placeholder="(optional)"
+                    pTooltip="Nr of users that Liked this Widget"
+                    />
+        </div>
+
+        <!--Report selection-->
+        <div >
+            ReportName *: 
+            <p-dropdown 
+                [options]="reportsDropDown" 
+                [(ngModel)]="selectedReport"
+                [style]="{
+                            'width':'100%'
+                        }" 
+                placeholder="Select a Report"
+                formControlName="widgetReportName" 
+                [pTooltip]="reportsDropDownTooltip"
+                filter="true"
+                (onChange)="loadReportRelatedInfo($event)"
                 >
+            </p-dropdown>
+        </div>      <!--END Report selection-->
 
-                <!--Report selection-->
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        ReportName *: 
-                    </div>
-                    <div class="ui-grid-col-6">
+        <!--Report Paramters (optional)-->
+        <div >
+            Rpt Parameters: 
+            <input pInputText 
+                    type="text" 
+                    formControlName="widgetReportParameters" 
+                    placeholder="(Optional)"
+                    pTooltip="Optional Report Parameters"
+                    />
+        </div>      <!--END Report Paramters (optional)-->
+
+        <!--Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
+        <div >
+            Limited Rows: 
+            <input pInputText 
+                type="text" 
+                formControlName="widgetShowLimitedRows" 
+                placeholder="(Optional)"
+                pTooltip="Indicate the (limited) number of rows to show from the data"
+                />
+        </div>      <!--END Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
+
+        <!--Indicate if extra row must be added with aggregate of the Rest -->
+        <div >
+            Add Rest Row: 
+            <input pInputText 
+                type="text" 
+                formControlName="widgetAddRestRow" 
+                placeholder="(Optional)"
+                pTooltip="Check to add a Rest Row (aggregate of the rows above the Limited Rows)"
+                />
+        </div>      <!--END Indicate if extra row must be added with aggregate of the Rest -->
+
+        <!--DropDown to select method of creation, ie from WidgetSet-->
+        <div >
+            Creation *: 
+            <p-dropdown 
+                [options]="widgetCreationDropDown" 
+                [(ngModel)]="selectedWidgetCreation"
+                [style]="{
+                            'width':'100%'
+                        }" 
+                placeholder="Required"
+                formControlName="widgetType" 
+                pTooltip=""
+                inputId="label"
+                dataKey="BarChart"
+                (onChange)="loadWidgetTemplateFields($event)"
+                >
+            </p-dropdown>
+        </div>      <!--END DropDown to select method of creation, ie from WidgetSet-->
+
+        <!--The Rest of the DOM depends on what was selected above-->
+        <div *ngIf="selectedWidgetCreation">
+
+            <!--ngIf since selectedWidgetCreation undefined at start-->
+            <div [ngSwitch]="this.selectedWidgetCreation['name']">
+
+                <!--WidgetSets-->
+                <div *ngSwitchCase="'WidgetSet'">
+                    <div >
+                        Rpt Widget Set *: 
                         <p-dropdown 
-                            [options]="reportsDropDown" 
-                            [(ngModel)]="selectedReport"
+                            [options]="reportWidgetSetsDropDown" 
+                            inputId="S2" 
                             [style]="{
                                         'width':'100%'
                                     }" 
-                            placeholder="Select a Report"
-                            formControlName="widgetReportName" 
-                            [pTooltip]="reportsDropDownTooltip"
+                            [pTooltip]="reportWidgetSetDropToolTip"
                             filter="true"
-                            (onChange)="loadReportRelatedInfo($event)"
+                            formControlName="widgetReportWidgetSet" 
+                            (onChange)="changeWidgetSet($event)"
                             >
                         </p-dropdown>
-                    </div>
-                </div>      <!--END Report selection-->
+                    </div>  
+                </div>        <!--END WidgetSets-->
 
-                <!--Report Paramters (optional)-->
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Rpt Parameters: 
-                    </div>
-                    <div class="ui-grid-col-6">
-                        <input pInputText 
-                               type="text" 
-                               formControlName="widgetReportParameters" 
-                               placeholder="(Optional)"
-                               pTooltip="Optional Report Parameters"
-                               />
-                    </div>
-                </div>      <!--END Report Paramters (optional)-->
+                <!--BarChar fields-->
+                <div *ngSwitchCase="'BarChart'" >
 
-                <!--Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Limited Rows: 
-                    </div>
-                    <div class="ui-grid-col-6">
+                    <div >
+                        Graph Height: 
                         <input pInputText 
                             type="text" 
-                            formControlName="widgetShowLimitedRows" 
+                            formControlName="graphHeight" 
                             placeholder="(Optional)"
-                            pTooltip="Indicate the (limited) number of rows to show from the data"
+                            pTooltip="Height of the graph, inside the container"
                             />
                     </div>
-                </div>      <!--END Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
 
-                <!--Indicate if extra row must be added with aggregate of the Rest -->
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Add Rest Row: 
-                    </div>
-                    <div class="ui-grid-col-6">
+                    <div >
+                        Graph Width: 
                         <input pInputText 
                             type="text" 
-                            formControlName="widgetAddRestRow" 
+                            formControlName="graphWidth" 
                             placeholder="(Optional)"
-                            pTooltip="Check to add a Rest Row (aggregate of the rows above the Limited Rows)"
+                            pTooltip="Width of the graph, inside the container"
                             />
                     </div>
-                </div>      <!--END Indicate if extra row must be added with aggregate of the Rest -->
 
-                <!--DropDown to select method of creation, ie from WidgetSet-->
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-3">
-                        Creation *: 
+                    <div >
+                        Graph Padding: 
+                        <input pInputText 
+                            type="text" 
+                            formControlName="graphPadding" 
+                            placeholder="(Optional)"
+                            pTooltip="Padding of the graph, inside the container"
+                            />
                     </div>
-                    <div class="ui-grid-col-6">
 
+                    <div >
+                        X axis Field: 
                         <p-dropdown 
-                            [options]="widgetCreationDropDown" 
-                            [(ngModel)]="selectedWidgetCreation"
+                            [options]="reportFieldsDropDown" 
+                            inputId="S2" 
                             [style]="{
                                         'width':'100%'
                                     }" 
-                            placeholder="Required"
-                            formControlName="widgetType" 
-                            pTooltip=""
-                            inputId="label"
-                            dataKey="BarChart"
-                            (onChange)="loadWidgetTemplateFields($event)"
+                            [pTooltip]="reportWidgetSetDropToolTip"
+                            filter="true"
+                            formControlName="vegaXcolumn" 
+                            placeholder="Required X axis field"
                             >
                         </p-dropdown>
+                    </div>  
 
-                    </div>
-                </div>      <!--END DropDown to select method of creation, ie from WidgetSet-->
+                    <div >
+                        Y axis Field: 
+                        <p-dropdown 
+                            [options]="reportFieldsDropDown" 
+                            inputId="S2" 
+                            [style]="{
+                                        'width':'100%'
+                                    }" 
+                            [pTooltip]="reportWidgetSetDropToolTip"
+                            filter="true"
+                            placeholder="Required Y axis field"
+                            formControlName="vegaYcolumn" 
+                            >
+                        </p-dropdown>
+                    </div>  
 
-                <!--The Rest of the DOM depends on what was selected above-->
-                <div *ngIf="selectedWidgetCreation">
+                    <div >
+                        Fill Color:  
+                        <p-dropdown 
+                            [options]="chartColor" 
+                            inputId="S2" 
+                            [style]="{
+                                        'width':'100%'
+                                    }" 
+                            [pTooltip]=""
+                            filter="true"
+                            formControlName="vegaFillColor" 
+                            placeholder="(Optional) fill color"
+                            >
+                        </p-dropdown>
+                    </div>  
 
-                    <!--ngIf since selectedWidgetCreation undefined at start-->
-                    <div [ngSwitch]="this.selectedWidgetCreation['name']">
+                    <div >
+                        Hover Color:  
+                        <p-dropdown 
+                            [options]="chartColor" 
+                            inputId="S2" 
+                            [style]="{
+                                        'width':'100%'
+                                    }" 
+                            [pTooltip]="reportWidgetSetDropToolTip"
+                            filter="true"
+                            formControlName="vegaHoverColor" 
+                            placeholder="(Optional) hover color"
+                            >
+                        </p-dropdown>
+                    </div>  
 
-                        <!--WidgetSets-->
-                        <div *ngSwitchCase="'WidgetSet'">
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    Rpt Widget Set *: 
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <p-dropdown 
-                                        [options]="reportWidgetSetsDropDown" 
-                                        inputId="S2" 
-                                        [style]="{
-                                                    'width':'100%'
-                                                }" 
-                                        [pTooltip]="reportWidgetSetDropToolTip"
-                                        filter="true"
-                                        formControlName="widgetReportWidgetSet" 
-                                        (onChange)="changeWidgetSet($event)"
-                                        >
-                                    </p-dropdown>
-                                </div>
-                            </div>  
-                        </div>        <!--END WidgetSets-->
+                </div>       <!--END BarChar fields-->
 
-                        <!--BarChar fields-->
-                        <div *ngSwitchCase="'BarChart'" >
+                <!--PieChart-->
+                <div *ngSwitchCase="'PieChart'" >
+                    PieChart
+                </div>      <!--END PieChart-->
 
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    Graph Height: 
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <input pInputText 
-                                        type="text" 
-                                        formControlName="graphHeight" 
-                                        placeholder="(Optional)"
-                                        pTooltip="Height of the graph, inside the container"
-                                        />
-                                </div>
-                            </div>
+                <!--LineChart-->
+                <div *ngSwitchCase="'LineChart'">
+                    LineChart
+                </div>      <!--END LineChart-->
 
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    Graph Width: 
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <input pInputText 
-                                        type="text" 
-                                        formControlName="graphWidth" 
-                                        placeholder="(Optional)"
-                                        pTooltip="Width of the graph, inside the container"
-                                        />
-                                </div>
-                            </div>
+                <!--Default-->
+                <div *ngSwitchDefault           >
+                    No widget creation option selected
+                </div>      <!--END Default-->
 
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    Graph Padding: 
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <input pInputText 
-                                        type="text" 
-                                        formControlName="graphPadding" 
-                                        placeholder="(Optional)"
-                                        pTooltip="Padding of the graph, inside the container"
-                                        />
-                                </div>
-                            </div>
+            </div>      <!--END ngSwitch-->
+        </div>      <!--END ngIF-->
 
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    X axis Field: 
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <p-dropdown 
-                                        [options]="reportFieldsDropDown" 
-                                        inputId="S2" 
-                                        [style]="{
-                                                    'width':'100%'
-                                                }" 
-                                        [pTooltip]="reportWidgetSetDropToolTip"
-                                        filter="true"
-                                        formControlName="vegaXcolumn" 
-                                        placeholder="Required X axis field"
-                                        >
-                                    </p-dropdown>
-                                </div>
-                            </div>  
-
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    Y axis Field: 
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <p-dropdown 
-                                        [options]="reportFieldsDropDown" 
-                                        inputId="S2" 
-                                        [style]="{
-                                                    'width':'100%'
-                                                }" 
-                                        [pTooltip]="reportWidgetSetDropToolTip"
-                                        filter="true"
-                                        placeholder="Required Y axis field"
-                                        formControlName="vegaYcolumn" 
-                                        >
-                                    </p-dropdown>
-                                </div>
-                            </div>  
-   
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    Fill Color:  
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <p-dropdown 
-                                        [options]="chartColor" 
-                                        inputId="S2" 
-                                        [style]="{
-                                                    'width':'100%'
-                                                }" 
-                                        [pTooltip]=""
-                                        filter="true"
-                                        formControlName="vegaFillColor" 
-                                        placeholder="(Optional) fill color"
-                                        >
-                                    </p-dropdown>
-                                </div>
-                            </div>  
-
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-3">
-                                    Hover Color:  
-                                </div>
-                                <div class="ui-grid-col-6">
-                                    <p-dropdown 
-                                        [options]="chartColor" 
-                                        inputId="S2" 
-                                        [style]="{
-                                                    'width':'100%'
-                                                }" 
-                                        [pTooltip]="reportWidgetSetDropToolTip"
-                                        filter="true"
-                                        formControlName="vegaHoverColor" 
-                                        placeholder="(Optional) hover color"
-                                        >
-                                    </p-dropdown>
-                                </div>
-                            </div>  
-
-                        </div>       <!--END BarChar fields-->
-
-                        <!--PieChart-->
-                        <div *ngSwitchCase="'PieChart'" >
-                            PieChart
-                        </div>      <!--END PieChart-->
-
-                        <!--LineChart-->
-                        <div *ngSwitchCase="'LineChart'">
-                            LineChart
-                        </div>      <!--END LineChart-->
-
-                        <!--Default-->
-                        <div *ngSwitchDefault           >
-                            No widget creation option selected
-                        </div>      <!--END Default-->
-
-                    </div>      <!--END ngSwitch-->
-                </div>      <!--END ngIF-->
-            </div>      <!--END Div Container for form-->
-        </form>     <!--END Form in this Panel-->
-
-    </p-tabPanel>
-
-</p-tabView>
-
-<!--<div *ngIf="selecteduser">   {{ selecteduser.firstName }}  ....  </div>-->
-
-<p-toolbar>
+    </form>     <!--END Form in this Panel-->
  
-    <div class="ui-toolbar-group-left">
+    <div >
         <button 
             pButton 
             type="button" 
@@ -542,7 +393,7 @@
         <!--<p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>-->
     </div>
     
-    <div class="ui-toolbar-group-right">
+    <div >
         <button 
             pButton 
             type="submit" 
@@ -552,5 +403,5 @@
             >
         </button>
     </div>
-</p-toolbar>
+</div>
 

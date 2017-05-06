@@ -971,6 +971,26 @@
 </div>             <!--END Palette Container-->
 
 
+<!--Widget Editor-->
+<div
+    class="widgetEditor"
+    >
+    <widget-editor 
+        [selectedDashboardID]="selectedDashboardID" 
+        [selectedDashboardTabName]="selectedDashboardTabName"
+        [widgetToEditX]="widgetToEditX"
+        [widgetToEditY]="widgetToEditY"
+        [widgetToEdit]="widgetToEdit"
+        (formSubmit)="handleWidgetBuilderFormSubmit($event)" 
+        [addEditMode]="addEditModeWidgetEditor"
+        [widgetIDtoEdit]="widgetIDtoEdit"
+        [displayEditWidget]="displayEditWidget"
+        >
+        Loading Widget Builder ...
+    </widget-editor>
+</div>
+
+
 <!--Widgets on the Canvas-->
 <div 
     class="widgetContainer"
@@ -1079,6 +1099,7 @@
             (click)="clickWidgetLockToggle(w.properties.widgetID)"
             >
         </button> 
+
         <!--Widget UNLocked -->
         <button
             *ngIf="!w.properties.widgetIsLocked  &&  showContainerHeader"
@@ -1129,7 +1150,7 @@
             tooltipEvent="hover"
             (click)="showWidgetComment(w.properties.widgetID)"
             >
-        </button>         
+        </button>     
         <button
             *ngIf="!w.properties.widgetComments  &&  showContainerHeader"
             [style.color]="isDark ? 'black' : 'lightgray'"
@@ -1212,7 +1233,7 @@
 
 
     <!--Form to edit Widget -->
-    <p-dialog header="Widget Editor" 
+    <!--<p-dialog header="Widget Editor" 
         [(visible)]="displayEditWidget" 
         modal="modal" 
         resizable="true"
@@ -1233,7 +1254,7 @@
             Loading Widget Builder ...
         </widget-editor>
         
-    </p-dialog>
+    </p-dialog>-->
 
     <!--Form to show / add Widget Comments-->
     <p-dialog header="Comments" 
