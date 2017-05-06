@@ -3112,6 +3112,10 @@ export class EazlService {
         )[0];
 
         // Replace the BASIC Template parameters.  Note: not all types have all parameters
+        if (workingTemplate == undefined) {
+            return undefined;
+        }
+
         if (workingTemplate.vegaParameters.graphWidth) {
             workingTemplate.vegaSpec.width = workingTemplate.vegaParameters.graphWidth;
         }

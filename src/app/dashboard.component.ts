@@ -1848,7 +1848,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 );
 
                 // Show the Graphs
-                // var view = new vg.View(vg.parse(spec));
                 var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
                 view.renderer('svg')
                     .initialize( this.childrenWidgets.toArray()[i].nativeElement)

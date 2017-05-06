@@ -26,6 +26,9 @@ import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 
+// Vega stuffies
+let vg = require('vega/index.js');
+
 @Component({
     selector:    'widget-editor',
     templateUrl: 'widget.editor.component.html',
@@ -53,10 +56,11 @@ export class WidgetBuilderComponent implements OnInit {
     selectedDashboardTab: any;                  // Selected in DropDown
     selectedReport: any;                        // Selected in Report DropDown
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
-    
+    widgetToEditSpec: string;                   // Vega spect for current Widget
+
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
-    widgetTemplates: WidgetTemplate;            // List of Widget Templates
+    widgetTemplate: WidgetTemplate;             // List of Widget Templates
     reportWidgetSets: ReportWidgetSet[];        // List of Report WidgetSets
     reportFields: string[];                     // List of Report Fields
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
@@ -65,7 +69,9 @@ export class WidgetBuilderComponent implements OnInit {
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
-    selectedWidgetCreation: any;         // Selected option to create Widget
+    selectedWidgetCreation: any;                // Selected option to create Widget
+    isVegaSpecBad: boolean = false;             // True if Vega spec is bad
+    isNotCustomSpec: boolean = false;           // True if a Custom widget (thus custom Spec)
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
@@ -87,7 +93,7 @@ export class WidgetBuilderComponent implements OnInit {
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-    ) {
+    ) { 
     }
     
 // For later: this.selectedBackgroundColorDashboard = {id: 1, name: "Navy", code: "#000080"}
@@ -138,6 +144,11 @@ this.selectedWidgetCreation = {id: 1, name: "BarChart"}
     ngOnChanges() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
+
+        // Set spec as string for ngModel in View
+        if (this.widgetToEdit != undefined) {
+            this.widgetToEditSpec = JSON.stringify(this.widgetToEdit.graph.spec);
+        }
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
             'Mode (Add / Edit) is: ' + this.addEditMode);
@@ -539,7 +550,7 @@ console.log(this.identificationForm.controls['widgetType'])
             // );
 
             // Wack the whole Template spec into our working Widget
-            this.widgetToEdit.graph.spec = this.widgetTemplates.vegaSpec;
+            this.widgetToEdit.graph.spec = this.widgetTemplate.vegaSpec;
 
             // Now tweak according to the form
             this.widgetToEdit.graph.spec.height = 
@@ -591,6 +602,23 @@ console.log(this.identificationForm.controls['widgetType'])
                 for (var i = 0; i < this.reports.length; i++) {
                     if (this.reports[i].repordID == 
                         this.identificationForm.controls['widgetReportName'].value.id) {
+                            this.widgetToEdit.graph.spec.data[0].values = 
+                                this.reports[i].reportData;
+                    }
+                }
+            }
+        }
+
+        if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
+            this.widgetToEdit.graph.spec = JSON.parse(this.widgetToEditSpec);
+
+            // Then wack in the data from the Report
+            if (this.identificationForm.controls['widgetReportName'].value != '' &&
+                this.identificationForm.controls['widgetReportName'].value != undefined) {
+                for (var i = 0; i < this.reports.length; i++) {
+                    if (this.reports[i].repordID == 
+                        this.identificationForm.controls['widgetReportName'].value.id) {
+console.log('prior err',this.widgetToEdit.graph.spec)
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
                     }
@@ -689,8 +717,14 @@ startWidgetType() {return 'BarChart';}
                 id: 3,
                 name: 'LineChart'
             }
+        }); 
+        this.widgetCreationDropDown.push({
+            label: 'Custom',
+            value: {
+                id: 4,
+                name: 'Custom'
+            }
         });
-
     }
 
     changeWidgetSet(event) {
@@ -710,19 +744,32 @@ startWidgetType() {return 'BarChart';}
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadWidgetTemplateFields', '@Start');
 
         // Only get this for non-WidgetSets, ie WidgetTemplates
+        // if (this.identificationForm.controls['widgetType'].value['name'] != 'WidgetSet') {
+        this.widgetTemplate = null;
+
         if (this.identificationForm.controls['widgetType'].value['name'] != 'WidgetSet') {
             // Get the corresponding widget template
-            this.widgetTemplates = this.eazlService.getWidgetTemplates (
+            this.widgetTemplate = this.eazlService.getWidgetTemplates (
                 this.identificationForm.controls['widgetType'].value['name']
             );
 
             // Basic stuffies
-            this.identificationForm.controls['graphHeight']
-                .setValue(this.widgetTemplates.vegaParameters.graphHeight);
-            this.identificationForm.controls['graphWidth']
-                .setValue(this.widgetTemplates.vegaParameters.graphWidth);
-            this.identificationForm.controls['graphPadding']
-                .setValue(this.widgetTemplates.vegaParameters.graphPadding);
+            if (this.widgetTemplate != undefined) {
+                this.identificationForm.controls['graphHeight']
+                    .setValue(this.widgetTemplate.vegaParameters.graphHeight);
+                this.identificationForm.controls['graphWidth']
+                    .setValue(this.widgetTemplate.vegaParameters.graphWidth);
+                this.identificationForm.controls['graphPadding']
+                    .setValue(this.widgetTemplate.vegaParameters.graphPadding);
+            }
+
+        }
+
+        // Only Custom specs can be editted
+        if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
+            this.isNotCustomSpec = false;
+        } else {
+            this.isNotCustomSpec = true;
         }
     }
 
@@ -746,4 +793,16 @@ startWidgetType() {return 'BarChart';}
         }
     }
 
+    testVegaSpec() {
+        // Test the Vega spec, and returns Good / Bad
+        this.globalFunctionService.printToConsole(this.constructor.name, 'testVegaSpec', '@Start');
+
+        try {
+            var view = new vg.View(vg.parse( this.widgetToEditSpec));
+        }
+        catch(err) {
+            this.isVegaSpecBad = true;
+            this.widgetToEditSpec = '';
+        }        
+    }
 }
