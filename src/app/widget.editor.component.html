@@ -192,82 +192,229 @@
         </div>
 
 
-        <!--Default Export File Type-->
-        <div >
-            Deflt. Exp Type: 
-            <input pInputText 
+
+
+
+        <!--Behaviour Panel Header-->
+        <div
+            class="PanelHeading"
+            >
+            Behaviour
+
+            <!--Open/Close buttons-->
+            <button
+                class="panelCaretButton"
+                *ngIf="behaviourPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-up"
+                pTooltip="Click to close panel" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="behaviourPanelIsOpen=false"
+                >
+            </button>         
+            <button
+                class="panelCaretButton"
+                *ngIf="!behaviourPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-down"
+                pTooltip="Click to open panel"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="behaviourPanelIsOpen=true"
+                >
+            </button>  
+        </div>
+
+        <!--Behaviour Panel Area-->
+        <div
+            class="panelArea"
+            *ngIf="behaviourPanelIsOpen"
+            >
+
+            <!--Default Export File Type-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Export F-Type:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetDefaultExportFileType" 
-                    placeholder="(optional)"
+                    placeholder="(Optional)"
                     pTooltip="Default File Type on Export"
                     />
-        </div>
+            </div>
 
-        <!--Hyperlink Tab Number-->
-        <div >
-            Hyperlink TabNr: 
-            <input pInputText 
+            <!--Hyperlink Tab Number-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Hyper-TabNr:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetHyperLinkTabNr" 
-                    placeholder="(optional)"
+                    placeholder="(Optional)"
                     pTooltip="Tab Nr to which this Widget hyperlinks"
                     />
-        </div>
+            </div>
 
-        <!--Hyperlink Widget ID-->
-        <div >
-            Hyperlink Widget ID: 
-            <input pInputText 
+            <!--Hyperlink Widget ID-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Hyper-Widget:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetHyperLinkWidgetID" 
-                    placeholder="(optional)"
+                    placeholder="(Optional)"
                     pTooltip="Widget ID to which this Widget hyperlinks"
                     />
-        </div>
+            </div>
 
-        <!--Refresh Mode-->
-        <div >
-            Refresh Mode: 
-            <input pInputText 
+            <!--Refresh Mode-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Refresh Mode:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetRefreshMode" 
-                    placeholder="(optional)"
+                    placeholder="(Optional)"
                     pTooltip="Refresh Mode of Widget: Manual, OnOpen, Repeatedly"
                     />
-        </div>
+            </div>
 
-        <!--Refresh Frequency-->
-        <div >
-            Refresh Frequency: 
-            <input pInputText 
+            <!--Refresh Frequency-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Refresh Freq:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetRefreshFrequency" 
-                    placeholder="(optional)"
+                    placeholder="(Optional)"
                     pTooltip="Refresh Frequency (if Refresh Mode is Repeatedly)"
                     />
-        </div>
+            </div>
 
-        <!--Password-->
-        <div >
-            Password: 
-            <input pInputText 
+            <!--Password-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Password:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetPassword" 
-                    placeholder="(optional)"
+                    placeholder="(Optional)"
                     pTooltip="Password to show Widget content"
                     />
-        </div>
+            </div>
 
-        <!--Number Liked-->
-        <div >
-            Nr Liked: 
-            <input pInputText 
+            <!--Number Liked-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Nr Liked:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     readonly
                     formControlName="NrwidgetLiked" 
-                    placeholder="(optional)"
-                    pTooltip="Nr of users that Liked this Widget"
+                    pTooltip="Nr of users that Liked this Widget (info)"
                     />
+            </div>
         </div>
 
         <!--Report selection-->
