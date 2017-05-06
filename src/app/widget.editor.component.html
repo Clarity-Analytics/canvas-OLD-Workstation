@@ -11,7 +11,7 @@
     >
 
     <div
-        class="dashboardHeading"
+        class="editorHeading"
         >
         Widget Editor
     </div>
@@ -20,74 +20,177 @@
         [formGroup]="identificationForm" 
         >
 
-        <!--Tab Name-->
-        <div >
-            <span class="widgetEditorLabel">TabName *:</span>
-            <p-dropdown 
-                [options]="dashboardTabsDropDown" 
-                [(ngModel)]="selectedDashboardTab"
-                [style]="{
-                            'float':'right',
-                            'margin-right':'5px',
-                            'width':'200px'
-                         }" 
-                placeholder="Required"
-                formControlName="widgetTabName" 
-                [pTooltip]="dashboardsTabsTooltip"
-                filter="true"
-                (onChange)="changeTabDropDown($event)"
+        <!--ID Panel Header-->
+        <div
+            class="PanelHeading"
+            >
+            Identification
+
+            <!--Open/Close buttons-->
+            <button
+                class="panelCaretButton"
+                *ngIf="idPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-up"
+                pTooltip="Click to close panel" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="idPanelIsOpen=false"
                 >
-            </p-dropdown>
+            </button>         
+            <button
+                class="panelCaretButton"
+                *ngIf="!idPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-down"
+                pTooltip="Click to open panel"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="idPanelIsOpen=true"
+                >
+            </button>  
         </div>
 
-        <!--Title-->
-        <div >
-            Title *: 
-            <input pInputText 
-                   [style]="{
-                               'float':'right',
-                               'margin-right':'5px',
-                               'width':'200px'
-                           }" 
+        <!--Id Panel Area-->
+        <div
+            class="panelArea"
+            *ngIf="idPanelIsOpen"
+            >
+
+            <!--Tab Name-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    TabName *:
+                </span>
+                <p-dropdown 
+                    [options]="dashboardTabsDropDown" 
+                    [(ngModel)]="selectedDashboardTab"
+                    [style]="{
+                                'float':'right',
+                                'font-size':'0.85em',
+                                'margin-bottom':'0',
+                                'margin-right':'5px',
+                                'margin-top':'0',
+                                'padding':'0',
+                                'width':'200px'
+                             }" 
+                    placeholder="Required"
+                    formControlName="widgetTabName" 
+                    [pTooltip]="dashboardsTabsTooltip"
+                    filter="true"
+                    (onChange)="changeTabDropDown($event)"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Title-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Title *:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetTitle" 
                     placeholder="Required"
                     pTooltip="Short Title to be displayed at the top of the container"
                     />
-        </div>
+            </div>
 
-        <!--Code-->
-        <div >
-            Code *: 
-            <input pInputText 
+            <!--Code-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Code *:
+                </span>
+                <input pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetCode" 
                     placeholder="Required"
                     pTooltip="Short Widget Code"
                     />
-        </div>
+            </div>
 
-        <!--Name-->
-        <div >
-            Name *: 
-            <input pInputText 
+            <!--Name-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Name *:
+                </span>
+                <input pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetName" 
                     placeholder="Required"
                     pTooltip="Descriptive Name of the Widget"
                     />
-        </div>
+            </div>
 
-        <!--Description-->
-        <div >
-            Description *: 
-            <input pInputText 
+            <!--Description-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Description *:
+                </span>
+                <input pInputText 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
                     type="text" 
                     formControlName="widgetDescription" 
                     placeholder="Required"
                     pTooltip="Detailed description of the Widget"
                     />
+            </div>
         </div>
+
 
         <!--Default Export File Type-->
         <div >

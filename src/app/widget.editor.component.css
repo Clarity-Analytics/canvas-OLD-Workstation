@@ -1,28 +1,71 @@
-.widgetEditor {
-    background-color: white;
-    border-radius: 2px;
-    display: block;
-    font-size: 0.85em;
-    left: -4px;
-    margin: 0;
-    padding: 3px;
-    position: absolute; 
-    top: 2em;
-    width: 310px;
-    z-index: 999;
-}
+/*Whole Editor*/
+    .widgetEditor {
+        background-color: white;
+        border-radius: 4px;
+        display: block;
+        font-size: 1em;
+        left: -6px;
+        margin: 0;
+        padding: 3px;
+        position: absolute; 
+        top: -4px;
+        width: 310px;
+        z-index: 999;
+    }
 
-.dashboardHeading {
-    background-color: #669999;
-    font-size: 1em;
-    font-weight: bold;
-    margin: 0;
-    padding: 4px 0 2px 4px;
-}
-    
-.widgetEditorLabel {
-    font-size: 1em;
-}
+    .editorHeading {
+        background-color: #669999;
+        border-radius: 4px;
+        font-size: 1em;
+        font-weight: bold;
+        margin: 0;
+        padding: 6px 0 2px 6px;
+    }
+
+
+/*One Panel*/
+    .PanelHeading {
+        background-color: #669999;
+        font-size: 1em;
+        font-weight: bold;
+        margin: 4px 0 2px 0;
+        padding: 4px 0 2px 4px;
+    }
+
+    .panelArea {
+        background-color: white;
+        border: 1px solid #669999;
+        font-size: 0.85em;
+        margin: 6px 0 6px 0;
+        padding: 3px;
+    }
+
+    .panelCaretButton {
+        background-color: transparent;
+        border: transparent;
+        color: black;
+        float: right;
+        font-size: 0.85em;
+        height: 14px;
+        margin: 0 4px 0 4px;
+        padding: 0;
+        width: 15px;
+    }
+
+    .panelLine {
+        font-size: 1em;
+        margin: 4px 0 4px 0;
+        padding: 3px 0 3px 4px;
+    }
+
+    .panelLineLabel {
+        font-weight: bold;
+        margin: 8px 0 0 0;
+        padding: 8px 0 0 2px;
+    }
+
+
+/*Errors*/
 .iserror {
     color: #D8000C;
     background-color: #FFBABA;
