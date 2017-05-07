@@ -1241,58 +1241,62 @@
     
 
     <!--Form to show / add Widget Comments-->
-    <p-dialog 
-        header="Comments" 
-        [(visible)]="displayCommentsPopup" 
-        modal="modal" 
-        width="450" 
-        responsive="true"
-        >
-        <widget-comment
-            [selectedWidgetID]="selectedCommentWidgetID"
+    <div *ngIf="displayCommentsPopup">
+        <p-dialog 
+            header="Comments" 
+            [(visible)]="displayCommentsPopup" 
+            modal="modal" 
+            width="450" 
+            responsive="true"
             >
-            Loading widget comments ...
-        </widget-comment>
-    </p-dialog>
-
-
-    <!--Form to show / add Widget Comments-->
-    <p-dialog 
-        header="Comments" 
-        [(visible)]="displayDashboardSettings" 
-        height="400"
-        modal="modal" 
-        width="300" 
-        responsive="true"
-        >
-        <p>
-            This is just the beginning: we can store many more settings.  Also,
-            we need to store these in the DB.
-        </p>
-        <button
-            class="changeDashboardSettingsButton"
-            pButton
-            type="button"
-            label="Change"
-            pTooltip="Click to change the Dashboard settings" 
-            tooltipPosition="right" 
-            tooltipEvent="hover"
-            (click)="changeDashboardSettings()"
-            >
-        </button>
-        <div
-            class="changeDashboardSettings"
-            >
-            <p-dropdown
-                [style]="{'width':'260px','margin-top':'4px'}"
-                [options]="chartColor" 
-                [(ngModel)]="selectedBackgroundColorDashboard" 
-                placeholder="Background"
-                filter="true"
+            <widget-comment
+                [selectedWidgetID]="selectedCommentWidgetID"
                 >
-            </p-dropdown>
-        </div>
+                Loading Widget Comments ...
+            </widget-comment>
+        </p-dialog>
+    </div>
 
-    </p-dialog>
+    <!--Form to show Dashboard Settings-->
+    <div *ngIf="displayDashboardSettings"> 
 
+        <p-dialog 
+            header="Comments" 
+            [(visible)]="displayDashboardSettings" 
+            height="400"
+            modal="modal" 
+            width="300" 
+            responsive="true"
+            >
+            <p>
+                This is just the beginning: we can store many more settings.  Also,
+                we need to store these in the DB.
+            </p>
+            <button
+                class="changeDashboardSettingsButton"
+                pButton
+                type="button"
+                label="Change"
+                pTooltip="Click to change the Dashboard settings" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="changeDashboardSettings()"
+                >
+            </button>
+            <div
+                class="changeDashboardSettings"
+                >
+                <p-dropdown
+                    [style]="{'width':'260px','margin-top':'4px'}"
+                    [options]="chartColor" 
+                    [(ngModel)]="selectedBackgroundColorDashboard" 
+                    placeholder="Background"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+        </p-dialog>
+    </div>
+    
 <!--END Section for popup forms and dialogues-->
