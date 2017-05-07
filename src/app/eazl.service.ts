@@ -2930,14 +2930,14 @@ export class EazlService {
         return this.users;
     }
 
-    getDashboards() {
+    getDashboards(dashboardID: number = -1) {
         // Return a list of Dashboards
+        // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
+
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
 
-        // Calc certain fields, as it is easy to use in *ngIf or *ngFor
-            // this.childrenWidgetContainers.forEach((child) => {
-            //     if (child.nativeElement.id == idWidget.toString()) {
-
+        // Calc WIDGET certain fields, as it is easy to use in *ngIf or *ngFor
+        // TODO - this is impure - do better
         for (var i = 0, len = this.widgets.length; i < len; i++) {
 
             // Set properties.widgetIsLiked if there are users who liked it
@@ -2954,7 +2954,18 @@ export class EazlService {
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
 
-        return this.dashboards;
+        // IF an ID was provided, only return that one.  Else, al
+        let resultDashboards: Dashboard[] = [];
+        if (dashboardID == -1) { 
+            resultDashboards = this.dashboards;
+        }
+        else {
+            resultDashboards = this.dashboards.filter( 
+                dash => dash.dashboardID == dashboardID
+            )
+        }
+
+        return resultDashboards;
     }
 
     getDashboardTabs(selectedDashboardID: number) {
