@@ -72,6 +72,9 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardUpdatedUserID':           new FormControl('')
         });
  this.dashboardForm.controls['dashboardName'].setValue('jas checking');
+//  this.refreshForm();
+ this.dashboardForm.controls['dashboardName'].value;
+ 
 console.log('ngOnInit')
     }
 

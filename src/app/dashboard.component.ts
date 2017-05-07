@@ -1043,7 +1043,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetDraggingEnabled = false;
 
         // Close the Widget Editor if open: editor is for ONE widget only
-        if (this.selectedWidgetIDs.length > 0   &&   this.displayEditWidget == true) {
+        if (this.selectedWidgetIDs.length > 1) {
+            this.displayEditWidget = false;
+        }
+        if (this.selectedWidgetIDs.indexOf(idWidget) == 0 ) {
             this.displayEditWidget = false;
         }
 
@@ -1242,7 +1245,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             // Refresh the data on the form, and then show it
             this.displayDashboardDetails = true;
-            this.dashboardEditor.refreshForm();
+            // this.dashboardEditor.refreshForm();
         } else {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn', 

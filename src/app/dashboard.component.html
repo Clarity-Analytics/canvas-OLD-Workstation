@@ -1194,21 +1194,22 @@
 
     </p-dialog>
 
-
     <!--Detail for selected Dashboard -->
-    <p-dialog 
-        header="Dashboard Details" 
-        [(visible)]="displayDashboardDetails" 
-        modal="modal" 
-        width="800" 
-        responsive="true"
-        >
-        <dashboard-editor
-            [selectedDashboardID]="selectedDashboardID" 
+    <div *ngIf="displayDashboardDetails">
+        <p-dialog 
+            header="Dashboard Details" 
+            [(visible)]="displayDashboardDetails" 
+            modal="modal" 
+            width="800" 
+            responsive="true"
             >
-            Loading Dashboard Editor ...
-        </dashboard-editor>
-    </p-dialog>
+            <dashboard-editor
+                [selectedDashboardID]="selectedDashboardID" 
+                >
+                Loading Dashboard Editor ...
+            </dashboard-editor>
+        </p-dialog>
+    </div>
 
 
     <!--Detail for selected Tab-->

@@ -71,7 +71,8 @@ export class WidgetBuilderComponent implements OnInit {
     widgetCreationDropDown: SelectItem[];       // Drop Down options
     selectedWidgetCreation: any;                // Selected option to create Widget
     isVegaSpecBad: boolean = false;             // True if Vega spec is bad
-    isNotCustomSpec: boolean = false;           // True if a Custom widget (thus custom Spec)
+    isVegaSpecGood: boolean = false;            // True if Vega spec validated good
+    isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
@@ -793,11 +794,17 @@ startWidgetType() {return 'BarChart';}
         // Test the Vega spec, and returns Good / Bad
         this.globalFunctionService.printToConsole(this.constructor.name, 'testVegaSpec', '@Start');
 
+        // Assume all good
+        this.isVegaSpecBad = false;
+        this.isVegaSpecGood = true;
+console.log('spec', this.widgetToEditSpec)
         try {
             var view = new vg.View(vg.parse( this.widgetToEditSpec));
         }
         catch(err) {
+console.log('in err')
             this.isVegaSpecBad = true;
+            this.isVegaSpecGood = false;
             this.widgetToEditSpec = '';
         }        
     }
