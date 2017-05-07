@@ -278,7 +278,7 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
-        // First tab validation
+        // Validation
         if (this.identificationForm.controls['widgetTabName'].value == ''  || 
             this.identificationForm.controls['widgetTabName'].value == null) {
                 this.formIsValid = false;
@@ -314,8 +314,6 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Widget Description is compulsory.';
         }
-
-        // Second tab validation
         if (this.identificationForm.controls['widgetHyperLinkWidgetID'].touched  && 
             !this.identificationForm.controls['widgetHyperLinkWidgetID'].valid) {
                 this.formIsValid = false;
@@ -330,8 +328,6 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Refresh Frequency must be numberic';
         }
-        
-        // Third tab validation
         if (this.identificationForm.controls['widgetReportName'].value == ''  || 
             this.identificationForm.controls['widgetReportName'].value == null) {
                 if (this.addEditMode == 'Add') {

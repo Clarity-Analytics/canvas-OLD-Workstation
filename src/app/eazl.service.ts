@@ -2954,6 +2954,8 @@ export class EazlService {
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
 
+        // TODO - get a standard set of methods, ie getXXX returns all, findXXX returns one.
+        //        OR, use TS standard with .filter, .find, etc .... ??
         // IF an ID was provided, only return that one.  Else, al
         let resultDashboards: Dashboard[] = [];
         if (dashboardID == -1) { 

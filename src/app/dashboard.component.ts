@@ -20,6 +20,9 @@ import { ConfirmationService }        from 'primeng/primeng';
 import { MenuItem }                   from 'primeng/primeng';  
 import { SelectItem }                 from 'primeng/primeng';
 
+// Our Components
+import { DashboardEditorComponent }   from './dashboard.editor.component';
+
 // Our Services
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global.function.service';
@@ -45,6 +48,7 @@ let vg = require('vega/index.js');
 export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChildren('widgetContainter') childrenWidgetContainers: QueryList<ElementRef>;   // Attaches to # in DOM
     @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
+    @ViewChild(DashboardEditorComponent) dashboardEditor;                       // To run methods in it
 
 // @HostListener('document:keyup', ['$event'])
 // handleKeyboardEvent(event) { 
@@ -1235,7 +1239,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDetail', '@Start');
 
         if (this.selectedDashboardName['name'] != undefined) {
+
+            // Refresh the data on the form, and then show it
             this.displayDashboardDetails = true;
+            this.dashboardEditor.refreshForm();
         } else {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn', 
