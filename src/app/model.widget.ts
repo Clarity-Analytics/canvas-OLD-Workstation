@@ -16,8 +16,18 @@ export class Widget {
     };
     graph: {
         graphID: number;
+        vegaParameters: {                           
+            vegaGraphHeight: number;
+            vegaGraphWidth: number;
+            vegaGraphPadding: number;
+            vegaHasSignals: boolean;
+            vegaXcolumn: string;
+            vegaYcolumn: string;
+            vegaFillColor: string;
+            vegaHoverColor: string;
+        },
         spec: any; 
-    };
+    }; 
     properties: {
         widgetID: number;                       // Unique ID from DB
         dashboardID: number;                    // FK to DashboardID to which widget belongs

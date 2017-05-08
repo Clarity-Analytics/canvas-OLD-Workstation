@@ -652,6 +652,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'darkred',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "description": "Yes, Bradley",
@@ -820,6 +830,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "width": 290,
@@ -971,6 +991,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 300,
@@ -1110,6 +1140,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 300,
@@ -1288,6 +1328,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "height": 210,
@@ -1511,6 +1561,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "width": 140,
@@ -1633,6 +1693,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "width": 170,
@@ -1777,6 +1847,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 960,
@@ -1907,6 +1987,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 600,
@@ -2077,6 +2167,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "name": "wordcloud",
@@ -2212,6 +2312,16 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 800,
@@ -2523,7 +2633,7 @@ export const REPORTS: Report[] =
                 ]
         }
     ]
-
+ 
 export const WIDGETTEMPLATES: WidgetTemplate[] =
     [
         {
@@ -2531,9 +2641,9 @@ export const WIDGETTEMPLATES: WidgetTemplate[] =
             widgetTemplateName: 'BarChart',
             widgetTemplateDescription: 'Template for the Vega spec of a Bar Chart',
             vegaParameters: {                           
-                graphHeight: 200,
-                graphWidth: 180,
-                graphPadding: 10,
+                vegaGraphHeight: 200,
+                vegaGraphWidth: 180,
+                vegaGraphPadding: 10,
                 vegaHasSignals: true,
                 vegaXcolumn: 'category',
                 vegaYcolumn: 'amount',
@@ -3086,6 +3196,16 @@ export class EazlService {
             },
             graph: {
                 graphID: 0,
+                vegaParameters: {                           
+                    vegaGraphHeight: 200,
+                    vegaGraphWidth: 180,
+                    vegaGraphPadding: 10,
+                    vegaHasSignals: true,
+                    vegaXcolumn: 'category',
+                    vegaYcolumn: 'amount',
+                    vegaFillColor: 'pink',
+                    vegaHoverColor: 'lightgray'
+                },                
                 spec: {
                 }
             },
@@ -3172,15 +3292,15 @@ export class EazlService {
             return undefined;
         }
 
-        if (workingTemplate.vegaParameters.graphWidth) {
-            workingTemplate.vegaSpec.width = workingTemplate.vegaParameters.graphWidth;
+        if (workingTemplate.vegaParameters.vegaGraphWidth) {
+            workingTemplate.vegaSpec.width = workingTemplate.vegaParameters.vegaGraphWidth;
         }
 
-        if (workingTemplate.vegaParameters.graphHeight) {
-            workingTemplate.vegaSpec.height = workingTemplate.vegaParameters.graphHeight;
+        if (workingTemplate.vegaParameters.vegaGraphHeight) {
+            workingTemplate.vegaSpec.height = workingTemplate.vegaParameters.vegaGraphHeight;
         }
-        if (workingTemplate.vegaParameters.graphPadding) {
-            workingTemplate.vegaSpec.padding = workingTemplate.vegaParameters.graphPadding;
+        if (workingTemplate.vegaParameters.vegaGraphPadding) {
+            workingTemplate.vegaSpec.padding = workingTemplate.vegaParameters.vegaGraphPadding;
         }
 
         // Bar Chart parameters

@@ -1752,7 +1752,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.dashboardTabsDropDown.push({
                 label: this.dashboardTabs[i].widgetTabName,
                 value: {
-                    id: this.dashboardTabs[i].dashboardID,
+                    id: this.dashboardTabs[i].widgetTabID,
                     name: this.dashboardTabs[i].widgetTabName
                 }
             });

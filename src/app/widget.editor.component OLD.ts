@@ -129,9 +129,9 @@ export class WidgetBuilderComponent implements OnInit {
                 'widgetAddRestRow':       new FormControl(''),
                 'widgetType':             new FormControl(''),
                 'widgetReportWidgetSet':  new FormControl(''),
-                'graphHeight':            new FormControl('', Validators.pattern('^[0-9]*$')),
-                'graphWidth':             new FormControl('', Validators.pattern('^[0-9]*$')),
-                'graphPadding':           new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaGraphHeight':            new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaGraphWidth':             new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaGraphPadding':           new FormControl('', Validators.pattern('^[0-9]*$')),
                 'vegaHasSignals':         new FormControl(''),
                 'vegaXcolumn':            new FormControl(''),
                 'vegaYcolumn':            new FormControl(''),
@@ -377,22 +377,22 @@ console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The number of limited rows to show must be numberic';
             }        
-            if (this.dataAndGraphForm.controls['graphHeight'].value == ''  ||
-                !this.dataAndGraphForm.controls['graphHeight'].value == null) {
+            if (this.dataAndGraphForm.controls['vegaGraphHeight'].value == ''  ||
+                !this.dataAndGraphForm.controls['vegaGraphHeight'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The graph Height must be numberic';
             }
-            if (this.dataAndGraphForm.controls['graphWidth'].value == ''  ||
-                !this.dataAndGraphForm.controls['graphWidth'].value == null) {
+            if (this.dataAndGraphForm.controls['vegaGraphWidth'].value == ''  ||
+                !this.dataAndGraphForm.controls['vegaGraphWidth'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The graph Width must be numberic';
             }
-            if (this.dataAndGraphForm.controls['graphPadding'].value == ''  || 
-                !this.dataAndGraphForm.controls['graphPadding'].value == null) {
+            if (this.dataAndGraphForm.controls['vegaGraphPadding'].value == ''  || 
+                !this.dataAndGraphForm.controls['vegaGraphPadding'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
@@ -558,11 +558,11 @@ console.log(this.dataAndGraphForm.controls['widgetType'])
 
             // Now tweak according to the form
             this.widgetToEdit.graph.spec.height = 
-                this.dataAndGraphForm.controls['graphHeight'].value;
+                this.dataAndGraphForm.controls['vegaGraphHeight'].value;
             this.widgetToEdit.graph.spec.width = 
-                this.dataAndGraphForm.controls['graphWidth'].value;
+                this.dataAndGraphForm.controls['vegaGraphWidth'].value;
             this.widgetToEdit.graph.spec.padding = 
-                this.dataAndGraphForm.controls['graphPadding'].value;                                        
+                this.dataAndGraphForm.controls['vegaGraphPadding'].value;                                        
 
             if (this.dataAndGraphForm.controls['vegaXcolumn'].value.name != '' &&
                 this.dataAndGraphForm.controls['vegaXcolumn'].value.name != undefined) {
@@ -747,12 +747,12 @@ startWidgetType() {return 'BarChart';}
             );
 
             // Basic stuffies
-            this.dataAndGraphForm.controls['graphHeight']
-                .setValue(this.widgetTemplates.vegaParameters.graphHeight);
-            this.dataAndGraphForm.controls['graphWidth']
-                .setValue(this.widgetTemplates.vegaParameters.graphWidth);
-            this.dataAndGraphForm.controls['graphPadding']
-                .setValue(this.widgetTemplates.vegaParameters.graphPadding);
+            this.dataAndGraphForm.controls['vegaGraphHeight']
+                .setValue(this.widgetTemplates.vegaParameters.vegaGraphHeight);
+            this.dataAndGraphForm.controls['vegaGraphWidth']
+                .setValue(this.widgetTemplates.vegaParameters.vegaGraphWidth);
+            this.dataAndGraphForm.controls['vegaGraphPadding']
+                .setValue(this.widgetTemplates.vegaParameters.vegaGraphPadding);
         }
     }
 

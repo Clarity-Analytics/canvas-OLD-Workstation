@@ -684,8 +684,8 @@
                                             width: 200px;
                                         " 
                                 type="text" 
-                                formControlName="graphHeight" 
-                                placeholder="(Optional)"
+                                formControlName="vegaGraphHeight" 
+                                placeholder="Required"
                                 pTooltip="Height of the graph, inside the container"
                                 />
                         </div>
@@ -708,8 +708,8 @@
                                             width: 200px;
                                         " 
                                 type="text" 
-                                formControlName="graphWidth" 
-                                placeholder="(Optional)"
+                                formControlName="vegaGraphWidth" 
+                                placeholder="Required"
                                 pTooltip="Width of the graph, inside the container"
                                 />
                         </div>
@@ -732,8 +732,8 @@
                                             width: 200px;
                                         " 
                                 type="text" 
-                                formControlName="graphPadding" 
-                                placeholder="(Optional)"
+                                formControlName="vegaGraphPadding" 
+                                placeholder="Required"
                                 pTooltip="Padding of the graph, inside the container"
                                 />
                         </div>
@@ -748,6 +748,7 @@
                             </span>
                             <p-dropdown 
                                 [options]="reportFieldsDropDown" 
+                                [(ngModel)]="selectedVegaXcolumn"
                                 inputId="S2" 
                                 [style]="{
                                             'float':'right',
@@ -776,6 +777,7 @@
                             </span>
                             <p-dropdown 
                                 [options]="reportFieldsDropDown" 
+                                [(ngModel)]="selectedVegaYcolumn"
                                 inputId="S2" 
                                 [style]="{
                                             'float':'right',
@@ -804,6 +806,7 @@
                             </span>
                             <p-dropdown 
                                 [options]="chartColor" 
+                                [(ngModel)]="selectedVegaFillColor"
                                 inputId="S2" 
                                 [style]="{
                                             'float':'right',
@@ -832,6 +835,7 @@
                             </span>
                             <p-dropdown 
                                 [options]="chartColor" 
+                                [(ngModel)]="selectedVegaHoverColor"
                                 inputId="S2" 
                                 [style]="{
                                             'float':'right',
