@@ -21,6 +21,7 @@ export class Widget {
     properties: {
         widgetID: number;                       // Unique ID from DB
         dashboardID: number;                    // FK to DashboardID to which widget belongs
+        widgetTabID: number;                    // FK to Tab where the widget lives
         widgetTabName: string;                  // FK to Tab Name where widget lives
         widgetCode: string;                     // Short Code ~ ShortName
         widgetName: string;                     // Descriptive Name
@@ -51,7 +52,8 @@ export class Widget {
         widgetShowLimitedRows: number;          // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
         widgetSize: string;                     // Small, Medium, Large
         widgetSystemMessage: string;            // Optional for Canvas to say something to user
-        widgetType: string;                     // Bar, Pie, Text, etc
+        widgetTypeID: number;                   // Widget Type ID (for Bar, Pie, etc)
+        widgetType: string;                     // Bar, Pie, Text, etc - must correspond to coding
         widgetUpdatedDateTime: string;          // Updated on
         widgetUpdatedUserID: string;            // Updated by
     };

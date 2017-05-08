@@ -41,8 +41,8 @@ export class SelectedItem {
 })
 export class WidgetEditorComponent implements OnInit {
 
-    @Input() selectedDashboardID: number;
-    @Input() selectedDashboardTabName: string;
+    @Input() originalDashboardID: number;
+    @Input() originalDashboardTabName: string;
     @Input() widgetToEdit: Widget;
     @Input() addEditMode: string;
     @Input() displayEditWidget: boolean;
@@ -186,8 +186,12 @@ selectedItem: SelectedItem;
             if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
 
                 if (this.widgetToEdit.properties.widgetTabName) {
-                    this.identificationForm.controls['widgetTabName']
-                        .setValue({id: 1, name: '" + this.widgetToEdit.properties.widgetTabName + "'});
+                    this.selectedItem = {
+                        id: this.widgetToEdit.properties.widgetTabID, 
+                        name: this.widgetToEdit.properties.widgetTabName
+                    };
+                    this.identificationForm.controls['widgetTabName'].setValue(this.selectedItem);
+                    this.selectedDashboardTab = this.selectedItem;
                 }
                 if (this.widgetToEdit.container.widgetTitle) {
                     this.identificationForm.controls['widgetTitle']
@@ -258,10 +262,10 @@ selectedItem: SelectedItem;
                 }
                 if (this.widgetToEdit.properties.widgetType) {
                     this.selectedItem = {
-                        id: 1, 
+                        id: this.widgetToEdit.properties.widgetTypeID, 
                         name: this.widgetToEdit.properties.widgetType}
                     ;
-                    this.identificationForm.controls['widgetType'].setValue(this.selectedItem)
+                    this.identificationForm.controls['widgetType'].setValue(this.selectedItem);
                     this.selectedWidgetCreation = this.selectedItem;
                 }
 
@@ -796,7 +800,7 @@ console.log(this.identificationForm.controls['widgetType'])
 
         // Get its Tabs in this Dashboard
         this.dashboardTabsDropDown = [];
-        this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
+        this.dashboardTabs = this.eazlService.getDashboardTabs(this.originalDashboardID);
 
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {

@@ -1107,12 +1107,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Set Name
         this.numberUntitledTabs = this.numberUntitledDashboards + 1;
         let newWidgetTabName: string = 'Untitled - ' + this.numberUntitledTabs.toString();
-
+        let maxID = this.dashboardTabs.length + 1;
         // Add
         // TODO - do via DB RESTi
+        // TODO - do ID properly
         this.dashboardTabs.push (
             {
                 dashboardID: this.selectedDashboardName.id,
+                widgetTabID: maxID,
                 widgetTabName: newWidgetTabName,
                 widgetTabDescription: ''
             }

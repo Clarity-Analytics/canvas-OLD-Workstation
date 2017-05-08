@@ -594,35 +594,42 @@ export const DASHBOARDTABS: DashboardTab[] =
     [ 
         {
             dashboardID: 0,
+            widgetTabID: 0,
             widgetTabName: 'Value',
             widgetTabDescription: '0-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 0,
+            widgetTabID: 1,
             widgetTabName: 'Volume',
             widgetTabDescription: '0-Volume: Full and detailed desription of tab - purpose'
         },        {
             dashboardID: 1,
+            widgetTabID: 2,
             widgetTabName: 'Value',
             widgetTabDescription: 'Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 1,
-            widgetTabName: 'Value',
+            widgetTabID: 3,
+            widgetTabName: 'Volume',
             widgetTabDescription: '1-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 3,
+            widgetTabID: 4,
             widgetTabName: 'Value',
             widgetTabDescription: '3-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 4,
+            widgetTabID: 5,
             widgetTabName: 'Value',
             widgetTabDescription: '4-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 5,
+            widgetTabID: 6,
             widgetTabName: 'Value',
             widgetTabDescription: '5-Value: Full and detailed desription of tab - purpose'
         },
@@ -757,6 +764,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 1,
                 dashboardID: 0,
+                widgetTabID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'FirstBar',
                 widgetName: 'Bar Chart 1',
@@ -790,6 +798,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 5,
                 widgetSize: 'Small',
                 widgetSystemMessage: '',
+                widgetTypeID: 1,
                 widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -908,6 +917,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 2,
                 dashboardID: 0,
+                widgetTabID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'SecondBar',
                 widgetName: 'Bar Chart 2',
@@ -939,6 +949,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 1,
                 widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -1045,6 +1056,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 3,
                 dashboardID: 0,
+                widgetTabID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'ThirdBar',
                 widgetName: 'Bar Chart 3',
@@ -1076,6 +1088,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 1,
                 widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -1221,6 +1234,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 4,
                 dashboardID: 0,
+                widgetTabID: 1,
                 widgetTabName: "Volume",
                 widgetCode: 'FourthBar',
                 widgetName: 'Bar Chart 4',
@@ -1252,6 +1266,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -1442,6 +1457,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 5,
                 dashboardID: 0,
+                widgetTabID: 1,
                 widgetTabName: "Volume",
                 widgetCode: 'FifthBar',
                 widgetName: 'Bar Chart 5',
@@ -1473,6 +1489,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -1562,6 +1579,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 11,
                 dashboardID: 1,
+                widgetTabID: 2,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -1593,6 +1611,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -1704,7 +1723,8 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 12,
                 dashboardID: 1,
-                widgetTabName: "Value",
+                widgetTabID: 3,
+                widgetTabName: "Volume",
                 widgetCode: 'SecondBar',
                 widgetName: 'Line Volume 1',
 
@@ -1735,6 +1755,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -1832,6 +1853,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 21,
                 dashboardID: 3,
+                widgetTabID: 4,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -1863,6 +1885,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -2000,6 +2023,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 6,
                 dashboardID: 3,
+                widgetTabID: 4,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -2031,6 +2055,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -2133,6 +2158,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 41,
                 dashboardID: 4,
+                widgetTabID: 5,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -2164,6 +2190,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -2362,6 +2389,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 51,
                 dashboardID: 5,
+                widgetTabID: 6,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -2393,6 +2421,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
@@ -3063,6 +3092,7 @@ export class EazlService {
             properties: {
                 widgetID: 1,
                 dashboardID: 0,
+                widgetTabID: 0,
                 widgetTabName: '',
                 widgetCode: '',
                 widgetName: '',
@@ -3093,6 +3123,7 @@ export class EazlService {
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
+                widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
