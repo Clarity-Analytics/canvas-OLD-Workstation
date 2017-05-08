@@ -200,7 +200,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Set startup stuffies
         // TODO: read from DB
         this.snapToGrid = true;
-        this.gridSize = 30;
+        this.gridSize = 3;
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -301,8 +301,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 detail:   'Widget added'
             });
 
-            // Close the popup form for the Widget Builder
-            this.displayEditWidget = false;
+            // // Close the popup form for the Widget Builder
+            // this.displayEditWidget = false;
         }
 
         // Save the editted Widget back to the Array
@@ -352,12 +352,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             '2017/11/11 11:11';
                         this.widgets[i].properties.widgetUpdatedUserID = 
                             'JustinX;'
-
-                    // Close the popup form for the Widget Builder
-                    this.displayEditWidget = false;
                 }
             }
         }
+
+        // Close the popup form for the Widget Builder
+        this.displayEditWidget = false;
+
     }
 
     clickContainerApply(){
@@ -556,12 +557,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
 
         // Set the environment for Edit: current widget + mode
+        this.displayEditWidget = true;
         this.widgetToEdit = this.widgets.filter(
             widget => widget.properties.widgetID === idWidget)[0] ;
 
         this.widgetIDtoEdit = idWidget;
         this.addEditModeWidgetEditor = 'Edit';
-        this.displayEditWidget = true;
     }
 
     clickWidgetLockToggle(idWidget: number) {
@@ -1041,14 +1042,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Kill dragging
         this.widgetDraggingEnabled = false;
-
-        // Close the Widget Editor if open: editor is for ONE widget only
-        if (this.selectedWidgetIDs.length > 1) {
-            this.displayEditWidget = false;
-        }
-        if (this.selectedWidgetIDs.indexOf(idWidget) == 0 ) {
-            this.displayEditWidget = false;
-        }
 
         // If Shift was hold down, add to Array of Widgets selected
         if (event.shiftKey) {

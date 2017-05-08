@@ -974,6 +974,7 @@
 <!--Widget Editor-->
 <div
     class="widgetEditor"
+    *ngIf="displayEditWidget"
     >
     <widget-editor 
         [selectedDashboardID]="selectedDashboardID" 
@@ -1194,8 +1195,11 @@
 
     </p-dialog>
 
+
     <!--Detail for selected Dashboard -->
-    <div *ngIf="displayDashboardDetails">
+    <div 
+        *ngIf="displayDashboardDetails"
+        >
         <p-dialog 
             header="Dashboard Details" 
             [(visible)]="displayDashboardDetails" 
@@ -1256,6 +1260,7 @@
             </widget-comment>
         </p-dialog>
     </div>
+
 
     <!--Form to show Dashboard Settings-->
     <div *ngIf="displayDashboardSettings"> 

@@ -34,7 +34,7 @@ let vg = require('vega/index.js');
     templateUrl: 'widget.editor.component.html',
     styleUrls:  ['widget.editor.component.css']
 })
-export class WidgetBuilderComponent implements OnInit {
+export class WidgetEditorComponent implements OnInit {
 
     @Input() selectedDashboardID: number;
     @Input() selectedDashboardTabName: string;
@@ -140,9 +140,12 @@ this.selectedWidgetCreation = {id: 1, name: "BarChart"}
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();
+
+this.XXXngOnChanges()
+
     }
 
-    ngOnChanges() {
+    XXXngOnChanges() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
@@ -174,7 +177,7 @@ this.selectedWidgetCreation = {id: 1, name: "BarChart"}
             // Indicate we loading form -> valueChange routine dont fire
             this.isLoadingForm = true;
 //widgetReportName                        
-console.log("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}")
+console.log('onChg',this.displayEditWidget, "{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}")
             if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
 
                 if (this.widgetToEdit.properties.widgetTabName) {
@@ -622,7 +625,7 @@ console.log(this.identificationForm.controls['widgetType'])
                 }
             }
         }
-
+ 
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
 

@@ -97,7 +97,7 @@ import { LoginComponent }             from './login.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { UserComponent}               from './user.component';
 import { UserPopupComponent }         from './user.popup.component';
-import { WidgetBuilderComponent }     from './widget.editor.component';
+import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetCommentComponent }     from './widget.comment.component';
 
 // Our Directives
@@ -129,7 +129,7 @@ import { routes }                     from './app.routes';
     PageNotFoundComponent,
     UserComponent,
     UserPopupComponent,
-    WidgetBuilderComponent,
+    WidgetEditorComponent,
     WidgetCommentComponent,
     // BarCharBuilder,
   ],
