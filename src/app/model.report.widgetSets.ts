@@ -1,6 +1,6 @@
 // Schema for Report WidgetSet
 export class ReportWidgetSet {
-    repordID: number;                       // FK to model.report
+    reportID: number;                       // FK to model.report
     widgetSetID: number;                    // Unique DB ID
     widgetSetName: string;                  // Name
     widgetSetDescription: string;           // Description

@@ -538,7 +538,7 @@ console.log(this.dataAndGraphForm.controls['widgetType'])
             if (this.dataAndGraphForm.controls['widgetReportName'].value != '' &&
                 this.dataAndGraphForm.controls['widgetReportName'].value != undefined) {
                 for (var i = 0; i < this.reports.length; i++) {
-                    if (this.reports[i].repordID == 
+                    if (this.reports[i].reportID == 
                         this.dataAndGraphForm.controls['widgetReportName'].value.id) {
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
@@ -604,7 +604,7 @@ console.log(this.dataAndGraphForm.controls['widgetType'])
             if (this.dataAndGraphForm.controls['widgetReportName'].value != '' &&
                 this.dataAndGraphForm.controls['widgetReportName'].value != undefined) {
                 for (var i = 0; i < this.reports.length; i++) {
-                    if (this.reports[i].repordID == 
+                    if (this.reports[i].reportID == 
                         this.dataAndGraphForm.controls['widgetReportName'].value.id) {
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
@@ -672,7 +672,7 @@ startWidgetType() {return 'BarChart';}
             this.reportsDropDown.push({
                 label: this.reports[i].reportName,
                 value: {
-                    id: this.reports[i].repordID,
+                    id: this.reports[i].reportID,
                     name: this.reports[i].reportName
                 }
             });

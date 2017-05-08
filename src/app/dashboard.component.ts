@@ -354,6 +354,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             'JustinX;'
                 }
             }
+
+            // Refresh the Dashboard
+            this.refreshDashboard = true;
         }
 
         // Close the popup form for the Widget Builder

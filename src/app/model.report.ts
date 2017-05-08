@@ -1,6 +1,6 @@
 // Schema for Report
 export class Report {
-    repordID: number;                   // Unique DB ID
+    reportID: number;                   // Unique DB ID
     reportName: string;                 // Name
     description: string;                // Description
     reportParameters: string;           // Parameters (optional)

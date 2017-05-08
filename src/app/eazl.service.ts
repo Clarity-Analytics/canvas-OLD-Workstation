@@ -784,6 +784,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: 'Repeat',
+                widgetReportID: 1,
                 widgetReportName: 'EDM weekly Values',
                 widgetReportParameters: 'today()',
                 widgetShowLimitedRows: 5,
@@ -932,6 +933,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -1068,6 +1070,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -1243,6 +1246,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -1463,6 +1467,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -1582,6 +1587,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -1723,6 +1729,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -1850,6 +1857,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -2017,6 +2025,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -2149,6 +2158,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -2377,6 +2387,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -2441,7 +2452,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
 export const REPORTS: Report[] =
     [
         {
-            repordID: 1,
+            reportID: 1,
             reportName: 'EDM weekly Values',
             description: 'Description ...  etc',
             reportParameters: '',
@@ -2462,7 +2473,7 @@ export const REPORTS: Report[] =
                 ]
         },
         {
-            repordID: 2,
+            reportID: 2,
             reportName: 'Bond monthly Values',
             description: 'Description ...  etc',
             reportParameters: '',
@@ -2600,7 +2611,7 @@ export const WIDGETTEMPLATES: WidgetTemplate[] =
 export const REPORTWIDGETSET: ReportWidgetSet[] =
     [
         {
-            repordID: 1,
+            reportID: 1,
             widgetSetID: 1,
             widgetSetName: 'Blue Value per week',
             widgetSetDescription: 'Description blue ...',
@@ -2699,7 +2710,7 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
             }
         },
         {
-            repordID: 1,
+            reportID: 1,
             widgetSetID: 2,
             widgetSetName: 'Green Value per week',
             widgetSetDescription: 'Description green ...',
@@ -2798,7 +2809,7 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
             }
         },
         {
-            repordID: 1,
+            reportID: 1,
             widgetSetID: 3,
             widgetSetName: 'Red Value per week',
             widgetSetDescription: 'Description red ...',
@@ -3076,6 +3087,7 @@ export class EazlService {
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 0,
                 widgetRefreshMode: '',
+                widgetReportID: 1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -3102,7 +3114,7 @@ export class EazlService {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldss', '@Start');
 
         for (var i = 0; i < this.reports.length; i++) {
-            if (this.reports[i].repordID == reportID) {
+            if (this.reports[i].reportID == reportID) {
                 return this.reports[i].reportFields;
             }    
         }
@@ -3112,7 +3124,7 @@ export class EazlService {
         // Return a list of WidgetSets per Report
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportWidgetSets', '@Start');
 
-        return this.reportWidgetSet.filter(wset => wset.repordID == reportID);
+        return this.reportWidgetSet.filter(wset => wset.reportID == reportID);
     }
 
     getWidgetTemplates(widgetTemplateName: string): WidgetTemplate {

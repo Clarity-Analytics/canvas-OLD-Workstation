@@ -81,7 +81,6 @@ export class WidgetEditorComponent implements OnInit {
     formIsValid: boolean = false;
     numberErrors: number = 0;
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
-    // startWidgetType:string = 'BarChart'
     // ToolTippies stays after popup form closes, so setting in vars works for now ...
     // TODO - find BUG, our side or PrimeNG side
     dashboardsTabsTooltip: string = ""   //'Selected Tab where Widget will live';
@@ -133,21 +132,21 @@ export class WidgetEditorComponent implements OnInit {
             }
         );
 
-this.identificationForm.controls['widgetType'].setValue({id: 1, name: "BarChart"})
-this.selectedWidgetCreation = {id: 1, name: "BarChart"}
-
-
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();
 
-this.XXXngOnChanges()
+        // Load the startup form info
+        this.setStartupFormValues();
+
+        // Set startup Widget Template
+        this.loadWidgetTemplateFields();
 
     }
 
-    XXXngOnChanges() {
+    setStartupFormValues() {
         // Reacts to changes in selectedWidget
-        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'setStartupFormValues', '@Start');
 
         // Set spec as string for ngModel in View
         if (this.widgetToEdit != undefined) {
@@ -176,13 +175,15 @@ this.XXXngOnChanges()
 
             // Indicate we loading form -> valueChange routine dont fire
             this.isLoadingForm = true;
-//widgetReportName                        
-console.log('onChg',this.displayEditWidget, "{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}")
+
             if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
+console.log('hier')
+// this.identificationForm.controls['widgetType'].setValue({id: 1, name: "BarChart"})
+this.selectedWidgetCreation = {id: 1, name: "BarChart"}
 
                 if (this.widgetToEdit.properties.widgetTabName) {
                     this.identificationForm.controls['widgetTabName']
-                        .setValue("{id: 0, name: 'Value'}");
+                        .setValue({id: 1, name: 'BarChart'});
                         // .setValue("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}");
                 }
                 if (this.widgetToEdit.container.widgetTitle) {
@@ -235,8 +236,10 @@ console.log('onChg',this.displayEditWidget, "{id: 0, name: '" + this.widgetToEdi
 
                 if (this.widgetToEdit.properties.widgetReportName) {
                     this.identificationForm.controls['widgetReportName']
-                        .setValue("{id: 1, name: '" + 
-                            this.widgetToEdit.properties.widgetReportName + "'}");
+                        .setValue({id: 1, name: '" + this.widgetToEdit.properties.widgetReportName + "'});
+
+                    // Set the field DropDown content
+                    this.loadReportRelatedInfoBody(this.widgetToEdit.properties.widgetReportID);
                 }
                 if (this.widgetToEdit.properties.widgetReportParameters) {
                     this.identificationForm.controls['widgetReportParameters']
@@ -252,7 +255,7 @@ console.log('onChg',this.displayEditWidget, "{id: 0, name: '" + this.widgetToEdi
                 }
                 if (this.widgetToEdit.properties.widgetType) {
                     this.identificationForm.controls['widgetType']
-                        .setValue("{id: 1, name: '" + this.widgetToEdit.properties.widgetType + "'}");
+                        .setValue({id: 1, name: '" + this.widgetToEdit.properties.widgetType + "'});
                 }
 
                 // Indicate we are done loading form
@@ -534,7 +537,7 @@ console.log(this.identificationForm.controls['widgetType'])
             if (this.identificationForm.controls['widgetReportName'].value != '' &&
                 this.identificationForm.controls['widgetReportName'].value != undefined) {
                 for (var i = 0; i < this.reports.length; i++) {
-                    if (this.reports[i].repordID == 
+                    if (this.reports[i].reportID == 
                         this.identificationForm.controls['widgetReportName'].value.id) {
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
@@ -544,7 +547,9 @@ console.log(this.identificationForm.controls['widgetType'])
         }
  
         if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
-            // // Get the corresponding widget template
+            // Get the corresponding widget template
+            this.loadWidgetTemplateFields();
+            
             // this.widgetTemplates = this.eazlService.getWidgetTemplates (
             //     this.identificationForm.controls['widgetType'].value['name']
             // );
@@ -600,7 +605,7 @@ console.log(this.identificationForm.controls['widgetType'])
             if (this.identificationForm.controls['widgetReportName'].value != '' &&
                 this.identificationForm.controls['widgetReportName'].value != undefined) {
                 for (var i = 0; i < this.reports.length; i++) {
-                    if (this.reports[i].repordID == 
+                    if (this.reports[i].reportID == 
                         this.identificationForm.controls['widgetReportName'].value.id) {
                             this.widgetToEdit.graph.spec.data[0].values = 
                                 this.reports[i].reportData;
@@ -616,7 +621,7 @@ console.log(this.identificationForm.controls['widgetType'])
             if (this.identificationForm.controls['widgetReportName'].value != '' &&
                 this.identificationForm.controls['widgetReportName'].value != undefined) {
                 for (var i = 0; i < this.reports.length; i++) {
-                    if (this.reports[i].repordID == 
+                    if (this.reports[i].reportID == 
                         this.identificationForm.controls['widgetReportName'].value.id) {
 
                             this.widgetToEdit.graph.spec.data[0].values = 
@@ -637,9 +642,17 @@ console.log(this.identificationForm.controls['widgetType'])
         // Load the WidgetSets for the selected Report
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportRelatedInfo', '@Start');
 
+        // Call the doer routine
+        this.loadReportRelatedInfoBody(+event.value.id);
+    }
+
+    loadReportRelatedInfoBody(selectedReportID) {
+        // Load the WidgetSets for the selected Report
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportRelatedInfo', '@Start for ID: ' + selectedReportID);
+
         // Get ReportFields
         this.reportFieldsDropDown = [];
-        this.selectedReportID = event.value.id;
+        this.selectedReportID = selectedReportID;
         this.reportFields = this.eazlService.getReportFields(this.selectedReportID);
 
         // Fill the dropdown on the form
@@ -655,7 +668,7 @@ console.log(this.identificationForm.controls['widgetType'])
 
         // Get its WidgetSets in this Dashboard
         this.reportWidgetSetsDropDown = [];
-        this.selectedReportID = event.value.id;
+        this.selectedReportID = selectedReportID;
         this.reportWidgetSets = this.eazlService.getReportWidgetSets(this.selectedReportID);
 
         // Fill the dropdown on the form
@@ -670,7 +683,7 @@ console.log(this.identificationForm.controls['widgetType'])
         }
 
     }
-startWidgetType() {return 'BarChart';}
+
     loadReports() {
 
         // Load the Report, etc DropDowns
@@ -682,7 +695,7 @@ startWidgetType() {return 'BarChart';}
             this.reportsDropDown.push({
                 label: this.reports[i].reportName,
                 value: {
-                    id: this.reports[i].repordID,
+                    id: this.reports[i].reportID,
                     name: this.reports[i].reportName
                 }
             });
@@ -739,7 +752,7 @@ startWidgetType() {return 'BarChart';}
         }
     }
 
-    loadWidgetTemplateFields(event) {
+    loadWidgetTemplateFields() {
         // Load basic fields when a Widget template is selected
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadWidgetTemplateFields', '@Start');
 
@@ -753,16 +766,6 @@ startWidgetType() {return 'BarChart';}
                 this.identificationForm.controls['widgetType'].value['name']
             );
 
-            // Basic stuffies
-            if (this.widgetTemplate != undefined) {
-                this.identificationForm.controls['graphHeight']
-                    .setValue(this.widgetTemplate.vegaParameters.graphHeight);
-                this.identificationForm.controls['graphWidth']
-                    .setValue(this.widgetTemplate.vegaParameters.graphWidth);
-                this.identificationForm.controls['graphPadding']
-                    .setValue(this.widgetTemplate.vegaParameters.graphPadding);
-            }
-
         }
 
         // Only Custom specs can be editted
@@ -771,6 +774,9 @@ startWidgetType() {return 'BarChart';}
         } else {
             this.isNotCustomSpec = true;
         }
+
+console.log('loadWid-Templ   FldDropDwn=', this.reportFieldsDropDown, 'templ=', this.widgetTemplate)
+
     }
 
     loadDashboardTabs() {
