@@ -1648,6 +1648,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Copy (duplicate) selected Widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'copyWidget', '@Start');
 
+        // Exit if nothing to do
+        if (this.selectedWidgetIDs.length == 0) {
+            return
+        }
+        
         // Loop on selected ones
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
 

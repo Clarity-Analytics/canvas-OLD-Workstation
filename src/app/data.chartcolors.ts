@@ -183,12 +183,10 @@ export class CanvasColors {
     hexCodeOfColor(colorCode: string): string {
         // This function returns the hex code of a given color as a string, ie lightgray
         let singleColor: ColorValue = this.colors.filter(col => col.label == colorCode)[0];
-console.log('color Obj for ', colorCode, ' is = ', singleColor)
+
         if (singleColor == null) {
-console.log('no col code returned')
             return '';
         } else {
-console.log('col code returned', singleColor.value.code)            
             return singleColor.value.code;
         }
     }

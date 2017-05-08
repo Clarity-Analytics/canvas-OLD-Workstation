@@ -87,3 +87,15 @@
     margin: 0;
     padding: 0;
 }
+
+.widgetGraph {
+    background-color: white;
+    border: transparent;
+    color: black;
+    display: block;
+    font: 1em;
+    height: 200px;
+    margin: 0px;
+    padding: 0;
+    width: 100%;
+}

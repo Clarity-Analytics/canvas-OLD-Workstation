@@ -1,5 +1,6 @@
 // Widget Builder - Popup form to Add / Edit Widget
 import { Component }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { FormBuilder }                from '@angular/forms';
 import { FormControl }                from '@angular/forms';
@@ -7,7 +8,9 @@ import { FormGroup }                  from '@angular/forms';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
+import { Renderer }                   from '@angular/core';
 import { Validators }                 from '@angular/forms';
+import { ViewChild }                  from '@angular/core';
 
 //  PrimeNG stuffies
 import { SelectItem }                 from 'primeng/primeng';
@@ -61,6 +64,8 @@ export class WidgetEditorComponent implements OnInit {
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formSubmit: EventEmitter<string> = new EventEmitter();
 
+    @ViewChild('widget') widgetGraph: ElementRef;             // Attaches to # in DOM
+
     submitted: boolean;                         // True if form submitted
     selectedTabName: any;                       // Current selected Tab
     selectedReportID: number;                   // Selected in DropDown
@@ -89,8 +94,7 @@ export class WidgetEditorComponent implements OnInit {
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
     selectedWidgetCreation: any;                // Selected option to create Widget
-    isVegaSpecBad: boolean = false;             // True if Vega spec is bad
-    isVegaSpecGood: boolean = false;            // True if Vega spec validated good
+    isVegaSpecBad: boolean = true;              // True if Vega spec is bad
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
 
     // Form Controls, validation and loading stuffies
@@ -112,6 +116,7 @@ export class WidgetEditorComponent implements OnInit {
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private renderer : Renderer,
     ) { 
     }
     
@@ -872,16 +877,25 @@ export class WidgetEditorComponent implements OnInit {
 
         // Assume all good
         this.isVegaSpecBad = false;
-        this.isVegaSpecGood = true;
+        this.renderer.setElementStyle(
+            this.widgetGraph.nativeElement,'background-color', 'orange'
+        );
+
 console.log('spec', this.widgetToEditSpec)
         try {
             var view = new vg.View(vg.parse( this.widgetToEditSpec));
+            view.renderer('svg')
+                .initialize( this.widgetGraph.nativeElement)
+                .hover()
+                .run();
         }
         catch(err) {
 console.log('in err')
             this.isVegaSpecBad = true;
-            this.isVegaSpecGood = false;
             this.widgetToEditSpec = '';
+        }
+        finally {
+console.log('finally bad good',this.isVegaSpecBad )            
         }        
     }
 }

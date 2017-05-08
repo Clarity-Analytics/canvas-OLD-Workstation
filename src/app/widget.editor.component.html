@@ -958,7 +958,7 @@
             Vega spec is invalid
         </div>
         <div
-            *ngIf="isVegaSpecGood"
+            *ngIf="!isVegaSpecBad"
             >
             Vega spec is Valid
         </div>
@@ -982,6 +982,14 @@
             </p>
             <textarea 
                 pInputTextarea 
+                [style]="{
+                            'background-color':'lightgray',
+                            'font-size':'0.85em',
+                            'height':'6em',
+                            'margin':'2px',
+                            'padding':'2px',
+                            'width':'100%'
+                            }" 
                 [(ngModel)]="widgetToEditSpec"
                 >
             </textarea> 
@@ -999,6 +1007,15 @@
                 >
             </button> 
         </div>
+
+        <div 
+            class="widgetGraph"
+            #widget
+            >
+            Graph ...
+        </div> 
+
+
     </div>
 
 </div>
