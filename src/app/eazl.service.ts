@@ -790,7 +790,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 5,
                 widgetSize: 'Small',
                 widgetSystemMessage: '',
-                widgetType: 'barChart',
+                widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -939,7 +939,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
-                widgetType: '',
+                widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }
@@ -1076,7 +1076,7 @@ export const WIDGETS: Widget[] =
                 widgetShowLimitedRows: 0,
                 widgetSize: '',
                 widgetSystemMessage: '',
-                widgetType: '',
+                widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserID: ''
             }

@@ -29,6 +29,11 @@ import { WidgetTemplate }             from './model.widgetTemplates';
 // Vega stuffies
 let vg = require('vega/index.js');
 
+export class SelectedItem {
+    id: number;
+    name: string;
+}
+
 @Component({
     selector:    'widget-editor',
     templateUrl: 'widget.editor.component.html',
@@ -65,6 +70,8 @@ export class WidgetEditorComponent implements OnInit {
     reportFields: string[];                     // List of Report Fields
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
     reportFieldsDropDown:  SelectItem[];        // Drop Down options
+
+selectedItem: SelectedItem;
 
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
@@ -177,14 +184,10 @@ export class WidgetEditorComponent implements OnInit {
             this.isLoadingForm = true;
 
             if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
-console.log('hier')
-// this.identificationForm.controls['widgetType'].setValue({id: 1, name: "BarChart"})
-this.selectedWidgetCreation = {id: 1, name: "BarChart"}
 
                 if (this.widgetToEdit.properties.widgetTabName) {
                     this.identificationForm.controls['widgetTabName']
-                        .setValue({id: 1, name: 'BarChart'});
-                        // .setValue("{id: 0, name: '" + this.widgetToEdit.properties.widgetTabName + "'}");
+                        .setValue({id: 1, name: '" + this.widgetToEdit.properties.widgetTabName + "'});
                 }
                 if (this.widgetToEdit.container.widgetTitle) {
                     this.identificationForm.controls['widgetTitle']
@@ -236,7 +239,7 @@ this.selectedWidgetCreation = {id: 1, name: "BarChart"}
 
                 if (this.widgetToEdit.properties.widgetReportName) {
                     this.identificationForm.controls['widgetReportName']
-                        .setValue({id: 1, name: '" + this.widgetToEdit.properties.widgetReportName + "'});
+                        .setValue({id: '" + this.widgetToEdit.properties.widgetReportID + "', name: '" + this.widgetToEdit.properties.widgetReportName + "'});
 
                     // Set the field DropDown content
                     this.loadReportRelatedInfoBody(this.widgetToEdit.properties.widgetReportID);
@@ -254,12 +257,23 @@ this.selectedWidgetCreation = {id: 1, name: "BarChart"}
                         .setValue(this.widgetToEdit.properties.widgetAddRestRow);
                 }
                 if (this.widgetToEdit.properties.widgetType) {
-                    this.identificationForm.controls['widgetType']
-                        .setValue({id: 1, name: '" + this.widgetToEdit.properties.widgetType + "'});
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.properties.widgetType}
+                    ;
+                    this.identificationForm.controls['widgetType'].setValue(this.selectedItem)
+                    this.selectedWidgetCreation = this.selectedItem;
                 }
+
+                // // TODO - add X, Y, fill, hover etc to model and data, and load here
+                // if (this.widgetToEdit.graph.vegaXcolumn) {
+                //     this.identificationForm.controls['vegaXcolumn']
+                //         .setValue({id: 1, name: '" + this.widgetToEdit.properties.widgetType + "'});
+                // }
 
                 // Indicate we are done loading form
                 this.isLoadingForm = false;
+
             }
         }
 
@@ -774,9 +788,6 @@ console.log(this.identificationForm.controls['widgetType'])
         } else {
             this.isNotCustomSpec = true;
         }
-
-console.log('loadWid-Templ   FldDropDwn=', this.reportFieldsDropDown, 'templ=', this.widgetTemplate)
-
     }
 
     loadDashboardTabs() {
