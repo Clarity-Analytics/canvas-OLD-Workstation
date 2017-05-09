@@ -104,6 +104,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     selectedBoxShadow: string;
     selectedColor: any;
     selectedContainerFontSize: number;      // In em
+    selectedContainerGridSize: number;      // In px
     showContainerHeader: boolean = true;
 
     // List of Dashboards read from DB
@@ -128,6 +129,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size
+    gridSizeOptions: SelectItem[];              // Options for Grid Size
     isDark: boolean = false;                    // Widget Header icons black if true
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
@@ -153,6 +155,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayExpandBoxShadow: boolean = false; 
     displayExpandColor: boolean = false; 
     displayExpandFontSize: boolean = false; 
+    displayExpandGridSize: boolean = false; 
 
     constructor(
         private canvasColors: CanvasColors,
@@ -196,6 +199,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.fontSizeOptions = [];
         this.fontSizeOptions.push({label:'1',   value:{id:1, name: '1em'}});
         this.fontSizeOptions.push({label:'2',   value:{id:1, name: '2em'}});
+
+        // Grid Size Options - the name must be a NUMBER, in px
+        this.gridSizeOptions = [];       
+        this.gridSizeOptions.push({label:'1px',   value:{id:1, name: '1'}});
+        this.gridSizeOptions.push({label:'2px',   value:{id:2, name: '2'}});
+        this.gridSizeOptions.push({label:'3px',   value:{id:3, name: '3'}});
+        this.gridSizeOptions.push({label:'6px',   value:{id:4, name: '6'}});
+        this.gridSizeOptions.push({label:'9px',   value:{id:5, name: '9'}});
+        this.gridSizeOptions.push({label:'12px',  value:{id:6, name: '12'}});
+        this.gridSizeOptions.push({label:'30px',  value:{id:7, name: '30'}});
 
         // Set startup stuffies
         this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
@@ -366,6 +379,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     clickContainerApply(){
         // Apply the new values on the Palette -> Container tab to the selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContainerApply', '@Start');
+
+        // First, global stuffies like grid size
+        // Grid Size
+        if (this.selectedContainerGridSize != undefined) {
+            // Update the data (for next time only, not moving anything now)
+            this.globalVariableService.gridSize.next(
+                +this.selectedContainerGridSize['name']
+            );
+        }
+
 
         // Loop on the Array of selected IDs, and do things to it
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
@@ -1695,6 +1718,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.displayExpandBoxShadow = false; 
         this.displayExpandColor = false; 
         this.displayExpandFontSize = false; 
+        this.displayExpandGridSize = false;
 
         if (areaToExpand == 'displayExpandBackgroundArea') {
             this.displayExpandBackgroundArea = true;
@@ -1710,7 +1734,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }        
         if (areaToExpand == 'displayExpandFontSize') {
             this.displayExpandFontSize = true;
-        }        
+        }     
+        if (areaToExpand == 'displayExpandGridSize') {
+            this.displayExpandGridSize = true;
+        }     
+
     }
 
     onWidgetSelectAll() {

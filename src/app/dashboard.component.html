@@ -611,6 +611,20 @@
             >
         </button> 
 
+        <!--Button to Expand Grid Size Area-->
+        <button
+            class="paletteButton"
+            pButton
+            type="button"
+            icon="fa-flash"
+            pTooltip="Expand the grid size info" 
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="onClickExpandArea('displayExpandGridSize')"
+            >
+        </button> 
+
+
         <!--Expand Background Info-->
             <div
                 *ngIf="displayExpandBackgroundArea"
@@ -965,6 +979,78 @@
                 
             </div>
         <!--END Expand FontSize Info-->
+
+
+
+
+
+
+        <!--Expand Grid Size Info-->
+            <div
+                *ngIf="displayExpandGridSize"
+                >
+                <div
+                    class="widgetNrSelected"
+                    *ngIf="selectedWidgetIDs.length > 0"
+                    >
+                    Nr Widgets selected: {{ selectedWidgetIDs.length }}
+                </div>
+
+                <div
+                    class="actionLabel"
+                    >
+                    Grid Size
+                </div>
+
+                <p-dropdown
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
+                    [options]="gridSizeOptions" 
+                    [(ngModel)]="selectedContainerGridSize" 
+                    placeholder="Grid Size"
+                    filter="true"
+                    >
+                </p-dropdown>
+                <div>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-cube"
+                        pTooltip="Apply the styling to the selected Containters" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-close"
+                        pTooltip="Close area for grid size info" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="displayExpandGridSize=false"
+                        > 
+                    </button>
+                </div>
+                
+            </div>
+        <!--END Expand Grid Size Info-->
+
+
 
     </div>         <!--Div for New Widget and Widget formatting buttons-->
 
