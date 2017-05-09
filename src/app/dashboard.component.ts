@@ -49,6 +49,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChildren('widgetContainter') childrenWidgetContainers: QueryList<ElementRef>;   // Attaches to # in DOM
     @ViewChildren('widgetText') childrenWidgetText: QueryList<ElementRef>;      // Attaches to # in DOM
     @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
+    @ViewChildren('widgetImage') childrenWidgetImage: QueryList<ElementRef>;    // Attaches to # in DOM
+
     @ViewChild(DashboardEditorComponent) dashboardEditor;                       // To run methods in it
 
 
@@ -101,7 +103,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     // Currently selected properties for a Widget, in the Palette
     selectedBackgroundColor: any;           // Selected bg color
-    selectedBackgroundColorDashboard: any;  // Bg color for the Dashboard body
+    selectedBackgroundColorDashboard: any;  // Bg Color for the Dashboard body
+    selectedBackgroundImageDashboard: any;  // Bg Image for the Dashboard body
+
     selectedBorder: string;
     selectedBoxShadow: string;
     selectedColor: any;
@@ -136,6 +140,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
     sampleColorWidgetBackgroundColor: string;   // Sample color of that selected from DropDown
+    backgroundImageOptions: SelectItem[];       // Dashboard background images
 
     // Popup forms stuffies
     addEditModeWidgetEditor: string = '';       // Add or Edit was called
@@ -211,6 +216,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.gridSizeOptions.push({label:'9px',   value:{id:5, name: '9'}});
         this.gridSizeOptions.push({label:'12px',  value:{id:6, name: '12'}});
         this.gridSizeOptions.push({label:'30px',  value:{id:7, name: '30'}});
+
+        // Background Images
+        this.backgroundImageOptions = [];       
+        this.backgroundImageOptions.push({label:'Dolphin',         value:{id:1, name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"}});
+        this.backgroundImageOptions.push({label:'River Sunset',    value:{id:2, name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"}});
+        this.backgroundImageOptions.push({label:'Snow Landscape',  value:{id:3, name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"}});
 
         // Set startup stuffies
         this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
@@ -1644,7 +1655,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Set the document / body background color
         if (this.selectedBackgroundColorDashboard) {
-            this.document.body.style.backgroundColor =  this.selectedBackgroundColorDashboard['name'];
+            this.document.body.style.backgroundColor =  
+                this.selectedBackgroundColorDashboard['name'];
+        }
+
+        if (this.selectedBackgroundImageDashboard) {
+            this.document.body.style.backgroundImage = 
+                this.selectedBackgroundImageDashboard['name'];
         }
 
         // Hide popup form

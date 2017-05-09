@@ -25,16 +25,16 @@ export class Widget {
         textBackgroundColor: string; 
         textBorder: string;          
         textColor: string;          
-        textFontSize: number;    //px
+        textFontSize: number;                   // in px
         textFontWeight: string;      
-        textHeight: number;      //px
-        textLeft: number;        //px
+        textHeight: number;                     // in px
+        textLeft: number;                       // in px
         textMargin: string,               
         textPadding: string;                 
         textPosition: string;        
         textTextAlign: string;       
-        textTop: number;         //px
-        textWidth: number;       //px: 0 means it adapts to container
+        textTop: number;                        // in px
+        textWidth: number;                      // in px: 0 means it adapts to container
     };
     graph: {
         graphID: number;
@@ -50,6 +50,19 @@ export class Widget {
         },
         spec: any; 
     }; 
+    table:{
+        tableColor: string;                     // Text color
+        tableCols: number;                      // Nr of cols
+        tableHeight: number;                    // in px
+        tableHideHeader: boolean;
+        tableRows: number;                      // Nr of rows
+        tableWidth: number;                     // in px
+    };
+    image: {
+        imageHeigt: number;                     // in px
+        imageWidth: number;                     // in px
+        imageSource: string;                    // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+    };
     properties: {
         widgetID: number;                       // Unique ID from DB
         dashboardID: number;                    // FK to DashboardID to which widget belongs

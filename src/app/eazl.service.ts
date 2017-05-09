@@ -793,6 +793,19 @@ export const WIDGETS: Widget[] =
                 ]
                 }
             },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+            },
             properties: {
                 widgetID: 1,
                 dashboardID: 0,
@@ -844,7 +857,7 @@ export const WIDGETS: Widget[] =
                 boxShadow: '4px 4px 12px gray',
                 color: 'brown',
                 fontSize: 1,
-                height: 360,
+                height: 390,
                 left: 640,
                 widgetTitle: 'Headcount Comparison',
                 top: 80,
@@ -977,6 +990,19 @@ export const WIDGETS: Widget[] =
                     }
                 ]
                 }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 2,
@@ -1148,6 +1174,19 @@ export const WIDGETS: Widget[] =
                         }
                     ]
                 }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 3,
@@ -1358,6 +1397,19 @@ export const WIDGETS: Widget[] =
                         }
                     ]
                 }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 4,
@@ -1614,6 +1666,19 @@ export const WIDGETS: Widget[] =
                     ]
                 }
             },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+            },
             properties: {
                 widgetID: 5,
                 dashboardID: 0,
@@ -1767,6 +1832,19 @@ export const WIDGETS: Widget[] =
                     }
                 ]
                 }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 11,
@@ -1944,6 +2022,19 @@ export const WIDGETS: Widget[] =
                 ]
                 }
             },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+            },
             properties: {
                 widgetID: 12,
                 dashboardID: 1,
@@ -2105,6 +2196,19 @@ export const WIDGETS: Widget[] =
                         }
                     ]
                 }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 21,
@@ -2308,6 +2412,19 @@ export const WIDGETS: Widget[] =
                     ]
                 }
             },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+            },
             properties: {
                 widgetID: 6,
                 dashboardID: 3,
@@ -2474,6 +2591,19 @@ export const WIDGETS: Widget[] =
                         }
                     ]
                 }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 41,
@@ -2737,6 +2867,19 @@ export const WIDGETS: Widget[] =
                         }
                     ]
                     }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 51,
@@ -3472,6 +3615,19 @@ export class EazlService {
                 },                
                 spec: {
                 }
+            },
+            table:{
+                tableColor: 'transparent',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableRows: 1,
+                tableWidth: 25,
+            },
+            image: {
+                imageHeigt: 200,
+                imageWidth: 200,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
             },
             properties: {
                 widgetID: 1,

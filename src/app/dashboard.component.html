@@ -1256,7 +1256,6 @@
         {{ w.textual.textText}} 
     </div>
 
-
     <!--Graph content -->
     <div 
         class="widgetGraph"
@@ -1271,6 +1270,22 @@
         >
         TABLE to follow later
     </div>
+
+
+    <!--Image Area-->
+    <div 
+        class="widgetContainerImageArea"
+        *ngIf="w.areas.showWidgetImage"
+        #widgetImage
+        >
+        <img 
+            src="../assets/StackedBar.png" 
+            alt="Mountain View" 
+            style="width:304px;height:228px;">
+    </div>
+
+ <!--<img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">-->
+
 
 </div>             <!--END Widgets on the Canvas-->
 
@@ -1372,7 +1387,7 @@
             >
             <p>
                 This is just the beginning: we can store many more settings.  Also,
-                we need to store these in the DB.
+                we need to store these in the DB.  The picture will over-write the color...
             </p>
             <button
                 class="changeDashboardSettingsButton"
@@ -1392,7 +1407,16 @@
                     [style]="{'width':'260px','margin-top':'4px'}"
                     [options]="chartColor" 
                     [(ngModel)]="selectedBackgroundColorDashboard" 
-                    placeholder="Background"
+                    placeholder="Background Color"
+                    filter="true"
+                    >
+                </p-dropdown>
+
+                <p-dropdown
+                    [style]="{'width':'260px','margin-top':'4px'}"
+                    [options]="backgroundImageOptions" 
+                    [(ngModel)]="selectedBackgroundImageDashboard" 
+                    placeholder="Background Image"
                     filter="true"
                     >
                 </p-dropdown>
