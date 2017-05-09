@@ -1938,33 +1938,34 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Loop on the children ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
-
-                // Other Attributes, like ID
-                this.renderer.setElementAttribute(
-                    this.childrenWidgets.toArray()[i].nativeElement,
-                    'id',
-                    this.widgets[i].properties.widgetID.toString()
-                );
-
-                // Set top depending on text line or not
-                if (this.widgets[i].areas.showWidgetText) {
-                    this.renderer.setElementStyle(
+                if (this.widgets[i].areas.showWidgetGraph) {
+                    // Other Attributes, like ID
+                    this.renderer.setElementAttribute(
                         this.childrenWidgets.toArray()[i].nativeElement,
-                        'top', '40px'
+                        'id',
+                        this.widgets[i].properties.widgetID.toString()
                     );
-                } else {
-                    this.renderer.setElementStyle(
-                        this.childrenWidgets.toArray()[i].nativeElement,
-                        'top', '20px'
-                    );
+
+                    // Set top depending on text line or not
+                    if (this.widgets[i].areas.showWidgetText) {
+                        this.renderer.setElementStyle(
+                            this.childrenWidgets.toArray()[i].nativeElement,
+                            'top', '40px'
+                        );
+                    } else {
+                        this.renderer.setElementStyle(
+                            this.childrenWidgets.toArray()[i].nativeElement,
+                            'top', '20px'
+                        );
+                    }
+
+                    // Show the Graphs
+                    var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
+                    view.renderer('svg')
+                        .initialize( this.childrenWidgets.toArray()[i].nativeElement)
+                        .hover()
+                        .run();
                 }
-
-                // Show the Graphs
-                var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
-                view.renderer('svg')
-                    .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-                    .hover()
-                    .run();
             }
         }
     }

@@ -844,7 +844,7 @@ export const WIDGETS: Widget[] =
                 boxShadow: '4px 4px 12px gray',
                 color: 'brown',
                 fontSize: 1,
-                height: 310,
+                height: 360,
                 left: 640,
                 widgetTitle: 'Headcount Comparison',
                 top: 80,
@@ -852,8 +852,8 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: true,
-                showWidgetGraph: false,
-                showWidgetTable: false,
+                showWidgetGraph: true,
+                showWidgetTable: true,
                 showWidgetImage: false,
             },
             textual: {
@@ -870,7 +870,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -1035,7 +1035,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -1053,7 +1053,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -1206,7 +1206,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -1224,7 +1224,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -1416,7 +1416,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -1434,7 +1434,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -1671,7 +1671,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -1689,7 +1689,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -1825,7 +1825,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -1843,7 +1843,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -2001,7 +2001,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -2019,7 +2019,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -2163,7 +2163,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -2181,7 +2181,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -2365,7 +2365,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -2383,7 +2383,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -2532,7 +2532,7 @@ export const WIDGETS: Widget[] =
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -2550,7 +2550,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
@@ -3438,7 +3438,7 @@ export class EazlService {
             },
             areas: {
                 showWidgetText: false,
-                showWidgetGraph: false,
+                showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
@@ -3456,7 +3456,7 @@ export class EazlService {
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 100,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,

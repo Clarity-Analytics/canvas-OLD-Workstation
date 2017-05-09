@@ -1247,13 +1247,14 @@
     <div>          <!--Container Header boxie-->
 
 
-<div 
-    class="widgetContainerTextArea"
-    *ngIf="w.areas.showWidgetText"
-    #widgetText
-    >
-    {{ w.textual.textText}} 
-</div>
+    <!--Text Area (at top)-->
+    <div 
+        class="widgetContainerTextArea"
+        *ngIf="w.areas.showWidgetText"
+        #widgetText
+        >
+        {{ w.textual.textText}} 
+    </div>
 
 
     <!--Graph content -->
@@ -1261,12 +1262,15 @@
         class="widgetGraph"
         #widget
         >
-        Graph ...
     </div>         <!--END Graph content ends-->
 
-<div class="widgetContainerTableArea">TABLE</div>
-
-
+    <!--Table Area (at bottom)-->
+    <div 
+        class="widgetContainerTableArea"
+        *ngIf="w.areas.showWidgetTable"
+        >
+        TABLE to follow later
+    </div>
 
 </div>             <!--END Widgets on the Canvas-->
 
