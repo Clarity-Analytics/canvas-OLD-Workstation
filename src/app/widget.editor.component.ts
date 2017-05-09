@@ -878,24 +878,32 @@ export class WidgetEditorComponent implements OnInit {
         // Assume all good
         this.isVegaSpecBad = false;
         this.renderer.setElementStyle(
-            this.widgetGraph.nativeElement,'background-color', 'orange'
+            this.widgetGraph.nativeElement,'background-color', 'transparent'
         );
+        this.renderer.setElementStyle(
+            this.widgetGraph.nativeElement,'border', '1px solid darkred'
+        );
+        var view = new vg.View(vg.parse( this.widgetToEditSpec));
+        view.renderer('svg')
+            .initialize( this.widgetGraph.nativeElement)
+            .hover()
+            .run();
 
 console.log('spec', this.widgetToEditSpec)
-        try {
-            var view = new vg.View(vg.parse( this.widgetToEditSpec));
-            view.renderer('svg')
-                .initialize( this.widgetGraph.nativeElement)
-                .hover()
-                .run();
-        }
-        catch(err) {
-console.log('in err')
-            this.isVegaSpecBad = true;
-            this.widgetToEditSpec = '';
-        }
-        finally {
-console.log('finally bad good',this.isVegaSpecBad )            
-        }        
+//         try {
+//             var view = new vg.View(vg.parse( this.widgetToEditSpec));
+//             view.renderer('svg')
+//                 .initialize( this.widgetGraph.nativeElement)
+//                 .hover()
+//                 .run();
+//         }
+//         catch(err) {
+// console.log('in err')
+//             this.isVegaSpecBad = true;
+//             this.widgetToEditSpec = '';
+//         }
+//         finally {
+// console.log('finally bad good',this.isVegaSpecBad )            
+//         }        
     }
 }
