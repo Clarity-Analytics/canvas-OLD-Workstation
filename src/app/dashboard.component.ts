@@ -1448,7 +1448,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onDragEndNewWidget', '@Start');
 
         // Get the X,Y from the mouse, and adjust for snapping to grid IF applied
-
         this.widgetToEditX = event.x;
         this.widgetToEditY = event.y;
 
@@ -1730,6 +1729,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.displayExpandFontSize = true;
         }        
     }
+
     onWidgetSelectAll() {
         // Select all the widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'onWidgetSelectAll', '@Start');
@@ -1762,6 +1762,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
             });
         }
+
+        // Reset the list of selected Widgets, Widgets and refresh Dashboard area
+        this.selectedWidgetIDs = [];
+        this.widgets= [];
+        this.refreshDashboard = true;
     }
 
     loadDashboard(event) {
@@ -1775,7 +1780,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.selectedWidgetIDs = [];
 
         // Set the Selected One
-        this.selectedDashboardID = event.value.id;
         this.selectedDashboardTabName = event.value.name;
 
         // Get its Widgets
