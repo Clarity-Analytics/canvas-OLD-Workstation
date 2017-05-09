@@ -1249,7 +1249,8 @@
 
 <div 
     class="widgetContainerTextArea"
-    *ngIf="w.areas.widgetHasText"
+    *ngIf="w.areas.showWidgetText"
+    #widgetText
     >
     {{ w.textual.textText}} 
 </div>

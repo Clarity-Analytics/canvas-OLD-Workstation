@@ -133,14 +133,14 @@
     .widgetContainerTextArea {
         background-color: transparent;
         border: none;
-        height: 2em;
+        height: 1em;
         margin: 0 5px 0 5px;
         padding: 0 5px 0 5px;
         position: absolute;
-        right: 0;
+        left: 0;
         text-align: center;
         top: 20px;
-        width: 200px;
+        width: 20px;
     }
 
     .widgetGraph {

@@ -15,13 +15,26 @@ export class Widget {
         width: number;
     };
     areas: {
-        widgetHasText: boolean;
-        widgetHasGraph: boolean;
-        widgetHasTable: boolean;
-        widgetHasImage: boolean;
+        showWidgetText: boolean;
+        showWidgetGraph: boolean;
+        showWidgetTable: boolean;
+        showWidgetImage: boolean;
     };
     textual: {
         textText: string;
+        textBackgroundColor: string; 
+        textBorder: string;          
+        textColor: string;          
+        textFontSize: number;    //px
+        textFontWeight: string;      
+        textHeight: number;      //px
+        textLeft: number;        //px
+        textMargin: string,               
+        textPadding: string;                 
+        textPosition: string;        
+        textTextAlign: string;       
+        textTop: number;         //px
+        textWidth: number;       //px: 0 means it adapts to container
     };
     graph: {
         graphID: number;

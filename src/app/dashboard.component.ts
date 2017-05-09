@@ -47,8 +47,10 @@ let vg = require('vega/index.js');
 
 export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChildren('widgetContainter') childrenWidgetContainers: QueryList<ElementRef>;   // Attaches to # in DOM
+    @ViewChildren('widgetText') childrenWidgetText: QueryList<ElementRef>;      // Attaches to # in DOM
     @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
     @ViewChild(DashboardEditorComponent) dashboardEditor;                       // To run methods in it
+
 
 // @HostListener('document:keyup', ['$event'])
 // handleKeyboardEvent(event) { 
@@ -1864,6 +1866,75 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
         }
 
+        // Loop on the container ElementRefs, and set properties ala widget[].properties
+        if (this.childrenWidgetText.toArray().length > 0) {
+            for (var i = 0; i < this.widgets.length; i++) {
+
+                // Style attributes IF it has text (else *ngIf is buggered)
+                if (this.widgets[i].areas.showWidgetText) {
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'background-color', this.widgets[i].textual.textBackgroundColor
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'border', this.widgets[i].textual.textBorder
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'color', this.widgets[i].textual.textColor
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'font-size', this.widgets[i].textual.textFontSize.toString() + 'px'
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'font-weight', this.widgets[i].textual.textFontWeight
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'height', this.widgets[i].textual.textHeight.toString() + 'px'
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'left', this.widgets[i].textual.textLeft.toString() + 'px'
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'margin', this.widgets[i].textual.textMargin
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'padding', this.widgets[i].textual.textPadding
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'position', this.widgets[i].textual.textPosition
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'text-align', this.widgets[i].textual.textTextAlign
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'top', this.widgets[i].textual.textTop.toString() + 'px'
+                    );
+                    if (this.widgets[i].textual.textWidth == 0) {
+                        this.renderer.setElementStyle(
+                            this.childrenWidgetText.toArray()[i].nativeElement,
+                            'width',  Math.max(5, this.widgets[i].container.width - 10).toString() + 'px'
+                        );
+                    } else {
+                        this.renderer.setElementStyle(
+                            this.childrenWidgetText.toArray()[i].nativeElement,
+                            'width',  this.widgets[i].textual.textWidth.toString() + 'px'
+                        );
+                    }
+                }
+            }
+        }
+
         // Loop on the children ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
@@ -1874,6 +1945,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     'id',
                     this.widgets[i].properties.widgetID.toString()
                 );
+
+                // Set top depending on text line or not
+                if (this.widgets[i].areas.showWidgetText) {
+                    this.renderer.setElementStyle(
+                        this.childrenWidgets.toArray()[i].nativeElement,
+                        'top', '40px'
+                    );
+                } else {
+                    this.renderer.setElementStyle(
+                        this.childrenWidgets.toArray()[i].nativeElement,
+                        'top', '20px'
+                    );
+                }
 
                 // Show the Graphs
                 var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
