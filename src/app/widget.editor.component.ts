@@ -555,18 +555,10 @@ export class WidgetEditorComponent implements OnInit {
                 this.identificationForm.controls['widgetType'].value;
 
             // Add x,y from where Icon was dropped
-            this.widgetToEdit.container.left = this.widgetToEditX;
-            this.widgetToEdit.container.top = this.widgetToEditY;
-
-// this.widgetToEdit.graph.spec.height = 
-//                 this.identificationForm.controls['vegaGraphHeight'].value;
-//             this.widgetToEdit.graph.spec.width = 
-//                 this.identificationForm.controls['vegaGraphWidth'].value;
-//             this.widgetToEdit.graph.spec.padding = 
-//                 this.identificationForm.controls['vegaGraphPadding'].value;
-
-
-
+            this.widgetToEdit.container.left = this.globalFunctionService.alignToGripPoint(
+                this.widgetToEditX);
+            this.widgetToEdit.container.top = this.globalFunctionService.alignToGripPoint(
+                this.widgetToEditY);
         }
 
         // Editing existing Widget
@@ -701,6 +693,17 @@ export class WidgetEditorComponent implements OnInit {
                         }
                     }
             }
+
+            // Estimate height and width for NEW container, based on graph dimensions
+            if (this.addEditMode == 'Add') {
+                this.widgetToEdit.container.height = this.globalFunctionService.alignToGripPoint(
+                    +this.widgetToEdit.graph.spec.height + 
+                        (+this.widgetToEdit.graph.spec.padding * 2) + 40);
+                this.widgetToEdit.container.width = this.globalFunctionService.alignToGripPoint(
+                    +this.widgetToEdit.graph.spec.width + 
+                        (+this.widgetToEdit.graph.spec.padding * 2) + 40);
+            }
+
         }
 
         if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
