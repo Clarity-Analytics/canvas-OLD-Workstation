@@ -45,6 +45,8 @@ export class GlobalVariableService {
   defaultReportFilters = new BehaviorSubject(''); 
   growlSticky = new BehaviorSubject(false); 
   growlLife = new BehaviorSubject(3000); 
+  gridSize = new BehaviorSubject(3);
+  snapToGrid = new BehaviorSubject(true);
 
   constructor() { }
 

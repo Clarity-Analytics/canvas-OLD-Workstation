@@ -122,14 +122,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     widgetEndDragY: number;                     // End coordinates during dragging
     widgetStartDragX: number;                   // Start coordinates during dragging
     widgetStartDragY: number;                   // Start coordinates during dragging
-
-    // Vars for Startup properties of a Widget
+ 
+    // Variables for Startup properties of a Widget
     borderOptions: SelectItem[];                // Options for Border DropDown
     boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size
-    gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     isDark: boolean = false;                    // Widget Header icons black if true
+    gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
     sampleColorWidgetBackgroundColor: string;   // Sample color of that selected from DropDown
 
@@ -198,9 +198,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.fontSizeOptions.push({label:'2',   value:{id:1, name: '2em'}});
 
         // Set startup stuffies
-        // TODO: read from DB
-        this.snapToGrid = true;
-        this.gridSize = 3;
+        this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
+        this.gridSize = this.globalVariableService.gridSize.getValue();
 
         // Get the list of dashboards from the DB
         this.getDashboards()

@@ -96,6 +96,8 @@ export class WidgetEditorComponent implements OnInit {
     selectedWidgetCreation: any;                // Selected option to create Widget
     isVegaSpecBad: boolean = true;              // True if Vega spec is bad
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
+    gridSize: number;                           // Size of grid blocks, ie 3px x 3px
+    snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
 
     // Form Controls, validation and loading stuffies
     identificationForm: FormGroup;
@@ -165,6 +167,10 @@ export class WidgetEditorComponent implements OnInit {
 
         // Set startup Widget Template
         this.loadWidgetTemplateFields();
+
+        // Set startup stuffies
+        this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
+        this.gridSize = this.globalVariableService.gridSize.getValue();
 
     }
 
@@ -551,6 +557,16 @@ export class WidgetEditorComponent implements OnInit {
             // Add x,y from where Icon was dropped
             this.widgetToEdit.container.left = this.widgetToEditX;
             this.widgetToEdit.container.top = this.widgetToEditY;
+
+// this.widgetToEdit.graph.spec.height = 
+//                 this.identificationForm.controls['vegaGraphHeight'].value;
+//             this.widgetToEdit.graph.spec.width = 
+//                 this.identificationForm.controls['vegaGraphWidth'].value;
+//             this.widgetToEdit.graph.spec.padding = 
+//                 this.identificationForm.controls['vegaGraphPadding'].value;
+
+
+
         }
 
         // Editing existing Widget
@@ -632,7 +648,7 @@ export class WidgetEditorComponent implements OnInit {
 
             // Wack the whole Template spec into our working Widget
             this.widgetToEdit.graph.spec = this.widgetTemplate.vegaSpec;
-
+ 
             // Now tweak according to the form
             this.widgetToEdit.graph.spec.height = 
                 this.identificationForm.controls['vegaGraphHeight'].value;
