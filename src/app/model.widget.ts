@@ -14,6 +14,15 @@ export class Widget {
         top: number;
         width: number;
     };
+    areas: {
+        widgetHasText: boolean;
+        widgetHasGraph: boolean;
+        widgetHasTable: boolean;
+        widgetHasImage: boolean;
+    };
+    textual: {
+        textText: string;
+    };
     graph: {
         graphID: number;
         vegaParameters: {                           

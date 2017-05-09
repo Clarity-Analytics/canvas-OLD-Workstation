@@ -980,11 +980,6 @@
             </div>
         <!--END Expand FontSize Info-->
 
-
-
-
-
-
         <!--Expand Grid Size Info-->
             <div
                 *ngIf="displayExpandGridSize"
@@ -1049,8 +1044,6 @@
                 
             </div>
         <!--END Expand Grid Size Info-->
-
-
 
     </div>         <!--Div for New Widget and Widget formatting buttons-->
 
@@ -1253,6 +1246,15 @@
         </button> 
     <div>          <!--Container Header boxie-->
 
+
+<div 
+    class="widgetContainerTextArea"
+    *ngIf="w.areas.widgetHasText"
+    >
+    {{ w.textual.textText}} 
+</div>
+
+
     <!--Graph content -->
     <div 
         class="widgetGraph"
@@ -1260,6 +1262,10 @@
         >
         Graph ...
     </div>         <!--END Graph content ends-->
+
+<div class="widgetContainerTableArea">TABLE</div>
+
+
 
 </div>             <!--END Widgets on the Canvas-->
 

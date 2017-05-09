@@ -650,6 +650,15 @@ export const WIDGETS: Widget[] =
                 top: 80,
                 width: 380,
             },
+            areas: {
+                widgetHasText: true,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
+            },
             graph: {
                 graphID: 0,
                 vegaParameters: {                           
@@ -828,6 +837,15 @@ export const WIDGETS: Widget[] =
                 top: 80,
                 width: 380,
             },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
+            },
             graph: {
                 graphID: 0,
                 vegaParameters: {                           
@@ -989,6 +1007,15 @@ export const WIDGETS: Widget[] =
                 top: 380,
                 width: 380,
             },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
+            },
             graph: {
                 graphID: 0,
                 vegaParameters: {                           
@@ -1137,6 +1164,15 @@ export const WIDGETS: Widget[] =
                 widgetTitle: 'Customer Segmentation',
                 top: 80,
                 width: 350,
+            },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
             },
             graph: {
                 graphID: 0,
@@ -1325,6 +1361,15 @@ export const WIDGETS: Widget[] =
                 widgetTitle: 'Resources used',
                 top: 80,
                 width: 680,
+            },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
             },
             graph: {
                 graphID: 0,
@@ -1559,6 +1604,15 @@ export const WIDGETS: Widget[] =
                 top: 100,
                 width: 350,
             },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
+            },
             graph: {
                 graphID: 0,
                 vegaParameters: {                           
@@ -1690,6 +1744,15 @@ export const WIDGETS: Widget[] =
                 widgetTitle: 'Momentum Equities',
                 top: 100,
                 width: 350,
+            },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
             },
             graph: {
                 graphID: 0,
@@ -1845,6 +1908,15 @@ export const WIDGETS: Widget[] =
                 top: 90,
                 width: 350,
             },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
+            },
             graph: {
                 graphID: 0,
                 vegaParameters: {                           
@@ -1984,6 +2056,15 @@ export const WIDGETS: Widget[] =
                 widgetTitle: 'ZAR/USD exRate',
                 top: 80,
                 width: 1050,
+            },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
             },
             graph: {
                 graphID: 0,
@@ -2165,6 +2246,15 @@ export const WIDGETS: Widget[] =
                 top: 120,
                 width: 860,
             },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
+            },
             graph: {
                 graphID: 0,
                 vegaParameters: {                           
@@ -2309,6 +2399,15 @@ export const WIDGETS: Widget[] =
                 widgetTitle: 'Roads in Brasil',
                 top: 60,
                 width: 900,
+            },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
             },
             graph: {
                 graphID: 0,
@@ -3193,6 +3292,15 @@ export class EazlService {
                 widgetTitle: '',
                 top: 80,
                 width: 380,
+            },
+            areas: {
+                widgetHasText: false,
+                widgetHasGraph: false,
+                widgetHasTable: false,
+                widgetHasImage: false,
+            },
+            textual: {
+                textText: 'texie'
             },
             graph: {
                 graphID: 0,

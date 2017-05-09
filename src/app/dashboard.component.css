@@ -7,7 +7,7 @@
         font-size:0.85em;
         left: 4px;
         margin: 4px;
-        padding: 0;
+        padding: 0 0 3px 0;
         position: absolute;
         width: 210px;
     }
@@ -130,6 +130,19 @@
         background-color: inherit;
     }
 
+    .widgetContainerTextArea {
+        background-color: transparent;
+        border: none;
+        height: 2em;
+        margin: 0 5px 0 5px;
+        padding: 0 5px 0 5px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 20px;
+        width: 200px;
+    }
+
     .widgetGraph {
         background-color: transparent;
         border: transparent;
@@ -141,9 +154,24 @@
         margin: 0px;
         padding: 0;
         position: absolute;
-        top: 25px;
+        top: 20px;
         width: 60px;
     }
+
+
+
+.widgetContainerTableArea {
+    background-color: orange;
+    border: 3px solid black;
+    bottom: 0;
+    height: 3em;
+    margin: 5px;
+    padding: 5px;
+    position: absolute;
+    width: 160px;
+}
+
+
 
     .widgetTitle {
         background-color: transparent;
