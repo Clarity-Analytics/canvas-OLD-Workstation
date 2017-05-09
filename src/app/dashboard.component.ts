@@ -1450,8 +1450,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetToEditX = event.x;
         this.widgetToEditY = event.y;
 
-        this.widgetToEditX = this.alignToGripPoint(this.widgetToEditX);
-        this.widgetToEditY = this.alignToGripPoint(this.widgetToEditY);
+        this.widgetToEditX = this.globalFunctionService.alignToGripPoint(this.widgetToEditX);
+        this.widgetToEditY = this.globalFunctionService.alignToGripPoint(this.widgetToEditY);
 
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
@@ -1518,8 +1518,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
 
         // Snap to grid
-        offsetLeft = this.alignToGripPoint(offsetLeft);
-        offsetTop = this.alignToGripPoint(offsetTop);
+        offsetLeft = this.globalFunctionService.alignToGripPoint(offsetLeft);
+        offsetTop = this.globalFunctionService.alignToGripPoint(offsetTop);
 
         let newLeft = 0;
         let newTop = 0;
@@ -1539,8 +1539,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 newLeft = this.selectedWidget.container.left + offsetLeft;
                 newTop = this.selectedWidget.container.top + offsetTop;
 
-                newLeft = this.alignToGripPoint(newLeft);
-                newTop = this.alignToGripPoint(newTop);
+                newLeft = this.globalFunctionService.alignToGripPoint(newLeft);
+                newTop = this.globalFunctionService.alignToGripPoint(newTop);
 
                 // Move Widget Left 
                 this.renderer.setElementStyle(selectedElement.nativeElement,
@@ -1570,22 +1570,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Dont do it again
         this.widgetDraggingEnabled = false;
 
-    }
-
-    alignToGripPoint(inputValue: number) {
-        // This routine recalcs a value to a gridpoint IF if snapping is enabled
-        this.globalFunctionService.printToConsole(this.constructor.name, 'snapToGrid', '@Start');
-
-        if (this.snapToGrid) {
-            if ( (inputValue % this.gridSize) >= (this.gridSize / 2)) {
-                inputValue = inputValue + this.gridSize - (inputValue % this.gridSize);
-            } else {
-                inputValue = inputValue - (inputValue % this.gridSize);
-            }
-        }
-
-        // Return the value
-        return inputValue;
     }
     
     bringWidgetToFront()  {
