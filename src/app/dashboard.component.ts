@@ -542,6 +542,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Delete the Widget, with confirmation of kors
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
 
+        // Respect the Lock
+        if (this.widgets.filter(
+            widget => widget.properties.widgetID === 
+                idWidget)[0].properties.widgetIsLocked) {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'info', 
+                    summary:  'Locked', 
+                    detail:   'First unlock the Widget by clicking on lock, then delete'
+                });
+                return;
+        }
+
         // See earlier note on deleteMode; its a whole story ...
         this.deleteMode = true;
         if (this.deleteMode) {
@@ -594,7 +606,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     detail:   'First unlock the Widget by clicking on lock, then edit'
                 });
                 return;
-            }
+        }
 
         // Set the environment for Edit: current widget + mode
         this.displayEditWidget = true;
@@ -1665,6 +1677,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.document.body.style.backgroundImage = 
                 this.selectedBackgroundImageDashboard['name'];
         }
+
+  var text = 'text ...';
+  var filename = './textFile.txt';
+  var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+  var result = this.document.execCommand('SaveAs', true,'/home/jannie/Projects/canvas/src/assets/fileName.txt');
+  console.log(result)
+//   this.document.execCommand( saveAs(blob, filename+".txt"));
+
+
+
+
 
         // Hide popup form
         this.displayDashboardSettings = false;

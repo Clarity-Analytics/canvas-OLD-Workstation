@@ -1074,16 +1074,16 @@ export const WIDGETS: Widget[] =
                 width: 380,
             },
             areas: {
-                showWidgetText: false,
+                showWidgetText: true,
                 showWidgetGraph: true,
                 showWidgetTable: false,
                 showWidgetImage: false,
             },
             textual: {
-                textText: 'texie',
+                textText: '<table> <tr>    <th>Firstname</th>    <th>Lastname</th>     <th>Age</th>  </tr>  <tr>    <td>Jill</td>    <td>Smith</td>     <td>50</td>  </tr>  <tr>    <td>Eve</td>    <td>Jackson</td>     <td>94</td>  </tr></table>',
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
-                textColor: 'darkgray',
+                textColor: 'black',
                 textFontSize: 16,        
                 textFontWeight: 'normal',
                 textHeight: 16,
@@ -1098,7 +1098,7 @@ export const WIDGETS: Widget[] =
             graph: {
                 graphID: 0,
                 graphLeft: 5,
-                graphTop: 25,
+                graphTop: 110,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
