@@ -78,6 +78,7 @@ export class WidgetEditorComponent implements OnInit {
     selectedVegaFillColor: any;                 // Selected in DropDown
     selectedVegaHoverColor: any;                // Selected in DropDown
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
+
     showTextChecked: boolean = false;           // True to show Text in containter
     showGraphChecked: boolean = false;          // True to show Graph in Containter
     showTableChecked: boolean = false;          // True to show Table in Containter
@@ -109,7 +110,18 @@ export class WidgetEditorComponent implements OnInit {
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
+ 
+    // Variables for Startup properties of a Widget
+    borderOptions: SelectItem[];                // Options for Border DropDown
+    boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
+    fontSizeOptions: SelectItem[];              // Options for Font Size of text box
+    fontWeightOptions: SelectItem[];            // Options for Font Weight of text box
+    textMarginOptions: SelectItem[];            // Options for Margins around text box
+    textPaddingOptions: SelectItem[];           // Options for Padding around text box
+    textPositionOptions: SelectItem[];          // Options for Position of the text box (absolute or not)
+    textAlignOptions: SelectItem[];             // Options for horisontal align of the text (left, center, right)
+
     // ToolTippies stays after popup form closes, so setting in vars works for now ...
     // TODO - find BUG, our side or PrimeNG side
     dashboardsTabsTooltip: string = ""          // 'Selected Tab where Widget will live';
@@ -134,7 +146,21 @@ export class WidgetEditorComponent implements OnInit {
         this.identificationForm = this.fb.group(
             {
                 'widgetTabName':                new FormControl(''),
-                'showTextInWidget':       new FormControl(''),
+                'showTextInWidget':             new FormControl(''),
+                'textText':                     new FormControl(''),
+                'textBackgroundColor':          new FormControl(''),
+                'textBorder':                   new FormControl(''),
+                'textColor':                    new FormControl(''),
+                'textFontSize':                 new FormControl(''),
+                'textFontWeight':               new FormControl(''),
+                'textHeight':                   new FormControl('', Validators.pattern('^[0-9]*$')),
+                'textLeft':                     new FormControl('', Validators.pattern('^[0-9]*$')),
+                'textMargin':                   new FormControl(''),
+                'textPadding':                  new FormControl(''),
+                'textPosition':                 new FormControl(''),
+                'textTextAlign':                new FormControl(''),
+                'textTop':                      new FormControl('', Validators.pattern('^[0-9]*$')),
+                'textWidth':                    new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetTitle':                  new FormControl(''),
                 'widgetCode':                   new FormControl(''),
                 'widgetName':                   new FormControl(''),
@@ -166,6 +192,55 @@ export class WidgetEditorComponent implements OnInit {
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();
+
+        // Border Options
+        this.borderOptions = [];
+        this.borderOptions.push({label:'None',          value:{id:1, name: 'transparent',           code: ''}});
+        this.borderOptions.push({label:'Thick Black',   value:{id:1, name: '3px solid black',       code: '3px solid black'}});
+        this.borderOptions.push({label:'Thin Black',    value:{id:1, name: '1px solid black',       code: '1px solid black'}});
+        this.borderOptions.push({label:'Thin White',    value:{id:1, name: '1px solid white',       code: '1px solid white'}});
+
+        // BoxShadow Options
+        this.boxShadowOptions = [];
+        this.boxShadowOptions.push({label:'None',       value:{id:1, name: '',                      code: ''}});
+        this.boxShadowOptions.push({label:'Black',      value:{id:1, name: '2px 2px 12px black',    code: '2px 2px 12px black'}});
+        this.boxShadowOptions.push({label:'Gray',       value:{id:1, name: '2px 2px 12px gray',     code: '2px 2px 12px gray'}});
+        this.boxShadowOptions.push({label:'White',      value:{id:1, name: '2px 2px 12px white',    code: '2px 2px 12px white'}});
+
+        // Font Size Options
+        this.fontSizeOptions = [];
+        this.fontSizeOptions.push({label:'1',   value:{id:1, name: '1em'}});
+        this.fontSizeOptions.push({label:'2',   value:{id:1, name: '2em'}});
+
+        // Font Weight Options
+        this.fontWeightOptions = [];
+        this.fontWeightOptions.push({label:'Normal', value:{id:1, name: 'normal'}});
+        this.fontWeightOptions.push({label:'Bold',   value:{id:1, name: 'bold'}});
+
+        // Text Margin Options
+        this.textMarginOptions = [];
+        this.textMarginOptions.push({label:'None',   value:{id:1, name: '0'}});
+        this.textMarginOptions.push({label:'Small',  value:{id:1, name: '5px 5px 5px 5px'}});
+        this.textMarginOptions.push({label:'Medium', value:{id:1, name: '20px 20px 20px 20px'}});
+        this.textMarginOptions.push({label:'Large',  value:{id:1, name: '50px 50px 50px 50px'}});
+
+        // Text Margin Options
+        this.textPaddingOptions = [];
+        this.textPaddingOptions.push({label:'None',   value:{id:1, name: '0'}});
+        this.textPaddingOptions.push({label:'Small',  value:{id:1, name: '5px 5px 5px 5px'}});
+        this.textPaddingOptions.push({label:'Medium', value:{id:1, name: '20px 20px 20px 20px'}});
+        this.textPaddingOptions.push({label:'Large',  value:{id:1, name: '50px 50px 50px 50px'}});
+
+        // Text Margin Options
+        this.textAlignOptions = [];
+        this.textAlignOptions.push({label:'Left',     value:{id:1, name: 'left'}});
+        this.textAlignOptions.push({label:'Center',   value:{id:1, name: 'center'}});
+        this.textAlignOptions.push({label:'Right',    value:{id:1, name: 'right'}});
+
+        // Text Margin Options
+        this.textPositionOptions = [];
+        this.textPositionOptions.push({label:'None',   value:{id:1, name: ''}});
+        this.textPositionOptions.push({label:'Absolute',  value:{id:1, name: 'absolute'}});
 
         // Load the startup form info
         this.setStartupFormValues();
@@ -896,10 +971,23 @@ export class WidgetEditorComponent implements OnInit {
     }
 
 changeCheckBox() {
-    console.log('showText',this.showTextChecked)
-    console.log(this.showGraphChecked)
-    console.log(this.showTableChecked)
-    console.log(this.showImageChecked)
+console.log('showText',this.showTextChecked)
+console.log(this.showGraphChecked)
+console.log(this.showTableChecked)
+console.log(this.showImageChecked)
+console.log(this.identificationForm.controls['textBackgroundColor'].value)
+console.log(this.identificationForm.controls['textBorder'].value)
+console.log(this.identificationForm.controls['textColor'].value)
+console.log(this.identificationForm.controls['textFontSize'].value)
+console.log(this.identificationForm.controls['textFontWeight'].value)
+console.log(this.identificationForm.controls['textHeight'].value)
+console.log(this.identificationForm.controls['textLeft'].value)
+console.log(this.identificationForm.controls['textMargin'].value)
+console.log(this.identificationForm.controls['textPadding'].value)
+console.log(this.identificationForm.controls['textPosition'].value)
+console.log(this.identificationForm.controls['textTextAlign'].value)
+console.log(this.identificationForm.controls['textTop'].value)
+console.log(this.identificationForm.controls['textWidth'].value)
 
 }
     testVegaSpec() {

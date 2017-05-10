@@ -558,6 +558,466 @@
         </div>
 
 
+
+
+
+        <!--Text Panel Header-->
+        <div
+            class="PanelHeading"
+            *ngIf="showTextChecked"
+            >
+            Text
+
+            <!--Open/Close buttons-->
+            <button
+                class="panelCaretButton"
+                *ngIf="textPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-up"
+                pTooltip="Click to close panel" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="textPanelIsOpen=false"
+                >
+            </button>         
+            <button
+                class="panelCaretButton"
+                *ngIf="!textPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-down"
+                pTooltip="Click to open panel"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="textPanelIsOpen=true"
+                >
+            </button>  
+        </div>
+
+        <!--Text Panel Area-->
+        <div
+            class="panelArea"
+            *ngIf="showTextChecked   &&   textPanelIsOpen"
+            >
+
+
+
+        <!--: string;                 -->
+        <!--: string;        -->
+        <!--: string;       -->
+        <!--: number;                        // in px-->
+        <!--: number;-->
+
+            <!--textText-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text *:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="textText" 
+                    placeholder="Required"
+                    pTooltip="Text to show in the container (may contain HTML and ##today##)"
+                    />
+            </div>
+
+            <!--Text Background Color-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Background Color:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="chartColor" 
+                    formControlName="textBackgroundColor"
+                    placeholder="Background Color"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Text Border-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Border:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="borderOptions" 
+                    formControlName="textBorder"
+                    placeholder="Border"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Text Color-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Color:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="chartColor" 
+                    formControlName="textColor"
+                    placeholder="Text Color"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Font Size-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Font Size:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="fontSizeOptions" 
+                    formControlName="textFontSize"
+                    placeholder="Font Size"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Font Weight-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Font Weight:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="fontWeightOptions" 
+                    formControlName="textFontWeight"
+                    placeholder="Font Weight"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--textHeight-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Height *:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="textHeight" 
+                    placeholder="Required"
+                    pTooltip="Height of text to be shown in px (16px = 1em = 1 line)"
+                    />
+            </div>
+
+            <!--textLeft-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Left *:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="textLeft" 
+                    placeholder="Required"
+                    pTooltip="Left of text box in px"
+                    />
+            </div>
+
+            <!--Text Margin-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Margin:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="textMarginOptions" 
+                    formControlName="textMargin"
+                    placeholder="Margin around text box"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Text Padding-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Padding:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="textPaddingOptions" 
+                    formControlName="textPadding"
+                    placeholder="Padding on inside of text box"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Text Position-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Position:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="textPositionOptions" 
+                    formControlName="textPosition"
+                    placeholder="Position of text box (absolute or not)"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--Text Alignment (horisontal)-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Align:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="textAlignOptions" 
+                    formControlName="textTextAlign"
+                    placeholder="Alignment of text box (left, center, right)"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--textTop-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Top:
+                </span>
+                 <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="textTop" 
+                    placeholder="Required"
+                    pTooltip="Top of text to be shown in px (16px = 1em = 1 line)"
+                    />
+            </div>
+
+            <!--textWidth-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Width:
+                </span>
+                 <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="textWidth" 
+                    placeholder="Required"
+                    pTooltip="Width of text to be shown in px (16px = 1em = 1 line)"
+                    />
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
         <!--Data Panel Header-->
         <div
             class="PanelHeading"
