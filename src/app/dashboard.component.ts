@@ -1956,6 +1956,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].areas.showWidgetGraph) {
+                    
                     // Other Attributes, like ID
                     this.renderer.setElementAttribute(
                         this.childrenWidgets.toArray()[i].nativeElement,
@@ -1963,18 +1964,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         this.widgets[i].properties.widgetID.toString()
                     );
 
-                    // Set top depending on text line or not
-                    if (this.widgets[i].areas.showWidgetText) {
-                        this.renderer.setElementStyle(
-                            this.childrenWidgets.toArray()[i].nativeElement,
-                            'top', '40px'
-                        );
-                    } else {
-                        this.renderer.setElementStyle(
-                            this.childrenWidgets.toArray()[i].nativeElement,
-                            'top', '20px'
-                        );
-                    }
+                    // Styling
+                    this.renderer.setElementStyle(
+                        this.childrenWidgets.toArray()[i].nativeElement,
+                        'top', this.widgets[i].graph.graphTop.toString() + 'px'
+                    );
 
                     // Show the Graphs
                     var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
@@ -1997,25 +1991,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         this.widgets[i].properties.widgetID.toString()
                     );
 
-                    // Set top depending on text line or not
-                    if (this.widgets[i].areas.showWidgetText) {
-                        this.renderer.setElementStyle(
-                            this.childrenWidgetImage.toArray()[i].nativeElement,
-                            'top', '40px'
-                        );
-                    } else {
-                        this.renderer.setElementStyle(
-                            this.childrenWidgetImage.toArray()[i].nativeElement,
-                            'top', '20px'
-                        );
-                    }
+                    // Styling
+                    // NOTE: img tag height & width are set in html.  I cant get it right here ...
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
                         'alt', this.widgets[i].image.imageAlt
                     );
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
-                        'height', this.widgets[i].image.imageHeigt.toString() + 'px'
+                        'left', this.widgets[i].image.imageLeft.toString() + 'px'
                     );
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
@@ -2023,9 +2007,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     );
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
-                        'width', this.widgets[i].image.imageWidth.toString() + 'px'
+                        'top', this.widgets[i].image.imageTop.toString() + 'px'
                     );
-
                 }
             }
         }

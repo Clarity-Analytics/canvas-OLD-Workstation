@@ -38,6 +38,8 @@ export class Widget {
     };
     graph: {
         graphID: number;
+        graphLeft: number;                      // in px
+        graphTop: number;                       // in px
         vegaParameters: {                           
             vegaGraphHeight: number;
             vegaGraphWidth: number;
@@ -55,7 +57,9 @@ export class Widget {
         tableCols: number;                      // Nr of cols
         tableHeight: number;                    // in px
         tableHideHeader: boolean;
+        tableLeft: number;                      // in px
         tableRows: number;                      // Nr of rows
+        tableTop: number;                       // in px
         tableWidth: number;                     // in px
     };
     image: {
@@ -63,6 +67,8 @@ export class Widget {
         imageWidth: number;                     // in px
         imageSource: string;                    // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
         imageAlt: string;                       // alt in img tag
+        imageLeft: number;                      // in px
+        imageTop: number;                       // in px
     };
     properties: {
         widgetID: number;                       // Unique ID from DB

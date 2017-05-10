@@ -674,6 +674,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -798,14 +800,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '../assets/StackedBar.png',
                 imageAlt: '',
+                imageHeigt: 220,
+                imageLeft: 5,
+                imageSource: '../assets/StackedBar.png',
+                imageTop: 70,
+                imageWidth: 360,
             },
             properties: {
                 widgetID: 1,
@@ -888,6 +894,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -997,14 +1005,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 2,
@@ -1085,6 +1097,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -1182,14 +1196,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 3,
@@ -1270,6 +1288,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -1406,14 +1426,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 4,
@@ -1494,6 +1518,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -1675,14 +1701,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 5,
@@ -1763,6 +1793,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -1843,14 +1875,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 11,
@@ -1931,6 +1967,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -2033,14 +2071,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 12,
@@ -2121,6 +2163,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -2209,14 +2253,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 21,
@@ -2297,6 +2345,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -2425,14 +2475,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 6,
@@ -2513,6 +2567,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -2606,14 +2662,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 41,
@@ -2694,6 +2754,8 @@ export const WIDGETS: Widget[] =
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -2883,14 +2945,18 @@ export const WIDGETS: Widget[] =
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 51,
@@ -3614,6 +3680,8 @@ export class EazlService {
             },
             graph: {
                 graphID: 0,
+                graphLeft: 5,
+                graphTop: 25,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -3632,14 +3700,18 @@ export class EazlService {
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
+                tableLeft: 5,
                 tableRows: 1,
+                tableTop: 300,
                 tableWidth: 25,
             },
             image: {
-                imageHeigt: 200,
-                imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
                 imageAlt: '',
+                imageHeigt: 200,
+                imageLeft: 5,
+                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageTop: 300,
+                imageWidth: 200,
             },
             properties: {
                 widgetID: 1,

@@ -172,10 +172,9 @@
     .widgetContainerImageArea {
         background-color: transparent;
         border: none;
-        bottom: 0;
         height: 20px;
-        margin: 5px;
-        padding: 5px;
+        margin: 0;
+        padding: 0;
         position: absolute;
         top: 40px;
         width: 20px;
