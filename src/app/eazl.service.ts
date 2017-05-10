@@ -654,7 +654,7 @@ export const WIDGETS: Widget[] =
                 showWidgetText: true,
                 showWidgetGraph: false,
                 showWidgetTable: false,
-                showWidgetImage: false,
+                showWidgetImage: true,
             },
             textual: {
                 textText: 'Historic growth taking market factors and external influences into account in the statistics',
@@ -804,7 +804,8 @@ export const WIDGETS: Widget[] =
             image: {
                 imageHeigt: 200,
                 imageWidth: 200,
-                imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageSource: '../assets/StackedBar.png',
+                imageAlt: '',
             },
             properties: {
                 widgetID: 1,
@@ -1003,6 +1004,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 2,
@@ -1187,6 +1189,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 3,
@@ -1410,6 +1413,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 4,
@@ -1678,6 +1682,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 5,
@@ -1845,6 +1850,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 11,
@@ -2034,6 +2040,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 12,
@@ -2209,6 +2216,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 21,
@@ -2424,6 +2432,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 6,
@@ -2604,6 +2613,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 41,
@@ -2880,6 +2890,7 @@ export const WIDGETS: Widget[] =
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 51,
@@ -3628,6 +3639,7 @@ export class EazlService {
                 imageHeigt: 200,
                 imageWidth: 200,
                 imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+                imageAlt: '',
             },
             properties: {
                 widgetID: 1,

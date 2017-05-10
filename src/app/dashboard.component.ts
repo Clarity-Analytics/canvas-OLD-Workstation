@@ -1985,6 +1985,50 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
             }
         }
+
+        // Loop on the children ElementRefs, and set properties ala widget[].properties
+        if (this.childrenWidgetImage.toArray().length > 0) {
+            for (var i = 0; i < this.widgets.length; i++) {
+                if (this.widgets[i].areas.showWidgetImage) {
+                    // Other Attributes, like ID
+                    this.renderer.setElementAttribute(
+                        this.childrenWidgetImage.toArray()[i].nativeElement,
+                        'id',
+                        this.widgets[i].properties.widgetID.toString()
+                    );
+
+                    // Set top depending on text line or not
+                    if (this.widgets[i].areas.showWidgetText) {
+                        this.renderer.setElementStyle(
+                            this.childrenWidgetImage.toArray()[i].nativeElement,
+                            'top', '40px'
+                        );
+                    } else {
+                        this.renderer.setElementStyle(
+                            this.childrenWidgetImage.toArray()[i].nativeElement,
+                            'top', '20px'
+                        );
+                    }
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetImage.toArray()[i].nativeElement,
+                        'alt', this.widgets[i].image.imageAlt
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetImage.toArray()[i].nativeElement,
+                        'height', this.widgets[i].image.imageHeigt.toString() + 'px'
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetImage.toArray()[i].nativeElement,
+                        'src', this.widgets[i].image.imageSource
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetImage.toArray()[i].nativeElement,
+                        'width', this.widgets[i].image.imageWidth.toString() + 'px'
+                    );
+
+                }
+            }
+        }
     }
 
     getDashboards() {

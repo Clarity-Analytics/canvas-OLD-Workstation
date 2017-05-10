@@ -62,6 +62,7 @@ export class Widget {
         imageHeigt: number;                     // in px
         imageWidth: number;                     // in px
         imageSource: string;                    // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+        imageAlt: string;                       // alt in img tag
     };
     properties: {
         widgetID: number;                       // Unique ID from DB
