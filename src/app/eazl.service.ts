@@ -877,7 +877,7 @@ export const WIDGETS: Widget[] =
                 showWidgetImage: false,
             },
             textual: {
-                textText: '<strong>Headcount </strong> for September',
+                textText: '<strong>Headcount </strong> for ##today##',
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',

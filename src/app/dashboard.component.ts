@@ -24,6 +24,7 @@ import { SelectItem }                 from 'primeng/primeng';
 import { DashboardEditorComponent }   from './dashboard.editor.component';
 
 // Our Services
+import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global.function.service';
 import { GlobalVariableService }      from './global.variable.service';
@@ -166,6 +167,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     constructor(
         private canvasColors: CanvasColors,
+        private canvasDate: CanvasDate,
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
         private element : ElementRef,
@@ -1884,14 +1886,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
 
         // Loop on the container ElementRefs, and set properties ala widget[].properties
+        let textToDOM: string;
         if (this.childrenWidgetText.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
 
                 // Style attributes IF it has text (else *ngIf is buggered)
                 if (this.widgets[i].areas.showWidgetText) {
 
-                    // Modify text
-                    this.childrenWidgetText.toArray()[i].nativeElement.innerHTML = this.widgets[i].textual.textText
+                    // Modify and insert text
+                    textToDOM = this.widgets[i].textual.textText
+                    textToDOM = textToDOM.replace('##today##',this.canvasDate.today)
+                    this.childrenWidgetText.toArray()[i].nativeElement.innerHTML = textToDOM
 
                     // Styling
                     this.renderer.setElementStyle(

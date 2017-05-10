@@ -21,7 +21,7 @@ export class Widget {
         showWidgetImage: boolean;
     };
     textual: {
-        textText: string;
+        textText: string;                       // with HTML & keywords (##today##)
         textBackgroundColor: string; 
         textBorder: string;          
         textColor: string;          
