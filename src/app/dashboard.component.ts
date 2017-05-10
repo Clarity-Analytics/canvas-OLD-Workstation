@@ -221,6 +221,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Background Images
         this.backgroundImageOptions = [];       
+        this.backgroundImageOptions.push({label:'None',            value:{id:0, name: ""}});
         this.backgroundImageOptions.push({label:'Dolphin',         value:{id:1, name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"}});
         this.backgroundImageOptions.push({label:'River Sunset',    value:{id:2, name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"}});
         this.backgroundImageOptions.push({label:'Snow Landscape',  value:{id:3, name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"}});
@@ -397,7 +398,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // First, global stuffies like grid size
         // Grid Size
-        if (this.selectedContainerGridSize != undefined) {
+        if (this.displayExpandGridSize) {
             // Update the data (for next time only, not moving anything now)
             this.globalVariableService.gridSize.next(
                 +this.selectedContainerGridSize['name']
