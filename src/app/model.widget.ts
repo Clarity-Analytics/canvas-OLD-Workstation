@@ -63,12 +63,12 @@ export class Widget {
         tableWidth: number;                     // in px
     };
     image: {
-        imageHeigt: number;                     // in px
-        imageWidth: number;                     // in px
-        imageSource: string;                    // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
         imageAlt: string;                       // alt in img tag
+        imageHeigt: number;                     // in px
         imageLeft: number;                      // in px
+        imageSource: string;                    // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
         imageTop: number;                       // in px
+        imageWidth: number;                     // in px
     };
     properties: {
         widgetID: number;                       // Unique ID from DB

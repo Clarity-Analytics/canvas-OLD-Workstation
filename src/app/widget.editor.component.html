@@ -1532,26 +1532,26 @@
             <!--Open/Close buttons-->
             <button
                 class="panelCaretButton"
-                *ngIf="tablePanelIsOpen"
+                *ngIf="imagePanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-up"
                 pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
-                (click)="tablePanelIsOpen=false"
+                (click)="imagePanelIsOpen=false"
                 >
             </button>         
             <button
                 class="panelCaretButton"
-                *ngIf="!tablePanelIsOpen"
+                *ngIf="!imagePanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
                 pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
-                (click)="tablePanelIsOpen=true"
+                (click)="imagePanelIsOpen=true"
                 >
             </button>  
         </div>
@@ -1559,18 +1559,170 @@
         <!--Table Panel Area-->
         <div
             class="panelArea"
-            *ngIf="showImageChecked   &&   tablePanelIsOpen"
+            *ngIf="showImageChecked   &&   imagePanelIsOpen"
             >
 
-            Image panel area
+            <!--imageAlt-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Alt:
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="imageAlt" 
+                    placeholder="(Optional)"
+                    pTooltip="Alt text to show if Image is not available"
+                    />
+            </div>
+
+            <!--imageHeigt-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Height *:
+                </span>
+                 <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="imageHeigt" 
+                    placeholder="Required"
+                    pTooltip="Height of Image in px (16px = 1em = 1 line)"
+                    />
+            </div>
+
+            <!--imageLeft-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Left *:
+                </span>
+                 <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="imageLeft" 
+                    placeholder="Required"
+                    pTooltip="Left of Image in px (16px = 1em = 1 line)"
+                    />
+            </div>
+
+            <!--imageSource-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Source *:
+                </span>
+                <p-dropdown
+                    [style]="
+                        {
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid #204060',
+                            'border-radius':'2px',
+                            'font-size':'0.85em',
+                            'margin-bottom':'4px',
+                            'margin-left':'4px',
+                            'padding':'0',
+                            'width':'197px'
+                        }" 
+                    [options]="imageSourceOptions" 
+                    formControlName="imageSource"
+                    placeholder="Source file (with path) of the image / picture in png, jpg or gif"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--imageTop-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Top *:
+                </span>
+                 <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="imageTop" 
+                    placeholder="Required"
+                    pTooltip="Top of Image to be shown in px (16px = 1em = 1 line)"
+                    />
+            </div>
+
+            <!--imageWidth-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Width *:
+                </span>
+                 <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="imageWidth" 
+                    placeholder="Required"
+                    pTooltip="Width of Image to be shown in px (16px = 1em = 1 line)"
+                    />
+            </div>
             
         </div>
-
-
-
-
-
-
 
     </form>     <!--END Form in this Panel-->
 

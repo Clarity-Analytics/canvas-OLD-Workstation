@@ -121,6 +121,7 @@ export class WidgetEditorComponent implements OnInit {
     textPaddingOptions: SelectItem[];           // Options for Padding around text box
     textPositionOptions: SelectItem[];          // Options for Position of the text box (absolute or not)
     textAlignOptions: SelectItem[];             // Options for horisontal align of the text (left, center, right)
+    imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
 
     // ToolTippies stays after popup form closes, so setting in vars works for now ...
     // TODO - find BUG, our side or PrimeNG side
@@ -161,6 +162,12 @@ export class WidgetEditorComponent implements OnInit {
                 'textTextAlign':                new FormControl(''),
                 'textTop':                      new FormControl('', Validators.pattern('^[0-9]*$')),
                 'textWidth':                    new FormControl('', Validators.pattern('^[0-9]*$')),
+                'imageAlt':                     new FormControl(''),
+                'imageHeigt':                   new FormControl('', Validators.pattern('^[0-9]*$')),
+                'imageLeft':                    new FormControl('', Validators.pattern('^[0-9]*$')),
+                'imageSource':                  new FormControl(''),
+                'imageTop':                     new FormControl('', Validators.pattern('^[0-9]*$')),
+                'imageWidth':                   new FormControl('', Validators.pattern('^[0-9]*$')),
                 'widgetTitle':                  new FormControl(''),
                 'widgetCode':                   new FormControl(''),
                 'widgetName':                   new FormControl(''),
@@ -238,9 +245,9 @@ export class WidgetEditorComponent implements OnInit {
         this.textAlignOptions.push({label:'Right',    value:{id:1, name: 'right'}});
 
         // Text Margin Options
-        this.textPositionOptions = [];
-        this.textPositionOptions.push({label:'None',   value:{id:1, name: ''}});
-        this.textPositionOptions.push({label:'Absolute',  value:{id:1, name: 'absolute'}});
+        this.imageSourceOptions = [];
+        this.imageSourceOptions.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});
+
 
         // Load the startup form info
         this.setStartupFormValues();
@@ -988,6 +995,14 @@ console.log(this.identificationForm.controls['textPosition'].value)
 console.log(this.identificationForm.controls['textTextAlign'].value)
 console.log(this.identificationForm.controls['textTop'].value)
 console.log(this.identificationForm.controls['textWidth'].value)
+
+console.log(this.identificationForm.controls['imageAlt'].value)
+console.log(this.identificationForm.controls['imageHeigt'].value)
+console.log(this.identificationForm.controls['imageLeft'].value)
+console.log(this.identificationForm.controls['imageSource'].value)
+console.log(this.identificationForm.controls['imageTop'].value)
+console.log(this.identificationForm.controls['imageWidth'].value)
+
 
 }
     testVegaSpec() {
