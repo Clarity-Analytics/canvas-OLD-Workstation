@@ -415,7 +415,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             if (selectedElement != undefined) {
 
                 // Background Color
-                if (this.selectedBackgroundColor) {
+                if (this.displayExpandBackgroundArea) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
                         'background-color', this.selectedBackgroundColor['name']
                     );
@@ -429,7 +429,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 // Border
-                if (this.selectedBorder) {
+                if (this.displayExpandBorder) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
                         'border', this.selectedBorder['name']
                     );
@@ -443,7 +443,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 // BoxShadow
-                if (this.selectedBoxShadow) {
+                if (this.displayExpandBoxShadow) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
                         'box-shadow', this.selectedBoxShadow['name']
                     );
@@ -457,7 +457,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 // Color
-                if (this.selectedColor) {
+                if (this.displayExpandColor) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
                         'color', this.selectedColor['name']
                     );
@@ -471,7 +471,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 // Font Size
-                if (this.selectedContainerFontSize) {
+                if (this.displayExpandFontSize) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
                         'font-size', this.selectedContainerFontSize.toString() + 'em'
                     );
@@ -1678,17 +1678,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.selectedBackgroundImageDashboard['name'];
         }
 
-  var text = 'text ...';
-  var filename = './textFile.txt';
-  var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
-  var result = this.document.execCommand('SaveAs', true,'/home/jannie/Projects/canvas/src/assets/fileName.txt');
-  console.log(result)
-//   this.document.execCommand( saveAs(blob, filename+".txt"));
-
-
-
-
-
         // Hide popup form
         this.displayDashboardSettings = false;
     }
@@ -1757,6 +1746,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     onClickExpandArea(areaToExpand: string) {
         // Expand the selected area in the widget palette, and close the rest
         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickExpandArea', '@Start');
+
+        // Reset all
         this.displayExpandBackgroundArea = false; 
         this.displayExpandBorder = false; 
         this.displayExpandBoxShadow = false; 
