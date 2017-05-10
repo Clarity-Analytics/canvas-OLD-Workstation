@@ -657,7 +657,7 @@ export const WIDGETS: Widget[] =
                 showWidgetImage: true,
             },
             textual: {
-                textText: 'Historic growth taking market factors and external influences into account in the statistics',
+                textText: 'History of the coffee bean',
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'black',
@@ -806,10 +806,10 @@ export const WIDGETS: Widget[] =
                 tableWidth: 25,
             },
             image: {
-                imageAlt: '',
+                imageAlt: 'coffee.jpg',
                 imageHeigt: 220,
                 imageLeft: 5,
-                imageSource: '../assets/StackedBar.png',
+                imageSource: '../assets/coffee.jpg',
                 imageTop: 70,
                 imageWidth: 360,
             },
@@ -877,7 +877,7 @@ export const WIDGETS: Widget[] =
                 showWidgetImage: false,
             },
             textual: {
-                textText: 'Historic growth taking market factors and external influences into account in the statistics',
+                textText: '<strong>Headcount </strong> for September',
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
@@ -895,7 +895,7 @@ export const WIDGETS: Widget[] =
             graph: {
                 graphID: 0,
                 graphLeft: 5,
-                graphTop: 25,
+                graphTop: 75,
                 vegaParameters: {                           
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,

@@ -1889,6 +1889,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                 // Style attributes IF it has text (else *ngIf is buggered)
                 if (this.widgets[i].areas.showWidgetText) {
+
+                    // Modify text
+                    this.childrenWidgetText.toArray()[i].nativeElement.innerHTML = this.widgets[i].textual.textText
+
+                    // Styling
                     this.renderer.setElementStyle(
                         this.childrenWidgetText.toArray()[i].nativeElement,
                         'background-color', this.widgets[i].textual.textBackgroundColor
@@ -1992,7 +1997,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     );
 
                     // Styling
-                    // NOTE: img tag height & width are set in html.  I cant get it right here ...
+                    // NOTE: img tag height, src & width are set in html.  
+                    // I cant get it right here ...
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
                         'alt', this.widgets[i].image.imageAlt
@@ -2000,10 +2006,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
                         'left', this.widgets[i].image.imageLeft.toString() + 'px'
-                    );
-                    this.renderer.setElementStyle(
-                        this.childrenWidgetImage.toArray()[i].nativeElement,
-                        'src', this.widgets[i].image.imageSource
                     );
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
