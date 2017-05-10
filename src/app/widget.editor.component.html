@@ -558,9 +558,6 @@
         </div>
 
 
-
-
-
         <!--Text Panel Header-->
         <div
             class="PanelHeading"
@@ -600,14 +597,6 @@
             class="panelArea"
             *ngIf="showTextChecked   &&   textPanelIsOpen"
             >
-
-
-
-        <!--: string;                 -->
-        <!--: string;        -->
-        <!--: string;       -->
-        <!--: number;                        // in px-->
-        <!--: number;-->
 
             <!--textText-->
             <div 
@@ -1012,12 +1001,6 @@
         </div>
 
 
-
-
-
-
-
-
         <!--Data Panel Header-->
         <div
             class="PanelHeading"
@@ -1165,11 +1148,12 @@
         </div>
 
 
-        <!--Widget Type Panel Header-->
+        <!--Graph Panel Header-->
         <div
             class="PanelHeading"
+            *ngIf="showGraphChecked"
             >
-            Widget Type
+            Graph
 
             <!--Open/Close buttons-->
             <button
@@ -1198,10 +1182,10 @@
             </button>  
         </div>
 
-        <!--Widget Type Panel Area-->
+        <!--Graph Panel Area-->
         <div
             class="panelArea"
-            *ngIf="widgetTypePanelIsOpen"
+            *ngIf="showGraphChecked   &&   widgetTypePanelIsOpen"
             >
 
             <!--Report selection-->
@@ -1489,7 +1473,107 @@
                 </div>      <!--END ngSwitch-->
             </div>      <!--END ngIF-->
         </div>      <!--END Data Panel-->
+
+
+        <!--Table Panel Header-->
+        <div
+            class="PanelHeading"
+            *ngIf="showTableChecked"
+            >
+            Table
+
+            <!--Open/Close buttons-->
+            <button
+                class="panelCaretButton"
+                *ngIf="tablePanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-up"
+                pTooltip="Click to close panel" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="tablePanelIsOpen=false"
+                >
+            </button>         
+            <button
+                class="panelCaretButton"
+                *ngIf="!tablePanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-down"
+                pTooltip="Click to open panel"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="tablePanelIsOpen=true"
+                >
+            </button>  
+        </div>
+
+        <!--Table Panel Area-->
+        <div
+            class="panelArea"
+            *ngIf="showTableChecked   &&   tablePanelIsOpen"
+            >
+
+            To be completed later once designed in more detail.  Currently we have:
+            tableColor, tableCols, tableHeight, tableHideHeader, tableLeft, tableRows, 
+            tableTop, tableWidth as properties.  This may changes ...
+            
+        </div>
+
+
+        <!--Image Panel Header-->
+        <div
+            class="PanelHeading"
+            *ngIf="showImageChecked"
+            >
+            Image
+
+            <!--Open/Close buttons-->
+            <button
+                class="panelCaretButton"
+                *ngIf="tablePanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-up"
+                pTooltip="Click to close panel" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="tablePanelIsOpen=false"
+                >
+            </button>         
+            <button
+                class="panelCaretButton"
+                *ngIf="!tablePanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-down"
+                pTooltip="Click to open panel"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="tablePanelIsOpen=true"
+                >
+            </button>  
+        </div>
+
+        <!--Table Panel Area-->
+        <div
+            class="panelArea"
+            *ngIf="showImageChecked   &&   tablePanelIsOpen"
+            >
+
+            Image panel area
+            
+        </div>
+
+
+
+
+
+
+
     </form>     <!--END Form in this Panel-->
+
 
     <!--Buttun Area contains Cancel / Submit-->
     <div
