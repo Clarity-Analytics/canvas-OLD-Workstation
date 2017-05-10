@@ -75,9 +75,13 @@ export class WidgetEditorComponent implements OnInit {
     selectedReport: any;                        // Selected in Report DropDown
     selectedVegaXcolumn: any;                   // Selected in DropDown
     selectedVegaYcolumn: any;                   // Selected in DropDown
-    selectedVegaFillColor: any;                   // Selected in DropDown
-    selectedVegaHoverColor: any;                   // Selected in DropDown
+    selectedVegaFillColor: any;                 // Selected in DropDown
+    selectedVegaHoverColor: any;                // Selected in DropDown
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
+    showTextChecked: boolean = false;           // True to show Text in containter
+    showGraphChecked: boolean = false;          // True to show Graph in Containter
+    showTableChecked: boolean = false;          // True to show Table in Containter
+    showImageChecked: boolean = false;          // True to show Image in Containter
     widgetToEditSpec: string;                   // Vega spect for current Widget
 
     reports: Report[];                          // List of Reports
@@ -108,9 +112,9 @@ export class WidgetEditorComponent implements OnInit {
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     // ToolTippies stays after popup form closes, so setting in vars works for now ...
     // TODO - find BUG, our side or PrimeNG side
-    dashboardsTabsTooltip: string = ""   //'Selected Tab where Widget will live';
-    reportsDropDownTooltip: string = ""; //'Selected Report (query) with data';
-    reportWidgetSetDropToolTip: string = "" //'Widget Set for the selected Report';
+    dashboardsTabsTooltip: string = ""          // 'Selected Tab where Widget will live';
+    reportsDropDownTooltip: string = "";        // 'Selected Report (query) with data';
+    reportWidgetSetDropToolTip: string = ""     // 'Widget Set for the selected Report';
             
     constructor(
         private canvasColors: CanvasColors,
@@ -130,6 +134,7 @@ export class WidgetEditorComponent implements OnInit {
         this.identificationForm = this.fb.group(
             {
                 'widgetTabName':                new FormControl(''),
+                'showTextInWidget':       new FormControl(''),
                 'widgetTitle':                  new FormControl(''),
                 'widgetCode':                   new FormControl(''),
                 'widgetName':                   new FormControl(''),
@@ -890,6 +895,13 @@ export class WidgetEditorComponent implements OnInit {
         }
     }
 
+changeCheckBox() {
+    console.log('showText',this.showTextChecked)
+    console.log(this.showGraphChecked)
+    console.log(this.showTableChecked)
+    console.log(this.showImageChecked)
+
+}
     testVegaSpec() {
         // Test the Vega spec, and returns Good / Bad
         this.globalFunctionService.printToConsole(this.constructor.name, 'testVegaSpec', '@Start');

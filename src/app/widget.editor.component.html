@@ -14,6 +14,156 @@
         [formGroup]="identificationForm" 
         >
 
+        <!--Content Panel Header-->
+        <div
+            class="PanelHeading"
+            >
+            Content
+
+            <!--Open/Close buttons-->
+            <button
+                class="panelCaretButton"
+                *ngIf="contentPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-up"
+                pTooltip="Click to close panel" 
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="contentPanelIsOpen=false"
+                >
+            </button>         
+            <button
+                class="panelCaretButton"
+                *ngIf="!contentPanelIsOpen"
+                pButton
+                type="button"
+                icon="fa-caret-down"
+                pTooltip="Click to open panel"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="contentPanelIsOpen=true"
+                >
+            </button>  
+        </div>
+
+        <!--Content Panel Area-->
+        <div
+            class="panelArea"
+            *ngIf="contentPanelIsOpen"
+            >
+
+            <!--showText-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Show Text:
+                </span>
+                <p-checkbox 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
+                    pTooltip="Check to show Text in the container"
+                    formControlName="showTextInWidget" 
+                    [(ngModel)]="showTextChecked" 
+                    binary="true"
+                    (onChange)="changeCheckBox()"
+                    >
+                </p-checkbox>
+            </div>
+
+            <!--showGraph-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Show Graph:
+                </span>
+                <p-checkbox 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
+                    pTooltip="Check to show Text in the container"
+                    formControlName="showTextInWidget" 
+                    [(ngModel)]="showGraphChecked" 
+                    binary="true"
+                    (onChange)="changeCheckBox()"
+                    >
+                </p-checkbox>
+            </div>
+
+            <!--showTable-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Show Table:
+                </span>
+                <p-checkbox 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
+                    pTooltip="Check to show Text in the container"
+                    formControlName="showTextInWidget" 
+                    [(ngModel)]="showTableChecked" 
+                    binary="true"
+                    (onChange)="changeCheckBox()"
+                    >
+                </p-checkbox>
+            </div>
+
+            <!--showImage-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Show Image:
+                </span>
+                <p-checkbox 
+                    style="
+                                float: right;
+                                margin-bottom: 3px;
+                                margin-right: 5px;
+                                margin-top: 1px;
+                                padding: 0;
+                                width: 200px;
+                             " 
+                    pTooltip="Check to show Text in the container"
+                    formControlName="showTextInWidget" 
+                    [(ngModel)]="showImageChecked" 
+                    binary="true"
+                    (onChange)="changeCheckBox()"
+                    >
+                </p-checkbox>
+            </div>
+
+        </div>
+
+
         <!--ID Panel Header-->
         <div
             class="PanelHeading"
@@ -588,7 +738,7 @@
             </button>  
         </div>
 
-        <!--Data Panel Area-->
+        <!--Widget Type Panel Area-->
         <div
             class="panelArea"
             *ngIf="widgetTypePanelIsOpen"
@@ -601,7 +751,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    ReportName *:
+                    Widget Type *:
                 </span>
                             
                 <p-dropdown 
