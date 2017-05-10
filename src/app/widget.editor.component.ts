@@ -99,6 +99,7 @@ export class WidgetEditorComponent implements OnInit {
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
     selectedWidgetCreation: any;                // Selected option to create Widget
+    selectedImageSrc: any;                      // Selected option for Image Src file
     isVegaSpecBad: boolean = true;              // True if Vega spec is bad
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
@@ -244,7 +245,8 @@ export class WidgetEditorComponent implements OnInit {
         this.textAlignOptions.push({label:'Center',   value:{id:1, name: 'center'}});
         this.textAlignOptions.push({label:'Right',    value:{id:1, name: 'right'}});
 
-        // Text Margin Options
+        // Text Margin Options 
+        // TODO - make id = 1 for now, find a better solution for later
         this.imageSourceOptions = [];
         this.imageSourceOptions.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});
 
@@ -433,6 +435,103 @@ export class WidgetEditorComponent implements OnInit {
                         this.identificationForm.controls['vegaHoverColor'].setValue(this.selectedItemColor);
                         this.selectedVegaHoverColor = this.selectedItemColor;
                     }
+                }
+
+
+                // Load fields for Text box
+                if (this.widgetToEdit.textual.textText) {
+                    this.identificationForm.controls['textText']
+                        .setValue(this.widgetToEdit.textual.textText);
+                }
+                if (this.widgetToEdit.textual.textBackgroundColor) {
+                    this.identificationForm.controls['textBackgroundColor']
+                        .setValue(this.widgetToEdit.textual.textBackgroundColor);
+
+                    // this.selectedItem = {
+                    //     id: 1, 
+                    //     name: this.widgetToEdit.image.imageSource
+                    // };
+                    // this.identificationForm.controls['imageSource'].setValue(this.selectedItem);
+                    // this.selectedImageSrc = this.selectedItem;
+
+                }
+                if (this.widgetToEdit.textual.textBorder) {
+                    this.identificationForm.controls['textBorder']
+                        .setValue(this.widgetToEdit.textual.textBorder);
+                }
+                if (this.widgetToEdit.textual.textColor) {
+                    this.identificationForm.controls['textColor']
+                        .setValue(this.widgetToEdit.textual.textColor);
+                }
+                if (this.widgetToEdit.textual.textFontSize) {
+                    this.identificationForm.controls['textFontSize']
+                        .setValue(this.widgetToEdit.textual.textFontSize);
+                }
+                if (this.widgetToEdit.textual.textFontWeight) {
+                    this.identificationForm.controls['textFontWeight']
+                        .setValue(this.widgetToEdit.textual.textFontWeight);
+                }
+                if (this.widgetToEdit.textual.textHeight) {
+                    this.identificationForm.controls['textHeight']
+                        .setValue(this.widgetToEdit.textual.textHeight);
+                }
+                if (this.widgetToEdit.textual.textLeft) {
+                    this.identificationForm.controls['textLeft']
+                        .setValue(this.widgetToEdit.textual.textLeft);
+                }
+                if (this.widgetToEdit.textual.textMargin) {
+                    this.identificationForm.controls['textMargin']
+                        .setValue(this.widgetToEdit.textual.textMargin);
+                }
+                if (this.widgetToEdit.textual.textPadding) {
+                    this.identificationForm.controls['textPadding']
+                        .setValue(this.widgetToEdit.textual.textPadding);
+                }
+                if (this.widgetToEdit.textual.textPosition) {
+                    this.identificationForm.controls['textPosition']
+                        .setValue(this.widgetToEdit.textual.textPosition);
+                }
+                if (this.widgetToEdit.textual.textTextAlign) {
+                    this.identificationForm.controls['textTextAlign']
+                        .setValue(this.widgetToEdit.textual.textTextAlign);
+                }
+                if (this.widgetToEdit.textual.textTop) {
+                    this.identificationForm.controls['textTop']
+                        .setValue(this.widgetToEdit.textual.textTop);
+                }
+                if (this.widgetToEdit.textual.textWidth) {
+                    this.identificationForm.controls['textWidth']
+                        .setValue(this.widgetToEdit.textual.textWidth);
+                }
+
+                // Load fields for Image
+                if (this.widgetToEdit.image.imageAlt) {
+                    this.identificationForm.controls['imageAlt']
+                        .setValue(this.widgetToEdit.image.imageAlt);
+                }
+                if (this.widgetToEdit.image.imageHeigt) {
+                    this.identificationForm.controls['imageHeigt']
+                        .setValue(this.widgetToEdit.image.imageHeigt);
+                }
+                if (this.widgetToEdit.image.imageLeft) {
+                    this.identificationForm.controls['imageLeft']
+                        .setValue(this.widgetToEdit.image.imageLeft);
+                }
+                if (this.widgetToEdit.image.imageSource) {
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.image.imageSource
+                    };
+                    this.identificationForm.controls['imageSource'].setValue(this.selectedItem);
+                    this.selectedImageSrc = this.selectedItem;
+                }
+                if (this.widgetToEdit.image.imageTop) {
+                    this.identificationForm.controls['imageTop']
+                        .setValue(this.widgetToEdit.image.imageTop);
+                }
+                if (this.widgetToEdit.image.imageWidth) {
+                    this.identificationForm.controls['imageWidth']
+                        .setValue(this.widgetToEdit.image.imageWidth);
                 }
 
                 // Indicate we are done loading form
