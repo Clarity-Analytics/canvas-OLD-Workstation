@@ -724,19 +724,34 @@ export class WidgetEditorComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The Text (Text panel) is compulsory.';
             }                
-                // textBackgroundColor
-                // textBorder
-                // textColor
-                // textFontSize
-                // textFontWeight
-                // textHeight
-                // textLeft
-                // textMargin
-                // textPadding
-                // textPosition
-                // textTextAlign
-                // textTop
-                // textWidth
+            if (this.identificationForm.controls['textHeight'].value == ''  || 
+                this.identificationForm.controls['textHeight'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Height (Text panel) is compulsory.';
+            }                
+            if (this.identificationForm.controls['textLeft'].value == ''  || 
+                this.identificationForm.controls['textLeft'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Left (Text panel) is compulsory.';
+            }                
+            if (this.identificationForm.controls['textTop'].value == ''  || 
+                this.identificationForm.controls['textTop'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Top (Text panel) is compulsory.';
+            }                
+            if (this.identificationForm.controls['textWidth'].value == ''  || 
+                this.identificationForm.controls['textWidth'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Width (Text panel) is compulsory.';
+            }                
             
         }
         if (this.showWidgetImage) {

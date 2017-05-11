@@ -649,7 +649,7 @@
                         }" 
                     [options]="chartColor" 
                     formControlName="textBackgroundColor"
-                    placeholder="Background Color"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -680,7 +680,7 @@
                         }" 
                     [options]="borderOptions" 
                     formControlName="textBorder"
-                    placeholder="Border of text box"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -711,7 +711,7 @@
                         }" 
                     [options]="chartColor" 
                     formControlName="textColor"
-                    placeholder="Text Color"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -742,7 +742,7 @@
                         }" 
                     [options]="fontSizeOptions" 
                     formControlName="textFontSize"
-                    placeholder="Font Size"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -773,7 +773,7 @@
                         }" 
                     [options]="fontWeightOptions" 
                     formControlName="textFontWeight"
-                    placeholder="Font Weight"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -856,7 +856,7 @@
                         }" 
                     [options]="textMarginOptions" 
                     formControlName="textMargin"
-                    placeholder="Margin around text box"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -887,7 +887,7 @@
                         }" 
                     [options]="textPaddingOptions" 
                     formControlName="textPadding"
-                    placeholder="Padding on inside of text box"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -918,7 +918,7 @@
                         }" 
                     [options]="textPositionOptions" 
                     formControlName="textPosition"
-                    placeholder="Position of text box (absolute or not)"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -949,7 +949,7 @@
                         }" 
                     [options]="textAlignOptions" 
                     formControlName="textTextAlign"
-                    placeholder="Alignment of text box (left, center, right)"
+                    placeholder="(Optional)"
                     filter="true"
                     >
                 </p-dropdown>
@@ -962,7 +962,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Text Top:
+                    Text Top *:
                 </span>
                  <input 
                     pInputText 
@@ -988,7 +988,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Text Width:
+                    Text Width *:
                 </span>
                  <input 
                     pInputText 
@@ -1070,7 +1070,7 @@
                                 'padding':'0',
                                 'width':'200px'
                              }" 
-                    placeholder="Select a Report"
+                    placeholder="Required"
                     formControlName="widgetReportName" 
                     [pTooltip]="reportsDropDownTooltip"
                     filter="true"
@@ -1275,7 +1275,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Graph Height:
+                                Graph Height *:
                             </span>
                             <input pInputText 
                                 style="
@@ -1299,7 +1299,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Graph Width:
+                                Graph Width *:
                             </span>
                             <input pInputText 
                                 style="
@@ -1323,7 +1323,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Graph Padding:
+                                Graph Padding *:
                             </span>
                             <input pInputText 
                                 style="
@@ -1347,7 +1347,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                X Axis:
+                                X Axis *:
                             </span>
                             <p-dropdown 
                                 [options]="reportFieldsDropDown" 
@@ -1365,7 +1365,7 @@
                                 [pTooltip]="reportWidgetSetDropToolTip"
                                 filter="true"
                                 formControlName="vegaXcolumn" 
-                                placeholder="Required X axis field"
+                                placeholder="Required"
                                 >
                             </p-dropdown>
                         </div>  
@@ -1376,7 +1376,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Y Axis:
+                                Y Axis *:
                             </span>
                             <p-dropdown 
                                 [options]="reportFieldsDropDown" 
@@ -1393,7 +1393,7 @@
                                         }" 
                                 [pTooltip]="reportWidgetSetDropToolTip"
                                 filter="true"
-                                placeholder="Required Y axis field"
+                                placeholder="Required"
                                 formControlName="vegaYcolumn" 
                                 >
                             </p-dropdown>
@@ -1423,7 +1423,7 @@
                                 [pTooltip]=""
                                 filter="true"
                                 formControlName="vegaFillColor" 
-                                placeholder="(Optional) fill color"
+                                placeholder="(Optional)"
                                 >
                             </p-dropdown>
                         </div>  
@@ -1452,7 +1452,7 @@
                                 [pTooltip]="reportWidgetSetDropToolTip"
                                 filter="true"
                                 formControlName="vegaHoverColor" 
-                                placeholder="(Optional) hover color"
+                                placeholder="(Optional)"
                                 >
                             </p-dropdown>
                         </div>  
@@ -1674,7 +1674,7 @@
                         }" 
                     [options]="imageSourceOptions" 
                     formControlName="imageSource"
-                    placeholder="Source file (with path) of the image / picture in png, jpg or gif"
+                    placeholder="Required"
                     filter="true"
                     >
                 </p-dropdown>

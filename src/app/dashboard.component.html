@@ -35,7 +35,7 @@
                         'padding':'0',
                         'width':'197px'
                     }" 
-            placeholder="Select a Dashboard"
+            placeholder="Dashboard to open"
             filter="true"
             (onChange)="loadDashboardTabs($event)"
             >
@@ -117,7 +117,7 @@
                         'padding':'0',
                         'width':'197px'
                     }" 
-            placeholder="Select a Tab"
+            placeholder="Tab to open"
             filter="true"
             (onChange)="loadDashboard($event)"
             >
@@ -656,7 +656,7 @@
                             }" 
                     [options]="chartColor" 
                     [(ngModel)]="selectedBackgroundColor" 
-                    placeholder="Background Color"
+                    placeholder=""
                     filter="true"
                     (onChange)="onSelectBackgroundColor()"
                     >
@@ -735,7 +735,7 @@
                             }" 
                     [options]="borderOptions" 
                     [(ngModel)]="selectedBorder" 
-                    placeholder="Border"
+                    placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
@@ -802,7 +802,7 @@
                             }" 
                     [options]="boxShadowOptions" 
                     [(ngModel)]="selectedBoxShadow" 
-                    placeholder="Box Shadow"
+                    placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
@@ -867,7 +867,7 @@
                             }" 
                     [options]="chartColor" 
                     [(ngModel)]="selectedColor" 
-                    placeholder="Text color"
+                    placeholder=""
                     filter="true"
                     (onChange)="onSelectBackgroundColor()"
                     >
@@ -946,7 +946,7 @@
                             }" 
                     [options]="fontSizeOptions" 
                     [(ngModel)]="selectedContainerFontSize" 
-                    placeholder="Font Size"
+                    placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
@@ -1011,7 +1011,7 @@
                             }" 
                     [options]="gridSizeOptions" 
                     [(ngModel)]="selectedContainerGridSize" 
-                    placeholder="Grid Size"
+                    placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
