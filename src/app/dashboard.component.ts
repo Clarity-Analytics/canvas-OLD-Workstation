@@ -404,6 +404,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     }
 
+    applyDashboardSettings() {
+        // Apply the Dashboard Settings
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickContainerApply', '@Start');
+
+        // Set the document / body background color
+        if (this.dashboardBackgroundColor) {
+            this.document.body.style.backgroundColor =  
+                this.dashboardBackgroundColor['name'];
+        }
+
+        if (this.dashboardBackgroundImageSrc) {
+            this.document.body.style.backgroundImage = 
+                this.dashboardBackgroundImageSrc['name'];
+        }
+    }            
+
     clickContainerApply(){
         // Apply the new values on the Palette -> Container tab to the selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContainerApply', '@Start');
@@ -419,19 +435,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
         // Dashboard wide settings
         if (this.displayExpandDashboardSettings) {
-            // Set the document / body background color
-            if (this.dashboardBackgroundColor) {
-                this.document.body.style.backgroundColor =  
-                    this.dashboardBackgroundColor['name'];
-            }
 
-            if (this.dashboardBackgroundImageSrc) {
-                this.document.body.style.backgroundImage = 
-                    this.dashboardBackgroundImageSrc['name'];
-            }            
+            // Apply the Dashboard Settings
+            this.applyDashboardSettings();
 
-            // Store info XXX
-console.log('store',this.dashboardBackgroundImageSrc.name , this.dashboardBackgroundColor.name)
+            // Store Dashboard Settings info 
             this.dashboards.filter(
                 dash => dash.dashboardID == this.selectedDashboardID
             )[0].dashboardBackgroundColor = this.dashboardBackgroundColor.name;
@@ -1874,8 +1882,9 @@ console.log('store',this.dashboardBackgroundImageSrc.name , this.dashboardBackgr
             }
             this.dashboardBackgroundImageSrc = this.selectedItem;
         }
-console.log('loaded', this.dashboardBackgroundColor, this.dashboardBackgroundImageSrc, currentDashboardBackgroundColor, this.selectedItemColor )
 
+        // Apply the Dashboard Settings
+        this.applyDashboardSettings();
     }
 
     onclickContainerHeaderDark(){        
