@@ -511,7 +511,6 @@ export class WidgetEditorComponent implements OnInit {
                     this.identificationForm.controls['textBorder'].setValue(this.selectedItem);
                     this.selectedTextBorder = this.selectedItem;
                 }
-console.log('Fixx',this.widgetToEdit.textual.textBorder,this.selectedItem,this.selectedTextBorder)                
                 if (this.widgetToEdit.textual.textColor) {
                     this.selectedItemColor = {
                         id:this.widgetToEdit.textual.textColor,             
@@ -714,6 +713,43 @@ console.log('Fixx',this.widgetToEdit.textual.textBorder,this.selectedItem,this.s
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Widget Type is compulsory.';
         }
+
+        // Validate the Text form, IF active
+        if (this.showWidgetText) {
+                
+            if (this.identificationForm.controls['textText'].value == ''  || 
+                this.identificationForm.controls['textText'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Text (Text panel) is compulsory.';
+            }                
+                // textBackgroundColor
+                // textBorder
+                // textColor
+                // textFontSize
+                // textFontWeight
+                // textHeight
+                // textLeft
+                // textMargin
+                // textPadding
+                // textPosition
+                // textTextAlign
+                // textTop
+                // textWidth
+            
+        }
+        if (this.showWidgetImage) {
+
+                // imageAlt
+                // imageHeigt
+                // imageLeft
+                // imageSource
+                // imageTop
+                // imageWidth
+        }
+
+
 
         // Tricksy bit: validate per Widget Type.  I know its a lot of work, but 
         // its the only solution for now
