@@ -4,7 +4,7 @@ export class Dashboard {
     dashboardID: number;                        // Unique DB ID
     dashboardCode: string;                      // Code or ShortName
     dashboardName: string;                      // Descriptive name
-
+    isContainerHeaderDark: boolean;             // True if container header widgets dark (else light)
     dashboardBackgroundPicturePath: string;     // Optional picture to show in background
     dashboardComments: string;                  // Optional comments
     dashboardCreatedDateTime: string;           // Created on

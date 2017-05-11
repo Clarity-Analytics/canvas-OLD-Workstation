@@ -451,7 +451,7 @@
             pTooltip="Toggle Widget header buttons between dark and light" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="isDark=!isDark"
+            (click)="isContainerHeaderDark=!isContainerHeaderDark"
             >
         </button> 
         
@@ -1180,7 +1180,7 @@
         <!--Widget Drag Handle    -->
         <button
             class="widgetDragHandle"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             *ngIf="showContainerHeader"
             pButton
             type="button"
@@ -1196,7 +1196,7 @@
         <!--Widget Edit button-->
         <button
             class="widgetEditHandle"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             *ngIf="showContainerHeader"
             pButton
             type="button"
@@ -1211,7 +1211,7 @@
         <!--Delete Widget-->
         <button
             class="widgetEditHandle"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             *ngIf="showContainerHeader"
             pButton
             type="button"
@@ -1227,7 +1227,7 @@
         <button
             class="widgetIsLiked"
             *ngIf="w.properties.widgetIsLiked  &&  showContainerHeader"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             pButton
             type="button"
             icon="fa-heart"
@@ -1240,7 +1240,7 @@
         <button
             class="widgetIsLiked"
             *ngIf="!w.properties.widgetIsLiked  &&  showContainerHeader"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             pButton
             type="button"
             icon="fa-heart-o"
@@ -1254,7 +1254,7 @@
         <!--Widget Locked -->
         <button
             *ngIf="w.properties.widgetIsLocked  &&  showContainerHeader"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             class="widgetIsLocked"
             pButton
             type="button"
@@ -1269,7 +1269,7 @@
         <!--Widget UNLocked -->
         <button
             *ngIf="!w.properties.widgetIsLocked  &&  showContainerHeader"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             class="widgetIsLocked"
             pButton
             type="button"
@@ -1292,7 +1292,7 @@
         <!--Widget (shift) selected-->
         <button
             *ngIf="widgetShiftSelected(w.properties.widgetID)  &&  showContainerHeader"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             class="widgetShiftSelected"
             pButton
             type="button"
@@ -1306,7 +1306,7 @@
         <!--Widget Comment button-->
         <button
             *ngIf="w.properties.widgetComments  &&  showContainerHeader"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             class="widgetCommentButton"
             pButton
             type="button"
@@ -1319,7 +1319,7 @@
         </button>     
         <button
             *ngIf="!w.properties.widgetComments  &&  showContainerHeader"
-            [style.color]="isDark ? 'black' : 'lightgray'"
+            [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
             class="widgetCommentButton"
             pButton
             type="button"

@@ -136,7 +136,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size
     gridSizeOptions: SelectItem[];              // Options for Grid Size
-    isDark: boolean = false;                    // Widget Header icons black if true
+    isContainerHeaderDark: boolean = false;                    // Widget Header icons black if true
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
     sampleColorWidgetBackgroundColor: string;   // Sample color of that selected from DropDown
@@ -1392,7 +1392,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardID: maxID + 1,
                 dashboardCode: 'Untitled - ' + this.numberUntitledDashboards.toLocaleString(),
                 dashboardName: '',
-
+                isContainerHeaderDark: this.isContainerHeaderDark,
                 dashboardBackgroundPicturePath: '',
                 dashboardComments: 'Comments for ' + this.numberUntitledDashboards.toString(),
                 dashboardCreatedDateTime: '2017/07/08',
@@ -1806,10 +1806,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.selectedWidgetIDs = [];
         this.widgets= [];
         this.refreshDashboard = true;
+
+        this.isContainerHeaderDark = this.dashboards.filter(
+            dash => dash.dashboardID == this.selectedDashboardID
+        )[0].isContainerHeaderDark
     }
 
     loadDashboard(event) {
-        // Load the selected Dashboard for a given DashboardID & TabName
+        // Load the selected Dashboard detail for a given DashboardID & TabName
         // - get Dashboard info from DB
         // - get Widgets for this Dashboard from DB
         // - show all the Widgets as per their properties

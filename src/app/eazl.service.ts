@@ -386,7 +386,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 0,
             dashboardCode: 'Bar charts',
             dashboardName: 'Collection of Bar charts',
-
+            isContainerHeaderDark: true,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'Comments bla-bla-bla',
             dashboardCreatedDateTime: '2017/07/08',
@@ -422,7 +422,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 1,
             dashboardCode: 'Pie charts',
             dashboardName: 'Collection of Pie charts',
-
+            isContainerHeaderDark: false,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -456,7 +456,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 3,
             dashboardCode: 'Tree map',
             dashboardName: 'Tree map ...',
-
+            isContainerHeaderDark: true,            
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -490,7 +490,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 4,
             dashboardCode: 'Word Cloud',
             dashboardName: 'Word Cloud of random text',
-
+            isContainerHeaderDark: false,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -524,7 +524,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 5,
             dashboardCode: 'Jobs timeseries',
             dashboardName: 'Stacked grap with jobs timeseries',
-
+            isContainerHeaderDark: false,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -558,7 +558,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 6,
             dashboardCode: 'Another Dash',
             dashboardName: '',
-
+            isContainerHeaderDark: true,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
