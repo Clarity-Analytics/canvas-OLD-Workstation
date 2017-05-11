@@ -16,6 +16,11 @@ import { SelectItem }                 from 'primeng/primeng';
 import { GlobalFunctionService }      from './global.function.service';
 import { GlobalVariableService }      from './global.variable.service';
 
+
+// For the resti
+import { EazlUserService } from './eazl.user.service';
+
+
 @Component({
     selector:    'login',
     templateUrl: 'login.component.html',
@@ -35,6 +40,7 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private eazlUser: EazlUserService
         ) {}
     
     ngOnInit() {
@@ -42,47 +48,32 @@ export class LoginComponent implements OnInit {
 
         // FormBuilder
         this.userform = this.fb.group({
-            'firstname': new FormControl('', Validators.required),
+            'username': new FormControl('', Validators.required),
             'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
         });
+
+        // We subscribe reactively
+        this.eazlUser.user.model.subscribe(user => {
+            if (user) {
+                // Clear the password, dont want it hanging around
+                this.submitted = true;
+                this.userform.controls['password'].setValue('');
+                this.globalVariableService.isCurrentUserAdmin.next(user.is_superuser);
+                this.globalVariableService.currentUserUserName.next(user.first_name || user.username);
+
+                // Trigger event emitter 'emit' method
+                this.formSubmit.emit(true);
+            }
+        }); // end user subscription
     }
     
     onSubmit(value: string) {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
-        // Super security, for now.  First reset
-        this.globalVariableService.isCurrentUserAdmin.next(false);
+        var username = this.userform.get('username').value;
+        var password = this.userform.get('password').value;
 
-        if (this.userform.get('firstname').value == 'Jannie'
-         && this.userform.get('password').value == 'jjjjjj') {
-             this.currentUser = this.userform.get('firstname').value;
-             this.globalVariableService.isCurrentUserAdmin.next(true);
-             this.globalVariableService.currentUserUserName.next(this.currentUser);
-         };
-        if (this.userform.get('firstname').value == 'Bradley'
-         && this.userform.get('password').value == 'bbbbbb') {
-             this.currentUser = this.userform.get('firstname').value;
-             this.globalVariableService.isCurrentUserAdmin.next(true);
-             this.globalVariableService.currentUserUserName.next(this.currentUser);
-         };
-        if (this.userform.get('firstname').value == 'Anne'
-         && this.userform.get('password').value == 'aaaaaa') {
-             this.currentUser = this.userform.get('firstname').value;
-             this.globalVariableService.isCurrentUserAdmin.next(false);
-             this.globalVariableService.currentUserUserName.next(this.currentUser);
-         };
-
-         if (this.currentUser == '') {
-            this.submitted = false;
-         } else {
-            this.submitted = true;
-         }
-
-         // Clear the password, dont want it hanging around
-         this.userform.controls['password'].setValue('');
-
-         // Trigger event emitter 'emit' method
-         this.formSubmit.emit(true);
+        this.eazlUser.setAuthToken(username, password);         
     }
 }

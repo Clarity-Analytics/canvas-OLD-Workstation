@@ -1,3 +1,13 @@
+// For the resti
+import { Http }                       from '@angular/http';
+import { Response }                   from '@angular/http';
+import { Headers }                    from '@angular/http';
+import { RequestOptions }             from '@angular/http';
+import { Observable }                 from 'rxjs/Observable';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/operator/map';
+
+
 // Service that provides all data (from the DB)
 import { Injectable }                 from '@angular/core';
 
@@ -3534,11 +3544,66 @@ export class EazlService {
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
 
+    // For the resti
+    baseUri: string;
+    headers: Headers;
+    options: RequestOptions;
+
     constructor(
+        private http: Http,
         private globalFunctionService: GlobalFunctionService,
-        private globalVariableService: GlobalVariableService,
-        ) {
+        private globalVariableService: GlobalVariableService) {
+        
+        this.baseUri = `${window.location.protocol}//${window.location.hostname}:8000/api/`
+        this.headers = new Headers({'Content-Type': 'application/json'});
+        this.options = new RequestOptions({headers: this.headers});
     }
+
+    // For the resti
+    prepareRoute(route: string): string {
+        if (route.slice(-1) !== '/') {
+            route = `${route}/`;
+        }
+
+        if (route.slice(0) === '/') {
+            route = route.slice(1);
+        }
+
+        return `${this.baseUri}${route}`;
+    }
+
+    parseResponse(response: Response) {
+        return response.json() || {};
+    }
+
+    handleError(response: Response | any): Observable<Response> {
+        var error: string = '';
+
+        // Do some logging one day
+        if (response instanceof Response) {
+            var payload = response.json() || '';
+
+            error = payload.body || JSON.stringify(payload);
+        } else {
+            error = response.message ? response.message : response.toString();
+        }
+
+        return Observable.throw(error);
+    }
+
+    get<T>(route: string, data?: Object): Observable<T> {
+        return this.http.get(this.prepareRoute(route), this.options)
+            .map(this.parseResponse)
+            .catch(this.handleError);
+    }
+
+    post<T>(route: string, data: Object): Observable<T> {
+        return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.options)
+            .map(this.parseResponse)
+            .catch(this.handleError);
+    }
+
+
 
     addUser(user: User) {
         // Adds a new User to the DB

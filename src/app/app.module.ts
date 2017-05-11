@@ -118,6 +118,12 @@ import { CanvasColors }               from './data.chartcolors';
 // Constants and variables and interfaces and things
 import { routes }                     from './app.routes';
 
+
+// For resti
+import { EazlUserService } from './eazl.user.service';
+import { CanvasModelProvider } from './models/generic.model';
+
+
 @NgModule({
   declarations: [
     // Our Components
@@ -217,6 +223,11 @@ import { routes }                     from './app.routes';
       useClass: GlobalErrorHandler
     },
 
+    // For the resti
+    CanvasModelProvider,
+    EazlService,
+    EazlUserService,
+
     // NG Services
     ConfirmationService,
 
@@ -224,7 +235,6 @@ import { routes }                     from './app.routes';
     AuthGuard,
     CanvasDate,
     CanvasColors,
-    EazlService,
     GlobalFunctionService,
     GlobalVariableService,
     NotificationService,
