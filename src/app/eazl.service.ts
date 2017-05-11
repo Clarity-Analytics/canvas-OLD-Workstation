@@ -387,6 +387,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCode: 'Bar charts',
             dashboardName: 'Collection of Bar charts',
             isContainerHeaderDark: true,
+            showContainerHeader: false,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'Comments bla-bla-bla',
             dashboardCreatedDateTime: '2017/07/08',
@@ -423,6 +424,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCode: 'Pie charts',
             dashboardName: 'Collection of Pie charts',
             isContainerHeaderDark: false,
+            showContainerHeader: true,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -457,6 +459,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCode: 'Tree map',
             dashboardName: 'Tree map ...',
             isContainerHeaderDark: true,            
+            showContainerHeader: true,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -491,6 +494,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCode: 'Word Cloud',
             dashboardName: 'Word Cloud of random text',
             isContainerHeaderDark: false,
+            showContainerHeader: false,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -525,6 +529,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCode: 'Jobs timeseries',
             dashboardName: 'Stacked grap with jobs timeseries',
             isContainerHeaderDark: false,
+            showContainerHeader: true,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -559,6 +564,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCode: 'Another Dash',
             dashboardName: '',
             isContainerHeaderDark: true,
+            showContainerHeader: true,
             dashboardBackgroundPicturePath: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
@@ -3548,6 +3554,16 @@ export class EazlService {
         // Update isContainerHeaderDark for given dashboard
         // - dashboardID: ID of Dashboard to update 
         // - isContainerHeaderDark: new value of isContainerHeaderDark field
+
+        // TODO - update for real in DB
+    }
+
+    updateDashboardshowContainerHeader(
+        dashboardID: number, 
+        showContainerHeader: boolean){
+        // Update showContainerHeader for given dashboard
+        // - dashboardID: ID of Dashboard to update 
+        // - showContainerHeader: new value of showContainerHeader field
 
         // TODO - update for real in DB
     }

@@ -1393,6 +1393,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardCode: 'Untitled - ' + this.numberUntitledDashboards.toLocaleString(),
                 dashboardName: '',
                 isContainerHeaderDark: this.isContainerHeaderDark,
+                showContainerHeader: this.showContainerHeader,
                 dashboardBackgroundPicturePath: '',
                 dashboardComments: 'Comments for ' + this.numberUntitledDashboards.toString(),
                 dashboardCreatedDateTime: '2017/07/08',
@@ -1809,7 +1810,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         this.isContainerHeaderDark = this.dashboards.filter(
             dash => dash.dashboardID == this.selectedDashboardID
-        )[0].isContainerHeaderDark
+        )[0].isContainerHeaderDark;
+        this.showContainerHeader = this.dashboards.filter(
+            dash => dash.dashboardID == this.selectedDashboardID
+        )[0].showContainerHeader;
+        
     }
 
     onclickContainerHeaderDark(){        
@@ -1823,6 +1828,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.isContainerHeaderDark
         );
     }
+
+    onclickShowContainerHeader(){        
+        // Toggles the container header on / off.  Then update array and DB
+        this.showContainerHeader = !this.showContainerHeader;
+        this.dashboards.filter(
+            dash => dash.dashboardID == this.selectedDashboardID
+        )[0].showContainerHeader = this.showContainerHeader;
+        this.eazlService.updateDashboardshowContainerHeader( 
+            this.selectedDashboardID,
+            this.showContainerHeader
+        );
+    }
+
+
+
 
     loadDashboard(event) {
         // Load the selected Dashboard detail for a given DashboardID & TabName

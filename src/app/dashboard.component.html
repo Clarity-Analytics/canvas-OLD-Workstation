@@ -530,7 +530,7 @@
             pTooltip="Click to hide Widget Headers" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="showContainerHeader=false"
+            (click)="onclickShowContainerHeader()"
             >
         </button> 
         <button
@@ -542,7 +542,7 @@
             pTooltip="Click to show Widget headers"
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="showContainerHeader=true"
+            (click)="onclickShowContainerHeader()"
             >
         </button>     
 
