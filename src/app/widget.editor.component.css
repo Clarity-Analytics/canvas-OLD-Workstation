@@ -52,20 +52,22 @@
         width: 15px;
     }
 
-    .panelLine {
-        font-size: 1em;
-        margin: 6px 0 4px 0;
-        padding: 12px 0 3px 0px;
-    }
 
+.panelLine {
+        font-size: 1em;
+        margin: 2px 0 2px 0;
+        padding: 8px 0 3px 0px;
+    }
     .panelLineLabel {
         font-weight: bold;
         margin: 8px 0 0 0;
         padding: 8px 0 0 2px;
     }
 
+    
+
     .panelButtonArea {
-        margin: 12px 0 4px 0;        
+        margin: 14px 0 4px 0;        
     }
     
     .panelButtonWithLabel {
