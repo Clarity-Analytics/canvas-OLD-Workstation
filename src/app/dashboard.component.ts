@@ -148,7 +148,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayTabDetails: boolean = false;         // T/F to show Tab Details form
-    displayDashboardSettings: boolean = false;  // T/F to show the Dashboard Settings form
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
     displayEditWidget: boolean = false;         // T/F to show Widget Builder Popup form
     widgetDraggingEnabled: boolean = false;     // T/F to tell when we are in dragging mode
@@ -163,6 +162,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     displayExpandColor: boolean = false; 
     displayExpandFontSize: boolean = false; 
     displayExpandGridSize: boolean = false; 
+    displayExpandDashboardSettings: boolean = false;
 
     constructor(
         private canvasColors: CanvasColors,
@@ -402,7 +402,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.globalVariableService.gridSize.next(
                 +this.selectedContainerGridSize['name']
             );
+            return;
         }
+        // Dashboard wide settings
+        if (this.displayExpandDashboardSettings) {
+            // Set the document / body background color
+            if (this.selectedBackgroundColorDashboard) {
+                this.document.body.style.backgroundColor =  
+                    this.selectedBackgroundColorDashboard['name'];
+            }
+
+            if (this.selectedBackgroundImageDashboard) {
+                this.document.body.style.backgroundImage = 
+                    this.selectedBackgroundImageDashboard['name'];
+            }            
+            return;
+        }
+        
 
         // Loop on the Array of selected IDs, and do things to it
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
@@ -1655,32 +1671,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
-    changeDashboardSettings() {
-        // Change the Dashboard Settings as selected on the form
-        // TODO: this must be done via DB
-        // TODO: there could be many more settings.  Decide.
-        this.globalFunctionService.printToConsole(this.constructor.name, 'changeDashboardSettings', '@Start');
-
-        // // For one day
-        // let number = this.document.body.scrollTop;
-        // console.log(number);
-        // this.document.body.style.zoom='0.5';
-
-        // Set the document / body background color
-        if (this.selectedBackgroundColorDashboard) {
-            this.document.body.style.backgroundColor =  
-                this.selectedBackgroundColorDashboard['name'];
-        }
-
-        if (this.selectedBackgroundImageDashboard) {
-            this.document.body.style.backgroundImage = 
-                this.selectedBackgroundImageDashboard['name'];
-        }
-
-        // Hide popup form
-        this.displayDashboardSettings = false;
-    }
-
     copyWidget() {
         // Copy (duplicate) selected Widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'copyWidget', '@Start');
@@ -1753,6 +1743,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.displayExpandColor = false; 
         this.displayExpandFontSize = false; 
         this.displayExpandGridSize = false;
+        this.displayExpandDashboardSettings = false;
 
         if (areaToExpand == 'displayExpandBackgroundArea') {
             this.displayExpandBackgroundArea = true;
@@ -1771,6 +1762,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }     
         if (areaToExpand == 'displayExpandGridSize') {
             this.displayExpandGridSize = true;
+        }     
+        if (areaToExpand == 'displayExpandDashboardSettings') {
+            this.displayExpandDashboardSettings = true;
         }     
 
     }

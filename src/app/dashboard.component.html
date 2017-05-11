@@ -487,10 +487,10 @@
             pButton
             type="button"
             icon="fa-gear"
-            pTooltip="Show the popup form to show the Dashboard Settings" 
+            pTooltip="Expand the Dashboard Settings info" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="displayDashboardSettings=true"
+            (click)="onClickExpandArea('displayExpandDashboardSettings')"
             >
         </button> 
 
@@ -1045,6 +1045,92 @@
             </div>
         <!--END Expand Grid Size Info-->
 
+        <!--Expand Dashboard Settings Info-->
+            <div
+                *ngIf="displayExpandDashboardSettings"
+                >
+
+                <div
+                    class="actionLabel"
+                    >
+                    Background Color
+                </div>
+
+                <p-dropdown
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
+                    [options]="chartColor" 
+                    [(ngModel)]="selectedBackgroundColorDashboard" 
+                    placeholder="Background Color"
+                    filter="true"
+                    >
+                </p-dropdown>
+
+                <div
+                    class="actionLabel"
+                    >
+                    Background Image
+                </div>
+
+                <p-dropdown
+                    [style]="{
+                                'autofocus':'true',
+                                'background-color':'538cc6',
+                                'border':'1px solid #204060',
+                                'border-radius':'2px',
+                                'font-size':'0.85em',
+                                'margin-bottom':'4px',
+                                'margin-left':'4px',
+                                'padding':'0',
+                                'width':'197px'
+                            }" 
+                    [options]="backgroundImageOptions" 
+                    [(ngModel)]="selectedBackgroundImageDashboard" 
+                    placeholder="Background Image"
+                    filter="true"
+                    >
+                </p-dropdown>
+
+                <div>
+        
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-cube"
+                        pTooltip="Apply the styling to the whole Dashboard" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="clickContainerApply()"
+                        > 
+                    </button>
+
+                    <button 
+                        class="paletteButton"
+                        pButton 
+                        type="button" 
+                        icon="fa-close"
+                        pTooltip="Close area for Dashboard settings info" 
+                        tooltipPosition="right" 
+                        tooltipEvent="hover"
+                        (click)="displayExpandDashboardSettings=false"
+                        > 
+                    </button>
+                </div>
+                
+            </div>
+        <!--END Expand Background Info-->
+
+
     </div>         <!--Div for New Widget and Widget formatting buttons-->
 
 </div>             <!--END Palette Container-->
@@ -1375,56 +1461,5 @@
         </p-dialog>
     </div>
 
-
-    <!--Form to show Dashboard Settings-->
-    <div *ngIf="displayDashboardSettings"> 
-
-        <p-dialog 
-            header="Comments" 
-            [(visible)]="displayDashboardSettings" 
-            height="400"
-            modal="modal" 
-            width="300" 
-            responsive="true"
-            >
-            <p>
-                This is just the beginning: we can store many more settings.  Also,
-                we need to store these in the DB.  The picture will over-write the color...
-            </p>
-            <button
-                class="changeDashboardSettingsButton"
-                pButton
-                type="button"
-                label="Change"
-                pTooltip="Click to change the Dashboard settings" 
-                tooltipPosition="right" 
-                tooltipEvent="hover"
-                (click)="changeDashboardSettings()"
-                >
-            </button>
-            <div
-                class="changeDashboardSettings"
-                >
-                <p-dropdown
-                    [style]="{'width':'260px','margin-top':'4px'}"
-                    [options]="chartColor" 
-                    [(ngModel)]="selectedBackgroundColorDashboard" 
-                    placeholder="Background Color"
-                    filter="true"
-                    >
-                </p-dropdown>
-
-                <p-dropdown
-                    [style]="{'width':'260px','margin-top':'4px'}"
-                    [options]="backgroundImageOptions" 
-                    [(ngModel)]="selectedBackgroundImageDashboard" 
-                    placeholder="Background Image"
-                    filter="true"
-                    >
-                </p-dropdown>
-            </div>
-
-        </p-dialog>
-    </div>
-    
+        
 <!--END Section for popup forms and dialogues-->
