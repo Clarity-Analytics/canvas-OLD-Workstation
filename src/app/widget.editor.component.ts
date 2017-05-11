@@ -653,49 +653,49 @@ export class WidgetEditorComponent implements OnInit {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Tab Name is compulsory.';
+                    'The Widget Tab Name (Identification Panel) is compulsory.';
         }
         if (this.identificationForm.controls['widgetTitle'].value == ''  || 
             this.identificationForm.controls['widgetTitle'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Title is compulsory.';
+                    'The Widget Title (Identification Panel) is compulsory.';
         }
         if (this.identificationForm.controls['widgetCode'].value == ''  || 
             this.identificationForm.controls['widgetCode'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Code is compulsory.';
+                    'The Widget Code (Identification Panel) is compulsory.';
         }
         if (this.identificationForm.controls['widgetName'].value == ''  || 
             this.identificationForm.controls['widgetName'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Name is compulsory.';
+                    'The Widget Name (Identification Panel) is compulsory.';
         }
         if (this.identificationForm.controls['widgetDescription'].value == ''  || 
             this.identificationForm.controls['widgetDescription'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Description is compulsory.';
+                    'The Widget Description (Identification Panel) is compulsory.';
         }
         if (this.identificationForm.controls['widgetHyperLinkWidgetID'].touched  && 
             !this.identificationForm.controls['widgetHyperLinkWidgetID'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Hyperlinked Widget ID must be numberic';
+                    'The Hyperlinked Widget ID (Behaviour Panel) must be numeric';
         }
         if (this.identificationForm.controls['widgetRefreshFrequency'].touched  && 
             !this.identificationForm.controls['widgetRefreshFrequency'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Refresh Frequency must be numberic';
+                    'The Refresh Frequency (Behaviour Panel) must be numeric';
         }
         if (this.identificationForm.controls['widgetReportName'].value == ''  || 
             this.identificationForm.controls['widgetReportName'].value == null) {
@@ -703,7 +703,7 @@ export class WidgetEditorComponent implements OnInit {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Widget Report Name (data source) is compulsory when Adding.';
+                        'The Widget Report Name (Behaviour Panel) is compulsory when Adding.';
                 }
         }
         if (this.identificationForm.controls['widgetType'].value == ''  || 
@@ -711,7 +711,7 @@ export class WidgetEditorComponent implements OnInit {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Type is compulsory.';
+                    'The Widget Type (Graph Panel) is compulsory.';
         }
 
         // Validate the Text form, IF active
@@ -731,6 +731,13 @@ export class WidgetEditorComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The Height (Text panel) is compulsory.';
             }                
+            if (this.identificationForm.controls['textHeight'].touched  && 
+                !this.identificationForm.controls['textHeight'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Height (Text panel) must be numeric';
+            }
             if (this.identificationForm.controls['textLeft'].value == ''  || 
                 this.identificationForm.controls['textLeft'].value == null) {
                     this.formIsValid = false;
@@ -738,6 +745,13 @@ export class WidgetEditorComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The Left (Text panel) is compulsory.';
             }                
+            if (this.identificationForm.controls['textLeft'].touched  && 
+                !this.identificationForm.controls['textLeft'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Left (Text panel) must be numeric';
+            }
             if (this.identificationForm.controls['textTop'].value == ''  || 
                 this.identificationForm.controls['textTop'].value == null) {
                     this.formIsValid = false;
@@ -745,6 +759,13 @@ export class WidgetEditorComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The Top (Text panel) is compulsory.';
             }                
+            if (this.identificationForm.controls['textTop'].touched  && 
+                !this.identificationForm.controls['textTop'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Top (Text panel) must be numeric';
+            }
             if (this.identificationForm.controls['textWidth'].value == ''  || 
                 this.identificationForm.controls['textWidth'].value == null) {
                     this.formIsValid = false;
@@ -752,18 +773,81 @@ export class WidgetEditorComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The Width (Text panel) is compulsory.';
             }                
+            if (this.identificationForm.controls['textWidth'].touched  && 
+                !this.identificationForm.controls['textWidth'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Width (Text panel) must be numeric';
+            }
             
         }
         if (this.showWidgetImage) {
 
-                // imageAlt
-                // imageHeigt
-                // imageLeft
-                // imageSource
-                // imageTop
-                // imageWidth
+            if (this.identificationForm.controls['imageHeigt'].value == ''  || 
+                this.identificationForm.controls['imageHeigt'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Height (Image panel) is compulsory.';
+            } 
+            if (this.identificationForm.controls['imageHeigt'].touched  && 
+                !this.identificationForm.controls['imageHeigt'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Height (Image panel) must be numeric';
+            }
+            if (this.identificationForm.controls['imageLeft'].value == ''  || 
+                this.identificationForm.controls['imageLeft'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Left (Image panel) is compulsory.';
+            } 
+            if (this.identificationForm.controls['imageLeft'].touched  && 
+                !this.identificationForm.controls['imageLeft'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Left (Image panel) must be numeric';
+            }
+            if (this.identificationForm.controls['imageSource'].value == ''  || 
+                this.identificationForm.controls['imageSource'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Source (Image panel) is compulsory.';
+            } 
+            if (this.identificationForm.controls['imageTop'].value == ''  || 
+                this.identificationForm.controls['imageTop'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Top (Image panel) is compulsory.';
+            } 
+            if (this.identificationForm.controls['imageTop'].touched  && 
+                !this.identificationForm.controls['imageTop'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Top (Image panel) must be numeric';
+            }
+            if (this.identificationForm.controls['imageWidth'].value == ''  || 
+                this.identificationForm.controls['imageWidth'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Width (Image panel) is compulsory.';
+            } 
+            if (this.identificationForm.controls['imageWidth'].touched  && 
+                !this.identificationForm.controls['imageWidth'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Width (Image panel) must be numeric';
+            }
         }
-
 
 
         // Tricksy bit: validate per Widget Type.  I know its a lot of work, but 
@@ -788,28 +872,28 @@ export class WidgetEditorComponent implements OnInit {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The number of limited rows to show must be numberic';
+                        'The number of limited rows to show must be numeric';
             }        
             if (this.identificationForm.controls['vegaGraphHeight'].value == ''  ||
                 !this.identificationForm.controls['vegaGraphHeight'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The graph Height must be numberic';
+                        'The graph Height must be numeric';
             }
             if (this.identificationForm.controls['vegaGraphWidth'].value == ''  ||
                 !this.identificationForm.controls['vegaGraphWidth'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The graph Width must be numberic';
+                        'The graph Width must be numeric';
             }
             if (this.identificationForm.controls['vegaGraphPadding'].value == ''  || 
                 !this.identificationForm.controls['vegaGraphPadding'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The graph Padding must be numberic';
+                        'The graph Padding must be numeric';
             }
 
             if (this.identificationForm.controls['vegaXcolumn'].value == ''  || 
