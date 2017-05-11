@@ -504,7 +504,7 @@
             pTooltip="Click to remove Snap to grid" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="snapToGrid=false"
+            (click)="onClickSnapToGrid()"
             >
         </button> 
         <button
@@ -516,7 +516,7 @@
             pTooltip="Click to Snap to grid"
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="snapToGrid=true"
+            (click)="onClickSnapToGrid()"
             >
         </button>         
 
@@ -672,7 +672,6 @@
                         pTooltip="Sample of color selected" 
                         tooltipPosition="right" 
                         tooltipEvent="hover"
-                        (click)="clickContainerApply()"
                         > 
                     </button>
 
@@ -883,7 +882,6 @@
                         pTooltip="Sample of color selected" 
                         tooltipPosition="right" 
                         tooltipEvent="hover"
-                        (click)="clickContainerApply()"
                         > 
                     </button>
 
@@ -1129,7 +1127,6 @@
                 
             </div>
         <!--END Expand Background Info-->
-
 
     </div>         <!--Div for New Widget and Widget formatting buttons-->
 

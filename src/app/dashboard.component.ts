@@ -239,6 +239,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.backgroundImageOptions.push({label:'Snow Landscape',  value:{id:1, name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"}});
 
         // Set startup stuffies
+        // TODO - make sure global vars obtained @startup / login
+        //      - and maintained when they change via WebSocket messages
         this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
         this.gridSize = this.globalVariableService.gridSize.getValue();
 
@@ -431,6 +433,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.globalVariableService.gridSize.next(
                 +this.selectedContainerGridSize['name']
             );
+
+            // Remember for next time, permanently
+            
             return;
         }
         // Dashboard wide settings
@@ -481,6 +486,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             this.selectedWidgetIDs[i])[0].
                                     container.backgroundColor = 
                                 this.selectedBackgroundColor['name'];
+
+                    // Remember for next time, permanently
+
                 }
 
                 // Border
@@ -495,6 +503,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             this.selectedWidgetIDs[i])[0].
                                     container.border = 
                                 this.selectedBorder['name'];
+
+                    // Remember for next time, permanently
+
                 }
 
                 // BoxShadow
@@ -509,6 +520,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             this.selectedWidgetIDs[i])[0].
                                     container.boxShadow = 
                                 this.selectedBoxShadow['name'];
+
+                    // Remember for next time, permanently
+
                 }
 
                 // Color
@@ -523,6 +537,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             this.selectedWidgetIDs[i])[0].
                                     container.color = 
                                 this.selectedColor['name'];
+
+                    // Remember for next time, permanently
+
                 }
 
                 // Font Size
@@ -537,9 +554,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             this.selectedWidgetIDs[i])[0].
                                     container.fontSize = 
                                 this.selectedContainerFontSize['name'];
+
+                    // Remember for next time, permanently
+
                 }
             }
         }
+    }
+
+    onClickSnapToGrid() {
+        // Toggles snap to grid
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickSnapToGrid', '@Start');
+
+        // Toggle
+        this.snapToGrid = !this.snapToGrid;
+
+        // Remember for next time, permanently
+        this.globalVariableService.snapToGrid.next(this.snapToGrid);
     }
 
     dashboardAdvanceFilter() {
