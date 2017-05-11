@@ -121,7 +121,9 @@ import { routes }                     from './app.routes';
 
 // For resti
 import { EazlUserService } from './eazl.user.service';
+import { EazlPackageService } from './eazl-package.service';
 import { CanvasModelProvider } from './models/generic.model';
+import { PackagesComponent } from './packages/packages.component';
 
 
 @NgModule({
@@ -137,6 +139,7 @@ import { CanvasModelProvider } from './models/generic.model';
     UserPopupComponent,
     WidgetEditorComponent,
     WidgetCommentComponent,
+    PackagesComponent,
     // BarCharBuilder,
   ],
   imports: [
@@ -227,6 +230,7 @@ import { CanvasModelProvider } from './models/generic.model';
     CanvasModelProvider,
     EazlService,
     EazlUserService,
+    EazlPackageService,
 
     // NG Services
     ConfirmationService,

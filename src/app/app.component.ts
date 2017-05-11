@@ -23,6 +23,7 @@ import { WebSocketService }           from './websocket.service';
 // Our Models
 import { Notification }               from './model.notification';
 
+
 @Component({
     selector:    'app-root',
     templateUrl: './app.component.html',
@@ -254,7 +255,26 @@ this.router.navigate(['pagenotfound']);
                 disabled: false,
                 command: (event) => {
                     this.lastSelectedMenuItemLabel = event.item.label;
-            }    
+                }    
+            },
+            
+            // For the resti
+            {
+                label: 'Packages',
+                icon:  'fa-database',
+                disabled: !isLoggedIn,
+                items: [
+                    {
+                        label: 'Package list',
+                        icon: 'fa-list-alt',
+                        routerLink: ['packages'],
+                        disabled:false,
+                        command: (event) => {
+                            this.lastSelectedMenuItemLabel = event.item.label;
+                        }    
+                    }
+                ]
+
             },
             {
                 label: 'Visualise',

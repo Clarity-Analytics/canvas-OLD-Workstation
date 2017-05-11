@@ -27,8 +27,8 @@ export class EazlUserService {
 		    authToken => {
 		        window.sessionStorage.setItem('canvas-token', authToken.token);
 		        
-		        this.eazl.headers.set('Authorization', `token ${authToken.token}`);
 		        this.authToken.setValue(authToken);
+		        this.eazl.setAuthToken(authToken.token);
 		        this.setUserDetails();
 		       
 		    },

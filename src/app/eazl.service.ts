@@ -3556,7 +3556,16 @@ export class EazlService {
         
         this.baseUri = `${window.location.protocol}//${window.location.hostname}:8000/api/`
         this.headers = new Headers({'Content-Type': 'application/json'});
+        
+        if (window.sessionStorage.getItem('canvas-token')) {
+            this.setAuthToken(window.sessionStorage.getItem('canvas-token'));
+        }
+
         this.options = new RequestOptions({headers: this.headers});
+    }
+
+    setAuthToken(token) {
+        this.headers.set('Authorization', `token ${token}`);
     }
 
     // For the resti

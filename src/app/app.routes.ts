@@ -8,6 +8,8 @@ import { LoginComponent }             from './login.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { UserComponent}               from './user.component';
 
+import { PackagesComponent } from './packages/packages.component';
+
 export const routes: Route[] = [
 
   { path: '', redirectTo: '/pagenotfound', pathMatch: 'full' },
@@ -15,6 +17,7 @@ export const routes: Route[] = [
   { path: 'startup',                  component: PageNotFoundComponent,   canActivate: [AuthGuard]},
   { path: 'users',                    component: UserComponent,           canActivate: [AuthGuard]},
   { path: 'dashboard',                component: DashboardComponent},  
+  { path: 'packages', component: PackagesComponent},
   { path: 'pagenotfound',             component: PageNotFoundComponent},  
   { path: '**',                       component: PageNotFoundComponent}  
 ]
