@@ -38,6 +38,17 @@ import { Widget }                     from './model.widget';
 // Vega stuffies
 let vg = require('vega/index.js');
 
+export class SelectedItem {
+    id: any;
+    name: string;
+}
+
+export class SelectedItemColor {
+    id: any;
+    name: string;
+    code: string;
+}
+
 @Component({
     moduleId: module.id,
     selector: 'dashboard-component',
@@ -91,20 +102,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     // Currently selected stuffies
     currentFilter: Filter;
-    numberUntitledDashboards: number = 0;   // Suffix in naming new dashboards, Untitled + n
-    numberUntitledTabs: number = 0;         // Suffix in naming new tabs, Untitled + n
-    selectedCommentWidgetID: number;        // Current WidgetID for Comment
-    selectedDashboardID: number;            // Currely Dashboard
-    selectedDashboardName: any;             // Select Dashboard name in DropDown
-    selectedDashboardTabName: any;          // Current DashboardTab
-    selectedTabName: any;                   // Tab Name selected in DropDown
-    selectedWidget: Widget = null;          // Selected widget during dragging
-    selectedWidgetIDs: number[] = [];       // Array of WidgetIDs selected with mouse
+    numberUntitledDashboards: number = 0;           // Suffix in naming new dashboards, Untitled + n
+    numberUntitledTabs: number = 0;                 // Suffix in naming new tabs, Untitled + n
+    selectedCommentWidgetID: number;                // Current WidgetID for Comment
+    selectedDashboardID: number;                    // Currely Dashboard
+    selectedDashboardName: any;                     // Select Dashboard name in DropDown
+    selectedDashboardTabName: any;                  // Current DashboardTab
+    selectedTabName: any;                           // Tab Name selected in DropDown
+    selectedWidget: Widget = null;                  // Selected widget during dragging
+    selectedWidgetIDs: number[] = [];               // Array of WidgetIDs selected with mouse
 
     // Currently selected properties for a Widget, in the Palette
-    selectedBackgroundColor: any;           // Selected bg color
-    selectedBackgroundColorDashboard: any;  // Bg Color for the Dashboard body
-    selectedBackgroundImageDashboard: any;  // Bg Image for the Dashboard body
+    selectedBackgroundColor: any;                   // Selected bg color
+    dashboardBackgroundColor: SelectedItemColor;    // Bg Color for the Dashboard body
+    dashboardBackgroundImageSrc: SelectedItem;      // Image Src for the Dashboard body
+    selectedItem: SelectedItem;                     // Selected Object: note ANY to cater for ID number, string
+    selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
 
     selectedBorder: string;
     selectedBoxShadow: string;
@@ -136,7 +149,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size
     gridSizeOptions: SelectItem[];              // Options for Grid Size
-    isContainerHeaderDark: boolean = false;                    // Widget Header icons black if true
+    isContainerHeaderDark: boolean = false;     // Widget Header icons black if true
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
     sampleColorWidgetBackgroundColor: string;   // Sample color of that selected from DropDown
@@ -220,10 +233,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Background Images
         this.backgroundImageOptions = [];       
-        this.backgroundImageOptions.push({label:'None',            value:{id:0, name: ""}});
+        this.backgroundImageOptions.push({label:'None',            value:{id:1, name: ""}});
         this.backgroundImageOptions.push({label:'Dolphin',         value:{id:1, name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"}});
-        this.backgroundImageOptions.push({label:'River Sunset',    value:{id:2, name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"}});
-        this.backgroundImageOptions.push({label:'Snow Landscape',  value:{id:3, name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"}});
+        this.backgroundImageOptions.push({label:'River Sunset',    value:{id:1, name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"}});
+        this.backgroundImageOptions.push({label:'Snow Landscape',  value:{id:1, name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"}});
 
         // Set startup stuffies
         this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
@@ -407,15 +420,34 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Dashboard wide settings
         if (this.displayExpandDashboardSettings) {
             // Set the document / body background color
-            if (this.selectedBackgroundColorDashboard) {
+            if (this.dashboardBackgroundColor) {
                 this.document.body.style.backgroundColor =  
-                    this.selectedBackgroundColorDashboard['name'];
+                    this.dashboardBackgroundColor['name'];
             }
 
-            if (this.selectedBackgroundImageDashboard) {
+            if (this.dashboardBackgroundImageSrc) {
                 this.document.body.style.backgroundImage = 
-                    this.selectedBackgroundImageDashboard['name'];
+                    this.dashboardBackgroundImageSrc['name'];
             }            
+
+            // Store info XXX
+console.log('store',this.dashboardBackgroundImageSrc.name , this.dashboardBackgroundColor.name)
+            this.dashboards.filter(
+                dash => dash.dashboardID == this.selectedDashboardID
+            )[0].dashboardBackgroundColor = this.dashboardBackgroundColor.name;
+            this.eazlService.updateDashboardBackgroundColor( 
+                this.selectedDashboardID,
+                this.dashboardBackgroundColor.name
+            );
+
+            this.dashboards.filter(
+                dash => dash.dashboardID == this.selectedDashboardID
+            )[0].dashboardBackgroundImageSrc = this.dashboardBackgroundImageSrc.name;
+            this.eazlService.updateDashboardBackgroundImageSrc( 
+                this.selectedDashboardID,
+                this.dashboardBackgroundImageSrc.name
+            );
+
             return;
         }
         
@@ -1394,7 +1426,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardName: '',
                 isContainerHeaderDark: this.isContainerHeaderDark,
                 showContainerHeader: this.showContainerHeader,
-                dashboardBackgroundPicturePath: '',
+                dashboardBackgroundColor: '',
+                dashboardBackgroundImageSrc: '',
                 dashboardComments: 'Comments for ' + this.numberUntitledDashboards.toString(),
                 dashboardCreatedDateTime: '2017/07/08',
                 dashboardCreatedUserID: 'BenVdMark',
@@ -1814,7 +1847,35 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.showContainerHeader = this.dashboards.filter(
             dash => dash.dashboardID == this.selectedDashboardID
         )[0].showContainerHeader;
-        
+
+        let currentDashboardBackgroundColor: string = this.dashboards.filter(
+            dash => dash.dashboardID == this.selectedDashboardID
+        )[0].dashboardBackgroundColor;
+        if (currentDashboardBackgroundColor != undefined) {
+            this.selectedItemColor = {
+                id: currentDashboardBackgroundColor,             
+                name: currentDashboardBackgroundColor,             
+                code: this.canvasColors.hexCodeOfColor(
+                    currentDashboardBackgroundColor
+                )
+            }
+            this.dashboardBackgroundColor = this.selectedItemColor;
+        }
+
+        // TODO - for now, many id = 1 records.  Either this does not matter at all,
+        //        or must be changed.
+        let currentdashboardBackgroundImageSrc: string = this.dashboards.filter(
+            dash => dash.dashboardID == this.selectedDashboardID
+        )[0].dashboardBackgroundImageSrc;
+        if (currentdashboardBackgroundImageSrc != undefined) {
+            this.selectedItem = {
+                id: 1,             
+                name: currentdashboardBackgroundImageSrc
+            }
+            this.dashboardBackgroundImageSrc = this.selectedItem;
+        }
+console.log('loaded', this.dashboardBackgroundColor, this.dashboardBackgroundImageSrc, currentDashboardBackgroundColor, this.selectedItemColor )
+
     }
 
     onclickContainerHeaderDark(){        
@@ -1840,9 +1901,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.showContainerHeader
         );
     }
-
-
-
 
     loadDashboard(event) {
         // Load the selected Dashboard detail for a given DashboardID & TabName

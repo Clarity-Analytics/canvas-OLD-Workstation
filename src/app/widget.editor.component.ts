@@ -150,7 +150,6 @@ export class WidgetEditorComponent implements OnInit {
     ) { 
     }
     
-// For later: this.selectedBackgroundColorDashboard = {id: 1, name: "Navy", code: "#000080"}
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 

@@ -6,7 +6,8 @@ export class Dashboard {
     dashboardName: string;                      // Descriptive name
     isContainerHeaderDark: boolean;             // True if container header widgets dark (else light)
     showContainerHeader: boolean;               // True to show Container Header
-    dashboardBackgroundPicturePath: string;     // Optional picture to show in background
+    dashboardBackgroundColor: string;           // Optional color of the whole Dashboard    
+    dashboardBackgroundImageSrc: string;        // Optional picture to show in background
     dashboardComments: string;                  // Optional comments
     dashboardCreatedDateTime: string;           // Created on
     dashboardCreatedUserID: string;             // Created by

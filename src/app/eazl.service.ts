@@ -388,7 +388,8 @@ export const DASHBOARDS: Dashboard[] =
             dashboardName: 'Collection of Bar charts',
             isContainerHeaderDark: true,
             showContainerHeader: false,
-            dashboardBackgroundPicturePath: '',
+            dashboardBackgroundColor: 'darkred',
+            dashboardBackgroundImageSrc: '../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg',
             dashboardComments: 'Comments bla-bla-bla',
             dashboardCreatedDateTime: '2017/07/08',
             dashboardCreatedUserID: 'BenVdMark',
@@ -425,7 +426,8 @@ export const DASHBOARDS: Dashboard[] =
             dashboardName: 'Collection of Pie charts',
             isContainerHeaderDark: false,
             showContainerHeader: true,
-            dashboardBackgroundPicturePath: '',
+            dashboardBackgroundColor: '',
+            dashboardBackgroundImageSrc: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
@@ -460,7 +462,8 @@ export const DASHBOARDS: Dashboard[] =
             dashboardName: 'Tree map ...',
             isContainerHeaderDark: true,            
             showContainerHeader: true,
-            dashboardBackgroundPicturePath: '',
+            dashboardBackgroundColor: '',
+            dashboardBackgroundImageSrc: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
@@ -495,7 +498,8 @@ export const DASHBOARDS: Dashboard[] =
             dashboardName: 'Word Cloud of random text',
             isContainerHeaderDark: false,
             showContainerHeader: false,
-            dashboardBackgroundPicturePath: '',
+            dashboardBackgroundColor: '',
+            dashboardBackgroundImageSrc: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
@@ -530,7 +534,8 @@ export const DASHBOARDS: Dashboard[] =
             dashboardName: 'Stacked grap with jobs timeseries',
             isContainerHeaderDark: false,
             showContainerHeader: true,
-            dashboardBackgroundPicturePath: '',
+            dashboardBackgroundColor: '',
+            dashboardBackgroundImageSrc: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
@@ -565,7 +570,8 @@ export const DASHBOARDS: Dashboard[] =
             dashboardName: '',
             isContainerHeaderDark: true,
             showContainerHeader: true,
-            dashboardBackgroundPicturePath: '',
+            dashboardBackgroundColor: '',
+            dashboardBackgroundImageSrc: '',
             dashboardComments: 'No Comment',
             dashboardCreatedDateTime: '2016/07/08',
             dashboardCreatedUserID: 'GranalN',
@@ -3564,6 +3570,26 @@ export class EazlService {
         // Update showContainerHeader for given dashboard
         // - dashboardID: ID of Dashboard to update 
         // - showContainerHeader: new value of showContainerHeader field
+
+        // TODO - update for real in DB
+    }
+
+    updateDashboardBackgroundColor(
+        dashboardID: number, 
+        dashboardBackgroundColor: string){
+        // Update dashboardBackgroundColor for given dashboard
+        // - dashboardID: ID of Dashboard to update 
+        // - dashboardBackgroundColor: new value of dashboardBackgroundColor field
+
+        // TODO - update for real in DB
+    }
+
+    updateDashboardBackgroundImageSrc(
+        dashboardID: number, 
+        dashboardBackgroundImageSrc: string){
+        // Update dashboardBackgroundImageSrc for given dashboard
+        // - dashboardID: ID of Dashboard to update 
+        // - dashboardBackgroundImageSrc: new value of dashboardBackgroundImageSrc field
 
         // TODO - update for real in DB
     }

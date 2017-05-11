@@ -55,7 +55,7 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardID':                      new FormControl(''),
             'dashboardCode':                    new FormControl('', Validators.required),
             'dashboardName':                    new FormControl('', Validators.required),
-            'dashboardBackgroundPicturePath':   new FormControl(''),
+            'dashboardBackgroundImageSrc':   new FormControl(''),
             'dashboardComments':                new FormControl(''),
             'dashboardCreatedDateTime':         new FormControl(''),
             'dashboardCreatedUserID':           new FormControl(''),
@@ -105,8 +105,8 @@ console.log('refreshForm', this.selectedDashboard.dashboardID,
         this.dashboardForm.controls['dashboardName'].setValue(
             this.selectedDashboard.dashboardName
         );
-        this.dashboardForm.controls['dashboardBackgroundPicturePath'].setValue(
-            this.selectedDashboard.dashboardBackgroundPicturePath
+        this.dashboardForm.controls['dashboardBackgroundImageSrc'].setValue(
+            this.selectedDashboard.dashboardBackgroundImageSrc
         );
         this.dashboardForm.controls['dashboardComments'].setValue(
             this.selectedDashboard.dashboardComments
