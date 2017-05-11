@@ -72,8 +72,8 @@
                                 width: 200px;
                              " 
                     pTooltip="Check to show Text in the container"
-                    formControlName="showTextInWidget" 
-                    [(ngModel)]="showTextChecked" 
+                    formControlName="showWidgetText" 
+                    [(ngModel)]="showWidgetText" 
                     binary="true"
                     (onChange)="changeCheckBox()"
                     >
@@ -99,8 +99,8 @@
                                 width: 200px;
                              " 
                     pTooltip="Check to show Text in the container"
-                    formControlName="showTextInWidget" 
-                    [(ngModel)]="showGraphChecked" 
+                    formControlName="showWidgetGraph" 
+                    [(ngModel)]="showWidgetGraph" 
                     binary="true"
                     (onChange)="changeCheckBox()"
                     >
@@ -126,8 +126,8 @@
                                 width: 200px;
                              " 
                     pTooltip="Check to show Text in the container"
-                    formControlName="showTextInWidget" 
-                    [(ngModel)]="showTableChecked" 
+                    formControlName="showWidgetTable" 
+                    [(ngModel)]="showWidgetTable" 
                     binary="true"
                     (onChange)="changeCheckBox()"
                     >
@@ -153,8 +153,8 @@
                                 width: 200px;
                              " 
                     pTooltip="Check to show Text in the container"
-                    formControlName="showTextInWidget" 
-                    [(ngModel)]="showImageChecked" 
+                    formControlName="showWidgetImage" 
+                    [(ngModel)]="showWidgetImage" 
                     binary="true"
                     (onChange)="changeCheckBox()"
                     >
@@ -561,7 +561,7 @@
         <!--Text Panel Header-->
         <div
             class="PanelHeading"
-            *ngIf="showTextChecked"
+            *ngIf="showWidgetText"
             >
             Text
 
@@ -595,7 +595,7 @@
         <!--Text Panel Area-->
         <div
             class="panelArea"
-            *ngIf="showTextChecked   &&   textPanelIsOpen"
+            *ngIf="showWidgetText   &&   textPanelIsOpen"
             >
 
             <!--textText-->
@@ -634,6 +634,7 @@
                     Background Color:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextBackground"
                     [style]="
                         {
                             'autofocus':'true',
@@ -664,6 +665,7 @@
                     Text Border:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextBorder"
                     [style]="
                         {
                             'autofocus':'true',
@@ -678,7 +680,7 @@
                         }" 
                     [options]="borderOptions" 
                     formControlName="textBorder"
-                    placeholder="Border"
+                    placeholder="Border of text box"
                     filter="true"
                     >
                 </p-dropdown>
@@ -694,6 +696,7 @@
                     Text Color:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextColor"
                     [style]="
                         {
                             'autofocus':'true',
@@ -724,6 +727,7 @@
                     Font Size:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextFontSize"
                     [style]="
                         {
                             'autofocus':'true',
@@ -754,6 +758,7 @@
                     Font Weight:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextFontWeight"
                     [style]="
                         {
                             'autofocus':'true',
@@ -836,6 +841,7 @@
                     Text Margin:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextMargin"
                     [style]="
                         {
                             'autofocus':'true',
@@ -866,6 +872,7 @@
                     Text Padding:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextPadding"
                     [style]="
                         {
                             'autofocus':'true',
@@ -896,6 +903,7 @@
                     Text Position:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextPosition"
                     [style]="
                         {
                             'autofocus':'true',
@@ -926,6 +934,7 @@
                     Text Align:
                 </span>
                 <p-dropdown
+                    [(ngModel)]="selectedTextAlign"
                     [style]="
                         {
                             'autofocus':'true',
@@ -1151,7 +1160,7 @@
         <!--Graph Panel Header-->
         <div
             class="PanelHeading"
-            *ngIf="showGraphChecked"
+            *ngIf="showWidgetGraph"
             >
             Graph
 
@@ -1185,7 +1194,7 @@
         <!--Graph Panel Area-->
         <div
             class="panelArea"
-            *ngIf="showGraphChecked   &&   widgetTypePanelIsOpen"
+            *ngIf="showWidgetGraph   &&   widgetTypePanelIsOpen"
             >
 
             <!--Report selection-->
@@ -1478,7 +1487,7 @@
         <!--Table Panel Header-->
         <div
             class="PanelHeading"
-            *ngIf="showTableChecked"
+            *ngIf="showWidgetTable"
             >
             Table
 
@@ -1512,7 +1521,7 @@
         <!--Table Panel Area-->
         <div
             class="panelArea"
-            *ngIf="showTableChecked   &&   tablePanelIsOpen"
+            *ngIf="showWidgetTable   &&   tablePanelIsOpen"
             >
 
             To be completed later once designed in more detail.  Currently we have:
@@ -1525,7 +1534,7 @@
         <!--Image Panel Header-->
         <div
             class="PanelHeading"
-            *ngIf="showImageChecked"
+            *ngIf="showWidgetImage"
             >
             Image
 
@@ -1559,7 +1568,7 @@
         <!--Table Panel Area-->
         <div
             class="panelArea"
-            *ngIf="showImageChecked   &&   imagePanelIsOpen"
+            *ngIf="showWidgetImage   &&   imagePanelIsOpen"
             >
 
             <!--imageAlt-->

@@ -404,7 +404,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             );
         }
 
-
         // Loop on the Array of selected IDs, and do things to it
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
 

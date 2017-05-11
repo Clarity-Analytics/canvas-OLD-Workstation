@@ -79,10 +79,10 @@ export class WidgetEditorComponent implements OnInit {
     selectedVegaHoverColor: any;                // Selected in DropDown
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
 
-    showTextChecked: boolean = false;           // True to show Text in containter
-    showGraphChecked: boolean = false;          // True to show Graph in Containter
-    showTableChecked: boolean = false;          // True to show Table in Containter
-    showImageChecked: boolean = false;          // True to show Image in Containter
+    showWidgetText: boolean = false;            // True to show Text in containter
+    showWidgetGraph: boolean = false;           // True to show Graph in Containter
+    showWidgetTable: boolean = false;           // True to show Table in Containter
+    showWidgetImage: boolean = false;           // True to show Image in Containter
     widgetToEditSpec: string;                   // Vega spect for current Widget
 
     reports: Report[];                          // List of Reports
@@ -99,6 +99,16 @@ export class WidgetEditorComponent implements OnInit {
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
     selectedWidgetCreation: any;                // Selected option to create Widget
+    selectedTextBackground: any;                // Selected option for Text Background
+    selectedTextBorder: any;                    // Selected option for Text Border
+    selectedTextColor: any;                     // Selected option for Text Color
+    selectedTextFontSize: any;                  // Selected option for Text Font Size
+    selectedTextFontWeight: any;                // Selected option for Text Font Weight
+    selectedTextMargin: any;                    // Selected option for Text Margin
+    selectedTextPadding: any;                   // Selected option for Text Box Padding
+    selectedTextPosition: any;                  // Selected option for Text Box Position
+    selectedTextAlign: any;                     // Selected option for Text Alignment in box
+    
     selectedImageSrc: any;                      // Selected option for Image Src file
     isVegaSpecBad: boolean = true;              // True if Vega spec is bad
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
@@ -148,7 +158,10 @@ export class WidgetEditorComponent implements OnInit {
         this.identificationForm = this.fb.group(
             {
                 'widgetTabName':                new FormControl(''),
-                'showTextInWidget':             new FormControl(''),
+                'showWidgetText':               new FormControl(''),
+                'showWidgetGraph':              new FormControl(''),
+                'showWidgetTable':              new FormControl(''),
+                'showWidgetImage':              new FormControl(''),
                 'textText':                     new FormControl(''),
                 'textBackgroundColor':          new FormControl(''),
                 'textBorder':                   new FormControl(''),
@@ -217,8 +230,12 @@ export class WidgetEditorComponent implements OnInit {
 
         // Font Size Options
         this.fontSizeOptions = [];
-        this.fontSizeOptions.push({label:'1',   value:{id:1, name: '1em'}});
-        this.fontSizeOptions.push({label:'2',   value:{id:1, name: '2em'}});
+        this.fontSizeOptions.push({label:'16',   value:{id:1, name: '16'}});
+        this.fontSizeOptions.push({label:'32',   value:{id:1, name: '32'}});
+        this.fontSizeOptions.push({label:'48',   value:{id:1, name: '48'}});
+        this.fontSizeOptions.push({label:'60',   value:{id:1, name: '60'}});
+        this.fontSizeOptions.push({label:'72',   value:{id:1, name: '72'}});
+        this.fontSizeOptions.push({label:'84',   value:{id:1, name: '84'}});
 
         // Font Weight Options
         this.fontWeightOptions = [];
@@ -232,12 +249,17 @@ export class WidgetEditorComponent implements OnInit {
         this.textMarginOptions.push({label:'Medium', value:{id:1, name: '20px 20px 20px 20px'}});
         this.textMarginOptions.push({label:'Large',  value:{id:1, name: '50px 50px 50px 50px'}});
 
-        // Text Margin Options
+        // Text Padding Options
         this.textPaddingOptions = [];
         this.textPaddingOptions.push({label:'None',   value:{id:1, name: '0'}});
         this.textPaddingOptions.push({label:'Small',  value:{id:1, name: '5px 5px 5px 5px'}});
         this.textPaddingOptions.push({label:'Medium', value:{id:1, name: '20px 20px 20px 20px'}});
         this.textPaddingOptions.push({label:'Large',  value:{id:1, name: '50px 50px 50px 50px'}});
+
+        // Text Position Options
+        this.textPositionOptions = [];
+        this.textPositionOptions.push({label:'Relative',  value:{id:1, name: 'relative'}});
+        this.textPositionOptions.push({label:'Absolute',  value:{id:1, name: 'absolute'}});
 
         // Text Margin Options
         this.textAlignOptions = [];
@@ -296,6 +318,32 @@ export class WidgetEditorComponent implements OnInit {
             this.isLoadingForm = true;
 
             if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
+
+                // Content panel
+                if (this.widgetToEdit.areas.showWidgetText) {
+                    this.identificationForm.controls['showWidgetText'].setValue(
+                        this.widgetToEdit.areas.showWidgetText
+                    );
+                    this.showWidgetText = this.widgetToEdit.areas.showWidgetText;
+                }
+                if (this.widgetToEdit.areas.showWidgetGraph) {
+                    this.identificationForm.controls['showWidgetGraph'].setValue(
+                        this.widgetToEdit.areas.showWidgetGraph
+                    );
+                    this.showWidgetGraph = this.widgetToEdit.areas.showWidgetGraph;
+                }
+                if (this.widgetToEdit.areas.showWidgetTable) {
+                    this.identificationForm.controls['showWidgetTable'].setValue(
+                        this.widgetToEdit.areas.showWidgetTable
+                    );
+                    this.showWidgetTable = this.widgetToEdit.areas.showWidgetTable;
+                }
+                if (this.widgetToEdit.areas.showWidgetImage) {
+                    this.identificationForm.controls['showWidgetImage'].setValue(
+                        this.widgetToEdit.areas.showWidgetImage
+                    );
+                    this.showWidgetImage = this.widgetToEdit.areas.showWidgetImage;
+                }
 
                 if (this.widgetToEdit.properties.widgetTabName) {
                     this.selectedItem = {
@@ -437,39 +485,61 @@ export class WidgetEditorComponent implements OnInit {
                     }
                 }
 
-
                 // Load fields for Text box
                 if (this.widgetToEdit.textual.textText) {
                     this.identificationForm.controls['textText']
                         .setValue(this.widgetToEdit.textual.textText);
                 }
                 if (this.widgetToEdit.textual.textBackgroundColor) {
-                    this.identificationForm.controls['textBackgroundColor']
-                        .setValue(this.widgetToEdit.textual.textBackgroundColor);
-
-                    // this.selectedItem = {
-                    //     id: 1, 
-                    //     name: this.widgetToEdit.image.imageSource
-                    // };
-                    // this.identificationForm.controls['imageSource'].setValue(this.selectedItem);
-                    // this.selectedImageSrc = this.selectedItem;
-
+                    this.selectedItemColor = {
+                        id:this.widgetToEdit.textual.textBackgroundColor,             
+                        name: this.widgetToEdit.textual.textBackgroundColor,             
+                        code: this.canvasColors.hexCodeOfColor(
+                            this.widgetToEdit.textual.textBackgroundColor
+                        )
+                    }
+                    this.identificationForm.controls['textBackgroundColor'].setValue(
+                        this.selectedItemColor
+                    );
+                    this.selectedTextBackground = this.selectedItemColor;
                 }
                 if (this.widgetToEdit.textual.textBorder) {
-                    this.identificationForm.controls['textBorder']
-                        .setValue(this.widgetToEdit.textual.textBorder);
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.textual.textBorder
+                    };
+                    this.identificationForm.controls['textBorder'].setValue(this.selectedItem);
+                    this.selectedTextBorder = this.selectedItem;
                 }
+console.log('Fixx',this.widgetToEdit.textual.textBorder,this.selectedItem,this.selectedTextBorder)                
                 if (this.widgetToEdit.textual.textColor) {
-                    this.identificationForm.controls['textColor']
-                        .setValue(this.widgetToEdit.textual.textColor);
+                    this.selectedItemColor = {
+                        id:this.widgetToEdit.textual.textColor,             
+                        name: this.widgetToEdit.textual.textColor,             
+                        code: this.canvasColors.hexCodeOfColor(
+                            this.widgetToEdit.textual.textColor
+                        )
+                    }
+                    this.identificationForm.controls['textColor'].setValue(
+                        this.selectedItemColor
+                    );
+                    this.selectedTextColor = this.selectedItemColor;
                 }
                 if (this.widgetToEdit.textual.textFontSize) {
-                    this.identificationForm.controls['textFontSize']
-                        .setValue(this.widgetToEdit.textual.textFontSize);
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.textual.textFontSize.toString()
+                    };
+                    this.identificationForm.controls['textFontSize'].setValue(this.selectedItem);
+                    this.selectedTextFontSize = this.selectedItem;
                 }
                 if (this.widgetToEdit.textual.textFontWeight) {
-                    this.identificationForm.controls['textFontWeight']
-                        .setValue(this.widgetToEdit.textual.textFontWeight);
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.textual.textFontWeight
+                    };
+                    this.identificationForm.controls['textFontWeight'].setValue(this.selectedItem);
+                    this.selectedTextFontWeight = this.selectedItem;
                 }
                 if (this.widgetToEdit.textual.textHeight) {
                     this.identificationForm.controls['textHeight']
@@ -480,20 +550,36 @@ export class WidgetEditorComponent implements OnInit {
                         .setValue(this.widgetToEdit.textual.textLeft);
                 }
                 if (this.widgetToEdit.textual.textMargin) {
-                    this.identificationForm.controls['textMargin']
-                        .setValue(this.widgetToEdit.textual.textMargin);
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.textual.textMargin
+                    };
+                    this.identificationForm.controls['textMargin'].setValue(this.selectedItem);
+                    this.selectedTextMargin = this.selectedItem;
                 }
                 if (this.widgetToEdit.textual.textPadding) {
-                    this.identificationForm.controls['textPadding']
-                        .setValue(this.widgetToEdit.textual.textPadding);
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.textual.textPadding
+                    };
+                    this.identificationForm.controls['textPadding'].setValue(this.selectedItem);
+                    this.selectedTextPadding = this.selectedItem;
                 }
                 if (this.widgetToEdit.textual.textPosition) {
-                    this.identificationForm.controls['textPosition']
-                        .setValue(this.widgetToEdit.textual.textPosition);
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.textual.textPosition
+                    };
+                    this.identificationForm.controls['textPosition'].setValue(this.selectedItem);
+                    this.selectedTextPosition = this.selectedItem;
                 }
                 if (this.widgetToEdit.textual.textTextAlign) {
-                    this.identificationForm.controls['textTextAlign']
-                        .setValue(this.widgetToEdit.textual.textTextAlign);
+                    this.selectedItem = {
+                        id: 1, 
+                        name: this.widgetToEdit.textual.textTextAlign
+                    };
+                    this.identificationForm.controls['textTextAlign'].setValue(this.selectedItem);
+                    this.selectedTextAlign = this.selectedItem;
                 }
                 if (this.widgetToEdit.textual.textTop) {
                     this.identificationForm.controls['textTop']
@@ -1077,10 +1163,10 @@ export class WidgetEditorComponent implements OnInit {
     }
 
 changeCheckBox() {
-console.log('showText',this.showTextChecked)
-console.log(this.showGraphChecked)
-console.log(this.showTableChecked)
-console.log(this.showImageChecked)
+console.log('showText',this.showWidgetText)
+console.log(this.showWidgetGraph)
+console.log(this.showWidgetTable)
+console.log(this.showWidgetImage)
 console.log(this.identificationForm.controls['textBackgroundColor'].value)
 console.log(this.identificationForm.controls['textBorder'].value)
 console.log(this.identificationForm.controls['textColor'].value)
