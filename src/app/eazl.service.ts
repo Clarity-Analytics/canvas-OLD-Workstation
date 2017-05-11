@@ -3542,6 +3542,16 @@ export class EazlService {
         return this.users;
     }
 
+    updateDashboardContainerHeader(
+        dashboardID: number, 
+        isContainerHeaderDark: boolean){
+        // Update isContainerHeaderDark for given dashboard
+        // - dashboardID: ID of Dashboard to update 
+        // - isContainerHeaderDark: new value of isContainerHeaderDark field
+
+        // TODO - update for real in DB
+    }
+
     getDashboards(dashboardID: number = -1) {
         // Return a list of Dashboards
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)

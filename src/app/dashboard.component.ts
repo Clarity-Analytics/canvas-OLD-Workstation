@@ -1812,6 +1812,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         )[0].isContainerHeaderDark
     }
 
+    onclickContainerHeaderDark(){        
+        // Toggles the container buttons dark / light.  Then update array and DB
+        this.isContainerHeaderDark = !this.isContainerHeaderDark;
+        this.dashboards.filter(
+            dash => dash.dashboardID == this.selectedDashboardID
+        )[0].isContainerHeaderDark = this.isContainerHeaderDark;
+        this.eazlService.updateDashboardContainerHeader( 
+            this.selectedDashboardID,
+            this.isContainerHeaderDark
+        );
+    }
+
     loadDashboard(event) {
         // Load the selected Dashboard detail for a given DashboardID & TabName
         // - get Dashboard info from DB
