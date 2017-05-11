@@ -1297,34 +1297,6 @@ export class WidgetEditorComponent implements OnInit {
         }
     }
 
-changeCheckBox() {
-console.log('showText',this.showWidgetText)
-console.log(this.showWidgetGraph)
-console.log(this.showWidgetTable)
-console.log(this.showWidgetImage)
-console.log(this.identificationForm.controls['textBackgroundColor'].value)
-console.log(this.identificationForm.controls['textBorder'].value)
-console.log(this.identificationForm.controls['textColor'].value)
-console.log(this.identificationForm.controls['textFontSize'].value)
-console.log(this.identificationForm.controls['textFontWeight'].value)
-console.log(this.identificationForm.controls['textHeight'].value)
-console.log(this.identificationForm.controls['textLeft'].value)
-console.log(this.identificationForm.controls['textMargin'].value)
-console.log(this.identificationForm.controls['textPadding'].value)
-console.log(this.identificationForm.controls['textPosition'].value)
-console.log(this.identificationForm.controls['textTextAlign'].value)
-console.log(this.identificationForm.controls['textTop'].value)
-console.log(this.identificationForm.controls['textWidth'].value)
-
-console.log(this.identificationForm.controls['imageAlt'].value)
-console.log(this.identificationForm.controls['imageHeigt'].value)
-console.log(this.identificationForm.controls['imageLeft'].value)
-console.log(this.identificationForm.controls['imageSource'].value)
-console.log(this.identificationForm.controls['imageTop'].value)
-console.log(this.identificationForm.controls['imageWidth'].value)
-
-
-}
     testVegaSpec() {
         // Test the Vega spec, and returns Good / Bad
         this.globalFunctionService.printToConsole(this.constructor.name, 'testVegaSpec', '@Start');
