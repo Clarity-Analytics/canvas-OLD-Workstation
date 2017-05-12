@@ -119,10 +119,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     selectedItem: SelectedItem;                     // Selected Object: note ANY to cater for ID number, string
     selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
 
-    selectedBorder: string;
-    selectedBoxShadow: string;
-    selectedColor: any;
-    selectedContainerFontSize: number;      // In em
+    selectedBorder: SelectedItemColor;
+    selectedBoxShadow: SelectedItemColor;
+    selectedColor: SelectedItemColor;
+    selectedContainerFontSize: SelectedItem;      // In em
     selectedContainerGridSize: number;      // In px
     showContainerHeader: boolean = true;
 
@@ -218,8 +218,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Font Size Options
         this.fontSizeOptions = [];
-        this.fontSizeOptions.push({label:'1',   value:{id:1, name: '1em'}});
-        this.fontSizeOptions.push({label:'2',   value:{id:1, name: '2em'}});
+        this.fontSizeOptions.push({label:'1em',   value:{id:1, name: '1'}});
+        this.fontSizeOptions.push({label:'2em',   value:{id:1, name: '2'}});
 
         // Grid Size Options - the name must be a NUMBER, in px
         this.gridSizeOptions = [];       
@@ -554,7 +554,7 @@ console.log('new', this.globalVariableService.gridSize.getValue())
                 // Font Size
                 if (this.displayExpandFontSize) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
-                        'font-size', this.selectedContainerFontSize.toString() + 'em'
+                        'font-size', this.selectedContainerFontSize.name.toString() + 'em'
                     );
 
                     // Update the data
@@ -562,7 +562,7 @@ console.log('new', this.globalVariableService.gridSize.getValue())
                         widget => widget.properties.widgetID === 
                             this.selectedWidgetIDs[i])[0].
                                     container.fontSize = 
-                                this.selectedContainerFontSize['name'];
+                                +this.selectedContainerFontSize['name'];
 
                     // Remember for next time, permanently
                     this.globalVariableService.ContainerFontSize.next(this.selectedContainerFontSize);
@@ -1807,11 +1807,9 @@ console.log('new', this.globalVariableService.gridSize.getValue())
         this.globalFunctionService.printToConsole(this.constructor.name, 'onSelectBackgroundColor', '@Start');
         if (this.selectedBackgroundColor != undefined   &&  colorToChange == 'selectedBackgroundColor') {
             this.sampleColorWidgetBackgroundColor = this.selectedBackgroundColor.name;
-console.log(colorToChange, this.sampleColorWidgetBackgroundColor)
         }
         if (this.selectedColor != undefined   &&  colorToChange == 'selectedColor') {
             this.sampleColorWidgetBackgroundColor = this.selectedColor.name;
-console.log(colorToChange, this.sampleColorWidgetBackgroundColor)
         }
        
     }

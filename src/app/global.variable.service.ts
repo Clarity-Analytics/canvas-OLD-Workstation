@@ -58,15 +58,37 @@ export class GlobalVariableService {
   growlLife = new BehaviorSubject(3000); 
   gridSize = new BehaviorSubject(3);
   snapToGrid = new BehaviorSubject(true);
-  ContainerFontSize = new BehaviorSubject(0);
-  selectedColor = new BehaviorSubject('');
-  selectedBoxShadow = new BehaviorSubject('');
-  selectedBorder = new BehaviorSubject('');
+  ContainerFontSize = new BehaviorSubject<SelectedItem>(
+      {
+        id:1, 
+        name: '1'
+      }
+  );
+  selectedColor = new BehaviorSubject<SelectedItemColor>(
+      {
+        id: 'black', 
+        name: 'black', 
+        code: '#000000'
+      }
+  );
+  selectedBoxShadow = new BehaviorSubject<SelectedItemColor>(
+      {
+        id:1, 
+        name: '',                      
+        code: ''
+      }
+  );
+  selectedBorder = new BehaviorSubject<SelectedItemColor>(
+      {
+        id:1, 
+        name: 'transparent',           
+        code: ''}
+  );
   selectedBackgroundColor = new BehaviorSubject<SelectedItemColor>(
       {
-        id: 'firebrick', 
-        name: 'firebrick', 
-        code: '#B22222'
+        id: 'white', 
+        name: 'white', 
+        code: '#FFFFFF'
       }
   );
   
