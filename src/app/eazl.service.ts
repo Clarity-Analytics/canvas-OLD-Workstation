@@ -387,7 +387,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCode: 'Bar charts',
             dashboardName: 'Collection of Bar charts',
             isContainerHeaderDark: true,
-            showContainerHeader: false,
+            showContainerHeader: true,
             dashboardBackgroundColor: '',
             dashboardBackgroundImageSrc: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')",
             dashboardComments: 'Comments bla-bla-bla',
@@ -682,7 +682,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'left',
                 textTop: 25,
-                textWidth: 200,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,

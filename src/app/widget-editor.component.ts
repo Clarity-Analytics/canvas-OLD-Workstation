@@ -319,304 +319,209 @@ export class WidgetEditorComponent implements OnInit {
             if (this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
 
                 // Content panel
-                if (this.widgetToEdit.areas.showWidgetText) {
-                    this.identificationForm.controls['showWidgetText'].setValue(
-                        this.widgetToEdit.areas.showWidgetText
-                    );
-                    this.showWidgetText = this.widgetToEdit.areas.showWidgetText;
-                }
-                if (this.widgetToEdit.areas.showWidgetGraph) {
-                    this.identificationForm.controls['showWidgetGraph'].setValue(
-                        this.widgetToEdit.areas.showWidgetGraph
-                    );
-                    this.showWidgetGraph = this.widgetToEdit.areas.showWidgetGraph;
-                }
-                if (this.widgetToEdit.areas.showWidgetTable) {
-                    this.identificationForm.controls['showWidgetTable'].setValue(
-                        this.widgetToEdit.areas.showWidgetTable
-                    );
-                    this.showWidgetTable = this.widgetToEdit.areas.showWidgetTable;
-                }
-                if (this.widgetToEdit.areas.showWidgetImage) {
-                    this.identificationForm.controls['showWidgetImage'].setValue(
-                        this.widgetToEdit.areas.showWidgetImage
-                    );
-                    this.showWidgetImage = this.widgetToEdit.areas.showWidgetImage;
-                }
-
-                if (this.widgetToEdit.properties.widgetTabName) {
-                    this.selectedItem = {
-                        id: this.widgetToEdit.properties.widgetTabID, 
-                        name: this.widgetToEdit.properties.widgetTabName
-                    };
-                    this.identificationForm.controls['widgetTabName'].setValue(this.selectedItem);
-                    this.selectedDashboardTab = this.selectedItem;
-                }
-                if (this.widgetToEdit.container.widgetTitle) {
-                    this.identificationForm.controls['widgetTitle']
-                        .setValue(this.widgetToEdit.container.widgetTitle);
-                }
-                if (this.widgetToEdit.properties.widgetCode) {
-                    this.identificationForm.controls['widgetCode']
-                        .setValue(this.widgetToEdit.properties.widgetCode);
-                }
-                if (this.widgetToEdit.properties.widgetName) {
-                    this.identificationForm.controls['widgetName']
-                        .setValue(this.widgetToEdit.properties.widgetName);
-                }
-                if (this.widgetToEdit.properties.widgetDescription) {
-                    this.identificationForm.controls['widgetDescription']
-                        .setValue(this.widgetToEdit.properties.widgetDescription);
-                }
-                if (this.widgetToEdit.properties.widgetDefaultExportFileType) {
-                    this.identificationForm.controls['widgetDefaultExportFileType']
-                        .setValue(this.widgetToEdit.properties.widgetDefaultExportFileType);
-                }
-                if (this.widgetToEdit.properties.widgetHyperLinkTabNr) {
-                    this.identificationForm.controls['widgetHyperLinkTabNr']
-                        .setValue(this.widgetToEdit.properties.widgetHyperLinkTabNr);
-                }
-                if (this.widgetToEdit.properties.widgetHyperLinkWidgetID) {
-                    this.identificationForm.controls['widgetHyperLinkWidgetID']
-                        .setValue(this.widgetToEdit.properties.widgetHyperLinkWidgetID);
-                }
-                if (this.widgetToEdit.properties.widgetPassword) {
-                    this.identificationForm.controls['widgetPassword']
-                        .setValue(this.widgetToEdit.properties.widgetPassword);
-                }
-                if (this.widgetToEdit.properties.widgetRefreshFrequency) {
-                    this.identificationForm.controls['widgetRefreshFrequency']
-                        .setValue(this.widgetToEdit.properties.widgetRefreshFrequency);
-                }
-                if (this.widgetToEdit.properties.widgetRefreshMode) {
-                    this.identificationForm.controls['widgetRefreshMode']
-                        .setValue(this.widgetToEdit.properties.widgetRefreshMode);
-                }
+                this.identificationForm.controls['showWidgetText'].setValue(
+                    this.widgetToEdit.areas.showWidgetText
+                );
+                this.showWidgetText = this.widgetToEdit.areas.showWidgetText;
+                this.identificationForm.controls['showWidgetGraph'].setValue(
+                    this.widgetToEdit.areas.showWidgetGraph
+                );
+                this.showWidgetGraph = this.widgetToEdit.areas.showWidgetGraph;
+                this.identificationForm.controls['showWidgetTable'].setValue(
+                    this.widgetToEdit.areas.showWidgetTable
+                );
+                this.showWidgetTable = this.widgetToEdit.areas.showWidgetTable;
+                this.identificationForm.controls['showWidgetImage'].setValue(
+                    this.widgetToEdit.areas.showWidgetImage
+                );
+                this.showWidgetImage = this.widgetToEdit.areas.showWidgetImage;
+                this.selectedItem = {
+                    id: this.widgetToEdit.properties.widgetTabID, 
+                    name: this.widgetToEdit.properties.widgetTabName
+                };
+                this.identificationForm.controls['widgetTabName'].setValue(this.selectedItem);
+                this.selectedDashboardTab = this.selectedItem;
+                this.identificationForm.controls['widgetTitle']
+                    .setValue(this.widgetToEdit.container.widgetTitle);
+                this.identificationForm.controls['widgetCode']
+                    .setValue(this.widgetToEdit.properties.widgetCode);
+                this.identificationForm.controls['widgetName']
+                    .setValue(this.widgetToEdit.properties.widgetName);
+                this.identificationForm.controls['widgetDescription']
+                    .setValue(this.widgetToEdit.properties.widgetDescription);
+                this.identificationForm.controls['widgetDefaultExportFileType']
+                    .setValue(this.widgetToEdit.properties.widgetDefaultExportFileType);
+                this.identificationForm.controls['widgetHyperLinkTabNr']
+                    .setValue(this.widgetToEdit.properties.widgetHyperLinkTabNr);
+                this.identificationForm.controls['widgetHyperLinkWidgetID']
+                    .setValue(this.widgetToEdit.properties.widgetHyperLinkWidgetID);
+                this.identificationForm.controls['widgetPassword']
+                    .setValue(this.widgetToEdit.properties.widgetPassword);
+                this.identificationForm.controls['widgetRefreshFrequency']
+                    .setValue(this.widgetToEdit.properties.widgetRefreshFrequency);
+                this.identificationForm.controls['widgetRefreshMode']
+                    .setValue(this.widgetToEdit.properties.widgetRefreshMode);
 
                 let LikedUsers: any = this.widgetToEdit.properties.widgetLiked.filter (
                     user => user.widgetLikedUserID != '')
                 this.identificationForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
-                
-                if (this.widgetToEdit.properties.widgetReportName) {
-                    this.selectedItem = {
-                        id: this.widgetToEdit.properties.widgetReportID, 
-                        name: this.widgetToEdit.properties.widgetReportName
-                    };
-                    this.identificationForm.controls['widgetReportName'].setValue(this.selectedItem);
-                    this.selectedReport = this.selectedItem;
+            
+                this.selectedItem = {
+                    id: this.widgetToEdit.properties.widgetReportID, 
+                    name: this.widgetToEdit.properties.widgetReportName
+                };
+                this.identificationForm.controls['widgetReportName'].setValue(this.selectedItem);
+                this.selectedReport = this.selectedItem;
 
-                    // Set the field DropDown content
-                    this.loadReportRelatedInfoBody(this.widgetToEdit.properties.widgetReportID);
-                }
-                if (this.widgetToEdit.properties.widgetReportParameters) {
-                    this.identificationForm.controls['widgetReportParameters']
-                        .setValue(this.widgetToEdit.properties.widgetReportParameters);
-                }
-                if (this.widgetToEdit.properties.widgetShowLimitedRows) {
-                    this.identificationForm.controls['widgetShowLimitedRows']
-                        .setValue(this.widgetToEdit.properties.widgetShowLimitedRows);
-                }
-                if (this.widgetToEdit.properties.widgetAddRestRow) {
-                    this.identificationForm.controls['widgetAddRestRow']
-                        .setValue(this.widgetToEdit.properties.widgetAddRestRow);
-                }
-                if (this.widgetToEdit.properties.widgetType) {
-                    this.selectedItem = {
-                        id: this.widgetToEdit.properties.widgetTypeID, 
-                        name: this.widgetToEdit.properties.widgetType}
-                    ;
-                    this.identificationForm.controls['widgetType'].setValue(this.selectedItem);
-                    this.selectedWidgetCreation = this.selectedItem;
-                }
+                // Set the field DropDown content
+                this.loadReportRelatedInfoBody(this.widgetToEdit.properties.widgetReportID);
+                this.identificationForm.controls['widgetReportParameters']
+                    .setValue(this.widgetToEdit.properties.widgetReportParameters);
+                this.identificationForm.controls['widgetShowLimitedRows']
+                    .setValue(this.widgetToEdit.properties.widgetShowLimitedRows);
+                this.identificationForm.controls['widgetAddRestRow']
+                    .setValue(this.widgetToEdit.properties.widgetAddRestRow);
+                this.selectedItem = {
+                    id: this.widgetToEdit.properties.widgetTypeID, 
+                    name: this.widgetToEdit.properties.widgetType}
+                ;
+                this.identificationForm.controls['widgetType'].setValue(this.selectedItem);
+                this.selectedWidgetCreation = this.selectedItem;
 
                 // TODO - get IDs for X & Y columns correctly and from the actual data
                 if (this.widgetToEdit.properties.widgetType == 'BarChart') {
 
-                    if (this.widgetToEdit.graph.vegaParameters.vegaGraphHeight) {
-                        this.identificationForm.controls['vegaGraphHeight']
-                            .setValue(this.widgetToEdit.graph.vegaParameters.vegaGraphHeight);
-                    } 
-                    if (this.widgetToEdit.graph.vegaParameters.vegaGraphWidth) {
-                        this.identificationForm.controls['vegaGraphWidth']
-                            .setValue(this.widgetToEdit.graph.vegaParameters.vegaGraphWidth);
+                    this.identificationForm.controls['vegaGraphHeight']
+                        .setValue(this.widgetToEdit.graph.vegaParameters.vegaGraphHeight);
+                    this.identificationForm.controls['vegaGraphWidth']
+                        .setValue(this.widgetToEdit.graph.vegaParameters.vegaGraphWidth);
+                    this.identificationForm.controls['vegaGraphPadding']
+                        .setValue(this.widgetToEdit.graph.vegaParameters.vegaGraphPadding);
+                    this.selectedItem = {
+                        id: this.widgetToEdit.graph.vegaParameters.vegaXcolumn, 
+                        name: this.widgetToEdit.graph.vegaParameters.vegaXcolumn
+                    };
+                    this.identificationForm.controls['vegaXcolumn'].setValue(this.selectedItem);
+                    this.selectedVegaXcolumn = this.selectedItem;
+                    this.selectedItem = {
+                        id: this.widgetToEdit.graph.vegaParameters.vegaYcolumn, 
+                        name: this.widgetToEdit.graph.vegaParameters.vegaYcolumn
+                    };
+                    this.identificationForm.controls['vegaYcolumn'].setValue(this.selectedItem);
+                    this.selectedVegaYcolumn = this.selectedItem;
+                    this.selectedItemColor = {
+                        id:this.widgetToEdit.graph.vegaParameters.vegaFillColor,             
+                        name: this.widgetToEdit.graph.vegaParameters.vegaFillColor,             
+                        code: this.canvasColors.hexCodeOfColor(
+                            this.widgetToEdit.graph.vegaParameters.vegaFillColor
+                        )
                     }
-                    if (this.widgetToEdit.graph.vegaParameters.vegaGraphPadding) {
-                        this.identificationForm.controls['vegaGraphPadding']
-                            .setValue(this.widgetToEdit.graph.vegaParameters.vegaGraphPadding);
+                    this.identificationForm.controls['vegaFillColor'].setValue(this.selectedItemColor);
+                    this.selectedVegaFillColor = this.selectedItemColor;
+                    this.selectedItemColor = {
+                        id:this.widgetToEdit.graph.vegaParameters.vegaHoverColor,             
+                        name: this.widgetToEdit.graph.vegaParameters.vegaHoverColor,             
+                        code: this.canvasColors.hexCodeOfColor(
+                            this.widgetToEdit.graph.vegaParameters.vegaHoverColor
+                        )
                     }
-                    if (this.widgetToEdit.graph.vegaParameters.vegaXcolumn) {
-                        this.selectedItem = {
-                            id: this.widgetToEdit.graph.vegaParameters.vegaXcolumn, 
-                            name: this.widgetToEdit.graph.vegaParameters.vegaXcolumn
-                        };
-                        this.identificationForm.controls['vegaXcolumn'].setValue(this.selectedItem);
-                        this.selectedVegaXcolumn = this.selectedItem;
-                    }
-                    if (this.widgetToEdit.graph.vegaParameters.vegaYcolumn) {
-                        this.selectedItem = {
-                            id: this.widgetToEdit.graph.vegaParameters.vegaYcolumn, 
-                            name: this.widgetToEdit.graph.vegaParameters.vegaYcolumn
-                        };
-                        this.identificationForm.controls['vegaYcolumn'].setValue(this.selectedItem);
-                        this.selectedVegaYcolumn = this.selectedItem;
-                    }
-                    if (this.widgetToEdit.graph.vegaParameters.vegaFillColor) {
-                        this.selectedItemColor = {
-                            id:this.widgetToEdit.graph.vegaParameters.vegaFillColor,             
-                            name: this.widgetToEdit.graph.vegaParameters.vegaFillColor,             
-                            code: this.canvasColors.hexCodeOfColor(
-                                this.widgetToEdit.graph.vegaParameters.vegaFillColor
-                            )
-                        }
-                        this.identificationForm.controls['vegaFillColor'].setValue(this.selectedItemColor);
-                        this.selectedVegaFillColor = this.selectedItemColor;
-                    }
-                    if (this.widgetToEdit.graph.vegaParameters.vegaHoverColor) {
-                        this.selectedItemColor = {
-                            id:this.widgetToEdit.graph.vegaParameters.vegaHoverColor,             
-                            name: this.widgetToEdit.graph.vegaParameters.vegaHoverColor,             
-                            code: this.canvasColors.hexCodeOfColor(
-                                this.widgetToEdit.graph.vegaParameters.vegaHoverColor
-                            )
-                        }
-                        this.identificationForm.controls['vegaHoverColor'].setValue(this.selectedItemColor);
-                        this.selectedVegaHoverColor = this.selectedItemColor;
-                    }
+                    this.identificationForm.controls['vegaHoverColor'].setValue(this.selectedItemColor);
+                    this.selectedVegaHoverColor = this.selectedItemColor;
                 }
 
                 // Load fields for Text box
-                if (this.widgetToEdit.textual.textText) {
-                    this.identificationForm.controls['textText']
-                        .setValue(this.widgetToEdit.textual.textText);
+                this.identificationForm.controls['textText']
+                    .setValue(this.widgetToEdit.textual.textText);
+                this.selectedItemColor = {
+                    id:this.widgetToEdit.textual.textBackgroundColor,             
+                    name: this.widgetToEdit.textual.textBackgroundColor,             
+                    code: this.canvasColors.hexCodeOfColor(
+                        this.widgetToEdit.textual.textBackgroundColor
+                    )
                 }
-                if (this.widgetToEdit.textual.textBackgroundColor) {
-                    this.selectedItemColor = {
-                        id:this.widgetToEdit.textual.textBackgroundColor,             
-                        name: this.widgetToEdit.textual.textBackgroundColor,             
-                        code: this.canvasColors.hexCodeOfColor(
-                            this.widgetToEdit.textual.textBackgroundColor
-                        )
-                    }
-                    this.identificationForm.controls['textBackgroundColor'].setValue(
-                        this.selectedItemColor
-                    );
-                    this.selectedTextBackground = this.selectedItemColor;
+                this.identificationForm.controls['textBackgroundColor'].setValue(
+                    this.selectedItemColor
+                );
+                this.selectedTextBackground = this.selectedItemColor;
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.textual.textBorder
+                };
+                this.identificationForm.controls['textBorder'].setValue(this.selectedItem);
+                this.selectedTextBorder = this.selectedItem;
+                this.selectedItemColor = {
+                    id:this.widgetToEdit.textual.textColor,             
+                    name: this.widgetToEdit.textual.textColor,             
+                    code: this.canvasColors.hexCodeOfColor(
+                        this.widgetToEdit.textual.textColor
+                    )
                 }
-                if (this.widgetToEdit.textual.textBorder) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.textual.textBorder
-                    };
-                    this.identificationForm.controls['textBorder'].setValue(this.selectedItem);
-                    this.selectedTextBorder = this.selectedItem;
-                }
-                if (this.widgetToEdit.textual.textColor) {
-                    this.selectedItemColor = {
-                        id:this.widgetToEdit.textual.textColor,             
-                        name: this.widgetToEdit.textual.textColor,             
-                        code: this.canvasColors.hexCodeOfColor(
-                            this.widgetToEdit.textual.textColor
-                        )
-                    }
-                    this.identificationForm.controls['textColor'].setValue(
-                        this.selectedItemColor
-                    );
-                    this.selectedTextColor = this.selectedItemColor;
-                }
-                if (this.widgetToEdit.textual.textFontSize) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.textual.textFontSize.toString()
-                    };
-                    this.identificationForm.controls['textFontSize'].setValue(this.selectedItem);
-                    this.selectedTextFontSize = this.selectedItem;
-                }
-                if (this.widgetToEdit.textual.textFontWeight) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.textual.textFontWeight
-                    };
-                    this.identificationForm.controls['textFontWeight'].setValue(this.selectedItem);
-                    this.selectedTextFontWeight = this.selectedItem;
-                }
-                if (this.widgetToEdit.textual.textHeight) {
-                    this.identificationForm.controls['textHeight']
-                        .setValue(this.widgetToEdit.textual.textHeight);
-                }
-                if (this.widgetToEdit.textual.textLeft) {
-                    this.identificationForm.controls['textLeft']
-                        .setValue(this.widgetToEdit.textual.textLeft);
-                }
-                if (this.widgetToEdit.textual.textMargin) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.textual.textMargin
-                    };
-                    this.identificationForm.controls['textMargin'].setValue(this.selectedItem);
-                    this.selectedTextMargin = this.selectedItem;
-                }
-                if (this.widgetToEdit.textual.textPadding) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.textual.textPadding
-                    };
-                    this.identificationForm.controls['textPadding'].setValue(this.selectedItem);
-                    this.selectedTextPadding = this.selectedItem;
-                }
-                if (this.widgetToEdit.textual.textPosition) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.textual.textPosition
-                    };
-                    this.identificationForm.controls['textPosition'].setValue(this.selectedItem);
-                    this.selectedTextPosition = this.selectedItem;
-                }
-                if (this.widgetToEdit.textual.textTextAlign) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.textual.textTextAlign
-                    };
-                    this.identificationForm.controls['textTextAlign'].setValue(this.selectedItem);
-                    this.selectedTextAlign = this.selectedItem;
-                }
-                if (this.widgetToEdit.textual.textTop) {
-                    this.identificationForm.controls['textTop']
-                        .setValue(this.widgetToEdit.textual.textTop);
-                }
-                if (this.widgetToEdit.textual.textWidth) {
-                    this.identificationForm.controls['textWidth']
-                        .setValue(this.widgetToEdit.textual.textWidth);
-                }
+                this.identificationForm.controls['textColor'].setValue(
+                    this.selectedItemColor
+                );
+                this.selectedTextColor = this.selectedItemColor;
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.textual.textFontSize.toString()
+                };
+                this.identificationForm.controls['textFontSize'].setValue(this.selectedItem);
+                this.selectedTextFontSize = this.selectedItem;
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.textual.textFontWeight
+                };
+                this.identificationForm.controls['textFontWeight'].setValue(this.selectedItem);
+                this.selectedTextFontWeight = this.selectedItem;
+                this.identificationForm.controls['textHeight']
+                    .setValue(this.widgetToEdit.textual.textHeight);
+                this.identificationForm.controls['textLeft']
+                    .setValue(this.widgetToEdit.textual.textLeft);
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.textual.textMargin
+                };
+                this.identificationForm.controls['textMargin'].setValue(this.selectedItem);
+                this.selectedTextMargin = this.selectedItem;
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.textual.textPadding
+                };
+                this.identificationForm.controls['textPadding'].setValue(this.selectedItem);
+                this.selectedTextPadding = this.selectedItem;
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.textual.textPosition
+                };
+                this.identificationForm.controls['textPosition'].setValue(this.selectedItem);
+                this.selectedTextPosition = this.selectedItem;
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.textual.textTextAlign
+                };
+                this.identificationForm.controls['textTextAlign'].setValue(this.selectedItem);
+                this.selectedTextAlign = this.selectedItem;
+                this.identificationForm.controls['textTop']
+                    .setValue(this.widgetToEdit.textual.textTop);
+                this.identificationForm.controls['textWidth']
+                    .setValue(this.widgetToEdit.textual.textWidth);
 
                 // Load fields for Image
-                if (this.widgetToEdit.image.imageAlt) {
-                    this.identificationForm.controls['imageAlt']
-                        .setValue(this.widgetToEdit.image.imageAlt);
-                }
-                if (this.widgetToEdit.image.imageHeigt) {
-                    this.identificationForm.controls['imageHeigt']
-                        .setValue(this.widgetToEdit.image.imageHeigt);
-                }
-                if (this.widgetToEdit.image.imageLeft) {
-                    this.identificationForm.controls['imageLeft']
-                        .setValue(this.widgetToEdit.image.imageLeft);
-                }
-                if (this.widgetToEdit.image.imageSource) {
-                    this.selectedItem = {
-                        id: 1, 
-                        name: this.widgetToEdit.image.imageSource
-                    };
-                    this.identificationForm.controls['imageSource'].setValue(this.selectedItem);
-                    this.selectedImageSrc = this.selectedItem;
-                }
-                if (this.widgetToEdit.image.imageTop) {
-                    this.identificationForm.controls['imageTop']
-                        .setValue(this.widgetToEdit.image.imageTop);
-                }
-                if (this.widgetToEdit.image.imageWidth) {
-                    this.identificationForm.controls['imageWidth']
-                        .setValue(this.widgetToEdit.image.imageWidth);
-                }
+                this.identificationForm.controls['imageAlt']
+                    .setValue(this.widgetToEdit.image.imageAlt);
+                this.identificationForm.controls['imageHeigt']
+                    .setValue(this.widgetToEdit.image.imageHeigt);
+                this.identificationForm.controls['imageLeft']
+                    .setValue(this.widgetToEdit.image.imageLeft);
+                this.selectedItem = {
+                    id: 1, 
+                    name: this.widgetToEdit.image.imageSource
+                };
+                this.identificationForm.controls['imageSource'].setValue(this.selectedItem);
+                this.selectedImageSrc = this.selectedItem;
+                this.identificationForm.controls['imageTop']
+                    .setValue(this.widgetToEdit.image.imageTop);
+                this.identificationForm.controls['imageWidth']
+                    .setValue(this.widgetToEdit.image.imageWidth);
 
                 // Indicate we are done loading form
                 this.isLoadingForm = false;
