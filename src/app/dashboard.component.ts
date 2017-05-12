@@ -1911,7 +1911,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Get its Tabs in this Dashboard
         this.selectedDashboardID = event.value.id;
+
+        // Remember this for next time
+        this.globalVariableService.sessionLoadOnOpenDashboardID.next(
+            this.selectedDashboardID);
+        this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
+            this.dashboards.filter(dash => 
+                dash.dashboardID == this.selectedDashboardID)[0].dashboardCode 
+        )
+        this.globalVariableService.sessionLoadOnOpenDashboardName.next(
+            this.dashboards.filter(dash => 
+                dash.dashboardID == this.selectedDashboardID)[0].dashboardName 
+        )
+
+        // Load the Tabs for this Dashboard
         this.loadDashboardTabsBody(this.selectedDashboardID);
+
     }
 
     loadDashboardTabsBody(selectedDashboardID: number) {
@@ -2005,8 +2020,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Call the loadDashboardBody method for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
 
+        // Remember this for next time
+        this.globalVariableService.sessionWidgetTabName.next(event.value.name);
+
         // Set the Selected One
         this.loadDashboardBody(event.value.name);
+
     }
 
     loadDashboardBody(selectedDashboardTabName: string) {
