@@ -7,8 +7,8 @@ import { Router }                     from '@angular/router';
 import { RouterStateSnapshot }        from '@angular/router';
  
 // Our Services
-import { GlobalVariableService }      from './global.variable.service';
-import { GlobalFunctionService }      from './global.function.service';
+import { GlobalVariableService }      from './global-variable.service';
+import { GlobalFunctionService }      from './global-function.service';
 
 @Injectable()
 export class AuthGuard implements OnInit, CanActivate {

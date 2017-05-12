@@ -13,8 +13,8 @@ import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 @Component({
     selector:    'login',

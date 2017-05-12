@@ -20,16 +20,16 @@ import { MenuItem }                   from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Components
-import { DashboardEditorComponent }   from './dashboard.editor.component';
+import { DashboardEditorComponent }   from './dashboard-editor.component';
 
 // Our Services
 import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
-import { CanvasColors }               from './data.chartcolors';
+import { CanvasColors }               from './chartcolors.data';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
 import { Filter }                     from './model.filter';

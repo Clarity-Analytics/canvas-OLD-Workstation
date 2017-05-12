@@ -3,7 +3,7 @@ import { Component }                from '@angular/core';
 import { OnInit }                   from '@angular/core';
 
 // Our Services
-import { GlobalFunctionService }    from './global.function.service';
+import { GlobalFunctionService }    from './global-function.service';
 
 @Component({
     selector: 'pagenotfound-component',

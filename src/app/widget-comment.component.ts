@@ -11,16 +11,16 @@ import { Validators } from '@angular/forms';
 
 // Our Services
 import { EazlService } from './eazl.service';
-import { GlobalFunctionService } from './global.function.service';
-import { GlobalVariableService } from './global.variable.service';
+import { GlobalFunctionService } from './global-function.service';
+import { GlobalVariableService } from './global-variable.service';
 
 // Our models
 import { WidgetComment } from './model.widget.comment';
 
 @Component({
     selector: 'widget-comment',
-    templateUrl: 'widget.comment.component.html',
-    styleUrls: ['widget.comment.component.html']
+    templateUrl: 'widget-comment.component.html',
+    styleUrls: ['widget-comment.component.html']
 })
 export class WidgetCommentComponent implements OnInit {
 

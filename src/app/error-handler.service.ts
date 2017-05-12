@@ -4,7 +4,7 @@ import { Injectable}                  from '@angular/core';
 
 // Our Services
 import { EazlService }                from './eazl.service';
-import { GlobalFunctionService }      from './global.function.service';
+import { GlobalFunctionService }      from './global-function.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

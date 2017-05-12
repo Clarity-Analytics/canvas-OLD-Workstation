@@ -17,8 +17,8 @@ import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
 import { EazlService }                from './eazl.service';
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
@@ -29,7 +29,7 @@ import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 
 // Our Data
-import { CanvasColors }               from './data.chartcolors';
+import { CanvasColors }               from './chartcolors.data';
 
 // Vega stuffies
 let vg = require('vega/index.js');
@@ -47,8 +47,8 @@ export class SelectedItemColor {
 
 @Component({
     selector:    'widget-editor',
-    templateUrl: 'widget.editor.component.html',
-    styleUrls:  ['widget.editor.component.css']
+    templateUrl: 'widget-editor.component.html',
+    styleUrls:  ['widget-editor.component.css']
 })
 export class WidgetEditorComponent implements OnInit {
 

@@ -90,15 +90,15 @@ import { StepsModule }                from 'primeng/primeng';  // p-steps
 
 // Our Components
 import { AppComponent }               from './app.component';
-import { DashboardAdvFilterComponent} from './dashboard.advancedfilter';
+import { DashboardAdvFilterComponent} from './dashboard-advancedfilter.component';
 import { DashboardComponent }         from './dashboard.component';
-import { DashboardEditorComponent}    from './dashboard.editor.component';
+import { DashboardEditorComponent}    from './dashboard-editor.component';
 import { LoginComponent }             from './login.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { UserComponent}               from './user.component';
-import { UserPopupComponent }         from './user.popup.component';
-import { WidgetEditorComponent }      from './widget.editor.component';
-import { WidgetCommentComponent }     from './widget.comment.component';
+import { UserPopupComponent }         from './user-popup.component';
+import { WidgetEditorComponent }      from './widget-editor.component';
+import { WidgetCommentComponent }     from './widget-comment.component';
 
 // Our Directives
 
@@ -107,13 +107,13 @@ import { AuthGuard }                  from './authguard.service';
 import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalErrorHandler }         from './error-handler.service';
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 import { NotificationService }        from './notification.service';
 import { WebSocketService }           from './websocket.service';
 
 // Our models
-import { CanvasColors }               from './data.chartcolors';
+import { CanvasColors }               from './chartcolors.data';
 
 // Constants and variables and interfaces and things
 import { routes }                     from './app.routes';

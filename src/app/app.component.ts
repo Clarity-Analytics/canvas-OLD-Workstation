@@ -15,8 +15,8 @@ import { Message }                    from 'primeng/primeng';
 
 // Our Services
 import { CanvasDate }                 from './date.services';
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 import { NotificationService }        from './notification.service';
 import { WebSocketService }           from './websocket.service';
 

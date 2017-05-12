@@ -13,16 +13,16 @@ import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { Filter }                     from './model.filter';
 
 @Component({
     selector:    'dashboardadvancedfilter',
-    templateUrl: 'dashboard.advancedfilter.html',
-    styleUrls:  ['dashboard.advancedfilter.css']
+    templateUrl: 'dashboard-advancedfilter.component.html',
+    styleUrls:  ['dashboard-advancedfilter.component.css']
 })
 export class DashboardAdvFilterComponent implements OnInit {
 

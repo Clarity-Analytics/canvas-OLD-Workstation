@@ -17,16 +17,16 @@ import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
 import { EazlService }                from './eazl.service';
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { User } from './model.user';
 
 @Component({
     selector:    'user-popup',
-    templateUrl: 'user.popup.component.html',
-    styleUrls:  ['user.popup.component.css']
+    templateUrl: 'user-popup.component.html',
+    styleUrls:  ['user-popup.component.css']
 })
 export class UserPopupComponent implements OnInit {
 

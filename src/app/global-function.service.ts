@@ -1,5 +1,5 @@
 // Global functions
-import { GlobalVariableService }       from './global.variable.service';
+import { GlobalVariableService }       from './global-variable.service';
 import { Injectable }                  from '@angular/core';
 
 // Our Services 

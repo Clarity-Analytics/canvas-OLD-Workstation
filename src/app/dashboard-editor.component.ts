@@ -15,16 +15,16 @@ import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
 import { EazlService }                from './eazl.service';
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { Dashboard }                  from './model.dashboards';
 
 @Component({
     selector:    'dashboard-editor',
-    templateUrl: 'dashboard.editor.component.html',
-    styleUrls:  ['dashboard.editor.component.html']
+    templateUrl: 'dashboard-editor.component.html',
+    styleUrls:  ['dashboard-editor.component.html']
 })
 export class DashboardEditorComponent implements OnInit {
 

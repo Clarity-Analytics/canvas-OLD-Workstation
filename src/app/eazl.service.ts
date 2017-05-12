@@ -2,8 +2,8 @@
 import { Injectable }                 from '@angular/core';
 
 // Our Services
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { Dashboard }                  from './model.dashboards';

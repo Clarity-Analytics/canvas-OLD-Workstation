@@ -11,8 +11,8 @@ import { Message }                    from 'primeng/primeng';
 
 // Our Services
 import { EazlService }                from './eazl.service';
-import { GlobalFunctionService }      from './global.function.service';
-import { GlobalVariableService }      from './global.variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { User }                       from './model.user';
