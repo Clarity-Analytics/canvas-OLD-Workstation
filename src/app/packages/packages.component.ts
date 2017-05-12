@@ -12,12 +12,16 @@ export class PackagesComponent implements OnInit {
 	packageList: Package[];
 
 	constructor(
-		private eazlPackages: EazlPackageService,
-	) 
+		private eazlPackages: EazlPackageService)
+
 	{
 		this.eazlPackages.packageList.model.subscribe(
 			packages => {
-				if (packages) { 			
+				if (packages == null) {
+					return;
+				}
+
+				if (packages.length !== 0) {
 					this.packageList = packages;
 					this.columns = Object.keys(this.packageList[0]);
 				}
