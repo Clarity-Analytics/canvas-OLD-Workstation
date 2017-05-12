@@ -258,10 +258,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.globalVariableService.sessionLoadOnOpenDashboardID.next(
                     this.globalVariableService.startupDashboardID.getValue()
                 )
-                this.globalVariableService.startupLoadOnOpenDashboardCode.next(
+                this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
                     this.globalVariableService.startupDashboardCode.getValue()
                 ) 
-                this.globalVariableService.startupLoadOnOpenDashboardName.next(
+                this.globalVariableService.sessionLoadOnOpenDashboardName.next(
                     this.globalVariableService.startupDashboardName.getValue()
                 )                       
             }
@@ -272,11 +272,27 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedDashboardName = 
                 {
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
-                    code: this.globalVariableService.startupLoadOnOpenDashboardCode.getValue(),
-                    name: this.globalVariableService.startupLoadOnOpenDashboardName.getValue()
+                    code: this.globalVariableService.sessionLoadOnOpenDashboardCode.getValue(),
+                    name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
                 };
 
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
+
+            if (this.globalVariableService.sessionWidgetTabName.getValue() == '') {
+                if (this.globalVariableService.startupWidgetTabName.getValue() != '') {
+                    this.globalVariableService.sessionWidgetTabName.next(
+                        this.globalVariableService.startupWidgetTabName.getValue()
+                    )
+                }
+            }
+            if (this.globalVariableService.sessionWidgetTabName.getValue() != '') {
+                this.selectedTabName = {
+                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                    name: this.globalVariableService.sessionWidgetTabName.getValue()
+                }
+                
+                this.loadDashboardBody(this.globalVariableService.sessionWidgetTabName.getValue());
+            }
         }
 
     }
@@ -1901,7 +1917,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     loadDashboardTabsBody(selectedDashboardID: number) {
         // Load the Tabs for the selected Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabsBody', '@Start');
-console.log('combo', this.selectedDashboardName) 
 
         // Get its Tabs in this Dashboard
         this.dashboardTabsDropDown = [];
@@ -1987,17 +2002,25 @@ console.log('combo', this.selectedDashboardName)
     }
 
     loadDashboard(event) {
+        // Call the loadDashboardBody method for the selected Tab
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
+
+        // Set the Selected One
+        this.loadDashboardBody(event.value.name);
+    }
+
+    loadDashboardBody(selectedDashboardTabName: string) {
         // Load the selected Dashboard detail for a given DashboardID & TabName
         // - get Dashboard info from DB
         // - get Widgets for this Dashboard from DB
         // - show all the Widgets as per their properties
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardBody', '@Start');
 
         // Reset the list of selected Widgets
         this.selectedWidgetIDs = [];
 
         // Set the Selected One
-        this.selectedDashboardTabName = event.value.name;
+        this.selectedDashboardTabName = selectedDashboardTabName;
 
         // Get its Widgets
         this.widgets = this.eazlService.getWidgetsForDashboard(

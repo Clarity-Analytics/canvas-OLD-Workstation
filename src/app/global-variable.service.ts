@@ -42,14 +42,15 @@ export class GlobalVariableService {
     isCurrentUserAdmin = new BehaviorSubject(false);
     growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
     sessionLoadOnOpenDashboardID = new BehaviorSubject(-1);    // Dashboard to load when form opens, 0 = none
-    startupLoadOnOpenDashboardCode = new BehaviorSubject('');  // Dashboard to load @start, '' = none
-    startupLoadOnOpenDashboardName = new BehaviorSubject('');  // Dashboard to load @start, '' = none
+    sessionLoadOnOpenDashboardCode = new BehaviorSubject('');  // Dashboard to load when form opens, '' = none
+    sessionLoadOnOpenDashboardName = new BehaviorSubject('');  // Dashboard to load when form opens, '' = none
+    sessionWidgetTabName = new BehaviorSubject('');            // Tab to load when form opens, '' = none
 
     // At startup
-    startupDashboardID = new BehaviorSubject(0);    // Dashboard to load @start, 0 = none
-    startupDashboardCode = new BehaviorSubject('Bar charts');  // Dashboard to load @start, '' = none
+    startupDashboardID = new BehaviorSubject(0);                // Dashboard to load @start, 0 = none
+    startupDashboardCode = new BehaviorSubject('Bar charts');   // Dashboard to load @start, '' = none
     startupDashboardName = new BehaviorSubject('Collection of Bar charts');  // Dashboard to load @start, '' = none
-
+    startupWidgetTabName = new BehaviorSubject('Value');        // Tab to load @start, '' = none
     startupMessageToShow = new BehaviorSubject('');
 
     // Environment
