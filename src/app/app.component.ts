@@ -90,7 +90,8 @@ export class AppComponent implements OnInit {
             this.eazlUser.authToken.model.subscribe(authToken => {
                 this.isLoggedIn = authToken != null;
                 
-                this.loadMenu()
+                this.loadMenu();
+                this.router.navigate(['login']);
             }); // end subscription
         }
 
@@ -184,15 +185,12 @@ export class AppComponent implements OnInit {
                     });
                     
                     // Logged out!
-                    this.globalVariableService.currentUserUserName.next('');
-                    
-                    // Amend the menu
-                    this.loadMenu();
+                    this.eazlUser.clearAuthToken();
 
                     // Show the login form
                     this.displayNewMessage = true;        
 
-this.router.navigate(['pagenotfound']);     
+// this.router.navigate(['pagenotfound']);     
                     
                 }
             });

@@ -55,7 +55,7 @@ export class EazlUserService {
 				this.user.setValue(user);
 			},
 			error => {
-				console.log('HERE!!!!')
+				console.log('HERE!!!!');
 				this.clearAuthToken();
 				console.log(JSON.parse(error));
 			}
