@@ -18,80 +18,86 @@ export class SelectedItemColor {
 
 @Injectable()
 export class GlobalVariableService {
- 
-  // Company related variables
-  companyName = new BehaviorSubject('Clarity');
+    
+    // Company related variables
+    companyName = new BehaviorSubject('Clarity');
 
-  // System-wide related variables, set at Installation
-  systemTitle = new BehaviorSubject('Canvas');
-  frontendName = new BehaviorSubject('Canvas');
-  backendName = new BehaviorSubject('Eazl');
-  backendUrl = new BehaviorSubject('');
-  
-  // Current User
-  currentUserID = new BehaviorSubject(0);   
-  currentUserUserName = new BehaviorSubject('');      // '' means not logged in 
-  currentUserPassword = new BehaviorSubject(''); 
-  currentUserFirstName = new BehaviorSubject('Not Logged in'); 
-  currentUserLastName = new BehaviorSubject('Not Logged in');
+    // System-wide related variables, set at Installation
+    systemTitle = new BehaviorSubject('Canvas');
+    frontendName = new BehaviorSubject('Canvas');
+    backendName = new BehaviorSubject('Eazl');
+    backendUrl = new BehaviorSubject('');
+    
+    // Current User
+    currentUserID = new BehaviorSubject(0);   
+    currentUserUserName = new BehaviorSubject('');      // '' means not logged in 
+    currentUserPassword = new BehaviorSubject(''); 
+    currentUserFirstName = new BehaviorSubject('Not Logged in'); 
+    currentUserLastName = new BehaviorSubject('Not Logged in');
 
-  // This session
-  sessionDateTimeLoggedin = new BehaviorSubject('');
-  sessionDebugging = new BehaviorSubject(false);
-  sessionLogging = new BehaviorSubject(false);
-  isCurrentUserAdmin = new BehaviorSubject(false);
-  growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
+    // This session
+    sessionDateTimeLoggedin = new BehaviorSubject('');
+    sessionDebugging = new BehaviorSubject(false);
+    sessionLogging = new BehaviorSubject(false);
+    isCurrentUserAdmin = new BehaviorSubject(false);
+    growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
+    sessionLoadOnOpenDashboardID = new BehaviorSubject(-1);    // Dashboard to load when form opens, 0 = none
+    startupLoadOnOpenDashboardCode = new BehaviorSubject('');  // Dashboard to load @start, '' = none
+    startupLoadOnOpenDashboardName = new BehaviorSubject('');  // Dashboard to load @start, '' = none
 
-  // At startup
-  startupDashboardIDToShow = new BehaviorSubject('My fav Dashboard');
-  startupMessageToShow = new BehaviorSubject('');
+    // At startup
+    startupDashboardID = new BehaviorSubject(0);    // Dashboard to load @start, 0 = none
+    startupDashboardCode = new BehaviorSubject('Bar charts');  // Dashboard to load @start, '' = none
+    startupDashboardName = new BehaviorSubject('Collection of Bar charts');  // Dashboard to load @start, '' = none
 
-  // Environment
-  testEnvironmentName = new BehaviorSubject('');   // Spaces = in PROD
+    startupMessageToShow = new BehaviorSubject('');
 
-  // System & operation config
-  frontendColorScheme = new BehaviorSubject('');
-  defaultWidgetConfiguration = new BehaviorSubject('');
-  averageWarningRuntime = new BehaviorSubject('');
-  defaultReportFilters = new BehaviorSubject(''); 
-  growlSticky = new BehaviorSubject(false); 
-  growlLife = new BehaviorSubject(3000); 
-  gridSize = new BehaviorSubject(3);
-  snapToGrid = new BehaviorSubject(true);
-  ContainerFontSize = new BehaviorSubject<SelectedItem>(
-      {
-        id:1, 
-        name: '1'
-      }
-  );
-  selectedColor = new BehaviorSubject<SelectedItemColor>(
-      {
-        id: 'black', 
-        name: 'black', 
-        code: '#000000'
-      }
-  );
-  selectedBoxShadow = new BehaviorSubject<SelectedItemColor>(
-      {
-        id:1, 
-        name: '',                      
-        code: ''
-      }
-  );
-  selectedBorder = new BehaviorSubject<SelectedItemColor>(
-      {
-        id:1, 
-        name: 'transparent',           
-        code: ''}
-  );
-  selectedBackgroundColor = new BehaviorSubject<SelectedItemColor>(
-      {
-        id: 'white', 
-        name: 'white', 
-        code: '#FFFFFF'
-      }
-  );
-  
-  constructor() { }
+    // Environment
+    testEnvironmentName = new BehaviorSubject('');   // Spaces = in PROD
+
+    // System & operation config
+    frontendColorScheme = new BehaviorSubject('');
+    defaultWidgetConfiguration = new BehaviorSubject('');
+    averageWarningRuntime = new BehaviorSubject('');
+    defaultReportFilters = new BehaviorSubject(''); 
+    growlSticky = new BehaviorSubject(false); 
+    growlLife = new BehaviorSubject(3000); 
+    gridSize = new BehaviorSubject(3);
+    snapToGrid = new BehaviorSubject(true);
+    ContainerFontSize = new BehaviorSubject<SelectedItem>(
+        {
+            id:1, 
+            name: '1'
+        }
+    );
+    selectedColor = new BehaviorSubject<SelectedItemColor>(
+        {
+            id: 'black', 
+            name: 'black', 
+            code: '#000000'
+        }
+    );
+    selectedBoxShadow = new BehaviorSubject<SelectedItemColor>(
+        {
+            id:1, 
+            name: '',                      
+            code: ''
+        }
+    );
+    selectedBorder = new BehaviorSubject<SelectedItemColor>(
+        {
+            id:1, 
+            name: 'transparent',           
+            code: ''}
+    );
+    selectedBackgroundColor = new BehaviorSubject<SelectedItemColor>(
+        {
+            id: 'white', 
+            name: 'white', 
+            code: '#FFFFFF'
+        }
+    );
+    
+    constructor() { }
 
 }

@@ -249,9 +249,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.selectedBorder = this.globalVariableService.selectedBorder.getValue();
         this.selectedBackgroundColor = this.globalVariableService.selectedBackgroundColor.getValue();
 
-
         // Get the list of dashboards from the DB
         this.getDashboards()
+
+        // Set the Dashboard ID to load on Init
+        if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() == -1) {
+            if (this.globalVariableService.startupDashboardID.getValue() != -1) {
+                this.globalVariableService.sessionLoadOnOpenDashboardID.next(
+                    this.globalVariableService.startupDashboardID.getValue()
+                )
+                this.globalVariableService.startupLoadOnOpenDashboardCode.next(
+                    this.globalVariableService.startupDashboardCode.getValue()
+                ) 
+                this.globalVariableService.startupLoadOnOpenDashboardName.next(
+                    this.globalVariableService.startupDashboardName.getValue()
+                )                       
+            }
+        }
+
+        // Call if anyone is eligible
+        if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() != -1) {
+            this.selectedDashboardName = 
+                {
+                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                    code: this.globalVariableService.startupLoadOnOpenDashboardCode.getValue(),
+                    name: this.globalVariableService.startupLoadOnOpenDashboardName.getValue()
+                };
+
+            this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
+        }
+
     }
 
     ngAfterViewInit() {
@@ -441,9 +468,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             );
 
             // Remember for next time, permanently
-console.log('prev', this.globalVariableService.gridSize.getValue())
-                    this.globalVariableService.gridSize.next(this.gridSize);
-console.log('new', this.globalVariableService.gridSize.getValue())
+            this.globalVariableService.gridSize.next(this.gridSize);
             
             return;
         }
@@ -1865,12 +1890,22 @@ console.log('new', this.globalVariableService.gridSize.getValue())
     }
 
     loadDashboardTabs(event) {
-        // Load the Tabs for the selected Dashboard
+        // Called from HTML with ID to load
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');
 
         // Get its Tabs in this Dashboard
-        this.dashboardTabsDropDown = [];
         this.selectedDashboardID = event.value.id;
+        this.loadDashboardTabsBody(this.selectedDashboardID);
+    }
+
+    loadDashboardTabsBody(selectedDashboardID: number) {
+        // Load the Tabs for the selected Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabsBody', '@Start');
+console.log('combo', this.selectedDashboardName) 
+
+        // Get its Tabs in this Dashboard
+        this.dashboardTabsDropDown = [];
+        this.selectedDashboardID = selectedDashboardID;
         this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
 
         // Fill the dropdown on the form
@@ -2209,7 +2244,7 @@ console.log('new', this.globalVariableService.gridSize.getValue())
                     }
                 }
             }
-
+ 
             // Fill the select items if it qualifies
             if (recordPassesFilter) {
                 this.dashboardDropDown.push({

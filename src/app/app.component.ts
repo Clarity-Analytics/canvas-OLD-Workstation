@@ -214,7 +214,7 @@ this.router.navigate(['pagenotfound']);
                 detail:   'Welcome ' + this.currentUserUserName
             });
 
-            if (this.globalVariableService.startupDashboardIDToShow.getValue() != "") {
+            if (this.globalVariableService.startupDashboardID.getValue() != 0) {
                 this.router.navigate(['pagenotfound']);     
             }
             else {
