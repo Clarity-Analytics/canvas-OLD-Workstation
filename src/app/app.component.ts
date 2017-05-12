@@ -24,6 +24,10 @@ import { WebSocketService }           from './websocket.service';
 import { Notification }               from './model.notification';
 
 
+// For resti
+import { EazlUserService } from './eazl.user.service';
+
+
 @Component({
     selector:    'app-root',
     templateUrl: './app.component.html',
@@ -53,6 +57,9 @@ export class AppComponent implements OnInit {
     systemTitle: string = this.globalVariableService.systemTitle.getValue();
     testEnvironmentName: string = this.globalVariableService.testEnvironmentName.getValue();
 
+    // For resti
+    isLoggedIn: boolean;
+
     constructor(
         private canvasDate: CanvasDate,
         private confirmationService: ConfirmationService,
@@ -61,6 +68,8 @@ export class AppComponent implements OnInit {
         private notificationService: NotificationService,
         private route: ActivatedRoute,
         private router: Router,
+
+        private eazlUser: EazlUserService,
         ) { 
             // Subscribe to Web Socket
             notificationService.messages.subscribe(msg => {			
@@ -76,6 +85,13 @@ export class AppComponent implements OnInit {
 
             // Default stuffies, for now ...
             this.globalVariableService.sessionDebugging.next(true);
+
+            // Here we listen for changes in the login-ness of the user. If they logout the component should react accordingly.
+            this.eazlUser.authToken.model.subscribe(authToken => {
+                this.isLoggedIn = authToken != null;
+                
+                this.loadMenu()
+            }); // end subscription
         }
 
     sendNotificationToServer() {
@@ -132,15 +148,12 @@ export class AppComponent implements OnInit {
 
         // Fake login & preferences for testing - KEEP for next time - just set to FALSE
         this.setFakeVariablesForTesting = true;
-        if (this.setFakeVariablesForTesting) {
-            this.globalVariableService.currentUserUserName.next('JannieI');
-            this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Set fake username name & preferences for Testing');
-            this.globalVariableService.isCurrentUserAdmin.next(true);
-
+        if (this.eazlUser.hasAuthToken) {
+            this.eazlUser.setUserDetails();
         }
 
         // Load menu array
-        this.menuItems = this.loadMenu()
+        this.loadMenu()
     }
 
     menuActionNewMessage() {
@@ -174,7 +187,7 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.currentUserUserName.next('');
                     
                     // Amend the menu
-                    this.menuItems = this.loadMenu();
+                    this.loadMenu();
 
                     // Show the login form
                     this.displayNewMessage = true;        
@@ -196,7 +209,7 @@ this.router.navigate(['pagenotfound']);
         this.globalFunctionService.printToConsole(this.constructor.name,'handleFormSubmit', '@Start');
 
         // Reload the menu to enable/disable according to result of login process
-        this.menuItems = this.loadMenu();
+        this.loadMenu();
 
         // Navigate further
         if (this.currentUserUserName == "") {
@@ -227,26 +240,16 @@ this.router.navigate(['pagenotfound']);
         this.displayNewMessage = false;        
     }
 
-    loadMenu(): MenuItem[] {
+    loadMenu(): void {
         // Re-get the variables, ie logged in, etc.  Then create the array of menu items for PrimeNG
         this.globalFunctionService.printToConsole(this.constructor.name,'loadMenu', '@Start');
-
-        // Local variables
-        let isLoggedIn: boolean = false;
         
         // Get the current status of user -> determines menu enable/disable
         this.currentUserUserName = this.globalVariableService.currentUserUserName.getValue();
         this.isCurrentUserAdmin = this.globalVariableService.isCurrentUserAdmin.getValue();
 
-        // Set label for login / logout
-        if (this.currentUserUserName == '' ) {
-            this.loginLabel = 'Login'; 
-            isLoggedIn = false;
-        }
-        else {
-            this.loginLabel = 'Logout';
-            isLoggedIn = true;
-        }
+        // Local variables
+        this.loginLabel = !this.isLoggedIn ? 'Login' : 'Logout';
 
         this.menuItems = [
             {
@@ -262,7 +265,7 @@ this.router.navigate(['pagenotfound']);
             {
                 label: 'Packages',
                 icon:  'fa-database',
-                disabled: !isLoggedIn,
+                disabled: !this.isLoggedIn,
                 items: [
                     {
                         label: 'Package list',
@@ -279,7 +282,7 @@ this.router.navigate(['pagenotfound']);
             {
                 label: 'Visualise',
                 icon:  'fa-th-large',
-                disabled: !isLoggedIn,
+                disabled: !this.isLoggedIn,
                 items: [
                     {
                         label: 'Show All', 
@@ -313,7 +316,7 @@ this.router.navigate(['pagenotfound']);
             {
                 label: 'Collaborate',
                 icon:  'fa-wechat',
-                disabled: !isLoggedIn,
+                disabled: !this.isLoggedIn,
                 items: [
                     {
                         label: 'New Message', 
@@ -338,7 +341,7 @@ this.router.navigate(['pagenotfound']);
             {
                 label: 'Manage',
                 icon:  'fa-street-view',
-                disabled: !(this.isCurrentUserAdmin && isLoggedIn),
+                disabled: !(this.isCurrentUserAdmin && this.isLoggedIn),
                 
                 items: [
                     {
@@ -406,7 +409,7 @@ this.router.navigate(['pagenotfound']);
                         label: 'Who Am I', 
                         icon:  'fa-male',
                         routerLink: ['startup'],
-                        disabled: !isLoggedIn,
+                        disabled: !this.isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }    
@@ -424,7 +427,7 @@ this.router.navigate(['pagenotfound']);
                         label: 'My Profile', 
                         icon:  'fa-cog',
                         routerLink: ['startup'],
-                        disabled: !isLoggedIn,
+                        disabled: !this.isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }    
@@ -433,7 +436,7 @@ this.router.navigate(['pagenotfound']);
                         label: 'Personalisation', 
                         icon:  'fa-cogs',
                         routerLink: ['startup'],
-                        disabled: !isLoggedIn,
+                        disabled: !this.isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }    
@@ -458,7 +461,7 @@ this.router.navigate(['pagenotfound']);
                         label: 'Feedback', 
                         icon:  'fa-envelope',
                         routerLink: ['startup'],
-                        disabled: !isLoggedIn,
+                        disabled: !this.isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }    
@@ -495,7 +498,7 @@ this.router.navigate(['pagenotfound']);
         ];
 
         // Return stuff
-        return this.menuItems;       
+        // return this.menuItems;       
     }
 }
 

@@ -1,6 +1,7 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable }  from 'rxjs/Observable';
+import { BehaviorSubject }  from 'rxjs/BehaviorSubject';
 
 import { EazlService } from './eazl.service';
 import { Model, ModelFactory } from './models/generic.model';
@@ -22,6 +23,16 @@ export class EazlUserService {
 		this.authToken = this.tokenFactory.create({token: window.sessionStorage.getItem('canvas-token')});
 	}
 
+	get hasAuthToken(): boolean {
+		return this.authToken.getValue() != null;
+	}
+
+	clearAuthToken() {
+		window.sessionStorage.removeItem('canvas-token');
+
+		this.authToken.setValue(null);
+	}
+
 	setAuthToken(username: string, password: string) {
 		this.eazl.post<Token>('auth-token', {username: username, password: password}).subscribe(
 		    authToken => {
@@ -30,9 +41,9 @@ export class EazlUserService {
 		        this.authToken.setValue(authToken);
 		        this.eazl.setAuthToken(authToken.token);
 		        this.setUserDetails();
-		       
 		    },
 		    error => {
+		        this.clearAuthToken();
 		        console.log(JSON.parse(error));
 		    }
 		);
@@ -41,13 +52,12 @@ export class EazlUserService {
 	setUserDetails() {
 		this.eazl.get<User>('users/authenticated-user').subscribe(
 			user => {
-				console.log(user);
-
 				this.user.setValue(user);
 			},
 			error => {
-				console.log(error);
-				console.log('We caught the error!');
+				console.log('HERE!!!!')
+				this.clearAuthToken();
+				console.log(JSON.parse(error));
 			}
 		);
 	}
