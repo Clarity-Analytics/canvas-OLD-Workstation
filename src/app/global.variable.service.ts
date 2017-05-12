@@ -5,6 +5,17 @@ import { Injectable }                 from '@angular/core';
 // PrimeNG
 import { Message }                    from 'primeng/primeng';  
 
+export class SelectedItem {
+    id: any;
+    name: string;
+}
+
+export class SelectedItemColor {
+    id: any;
+    name: string;
+    code: string;
+}
+
 @Injectable()
 export class GlobalVariableService {
  
@@ -47,7 +58,18 @@ export class GlobalVariableService {
   growlLife = new BehaviorSubject(3000); 
   gridSize = new BehaviorSubject(3);
   snapToGrid = new BehaviorSubject(true);
-
+  ContainerFontSize = new BehaviorSubject(0);
+  selectedColor = new BehaviorSubject('');
+  selectedBoxShadow = new BehaviorSubject('');
+  selectedBorder = new BehaviorSubject('');
+  selectedBackgroundColor = new BehaviorSubject<SelectedItemColor>(
+      {
+        id: 'firebrick', 
+        name: 'firebrick', 
+        code: '#B22222'
+      }
+  );
+  
   constructor() { }
 
 }

@@ -243,6 +243,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         //      - and maintained when they change via WebSocket messages
         this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
         this.gridSize = this.globalVariableService.gridSize.getValue();
+        this.selectedContainerFontSize = this.globalVariableService.ContainerFontSize.getValue();
+        this.selectedColor = this.globalVariableService.selectedColor.getValue();
+        this.selectedBoxShadow = this.globalVariableService.selectedBoxShadow.getValue();
+        this.selectedBorder = this.globalVariableService.selectedBorder.getValue();
+        this.selectedBackgroundColor = this.globalVariableService.selectedBackgroundColor.getValue();
+
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -435,6 +441,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             );
 
             // Remember for next time, permanently
+console.log('prev', this.globalVariableService.gridSize.getValue())
+                    this.globalVariableService.gridSize.next(this.gridSize);
+console.log('new', this.globalVariableService.gridSize.getValue())
             
             return;
         }
@@ -488,7 +497,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedBackgroundColor['name'];
 
                     // Remember for next time, permanently
-
+                    this.globalVariableService.selectedBackgroundColor.next(this.selectedBackgroundColor);
                 }
 
                 // Border
@@ -505,7 +514,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedBorder['name'];
 
                     // Remember for next time, permanently
-
+                    this.globalVariableService.selectedBorder.next(this.selectedBorder);
                 }
 
                 // BoxShadow
@@ -522,7 +531,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedBoxShadow['name'];
 
                     // Remember for next time, permanently
-
+                    this.globalVariableService.selectedBoxShadow.next(this.selectedBoxShadow);
                 }
 
                 // Color
@@ -539,7 +548,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedColor['name'];
 
                     // Remember for next time, permanently
-
+                    this.globalVariableService.selectedColor.next(this.selectedColor);
                 }
 
                 // Font Size
@@ -556,6 +565,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedContainerFontSize['name'];
 
                     // Remember for next time, permanently
+                    this.globalVariableService.ContainerFontSize.next(this.selectedContainerFontSize);
 
                 }
             }
@@ -1792,15 +1802,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         });
     }
 
-    onSelectBackgroundColor() {
+    onSelectBackgroundColor(colorToChange: string) {
         // Set the sample background color
         this.globalFunctionService.printToConsole(this.constructor.name, 'onSelectBackgroundColor', '@Start');
-
-        if (this.selectedBackgroundColor != undefined) {
+        if (this.selectedBackgroundColor != undefined   &&  colorToChange == 'selectedBackgroundColor') {
             this.sampleColorWidgetBackgroundColor = this.selectedBackgroundColor.name;
+console.log(colorToChange, this.sampleColorWidgetBackgroundColor)
         }
-        if (this.selectedColor != undefined) {
+        if (this.selectedColor != undefined   &&  colorToChange == 'selectedColor') {
             this.sampleColorWidgetBackgroundColor = this.selectedColor.name;
+console.log(colorToChange, this.sampleColorWidgetBackgroundColor)
         }
        
     }

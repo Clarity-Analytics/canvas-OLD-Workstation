@@ -669,7 +669,7 @@ export const WIDGETS: Widget[] =
                 showWidgetImage: true,
             },
             textual: {
-                textText: 'History of the coffee bean',
+                textText: '<strong>History</strong> of the coffee bean<br> on ##today##',
                 textBackgroundColor: 'transparent',
                 textBorder: 'transparent',
                 textColor: 'black',
@@ -682,7 +682,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'left',
                 textTop: 25,
-                textWidth: 10,
+                textWidth: 200,
             },
             graph: {
                 graphID: 0,
