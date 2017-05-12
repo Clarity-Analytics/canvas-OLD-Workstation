@@ -18,7 +18,7 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-2">
-                        User ID *: 
+                        User ID : 
                     </div>
                     <div class="ui-grid-col-6">
                         <input pInputText 
@@ -33,7 +33,7 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-2">
-                        First Name *: 
+                        First Name : 
                     </div>
                     <div class="ui-grid-col-6">
                         <input pInputText 
@@ -47,7 +47,7 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-2">
-                        Last Name *:
+                        Last Name :
                     </div>
                     <div class="ui-grid-col-6">
                         <input pInputText 
@@ -80,6 +80,7 @@
                     <div class="ui-grid-col-6">
                         <input pInputText 
                                type="text" 
+                               placeholder="(Optional)"
                                formControlName="photoPath"
                                pTooltip="Enter the full path to your profile picture"
                                >
@@ -95,6 +96,7 @@
                         <input pInputText    
                                type="text" 
                                formControlName="emailAddress"
+                               placeholder="(Optional)"
                                pTooltip="Enter your full email address"
                                >
                     </div>
@@ -109,6 +111,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="cellNumber"
+                               placeholder="(Optional)"
                                pTooltip="Enter your cell phone number"
                                >
                     </div>
@@ -121,8 +124,9 @@
                     </div>
                     <div class="ui-grid-col-6">
                         <input pInputText 
-                            type="text" 
-                            formControlName="workTelephoneNumber"
+                               type="text" 
+                               formControlName="workTelephoneNumber"
+                               placeholder="(Optional)"
                                pTooltip="Enter your work telephone number (no ext)"
                             >
                     </div>
@@ -137,6 +141,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="workExtension"
+                               placeholder="(Optional)"
                                pTooltip="Enter an optional extension at work"
                                >
                     </div>
@@ -145,12 +150,13 @@
                 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-2">
-                        Is Staff ? *:
+                        Is Staff ? :
                     </div>
                     <div class="ui-grid-col-6">
                         <p-dropdown [options]="isStaffOptions" 
                                     formControlName="isStaff" 
                                     [autoWidth]="false"
+                                    placeholder="Required"
                                     pTooltip="Select if a staff member"
                                     >
                         </p-dropdown>
@@ -179,6 +185,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="lastDatetimeLoggedIn"
+                               placeholder="(Optional)"
                                pTooltip="Last date that the user logged in"
                                >
                     </div>
@@ -193,6 +200,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="lastDatetimeReportWasRun"
+                               placeholder="(Optional)"
                                pTooltip="Last date on which user ran a report"
                                >
                     </div>
@@ -207,6 +215,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="activeFromDate"
+                               placeholder="(Optional)"
                                pTooltip="Date from which user is Active (can be in the future)"
                                >
                     </div>
@@ -221,6 +230,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="inactiveDate"
+                               placeholder="(Optional)"
                                pTooltip="Date from which user is inactive (cannot work)"
                                >
                     </div>
@@ -235,6 +245,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="dateCreated"
+                               placeholder="(Optional)"
                                pTooltip="Date this user account was created"
                                >
                     </div>
@@ -249,6 +260,7 @@
                         <input pInputText 
                                type="text" 
                                formControlName="userIDLastUpdated"
+                               placeholder="(Optional)"
                                pTooltip="UserID who created this user account"
                                >
                     </div>

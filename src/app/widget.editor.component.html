@@ -27,7 +27,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="contentPanelIsOpen=false"
@@ -39,7 +38,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="contentPanelIsOpen=true"
@@ -173,7 +171,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="idPanelIsOpen=false"
@@ -185,7 +182,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="idPanelIsOpen=true"
@@ -206,7 +202,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    TabName *:
+                    TabName :
                 </span>
                 <p-dropdown 
                     [options]="dashboardTabsDropDown" 
@@ -237,7 +233,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Title *:
+                    Title :
                 </span>
                 <input 
                     pInputText 
@@ -263,7 +259,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Code *:
+                    Code :
                 </span>
                 <input pInputText 
                     style="
@@ -288,7 +284,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Name *:
+                    Name :
                 </span>
                 <input pInputText 
                     style="
@@ -313,7 +309,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Description *:
+                    Description :
                 </span>
                 <input pInputText 
                     style="
@@ -346,7 +342,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="behaviourPanelIsOpen=false"
@@ -358,7 +353,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="behaviourPanelIsOpen=true"
@@ -570,7 +564,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="textPanelIsOpen=false"
@@ -582,7 +575,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="textPanelIsOpen=true"
@@ -603,7 +595,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Text *:
+                    Text :
                 </span>
                 <input 
                     pInputText 
@@ -635,7 +627,6 @@
                     [(ngModel)]="selectedTextBackground"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -666,7 +657,6 @@
                     [(ngModel)]="selectedTextBorder"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -697,7 +687,6 @@
                     [(ngModel)]="selectedTextColor"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -728,7 +717,6 @@
                     [(ngModel)]="selectedTextFontSize"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -759,7 +747,6 @@
                     [(ngModel)]="selectedTextFontWeight"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -784,7 +771,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Text Height *:
+                    Text Height :
                 </span>
                 <input 
                     pInputText 
@@ -810,7 +797,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Text Left *:
+                    Text Left :
                 </span>
                 <input 
                     pInputText 
@@ -842,7 +829,6 @@
                     [(ngModel)]="selectedTextMargin"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -873,7 +859,6 @@
                     [(ngModel)]="selectedTextPadding"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -904,7 +889,6 @@
                     [(ngModel)]="selectedTextPosition"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -935,7 +919,6 @@
                     [(ngModel)]="selectedTextAlign"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -960,7 +943,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Text Top *:
+                    Text Top :
                 </span>
                  <input 
                     pInputText 
@@ -986,7 +969,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Text Width *:
+                    Text Width :
                 </span>
                  <input 
                     pInputText 
@@ -1021,7 +1004,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="dataPanelIsOpen=false"
@@ -1033,7 +1015,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="dataPanelIsOpen=true"
@@ -1054,13 +1035,12 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    ReportName *:
+                    ReportName :
                 </span>
                 <p-dropdown 
                     [options]="reportsDropDown" 
                     [(ngModel)]="selectedReport"
                     [style]="{
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -1171,7 +1151,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="widgetTypePanelIsOpen=false"
@@ -1183,7 +1162,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="widgetTypePanelIsOpen=true"
@@ -1204,14 +1182,13 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Widget Type *:
+                    Widget Type :
                 </span>
                             
                 <p-dropdown 
                     [options]="widgetCreationDropDown" 
                     [(ngModel)]="selectedWidgetCreation"
                     [style]="{
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -1251,7 +1228,6 @@
                                 [options]="reportWidgetSetsDropDown" 
                                 inputId="S2" 
                                 [style]="{
-                                            'autofocus':'true',
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
                                             'border-radius':'2px',
@@ -1279,7 +1255,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Height *:
+                                Height :
                             </span>
                             <input pInputText 
                                 style="
@@ -1303,7 +1279,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Width *:
+                                Width :
                             </span>
                             <input pInputText 
                                 style="
@@ -1327,7 +1303,7 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Padding *:
+                                Padding :
                             </span>
                             <input pInputText 
                                 style="
@@ -1351,14 +1327,13 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                X Axis *:
+                                X Axis :
                             </span>
                             <p-dropdown 
                                 [options]="reportFieldsDropDown" 
                                 [(ngModel)]="selectedVegaXcolumn"
                                 inputId="S2" 
                                 [style]="{
-                                            'autofocus':'true',
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
                                             'border-radius':'2px',
@@ -1382,14 +1357,13 @@
                             <span 
                                 class="panelLineLabel"
                                 >
-                                Y Axis *:
+                                Y Axis :
                             </span>
                             <p-dropdown 
                                 [options]="reportFieldsDropDown" 
                                 [(ngModel)]="selectedVegaYcolumn"
                                 inputId="S2" 
                                 [style]="{
-                                            'autofocus':'true',
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
                                             'border-radius':'2px',
@@ -1420,7 +1394,6 @@
                                 [(ngModel)]="selectedVegaFillColor"
                                 inputId="S2" 
                                 [style]="{
-                                            'autofocus':'true',
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
                                             'border-radius':'2px',
@@ -1451,7 +1424,6 @@
                                 [(ngModel)]="selectedVegaHoverColor"
                                 inputId="S2" 
                                 [style]="{
-                                            'autofocus':'true',
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
                                             'border-radius':'2px',
@@ -1510,7 +1482,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="tablePanelIsOpen=false"
@@ -1522,7 +1493,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="tablePanelIsOpen=true"
@@ -1557,7 +1527,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                pTooltip="Click to close panel" 
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="imagePanelIsOpen=false"
@@ -1569,7 +1538,6 @@
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                pTooltip="Click to open panel"
                 tooltipPosition="right" 
                 tooltipEvent="hover"
                 (click)="imagePanelIsOpen=true"
@@ -1616,7 +1584,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Height *:
+                    Height :
                 </span>
                  <input 
                     pInputText 
@@ -1642,7 +1610,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Left *:
+                    Left :
                 </span>
                  <input 
                     pInputText 
@@ -1668,13 +1636,12 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Source *:
+                    Source :
                 </span>
                 <p-dropdown
                     [(ngModel)]="selectedImageSrc"
                     [style]="
                         {
-                            'autofocus':'true',
                             'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
@@ -1699,7 +1666,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Top *:
+                    Top :
                 </span>
                  <input 
                     pInputText 
@@ -1725,7 +1692,7 @@
                 <span 
                     class="panelLineLabel"
                     >
-                    Width *:
+                    Width :
                 </span>
                  <input 
                     pInputText 
@@ -1794,7 +1761,6 @@
             pButton
             type="button"
             icon="fa-caret-up"
-            pTooltip="Click to close panel" 
             tooltipPosition="right" 
             tooltipEvent="hover"
             (click)="vegaPanelIsOpen=false"
@@ -1806,7 +1772,6 @@
             pButton
             type="button"
             icon="fa-caret-down"
-            pTooltip="Click to open panel"
             tooltipPosition="right" 
             tooltipEvent="hover"
             (click)="vegaPanelIsOpen=true"
