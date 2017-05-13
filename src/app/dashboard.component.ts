@@ -64,33 +64,34 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     @ViewChild(DashboardEditorComponent) dashboardEditor;                       // To run methods in it
 
+    @HostListener('document:keyup', ['$event'])
+    handleKeyboardEvent(event) { 
+        // Determines raw (x,y) change, and calls routine that does movement
 
-@HostListener('document:keyup', ['$event'])
-handleKeyboardEvent(event) { 
-    // Determines raw (x,y) change, and calls routine that does movement
-
-    if (event.code == 'ArrowUp') {
-        let offsetLeft = 0;
-        let offsetTop  = this.gridSize * -1;
-        this.moveWidgets(offsetLeft, offsetTop);
+        if (event.code == 'ArrowUp') {
+            let offsetLeft = 0;
+            let offsetTop  = this.gridSize * -1;
+            this.moveWidgets(offsetLeft, offsetTop);
+        }
+        if (event.code == 'ArrowDown') {
+            let offsetLeft = 0;
+            let offsetTop  = this.gridSize;
+            this.moveWidgets(offsetLeft, offsetTop);
+        }
+        if (event.code == 'ArrowLeft') {
+            let offsetLeft = this.gridSize * -1;
+            let offsetTop  = 0;
+            this.moveWidgets(offsetLeft, offsetTop);
+        }
+        if (event.code == 'ArrowRight') {
+            let offsetLeft = this.gridSize;
+            let offsetTop  = 0;
+            this.moveWidgets(offsetLeft, offsetTop);
+        }
+        if (event.code == 'Delete') {
+            this.deleteSelectedWidgets();
+        }
     }
-    if (event.code == 'ArrowDown') {
-        let offsetLeft = 0;
-        let offsetTop  = this.gridSize;
-        this.moveWidgets(offsetLeft, offsetTop);
-    }
-    if (event.code == 'ArrowLeft') {
-        let offsetLeft = this.gridSize * -1;
-        let offsetTop  = 0;
-        this.moveWidgets(offsetLeft, offsetTop);
-    }
-    if (event.code == 'ArrowRight') {
-        let offsetLeft = this.gridSize;
-        let offsetTop  = 0;
-        this.moveWidgets(offsetLeft, offsetTop);
-    }
-    
-}
 
     // Current status of Dashboard
     chartWidth: number;
@@ -675,6 +676,34 @@ handleKeyboardEvent(event) {
 
     }
 
+    deleteSelectedWidgets() {
+        // This routine deletes all selected widgets, does ask Okay? for each one
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteSelectedWidgets', '@Start');
+
+        // Nothing to do
+        if (this.selectedWidgetIDs.length == 0){
+            return            
+        }
+
+        // Cannot delete multiple: for example, some may be locked, some may be off the 
+        // screen (thus deleting stuff you are not aware of)
+        
+        if (this.selectedWidgetIDs.length != 1){
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn', 
+                summary:  'Locked', 
+                detail:   'Cannot delete when multiple widgets are selected (only a single one)'
+            });
+            return            
+        }
+
+        // Loop on the one and delete
+        for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
+console.log(i,this.selectedWidgetIDs[i])            
+            this.clickDeleteWidget(this.selectedWidgetIDs[i])
+        }
+    }
+
     clickDeleteWidget (idWidget: number) {
         // Delete the Widget, with confirmation of kors
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
@@ -695,7 +724,8 @@ handleKeyboardEvent(event) {
         this.deleteMode = true;
         if (this.deleteMode) {
             this.confirmationService.confirm({
-                message: 'Are you sure that you want to delete this Widget?',
+                message: 'Are you sure that you want to delete this Widget (' +
+                    this.widgets[idWidget].container.widgetTitle + ' ?',
                 accept: () => {
                     this.widgetDeleteIt(idWidget);
                     this.deleteMode = false;
