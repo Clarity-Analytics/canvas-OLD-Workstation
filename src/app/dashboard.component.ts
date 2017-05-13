@@ -709,9 +709,14 @@ console.log(i,this.selectedWidgetIDs[i])
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
 
         // Respect the Lock
-        if (this.widgets.filter(
+        let selectedWidget: Widget = this.widgets.filter(
             widget => widget.properties.widgetID === 
-                idWidget)[0].properties.widgetIsLocked) {
+                idWidget)[0];
+        if (selectedWidget == undefined) {
+            return
+        }
+
+        if (selectedWidget.properties.widgetIsLocked) {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info', 
                     summary:  'Locked', 
@@ -725,7 +730,7 @@ console.log(i,this.selectedWidgetIDs[i])
         if (this.deleteMode) {
             this.confirmationService.confirm({
                 message: 'Are you sure that you want to delete this Widget (' +
-                    this.widgets[idWidget].container.widgetTitle + ' ?',
+                    selectedWidget.container.widgetTitle + ' ?',
                 accept: () => {
                     this.widgetDeleteIt(idWidget);
                     this.deleteMode = false;
