@@ -128,7 +128,10 @@
     }
 
     .widgetContainerHeader {
-        background-color: inherit;
+        background-color: white;
+        height: 1.5em !important;
+        margin: 0;
+        padding: 0;
     }
 
     .widgetContainerTextArea {
