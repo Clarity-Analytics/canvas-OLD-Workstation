@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from 'primeng/primeng';
+
 import { GlobalVariableService } from '../global.variable.service';
+import { EazlPackageService } from '../eazl-package.service';
 
 import { 
 	Package, 
@@ -23,7 +25,9 @@ export class PackageComponent implements OnInit {
   
   _package: Package;
 
-  constructor(private globalVariableService: GlobalVariableService) { }
+  constructor(
+  	private globalVariableService: GlobalVariableService,
+  	private eazlPackage: EazlPackageService) { }
 
   ngOnInit() { }
 
@@ -42,7 +46,11 @@ export class PackageComponent implements OnInit {
 	    summary: 'Test',
 	    detail: this.package.execute.toString(),
   	}
-
+  	
+  	this.eazlPackage.execute(
+  		this.package.execute.toString()
+  	);
+  	
   	this.globalVariableService.growlGlobalMessage.next(growl);
   }
 }

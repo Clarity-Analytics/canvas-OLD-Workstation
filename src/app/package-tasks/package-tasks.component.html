@@ -1,0 +1,18 @@
+<div class="package-tasks-table">
+	<p-dataTable [value]="packageTasks">
+		<p-column *ngFor="let column of columns"
+			field="{{column}}"
+			header="{{column}}"
+			>
+		</p-column>
+	    
+	    <p-column 
+	    	header="Get Result"
+	    	>
+	        
+	        <template let-packageTask="rowData" pTemplate="get_async_result">
+	            <button type="button" pButton (click)="getAsyncResult(packageTask)" icon="fa-crosshairs"></button>
+	        </template>
+	    </p-column>
+	</p-dataTable>
+</div>

@@ -122,9 +122,12 @@ import { routes }                     from './app.routes';
 // For resti
 import { EazlUserService } from './eazl.user.service';
 import { EazlPackageService } from './eazl-package.service';
+import { EazlPackageTaskService } from './eazl-package-task.service'
 import { CanvasModelProvider } from './models/generic.model';
 import { PackagesComponent } from './packages/packages.component';
 import { PackageComponent } from './package/package.component';
+import { PackageTasksComponent } from './package-tasks/package-tasks.component';
+import { PackageTaskComponent } from './package-task/package-task.component';
 
 
 @NgModule({
@@ -142,6 +145,8 @@ import { PackageComponent } from './package/package.component';
     WidgetCommentComponent,
     PackagesComponent,
     PackageComponent,
+    PackageTasksComponent,
+    PackageTaskComponent,
     // BarCharBuilder,
   ],
   imports: [
@@ -233,6 +238,7 @@ import { PackageComponent } from './package/package.component';
     EazlService,
     EazlUserService,
     EazlPackageService,
+    EazlPackageTaskService,
 
     // NG Services
     ConfirmationService,
