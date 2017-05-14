@@ -16,3 +16,28 @@
     ]
   }
 }
+
+
+// {
+//   "compilerOptions": {
+//     "baseUrl": "",
+//     "declaration": false,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "lib": ["es6", "DOM"],
+//     "mapRoot": "./",
+//     "module": "es6",
+
+//     "noImplicitAny": true,
+//     "noEmitOnError": false,
+//     // "noUnusedLocals": true,
+//     "strictNullChecks": true,
+    
+//     "moduleResolution": "node",
+//     "outDir": "../dist/out-tsc",
+//     "target": "es5",
+//     "typeRoots": [
+//       "../node_modules/@types"
+//     ]
+//   }
+// }

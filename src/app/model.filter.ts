@@ -1,5 +1,5 @@
 // Schema for Dashboard Filter
-export class Filter {
+export interface Filter {
     hasAtLeastOneFilter: boolean;
     owner: string;
     description: string;

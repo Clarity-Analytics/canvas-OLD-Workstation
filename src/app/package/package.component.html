@@ -1,0 +1,48 @@
+<p-fieldset
+	[legend]="legend"
+	[toggleable]="true"
+	>
+	
+	<button pButton 
+		class="execute-package"
+		type="button"
+		label="Execute"
+		(click)="execute()"
+		>		
+	</button>
+
+	<div class="package-detail-table">
+		<p-dataTable [value]="fields">
+			<p-column 
+				field="name"
+				header="Field Name"
+				>
+			</p-column>
+			<p-column 
+				field="dtype"
+				header="Field Type"
+				>
+			</p-column>
+		</p-dataTable>
+	</div>
+	
+	<div class="package-detail-table">
+		<p-dataTable [value]="parameters">
+			<p-column 
+				field="name"
+				header="Parameter Name"
+				>
+			</p-column>
+			<p-column 
+				field="value"
+				header="Value"
+				>
+			</p-column>
+			<p-column 
+				field="parser"
+				header="Parser"
+				>
+			</p-column>
+		</p-dataTable>
+	</div>
+</p-fieldset>

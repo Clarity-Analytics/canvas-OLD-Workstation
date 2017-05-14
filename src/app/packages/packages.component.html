@@ -1,23 +1,14 @@
 <div>
-	<ul *ngFor="let column of columns">	
-		<li>
-			{{column}}
-		</li>
-	</ul>
-	
-	<ul *ngFor="let package of packageList">
-		<li>
-			{{package.name}} is {{package.compiled}}
-		</li>
-	</ul>
-
-	<p-dataTable [value]="packageList">
-		<p-column
-			*ngFor="let column of columns"
-			[field]="column"
-			[header]="column">
-			
-		</p-column>
-	</p-dataTable>
-
+	<div *ngFor="let package of packageList">
+		<h2>
+			{{package.name}}
+		</h2>
+		
+		<app-package
+			[url]="package.url"
+			[legend]="package.name"
+			[package]="package"
+			>
+		</app-package>
+	</div>
 </div>

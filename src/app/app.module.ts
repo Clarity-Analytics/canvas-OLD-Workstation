@@ -124,6 +124,7 @@ import { EazlUserService } from './eazl.user.service';
 import { EazlPackageService } from './eazl-package.service';
 import { CanvasModelProvider } from './models/generic.model';
 import { PackagesComponent } from './packages/packages.component';
+import { PackageComponent } from './package/package.component';
 
 
 @NgModule({
@@ -140,6 +141,7 @@ import { PackagesComponent } from './packages/packages.component';
     WidgetEditorComponent,
     WidgetCommentComponent,
     PackagesComponent,
+    PackageComponent,
     // BarCharBuilder,
   ],
   imports: [

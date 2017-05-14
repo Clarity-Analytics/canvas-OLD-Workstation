@@ -7,8 +7,8 @@ import { DashboardComponent }         from './dashboard.component';
 import { LoginComponent }             from './login.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { UserComponent}               from './user.component';
-
 import { PackagesComponent } from './packages/packages.component';
+
 
 export const routes: Route[] = [
 
@@ -21,5 +21,3 @@ export const routes: Route[] = [
   { path: 'pagenotfound',             component: PageNotFoundComponent},  
   { path: '**',                       component: PageNotFoundComponent}  
 ]
-
-
