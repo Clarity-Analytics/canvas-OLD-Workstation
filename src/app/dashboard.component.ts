@@ -2231,9 +2231,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
         }
 
-console.log('texts',this.childrenWidgetText.toArray().length)
-console.log('graphs',this.childrenWidgets.toArray().length)
-console.log('images',this.childrenWidgetImage.toArray().length)
         // Loop on the children ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
@@ -2261,6 +2258,43 @@ console.log('images',this.childrenWidgetImage.toArray().length)
                 }
             }
         }
+
+        // Loop on the children ElementRefs, and set properties ala widget[].properties
+        if (this.childrenWidgetTable.toArray().length > 0) {
+            for (var i = 0; i < this.widgets.length; i++) {
+                if (this.widgets[i].areas.showWidgetTable) {
+         
+                    // Other Attributes, like ID
+                    this.renderer.setElementAttribute(
+                        this.childrenWidgetTable.toArray()[i].nativeElement,
+                        'id',
+                        this.widgets[i].properties.widgetID.toString()
+                    );
+
+                    // Styling
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetTable.toArray()[i].nativeElement,
+                        'height', this.widgets[i].table.tableHeight.toString() + 'px'
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetTable.toArray()[i].nativeElement,
+                        'left', this.widgets[i].table.tableLeft.toString() + 'px'
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetTable.toArray()[i].nativeElement,
+                        'top', this.widgets[i].table.tableTop.toString() + 'px'
+                    );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetTable.toArray()[i].nativeElement,
+                        'width', this.widgets[i].table.tableWidth.toString() + 'px'
+                    );
+                }
+            }
+        }
+
+
+
+
 
         // Loop on the children ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgetImage.toArray().length > 0) {
