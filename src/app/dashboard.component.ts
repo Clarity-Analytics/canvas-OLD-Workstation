@@ -60,6 +60,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChildren('widgetContainter') childrenWidgetContainers: QueryList<ElementRef>;   // Attaches to # in DOM
     @ViewChildren('widgetText') childrenWidgetText: QueryList<ElementRef>;      // Attaches to # in DOM
     @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
+    @ViewChildren('widgetTable') childrenWidgetTable: QueryList<ElementRef>;    // Attaches to # in DOM
     @ViewChildren('widgetImage') childrenWidgetImage: QueryList<ElementRef>;    // Attaches to # in DOM
 
     @ViewChild(DashboardEditorComponent) dashboardEditor;                       // To run methods in it
@@ -697,9 +698,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             return            
         }
 
-        // Loop on the one and delete
+        // Loop on this one and delete - they say for is fasta than .filter
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
-console.log(i,this.selectedWidgetIDs[i])            
             this.clickDeleteWidget(this.selectedWidgetIDs[i])
         }
     }
@@ -2154,6 +2154,13 @@ console.log(i,this.selectedWidgetIDs[i])
 
                 // Style attributes IF it has text (else *ngIf is buggered)
                 if (this.widgets[i].areas.showWidgetText) {
+                    
+                    // Other Attributes, like ID
+                    this.renderer.setElementAttribute(
+                        this.childrenWidgetText.toArray()[i].nativeElement,
+                        'id',
+                        this.widgets[i].properties.widgetID.toString()
+                    );
 
                     // Modify and insert text
                     textToDOM = this.widgets[i].textual.textText
@@ -2224,6 +2231,9 @@ console.log(i,this.selectedWidgetIDs[i])
             }
         }
 
+console.log('texts',this.childrenWidgetText.toArray().length)
+console.log('graphs',this.childrenWidgets.toArray().length)
+console.log('images',this.childrenWidgetImage.toArray().length)
         // Loop on the children ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {

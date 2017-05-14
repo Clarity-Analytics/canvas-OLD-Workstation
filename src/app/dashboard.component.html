@@ -1324,10 +1324,15 @@
     <!--Text Area (at top)-->
     <div 
         class="widgetContainerTextArea"
-        *ngIf="w.areas.showWidgetText"
+        
         #widgetText
         >
-        {{ w.textual.textText}} 
+        <!--Note: put #variable and *ngIf in separate divs - so we always have elementRefs-->
+        <div 
+            *ngIf="w.areas.showWidgetText"
+            >
+            {{ w.textual.textText}} 
+        </div>
     </div>
 
     <!--Graph content -->
@@ -1340,24 +1345,30 @@
     <!--Table Area (at bottom)-->
     <div 
         class="widgetContainerTableArea"
-        *ngIf="w.areas.showWidgetTable"
+        #widgetTable    
         >
-        TABLE to follow later
+        <div *ngIf="w.areas.showWidgetTable">
+            TABLE to follow later
+        </div>
     </div>
 
 
     <!--Image Area-->
     <div 
         class="widgetContainerImageArea"
-        *ngIf="w.areas.showWidgetImage"
+        
         #widgetImage
         >
-        <img 
-            alt="image ..." 
-            [style.height.px]="w.image.imageHeigt"
-            [style.width.px]="w.image.imageWidth"
-            [src]="w.image.imageSource" 
+        <div 
+            *ngIf="w.areas.showWidgetImage"
             >
+            <img 
+                alt="image ..." 
+                [style.height.px]="w.image.imageHeigt"
+                [style.width.px]="w.image.imageWidth"
+                [src]="w.image.imageSource" 
+                >
+        </div>
     </div>
 
  <!--<img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">-->
