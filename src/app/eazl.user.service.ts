@@ -6,6 +6,10 @@ import { EazlService } from './eazl.service';
 
 
 // Token came along for now.
+interface AuthenticationError {
+	non_field_errors: string[];
+}
+
 export interface Token {
 	token: string;
 }
@@ -42,6 +46,7 @@ export class EazlUserService extends BaseEazlService {
 	route: string = 'users'; 
 	user: BehaviorSubject<User>;
 	authToken: BehaviorSubject<Token>;
+	authError: BehaviorSubject<AuthenticationError>;
 	
 	constructor(
 		private eazl: EazlService)
@@ -51,9 +56,11 @@ export class EazlUserService extends BaseEazlService {
 		// Null for now
 		var user: User = null;
 		var token: Token = null;
+		var error: AuthenticationError = null;
 
 		this.user = new BehaviorSubject(user);
 		this.authToken = new BehaviorSubject(token);
+		this.authError = new BehaviorSubject(error);
 	}
 
 	refresh() {
@@ -82,7 +89,9 @@ export class EazlUserService extends BaseEazlService {
 		this.authToken.next(null);
 	}
 
-	authenticate(username: string, password: string) {
+	authenticate(username: string, password: string): void {
+		var error: Observable<AuthenticationError> = null;
+
 		this.eazl.post<Token>('auth-token', {username: username, password: password}).subscribe(
 		    authToken => {
 		        window.sessionStorage.setItem('canvas-token', authToken.token);
@@ -94,9 +103,9 @@ export class EazlUserService extends BaseEazlService {
 		    },
 		    error => {
 		        this.clearAuthToken();
-		        console.log(JSON.parse(error));
+		        this.authError.next(JSON.parse(error));
 		    }
-		);
+		)
 	}
 
 }

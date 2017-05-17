@@ -53,6 +53,13 @@ export class LoginComponent implements OnInit {
         });
 
         // We subscribe reactively
+        this.eazlUser.authError.subscribe(authError => {
+            // We should probably growl or show a message that the user could not login
+            if (authError != null) {
+                console.log(`Failed to log in - ${authError.non_field_errors}`); 
+            }
+        }); 
+
         this.eazlUser.user.subscribe(user => {
             if (user) {
                 // Clear the password, dont want it hanging around
@@ -74,6 +81,6 @@ export class LoginComponent implements OnInit {
         var username = this.userform.get('username').value;
         var password = this.userform.get('password').value;
 
-        this.eazlUser.authenticate(username, password);         
+        this.eazlUser.authenticate(username, password);
     }
 }
