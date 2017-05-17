@@ -25,14 +25,29 @@ export interface User {
 }
 
 
+abstract class BaseEazlService {
+	abstract route: string;
+	
+	constructor() {}
+
+	abstract refresh();
+	abstract add(): void;
+	abstract update(): void;
+	abstract delete(): void;
+}
+
+
 @Injectable()
-export class EazlUserService {
+export class EazlUserService extends BaseEazlService {
+	route: string = 'users'; 
 	user: BehaviorSubject<User>;
 	authToken: BehaviorSubject<Token>;
-
+	
 	constructor(
 		private eazl: EazlService)
 	{
+		super();
+
 		// Null for now
 		var user: User = null;
 		var token: Token = null;
@@ -42,7 +57,7 @@ export class EazlUserService {
 	}
 
 	refresh() {
-		this.eazl.get<User>('users/authenticated-user').subscribe(
+		this.eazl.get<User>(`${this.route}/authenticated-user`).subscribe(
 			user => {
 				this.user.next(user);
 			},
@@ -52,6 +67,10 @@ export class EazlUserService {
 			}
 		);
 	}
+    
+    add(): void {}
+    delete(): void {}
+    update(): void {}
 
 	get hasAuthToken(): boolean {
 		return this.authToken.getValue() != null;
