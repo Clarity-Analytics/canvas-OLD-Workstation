@@ -2,25 +2,55 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable }  from 'rxjs/Observable';
 import { BehaviorSubject }  from 'rxjs/BehaviorSubject';
-
 import { EazlService } from './eazl.service';
-import { Model, ModelFactory } from './models/generic.model';
-import { User } from './models/model.user';
-import { Token } from './models/model.token';
+
+
+// Token came along for now.
+export interface Token {
+	token: string;
+}
+
+export interface User {
+    pk: number;
+    username: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    is_superuser: boolean;
+    is_staff: boolean;
+    is_active: boolean;
+    date_joined: Date;
+    last_login: Date;
+}
 
 
 @Injectable()
 export class EazlUserService {
-	user: Model<User>;
-	authToken: Model<Token>;
+	user: BehaviorSubject<User>;
+	authToken: BehaviorSubject<Token>;
 
 	constructor(
-		private eazl: EazlService,
-		private userFactory: ModelFactory<User>,
-		private tokenFactory: ModelFactory<Token>) 
+		private eazl: EazlService)
 	{
-		this.user = this.userFactory.create(null);
-		this.authToken = this.tokenFactory.create({token: window.sessionStorage.getItem('canvas-token')});
+		// Null for now
+		var user: User = null;
+		var token: Token = null;
+
+		this.user = new BehaviorSubject(user);
+		this.authToken = new BehaviorSubject(token);
+	}
+
+	refresh() {
+		this.eazl.get<User>('users/authenticated-user').subscribe(
+			user => {
+				this.user.next(user);
+			},
+			error => {
+				this.clearAuthToken();
+				console.log(JSON.parse(error));
+			}
+		);
 	}
 
 	get hasAuthToken(): boolean {
@@ -30,17 +60,18 @@ export class EazlUserService {
 	clearAuthToken() {
 		window.sessionStorage.removeItem('canvas-token');
 
-		this.authToken.setValue(null);
+		this.authToken.next(null);
 	}
 
-	setAuthToken(username: string, password: string) {
+	authenticate(username: string, password: string) {
 		this.eazl.post<Token>('auth-token', {username: username, password: password}).subscribe(
 		    authToken => {
 		        window.sessionStorage.setItem('canvas-token', authToken.token);
 		        
-		        this.authToken.setValue(authToken);
+		        this.authToken.next(authToken);
 		        this.eazl.setAuthToken(authToken.token);
-		        this.setUserDetails();
+		        
+		        this.refresh();
 		    },
 		    error => {
 		        this.clearAuthToken();
@@ -49,15 +80,4 @@ export class EazlUserService {
 		);
 	}
 
-	setUserDetails() {
-		this.eazl.get<User>('users/authenticated-user').subscribe(
-			user => {
-				this.user.setValue(user);
-			},
-			error => {
-				this.clearAuthToken();
-				console.log(JSON.parse(error));
-			}
-		);
-	}
 }

@@ -87,7 +87,7 @@ export class AppComponent implements OnInit {
             this.globalVariableService.sessionDebugging.next(true);
 
             // Here we listen for changes in the login-ness of the user. If they logout the component should react accordingly.
-            this.eazlUser.authToken.model.subscribe(authToken => {
+            this.eazlUser.authToken.subscribe(authToken => {
                 this.isLoggedIn = authToken != null;
                 
                 this.loadMenu();
@@ -149,8 +149,10 @@ export class AppComponent implements OnInit {
 
         // Fake login & preferences for testing - KEEP for next time - just set to FALSE
         this.setFakeVariablesForTesting = true;
+        
+        // If there is a token present in the sessionStorage refresh the user object
         if (this.eazlUser.hasAuthToken) {
-            this.eazlUser.setUserDetails();
+            this.eazlUser.refresh();
         }
 
         // Load menu array

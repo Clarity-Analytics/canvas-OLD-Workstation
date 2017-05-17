@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         });
 
         // We subscribe reactively
-        this.eazlUser.user.model.subscribe(user => {
+        this.eazlUser.user.subscribe(user => {
             if (user) {
                 // Clear the password, dont want it hanging around
                 this.submitted = true;
@@ -74,6 +74,6 @@ export class LoginComponent implements OnInit {
         var username = this.userform.get('username').value;
         var password = this.userform.get('password').value;
 
-        this.eazlUser.setAuthToken(username, password);         
+        this.eazlUser.authenticate(username, password);         
     }
 }
