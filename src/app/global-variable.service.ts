@@ -33,6 +33,7 @@ export class GlobalVariableService {
     
     // Current User
     canvasUser = new BehaviorSubject<CanvasUser>(null);
+    isAuthenticatedOnEazl = new BehaviorSubject(false);        // True if authenticated
 
     // This session
     sessionDateTimeLoggedin = new BehaviorSubject('');

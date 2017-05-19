@@ -3539,7 +3539,6 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
 
 @Injectable()
 export class EazlService implements OnInit {
-    isAuthenticatedOnEazl: boolean = false;                 // True if authenticated
     httpBaseUri: string;                                    // url for the RESTi
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
@@ -3573,7 +3572,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'logout', '@Start');
 
         this.globalVariableService.canvasUser.next(new CanvasUser);
-        this.isAuthenticatedOnEazl = false;
+        this.globalVariableService.isAuthenticatedOnEazl.next(false);
         window.sessionStorage.removeItem('canvas-token');
 
         // Inform the user
@@ -3604,7 +3603,6 @@ export class EazlService implements OnInit {
                 .then(
                     eazlUser => {
                         // Set global Canvas user & that is authenticated on Eazl
-                        // this.globalVariableService.currentUserUserName.next(eazlUser.first_name || eazlUser.username);
 
                         this.globalVariableService.canvasUser.next({
                             pk: eazlUser.pk,
@@ -3619,7 +3617,7 @@ export class EazlService implements OnInit {
                             date_joined: eazlUser.date_joined,
                             last_login: eazlUser.last_login 
                         });
-                        this.isAuthenticatedOnEazl = true;
+                        this.globalVariableService.isAuthenticatedOnEazl.next(true);
 
                         // Inform the user
                         this.globalVariableService.growlGlobalMessage.next({
@@ -3636,7 +3634,7 @@ export class EazlService implements OnInit {
             })
 		    .catch(this.loginError);    
 	}
-     
+      
     loginError(error: any): Promise<any> {
         // Error handling when login failed, & returns Promise with error
 
@@ -3648,7 +3646,7 @@ export class EazlService implements OnInit {
             summary:  'Login Failed', 
             detail:   '*Login unsuccessful'
         });
-        this.isAuthenticatedOnEazl = false;
+        this.globalVariableService.isAuthenticatedOnEazl.next(false);
         return Promise.reject(error.message || error);
     }
 

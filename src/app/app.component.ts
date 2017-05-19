@@ -208,7 +208,7 @@ export class AppComponent implements OnInit {
         this.menuItems = this.loadMenu();
 
         // Navigate further
-        if (!this.eazlService.isAuthenticatedOnEazl) {
+        if (!this.globalVariableService.isAuthenticatedOnEazl) {
             this.router.navigate(['pagenotfound']);     
         } 
         else {
