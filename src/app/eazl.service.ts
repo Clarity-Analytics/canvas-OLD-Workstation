@@ -3572,8 +3572,8 @@ export class EazlService implements OnInit {
         // - username to log into Eazl
         // - password for Eazl
         this.globalFunctionService.printToConsole(this.constructor.name,'login', '@Start');
- 
-		return this.post<Token>(
+
+    		return this.post<Token>(
                 'auth-token', 
                 {username: username, password: password}
                 )

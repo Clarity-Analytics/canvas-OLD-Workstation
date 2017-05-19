@@ -108,7 +108,7 @@ export class AppComponent implements OnInit {
 // console.log(this.canvasDate.today('locale'));
 // console.log(this.canvasDate.today('standard'));
     }
-
+ 
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
@@ -134,15 +134,24 @@ export class AppComponent implements OnInit {
 
         // Fake login & preferences for testing - KEEP for next time - just set to FALSE
         this.setFakeVariablesForTesting = true;
+ 
         if (this.setFakeVariablesForTesting) {
-            this.globalVariableService.currentUserUserName.next('JannieI');
-            this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Set fake username name & preferences for Testing');
-            this.globalVariableService.isCurrentUserAdmin.next(true);
+            // Login, get back eazlUser from RESTi and set currentUser if successful
+            this.eazlService.login('janniei', 'canvas100*')
+                .then(eazlUser => {
+                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
+                    this.globalVariableService.isCurrentUserAdmin.next(true);
 
+                    // Load menu array
+                    this.menuItems = this.loadMenu()
+                    }
+                )
+                .catch(err => {
+                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
+                    this.globalVariableService.isCurrentUserAdmin.next(false);
+                    }
+                ) 
         }
-
-        // Load menu array
-        this.menuItems = this.loadMenu()
     }
 
     menuActionNewMessage() {
