@@ -36,11 +36,11 @@ export class AuthGuard implements OnInit, CanActivate {
         );
 
         if (this.currentUserUserName != "") {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'info', 
-                summary:  'Registration', 
-                detail:   'User registration successful'
-            });
+            // this.globalVariableService.growlGlobalMessage.next({
+            //     severity: 'info', 
+            //     summary:  'Registration', 
+            //     detail:   'User registration successful'
+            // });
 
             return true;
         }

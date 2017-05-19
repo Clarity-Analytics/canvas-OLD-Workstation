@@ -3538,12 +3538,12 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
 
 @Injectable()
 export class EazlService implements OnInit {
-
-    baseUri: string;                                        // url for the RESTi
+    isAuthenticatedOnEazl: boolean = false;                 // True if authenticated
+    httpBaseUri: string;                                    // url for the RESTi
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
-    headers: Headers;                                       // Header for http
-    options: RequestOptions;                                // Options for http
+    httpHeaders: Headers;                                   // Header for http
+    httpOptions: RequestOptions;                            // Options for http
     reports: Report[] = REPORTS;                            // List of Reports
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     route: string = 'users';                                // Route to RESTi - users/authen...
@@ -3557,9 +3557,9 @@ export class EazlService implements OnInit {
         private globalVariableService: GlobalVariableService,
         private http: Http,
         ) {
-            this.baseUri = `${window.location.protocol}//${window.location.hostname}:8000/api/`
-            this.headers = new Headers({'Content-Type': 'application/json'});
-            this.options = new RequestOptions({headers: this.headers});
+            this.httpBaseUri = `${window.location.protocol}//${window.location.hostname}:8000/api/`
+            this.httpHeaders = new Headers({'Content-Type': 'application/json'});
+            this.httpOptions = new RequestOptions({headers: this.httpHeaders});
     }
 
     ngOnInit() {
@@ -3568,7 +3568,9 @@ export class EazlService implements OnInit {
     }
 
     login(username: string, password: string): Promise<any> {
-        // User logs into the backend   --- START
+        // User logs into the backend   
+        // - username to log into Eazl
+        // - password for Eazl
         this.globalFunctionService.printToConsole(this.constructor.name,'login', '@Start');
  
 		return this.post<Token>(
@@ -3578,12 +3580,37 @@ export class EazlService implements OnInit {
             .toPromise()
             .then(authToken => {
 		        window.sessionStorage.setItem('canvas-token', authToken.token);
-                this.headers.set('Authorization', `token ${authToken.token}`);
+                this.httpHeaders.set('Authorization', `token ${authToken.token}`);
                 return this.get<EazlUser>(`${this.route}/authenticated-user`)
                 .toPromise()
                 .then(
                     eazlUser => {
-                        this.globalVariableService.canvasUser.next(eazlUser);
+                        // Set global Canvas user & that is authenticated on Eazl
+                        this.globalVariableService.currentUserUserName.next(eazlUser.first_name || eazlUser.username);
+
+                        this.globalVariableService.canvasUser.next({
+                            pk: eazlUser.pk,
+                            username: eazlUser.username,
+                            first_name: eazlUser.first_name,
+                            last_name: eazlUser.last_name,
+                            email: eazlUser.email,
+                            password: eazlUser.password,
+                            is_superuser: eazlUser.is_superuser,
+                            is_staff: eazlUser.is_staff,
+                            is_active: eazlUser.is_active,
+                            date_joined: eazlUser.date_joined,
+                            last_login: eazlUser.last_login 
+                        });
+                        this.isAuthenticatedOnEazl = true;
+
+                        // Inform the user
+                        this.globalVariableService.growlGlobalMessage.next({
+                            severity: 'info', 
+                            summary:  'Succes', 
+                            detail:   'Login successful for ' + eazlUser.username
+                        });
+
+                        // Return the user object from the RESTi
                         return eazlUser;    
                     }
                 )
@@ -3601,8 +3628,9 @@ export class EazlService implements OnInit {
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn', 
             summary:  'Login Failed', 
-            detail:   'Login unsuccessful'
+            detail:   '*Login unsuccessful'
         });
+        this.isAuthenticatedOnEazl = false;
         return Promise.reject(error.message || error);
     }
 
@@ -3615,7 +3643,7 @@ export class EazlService implements OnInit {
             route = route.slice(1);
         }
 
-        return `${this.baseUri}${route}`;
+        return `${this.httpBaseUri}${route}`;
     }
 
     parseResponse(response: Response) {
@@ -3641,7 +3669,7 @@ export class EazlService implements OnInit {
         // Get from http
         this.globalFunctionService.printToConsole(this.constructor.name,'get', '@Start');
 
-        return this.http.get(this.prepareRoute(route), this.options)
+        return this.http.get(this.prepareRoute(route), this.httpOptions)
             .map(this.parseResponse) 
             .catch(this.handleError);
     }
@@ -3650,7 +3678,7 @@ export class EazlService implements OnInit {
         // Post to http
         this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
 
-        return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.options)
+        return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.httpOptions)
             .map(this.parseResponse) 
             .catch(this.handleError);
     }

@@ -22,6 +22,7 @@ import { WebSocketService }           from './websocket.service';
 
 // Our Models
 import { CanvasUser }                 from './model.user';
+import { EazlService }                from './eazl.service';
 import { Notification }               from './model.notification';
 
 @Component({
@@ -57,6 +58,7 @@ export class AppComponent implements OnInit {
     constructor(
         private canvasDate: CanvasDate,
         private confirmationService: ConfirmationService,
+        private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private notificationService: NotificationService,
@@ -199,21 +201,21 @@ this.router.navigate(['pagenotfound']);
         this.menuItems = this.loadMenu();
 
         // Navigate further
-        if (this.currentUserUserName == "") {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn', 
-                summary:  'Login failed', 
-                detail:   'Username & Password not recognised'
-            });
+        if (!this.eazlService.isAuthenticatedOnEazl) {
+            // this.globalVariableService.growlGlobalMessage.next({
+            //     severity: 'warn', 
+            //     summary:  'Login failed', 
+            //     detail:   'Username & Password not recognised'
+            // });
 
             this.router.navigate(['pagenotfound']);     
-        }
+        } 
         else {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'info', 
-                summary:  'Logged in', 
-                detail:   'Welcome ' + this.currentUserUserName
-            });
+            // this.globalVariableService.growlGlobalMessage.next({
+            //     severity: 'info', 
+            //     summary:  'Logged in', 
+            //     detail:   'Welcome ' + this.currentUserUserName
+            // });
 
             if (this.globalVariableService.startupDashboardID.getValue() != 0) {
                 this.router.navigate(['pagenotfound']);     

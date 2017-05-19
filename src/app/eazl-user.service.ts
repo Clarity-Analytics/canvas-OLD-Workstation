@@ -36,7 +36,7 @@ export class EazlUserService {
 		        window.sessionStorage.setItem('canvas-token', authToken.token);
 this.globalFunctionService.printToConsole(this.constructor.name,'setAuthToken', 'post Token worked');
 		        
-		        this.eazl.headers.set('Authorization', `token ${authToken.token}`);
+		        this.eazl.httpHeaders.set('Authorization', `token ${authToken.token}`);
 		        this.authToken.setValue(authToken);
 		        this.setUserDetails();
 		       
