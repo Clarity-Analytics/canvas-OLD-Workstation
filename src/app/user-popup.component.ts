@@ -39,15 +39,11 @@ export class UserPopupComponent implements OnInit {
     @Output() userPopupFormClosed: EventEmitter<string> = new EventEmitter();
 
     // Local properties
-    currentUser: string = '';
-    description: string;
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     isLoadingForm: boolean = false;
     isStaffOptions: SelectItem[];
-    newUser: User;
     numberErrors: number = 0;
-    submitted: boolean;
     userformID: any;
     userformActivity: FormGroup;
 

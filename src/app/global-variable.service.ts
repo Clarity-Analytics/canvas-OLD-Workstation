@@ -6,7 +6,7 @@ import { Injectable }                 from '@angular/core';
 import { Message }                    from 'primeng/primeng';  
 
 // Our Models
-import { CurrentUser }                from './model.currentUser';
+import { CanvasUser }                from './model.canvasUser';
 
 export class SelectedItem {
     id: any;
@@ -32,12 +32,8 @@ export class GlobalVariableService {
     backendUrl = new BehaviorSubject('');
     
     // Current User
-    currentUser = new BehaviorSubject<CurrentUser>(null);
-    currentUserID = new BehaviorSubject(0);   
+    currentUser = new BehaviorSubject<CanvasUser>(null);
     currentUserUserName = new BehaviorSubject('');      // '' means not logged in 
-    currentUserPassword = new BehaviorSubject(''); 
-    currentUserFirstName = new BehaviorSubject('Not Logged in'); 
-    currentUserLastName = new BehaviorSubject('Not Logged in');
     isCurrentUserAdmin = new BehaviorSubject(false);
 
     // This session

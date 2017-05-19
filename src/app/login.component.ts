@@ -65,8 +65,8 @@ export class LoginComponent implements OnInit {
                   
                 // Trigger event emitter 'emit' method
                 this.formSubmit.emit(true);
-            }
-        )
+                }
+            )
             .catch(err => console.log('login error',err))
     }
 }
