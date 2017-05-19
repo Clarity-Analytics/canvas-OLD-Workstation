@@ -12,7 +12,7 @@ import { GlobalFunctionService }      from './global-function.service';
 
 @Injectable()
 export class AuthGuard implements OnInit, CanActivate {
-    currentUserUserName: string = '';
+    currentUserName: string = '';
     
     constructor(
         // private alertService: AlertService,
@@ -29,32 +29,26 @@ export class AuthGuard implements OnInit, CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         // Obtain the username from the global variables
         this.globalFunctionService.printToConsole(this.constructor.name,'canActivate', '@Start');
-        this.currentUserUserName = this.globalVariableService.currentUserUserName.getValue();
+        this.currentUserName = this.globalVariableService.canvasUser.getValue().username;
         this.globalFunctionService.printToConsole(
             this.constructor.name,'canActivate', 'Found user: ' 
-                + this.currentUserUserName
+                + this.currentUserName
         );
 
-        if (this.currentUserUserName != "") {
-            // this.globalVariableService.growlGlobalMessage.next({
-            //     severity: 'info', 
-            //     summary:  'Registration', 
-            //     detail:   'User registration successful'
-            // });
-
+        if (this.currentUserName != "") {
             return true;
         }
  
         // Sorry, not logged in
         this.globalFunctionService.printToConsole(
             this.constructor.name,'canActivate', 
-                'Registration NOT successful for ' + this.currentUserUserName + ' ...'
+                'Registration NOT successful for ' + this.currentUserName + ' ...'
         );
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn', 
             summary:  'Not Logged in', 
-            detail:   'User ' + this.currentUserUserName + ' not logged in'
+            detail:   'User ' + this.currentUserName + ' not logged in'
         });
         
         // this.router.navigate(['pagenotfound']);

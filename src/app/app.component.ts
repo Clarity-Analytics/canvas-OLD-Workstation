@@ -48,7 +48,6 @@ export class AppComponent implements OnInit {
 
     // Define Variables - define here if a global variable is used in html.
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    currentUserUserName: string = this.globalVariableService.currentUserUserName.getValue();
     frontendName: string = this.globalVariableService.frontendName.getValue();
     growlLife: number = this.globalVariableService.growlLife.getValue();
     growlSticky: boolean = this.globalVariableService.growlSticky.getValue();
@@ -140,7 +139,6 @@ export class AppComponent implements OnInit {
             this.eazlService.login('janniei', 'canvas100*')
                 .then(eazlUser => {
                     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
-                    this.globalVariableService.isCurrentUserAdmin.next(true);
 
                     // Load menu array
                     this.menuItems = this.loadMenu()
@@ -148,7 +146,6 @@ export class AppComponent implements OnInit {
                 )
                 .catch(err => {
                     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
-                    this.globalVariableService.isCurrentUserAdmin.next(false);
                     }
                 ) 
         }
@@ -177,7 +174,7 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn', 
                         summary:  'Logged out', 
-                        detail:   'Goodbye ' + this.currentUserUserName + 
+                        detail:   'Goodbye ' + this.globalVariableService.canvasUser.getValue().username + 
                                   ', thank you for using ' + this.frontendName
                     });
                     
@@ -212,20 +209,9 @@ export class AppComponent implements OnInit {
 
         // Navigate further
         if (!this.eazlService.isAuthenticatedOnEazl) {
-            // this.globalVariableService.growlGlobalMessage.next({
-            //     severity: 'warn', 
-            //     summary:  'Login failed', 
-            //     detail:   'Username & Password not recognised'
-            // });
-
             this.router.navigate(['pagenotfound']);     
         } 
         else {
-            // this.globalVariableService.growlGlobalMessage.next({
-            //     severity: 'info', 
-            //     summary:  'Logged in', 
-            //     detail:   'Welcome ' + this.currentUserUserName
-            // });
 
             if (this.globalVariableService.startupDashboardID.getValue() != 0) {
                 this.router.navigate(['pagenotfound']);     
@@ -247,11 +233,10 @@ export class AppComponent implements OnInit {
         let isLoggedIn: boolean = false;
         
         // Get the current status of user -> determines menu enable/disable
-        this.currentUserUserName = this.globalVariableService.currentUserUserName.getValue();
-        this.isCurrentUserAdmin = this.globalVariableService.isCurrentUserAdmin.getValue();
+        this.isCurrentUserAdmin = this.globalVariableService.canvasUser.getValue().is_superuser;
 
         // Set label for login / logout
-        if (this.currentUserUserName == '' ) {
+        if (this.globalVariableService.canvasUser.getValue().username == '' ) {
             this.loginLabel = 'Login'; 
             isLoggedIn = false;
         }

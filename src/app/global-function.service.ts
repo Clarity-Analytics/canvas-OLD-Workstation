@@ -53,23 +53,4 @@ export class GlobalFunctionService {
         // Return the value
         return inputValue;
     }
-
-    // setCanvasUser(eazlUser: EazlUser) {
-    //     // This routine stores the current Canvas User stuffies
-    //     this.printToConsole(this.constructor.name, 'setCanvasUser', '@Start');
-
-    //     this.globalVariableService.canvasUser.next({
-    //         pk: eazlUser.pk,
-    //         username: eazlUser.username,
-    //         first_name: eazlUser.first_name,
-    //         last_name: eazlUser.last_name,
-    //         email: eazlUser.email,
-    //         password: eazlUser.password,
-    //         is_superuser: eazlUser.is_superuser,
-    //         is_staff: eazlUser.is_staff,
-    //         is_active: eazlUser.is_active,
-    //         date_joined: eazlUser.date_joined,
-    //         last_login: eazlUser.last_login 
-    //     });
-    // }
 }

@@ -3604,7 +3604,7 @@ export class EazlService implements OnInit {
                 .then(
                     eazlUser => {
                         // Set global Canvas user & that is authenticated on Eazl
-                        this.globalVariableService.currentUserUserName.next(eazlUser.first_name || eazlUser.username);
+                        // this.globalVariableService.currentUserUserName.next(eazlUser.first_name || eazlUser.username);
 
                         this.globalVariableService.canvasUser.next({
                             pk: eazlUser.pk,

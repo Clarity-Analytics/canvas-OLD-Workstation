@@ -33,8 +33,6 @@ export class GlobalVariableService {
     
     // Current User
     canvasUser = new BehaviorSubject<CanvasUser>(null);
-    currentUserUserName = new BehaviorSubject('');      // '' means not logged in 
-    isCurrentUserAdmin = new BehaviorSubject(false);
 
     // This session
     sessionDateTimeLoggedin = new BehaviorSubject('');
