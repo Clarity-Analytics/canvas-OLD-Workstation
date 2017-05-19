@@ -2,7 +2,9 @@
 import { GlobalVariableService }       from './global-variable.service';
 import { Injectable }                  from '@angular/core';
 
-// Our Services 
+// Our Models
+import { EazlUser }                    from './model.user';
+import { CanvasUser }                  from './model.user';
 
 @Injectable()
 export class GlobalFunctionService {
@@ -12,7 +14,6 @@ export class GlobalFunctionService {
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
 
   constructor(
-      // private alertService: AlertService,
       private globalVariableService: GlobalVariableService) { }
 
     // Prints a message to the console if in debugging mode GLOBALLY
@@ -53,4 +54,22 @@ export class GlobalFunctionService {
         return inputValue;
     }
 
+    setCanvasUser(eazlUser: EazlUser) {
+        // This routine stores the current Canvas User stuffies
+        this.printToConsole(this.constructor.name, 'setCanvasUser', '@Start');
+
+        this.globalVariableService.canvasUser.next({
+            pk: eazlUser.pk,
+            username: eazlUser.username,
+            first_name: eazlUser.first_name,
+            last_name: eazlUser.last_name,
+            email: eazlUser.email,
+            password: eazlUser.password,
+            is_superuser: eazlUser.is_superuser,
+            is_staff: eazlUser.is_staff,
+            is_active: eazlUser.is_active,
+            date_joined: eazlUser.date_joined,
+            last_login: eazlUser.last_login 
+        });
+    }
 }

@@ -60,10 +60,10 @@ export class LoginComponent implements OnInit {
         this.eazlService.login(username, password)
             .then(eazlUser => {
                 this.submitted = true;
-console.log('login',eazlUser)                 
                 this.userform.controls['password'].setValue('');
                 this.globalVariableService.currentUserUserName.next(eazlUser.first_name || eazlUser.username);
-                  
+
+                this.globalFunctionService.setCanvasUser(eazlUser);  
                 // Trigger event emitter 'emit' method
                 this.formSubmit.emit(true);
                 }

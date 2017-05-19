@@ -32,7 +32,7 @@ export class GlobalVariableService {
     backendUrl = new BehaviorSubject('');
     
     // Current User
-    currentUser = new BehaviorSubject<CanvasUser>(null);
+    canvasUser = new BehaviorSubject<CanvasUser>(null);
     currentUserUserName = new BehaviorSubject('');      // '' means not logged in 
     isCurrentUserAdmin = new BehaviorSubject(false);
 

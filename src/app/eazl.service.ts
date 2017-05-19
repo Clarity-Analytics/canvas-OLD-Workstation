@@ -3583,7 +3583,7 @@ export class EazlService implements OnInit {
                 .toPromise()
                 .then(
                     eazlUser => {
-                        this.globalVariableService.currentUser.next(eazlUser);
+                        this.globalVariableService.canvasUser.next(eazlUser);
                         return eazlUser;    
                     }
                 )
