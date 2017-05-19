@@ -21,6 +21,7 @@ import { NotificationService }        from './notification.service';
 import { WebSocketService }           from './websocket.service';
 
 // Our Models
+import { CanvasUser }                 from './model.user';
 import { Notification }               from './model.notification';
 
 @Component({
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit {
     private notificationFromServer: Notification;
 
     // Define Variables - define here if a global variable is used in html.
+    canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     currentUserUserName: string = this.globalVariableService.currentUserUserName.getValue();
     frontendName: string = this.globalVariableService.frontendName.getValue();
     growlLife: number = this.globalVariableService.growlLife.getValue();
@@ -104,7 +106,6 @@ export class AppComponent implements OnInit {
 // console.log(this.canvasDate.today('locale'));
 // console.log(this.canvasDate.today('standard'));
     }
-
 
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');

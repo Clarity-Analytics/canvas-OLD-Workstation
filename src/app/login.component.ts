@@ -28,8 +28,6 @@ export class LoginComponent implements OnInit {
     @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
     
     // Local properties
-    currentUser: string = '';
-    submitted: boolean;
     userform: FormGroup;
 
     constructor(
@@ -59,7 +57,6 @@ export class LoginComponent implements OnInit {
         // Login, get back eazlUser from RESTi and set currentUser if successful
         this.eazlService.login(username, password)
             .then(eazlUser => {
-                this.submitted = true;
                 this.userform.controls['password'].setValue('');
                 this.globalVariableService.currentUserUserName.next(eazlUser.first_name || eazlUser.username);
 

@@ -1,10 +1,10 @@
 // Global functions
-import { GlobalVariableService }       from './global-variable.service';
-import { Injectable }                  from '@angular/core';
+import { GlobalVariableService }      from './global-variable.service';
+import { Injectable }                 from '@angular/core';
 
 // Our Models
-import { EazlUser }                    from './model.user';
-import { CanvasUser }                  from './model.user';
+import { EazlUser }                   from './model.user';
+import { CanvasUser }                 from './model.user';
 
 @Injectable()
 export class GlobalFunctionService {
