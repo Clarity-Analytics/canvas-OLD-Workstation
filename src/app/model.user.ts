@@ -1,7 +1,7 @@
-// Schema for the User class
+// Schema for the User classes
 
+// Users registered to use the system
 export class User {
-    // Defines data model for User Entity
     userID: string;
     firstName: string;
     lastName: string;
@@ -26,6 +26,7 @@ export class User {
     extraBoolean10: boolean;
 }
 
+// User returned by REST, determined by Django
 export interface EazlUser {
     // Defines data model for User Entity
     pk: number;
@@ -41,6 +42,7 @@ export interface EazlUser {
     last_login: Date;
 }
 
+// Current user info in Canvas
 export class CanvasUser implements EazlUser {
     pk: number;
     username: string;

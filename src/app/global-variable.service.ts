@@ -6,7 +6,7 @@ import { Injectable }                 from '@angular/core';
 import { Message }                    from 'primeng/primeng';  
 
 // Our Models
-import { CanvasUser }                from './model.canvasUser';
+import { CanvasUser }                from './model.user';
 
 export class SelectedItem {
     id: any;

@@ -3579,12 +3579,12 @@ export class EazlService implements OnInit {
             .then(authToken => {
 		        window.sessionStorage.setItem('canvas-token', authToken.token);
                 this.headers.set('Authorization', `token ${authToken.token}`);
-                return this.get<User>(`${this.route}/authenticated-user`)
+                return this.get<EazlUser>(`${this.route}/authenticated-user`)
                 .toPromise()
                 .then(
-                    user => {
-                        this.globalVariableService.currentUser.next(user);
-                        return user;    
+                    eazlUser => {
+                        this.globalVariableService.currentUser.next(eazlUser);
+                        return eazlUser;    
                     }
                 )
                 .catch(this.loginError)

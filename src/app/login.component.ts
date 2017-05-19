@@ -56,12 +56,13 @@ export class LoginComponent implements OnInit {
         var username = this.userform.get('username').value;
         var password = this.userform.get('password').value;
   
-        // Login, and set currentUser if successful
+        // Login, get back eazlUser from RESTi and set currentUser if successful
         this.eazlService.login(username, password)
-            .then(user => {
+            .then(eazlUser => {
                 this.submitted = true;
+console.log('login',eazlUser)                 
                 this.userform.controls['password'].setValue('');
-                this.globalVariableService.currentUserUserName.next(user.first_name || user.username);
+                this.globalVariableService.currentUserUserName.next(eazlUser.first_name || eazlUser.username);
                   
                 // Trigger event emitter 'emit' method
                 this.formSubmit.emit(true);
@@ -69,4 +70,4 @@ export class LoginComponent implements OnInit {
             )
             .catch(err => console.log('login error',err))
     }
-}
+} 
