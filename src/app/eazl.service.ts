@@ -12,12 +12,13 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
+import { EazlUser }                   from './model.user';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { User }                       from './model.user';
-import { EazlUser }                   from './model.user';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
@@ -3567,6 +3568,23 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
     }
 
+    logout(username: string) {
+        // Logout user from backend
+        this.globalFunctionService.printToConsole(this.constructor.name,'logout', '@Start');
+
+        this.globalVariableService.canvasUser.next(new CanvasUser);
+        this.isAuthenticatedOnEazl = false;
+        window.sessionStorage.removeItem('canvas-token');
+
+        // Inform the user
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info', 
+            summary:  'Logged out', 
+            detail:   'Logout successful for ' + username
+        });
+        
+    }
+    
     login(username: string, password: string): Promise<any> {
         // User logs into the backend   
         // - username to log into Eazl

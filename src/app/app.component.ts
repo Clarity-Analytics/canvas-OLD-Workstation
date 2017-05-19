@@ -182,15 +182,16 @@ export class AppComponent implements OnInit {
                     });
                     
                     // Logged out!
-                    this.globalVariableService.currentUserUserName.next('');
+                    this.eazlService.logout(
+                        this.globalVariableService.canvasUser.getValue().username
+                    );
                     
                     // Amend the menu
                     this.menuItems = this.loadMenu();
 
                     // Show the login form
                     this.displayNewMessage = true;        
-
-this.router.navigate(['pagenotfound']);     
+                    this.router.navigate(['pagenotfound']);     
                     
                 }
             });
