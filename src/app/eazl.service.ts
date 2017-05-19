@@ -1,5 +1,11 @@
 // Service that provides all data (from the DB)
 import { Injectable }                 from '@angular/core';
+import { Headers }                    from '@angular/http';
+import { Http }                       from '@angular/http';
+import { Observable }                 from 'rxjs/Observable';
+import { OnInit }                     from '@angular/core';
+import { Response }                   from '@angular/http';
+import { RequestOptions }             from '@angular/http';
 
 // Our Services
 import { GlobalFunctionService }      from './global-function.service';
@@ -11,9 +17,17 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { User }                       from './model.user';
+import { EazlUser }                   from './model.user';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
+
+// Token for RESTi
+export interface Token {
+	token: string;
+}
+
+var req = new XMLHttpRequest();
 
 // TODO - use RESTi
 export const USERS: User[] =
@@ -876,11 +890,11 @@ export const WIDGETS: Widget[] =
                 boxShadow: '',
                 color: 'brown',
                 fontSize: 1,
-                height: 390,
+                height: 440,
                 left: 640,
                 widgetTitle: 'Headcount Comparison',
                 top: 80,
-                width: 380,
+                width: 440,
             },
             areas: {
                 showWidgetText: true,
@@ -902,7 +916,7 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 0,
+                textWidth: 300,
             },
             graph: {
                 graphID: 0,
@@ -1015,12 +1029,12 @@ export const WIDGETS: Widget[] =
             table:{
                 tableColor: 'transparent',
                 tableCols: 1,
-                tableHeight: 25,
+                tableHeight: 60,
                 tableHideHeader: false,
-                tableLeft: 5,
+                tableLeft: 50,
                 tableRows: 1,
-                tableTop: 300,
-                tableWidth: 25,
+                tableTop: 340,
+                tableWidth: 320,
             },
             image: {
                 imageAlt: '',
@@ -3523,23 +3537,124 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
     ]
 
 @Injectable()
-export class EazlService {
+export class EazlService implements OnInit {
 
-    users: User[] = USERS;                                  // List of Users
+    baseUri: string;                                        // url for the RESTi
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
+    headers: Headers;                                       // Header for http
+    options: RequestOptions;                                // Options for http
     reports: Report[] = REPORTS;                            // List of Reports
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
+    route: string = 'users';                                // Route to RESTi - users/authen...
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
+    users: User[] = USERS;                                  // List of Users
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private http: Http,
         ) {
+            this.baseUri = `${window.location.protocol}//${window.location.hostname}:8000/api/`
+            this.headers = new Headers({'Content-Type': 'application/json'});
+            this.options = new RequestOptions({headers: this.headers});
     }
 
+    ngOnInit() {
+        // Starters
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+    }
+
+    login(username: string, password: string): Promise<any> {
+        // User logs into the backend   --- START
+        this.globalFunctionService.printToConsole(this.constructor.name,'login', '@Start');
+ 
+		return this.post<Token>(
+                'auth-token', 
+                {username: username, password: password}
+                )
+            .toPromise()
+            .then(authToken => {
+		        window.sessionStorage.setItem('canvas-token', authToken.token);
+                this.headers.set('Authorization', `token ${authToken.token}`);
+                return this.get<User>(`${this.route}/authenticated-user`)
+                .toPromise()
+                .then(
+                    user => {
+                        this.globalVariableService.currentUser.next(user);
+                        return user;    
+                    }
+                )
+                .catch(this.loginError)
+            })
+		    .catch(this.loginError);    
+	}
+     
+    loginError(error: any): Promise<any> {
+        // Error handling when login failed, & returns Promise with error
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'loginError', '@Start');
+
+		window.sessionStorage.removeItem('canvas-token');
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'warn', 
+            summary:  'Login Failed', 
+            detail:   'Login unsuccessful'
+        });
+        return Promise.reject(error.message || error);
+    }
+
+    prepareRoute(route: string): string {
+        if (route.slice(-1) !== '/') {
+            route = `${route}/`;
+        }
+
+        if (route.slice(0) === '/') {
+            route = route.slice(1);
+        }
+
+        return `${this.baseUri}${route}`;
+    }
+
+    parseResponse(response: Response) {
+        return response.json() || {};
+    }
+  
+    handleError(response: Response | any): Observable<Response> {
+        // Error for observable
+        this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
+
+        var error: string = '';
+         // Do some logging one day
+        if (response instanceof Response) {
+            var payload = response.json() || '';
+             error = payload.body || JSON.stringify(payload);
+        } else {
+            error = response.message ? response.message : response.toString();
+        }
+         return Observable.throw(error);
+    }
+
+    get<T>(route: string, data?: Object): Observable<any> {
+        // Get from http
+        this.globalFunctionService.printToConsole(this.constructor.name,'get', '@Start');
+
+        return this.http.get(this.prepareRoute(route), this.options)
+            .map(this.parseResponse) 
+            .catch(this.handleError);
+    }
+
+    post<T>(route: string, data: Object): Observable<any> {
+        // Post to http
+        this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
+
+        return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.options)
+            .map(this.parseResponse) 
+            .catch(this.handleError);
+    }
+     
     addUser(user: User) {
         // Adds a new User to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'addUser', '@Start');

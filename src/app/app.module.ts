@@ -105,7 +105,9 @@ import { WidgetCommentComponent }     from './widget-comment.component';
 // Our Services
 import { AuthGuard }                  from './authguard.service';
 import { CanvasDate }                 from './date.services';
+import { CanvasModelProvider }        from './model.generic';
 import { EazlService }                from './eazl.service';
+import { EazlUserService }            from './eazl-user.service';
 import { GlobalErrorHandler }         from './error-handler.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -224,11 +226,14 @@ import { routes }                     from './app.routes';
     AuthGuard,
     CanvasDate,
     CanvasColors,
+    CanvasModelProvider,
     EazlService,
+    EazlUserService,
     GlobalFunctionService,
     GlobalVariableService,
     NotificationService,
     WebSocketService,
+
   ],
   
   bootstrap: [AppComponent]

@@ -13,6 +13,7 @@ import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
+import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
     userform: FormGroup;
 
     constructor(
+        private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
 
         // FormBuilder
         this.userform = this.fb.group({
-            'firstname': new FormControl('', Validators.required),
+            'username': new FormControl('', Validators.required),
             'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
         });
     }
@@ -51,38 +53,20 @@ export class LoginComponent implements OnInit {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
-        // Super security, for now.  First reset
-        this.globalVariableService.isCurrentUserAdmin.next(false);
-
-        if (this.userform.get('firstname').value == 'Jannie'
-         && this.userform.get('password').value == 'jjjjjj') {
-             this.currentUser = this.userform.get('firstname').value;
-             this.globalVariableService.isCurrentUserAdmin.next(true);
-             this.globalVariableService.currentUserUserName.next(this.currentUser);
-         };
-        if (this.userform.get('firstname').value == 'Bradley'
-         && this.userform.get('password').value == 'bbbbbb') {
-             this.currentUser = this.userform.get('firstname').value;
-             this.globalVariableService.isCurrentUserAdmin.next(true);
-             this.globalVariableService.currentUserUserName.next(this.currentUser);
-         };
-        if (this.userform.get('firstname').value == 'Anne'
-         && this.userform.get('password').value == 'aaaaaa') {
-             this.currentUser = this.userform.get('firstname').value;
-             this.globalVariableService.isCurrentUserAdmin.next(false);
-             this.globalVariableService.currentUserUserName.next(this.currentUser);
-         };
-
-         if (this.currentUser == '') {
-            this.submitted = false;
-         } else {
-            this.submitted = true;
-         }
-
-         // Clear the password, dont want it hanging around
-         this.userform.controls['password'].setValue('');
-
-         // Trigger event emitter 'emit' method
-         this.formSubmit.emit(true);
+        var username = this.userform.get('username').value;
+        var password = this.userform.get('password').value;
+  
+        // Login, and set currentUser if successful
+        this.eazlService.login(username, password)
+            .then(user => {
+                this.submitted = true;
+                this.userform.controls['password'].setValue('');
+                this.globalVariableService.currentUserUserName.next(user.first_name || user.username);
+                  
+                // Trigger event emitter 'emit' method
+                this.formSubmit.emit(true);
+            }
+        )
+            .catch(err => console.log('login error',err))
     }
 }

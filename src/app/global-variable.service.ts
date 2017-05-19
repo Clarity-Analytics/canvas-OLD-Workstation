@@ -5,6 +5,9 @@ import { Injectable }                 from '@angular/core';
 // PrimeNG
 import { Message }                    from 'primeng/primeng';  
 
+// Our Models
+import { CurrentUser }                from './model.currentUser';
+
 export class SelectedItem {
     id: any;
     name: string;
@@ -29,17 +32,18 @@ export class GlobalVariableService {
     backendUrl = new BehaviorSubject('');
     
     // Current User
+    currentUser = new BehaviorSubject<CurrentUser>(null);
     currentUserID = new BehaviorSubject(0);   
     currentUserUserName = new BehaviorSubject('');      // '' means not logged in 
     currentUserPassword = new BehaviorSubject(''); 
     currentUserFirstName = new BehaviorSubject('Not Logged in'); 
     currentUserLastName = new BehaviorSubject('Not Logged in');
+    isCurrentUserAdmin = new BehaviorSubject(false);
 
     // This session
     sessionDateTimeLoggedin = new BehaviorSubject('');
     sessionDebugging = new BehaviorSubject(false);
     sessionLogging = new BehaviorSubject(false);
-    isCurrentUserAdmin = new BehaviorSubject(false);
     growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
     sessionLoadOnOpenDashboardID = new BehaviorSubject(-1);    // Dashboard to load when form opens, 0 = none
     sessionLoadOnOpenDashboardCode = new BehaviorSubject('');  // Dashboard to load when form opens, '' = none
