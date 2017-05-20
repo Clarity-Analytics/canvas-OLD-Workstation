@@ -8,7 +8,6 @@ import { EazlService } 				  from './eazl.service';
 import { EazlUser } 				  from './model.user';
 import { GlobalFunctionService }      from './global-function.service';
 import { Model} 					  from './model.generic';
-import { ModelFactory } 			  from './model.generic';
 import { Token } 					  from './model.token';
 
 @Injectable()
@@ -19,13 +18,8 @@ export class EazlUserService {
 	constructor(
 		private eazl: EazlService,
         private globalFunctionService: GlobalFunctionService,
-		private tokenFactory: ModelFactory<Token>,
-		private userFactory: ModelFactory<EazlUser>,
 		) 
-	{
-		this.eazlUser = this.userFactory.create(null);
-		this.authToken = this.tokenFactory.create({token: window.sessionStorage.getItem('canvas-token')});
-	}
+	{ }
 
 	setAuthToken(username: string, password: string) {
         // Set AuthToken

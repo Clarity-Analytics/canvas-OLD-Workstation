@@ -19,17 +19,17 @@ export class Model<T> {
 	}
 }
 
-export class ModelFactory<T> {
-	create(data: T): Model<T> {
-		return new Model(data);
-	}
-}
+// export class ModelFactory<T> {
+// 	create(data: T): Model<T> {
+// 		return new Model(data);
+// 	}
+// }
 
-export function useModelFactory() {
-	return new ModelFactory();
-}
+// export function useModelFactory() {
+// 	return new ModelFactory();
+// }
 
-export const CanvasModelProvider = {
-	provide: ModelFactory,
-	useFactory: useModelFactory
-}
+// export const CanvasModelProvider = {
+// 	provide: ModelFactory,
+// 	useFactory: useModelFactory
+// }
