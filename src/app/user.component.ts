@@ -16,6 +16,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { User }                       from './model.user';
+import { EazlUser }                       from './model.user';
 
 @Component({
     selector:    'user',
@@ -32,7 +33,7 @@ export class UserComponent implements OnInit {
     popuMenuItems: MenuItem[];
     selectedUser: User;
     users: User[];
- 
+// users: EazlUser[];
     constructor(
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
@@ -44,7 +45,12 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Initialise variables
-        this.users = this.eazlService.getUsers();
+        this.eazlService.getUsers()
+            .then(users => {this.users = users
+console.log('usr cmp onInit', this.users)  
+                
+            })
+            .catch( err => {console.log(err)} );
         this.popuMenuItems = [
             {
                 label: 'Add', 
@@ -98,6 +104,7 @@ export class UserComponent implements OnInit {
             },
             
         ];
+
     }
 
     userMenuAdd(user: User) {
@@ -129,7 +136,7 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
         let index = -1;
         for(let i = 0; i < this.users.length; i++) {
-            if(this.users[i].firstName == user.firstName) {
+            if(this.users[i].userID == user.firstName) {
                 index = i;
                 break;
             }

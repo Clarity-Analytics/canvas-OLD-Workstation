@@ -34,7 +34,6 @@ export class EazlUserService {
 		this.eazl.post<Token>('auth-token', {username: username, password: password}).subscribe(
 		    authToken => {
 		        window.sessionStorage.setItem('canvas-token', authToken.token);
-this.globalFunctionService.printToConsole(this.constructor.name,'setAuthToken', 'post Token worked');
 		        
 		        this.eazl.httpHeaders.set('Authorization', `token ${authToken.token}`);
 		        this.authToken.setValue(authToken);
@@ -51,11 +50,9 @@ this.globalFunctionService.printToConsole(this.constructor.name,'setAuthToken', 
         // Set details for current user
         this.globalFunctionService.printToConsole(this.constructor.name,'setUserDetails', '@Start');
 
-let getWorked: boolean = false;
 		this.eazl.get<EazlUser>('users/authenticated-user').subscribe(
 			user => {
 				console.log(user);
-getWorked = true;
 				this.eazlUser.setValue(user);
 			},
 			error => {
@@ -63,7 +60,5 @@ getWorked = true;
 				console.log('We caught the error!');
 			}
 		);
-
-this.globalFunctionService.printToConsole(this.constructor.name,'setUserDetails', '@end ' + getWorked.toString());
 	}
 } 

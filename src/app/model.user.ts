@@ -25,7 +25,7 @@ export class User {
     extraBoolean1: boolean;
     extraBoolean10: boolean;
 }
-
+ 
 // User returned by REST, determined by Django
 export interface EazlUser {
     // Defines data model for User Entity
@@ -41,7 +41,7 @@ export interface EazlUser {
     date_joined: Date;
     last_login: Date;
 }
-
+ 
 // Current user info in Canvas
 export class CanvasUser implements EazlUser {
     pk: number;

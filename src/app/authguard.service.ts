@@ -29,6 +29,12 @@ export class AuthGuard implements OnInit, CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         // Obtain the username from the global variables
         this.globalFunctionService.printToConsole(this.constructor.name,'canActivate', '@Start');
+
+        // If not logged in, bail
+        if (this.globalVariableService.canvasUser.getValue() == null) {
+            return false;
+        }
+        
         this.currentUserName = this.globalVariableService.canvasUser.getValue().username;
         this.globalFunctionService.printToConsole(
             this.constructor.name,'canActivate', 'Found user: ' 

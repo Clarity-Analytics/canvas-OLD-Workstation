@@ -475,7 +475,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 3,
             dashboardCode: 'Tree map',
             dashboardName: 'Tree map ...',
-            isContainerHeaderDark: true,            
+            isContainerHeaderDark: true,
             showContainerHeader: true,
             dashboardBackgroundColor: 'darkred',
             dashboardBackgroundImageSrc: '',
@@ -618,7 +618,7 @@ export const DASHBOARDS: Dashboard[] =
     ];
 
 export const DASHBOARDTABS: DashboardTab[] =
-    [ 
+    [
         {
             dashboardID: 0,
             widgetTabID: 0,
@@ -688,7 +688,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'transparent',
                 textColor: 'black',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 12,
                 textLeft: 10,
@@ -703,7 +703,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -712,7 +712,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'darkred',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "description": "Yes, Bradley",
@@ -908,7 +908,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'black',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -923,7 +923,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 75,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -932,7 +932,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "width": 290,
@@ -1111,7 +1111,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'black',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -1126,7 +1126,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 110,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -1135,7 +1135,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 300,
@@ -1302,7 +1302,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -1317,7 +1317,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -1326,7 +1326,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 300,
@@ -1532,7 +1532,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -1547,7 +1547,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -1556,7 +1556,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "height": 210,
@@ -1807,7 +1807,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -1822,7 +1822,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -1831,7 +1831,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "width": 140,
@@ -1981,7 +1981,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -1996,7 +1996,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -2005,7 +2005,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                 "width": 170,
@@ -2177,7 +2177,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -2192,7 +2192,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -2201,7 +2201,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 960,
@@ -2359,7 +2359,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -2374,7 +2374,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -2383,7 +2383,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 600,
@@ -2581,7 +2581,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -2596,7 +2596,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -2605,7 +2605,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "name": "wordcloud",
@@ -2768,7 +2768,7 @@ export const WIDGETS: Widget[] =
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -2783,7 +2783,7 @@ export const WIDGETS: Widget[] =
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -2792,7 +2792,7 @@ export const WIDGETS: Widget[] =
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                     "$schema": "https://vega.github.io/schema/vega/v3.0.json",
                     "width": 800,
@@ -3086,9 +3086,9 @@ export const REPORTS: Report[] =
             reportParameters: '',
             dataSourceID: 12,
             dataSourceParameters: '',
-            reportFields: 
+            reportFields:
                 [ "category", "amount"],
-            reportData: 
+            reportData:
                 [
                     {"category": "A0", "amount": 38},
                     {"category": "B0", "amount": 45},
@@ -3107,9 +3107,9 @@ export const REPORTS: Report[] =
             reportParameters: '',
             dataSourceID: 143,
             dataSourceParameters: '',
-            reportFields: 
+            reportFields:
                 [ "category", "amount"],
-            reportData: 
+            reportData:
                 [
                     {"category": "A22", "amount": 108},
                     {"category": "B22", "amount": 115},
@@ -3122,14 +3122,14 @@ export const REPORTS: Report[] =
                 ]
         }
     ]
- 
+
 export const WIDGETTEMPLATES: WidgetTemplate[] =
     [
         {
             widgetTemplateID: 0,
             widgetTemplateName: 'BarChart',
             widgetTemplateDescription: 'Template for the Vega spec of a Bar Chart',
-            vegaParameters: {                           
+            vegaParameters: {
                 vegaGraphHeight: 200,
                 vegaGraphWidth: 180,
                 vegaGraphPadding: 10,
@@ -3550,7 +3550,8 @@ export class EazlService implements OnInit {
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
-    users: User[] = USERS;                                  // List of Users
+    users: User[] = [];  //USERS;                                  // List of Users
+// users: EazlUser[] = [];                                  // List of Users
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -3577,21 +3578,21 @@ export class EazlService implements OnInit {
 
         // Inform the user
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Logged out', 
+            severity: 'info',
+            summary:  'Logged out',
             detail:   'Logout successful for ' + username
         });
-        
+
     }
-    
+
     login(username: string, password: string): Promise<any> {
-        // User logs into the backend   
+        // User logs into the backend
         // - username to log into Eazl
         // - password for Eazl
         this.globalFunctionService.printToConsole(this.constructor.name,'login', '@Start');
 
     		return this.post<Token>(
-                'auth-token', 
+                'auth-token',
                 {username: username, password: password}
                 )
             .toPromise()
@@ -3615,26 +3616,26 @@ export class EazlService implements OnInit {
                             is_staff: eazlUser.is_staff,
                             is_active: eazlUser.is_active,
                             date_joined: eazlUser.date_joined,
-                            last_login: eazlUser.last_login 
+                            last_login: eazlUser.last_login
                         });
                         this.globalVariableService.isAuthenticatedOnEazl.next(true);
 
                         // Inform the user
                         this.globalVariableService.growlGlobalMessage.next({
-                            severity: 'info', 
-                            summary:  'Succes', 
+                            severity: 'info',
+                            summary:  'Succes',
                             detail:   'Login successful for ' + eazlUser.username
                         });
 
                         // Return the user object from the RESTi
-                        return eazlUser;    
+                        return eazlUser;
                     }
                 )
                 .catch(this.loginError)
             })
-		    .catch(this.loginError);    
+		    .catch(this.loginError);
 	}
-      
+
     loginError(error: any): Promise<any> {
         // Error handling when login failed, & returns Promise with error
 
@@ -3642,8 +3643,8 @@ export class EazlService implements OnInit {
 
 		window.sessionStorage.removeItem('canvas-token');
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'warn', 
-            summary:  'Login Failed', 
+            severity: 'warn',
+            summary:  'Login Failed',
             detail:   '*Login unsuccessful'
         });
         this.globalVariableService.isAuthenticatedOnEazl.next(false);
@@ -3665,7 +3666,7 @@ export class EazlService implements OnInit {
     parseResponse(response: Response) {
         return response.json() || {};
     }
-  
+
     handleError(response: Response | any): Observable<Response> {
         // Error for observable
         this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
@@ -3686,68 +3687,110 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'get', '@Start');
 
         return this.http.get(this.prepareRoute(route), this.httpOptions)
-            .map(this.parseResponse) 
+            .map(this.parseResponse)
             .catch(this.handleError);
     }
-
+ 
     post<T>(route: string, data: Object): Observable<any> {
         // Post to http
         this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
 
         return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.httpOptions)
-            .map(this.parseResponse) 
+            .map(this.parseResponse)
             .catch(this.handleError);
     }
-     
+
     addUser(user: User) {
         // Adds a new User to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'addUser', '@Start');
 
-        this.users.push(user);
+        // this.users.push(user);
     }
 
-    getUsers(){
+    getUsers(): Promise<User[]> {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
+ 
+        // Clear out what we have, for now
+        let workingUsers: User[] = [];
 
-        return this.users;
+        return this.get<EazlUser>(`${this.route}`)
+                .toPromise()
+                .then( eazlUser => {    
+
+                    for (var i = 0; i < eazlUser.length; i++) {
+                        workingUsers.push({
+                            userID: eazlUser[i].username,
+                            firstName: eazlUser[i].first_name,
+                            lastName: eazlUser[i].last_name,
+                            nickName: eazlUser[i].first_name,
+                            photoPath: 'pic',
+                            lastDatetimeLoggedIn: eazlUser[i].last_login,
+                            lastDatetimeReportWasRun: '',
+                            emailAddress: eazlUser[i].first_name + '@domain.com',
+                            cellNumber: '082-011-1234',
+                            workTelephoneNumber: '011-222-3456',
+                            workExtension: '*4508',
+                            activeFromDate: '2017/05/01',
+                            inactiveDate: '',
+                            dateCreated: '2017/05/01',
+                            userIDLastUpdated: '',
+                            isStaff: eazlUser[i].is_staff,
+                            extraString1: '',
+                            extraString10: '',
+                            extraDate1: '',
+                            extraDate10: '',
+                            extraBoolean1: false,
+                            extraBoolean10: false
+                        });
+                    }
+                    return workingUsers;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'GetUsers',
+                        detail:   'Unsuccessful in getting users from the database'
+                    });
+                    error.message || error
+                })
     }
 
     updateDashboardContainerHeader(
-        dashboardID: number, 
+        dashboardID: number,
         isContainerHeaderDark: boolean){
         // Update isContainerHeaderDark for given dashboard
-        // - dashboardID: ID of Dashboard to update 
+        // - dashboardID: ID of Dashboard to update
         // - isContainerHeaderDark: new value of isContainerHeaderDark field
 
         // TODO - update for real in DB
     }
 
     updateDashboardshowContainerHeader(
-        dashboardID: number, 
+        dashboardID: number,
         showContainerHeader: boolean){
         // Update showContainerHeader for given dashboard
-        // - dashboardID: ID of Dashboard to update 
+        // - dashboardID: ID of Dashboard to update
         // - showContainerHeader: new value of showContainerHeader field
 
         // TODO - update for real in DB
     }
 
     updateDashboardBackgroundColor(
-        dashboardID: number, 
+        dashboardID: number,
         dashboardBackgroundColor: string){
         // Update dashboardBackgroundColor for given dashboard
-        // - dashboardID: ID of Dashboard to update 
+        // - dashboardID: ID of Dashboard to update
         // - dashboardBackgroundColor: new value of dashboardBackgroundColor field
 
         // TODO - update for real in DB
     }
 
     updateDashboardBackgroundImageSrc(
-        dashboardID: number, 
+        dashboardID: number,
         dashboardBackgroundImageSrc: string){
         // Update dashboardBackgroundImageSrc for given dashboard
-        // - dashboardID: ID of Dashboard to update 
+        // - dashboardID: ID of Dashboard to update
         // - dashboardBackgroundImageSrc: new value of dashboardBackgroundImageSrc field
 
         // TODO - update for real in DB
@@ -3781,11 +3824,11 @@ export class EazlService implements OnInit {
         //        OR, use TS standard with .filter, .find, etc .... ??
         // IF an ID was provided, only return that one.  Else, al
         let resultDashboards: Dashboard[] = [];
-        if (dashboardID == -1) { 
+        if (dashboardID == -1) {
             resultDashboards = this.dashboards;
         }
         else {
-            resultDashboards = this.dashboards.filter( 
+            resultDashboards = this.dashboards.filter(
                 dash => dash.dashboardID == dashboardID
             )
         }
@@ -3878,7 +3921,7 @@ export class EazlService implements OnInit {
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'darkgray',
-                textFontSize: 16,        
+                textFontSize: 16,
                 textFontWeight: 'normal',
                 textHeight: 16,
                 textLeft: 0,
@@ -3893,7 +3936,7 @@ export class EazlService implements OnInit {
                 graphID: 0,
                 graphLeft: 5,
                 graphTop: 25,
-                vegaParameters: {                           
+                vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
                     vegaGraphPadding: 10,
@@ -3902,7 +3945,7 @@ export class EazlService implements OnInit {
                     vegaYcolumn: 'amount',
                     vegaFillColor: 'pink',
                     vegaHoverColor: 'lightgray'
-                },                
+                },
                 spec: {
                 }
             },
@@ -3982,7 +4025,7 @@ export class EazlService implements OnInit {
         for (var i = 0; i < this.reports.length; i++) {
             if (this.reports[i].reportID == reportID) {
                 return this.reports[i].reportFields;
-            }    
+            }
         }
     }
 
@@ -4021,11 +4064,11 @@ export class EazlService implements OnInit {
         // Bar Chart parameters
         if(widgetTemplateName == 'BarChart') {
             if (workingTemplate.vegaParameters.vegaXcolumn) {
-                workingTemplate.vegaSpec.scales[0].domain.field =  
+                workingTemplate.vegaSpec.scales[0].domain.field =
                     workingTemplate.vegaParameters.vegaXcolumn;
             }
             if (workingTemplate.vegaParameters.vegaYcolumn) {
-                workingTemplate.vegaSpec.scales[1].domain.field =  
+                workingTemplate.vegaSpec.scales[1].domain.field =
                     workingTemplate.vegaParameters.vegaYcolumn;
             }
             if (workingTemplate.vegaParameters.vegaXcolumn) {
