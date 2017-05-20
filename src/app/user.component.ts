@@ -47,7 +47,6 @@ export class UserComponent implements OnInit {
         // Initialise variables
         this.eazlService.getUsers()
             .then(users => {this.users = users
-console.log('usr cmp onInit', this.users)  
                 
             })
             .catch( err => {console.log(err)} );

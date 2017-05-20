@@ -3342,47 +3342,62 @@ export class EazlService implements OnInit {
 
         // this.users.push(user);
     }
-
+ 
     getUsers(): Promise<User[]> {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
- 
-        // Clear out what we have, for now
-        let workingUsers: User[] = [];
 
-        return this.get<EazlUser>(`${this.route}`)
-                .toPromise()
-                .then( eazlUser => {    
+        // Determine if the users are dirty, else present existing Array
+        let isDirtyUsers: boolean = this.globalVariableService.isDirtyUsers.getValue();
+        
+        if (isDirtyUsers) {
+            
+            // Clear out what we have, for now
+            // let workingUsers: User[] = [];
+            this.users = [];
+            return this.get<EazlUser>(`${this.route}`)
+                    .toPromise()
+                    .then( eazlUser => {    
 
-                    for (var i = 0; i < eazlUser.length; i++) {
-                        workingUsers.push({
-                            userName: eazlUser[i].username,
-                            firstName: eazlUser[i].first_name,
-                            lastName: eazlUser[i].last_name,
-                            nickName: eazlUser[i].first_name,
-                            photoPath: 'pic',
-                            lastDatetimeLoggedIn: eazlUser[i].last_login,
-                            lastDatetimeReportWasRun: '',
-                            emailAddress: eazlUser[i].email,
-                            cellNumber: '082-011-1234',
-                            workTelephoneNumber: '011-222-3456',
-                            activeFromDate: '2017/05/01',
-                            inactiveDate: '',
-                            dateCreated: eazlUser[i].date_joined,
-                            userIDLastUpdated: '',
-                            isStaff: eazlUser[i].is_staff,
+                        for (var i = 0; i < eazlUser.length; i++) {
+                            this.users.push({
+                                userName: eazlUser[i].username,
+                                firstName: eazlUser[i].first_name,
+                                lastName: eazlUser[i].last_name,
+                                nickName: eazlUser[i].first_name,
+                                photoPath: 'pic',
+                                lastDatetimeLoggedIn: eazlUser[i].last_login,
+                                lastDatetimeReportWasRun: '',
+                                emailAddress: eazlUser[i].email,
+                                cellNumber: '082-011-1234',
+                                workTelephoneNumber: '011-222-3456',
+                                activeFromDate: '2017/05/01',
+                                inactiveDate: '',
+                                dateCreated: eazlUser[i].date_joined,
+                                userIDLastUpdated: '',
+                                isStaff: eazlUser[i].is_staff,
+                            });
+                        }
+
+                        // Not dirty any longer
+                        this.globalVariableService.isDirtyUsers.next(false);
+
+                        // Return the data
+                        return this.users;
+                    } )
+                    .catch(error => {
+                        this.globalVariableService.growlGlobalMessage.next({
+                            severity: 'warn',
+                            summary:  'GetUsers',
+                            detail:   'Unsuccessful in getting users from the database'
                         });
-                    }
-                    return workingUsers;
-                } )
-                .catch(error => {
-                    this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'warn',
-                        summary:  'GetUsers',
-                        detail:   'Unsuccessful in getting users from the database'
-                    });
-                    error.message || error
-                })
+                        error.message || error
+                    })
+        } else {
+console.log('unDirty', this.users)
+            // Just return what we have got
+            return Promise.resolve(this.users);
+        }
     }
 
     updateDashboardContainerHeader(
