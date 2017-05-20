@@ -2,7 +2,7 @@
 
 // Users registered to use the system
 export class User {
-    userID: string;
+    userName: string;
     firstName: string;
     lastName: string;
     nickName: string;
@@ -12,18 +12,11 @@ export class User {
     emailAddress: string;
     cellNumber: string;
     workTelephoneNumber: string;
-    workExtension: string;
     activeFromDate: string;
     inactiveDate: string;
     dateCreated: string;
     userIDLastUpdated: string;
     isStaff: boolean;
-    extraString1: string;
-    extraString10: string;
-    extraDate1: string;
-    extraDate10: string;
-    extraBoolean1: boolean;
-    extraBoolean10: boolean;
 }
  
 // User returned by REST, determined by Django

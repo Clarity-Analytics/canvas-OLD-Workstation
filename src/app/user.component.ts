@@ -136,7 +136,7 @@ console.log('usr cmp onInit', this.users)
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
         let index = -1;
         for(let i = 0; i < this.users.length; i++) {
-            if(this.users[i].userID == user.firstName) {
+            if(this.users[i].userName == user.firstName) {
                 index = i;
                 break;
             }

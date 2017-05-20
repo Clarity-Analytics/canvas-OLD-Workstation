@@ -59,7 +59,7 @@ export class UserPopupComponent implements OnInit {
             // 'lastname': new FormControl('', Validators.required),
             // 'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
 
-            'userID': new FormControl(''),
+            'userName': new FormControl(''),
             'firstName': new FormControl(''),
             'lastName': new FormControl(''),
             'nickName': new FormControl(''),
@@ -67,7 +67,6 @@ export class UserPopupComponent implements OnInit {
             'emailAddress': new FormControl(''),
             'cellNumber': new FormControl(''),
             'workTelephoneNumber': new FormControl(''),
-            'workExtension': new FormControl(''),
             'isStaff': new FormControl('')
         }
         );
@@ -156,8 +155,8 @@ export class UserPopupComponent implements OnInit {
             this.isLoadingForm = true;
             if (this.selectedUser) {
 
-                if (this.selectedUser.userID) {
-                    this.userformID.controls['userID'].setValue(this.selectedUser.userID);
+                if (this.selectedUser.userName) {
+                    this.userformID.controls['userName'].setValue(this.selectedUser.userName);
                 }
                 if (this.selectedUser.firstName) {
                     this.userformID.controls['firstName'].setValue(this.selectedUser.firstName);
@@ -185,9 +184,6 @@ export class UserPopupComponent implements OnInit {
                 }
                 if (this.selectedUser.workTelephoneNumber) {
                     this.userformID.controls['workTelephoneNumber'].setValue(this.selectedUser.workTelephoneNumber);
-                }
-                if (this.selectedUser.workExtension) {
-                    this.userformID.controls['workExtension'].setValue(this.selectedUser.workExtension);
                 }
                 if (this.selectedUser.activeFromDate) {
                     this.userformActivity.controls['activeFromDate'].setValue(this.selectedUser.activeFromDate);
@@ -231,11 +227,11 @@ export class UserPopupComponent implements OnInit {
         this.formIsValid = false;
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
-        if (this.userformID.controls['userID'].value == ''  || 
-            this.userformID.controls['userID'].value == null) {
+        if (this.userformID.controls['userName'].value == ''  || 
+            this.userformID.controls['userName'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The UserID is compulsory.'
+            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The UserName is compulsory.'
         }
         if (this.userformID.controls['firstName'].value == null ||
             this.userformID.controls['firstName'].value == '') {
@@ -256,7 +252,7 @@ export class UserPopupComponent implements OnInit {
         // Adding new user
         if (this.addEditMode == 'Add' && this.displayUserPopup) {
             this.eazlService.addUser({
-                userID:                     this.userformID.controls['userID'].value,
+                userName:                   this.userformID.controls['userName'].value,
                 firstName:                  this.userformID.controls['firstName'].value,
                 lastName:                   this.userformID.controls['lastName'].value,
                 nickName:                   this.userformID.controls['nickName'].value,
@@ -266,18 +262,11 @@ export class UserPopupComponent implements OnInit {
                 emailAddress:               this.userformID.controls['emailAddress'].value,
                 cellNumber:                 this.userformID.controls['cellNumber'].value,
                 workTelephoneNumber:        this.userformID.controls['workTelephoneNumber'].value,
-                workExtension:              this.userformID.controls['workExtension'].value,
                 activeFromDate:             this.userformActivity.controls['activeFromDate'].value,
                 inactiveDate:               this.userformActivity.controls['inactiveDate'].value,
                 dateCreated:                this.userformActivity.controls['dateCreated'].value,
                 userIDLastUpdated:          this.userformActivity.controls['userIDLastUpdated'].value,
                 isStaff:                    this.userformID.controls['isStaff'].valuel,
-                extraString1: '',
-                extraString10: '',
-                extraDate1: '',
-                extraDate10: '',
-                extraBoolean1: false,
-                extraBoolean10: false,
             });
 
         this.globalVariableService.growlGlobalMessage.next({
@@ -287,15 +276,12 @@ export class UserPopupComponent implements OnInit {
         });
         }
 
-        //     this.selectedUser.userIDLastUpdated = this.userformActivity.controls[''].value;
-        // } 
-
         // Editing existing user
         if (this.addEditMode == 'Edit' && this.displayUserPopup) {
 
             // Only worry about changes when we are not loading
             if (!this.isLoadingForm) {
-                this.selectedUser.userID = this.userformID.controls['userID'].value;
+                this.selectedUser.userName = this.userformID.controls['userName'].value;
                 this.selectedUser.firstName = this.userformID.controls['firstName'].value;
                 this.selectedUser.lastName = this.userformID.controls['lastName'].value;
                 this.selectedUser.nickName = this.userformID.controls['nickName'].value;
@@ -303,7 +289,6 @@ export class UserPopupComponent implements OnInit {
                 this.selectedUser.emailAddress = this.userformID.controls['emailAddress'].value;
                 this.selectedUser.cellNumber = this.userformID.controls['cellNumber'].value;
                 this.selectedUser.workTelephoneNumber = this.userformID.controls['workTelephoneNumber'].value;
-                this.selectedUser.workExtension = this.userformID.controls['workExtension'].value;
                 this.selectedUser.isStaff = this.userformID.controls['isStaff'].value;
             }
 
