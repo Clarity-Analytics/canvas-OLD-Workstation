@@ -59,25 +59,25 @@ export class UserPopupComponent implements OnInit {
             // 'lastname': new FormControl('', Validators.required),
             // 'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
 
-            'userName': new FormControl(''),
-            'firstName': new FormControl(''),
-            'lastName': new FormControl(''),
-            'nickName': new FormControl(''),
-            'photoPath': new FormControl(''),
-            'emailAddress': new FormControl(''),
-            'cellNumber': new FormControl(''),
-            'workTelephoneNumber': new FormControl(''),
-            'isStaff': new FormControl('')
+            'userName':             new FormControl('', Validators.required),
+            'firstName':            new FormControl('', Validators.required),
+            'lastName':             new FormControl('', Validators.required),
+            'nickName':             new FormControl(''),
+            'photoPath':            new FormControl(''),
+            'emailAddress':         new FormControl('', Validators.required),
+            'cellNumber':           new FormControl(''),
+            'workTelephoneNumber':  new FormControl(''),
+            'isStaff':              new FormControl('')
         }
         );
 
         this.userformActivity = this.fb.group({
-            'lastDatetimeLoggedIn': new FormControl(''),
+            'lastDatetimeLoggedIn':     new FormControl(''),
             'lastDatetimeReportWasRun': new FormControl(''),
-            'activeFromDate': new FormControl(''),
-            'inactiveDate': new FormControl(''),
-            'dateCreated': new FormControl(''),
-            'userIDLastUpdated': new FormControl('')
+            'activeFromDate':           new FormControl(''),
+            'inactiveDate':             new FormControl(''),
+            'dateCreated':              new FormControl(''),
+            'userIDLastUpdated':        new FormControl('')
         }
         );
 
@@ -239,6 +239,18 @@ export class UserPopupComponent implements OnInit {
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The First Name is compulsory.'
         }
+        if (this.userformID.controls['lastName'].value == null ||
+            this.userformID.controls['lastName'].value == '') {
+            this.formIsValid = false;
+            this.numberErrors = this.numberErrors + 1;
+            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Last Name is compulsory.'
+        }
+        if (this.userformID.controls['emailAddress'].value == null ||
+            this.userformID.controls['emailAddress'].value == '') {
+            this.formIsValid = false;
+            this.numberErrors = this.numberErrors + 1;
+            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Email Address is compulsory.'
+        }
         if (this.errorMessageOnForm != '') {
             this.formIsValid = true;
             this.globalVariableService.growlGlobalMessage.next({
@@ -248,7 +260,7 @@ export class UserPopupComponent implements OnInit {
             });
             return;
         }
-
+ 
         // Adding new user
         if (this.addEditMode == 'Add' && this.displayUserPopup) {
             this.eazlService.addUser({
