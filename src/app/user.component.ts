@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
     popuMenuItems: MenuItem[];
     selectedUser: User;
     users: User[];
-// users: EazlUser[];
+
     constructor(
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
@@ -43,7 +43,7 @@ export class UserComponent implements OnInit {
     
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+ 
         // Initialise variables
         this.eazlService.getUsers()
             .then(users => {this.users = users
@@ -222,6 +222,7 @@ export class UserComponent implements OnInit {
     handleUserPopupFormClosed(howClosed: string) {
         // Handle the event: howClosed = Cancel / Submit
         this.displayUserPopup = false;
+console.log('usr cmp selUsr', this.selectedUser)
   }
 }
 

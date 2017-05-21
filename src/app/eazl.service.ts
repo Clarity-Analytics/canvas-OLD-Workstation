@@ -3295,7 +3295,6 @@ export class EazlService implements OnInit {
         if (route.slice(0) === '/') {
             route = route.slice(1);
         }
-
         return `${this.httpBaseUri}${route}`;
     }
 
@@ -3340,7 +3339,41 @@ export class EazlService implements OnInit {
         // Adds a new User to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'addUser', '@Start');
 
-        // this.users.push(user);
+        // TODO - remove this hack once Users in separate DB
+        let today = new Date();
+        let workingUser: any = {
+            username: user.userName,
+            first_name: user.firstName,
+            last_name: user.lastName,
+            email: user.emailAddress,
+            password: 'canvas100*',
+            is_superuser: false,        //ro
+            is_staff: user.isStaff, //ro
+            is_active: true,
+            last_login: null
+        }
+
+        return this.post<EazlUser>('users',workingUser)
+                .toPromise()
+                .then( eazlUser => {    
+                    // Update local store
+                    this.users.push(user);
+
+                    // TODO - reGet the local => always in sync
+                    // Not dirty any longer
+                    this.globalVariableService.isDirtyUsers.next(false);
+
+                    // Return the data
+                    return this.users;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'AddUsers',
+                        detail:   'Unsuccessful in adding user to the database'
+                    });
+                    error.message || error
+                })
     }
  
     getUsers(): Promise<User[]> {
@@ -3394,8 +3427,7 @@ export class EazlService implements OnInit {
                         error.message || error
                     })
         } else {
-console.log('unDirty', this.users)
-            // Just return what we have got
+            // Just return what we have got, as its clean
             return Promise.resolve(this.users);
         }
     }
