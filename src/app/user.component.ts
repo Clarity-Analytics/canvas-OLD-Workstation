@@ -4,6 +4,7 @@ import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
+import { ConfirmationService }        from 'primeng/primeng';  
 import { MenuItem }                   from 'primeng/primeng';  
 import { Message }                    from 'primeng/primeng';  
 
@@ -35,6 +36,7 @@ export class UserComponent implements OnInit {
     users: User[];
 
     constructor(
+        private confirmationService: ConfirmationService,
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -130,23 +132,31 @@ export class UserComponent implements OnInit {
     }
 
     userMenuDelete(user: User) {
-        // Delete the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
-        let index = -1;
-        for(let i = 0; i < this.users.length; i++) {
-            if(this.users[i].userName == user.firstName) {
-                index = i;
-                break;
+        // Delete the selected user, but first confirm
+
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this record?',
+            reject: () => { return},
+            accept: () => {
+
+                // - User: currently selected row
+                this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+                let index = -1;
+                for(let i = 0; i < this.users.length; i++) {
+                    if(this.users[i].userName == user.firstName) {
+                        index = i;
+                        break;
+                    }
+                }
+                this.users.splice(index, 1);
+                
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'info', 
+                    summary:  'User deleted', 
+                    detail:   user.firstName + ' - ' + user.lastName
+                });
             }
-        }
-        this.users.splice(index, 1);
-        
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User deleted', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
+        })
     }
 
     userMenuGroupMembership(user: User) {
