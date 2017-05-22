@@ -29,7 +29,9 @@ import { DashboardTab }               from './model.dashboardTabs';
 export class DashboardTabEditorComponent implements OnInit {
 
     @Input() selectedDashboardID: number;
+    @Input() selectedDashboardTabID: number;
     @Input() selectedDashboardTabName: string;
+    @Input() displayTabDetails: boolean;
 
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
@@ -64,15 +66,26 @@ export class DashboardTabEditorComponent implements OnInit {
         });
     }
 
+    ngOnChanges() {
+        // Reacts to changes in selectedWidget
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChange', '@Start');
+if (this.displayTabDetails) {
+    console.log('ready', this.selectedDashboardTab, this.selectedDashboardTab)
+    // Refresh the form
+    this.refreshForm()
+}
+    }
+
     refreshForm() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'refreshForm', '@Start');
 
         // Get the selected Dashboard
         this.selectedDashboardTab = this.eazlService.getDashboardTabs(this.selectedDashboardID)[0];
-
-console.log('refreshForm', this.selectedDashboardTab.dashboardID, 
-    this.dashboardTabForm.controls['dashboardName'].value, this.selectedDashboardTab)
+console.log('refreshForm 0 selectedDashboardID=', this.selectedDashboardID)
+console.log('refreshForm 1', this.selectedDashboardTab)
+console.log('refreshForm 2', this.selectedDashboardTab.dashboardID)
+console.log('refreshForm 3', this.dashboardTabForm.controls['dashboardName'].value, this.selectedDashboardTab)
 
         // Clear the form 
         this.dashboardTabForm.reset();

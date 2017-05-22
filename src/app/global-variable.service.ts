@@ -43,7 +43,7 @@ export class GlobalVariableService {
     sessionLoadOnOpenDashboardID = new BehaviorSubject(-1);     // Dashboard to load when form opens, 0 = none
     sessionLoadOnOpenDashboardCode = new BehaviorSubject('');   // Dashboard to load when form opens, '' = none
     sessionLoadOnOpenDashboardName = new BehaviorSubject('');   // Dashboard to load when form opens, '' = none
-    sessiondashboardTabName = new BehaviorSubject('');             // Tab to load when form opens, '' = none
+    sessionDashboardTabName = new BehaviorSubject('');             // Tab to load when form opens, '' = none
 
     // Dirty data flags (true => will be reloaded from DB) - true @Start
     isDirtyUsers = new BehaviorSubject(true);                   // For Users

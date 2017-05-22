@@ -3542,7 +3542,7 @@ export class EazlService implements OnInit {
     }
 
     getDashboardTabs(selectedDashboardID: number) {
-        // Return a list of Dashboards
+        // Return a list of Dashboard Tabs for a given DashboardID
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabs', '@Start');
 
         return this.dashboardTabs.filter(tab => tab.dashboardID == selectedDashboardID);

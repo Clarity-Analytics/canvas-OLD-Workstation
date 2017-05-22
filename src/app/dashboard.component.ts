@@ -109,6 +109,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     selectedCommentWidgetID: number;                // Current WidgetID for Comment
     selectedDashboardID: number;                    // Currely Dashboard
     selectedDashboardName: any;                     // Select Dashboard name in DropDown
+    selectedDashboardTabID: number;                 // Current DashboardTab ID
     selectedDashboardTabName: any;                  // Current DashboardTab
     selectedTabName: any;                           // Tab Name selected in DropDown
     selectedWidget: Widget = null;                  // Selected widget during dragging
@@ -280,20 +281,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
 
-            if (this.globalVariableService.sessiondashboardTabName.getValue() == '') {
+            if (this.globalVariableService.sessionDashboardTabName.getValue() == '') {
                 if (this.globalVariableService.startupdashboardTabName.getValue() != '') {
-                    this.globalVariableService.sessiondashboardTabName.next(
+                    this.globalVariableService.sessionDashboardTabName.next(
                         this.globalVariableService.startupdashboardTabName.getValue()
                     )
                 }
             }
-            if (this.globalVariableService.sessiondashboardTabName.getValue() != '') {
+            if (this.globalVariableService.sessionDashboardTabName.getValue() != '') {
                 this.selectedTabName = {
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
-                    name: this.globalVariableService.sessiondashboardTabName.getValue()
+                    name: this.globalVariableService.sessionDashboardTabName.getValue()
                 }
                 
-                this.loadDashboardBody(this.globalVariableService.sessiondashboardTabName.getValue());
+                this.loadDashboardBody(this.globalVariableService.sessionDashboardTabName.getValue());
             }
         }
 
@@ -2066,11 +2067,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
 
         // Remember this for next time
-        this.globalVariableService.sessiondashboardTabName.next(event.value.name);
+        this.globalVariableService.sessionDashboardTabName.next(event.value.name);
 
         // Set the Selected One
         this.loadDashboardBody(event.value.name);
-
+        this.selectedDashboardTabID = event.value.id
     }
 
     loadDashboardBody(selectedDashboardTabName: string) {
