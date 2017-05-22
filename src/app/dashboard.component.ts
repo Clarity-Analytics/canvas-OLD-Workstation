@@ -1337,7 +1337,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardID: this.selectedDashboardName.id,
                 dashboardTabID: maxID,
                 widgetTabName: newWidgetTabName,
-                widgetTabDescription: ''
+                widgetTabDescription: '',
+                dashboardCreatedDateTime: '2017/05/01',
+                dashboardCreatedUserID: 'John Doe',
+                dashboardTabUpdatedDateTime: '2017/05/01',
+                dashboardTabUpdatedUserID: 'Leonard Cohen'
             }
         );
 
