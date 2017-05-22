@@ -79,13 +79,14 @@ if (this.displayTabDetails) {
     refreshForm() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'refreshForm', '@Start');
-
+this.selectedDashboardTabID=1;
         // Get the selected Dashboard
-        this.selectedDashboardTab = this.eazlService.getDashboardTabs(this.selectedDashboardID)[0];
+        this.selectedDashboardTab = this.eazlService.getDashboardTabs(
+            this.selectedDashboardID, this.selectedDashboardTabID)[0];
 console.log('refreshForm 0 selectedDashboardID=', this.selectedDashboardID)
-console.log('refreshForm 1', this.selectedDashboardTab)
-console.log('refreshForm 2', this.selectedDashboardTab.dashboardID)
-console.log('refreshForm 3', this.dashboardTabForm.controls['dashboardName'].value, this.selectedDashboardTab)
+console.log('refreshForm 1 selectedDashboardTabID', this.selectedDashboardTabID)
+console.log('refreshForm 2 selectedDashboardTab', this.selectedDashboardTab)
+// console.log('refreshForm 3', this.dashboardTabForm.controls['dashboardName'].value, this.selectedDashboardTab)
 
         // Clear the form 
         this.dashboardTabForm.reset();
