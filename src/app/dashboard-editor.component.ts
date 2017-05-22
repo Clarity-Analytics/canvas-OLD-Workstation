@@ -1,4 +1,4 @@
-// Login form
+// Dashboard Editor
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { FormBuilder }                from '@angular/forms';
@@ -46,7 +46,7 @@ export class DashboardEditorComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-    
+     
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 

@@ -1416,17 +1416,25 @@
 
 
     <!--Detail for selected Tab-->
-    <p-dialog 
-        header="Tab Editor" 
-        [(visible)]="displayTabDetails" 
-        modal="modal" 
-        resizable="true"
-        height="100vw"
-        responsive="true"
+    <div
+        *ngIf="displayTabDetails"
         >
-        Form to show detail for Tab
-    </p-dialog>
-
+        <p-dialog 
+            header="Tab Editor" 
+            [(visible)]="displayTabDetails" 
+            modal="modal" 
+            resizable="true"
+            height="100vw"
+            responsive="true"
+            >
+            <dashboard-tab-editor
+                [selectedDashboardID]="selectedDashboardID" 
+                [selectedDashboardTabName]="selectedDashboardTabName"
+                >
+                Loading Dashboard Tab Editor ...
+            </dashboard-tab-editor>
+        </p-dialog>
+    </div>
 
     <!--Confirmation Dialogue Box-->
     <p-confirmDialog 

@@ -1,0 +1,137 @@
+<!--Errors-->
+<p 
+    class="iserror" 
+    *ngIf="formIsValid"> 
+    {{ errorMessageOnForm }}
+</p>
+
+
+<!--Form with selected Dashboard-->
+<form 
+    [formGroup]="dashboardTabForm" 
+    (ngSubmit)="onSubmit(dashboardForm.value)"
+    >
+    <div 
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        style="margin: 10px 0px"
+        >
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Dashboard ID:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       readonly
+                       type="text" 
+                       formControlName="dashboardID" 
+                       placeholder="(info)"
+                       autofocus
+                       autocomplete="on"
+                       />
+            </div>
+
+            <div class="ui-grid-col-2">
+                Widget Tab ID :
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       readonly
+                       type="text" 
+                       formControlName="widgetTabID" 
+                       placeholder="Required"
+                       />
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+               Widget Tab Name :
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       readonly
+                       type="text" 
+                       formControlName="widgetTabName" 
+                       placeholder="Required"
+                       />
+            </div>
+
+            <div class="ui-grid-col-2">
+                Tab Description:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="widgetTabDescription" 
+                       placeholder="(Optional)"
+                       />
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Created on:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       readonly
+                       type="text" 
+                       formControlName="dashboardCreatedDateTime" 
+                       placeholder="(Optional)"
+                       />
+            </div>
+
+            <div class="ui-grid-col-2">
+                Created by:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       readonly
+                       type="text" 
+                       formControlName="dashboardCreatedUserID" 
+                       placeholder="(Optional)"
+                       />
+            </div>
+
+            <div class="ui-grid-col-2">
+                Updated on:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       readonly
+                       type="text" 
+                       formControlName="dashboardTabUpdatedDateTime" 
+                       placeholder="(Optional)"
+                       />
+            </div>
+
+            <div class="ui-grid-col-2">
+                Updated by:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       readonly
+                       type="text" 
+                       formControlName="dashboardTabUpdatedUserID" 
+                       placeholder="(Optional)"
+                       />
+            </div>
+        </div>
+
+        <!--Submit Button-->
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"></div>
+            <div class="ui-grid-col-4">
+                <button pButton 
+                        type="submit" 
+                        label="Submit" 
+                        >
+                </button>
+            </div>
+            <div class="ui-grid-col-4"></div>
+        </div>
+
+    </div>   
+</form> 
+

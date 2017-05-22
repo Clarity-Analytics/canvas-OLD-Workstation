@@ -1,4 +1,4 @@
-// Login form
+// User form
 import { Component }                  from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';

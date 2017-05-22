@@ -186,7 +186,7 @@ export class AppComponent implements OnInit {
                     // Amend the menu
                     this.menuItems = this.loadMenu();
 
-                    // Show the login form
+                    // Show the relevant page
                     this.displayNewMessage = true;        
                     this.router.navigate(['pagenotfound']);     
                     
