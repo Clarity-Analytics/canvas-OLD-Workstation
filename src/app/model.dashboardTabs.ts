@@ -3,7 +3,7 @@
 export class DashboardTab {
     dashboardID: number;                        // FK to Unique DB ID
     dashboardTabID: number;                     // Unique DB key
-    widgetTabName: string;                      // Tab Name inside
+    dashboardTabName: string;                      // Tab Name inside
     widgetTabDescription: string;               // Tab Description
     dashboardCreatedDateTime: string;           // Updated on
     dashboardCreatedUserID: string;             // Updated by

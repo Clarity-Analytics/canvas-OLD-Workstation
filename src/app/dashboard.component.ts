@@ -280,20 +280,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
 
-            if (this.globalVariableService.sessionWidgetTabName.getValue() == '') {
-                if (this.globalVariableService.startupWidgetTabName.getValue() != '') {
-                    this.globalVariableService.sessionWidgetTabName.next(
-                        this.globalVariableService.startupWidgetTabName.getValue()
+            if (this.globalVariableService.sessiondashboardTabName.getValue() == '') {
+                if (this.globalVariableService.startupdashboardTabName.getValue() != '') {
+                    this.globalVariableService.sessiondashboardTabName.next(
+                        this.globalVariableService.startupdashboardTabName.getValue()
                     )
                 }
             }
-            if (this.globalVariableService.sessionWidgetTabName.getValue() != '') {
+            if (this.globalVariableService.sessiondashboardTabName.getValue() != '') {
                 this.selectedTabName = {
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
-                    name: this.globalVariableService.sessionWidgetTabName.getValue()
+                    name: this.globalVariableService.sessiondashboardTabName.getValue()
                 }
                 
-                this.loadDashboardBody(this.globalVariableService.sessionWidgetTabName.getValue());
+                this.loadDashboardBody(this.globalVariableService.sessiondashboardTabName.getValue());
             }
         }
 
@@ -371,7 +371,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // Add the new guy to the Array
 
             // Only render our own
-            if (this.widgetToEdit.properties.widgetTabName['name'] == 
+            if (this.widgetToEdit.properties.dashboardTabName['name'] == 
                 this.selectedDashboardTabName.toString()) {
 
                 // TODO - this is crude & error prone: do it properly in DB
@@ -411,8 +411,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         // entry, everything dies.  Including position, svg rendered, etc
                         this.widgets[i].container.widgetTitle = 
                             this.widgetToEdit.container.widgetTitle;
-                        this.widgets[i].properties.widgetTabName = 
-                            this.widgetToEdit.properties.widgetTabName;
+                        this.widgets[i].properties.dashboardTabName = 
+                            this.widgetToEdit.properties.dashboardTabName;
                         this.widgets[i].properties.widgetCode = 
                             this.widgetToEdit.properties.widgetCode;
                         this.widgets[i].properties.widgetName = 
@@ -1327,7 +1327,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Set Name
         this.numberUntitledTabs = this.numberUntitledDashboards + 1;
-        let newWidgetTabName: string = 'Untitled - ' + this.numberUntitledTabs.toString();
+        let newdashboardTabName: string = 'Untitled - ' + this.numberUntitledTabs.toString();
         let maxID = this.dashboardTabs.length + 1;
         // Add
         // TODO - do via DB RESTi
@@ -1336,7 +1336,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             {
                 dashboardID: this.selectedDashboardName.id,
                 dashboardTabID: maxID,
-                widgetTabName: newWidgetTabName,
+                dashboardTabName: newdashboardTabName,
                 widgetTabDescription: '',
                 dashboardCreatedDateTime: '2017/05/01',
                 dashboardCreatedUserID: 'John Doe',
@@ -1347,10 +1347,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Refresh the Array of Dashboards IF no current filter
         this.dashboardTabsDropDown.push({
-            label: newWidgetTabName,
+            label: newdashboardTabName,
             value: {
                 id: this.selectedDashboardName.id,
-                name: newWidgetTabName
+                name: newdashboardTabName
             }
         });
 
@@ -1399,7 +1399,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (TM != undefined) {
 
             // Can only delete Widgetless Tabs
-            if (this.widgets.filter( w => w.properties.widgetTabName == TM.name).length >0) {
+            if (this.widgets.filter( w => w.properties.dashboardTabName == TM.name).length >0) {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn', 
                     summary:  'Tab NOT empty', 
@@ -1412,7 +1412,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
             // Travers
             for (var i = 0; i < this.dashboardTabs.length; i++ ) {
-                if (this.dashboardTabs[i].widgetTabName == TM.name) {
+                if (this.dashboardTabs[i].dashboardTabName == TM.name) {
                     this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', 'Deleting ' + TM.name + ' ...');
                     this.dashboardTabs.splice(i, 1);
 
@@ -1980,10 +1980,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {
             this.dashboardTabsDropDown.push({
-                label: this.dashboardTabs[i].widgetTabName,
+                label: this.dashboardTabs[i].dashboardTabName,
                 value: {
                     id: this.dashboardTabs[i].dashboardTabID,
-                    name: this.dashboardTabs[i].widgetTabName
+                    name: this.dashboardTabs[i].dashboardTabName
                 }
             });
         }
@@ -2060,7 +2060,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
 
         // Remember this for next time
-        this.globalVariableService.sessionWidgetTabName.next(event.value.name);
+        this.globalVariableService.sessiondashboardTabName.next(event.value.name);
 
         // Set the Selected One
         this.loadDashboardBody(event.value.name);

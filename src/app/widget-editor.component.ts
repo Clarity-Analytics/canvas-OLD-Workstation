@@ -156,7 +156,7 @@ export class WidgetEditorComponent implements OnInit {
         // Define form group for first tab
         this.identificationForm = this.fb.group(
             {
-                'widgetTabName':                new FormControl(''),
+                'dashboardTabName':                new FormControl(''),
                 'showWidgetText':               new FormControl(''),
                 'showWidgetGraph':              new FormControl(''),
                 'showWidgetTable':              new FormControl(''),
@@ -337,9 +337,9 @@ export class WidgetEditorComponent implements OnInit {
                 this.showWidgetImage = this.widgetToEdit.areas.showWidgetImage;
                 this.selectedItem = {
                     id: this.widgetToEdit.properties.dashboardTabID, 
-                    name: this.widgetToEdit.properties.widgetTabName
+                    name: this.widgetToEdit.properties.dashboardTabName
                 };
-                this.identificationForm.controls['widgetTabName'].setValue(this.selectedItem);
+                this.identificationForm.controls['dashboardTabName'].setValue(this.selectedItem);
                 this.selectedDashboardTab = this.selectedItem;
                 this.identificationForm.controls['widgetTitle']
                     .setValue(this.widgetToEdit.container.widgetTitle);
@@ -552,8 +552,8 @@ export class WidgetEditorComponent implements OnInit {
         this.numberErrors = 0;
 
         // Validation
-        if (this.identificationForm.controls['widgetTabName'].value == ''  || 
-            this.identificationForm.controls['widgetTabName'].value == null) {
+        if (this.identificationForm.controls['dashboardTabName'].value == ''  || 
+            this.identificationForm.controls['dashboardTabName'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
@@ -834,8 +834,8 @@ export class WidgetEditorComponent implements OnInit {
             // First, load from form what wass indeed provided on the form
             this.widgetToEdit.container.widgetTitle = 
                 this.identificationForm.controls['widgetTitle'].value;
-            this.widgetToEdit.properties.widgetTabName = 
-                this.identificationForm.controls['widgetTabName'].value;
+            this.widgetToEdit.properties.dashboardTabName = 
+                this.identificationForm.controls['dashboardTabName'].value;
             this.widgetToEdit.properties.widgetCode = 
                 this.identificationForm.controls['widgetCode'].value;
             this.widgetToEdit.properties.widgetName = 
@@ -878,8 +878,8 @@ export class WidgetEditorComponent implements OnInit {
 
             // Only worry about changes when we are not loading
             if (!this.isLoadingForm) {
-                this.widgetToEdit.properties.widgetTabName = 
-                    this.identificationForm.controls['widgetTabName'].value;
+                this.widgetToEdit.properties.dashboardTabName = 
+                    this.identificationForm.controls['dashboardTabName'].value;
                 this.widgetToEdit.container.widgetTitle = 
                     this.identificationForm.controls['widgetTitle'].value;
                 this.widgetToEdit.properties.widgetCode = 
@@ -1192,10 +1192,10 @@ export class WidgetEditorComponent implements OnInit {
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {
             this.dashboardTabsDropDown.push({
-                label: this.dashboardTabs[i].widgetTabName,
+                label: this.dashboardTabs[i].dashboardTabName,
                 value: {
                     id: this.dashboardTabs[i].dashboardTabID,
-                    name: this.dashboardTabs[i].widgetTabName
+                    name: this.dashboardTabs[i].dashboardTabName
                 }
             });
         }

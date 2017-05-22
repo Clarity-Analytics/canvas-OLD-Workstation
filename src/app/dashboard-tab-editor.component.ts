@@ -55,7 +55,7 @@ export class DashboardTabEditorComponent implements OnInit {
         this.dashboardTabForm = this.fb.group({
             'dashboardID':                      new FormControl(''),
             'dashboardTabID':                   new FormControl(''),
-            'widgetTabName':                    new FormControl(''),
+            'dashboardTabName':                    new FormControl(''),
             'widgetTabDescription':             new FormControl(''),
             'dashboardCreatedDateTime':         new FormControl(''),
             'dashboardCreatedUserID':           new FormControl(''),
@@ -84,8 +84,8 @@ console.log('refreshForm', this.selectedDashboardTab.dashboardID,
         this.dashboardTabForm.controls['dashboardTabID'].setValue(
             this.selectedDashboardTab.dashboardTabID
         );
-        this.dashboardTabForm.controls['widgetTabName'].setValue(
-            this.selectedDashboardTab.widgetTabName
+        this.dashboardTabForm.controls['dashboardTabName'].setValue(
+            this.selectedDashboardTab.dashboardTabName
         );
         this.dashboardTabForm.controls['widgetTabDescription'].setValue(
             this.selectedDashboardTab.widgetTabDescription

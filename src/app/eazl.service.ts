@@ -259,7 +259,7 @@ export const DASHBOARDTABS: DashboardTab[] =
         {
             dashboardID: 0,
             dashboardTabID: 0,
-            widgetTabName: 'Value',
+            dashboardTabName: 'Value',
             widgetTabDescription: '0-Value: Full and detailed desription of tab - purpose',
             dashboardCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
@@ -269,7 +269,7 @@ export const DASHBOARDTABS: DashboardTab[] =
         {
             dashboardID: 0,
             dashboardTabID: 1,
-            widgetTabName: 'Volume',
+            dashboardTabName: 'Volume',
             widgetTabDescription: '0-Volume: Full and detailed desription of tab - purpose',
             dashboardCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
@@ -279,7 +279,7 @@ export const DASHBOARDTABS: DashboardTab[] =
         {
             dashboardID: 1,
             dashboardTabID: 2,
-            widgetTabName: 'Value',
+            dashboardTabName: 'Value',
             widgetTabDescription: 'Full and detailed desription of tab - purpose',
             dashboardCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
@@ -289,7 +289,7 @@ export const DASHBOARDTABS: DashboardTab[] =
         {
             dashboardID: 1,
             dashboardTabID: 3,
-            widgetTabName: 'Volume',
+            dashboardTabName: 'Volume',
             widgetTabDescription: '1-Value: Full and detailed desription of tab - purpose',
             dashboardCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
@@ -299,7 +299,7 @@ export const DASHBOARDTABS: DashboardTab[] =
         {
             dashboardID: 3,
             dashboardTabID: 4,
-            widgetTabName: 'Value',
+            dashboardTabName: 'Value',
             widgetTabDescription: '3-Value: Full and detailed desription of tab - purpose',
             dashboardCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
@@ -309,7 +309,7 @@ export const DASHBOARDTABS: DashboardTab[] =
         {
             dashboardID: 4,
             dashboardTabID: 5,
-            widgetTabName: 'Value',
+            dashboardTabName: 'Value',
             widgetTabDescription: '4-Value: Full and detailed desription of tab - purpose',
             dashboardCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
@@ -319,7 +319,7 @@ export const DASHBOARDTABS: DashboardTab[] =
         {
             dashboardID: 5,
             dashboardTabID: 6,
-            widgetTabName: 'Value',
+            dashboardTabName: 'Value',
             widgetTabDescription: '5-Value: Full and detailed desription of tab - purpose',
             dashboardCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
@@ -510,7 +510,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 1,
                 dashboardID: 0,
                 dashboardTabID: 0,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'FirstBar',
                 widgetName: 'Bar Chart 1',
                 widgetAddRestRow: true,
@@ -715,7 +715,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 2,
                 dashboardID: 0,
                 dashboardTabID: 0,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'SecondBar',
                 widgetName: 'Bar Chart 2',
 
@@ -906,7 +906,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 3,
                 dashboardID: 0,
                 dashboardTabID: 0,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'ThirdBar',
                 widgetName: 'Bar Chart 3',
 
@@ -1136,7 +1136,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 4,
                 dashboardID: 0,
                 dashboardTabID: 1,
-                widgetTabName: "Volume",
+                dashboardTabName: "Volume",
                 widgetCode: 'FourthBar',
                 widgetName: 'Bar Chart 4',
 
@@ -1411,7 +1411,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 5,
                 dashboardID: 0,
                 dashboardTabID: 1,
-                widgetTabName: "Volume",
+                dashboardTabName: "Volume",
                 widgetCode: 'FifthBar',
                 widgetName: 'Bar Chart 5',
 
@@ -1585,7 +1585,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 11,
                 dashboardID: 1,
                 dashboardTabID: 2,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
 
@@ -1781,7 +1781,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 12,
                 dashboardID: 1,
                 dashboardTabID: 3,
-                widgetTabName: "Volume",
+                dashboardTabName: "Volume",
                 widgetCode: 'SecondBar',
                 widgetName: 'Line Volume 1',
 
@@ -1963,7 +1963,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 21,
                 dashboardID: 3,
                 dashboardTabID: 4,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
 
@@ -2185,7 +2185,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 6,
                 dashboardID: 3,
                 dashboardTabID: 4,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
 
@@ -2372,7 +2372,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 41,
                 dashboardID: 4,
                 dashboardTabID: 5,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
 
@@ -2655,7 +2655,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 51,
                 dashboardID: 5,
                 dashboardTabID: 6,
-                widgetTabName: "Value",
+                dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
 
@@ -3554,7 +3554,7 @@ export class EazlService implements OnInit {
 
         return this.widgets.filter(widget =>
             widget.properties.dashboardID == selectedDashboardID &&
-            widget.properties.widgetTabName == selectedDashboarTabName
+            widget.properties.dashboardTabName == selectedDashboarTabName
         );
 
     }
@@ -3676,7 +3676,7 @@ export class EazlService implements OnInit {
                 widgetID: 1,
                 dashboardID: 0,
                 dashboardTabID: 0,
-                widgetTabName: '',
+                dashboardTabName: '',
                 widgetCode: '',
                 widgetName: '',
                 widgetAddRestRow: false,
