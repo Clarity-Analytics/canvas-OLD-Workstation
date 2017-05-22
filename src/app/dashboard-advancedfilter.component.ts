@@ -27,7 +27,7 @@ import { Filter }                     from './model.filter';
 export class DashboardAdvFilterComponent implements OnInit {
 
     // Event emitter sends event back to parent component once Submit button was clicked
-    @Output() formSubmit: EventEmitter<Filter> = new EventEmitter();
+    @Output() formAdvancedFilterSubmit: EventEmitter<Filter> = new EventEmitter();
     
     // Local properties
     filterOwner: string = '';
@@ -74,7 +74,7 @@ export class DashboardAdvFilterComponent implements OnInit {
         }   
 
         // Trigger event emitter 'emit' method
-        this.formSubmit.emit(
+        this.formAdvancedFilterSubmit.emit(
             {
                 hasAtLeastOneFilter: hasAtLeastOneFilter,
                 owner: this.filterOwner, 

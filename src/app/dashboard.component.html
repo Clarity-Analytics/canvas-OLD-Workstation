@@ -1388,7 +1388,7 @@
         >
 
         <dashboardadvancedfilter 
-            (formSubmit)="handleFormSubmit($event)" 
+            (formAdvancedFilterSubmit)="handleFormSubmit($event)" 
             >
         </dashboardadvancedfilter>
 
@@ -1430,6 +1430,7 @@
             <dashboard-tab-editor
                 [selectedDashboardID]="selectedDashboardID" 
                 [selectedDashboardTabName]="selectedDashboardTabName"
+                (formDashboarTabSubmit)="handleformDashboarTabSubmit($event)"
                 >
                 Loading Dashboard Tab Editor ...
             </dashboard-tab-editor>

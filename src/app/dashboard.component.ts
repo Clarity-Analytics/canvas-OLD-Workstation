@@ -325,6 +325,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
+    public handleformDashboarTabSubmit(event){
+        // Is triggered after the Dashboard Tab form is submitted
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleformDashboarTabSubmit', '@Start');
+
+    }
+
     public handleFormSubmit(returnedFilter: Filter): void {
         // Is triggered after the Advanced Filter form is submitted
         this.globalFunctionService.printToConsole(this.constructor.name,'handleFormSubmit', '@Start');

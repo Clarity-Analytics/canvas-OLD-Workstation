@@ -55,8 +55,8 @@ export class DashboardTabEditorComponent implements OnInit {
         this.dashboardTabForm = this.fb.group({
             'dashboardID':                      new FormControl(''),
             'dashboardTabID':                   new FormControl(''),
-            'dashboardTabName':                    new FormControl(''),
-            'dashboardTabDescription':             new FormControl(''),
+            'dashboardTabName':                 new FormControl(''),
+            'dashboardTabDescription':          new FormControl(''),
             'dashboardCreatedDateTime':         new FormControl(''),
             'dashboardCreatedUserID':           new FormControl(''),
             'dashboardTabUpdatedDateTime':      new FormControl(''),
@@ -90,12 +90,18 @@ console.log('refreshForm', this.selectedDashboardTab.dashboardID,
         this.dashboardTabForm.controls['dashboardTabDescription'].setValue(
             this.selectedDashboardTab.dashboardTabDescription
         );
-        // this.dashboardTabForm.controls['dashboardUpdatedDateTime'].setValue(
-        //     this.selectedDashboardTab.dashboardUpdatedDateTime
-        // );
-        // this.dashboardTabForm.controls['dashboardUpdatedUserID'].setValue(
-        //     this.selectedDashboardTab.dashboardUpdatedUserID
-        // );
+        this.dashboardTabForm.controls['dashboardCreatedDateTime'].setValue(
+            this.selectedDashboardTab.dashboardCreatedDateTime
+        );
+        this.dashboardTabForm.controls['dashboardCreatedUserID'].setValue(
+            this.selectedDashboardTab.dashboardCreatedUserID
+        );
+        this.dashboardTabForm.controls['dashboardTabUpdatedDateTime'].setValue(
+            this.selectedDashboardTab.dashboardTabUpdatedDateTime
+        );
+        this.dashboardTabForm.controls['dashboardTabUpdatedUserID'].setValue(
+            this.selectedDashboardTab.dashboardTabUpdatedUserID
+        );
 
 console.log ('refreshForm @End', this.selectedDashboardID,this.dashboardTabForm.controls['dashboardName'].value)
 

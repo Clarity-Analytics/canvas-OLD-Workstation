@@ -156,7 +156,7 @@ export class WidgetEditorComponent implements OnInit {
         // Define form group for first tab
         this.identificationForm = this.fb.group(
             {
-                'dashboardTabName':                new FormControl(''),
+                'dashboardTabName':             new FormControl(''),
                 'showWidgetText':               new FormControl(''),
                 'showWidgetGraph':              new FormControl(''),
                 'showWidgetTable':              new FormControl(''),

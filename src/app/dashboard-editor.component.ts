@@ -55,7 +55,7 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardID':                      new FormControl(''),
             'dashboardCode':                    new FormControl('', Validators.required),
             'dashboardName':                    new FormControl('', Validators.required),
-            'dashboardBackgroundImageSrc':   new FormControl(''),
+            'dashboardBackgroundImageSrc':      new FormControl(''),
             'dashboardComments':                new FormControl(''),
             'dashboardCreatedDateTime':         new FormControl(''),
             'dashboardCreatedUserID':           new FormControl(''),
