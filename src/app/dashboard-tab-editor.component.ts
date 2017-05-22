@@ -21,6 +21,11 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
 
+export class SelectedItem {
+    id: any;
+    name: string;
+}
+
 @Component({
     selector:    'dashboard-tab-editor',
     templateUrl: 'dashboard-tab-editor.component.html',
@@ -30,7 +35,7 @@ export class DashboardTabEditorComponent implements OnInit {
 
     @Input() selectedDashboardID: number;
     @Input() selectedDashboardTabID: number;
-    @Input() selectedDashboardTabName: string;
+    @Input() selectedDashboardTabName: SelectedItem; 
     @Input() displayTabDetails: boolean;
 
     // Event emitter sends event back to parent component once Submit button was clicked
@@ -79,13 +84,14 @@ if (this.displayTabDetails) {
     refreshForm() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'refreshForm', '@Start');
-this.selectedDashboardTabID=1;
+
         // Get the selected Dashboard
         this.selectedDashboardTab = this.eazlService.getDashboardTabs(
             this.selectedDashboardID, this.selectedDashboardTabID)[0];
 console.log('refreshForm 0 selectedDashboardID=', this.selectedDashboardID)
 console.log('refreshForm 1 selectedDashboardTabID', this.selectedDashboardTabID)
 console.log('refreshForm 2 selectedDashboardTab', this.selectedDashboardTab)
+console.log('refreshForm 3 selectedDashboardTabName' , this.selectedDashboardTabName)
 // console.log('refreshForm 3', this.dashboardTabForm.controls['dashboardName'].value, this.selectedDashboardTab)
 
         // Clear the form 

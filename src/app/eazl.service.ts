@@ -3541,11 +3541,11 @@ export class EazlService implements OnInit {
         return resultDashboards;
     }
 
-    getDashboardTabs(selectedDashboardID: number, selectedDashboardTabID?: number) {
-        // Return a list of Dashboard Tabs for a given DashboardID
+    getDashboardTabs(selectedDashboardID: number, selectedDashboardTabID?: number): DashboardTab[] {
+        // Return a list of Dashboard Tabs for a given DashboardID,
+        //   and Optionally if a DashboardTabID was given
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabs', '@Start');
-console.log('EAZL selectedDashboardID',selectedDashboardID)
-console.log('selectedDashboardTabID',selectedDashboardTabID)
+
         let workingDashboardTabs: DashboardTab[] = [];
 
         workingDashboardTabs = this.dashboardTabs.filter(
@@ -3555,9 +3555,7 @@ console.log('selectedDashboardTabID',selectedDashboardTabID)
             workingDashboardTabs = workingDashboardTabs.filter(
                 tab => tab.dashboardTabID == selectedDashboardTabID
             );     
-console.log('heehaa')
         }
-console.log('workingDashboardTabs',workingDashboardTabs)        
         return workingDashboardTabs;
     }
 

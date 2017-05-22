@@ -109,9 +109,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     selectedCommentWidgetID: number;                // Current WidgetID for Comment
     selectedDashboardID: number;                    // Currely Dashboard
     selectedDashboardName: any;                     // Select Dashboard name in DropDown
-    selectedDashboardTabID: number;                 // Current DashboardTab ID
-    selectedDashboardTabName: any;                  // Current DashboardTab
-    selectedTabName: any;                           // Tab Name selected in DropDown
+    selectedDashboardTab: SelectedItem;             // Current DashboardTab
     selectedWidget: Widget = null;                  // Selected widget during dragging
     selectedWidgetIDs: number[] = [];               // Array of WidgetIDs selected with mouse
 
@@ -279,25 +277,41 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
                 };
 
+            // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
 
-            if (this.globalVariableService.sessionDashboardTabName.getValue() == '') {
-                if (this.globalVariableService.startupdashboardTabName.getValue() != '') {
-                    this.globalVariableService.sessionDashboardTabName.next(
-                        this.globalVariableService.startupdashboardTabName.getValue()
+            // Use startup Dashboard Tab ID at the very beginning
+            if (this.globalVariableService.sessionDashboardTabID.getValue() == -1) {
+                if (this.globalVariableService.startupdashboardTabID.getValue() != -1) {
+                    this.globalVariableService.sessionDashboardTabID.next(
+                        this.globalVariableService.startupdashboardTabID.getValue()
                     )
                 }
             }
-            if (this.globalVariableService.sessionDashboardTabName.getValue() != '') {
-                this.selectedTabName = {
-                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
-                    name: this.globalVariableService.sessionDashboardTabName.getValue()
-                }
+
+            // Load the session's Dashboard Tab
+            if (this.globalVariableService.sessionDashboardTabID.getValue() != -1) {
+                    
+                // Get the Dashboard Tab Name, used by drop down (value = id, name)
+                let sessionDashboardTabName: string = ''
+                if (this.globalVariableService.sessionDashboardTabID.getValue() != -1) {
+                    let workingDashboardTab: DashboardTab[] = this.eazlService.getDashboardTabs(
+                        this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(), 
+                        this.globalVariableService.sessionDashboardTabID.getValue());
+                    if (workingDashboardTab.length != 0) {
+                        sessionDashboardTabName = workingDashboardTab[0].dashboardTabName;
+                    }
+                }                
                 
-                this.loadDashboardBody(this.globalVariableService.sessionDashboardTabName.getValue());
+                this.selectedDashboardTab = {
+                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                    name: sessionDashboardTabName
+                }
+
+                this.loadDashboardBody();
+                // this.loadDashboardBody( this.globalVariableService.sessionDashboardTabID.getValue());
             }
         }
-
     }
 
     ngAfterViewInit() {
@@ -379,7 +393,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             // Only render our own
             if (this.widgetToEdit.properties.dashboardTabName['name'] == 
-                this.selectedDashboardTabName.toString()) {
+                this.selectedDashboardTab.name) {
 
                 // TODO - this is crude & error prone: do it properly in DB
                 let lastWidgetID = 
@@ -1400,7 +1414,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         //       I had to make a workaround
         // TODO: for now I dont have a Tab-ID field, as I thought the name must be unique 
         //       anyway.  Is this a really, really good idea?
-        let TM: any = this.selectedTabName;
+        let TM: any = this.selectedDashboardTab;
 
         // If something was selected, loop and find the right one
         if (TM != undefined) {
@@ -1453,8 +1467,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // TODO - design in detail, no duplications ...
         this.globalFunctionService.printToConsole(this.constructor.name,'detailTab', '@Start');
-
-        if (this.selectedTabName != undefined) {
+console.log('detaol', this.selectedDashboardTab)
+        if (this.selectedDashboardTab != undefined) {
             this.displayTabDetails = true;
         } else {
             this.globalVariableService.growlGlobalMessage.next({
@@ -2061,20 +2075,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.showContainerHeader
         );
     }
-
+ 
     loadDashboard(event) {
         // Call the loadDashboardBody method for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
 
         // Remember this for next time
-        this.globalVariableService.sessionDashboardTabName.next(event.value.name);
+        this.globalVariableService.sessionDashboardTabID.next(event.value.name);
 
         // Set the Selected One
-        this.loadDashboardBody(event.value.name);
-        this.selectedDashboardTabID = event.value.id
+        this.loadDashboardBody();
     }
 
-    loadDashboardBody(selectedDashboardTabName: string) {
+    loadDashboardBody() {
         // Load the selected Dashboard detail for a given DashboardID & TabName
         // - get Dashboard info from DB
         // - get Widgets for this Dashboard from DB
@@ -2084,13 +2097,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Reset the list of selected Widgets
         this.selectedWidgetIDs = [];
 
-        // Set the Selected One
-        this.selectedDashboardTabName = selectedDashboardTabName;
-
         // Get its Widgets
-        this.widgets = this.eazlService.getWidgetsForDashboard(
+        this.widgets = this.eazlService.getWidgetsForDashboard( 
             this.selectedDashboardID, 
-            this.selectedDashboardTabName
+            this.selectedDashboardTab.name
         );
 
         // Set to review in ngAfterViewChecked
