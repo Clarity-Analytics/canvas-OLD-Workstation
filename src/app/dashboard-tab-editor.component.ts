@@ -68,16 +68,21 @@ export class DashboardTabEditorComponent implements OnInit {
             'dashboardTabUpdatedDateTime':      new FormControl(''),
             'dashboardTabUpdatedUserID':        new FormControl(''),
         });
+
+        // Refresh the form
+        if (this.displayTabDetails) {
+            this.refreshForm()
+        }
     }
 
     ngOnChanges() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChange', '@Start');
 
-        // Refresh the form
-        if (this.displayTabDetails) {
-            this.refreshForm()
-        }
+        // // Refresh the form
+        // if (this.displayTabDetails) {
+        //     this.refreshForm()
+        // }
     }
 
     refreshForm() {
@@ -87,10 +92,6 @@ export class DashboardTabEditorComponent implements OnInit {
         // Get the selected Dashboard
         this.currentDashboardTab = this.eazlService.getDashboardTabs(
             this.selectedDashboardID, this.selectedDashboardTab.id)[0];
-// console.log('refreshForm 0 selectedDashboardID=', this.selectedDashboardID)
-// console.log('refreshForm 1 selectedDashboardTab.id', this.selectedDashboardTab.id)
-// console.log('refreshForm 2 selectedDashboardTab', this.selectedDashboardTab)
-console.log('refreshForm 3 currentDashboardTab' , this.currentDashboardTab)
 
         // First ngOnChanges runs before the OnInit
         if (this.dashboardTabForm != undefined) {
@@ -123,8 +124,6 @@ console.log('refreshForm 3 currentDashboardTab' , this.currentDashboardTab)
             this.dashboardTabForm.controls['dashboardTabUpdatedUserID'].setValue(
                 this.currentDashboardTab.dashboardTabUpdatedUserID
             );
-
-    console.log ('refreshForm @End', this.selectedDashboardID,this.dashboardTabForm.controls['dashboardName'].value)
         }
 
     }
@@ -133,7 +132,7 @@ console.log('refreshForm 3 currentDashboardTab' , this.currentDashboardTab)
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
-console.log ('subm', this.selectedDashboardID,this.dashboardTabForm.controls['dashboardName'].value)
+console.log ('subm', this.dashboardTabForm.controls['dashboardTabDescription'].value)
 
         // Validation
         // if (this.identificationForm.controls['widgetType'].value == ''  || 
