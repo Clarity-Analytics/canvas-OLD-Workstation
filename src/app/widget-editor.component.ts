@@ -19,7 +19,7 @@ import { SelectItem }                 from 'primeng/primeng';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-
+ 
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
 import { Report }                     from './model.report';
@@ -336,7 +336,7 @@ export class WidgetEditorComponent implements OnInit {
                 );
                 this.showWidgetImage = this.widgetToEdit.areas.showWidgetImage;
                 this.selectedItem = {
-                    id: this.widgetToEdit.properties.widgetTabID, 
+                    id: this.widgetToEdit.properties.dashboardTabID, 
                     name: this.widgetToEdit.properties.widgetTabName
                 };
                 this.identificationForm.controls['widgetTabName'].setValue(this.selectedItem);
@@ -1194,7 +1194,7 @@ export class WidgetEditorComponent implements OnInit {
             this.dashboardTabsDropDown.push({
                 label: this.dashboardTabs[i].widgetTabName,
                 value: {
-                    id: this.dashboardTabs[i].widgetTabID,
+                    id: this.dashboardTabs[i].dashboardTabID,
                     name: this.dashboardTabs[i].widgetTabName
                 }
             });

@@ -17,7 +17,7 @@ import { SelectItem }                 from 'primeng/primeng';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-
+ 
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
 
@@ -54,7 +54,7 @@ export class DashboardTabEditorComponent implements OnInit {
         // FormBuilder
         this.dashboardTabForm = this.fb.group({
             'dashboardID':                      new FormControl(''),
-            'widgetTabID':                      new FormControl(''),
+            'dashboardTabID':                   new FormControl(''),
             'widgetTabName':                    new FormControl(''),
             'widgetTabDescription':             new FormControl(''),
             'dashboardCreatedDateTime':         new FormControl(''),
@@ -81,8 +81,8 @@ console.log('refreshForm', this.selectedDashboardTab.dashboardID,
         this.dashboardTabForm.controls['dashboardID'].setValue(
             this.selectedDashboardTab.dashboardID
         );
-        this.dashboardTabForm.controls['widgetTabID'].setValue(
-            this.selectedDashboardTab.widgetTabID
+        this.dashboardTabForm.controls['dashboardTabID'].setValue(
+            this.selectedDashboardTab.dashboardTabID
         );
         this.dashboardTabForm.controls['widgetTabName'].setValue(
             this.selectedDashboardTab.widgetTabName

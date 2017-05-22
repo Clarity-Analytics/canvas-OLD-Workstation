@@ -10,7 +10,7 @@ import { RequestOptions }             from '@angular/http';
 // Our Services
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-
+ 
 // Our models
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
@@ -258,42 +258,42 @@ export const DASHBOARDTABS: DashboardTab[] =
     [
         {
             dashboardID: 0,
-            widgetTabID: 0,
+            dashboardTabID: 0,
             widgetTabName: 'Value',
             widgetTabDescription: '0-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 0,
-            widgetTabID: 1,
+            dashboardTabID: 1,
             widgetTabName: 'Volume',
             widgetTabDescription: '0-Volume: Full and detailed desription of tab - purpose'
         },        {
             dashboardID: 1,
-            widgetTabID: 2,
+            dashboardTabID: 2,
             widgetTabName: 'Value',
             widgetTabDescription: 'Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 1,
-            widgetTabID: 3,
+            dashboardTabID: 3,
             widgetTabName: 'Volume',
             widgetTabDescription: '1-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 3,
-            widgetTabID: 4,
+            dashboardTabID: 4,
             widgetTabName: 'Value',
             widgetTabDescription: '3-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 4,
-            widgetTabID: 5,
+            dashboardTabID: 5,
             widgetTabName: 'Value',
             widgetTabDescription: '4-Value: Full and detailed desription of tab - purpose'
         },
         {
             dashboardID: 5,
-            widgetTabID: 6,
+            dashboardTabID: 6,
             widgetTabName: 'Value',
             widgetTabDescription: '5-Value: Full and detailed desription of tab - purpose'
         },
@@ -480,7 +480,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 1,
                 dashboardID: 0,
-                widgetTabID: 0,
+                dashboardTabID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'FirstBar',
                 widgetName: 'Bar Chart 1',
@@ -685,7 +685,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 2,
                 dashboardID: 0,
-                widgetTabID: 0,
+                dashboardTabID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'SecondBar',
                 widgetName: 'Bar Chart 2',
@@ -876,7 +876,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 3,
                 dashboardID: 0,
-                widgetTabID: 0,
+                dashboardTabID: 0,
                 widgetTabName: "Value",
                 widgetCode: 'ThirdBar',
                 widgetName: 'Bar Chart 3',
@@ -1106,7 +1106,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 4,
                 dashboardID: 0,
-                widgetTabID: 1,
+                dashboardTabID: 1,
                 widgetTabName: "Volume",
                 widgetCode: 'FourthBar',
                 widgetName: 'Bar Chart 4',
@@ -1381,7 +1381,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 5,
                 dashboardID: 0,
-                widgetTabID: 1,
+                dashboardTabID: 1,
                 widgetTabName: "Volume",
                 widgetCode: 'FifthBar',
                 widgetName: 'Bar Chart 5',
@@ -1555,7 +1555,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 11,
                 dashboardID: 1,
-                widgetTabID: 2,
+                dashboardTabID: 2,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -1751,7 +1751,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 12,
                 dashboardID: 1,
-                widgetTabID: 3,
+                dashboardTabID: 3,
                 widgetTabName: "Volume",
                 widgetCode: 'SecondBar',
                 widgetName: 'Line Volume 1',
@@ -1933,7 +1933,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 21,
                 dashboardID: 3,
-                widgetTabID: 4,
+                dashboardTabID: 4,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -2155,7 +2155,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 6,
                 dashboardID: 3,
-                widgetTabID: 4,
+                dashboardTabID: 4,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -2342,7 +2342,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 41,
                 dashboardID: 4,
-                widgetTabID: 5,
+                dashboardTabID: 5,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -2625,7 +2625,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 51,
                 dashboardID: 5,
-                widgetTabID: 6,
+                dashboardTabID: 6,
                 widgetTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
@@ -3646,7 +3646,7 @@ export class EazlService implements OnInit {
             properties: {
                 widgetID: 1,
                 dashboardID: 0,
-                widgetTabID: 0,
+                dashboardTabID: 0,
                 widgetTabName: '',
                 widgetCode: '',
                 widgetName: '',

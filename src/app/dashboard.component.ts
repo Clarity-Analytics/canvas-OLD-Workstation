@@ -27,7 +27,7 @@ import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-
+ 
 // Our models
 import { CanvasColors }               from './chartcolors.data';
 import { Dashboard }                  from './model.dashboards';
@@ -1335,7 +1335,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.dashboardTabs.push (
             {
                 dashboardID: this.selectedDashboardName.id,
-                widgetTabID: maxID,
+                dashboardTabID: maxID,
                 widgetTabName: newWidgetTabName,
                 widgetTabDescription: ''
             }
@@ -1978,7 +1978,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.dashboardTabsDropDown.push({
                 label: this.dashboardTabs[i].widgetTabName,
                 value: {
-                    id: this.dashboardTabs[i].widgetTabID,
+                    id: this.dashboardTabs[i].dashboardTabID,
                     name: this.dashboardTabs[i].widgetTabName
                 }
             });

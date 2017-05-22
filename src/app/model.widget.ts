@@ -73,7 +73,7 @@ export class Widget {
     properties: {
         widgetID: number;                       // Unique ID from DB
         dashboardID: number;                    // FK to DashboardID to which widget belongs
-        widgetTabID: number;                    // FK to Tab where the widget lives
+        dashboardTabID: number;                 // FK to Tab where the widget lives
         widgetTabName: string;                  // FK to Tab Name where widget lives
         widgetCode: string;                     // Short Code ~ ShortName
         widgetName: string;                     // Descriptive Name
