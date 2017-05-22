@@ -1,0 +1,15 @@
+
+.panelButtonArea {
+    margin: 14px 0 4px 0;        
+}
+
+.panelButtonWithLabel {
+    background-color: white;
+    border: 1px solid darkgray;
+    border-radius: 2px;
+    color: gray;
+    height: 25px;
+    margin: 2px;
+    padding: 1px;
+    width: 85px;
+}

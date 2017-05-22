@@ -3559,6 +3559,26 @@ export class EazlService implements OnInit {
         return workingDashboardTabs;
     }
 
+    updateDashboardTab(dashboardID: number, 
+        dashboardTabID: number, 
+        dashboardTabDescription: string
+        ): boolean {
+        // Update the details (like description) for a Dashboard Tab)
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardTab', '@Start');
+
+        // Get the Tab
+        let workingDashboardTabs: DashboardTab[] = [];
+        workingDashboardTabs = this.getDashboardTabs(dashboardID, dashboardTabID)
+
+        // Update detail
+        if (workingDashboardTabs.length > 0) {
+            workingDashboardTabs[0].dashboardTabDescription = dashboardTabDescription;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     getWidgetsForDashboard(selectedDashboardID: number, selectedDashboarTabName: string) {
         // Return a list of Dashboards
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');

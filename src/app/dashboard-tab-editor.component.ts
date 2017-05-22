@@ -35,10 +35,10 @@ export class DashboardTabEditorComponent implements OnInit {
  
     @Input() selectedDashboardID: number;
     @Input() selectedDashboardTab: SelectedItem; 
-    @Input() displayTabDetails: boolean;
+    // @Input() displayTabDetails: boolean;
 
     // Event emitter sends event back to parent component once Submit button was clicked
-    @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
+    @Output() formDashboarTabSubmit: EventEmitter<boolean> = new EventEmitter();
     
     // Local properties
     dashboardTabForm: FormGroup;                        // FormBuilder Group
@@ -53,7 +53,7 @@ export class DashboardTabEditorComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-     
+      
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
@@ -70,18 +70,8 @@ export class DashboardTabEditorComponent implements OnInit {
         });
 
         // Refresh the form
-        if (this.displayTabDetails) {
-            this.refreshForm()
-        }
-    }
-
-    ngOnChanges() {
-        // Reacts to changes in selectedWidget
-        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChange', '@Start');
-
-        // // Refresh the form
         // if (this.displayTabDetails) {
-        //     this.refreshForm()
+            this.refreshForm()
         // }
     }
 
@@ -128,11 +118,22 @@ export class DashboardTabEditorComponent implements OnInit {
 
     }
          
+    onCancel (){
+        // User clicked cancel button
+        this.globalFunctionService.printToConsole(this.constructor.name,'onCancel', '@Start');
+        this.formDashboarTabSubmit.emit(false);
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'warn',
+            summary:  'Cancel',
+            detail:   'No changes as requested'
+        });
+    }
+
     onSubmit(value: string) {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
-console.log ('subm', this.dashboardTabForm.controls['dashboardTabDescription'].value)
+// console.log ('subm', this.dashboardTabForm.controls['dashboardTabDescription'].value)
 
         // Validation
         // if (this.identificationForm.controls['widgetType'].value == ''  || 
@@ -156,10 +157,27 @@ console.log ('subm', this.dashboardTabForm.controls['dashboardTabDescription'].v
         // }
 
         // Update DB
-                //     this.widgetToEdit.container.widgetTitle = 
-                // this.identificationForm.controls['widgetTitle'].value;
+        // let result: boolean = true;
+        let result: boolean = this.eazlService.updateDashboardTab(
+            this.currentDashboardTab.dashboardID, 
+            this.currentDashboardTab.dashboardTabID,
+            this.dashboardTabForm.controls['dashboardTabDescription'].value
+        );
+        if (result) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Success',
+                detail:   'Tab details changed'
+            });
 
-         // Trigger event emitter 'emit' method
-         this.formSubmit.emit(true);
+            // Trigger event emitter 'emit' method
+            this.formDashboarTabSubmit.emit(true);
+        } else {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Fail',
+                detail:   'Tab details not updated'
+            });
+        }
     }
 }
