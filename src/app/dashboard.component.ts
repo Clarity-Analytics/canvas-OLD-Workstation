@@ -1467,7 +1467,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // TODO - design in detail, no duplications ...
         this.globalFunctionService.printToConsole(this.constructor.name,'detailTab', '@Start');
-console.log('detaol', this.selectedDashboardTab)
+
         if (this.selectedDashboardTab != undefined) {
             this.displayTabDetails = true;
         } else {

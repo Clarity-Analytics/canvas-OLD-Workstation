@@ -32,10 +32,9 @@ export class SelectedItem {
     styleUrls:  ['dashboard-tab-editor.component.html']
 })
 export class DashboardTabEditorComponent implements OnInit {
-
+ 
     @Input() selectedDashboardID: number;
-    @Input() selectedDashboardTabID: number;
-    @Input() selectedDashboardTabName: SelectedItem; 
+    @Input() selectedDashboardTab: SelectedItem; 
     @Input() displayTabDetails: boolean;
 
     // Event emitter sends event back to parent component once Submit button was clicked
@@ -43,10 +42,10 @@ export class DashboardTabEditorComponent implements OnInit {
     
     // Local properties
     dashboardTabForm: FormGroup;                        // FormBuilder Group
-    selectedDashboardTab: DashboardTab;                 // Dashboard Tab selected on parent form
-    errorMessageOnForm: string = '';
-    formIsValid: boolean = false;
-    numberErrors: number = 0;
+    currentDashboardTab: DashboardTab;                  // Dashboard Tab selected on parent form
+    errorMessageOnForm: string = '';                    // Accum errors found in validation
+    formIsValid: boolean = false;                       // True to be okay
+    numberErrors: number = 0;                           // Nr of errors found in Validation
 
     constructor(
         private eazlService: EazlService,
@@ -74,11 +73,11 @@ export class DashboardTabEditorComponent implements OnInit {
     ngOnChanges() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChange', '@Start');
-if (this.displayTabDetails) {
-    console.log('ready', this.selectedDashboardTab, this.selectedDashboardTab)
-    // Refresh the form
-    this.refreshForm()
-}
+
+        // Refresh the form
+        if (this.displayTabDetails) {
+            this.refreshForm()
+        }
     }
 
     refreshForm() {
@@ -86,45 +85,47 @@ if (this.displayTabDetails) {
         this.globalFunctionService.printToConsole(this.constructor.name, 'refreshForm', '@Start');
 
         // Get the selected Dashboard
-        this.selectedDashboardTab = this.eazlService.getDashboardTabs(
-            this.selectedDashboardID, this.selectedDashboardTabID)[0];
-console.log('refreshForm 0 selectedDashboardID=', this.selectedDashboardID)
-console.log('refreshForm 1 selectedDashboardTabID', this.selectedDashboardTabID)
-console.log('refreshForm 2 selectedDashboardTab', this.selectedDashboardTab)
-console.log('refreshForm 3 selectedDashboardTabName' , this.selectedDashboardTabName)
-// console.log('refreshForm 3', this.dashboardTabForm.controls['dashboardName'].value, this.selectedDashboardTab)
+        this.currentDashboardTab = this.eazlService.getDashboardTabs(
+            this.selectedDashboardID, this.selectedDashboardTab.id)[0];
+// console.log('refreshForm 0 selectedDashboardID=', this.selectedDashboardID)
+// console.log('refreshForm 1 selectedDashboardTab.id', this.selectedDashboardTab.id)
+// console.log('refreshForm 2 selectedDashboardTab', this.selectedDashboardTab)
+console.log('refreshForm 3 currentDashboardTab' , this.currentDashboardTab)
 
-        // Clear the form 
-        this.dashboardTabForm.reset();
-        
-        // Populate
-        this.dashboardTabForm.controls['dashboardID'].setValue(
-            this.selectedDashboardTab.dashboardID
-        );
-        this.dashboardTabForm.controls['dashboardTabID'].setValue(
-            this.selectedDashboardTab.dashboardTabID
-        );
-        this.dashboardTabForm.controls['dashboardTabName'].setValue(
-            this.selectedDashboardTab.dashboardTabName
-        );
-        this.dashboardTabForm.controls['dashboardTabDescription'].setValue(
-            this.selectedDashboardTab.dashboardTabDescription
-        );
-        this.dashboardTabForm.controls['dashboardCreatedDateTime'].setValue(
-            this.selectedDashboardTab.dashboardCreatedDateTime
-        );
-        this.dashboardTabForm.controls['dashboardCreatedUserID'].setValue(
-            this.selectedDashboardTab.dashboardCreatedUserID
-        );
-        this.dashboardTabForm.controls['dashboardTabUpdatedDateTime'].setValue(
-            this.selectedDashboardTab.dashboardTabUpdatedDateTime
-        );
-        this.dashboardTabForm.controls['dashboardTabUpdatedUserID'].setValue(
-            this.selectedDashboardTab.dashboardTabUpdatedUserID
-        );
+        // First ngOnChanges runs before the OnInit
+        if (this.dashboardTabForm != undefined) {
 
-console.log ('refreshForm @End', this.selectedDashboardID,this.dashboardTabForm.controls['dashboardName'].value)
+            // Clear the form 
+            this.dashboardTabForm.reset();
+            
+            // Populate
+            this.dashboardTabForm.controls['dashboardID'].setValue(
+                this.currentDashboardTab.dashboardID
+            );
+            this.dashboardTabForm.controls['dashboardTabID'].setValue(
+                this.currentDashboardTab.dashboardTabID
+            );
+            this.dashboardTabForm.controls['dashboardTabName'].setValue(
+                this.currentDashboardTab.dashboardTabName
+            );
+            this.dashboardTabForm.controls['dashboardTabDescription'].setValue(
+                this.currentDashboardTab.dashboardTabDescription
+            );
+            this.dashboardTabForm.controls['dashboardCreatedDateTime'].setValue(
+                this.currentDashboardTab.dashboardCreatedDateTime
+            );
+            this.dashboardTabForm.controls['dashboardCreatedUserID'].setValue(
+                this.currentDashboardTab.dashboardCreatedUserID
+            );
+            this.dashboardTabForm.controls['dashboardTabUpdatedDateTime'].setValue(
+                this.currentDashboardTab.dashboardTabUpdatedDateTime
+            );
+            this.dashboardTabForm.controls['dashboardTabUpdatedUserID'].setValue(
+                this.currentDashboardTab.dashboardTabUpdatedUserID
+            );
 
+    console.log ('refreshForm @End', this.selectedDashboardID,this.dashboardTabForm.controls['dashboardName'].value)
+        }
 
     }
          

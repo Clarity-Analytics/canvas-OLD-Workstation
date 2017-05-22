@@ -1,3 +1,28 @@
+
+<!--Detail for selected Tab-->
+<div
+    *ngIf="displayTabDetails"
+    >
+    <p-dialog 
+        header="Tab Editor" 
+        [(visible)]="displayTabDetails" 
+        modal="modal" 
+        resizable="true"
+        height="100vw"
+        responsive="true"
+        >
+        <dashboard-tab-editor
+            [selectedDashboardID]="selectedDashboardID" 
+            [selectedDashboardTab]="selectedDashboardTab"
+            [displayTabDetails]="displayTabDetails"
+            (formDashboarTabSubmit)="handleformDashboarTabSubmit($event)"
+            >
+            Loading Dashboard Tab Editor ...
+        </dashboard-tab-editor>
+    </p-dialog>
+</div>
+
+
 <!--Palette Container-->
 <div 
     class="paletteContainer"
@@ -1414,30 +1439,6 @@
         </p-dialog>
     </div>
 
-
-    <!--Detail for selected Tab-->
-    <div
-        *ngIf="displayTabDetails"
-        >
-        <p-dialog 
-            header="Tab Editor" 
-            [(visible)]="displayTabDetails" 
-            modal="modal" 
-            resizable="true"
-            height="100vw"
-            responsive="true"
-            >
-            <dashboard-tab-editor
-                [selectedDashboardID]="selectedDashboardID" 
-                [selectedDashboardTabID]="selectedDashboardTabID"
-                [selectedDashboardTabName]="selectedDashboardTabName"
-                [displayTabDetails]="displayTabDetails"
-                (formDashboarTabSubmit)="handleformDashboarTabSubmit($event)"
-                >
-                Loading Dashboard Tab Editor ...
-            </dashboard-tab-editor>
-        </p-dialog>
-    </div>
 
     <!--Confirmation Dialogue Box-->
     <p-confirmDialog 
