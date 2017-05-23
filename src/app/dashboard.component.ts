@@ -2327,23 +2327,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         this.widgets[i].properties.widgetID.toString()
                     );
 
-                    // Modify and insert text
-// getReportFields, getReportData
+                    // Obtain the data for the report linked to this Widget
+                    let reportFields: string[] = ["Error", "reportID"];
+                    let reportData: any[] = [
+                        {
+                            "Error": "No data found", 
+                            "reportID": this.widgets[i].properties.widgetReportID}
+                    ];
 
-let reportFields: string[] = ["category", "amount"];
-let reportData: any[] = [
-    {"category": "A22", "amount": 108},
-    {"category": "B22", "amount": 115},
-    {"category": "C22", "amount": 123},
-    {"category": "D22", "amount": 131},
-    {"category": "E22", "amount": 144},
-    {"category": "F22", "amount": 153},
-    {"category": "G22", "amount": 169},
-    {"category": "H22", "amount": 177}
- ];
+                    for (var j = 0; j < this.reports.length; j++) {
+                        if (this.widgets[i].properties.widgetReportID ==
+                            this.reports[j].reportID) {
+                                reportFields = this.reports[j].reportFields;
+                                reportData = this.reports[j].reportData;
+                        }
+                    }
 
-
-
+                    // Convert data to HTML table, and insert into DOM
                     textToDOM = this.convertArrayToTable(reportFields, reportData);
                     this.childrenWidgetTable.toArray()[i].nativeElement.innerHTML = textToDOM
 
