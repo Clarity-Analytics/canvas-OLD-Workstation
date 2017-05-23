@@ -2362,8 +2362,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         }
                     }
 
+
+        // tableColor: string;                     // Text color
+        // tableCols: number;                      // Nr of cols
+        // tableHeight: number;                    // in px
+        // tableHideHeader: boolean;
+        // tableLeft: number;                      // in px
+        // tableRows: number;                      // Nr of rows
+        // tableTop: number;                       // in px
+        // tableWidth: number;                     // in px
                     // Convert data to HTML table, and insert into DOM
-                    textToDOM = this.convertArrayToTable(reportFields, reportData);
+                    textToDOM = this.convertArrayToTable(
+                        reportFields, 
+                        reportData,
+                        this.widgets[i].table.tableColor);
                     this.childrenWidgetTable.toArray()[i].nativeElement.innerHTML = textToDOM
 
                     // Styling
@@ -2421,22 +2433,26 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     convertArrayToTable(
         reportFields: string[], 
         reportData: any[],
-        tableColor?: string,                     
-        tableCols?: number,                     
-        tableHeight?: number,                    
-        tableHideHeader?: boolean,
-        tableLeft?: number,                      
-        tableRows?: number,                      
-        tableTop?: number,                      
-        tableWidth?: number                     
+        tableColor: string = '',                     
+        tableCols: number = 0,                     
+        tableHeight: number = 0,                    
+        tableHideHeader: boolean = true,
+        tableLeft: number = 0,                      
+        tableRows: number = 0,                      
+        tableTop: number = 0,                      
+        tableWidth: number = 0                    
         ): string {
         // Converts an input array to a HTML string, which is a formatted table
         this.globalFunctionService.printToConsole(this.constructor.name,'convertArrayToTable', '@Start');
 
-
-
         // Table
-        let tableHTML: string = '<div style="background-color:black;"> ';
+        let tableHTML: string = '<div style="';
+
+        if (tableColor != '') {
+            tableHTML = tableHTML + 'color: ' + tableColor + ';'; 
+        }
+        // background-color:black;"> ';
+        tableHTML = tableHTML + '"> '; 
         tableHTML = tableHTML + "<table> " 
 
         // Headers
@@ -2450,15 +2466,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         for (var i in reportData) {
             tableHTML = tableHTML + "<tr> "; 
 console.log('row',reportData[i])
+
+            // The reportData object returns more fields, so we need to restrict them
+            // to the number of fields.  These values are given first in the for loop
             let y=0;
             for (var j in reportData[i]) {
                 if (y < reportFields.length) {
                     y++ 
 console.log('td',reportData[i][j])                
-                tableHTML = tableHTML + "<td> " 
-                tableHTML = tableHTML + reportData[i][j]
-                tableHTML = tableHTML + "</td> " 
-            }
+                    tableHTML = tableHTML + "<td> " 
+                    tableHTML = tableHTML + reportData[i][j]
+                    tableHTML = tableHTML + "</td> " 
+                }
             }
             tableHTML = tableHTML + "</tr> " 
         }

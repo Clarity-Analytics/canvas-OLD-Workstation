@@ -489,7 +489,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -694,7 +694,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'red',
                 tableCols: 1,
                 tableHeight: 60,
                 tableHideHeader: false,
@@ -885,7 +885,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -1115,7 +1115,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -1390,7 +1390,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -1564,7 +1564,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -1760,7 +1760,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -1942,7 +1942,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -2164,7 +2164,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -2351,7 +2351,7 @@ export const WIDGETS: Widget[] =
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -2634,7 +2634,7 @@ export const WIDGETS: Widget[] =
                     }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
@@ -3686,7 +3686,7 @@ export class EazlService implements OnInit {
                 }
             },
             table:{
-                tableColor: 'transparent',
+                tableColor: 'white',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,
