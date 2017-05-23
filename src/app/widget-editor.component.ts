@@ -623,17 +623,19 @@ export class WidgetEditorComponent implements OnInit {
         }
         if (this.identificationForm.controls['widgetHyperLinkWidgetID'].touched  && 
             !this.identificationForm.controls['widgetHyperLinkWidgetID'].valid) {
-                this.formIsValid = false;
-                this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Hyperlinked Widget ID (Behaviour Panel) must be numeric';
+                if (this.identificationForm.controls['widgetHyperLinkWidgetID'].value != '0') {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Hyperlinked Widget ID (Behaviour Panel) must be numeric';
+                }
         }
         if (this.identificationForm.controls['widgetRefreshFrequency'].touched  && 
             !this.identificationForm.controls['widgetRefreshFrequency'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Refresh Frequency (Behaviour Panel) must be numeric';
+                    'The Refresh Frequency (Behaviour Panel) must be numeric and >0';
         }
         if (this.identificationForm.controls['widgetReportName'].value == ''  || 
             this.identificationForm.controls['widgetReportName'].value == null) {
@@ -674,7 +676,7 @@ export class WidgetEditorComponent implements OnInit {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Height (Text panel) must be numeric';
+                        'The Height (Text panel) must be numeric and >0';
             }
             if (this.identificationForm.controls['textLeft'].value == ''  || 
                 this.identificationForm.controls['textLeft'].value == null) {

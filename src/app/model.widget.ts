@@ -10,7 +10,7 @@ export class Widget {
         fontSize: number;
         height: number;
         left: number;
-        widgetTitle: string;                          // Title at top of container
+        widgetTitle: string;                    // Title at top of container
         top: number;
         width: number;
     };
@@ -54,11 +54,11 @@ export class Widget {
     }; 
     table:{
         tableColor: string;                     // Text color
-        tableCols: number;                      // Nr of cols
+        tableCols: number;                      // Nr of cols, 0 means all
         tableHeight: number;                    // in px, cuts of rest if bigger than this
         tableHideHeader: boolean;
         tableLeft: number;                      // in px
-        tableRows: number;                      // Nr of rows in the data, excluding header
+        tableRows: number;                      // Nr of rows in the data, excluding header: 0 means all
         tableTop: number;                       // in px
         tableWidth: number;                     // in px, cuts of rest if bigger than this
     };
