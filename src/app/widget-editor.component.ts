@@ -666,10 +666,12 @@ export class WidgetEditorComponent implements OnInit {
             }                
             if (this.identificationForm.controls['textHeight'].value == ''  || 
                 this.identificationForm.controls['textHeight'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Height (Text panel) is compulsory.';
+                    if (this.identificationForm.controls['textHeight'].value != '0') {
+                        this.formIsValid = false;
+                        this.numberErrors = this.numberErrors + 1;
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            'The Height (Text panel) is compulsory.';
+                    }
             }                
             if (this.identificationForm.controls['textHeight'].touched  && 
                 !this.identificationForm.controls['textHeight'].valid) {
@@ -696,10 +698,12 @@ export class WidgetEditorComponent implements OnInit {
             }
             if (this.identificationForm.controls['textTop'].value == ''  || 
                 this.identificationForm.controls['textTop'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Top (Text panel) is compulsory.';
+                    if (this.identificationForm.controls['textTop'].value != '0') {
+                        this.formIsValid = false;
+                        this.numberErrors = this.numberErrors + 1;
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            'The Top (Text panel) is compulsory.';
+                    }
             }                
             if (this.identificationForm.controls['textTop'].touched  && 
                 !this.identificationForm.controls['textTop'].valid) {
@@ -710,10 +714,12 @@ export class WidgetEditorComponent implements OnInit {
             }
             if (this.identificationForm.controls['textWidth'].value == ''  || 
                 this.identificationForm.controls['textWidth'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Width (Text panel) is compulsory.';
+                    if (this.identificationForm.controls['textWidth'].value != '0') {
+                        this.formIsValid = false;
+                        this.numberErrors = this.numberErrors + 1;
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            'The Width (Text panel) is compulsory.';
+                    }
             }                
             if (this.identificationForm.controls['textWidth'].touched  && 
                 !this.identificationForm.controls['textWidth'].valid) {
