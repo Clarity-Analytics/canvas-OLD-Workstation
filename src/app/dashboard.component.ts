@@ -2481,6 +2481,8 @@ console.log('tableRows',tableRows)
         // Rows
         let z: number = 0;
         for (var i in reportData) {
+
+            // Only do the nr of rows specified; 0 means all
             if (z >= tableRows  &&  tableRows > 0) {break;}
             z++;
             tableHTML = tableHTML + "<tr> "; 
@@ -2490,6 +2492,9 @@ console.log('tableRows',tableRows)
             let y=0;
             for (var j in reportData[i]) {
                 if (y < reportFields.length) {
+
+                    // Only do the nr of cols specified; 0 means all
+                    if (y >= tableCols  &&  tableCols > 0) {break;}
                     y++ 
 console.log('td',reportData[i][j])                
                     tableHTML = tableHTML + "<td> " 
