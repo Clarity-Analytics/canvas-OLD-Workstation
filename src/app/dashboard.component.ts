@@ -2117,6 +2117,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.childrenWidgetContainers.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
 
+                // Get report data for this Widget
+                this.widgets[i].properties.widgetReportID
+
+// getReportFields, getReportData
+
                 // Style attributes
                 this.renderer.setElementStyle(this.childrenWidgetContainers.toArray()
                     [i].nativeElement,
@@ -2364,7 +2369,7 @@ let reportData: any[] = [
             }
         }
     }
-// reportData: any[]
+
     convertArrayToTable(reportFields: string[], reportData: any[]): string {
         // Converts an input array to a HTML string, which is a formatted table
         this.globalFunctionService.printToConsole(this.constructor.name,'convertArrayToTable', '@Start');
