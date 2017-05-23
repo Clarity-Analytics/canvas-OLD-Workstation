@@ -718,8 +718,60 @@ export class WidgetEditorComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The Width (Text panel) must be numeric';
             }
-            
         }
+
+        if (this.showWidgetTable) {
+            if (this.identificationForm.controls['tableHideHeader'].value == ''  || 
+                this.identificationForm.controls['tableHideHeader'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The HideHeader (Table) panel) is compulsory.';
+            }                
+            if (this.identificationForm.controls['tableCols'].touched  && 
+                !this.identificationForm.controls['tableCols'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Nr Cols (Table) panel) must be numeric';
+            }
+            if (this.identificationForm.controls['tableRows'].touched  && 
+                !this.identificationForm.controls['tableRows'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Nr Rows (Table) panel) must be numeric';
+            }
+            if (this.identificationForm.controls['tableHeight'].touched  && 
+                !this.identificationForm.controls['tableHeight'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Height (Table) panel) must be numeric';
+            }
+            if (this.identificationForm.controls['tableWidth'].touched  && 
+                !this.identificationForm.controls['tableWidth'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Width (Table) panel) must be numeric';
+            }
+            if (this.identificationForm.controls['tableLeft'].touched  && 
+                !this.identificationForm.controls['tableLeft'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Left (Table) panel) must be numeric';
+            }
+            if (this.identificationForm.controls['tableTop'].touched  && 
+                !this.identificationForm.controls['tableTop'].valid) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Top (Table) panel) must be numeric';
+            }
+        }
+
         if (this.showWidgetImage) {
 
             if (this.identificationForm.controls['imageHeigt'].value == ''  || 
