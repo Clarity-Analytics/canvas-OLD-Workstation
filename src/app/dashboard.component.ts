@@ -2454,9 +2454,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             tableHTML = tableHTML + 'height: ' + tableHeight + 'px; '; 
             tableHTML = tableHTML + 'overflow: hidden; ';
         }
-
-
-
+        if (tableLeft != 0) {
+            tableHTML = tableHTML + 'left: ' + tableLeft + 'px; '; 
+        }
 
         // background-color:black;"> ';
         tableHTML = tableHTML + '"> '; 
