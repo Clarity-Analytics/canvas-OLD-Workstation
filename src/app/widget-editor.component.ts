@@ -178,12 +178,12 @@ export class WidgetEditorComponent implements OnInit {
                 'textWidth':                    new FormControl('', Validators.pattern('^[0-9]*$')),
                 'tableHideHeader':              new FormControl(''),
                 'tableColor':                   new FormControl(''),
-                'tableCols':                    new FormControl(''),
-                'tableRows':                    new FormControl(''),
-                'tableHeight':                  new FormControl(''),
-                'tableWidth':                   new FormControl(''),
-                'tableLeft':                    new FormControl(''),
-                'tableTop':                     new FormControl(''),
+                'tableCols':                    new FormControl('', Validators.pattern('^[0-9]*$')),
+                'tableRows':                    new FormControl('', Validators.pattern('^[0-9]*$')),
+                'tableHeight':                  new FormControl('', Validators.pattern('^[0-9]*$')),
+                'tableWidth':                   new FormControl('', Validators.pattern('^[0-9]*$')),
+                'tableLeft':                    new FormControl('', Validators.pattern('^[0-9]*$')),
+                'tableTop':                     new FormControl('', Validators.pattern('^[0-9]*$')),
                 'imageAlt':                     new FormControl(''),
                 'imageHeigt':                   new FormControl('', Validators.pattern('^[0-9]*$')),
                 'imageLeft':                    new FormControl('', Validators.pattern('^[0-9]*$')),
@@ -513,6 +513,31 @@ export class WidgetEditorComponent implements OnInit {
                     .setValue(this.widgetToEdit.textual.textTop);
                 this.identificationForm.controls['textWidth']
                     .setValue(this.widgetToEdit.textual.textWidth);
+
+                // Load fields for Table
+                this.identificationForm.controls['tableHideHeader']
+                    .setValue(this.widgetToEdit.table.tableHideHeader);
+                this.selectedItemColor = {
+                    id:this.widgetToEdit.table.tableColor,             
+                    name: this.widgetToEdit.table.tableColor,             
+                    code: this.canvasColors.hexCodeOfColor(
+                        this.widgetToEdit.table.tableColor
+                    )
+                }
+                this.identificationForm.controls['tableColor'].setValue(this.selectedItemColor);
+                this.selectedTableColor = this.selectedItemColor;
+                this.identificationForm.controls['tableCols']
+                    .setValue(this.widgetToEdit.table.tableCols);
+                this.identificationForm.controls['tableRows']
+                    .setValue(this.widgetToEdit.table.tableRows);
+                this.identificationForm.controls['tableHeight']
+                    .setValue(this.widgetToEdit.table.tableHeight);
+                this.identificationForm.controls['tableWidth']
+                    .setValue(this.widgetToEdit.table.tableWidth);
+                this.identificationForm.controls['tableLeft']
+                    .setValue(this.widgetToEdit.table.tableLeft);
+                this.identificationForm.controls['tableTop']
+                    .setValue(this.widgetToEdit.table.tableTop);
 
                 // Load fields for Image
                 this.identificationForm.controls['imageAlt']
