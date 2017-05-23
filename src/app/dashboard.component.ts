@@ -33,6 +33,7 @@ import { CanvasColors }               from './chartcolors.data';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
 import { Filter }                     from './model.filter';
+import { Report }                     from './model.report';
 import { Widget }                     from './model.widget';
 
 // Vega stuffies
@@ -119,7 +120,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     dashboardBackgroundImageSrc: SelectedItem;      // Image Src for the Dashboard body
     selectedItem: SelectedItem;                     // Selected Object: note ANY to cater for ID number, string
     selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
-
     selectedBorder: SelectedItemColor;
     selectedBoxShadow: SelectedItemColor;
     selectedColor: SelectedItemColor;
@@ -134,6 +134,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // Tab stuffies, per Dashboard
     dashboardTabs: DashboardTab[];
     dashboardTabsDropDown:  SelectItem[];
+
+    // Reports used, filled as and when used.  Some has data
+    reports: Report[] = [];
 
     // Widget stuffies, per Dashboard
     containerStartX: number;                    // X of widget at drag start
@@ -2113,6 +2116,39 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Render the widgets according to their properties
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardRefresh', '@Start');
 
+
+        // Loop on the Widgets, and get the data if it has a Graph or Table
+        // Else, we assume no data has to be used for rendering
+        // NOTE: we only store a report used once in this Array, even if used by >1 Widget
+        for (var i = 0; i < this.widgets.length; i++) {
+
+            let foundReport: boolean = false;
+            if (this.widgets[i].areas.showWidgetGraph  ||  
+                this.widgets[i].areas.showWidgetTable)    {
+                    for (var j = 0; j < this.reports.length; j++) {
+                        if (this.widgets[i].properties.widgetReportID ==
+                            this.reports[j].reportID) {
+                                foundReport = true;
+                            }
+                    }
+            }
+
+//             if (!foundReport) {
+//                 this.reports.push({...})
+//             }
+// // getReportFields, getReportData
+//  Report {
+//     reportID: number;                   // Unique DB ID
+//     reportName: string;                 // Name
+//     description: string;                // Description
+//     reportParameters: string;           // Parameters (optional)
+//     dataSourceID: number;               // FK to DataSource
+//     dataSourceParameters: string;       // Data Source Parameters
+//     reportFields: string[];             // Array of report fields, obtained from DB
+//     reportData: any[];                  // Array (json) of data rows
+// }
+}
+
         // Loop on the container ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgetContainers.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
@@ -2120,14 +2156,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 // Get report data for this Widget
                 this.widgets[i].properties.widgetReportID
 
-// getReportFields, getReportData
 
                 // Style attributes
                 this.renderer.setElementStyle(this.childrenWidgetContainers.toArray()
                     [i].nativeElement,
                     'background-color', this.widgets[i].container.backgroundColor
                 );
-
                 if (this.widgets[i].container.border != '') {
                     this.renderer.setElementStyle(this.childrenWidgetContainers.toArray()
                         [i].nativeElement,
@@ -2148,7 +2182,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     [i].nativeElement,
                     'font-size', this.widgets[i].container.fontSize.toString() + 'em'
                 );
-
                 this.renderer.setElementStyle(this.childrenWidgetContainers.toArray()
                     [i].nativeElement,
                     'height', this.widgets[i].container.height.toString() + 'px'
@@ -2300,6 +2333,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     );
 
                     // Modify and insert text
+// getReportFields, getReportData
 
 let reportFields: string[] = ["category", "amount"];
 let reportData: any[] = [

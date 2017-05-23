@@ -3754,6 +3754,17 @@ export class EazlService implements OnInit {
         return this.reports;
     }
 
+    getReport(reportID: number): Report {
+        // Return a single Report
+        this.globalFunctionService.printToConsole(this.constructor.name,'getReport', '@Start');
+
+        for (var i = 0; i < this.reports.length; i++) {
+            if (this.reports[i].reportID == reportID) {
+                return this.reports[i];
+            }
+        }
+    }
+
     getReportFields(reportID: number): string[] {
         // Return a list of Reports
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldss', '@Start');
