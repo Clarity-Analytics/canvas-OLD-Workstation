@@ -2305,6 +2305,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         'top', this.widgets[i].graph.graphTop.toString() + 'px'
                     );
 
+
+                    // Obtain the data for the report linked to this Widget
+                    let reportFields: string[] = ["Error", "reportID"];
+                    let reportData: any[] = [
+                        {
+                            "Error": "No data found", 
+                            "reportID": this.widgets[i].properties.widgetReportID}
+                    ];
+
+                    for (var j = 0; j < this.reports.length; j++) {
+                        if (this.widgets[i].properties.widgetReportID ==
+                            this.reports[j].reportID) {
+                                reportFields = this.reports[j].reportFields;
+                                reportData = this.reports[j].reportData;
+                        }
+                    }
+this.widgets[i].graph.spec.data[0].values = reportData;
+console.log('new data', this.widgets[i].graph.spec.data[0].values)
+
                     // Show the Graphs
                     var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
                     view.renderer('svg')
@@ -2368,7 +2387,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
         }
 
-        // Loop on the children ElementRefs, and set properties ala widget[].properties
+        // Loop on the images ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgetImage.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].areas.showWidgetImage) {
