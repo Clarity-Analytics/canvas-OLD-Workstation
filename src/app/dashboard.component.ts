@@ -2457,6 +2457,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (tableLeft != 0) {
             tableHTML = tableHTML + 'left: ' + tableLeft + 'px; '; 
         }
+        if (tableTop != 0) {
+            tableHTML = tableHTML + 'top: ' + tableTop + 'px; '; 
+        }
+
 
         // background-color:black;"> ';
         tableHTML = tableHTML + '"> '; 
