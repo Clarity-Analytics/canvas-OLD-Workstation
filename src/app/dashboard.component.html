@@ -1182,11 +1182,12 @@
     (keydown)="onWidgetKeyUp($event, w.properties.widgetID)"
     (click)="onWidgetMouseDown($event, w.properties.widgetID)"
     >
-
+ 
     <!--Container Header boxie-->
     <div
         class=widgetContainerHeader
         [style.height.em]="showContainerHeader == true ? '1' : '0'"
+        [style.background-color] = "showContainerHeader ? 'white' : 'transparent'"
         >
 
         <!--Widget Drag Handle    -->

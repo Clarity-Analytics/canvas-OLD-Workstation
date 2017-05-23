@@ -2477,7 +2477,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
             tableHTML = tableHTML + "</tr> " 
         }
-console.log('tableRows',tableRows)
+
         // Rows
         let z: number = 0;
         for (var i in reportData) {
@@ -2496,7 +2496,7 @@ console.log('tableRows',tableRows)
                     // Only do the nr of cols specified; 0 means all
                     if (y >= tableCols  &&  tableCols > 0) {break;}
                     y++ 
-console.log('td',reportData[i][j])                
+
                     tableHTML = tableHTML + "<td> " 
                     tableHTML = tableHTML + reportData[i][j]
                     tableHTML = tableHTML + "</td> " 
