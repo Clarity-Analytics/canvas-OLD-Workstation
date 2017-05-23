@@ -2321,8 +2321,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 reportData = this.reports[j].reportData;
                         }
                     }
-this.widgets[i].graph.spec.data[0].values = reportData;
-console.log('new data', this.widgets[i].graph.spec.data[0].values)
+                    
+                    this.widgets[i].graph.spec.data[0].values = reportData;
 
                     // Show the Graphs
                     var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
@@ -2418,36 +2418,54 @@ console.log('new data', this.widgets[i].graph.spec.data[0].values)
         }
     }
 
-    convertArrayToTable(reportFields: string[], reportData: any[]): string {
+    convertArrayToTable(
+        reportFields: string[], 
+        reportData: any[],
+        tableColor?: string,                     
+        tableCols?: number,                     
+        tableHeight?: number,                    
+        tableHideHeader?: boolean,
+        tableLeft?: number,                      
+        tableRows?: number,                      
+        tableTop?: number,                      
+        tableWidth?: number                     
+        ): string {
         // Converts an input array to a HTML string, which is a formatted table
         this.globalFunctionService.printToConsole(this.constructor.name,'convertArrayToTable', '@Start');
 
+
+
         // Table
-        let tableHTML: string = '';
-        tableHTML = tableHTML + "<table>" 
+        let tableHTML: string = '<div style="background-color:black;"> ';
+        tableHTML = tableHTML + "<table> " 
 
         // Headers
-        tableHTML = tableHTML + "<tr>" 
+        tableHTML = tableHTML + "<tr> " 
         for (var x in reportFields) {
-            tableHTML = tableHTML + "<th>" + reportFields[x] + "</th>" 
+            tableHTML = tableHTML + "<th> " + reportFields[x] + "</th> "  
         }
-        tableHTML = tableHTML + "</tr>" 
+        tableHTML = tableHTML + "</tr> " 
 
         // Body cells
         for (var i in reportData) {
-            tableHTML = tableHTML + "<tr>"; 
-
+            tableHTML = tableHTML + "<tr> "; 
+console.log('row',reportData[i])
+            let y=0;
             for (var j in reportData[i]) {
-                tableHTML = tableHTML + "<td>" 
+                if (y < reportFields.length) {
+                    y++ 
+console.log('td',reportData[i][j])                
+                tableHTML = tableHTML + "<td> " 
                 tableHTML = tableHTML + reportData[i][j]
-                tableHTML = tableHTML + "</td>" 
+                tableHTML = tableHTML + "</td> " 
             }
-            tableHTML = tableHTML + "</tr>" 
+            }
+            tableHTML = tableHTML + "</tr> " 
         }
 
         // Ending
-        tableHTML = tableHTML + "</table>" 
-
+        tableHTML = tableHTML + "</table>  </div>" 
+console.log('html1',tableHTML)
         // Return
          return tableHTML;
     }
