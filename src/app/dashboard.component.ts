@@ -2129,25 +2129,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         if (this.widgets[i].properties.widgetReportID ==
                             this.reports[j].reportID) {
                                 foundReport = true;
-                            }
+                        }
                     }
             }
 
-//             if (!foundReport) {
-//                 this.reports.push({...})
-//             }
-// // getReportFields, getReportData
-//  Report {
-//     reportID: number;                   // Unique DB ID
-//     reportName: string;                 // Name
-//     description: string;                // Description
-//     reportParameters: string;           // Parameters (optional)
-//     dataSourceID: number;               // FK to DataSource
-//     dataSourceParameters: string;       // Data Source Parameters
-//     reportFields: string[];             // Array of report fields, obtained from DB
-//     reportData: any[];                  // Array (json) of data rows
-// }
-}
+            let reportToAdd: Report = null;
+            if (!foundReport) {
+                reportToAdd = this.eazlService.getReport(
+                    this.widgets[i].properties.widgetReportID
+                );
+                if (reportToAdd != null) {
+                    this.reports.push(reportToAdd);
+                }
+            }
+        }
 
         // Loop on the container ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgetContainers.toArray().length > 0) {
