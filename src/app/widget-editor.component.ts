@@ -940,7 +940,7 @@ export class WidgetEditorComponent implements OnInit {
                 }
             }
         }
- 
+
         if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
             // Get the corresponding widget template
             this.loadWidgetTemplateFields();

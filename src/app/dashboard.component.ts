@@ -343,7 +343,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public handleformDashboarTabSubmit(event){
         // Is triggered after the Dashboard Tab form is submitted
         this.globalFunctionService.printToConsole(this.constructor.name,'handleformDashboarTabSubmit', '@Start');
-console.log('handleformDashboarTabSubmit',event)
+
         // Hide popup
         this.displayTabDetails = false;
     }
@@ -2170,7 +2170,7 @@ console.log('handleformDashboarTabSubmit',event)
             }
         }
 
-        // Loop on the container ElementRefs, and set properties ala widget[].properties
+        // Loop on the text ElementRefs, and set properties ala widget[].properties
         let textToDOM: string;
         if (this.childrenWidgetText.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
@@ -2254,7 +2254,7 @@ console.log('handleformDashboarTabSubmit',event)
             }
         }
 
-        // Loop on the children ElementRefs, and set properties ala widget[].properties
+        // Loop on the graph ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].areas.showWidgetGraph) {
@@ -2282,7 +2282,7 @@ console.log('handleformDashboarTabSubmit',event)
             }
         }
 
-        // Loop on the children ElementRefs, and set properties ala widget[].properties
+        // Loop on the table ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgetTable.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].areas.showWidgetTable) {
@@ -2293,6 +2293,25 @@ console.log('handleformDashboarTabSubmit',event)
                         'id',
                         this.widgets[i].properties.widgetID.toString()
                     );
+
+                    // Modify and insert text
+
+let reportFields: string[] = ["category", "amount"];
+let reportData: any[] = [
+    {"category": "A22", "amount": 108},
+    {"category": "B22", "amount": 115},
+    {"category": "C22", "amount": 123},
+    {"category": "D22", "amount": 131},
+    {"category": "E22", "amount": 144},
+    {"category": "F22", "amount": 153},
+    {"category": "G22", "amount": 169},
+    {"category": "H22", "amount": 177}
+ ];
+
+
+
+                    textToDOM = this.convertArrayToTable(reportFields, reportData);
+                    this.childrenWidgetTable.toArray()[i].nativeElement.innerHTML = textToDOM
 
                     // Styling
                     this.renderer.setElementStyle(
@@ -2314,10 +2333,6 @@ console.log('handleformDashboarTabSubmit',event)
                 }
             }
         }
-
-
-
-
 
         // Loop on the children ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgetImage.toArray().length > 0) {
@@ -2348,6 +2363,40 @@ console.log('handleformDashboarTabSubmit',event)
                 }
             }
         }
+    }
+// reportData: any[]
+    convertArrayToTable(reportFields: string[], reportData: any[]): string {
+        // Converts an input array to a HTML string, which is a formatted table
+        this.globalFunctionService.printToConsole(this.constructor.name,'convertArrayToTable', '@Start');
+
+        // Table
+        let tableHTML: string = '';
+        tableHTML = tableHTML + "<table>" 
+
+        // Headers
+        tableHTML = tableHTML + "<tr>" 
+        for (var x in reportFields) {
+            tableHTML = tableHTML + "<th>" + reportFields[x] + "</th>" 
+        }
+        tableHTML = tableHTML + "</tr>" 
+
+        // Body cells
+        for (var i in reportData) {
+            tableHTML = tableHTML + "<tr>"; 
+
+            for (var j in reportData[i]) {
+                tableHTML = tableHTML + "<td>" 
+                tableHTML = tableHTML + reportData[i][j]
+                tableHTML = tableHTML + "</td>" 
+            }
+            tableHTML = tableHTML + "</tr>" 
+        }
+
+        // Ending
+        tableHTML = tableHTML + "</table>" 
+
+        // Return
+         return tableHTML;
     }
 
     getDashboards() {

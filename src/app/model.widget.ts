@@ -35,7 +35,7 @@ export class Widget {
         textTextAlign: string;       
         textTop: number;                        // in px
         textWidth: number;                      // in px: 0 means it adapts to container
-    };
+    }; 
     graph: {
         graphID: number;
         graphLeft: number;                      // in px
@@ -74,7 +74,7 @@ export class Widget {
         widgetID: number;                       // Unique ID from DB
         dashboardID: number;                    // FK to DashboardID to which widget belongs
         dashboardTabID: number;                 // FK to Tab where the widget lives
-        dashboardTabName: string;                  // FK to Tab Name where widget lives
+        dashboardTabName: string;               // FK to Tab Name where widget lives
         widgetCode: string;                     // Short Code ~ ShortName
         widgetName: string;                     // Descriptive Name
         widgetAddRestRow: boolean;              // True means add a row to  = SUM(rest)

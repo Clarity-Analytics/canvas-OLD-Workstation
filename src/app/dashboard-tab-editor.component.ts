@@ -133,8 +133,6 @@ export class DashboardTabEditorComponent implements OnInit {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
-// console.log ('subm', this.dashboardTabForm.controls['dashboardTabDescription'].value)
-
         // Validation
         // if (this.identificationForm.controls['widgetType'].value == ''  || 
         //     this.identificationForm.controls['widgetType'].value == null) {
@@ -157,7 +155,6 @@ export class DashboardTabEditorComponent implements OnInit {
         // }
 
         // Update DB
-        // let result: boolean = true;
         let result: boolean = this.eazlService.updateDashboardTab(
             this.currentDashboardTab.dashboardID, 
             this.currentDashboardTab.dashboardTabID,
