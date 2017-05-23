@@ -678,10 +678,12 @@ export class WidgetEditorComponent implements OnInit {
             }
             if (this.identificationForm.controls['textLeft'].value == ''  || 
                 this.identificationForm.controls['textLeft'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Left (Text panel) is compulsory.';
+                    if (this.identificationForm.controls['textLeft'].value != '0') {
+                        this.formIsValid = false;
+                        this.numberErrors = this.numberErrors + 1;
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            'The Left (Text panel) is compulsory.';
+                    }
             }                
             if (this.identificationForm.controls['textLeft'].touched  && 
                 !this.identificationForm.controls['textLeft'].valid) {
