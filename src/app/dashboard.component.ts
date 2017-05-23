@@ -2470,16 +2470,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         tableHTML = tableHTML + "<table> " 
 
         // Headers
-        tableHTML = tableHTML + "<tr> " 
-        for (var x in reportFields) {
-            tableHTML = tableHTML + "<th> " + reportFields[x] + "</th> "  
+        if (tableHideHeader) {
+            tableHTML = tableHTML + "<tr> " 
+            for (var x in reportFields) {
+                tableHTML = tableHTML + "<th> " + reportFields[x] + "</th> "  
+            }
+            tableHTML = tableHTML + "</tr> " 
         }
-        tableHTML = tableHTML + "</tr> " 
 
         // Body cells
         for (var i in reportData) {
             tableHTML = tableHTML + "<tr> "; 
-console.log('row',reportData[i])
 
             // The reportData object returns more fields, so we need to restrict them
             // to the number of fields.  These values are given first in the for loop

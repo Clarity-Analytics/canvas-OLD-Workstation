@@ -697,7 +697,7 @@ export const WIDGETS: Widget[] =
                 tableColor: 'red',
                 tableCols: 1,
                 tableHeight: 0,
-                tableHideHeader: false,
+                tableHideHeader: true,
                 tableLeft: 0,
                 tableRows: 1,
                 tableTop: 340,
