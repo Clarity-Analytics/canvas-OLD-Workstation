@@ -55,7 +55,7 @@ export class Widget {
     table:{
         tableColor: string;                     // Text color
         tableCols: number;                      // Nr of cols
-        tableHeight: number;                    // in px
+        tableHeight: number;                    // in px, cuts of rest if bigger than this
         tableHideHeader: boolean;
         tableLeft: number;                      // in px
         tableRows: number;                      // Nr of rows

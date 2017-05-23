@@ -2362,20 +2362,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         }
                     }
 
-
-        // tableColor: string;                     // Text color
-        // tableCols: number;                      // Nr of cols
-        // tableHeight: number;                    // in px
-        // tableHideHeader: boolean;
-        // tableLeft: number;                      // in px
-        // tableRows: number;                      // Nr of rows
-        // tableTop: number;                       // in px
-        // tableWidth: number;                     // in px
                     // Convert data to HTML table, and insert into DOM
                     textToDOM = this.convertArrayToTable(
                         reportFields, 
                         reportData,
-                        this.widgets[i].table.tableColor);
+                        this.widgets[i].table.tableColor,
+                        this.widgets[i].table.tableCols,
+                        this.widgets[i].table.tableHeight,
+                        this.widgets[i].table.tableHideHeader,
+                        this.widgets[i].table.tableLeft,
+                        this.widgets[i].table.tableRows,
+                        this.widgets[i].table.tableTop,
+                        this.widgets[i].table.tableWidth);
                     this.childrenWidgetTable.toArray()[i].nativeElement.innerHTML = textToDOM
 
                     // Styling
@@ -2448,9 +2446,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Table
         let tableHTML: string = '<div style="';
 
+        // Add optional properties
         if (tableColor != '') {
-            tableHTML = tableHTML + 'color: ' + tableColor + ';'; 
+            tableHTML = tableHTML + 'color: ' + tableColor + '; '; 
         }
+        if (tableHeight != 0) {
+            tableHTML = tableHTML + 'height: ' + tableHeight + 'px; '; 
+            tableHTML = tableHTML + 'overflow: hidden; ';
+        }
+
+
+
+
         // background-color:black;"> ';
         tableHTML = tableHTML + '"> '; 
         tableHTML = tableHTML + "<table> " 
