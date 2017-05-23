@@ -701,7 +701,7 @@ export const WIDGETS: Widget[] =
                 tableLeft: 0,
                 tableRows: 1,
                 tableTop: 340,
-                tableWidth: 320,
+                tableWidth: 340,
             },
             image: {
                 imageAlt: '',

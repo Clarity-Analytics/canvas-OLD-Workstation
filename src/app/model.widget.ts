@@ -60,7 +60,7 @@ export class Widget {
         tableLeft: number;                      // in px
         tableRows: number;                      // Nr of rows
         tableTop: number;                       // in px
-        tableWidth: number;                     // in px
+        tableWidth: number;                     // in px, cuts of rest if bigger than this
     };
     image: {
         imageAlt: string;                       // alt in img tag
