@@ -516,7 +516,7 @@ export class WidgetEditorComponent implements OnInit {
 
                 // Load fields for Table
                 this.identificationForm.controls['tableHideHeader']
-                    .setValue(this.widgetToEdit.table.tableHideHeader);
+                    .setValue(this.widgetToEdit.table.tableHideHeader.toString());
                 this.selectedItemColor = {
                     id:this.widgetToEdit.table.tableColor,             
                     name: this.widgetToEdit.table.tableColor,             
@@ -736,49 +736,56 @@ export class WidgetEditorComponent implements OnInit {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The HideHeader (Table) panel) is compulsory.';
-            }                
+                        'The HideHeader (Table panel) is compulsory.';
+            }
+            if (this.identificationForm.controls['tableHideHeader'].value != 'true'  &&
+                this.identificationForm.controls['tableHideHeader'].value != 'false') {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The HideHeader (Table panel) must be true or false (all lower case)';
+                }
             if (this.identificationForm.controls['tableCols'].touched  && 
                 !this.identificationForm.controls['tableCols'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Nr Cols (Table) panel) must be numeric';
+                        'The Nr Cols (Table panel) must be numeric';
             }
             if (this.identificationForm.controls['tableRows'].touched  && 
                 !this.identificationForm.controls['tableRows'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Nr Rows (Table) panel) must be numeric';
+                        'The Nr Rows (Table panel) must be numeric';
             }
             if (this.identificationForm.controls['tableHeight'].touched  && 
                 !this.identificationForm.controls['tableHeight'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Height (Table) panel) must be numeric';
+                        'The Height (Table panel) must be numeric';
             }
             if (this.identificationForm.controls['tableWidth'].touched  && 
                 !this.identificationForm.controls['tableWidth'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Width (Table) panel) must be numeric';
+                        'The Width (Table panel) must be numeric';
             }
             if (this.identificationForm.controls['tableLeft'].touched  && 
                 !this.identificationForm.controls['tableLeft'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Left (Table) panel) must be numeric';
+                        'The Left (Table panel) must be numeric';
             }
             if (this.identificationForm.controls['tableTop'].touched  && 
                 !this.identificationForm.controls['tableTop'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Top (Table) panel) must be numeric';
+                        'The Top (Table panel) must be numeric';
             }
         }
 
