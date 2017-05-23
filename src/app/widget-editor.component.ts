@@ -108,7 +108,8 @@ export class WidgetEditorComponent implements OnInit {
     selectedTextPadding: any;                   // Selected option for Text Box Padding
     selectedTextPosition: any;                  // Selected option for Text Box Position
     selectedTextAlign: any;                     // Selected option for Text Alignment in box
-    
+    selectedTableColor: any                     // Selected option for Table Color
+
     selectedImageSrc: any;                      // Selected option for Image Src file
     isVegaSpecBad: boolean = true;              // True if Vega spec is bad
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
@@ -175,6 +176,14 @@ export class WidgetEditorComponent implements OnInit {
                 'textTextAlign':                new FormControl(''),
                 'textTop':                      new FormControl('', Validators.pattern('^[0-9]*$')),
                 'textWidth':                    new FormControl('', Validators.pattern('^[0-9]*$')),
+                'tableHideHeader':              new FormControl(''),
+                'tableColor':                   new FormControl(''),
+                'tableCols':                    new FormControl(''),
+                'tableRows':                    new FormControl(''),
+                'tableHeight':                  new FormControl(''),
+                'tableWidth':                   new FormControl(''),
+                'tableLeft':                    new FormControl(''),
+                'tableTop':                     new FormControl(''),
                 'imageAlt':                     new FormControl(''),
                 'imageHeigt':                   new FormControl('', Validators.pattern('^[0-9]*$')),
                 'imageLeft':                    new FormControl('', Validators.pattern('^[0-9]*$')),
@@ -198,9 +207,9 @@ export class WidgetEditorComponent implements OnInit {
                 'widgetAddRestRow':             new FormControl(''),
                 'widgetType':                   new FormControl(''),
                 'widgetReportWidgetSet':        new FormControl(''),
-                'vegaGraphHeight':                  new FormControl('', Validators.pattern('^[0-9]*$')),
-                'vegaGraphWidth':                   new FormControl('', Validators.pattern('^[0-9]*$')),
-                'vegaGraphPadding':                 new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaGraphHeight':              new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaGraphWidth':               new FormControl('', Validators.pattern('^[0-9]*$')),
+                'vegaGraphPadding':             new FormControl('', Validators.pattern('^[0-9]*$')),
                 'vegaHasSignals':               new FormControl(''),
                 'vegaXcolumn':                  new FormControl(''),
                 'vegaYcolumn':                  new FormControl(''),
@@ -927,7 +936,7 @@ export class WidgetEditorComponent implements OnInit {
                         this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
                 }
             }
-
+ 
             // Then wack in the data from the Report
             if (this.identificationForm.controls['widgetReportName'].value != '' &&
                 this.identificationForm.controls['widgetReportName'].value != undefined) {

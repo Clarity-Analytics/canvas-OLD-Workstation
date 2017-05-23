@@ -44,7 +44,7 @@
                 >
             </button>  
         </div>
-
+ 
         <!--Content Panel Area-->
         <div
             class="panelArea"
@@ -1506,10 +1506,217 @@
             *ngIf="showWidgetTable   &&   tablePanelIsOpen"
             >
 
-            To be completed later once designed in more detail.  Currently we have:
-            tableColor, tableCols, tableHeight, tableHideHeader, tableLeft, tableRows, 
-            tableTop, tableWidth as properties.  This may changes ...
-            
+            <!--textText-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    HideHeader :
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 0px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="tableHideHeader" 
+                    placeholder="Required"
+                    pTooltip="True to include table headers (else false)"
+                    />
+            </div>
+
+            <!--Text Background Color-->
+            <div
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Text Color:
+                </span>
+                <p-dropdown
+                    [(ngModel)]="selectedTableColor"
+                    [style]="
+                        {
+                            'background-color':'538cc6',
+                            'border':'1px solid lightgray',
+                            'border-radius':'2px',
+                            'float':'right',
+                            'font-size':'0.85em',
+                            'margin':'-12px 5px 0 0',
+                            'padding':'0',
+                            'width':'200px'
+                        }" 
+                    [options]="chartColor" 
+                    formControlName="tableColor"
+                    placeholder="(Optional)"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
+            <!--tableCols-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Nr Cols :
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 0px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="tableCols" 
+                    placeholder="Required"
+                    pTooltip="Number of columns to show in the table"
+                    />
+            </div>
+
+            <!--tableRows-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Nr Rows :
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 0px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="tableRows" 
+                    placeholder="Required"
+                    pTooltip="Number of rows to show in the table"
+                    />
+            </div>
+
+            <!--tableHeight-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Height :
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 0px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="tableHeight" 
+                    placeholder="Required"
+                    pTooltip="Height of the full table in px (0 means no fixed height)"
+                    />
+            </div>
+
+            <!--tableWidth-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Width :
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 0px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="tableWidth" 
+                    placeholder="Required"
+                    pTooltip="Width of the full table in px (0 means no fixed wdith)"
+                    />
+            </div>
+
+            <!--tableLeft-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Left :
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 0px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="tableLeft" 
+                    placeholder="Required"
+                    pTooltip="Left of the table in px (0 means ignore)"
+                    />
+            </div>
+
+            <!--tableTop-->
+            <div 
+                class="panelLine"
+                >
+                <span 
+                    class="panelLineLabel"
+                    >
+                    Top :
+                </span>
+                <input 
+                    pInputText 
+                    style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 0px;
+                            padding: 0;
+                            width: 200px;
+                          " 
+                    type="text" 
+                    formControlName="tableTop" 
+                    placeholder="Required"
+                    pTooltip="Top of the table in px (0 means ignore)"
+                    />
+            </div>
         </div>
 
 
