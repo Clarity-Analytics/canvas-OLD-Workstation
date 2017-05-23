@@ -2477,9 +2477,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
             tableHTML = tableHTML + "</tr> " 
         }
-
-        // Body cells
+console.log('tableRows',tableRows)
+        // Rows
+        let z: number = 0;
         for (var i in reportData) {
+            if (z >= tableRows  &&  tableRows > 0) {break;}
+            z++;
             tableHTML = tableHTML + "<tr> "; 
 
             // The reportData object returns more fields, so we need to restrict them

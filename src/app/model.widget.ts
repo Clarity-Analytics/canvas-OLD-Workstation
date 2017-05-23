@@ -58,7 +58,7 @@ export class Widget {
         tableHeight: number;                    // in px, cuts of rest if bigger than this
         tableHideHeader: boolean;
         tableLeft: number;                      // in px
-        tableRows: number;                      // Nr of rows
+        tableRows: number;                      // Nr of rows in the data, excluding header
         tableTop: number;                       // in px
         tableWidth: number;                     // in px, cuts of rest if bigger than this
     };
