@@ -65,7 +65,7 @@ export class WidgetEditorComponent implements OnInit {
     selectedReportID: number;                   // Selected in DropDown
     selectedReportFieldX: string;               // Selected in DropDown
     selectedReportFieldY: string;               // Selected in DropDown
-    selectedDashboardTab: any;                  // Selected in DropDown
+    selectedDashboardTab: SelectedItem;         // Selected in DropDown
     selectedReport: any;                        // Selected in Report DropDown
     selectedVegaXcolumn: any;                   // Selected in DropDown
     selectedVegaYcolumn: any;                   // Selected in DropDown
@@ -93,18 +93,18 @@ export class WidgetEditorComponent implements OnInit {
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
     selectedWidgetCreation: any;                // Selected option to create Widget
-    selectedTextBackground: any;                // Selected option for Text Background
-    selectedTextBorder: any;                    // Selected option for Text Border
-    selectedTextColor: any;                     // Selected option for Text Color
-    selectedTextFontSize: any;                  // Selected option for Text Font Size
-    selectedTextFontWeight: any;                // Selected option for Text Font Weight
-    selectedTextMargin: any;                    // Selected option for Text Margin
-    selectedTextPadding: any;                   // Selected option for Text Box Padding
-    selectedTextPosition: any;                  // Selected option for Text Box Position
-    selectedTextAlign: any;                     // Selected option for Text Alignment in box
-    selectedTableColor: any                     // Selected option for Table Color
+    selectedTextBackground: SelectedItemColor;  // Selected option for Text Background
+    selectedTextBorder: SelectedItem;           // Selected option for Text Border
+    selectedTextColor: SelectedItem;            // Selected option for Text Color
+    selectedTextFontSize: SelectedItem;         // Selected option for Text Font Size
+    selectedTextFontWeight: SelectedItem;       // Selected option for Text Font Weight
+    selectedTextMargin: SelectedItem;           // Selected option for Text Margin
+    selectedTextPadding: SelectedItem;          // Selected option for Text Box Padding
+    selectedTextPosition: SelectedItem;         // Selected option for Text Box Position
+    selectedTextAlign: SelectedItem;            // Selected option for Text Alignment in box
+    selectedTableColor: SelectedItemColor;      // Selected option for Table Color
 
-    selectedImageSrc: any;                      // Selected option for Image Src file
+    selectedImageSrc: SelectedItem;             // Selected option for Image Src file
     isVegaSpecBad: boolean = true;              // True if Vega spec is bad
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
@@ -447,6 +447,7 @@ export class WidgetEditorComponent implements OnInit {
                 // Load fields for Text box
                 this.identificationForm.controls['textText']
                     .setValue(this.widgetToEdit.textual.textText);
+                    
                 this.selectedItemColor = {
                     id:this.widgetToEdit.textual.textBackgroundColor,             
                     name: this.widgetToEdit.textual.textBackgroundColor,             
@@ -458,12 +459,14 @@ export class WidgetEditorComponent implements OnInit {
                     this.selectedItemColor
                 );
                 this.selectedTextBackground = this.selectedItemColor;
+
                 this.selectedItem = {
                     id: 1, 
                     name: this.widgetToEdit.textual.textBorder
                 };
                 this.identificationForm.controls['textBorder'].setValue(this.selectedItem);
                 this.selectedTextBorder = this.selectedItem;
+
                 this.selectedItemColor = {
                     id:this.widgetToEdit.textual.textColor,             
                     name: this.widgetToEdit.textual.textColor,             
@@ -475,6 +478,7 @@ export class WidgetEditorComponent implements OnInit {
                     this.selectedItemColor
                 );
                 this.selectedTextColor = this.selectedItemColor;
+
                 this.selectedItem = {
                     id: 1, 
                     name: this.widgetToEdit.textual.textFontSize.toString()
@@ -1019,7 +1023,11 @@ export class WidgetEditorComponent implements OnInit {
             // Space to worry about EDIT only mode - for future use
         }
 
-        // Load fields from form - assume good as Validation will stop bad stuff
+        // Load fields from form - assume ALL good as Validation will stop bad stuff
+        this.widgetToEdit.areas.showWidgetGraph = this.showWidgetGraph;
+        this.widgetToEdit.areas.showWidgetImage = this.showWidgetImage;
+        this.widgetToEdit.areas.showWidgetTable = this.showWidgetTable;
+        this.widgetToEdit.areas.showWidgetText = this.showWidgetText;
         this.widgetToEdit.properties.dashboardTabID = 
             this.selectedDashboardTab.id;
         this.widgetToEdit.properties.dashboardTabName = 
@@ -1176,6 +1184,78 @@ export class WidgetEditorComponent implements OnInit {
             }
         } 
  
+        // Load Text fields
+        if (this.showWidgetText) {
+            this.widgetToEdit.textual.textText = 
+                this.identificationForm.controls['textText'].value;
+            this.widgetToEdit.textual.textBackgroundColor = 
+                this.selectedTextBackground.name;
+            this.widgetToEdit.textual.textBorder = 
+                this.selectedTextBorder.name;
+            this.widgetToEdit.textual.textColor = 
+                this.selectedTextColor.name;
+            this.widgetToEdit.textual.textFontSize = 
+                +this.selectedTextFontSize.name;
+            this.widgetToEdit.textual.textFontWeight = 
+                this.selectedTextFontWeight.name;
+            this.widgetToEdit.textual.textHeight = 
+                this.identificationForm.controls['textHeight'].value;
+            this.widgetToEdit.textual.textLeft = 
+                this.identificationForm.controls['textLeft'].value;
+            this.widgetToEdit.textual.textMargin = 
+                this.selectedTextMargin.name;
+            this.widgetToEdit.textual.textPadding = 
+                this.selectedTextPadding.name;
+            this.widgetToEdit.textual.textPosition = 
+                this.selectedTextPosition.name;
+            this.widgetToEdit.textual.textTextAlign = 
+                this.selectedTextAlign.name;
+            this.widgetToEdit.textual.textTop = 
+                this.identificationForm.controls['textTop'].value;
+            this.widgetToEdit.textual.textWidth = 
+                this.identificationForm.controls['textWidth'].value;
+        }
+
+        // Load Table fields
+        if (this.showWidgetTable) {
+            if (this.identificationForm.controls['tableHideHeader'].value == 'true') {
+                this.widgetToEdit.table.tableHideHeader = true;
+            } else {
+                this.widgetToEdit.table.tableHideHeader = false;
+            }
+                this.identificationForm.controls['tableHideHeader'].value;
+            this.widgetToEdit.table.tableColor = 
+                this.selectedTableColor.name;
+            this.widgetToEdit.table.tableCols = 
+                this.identificationForm.controls['tableCols'].value;
+            this.widgetToEdit.table.tableRows = 
+                this.identificationForm.controls['tableRows'].value;
+            this.widgetToEdit.table.tableHeight = 
+                this.identificationForm.controls['tableHeight'].value;
+            this.widgetToEdit.table.tableWidth = 
+                this.identificationForm.controls['tableWidth'].value;
+            this.widgetToEdit.table.tableLeft = 
+                this.identificationForm.controls['tableLeft'].value;
+            this.widgetToEdit.table.tableTop = 
+                this.identificationForm.controls['tableTop'].value;
+        }
+
+        // Load Image fields
+        if (this.showWidgetImage) {
+            this.widgetToEdit.image.imageAlt = 
+                this.identificationForm.controls['imageAlt'].value;
+            this.widgetToEdit.image.imageHeigt = 
+                this.identificationForm.controls['imageHeigt'].value;
+            this.widgetToEdit.image.imageLeft = 
+                this.identificationForm.controls['imageLeft'].value;
+            this.widgetToEdit.image.imageSource = 
+                this.selectedImageSrc.name;
+            this.widgetToEdit.image.imageTop = 
+                this.identificationForm.controls['imageTop'].value;
+            this.widgetToEdit.image.imageWidth = 
+                this.identificationForm.controls['imageWidth'].value;
+        }
+
         // Set last updated, created and refreshed properties
         let d = new Date();
         this.widgetToEdit.properties.widgetRefreshedDateTime =
@@ -1190,6 +1270,7 @@ export class WidgetEditorComponent implements OnInit {
             this.canvasDate.curMinute(d).toString();
         this.widgetToEdit.properties.widgetUpdatedUserID = 
             this.canvasUser.username;
+console.log('@end', this.widgetToEdit)
 
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
