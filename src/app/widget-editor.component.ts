@@ -583,7 +583,12 @@ export class WidgetEditorComponent implements OnInit {
     }
 
     onSubmit() {
-        // User clicked submit button
+        // User clicked submit button.
+        // Note: it is assumed that 
+        // - all the fields are tested to be valid and proper in the validation.
+        //   If not, return right after validation.  
+        // - all fields are loaded in widgetToEdit which is shared with the calling routine
+        //   It is assumes is that widgetToEdit is 100% complete and accurate before return
         this.globalFunctionService.printToConsole(this.constructor.name, 'onSubmit', '@Start');
 
         // Validation: note that == null tests for undefined as well
@@ -591,7 +596,6 @@ export class WidgetEditorComponent implements OnInit {
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
-console.log('1')
         // Validation
         if (this.identificationForm.controls['dashboardTabName'].value == ''  || 
             this.identificationForm.controls['dashboardTabName'].value == null) {
@@ -655,7 +659,6 @@ console.log('1')
                     }
             }
         }
-console.log('2')
 
         // Validate the Text fields, IF active
         if (this.showWidgetText) {
@@ -732,7 +735,6 @@ console.log('2')
                         'The Width (Text panel) must be numeric';
             }
         }
-console.log('3')
 
         // Validate Table fields, IF active
         if (this.showWidgetTable) {
@@ -793,7 +795,6 @@ console.log('3')
                         'The Top (Table panel) must be numeric';
             }
         }
-console.log('4')
 
         // validate Image fields, IF active
         if (this.showWidgetImage) {
@@ -862,7 +863,6 @@ console.log('4')
                         'The Width (Image panel) must be numeric';
             }
         }
-console.log('4.5', this.identificationForm.controls['widgetType'].value)
 
         // Tricksy bit: validate per Widget Type.  I know its a lot of work, but 
         // its the only solution for now
@@ -896,7 +896,6 @@ console.log('4.5', this.identificationForm.controls['widgetType'].value)
                     }
                 }
             }
-console.log('5', this.identificationForm.controls['widgetType'].value)
 
             // BarChart field validation
             if (this.identificationForm.controls['widgetType'].value == null) {
@@ -954,7 +953,6 @@ console.log('5', this.identificationForm.controls['widgetType'].value)
                 }
             }
         }
-console.log('6')
 
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
@@ -966,9 +964,7 @@ console.log('6')
             });
             return;
         }
-console.log('7')
         
-console.log('this.addEditMode',this.addEditMode)
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
@@ -1014,7 +1010,6 @@ console.log('this.addEditMode',this.addEditMode)
                 this.canvasUser.username;
                 
         }
-console.log('8')
 
         // Editing existing Widget
         if (this.addEditMode == 'Edit' && this.displayEditWidget  &&
@@ -1023,7 +1018,6 @@ console.log('8')
 
             // Space to worry about EDIT only mode - for future use
         }
-console.log('9')
 
         // Load fields from form - assume good as Validation will stop bad stuff
         this.widgetToEdit.properties.dashboardTabID = 
@@ -1048,9 +1042,6 @@ console.log('9')
             this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
         this.widgetToEdit.properties.widgetPassword = 
             this.identificationForm.controls['widgetPassword'].value;
-
-console.log ('10')
-
         this.widgetToEdit.properties.widgetRefreshFrequency = 
             this.identificationForm.controls['widgetRefreshFrequency'].value;
         this.widgetToEdit.properties.widgetRefreshMode = 
@@ -1064,8 +1055,6 @@ console.log ('10')
         this.widgetToEdit.properties.widgetTypeID = 0;
         this.widgetToEdit.properties.widgetType = 
             this.identificationForm.controls['widgetType'].value;
-console.log ('11')
-
 
         // Amend the specs IF given, according to the Widget Sets
         if (this.identificationForm.controls['widgetType'].value != null) {
@@ -1076,7 +1065,6 @@ console.log ('11')
                             this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
                     }
                 }
-    console.log ('11.10')
     
                 // Then wack in the data from the Report
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
@@ -1091,7 +1079,6 @@ console.log ('11')
                 }
             }
         }
-console.log ('12')
 
         if (this.identificationForm.controls['widgetType'].value != null) {
             if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
@@ -1112,8 +1099,6 @@ console.log ('12')
                     this.identificationForm.controls['vegaGraphWidth'].value;
                 this.widgetToEdit.graph.spec.padding = 
                     this.identificationForm.controls['vegaGraphPadding'].value;                                        
-console.log('12.1')
-
                 if (this.identificationForm.controls['vegaXcolumn'].value.name != '' &&
                     this.identificationForm.controls['vegaXcolumn'].value.name != undefined) {
                         this.widgetToEdit.graph.spec.scales[0].domain.field =  
@@ -1125,7 +1110,6 @@ console.log('12.1')
                         this.widgetToEdit.graph.spec.marks[1].encode.update.x.signal =
                             'tooltip.' + this.identificationForm.controls['vegaXcolumn'].value.name;
                 }
-console.log('12.3')
 
                 if (this.identificationForm.controls['vegaYcolumn'].value.name != '' &&
                     this.identificationForm.controls['vegaYcolumn'].value.name != undefined) {
@@ -1147,7 +1131,7 @@ console.log('12.3')
                         this.widgetToEdit.graph.spec.marks[0].encode.hover.fill.value =
                             this.identificationForm.controls['vegaHoverColor'].value.name;
                 }
-console.log('12.5')
+
                 // Then wack in the data from the Report
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
                     this.identificationForm.controls['widgetReportName'].value != undefined) {
@@ -1159,7 +1143,6 @@ console.log('12.5')
                             }
                         }
                 }
-console.log('12.7')
 
                 // Estimate height and width for NEW container, based on graph dimensions
                 if (this.addEditMode == 'Add') {
@@ -1173,7 +1156,7 @@ console.log('12.7')
 
             }
         }
-console.log ('13')
+
         if (this.identificationForm.controls['widgetType'].value != null) {
             if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
                 this.widgetToEdit.graph.spec = JSON.parse(this.widgetToEditSpec);
@@ -1192,7 +1175,6 @@ console.log ('13')
                 }
             }
         } 
-console.log ('14')
  
         // Set last updated, created and refreshed properties
         let d = new Date();
@@ -1208,7 +1190,6 @@ console.log ('14')
             this.canvasDate.curMinute(d).toString();
         this.widgetToEdit.properties.widgetUpdatedUserID = 
             this.canvasUser.username;
-console.log('15 - properties', this.widgetToEdit.properties)        
 
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
