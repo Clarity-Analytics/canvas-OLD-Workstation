@@ -474,6 +474,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
             }
 
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Success',
+                detail:   'Widget updated'
+            });
+
             // Refresh the Dashboard
             this.refreshDashboard = true;
         }
@@ -2121,7 +2127,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Else, we assume no data has to be used for rendering
         // NOTE: we only store a report used once in this Array, even if used by >1 Widget
         for (var i = 0; i < this.widgets.length; i++) {
-console.log('widget # =',i)
+
             let foundReport: boolean = false;
             if (this.widgets[i].areas.showWidgetGraph  ||  
                 this.widgets[i].areas.showWidgetTable)    {
@@ -2140,7 +2146,6 @@ console.log('widget # =',i)
                 );
                 if (reportToAdd != null) {
                     this.reports.push(reportToAdd);
-console.log('added Rpt for Rpt ID=',this.widgets[i].properties.widgetReportID)                    
                 }
             }
         }
@@ -2327,7 +2332,6 @@ console.log('added Rpt for Rpt ID=',this.widgets[i].properties.widgetReportID)
                         
                         // 2. Replace the data
                         this.widgets[i].graph.spec.data[0].values = reportData;
-console.log('replaced for ID, old-graph, rptdata',i, this.widgets[i].graph.spec.data[0].values , reportData)
                     }
 
                     // Show the Graphs

@@ -654,7 +654,7 @@ export class WidgetEditorComponent implements OnInit {
                     'The Widget Type (Graph Panel) is compulsory.';
         }
 
-        // Validate the Text form, IF active
+        // Validate the Text fields, IF active
         if (this.showWidgetText) {
                 
             if (this.identificationForm.controls['textText'].value == ''  || 
@@ -730,6 +730,7 @@ export class WidgetEditorComponent implements OnInit {
             }
         }
 
+        // Validate Table fields, IF active
         if (this.showWidgetTable) {
             if (this.identificationForm.controls['tableHideHeader'].value == ''  || 
                 this.identificationForm.controls['tableHideHeader'].value == null) {
@@ -789,6 +790,7 @@ export class WidgetEditorComponent implements OnInit {
             }
         }
 
+        // validate Image fields, IF active
         if (this.showWidgetImage) {
 
             if (this.identificationForm.controls['imageHeigt'].value == ''  || 
@@ -933,94 +935,57 @@ export class WidgetEditorComponent implements OnInit {
 
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
-
-            // First, load from form what wass indeed provided on the form
-            this.widgetToEdit.container.widgetTitle = 
-                this.identificationForm.controls['widgetTitle'].value;
-            this.widgetToEdit.properties.dashboardTabName = 
-                this.identificationForm.controls['dashboardTabName'].value;
-            this.widgetToEdit.properties.widgetCode = 
-                this.identificationForm.controls['widgetCode'].value;
-            this.widgetToEdit.properties.widgetName = 
-                this.identificationForm.controls['widgetName'].value;
-            this.widgetToEdit.properties.widgetAddRestRow = 
-                this.identificationForm.controls['widgetAddRestRow'].value;
-            this.widgetToEdit.properties.widgetDefaultExportFileType = 
-                this.identificationForm.controls['widgetDefaultExportFileType'].value;
-            this.widgetToEdit.properties.widgetDescription = 
-                this.identificationForm.controls['widgetDescription'].value;
-            this.widgetToEdit.properties.widgetHyperLinkTabNr = 
-                this.identificationForm.controls['widgetHyperLinkTabNr'].value;
-            this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
-                this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
-            this.widgetToEdit.properties.widgetPassword = 
-                this.identificationForm.controls['widgetPassword'].value;
-            this.widgetToEdit.properties.widgetRefreshFrequency = 
-                this.identificationForm.controls['widgetRefreshFrequency'].value;
-            this.widgetToEdit.properties.widgetRefreshMode = 
-                this.identificationForm.controls['widgetRefreshMode'].value;
-            this.widgetToEdit.properties.widgetReportName = 
-                this.identificationForm.controls['widgetReportName'].value;
-            this.widgetToEdit.properties.widgetReportParameters = 
-                this.identificationForm.controls['widgetReportParameters'].value;
-            this.widgetToEdit.properties.widgetShowLimitedRows = 
-                this.identificationForm.controls['widgetShowLimitedRows'].value;
-            this.widgetToEdit.properties.widgetType = 
-                this.identificationForm.controls['widgetType'].value;
-
-            // Add x,y from where Icon was dropped
-            this.widgetToEdit.container.left = this.globalFunctionService.alignToGripPoint(
-                this.widgetToEditX);
-            this.widgetToEdit.container.top = this.globalFunctionService.alignToGripPoint(
-                this.widgetToEditY);
+            this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
+            this.widgetToEdit.properties.widgetID = this.widgetIDtoEdit
         }
 
         // Editing existing Widget
-        if (this.addEditMode == 'Edit' && this.displayEditWidget &&
-            this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit) {
+        if (this.addEditMode == 'Edit' && this.displayEditWidget  &&
+            this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit  &&
+            !this.isLoadingForm) {
 
-            // Only worry about changes when we are not loading
-            if (!this.isLoadingForm) {
-                this.widgetToEdit.properties.dashboardTabName = 
-                    this.identificationForm.controls['dashboardTabName'].value;
-                this.widgetToEdit.container.widgetTitle = 
-                    this.identificationForm.controls['widgetTitle'].value;
-                this.widgetToEdit.properties.widgetCode = 
-                    this.identificationForm.controls['widgetCode'].value;
-                this.widgetToEdit.properties.widgetName = 
-                    this.identificationForm.controls['widgetName'].value;
-                this.widgetToEdit.properties.widgetDescription = 
-                    this.identificationForm.controls['widgetDescription'].value;
-                this.widgetToEdit.properties.widgetDefaultExportFileType = 
-                    this.identificationForm.controls['widgetDefaultExportFileType'].value;
-                this.widgetToEdit.properties.widgetHyperLinkTabNr = 
-                    this.identificationForm.controls['widgetHyperLinkTabNr'].value;
-                this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
-                    this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
-                this.widgetToEdit.properties.widgetPassword = 
-                    this.identificationForm.controls['widgetPassword'].value;
-                this.widgetToEdit.properties.widgetRefreshFrequency = 
-                    this.identificationForm.controls['widgetRefreshFrequency'].value;
-                this.widgetToEdit.properties.widgetRefreshMode = 
-                    this.identificationForm.controls['widgetRefreshMode'].value;
-                this.widgetToEdit.properties.widgetReportName = 
-                    this.identificationForm.controls['widgetReportName'].value;
-                this.widgetToEdit.properties.widgetReportParameters = 
-                    this.identificationForm.controls['widgetReportParameters'].value;
-                this.widgetToEdit.properties.widgetShowLimitedRows = 
-                    this.identificationForm.controls['widgetShowLimitedRows'].value;
-                this.widgetToEdit.properties.widgetAddRestRow = 
-                    this.identificationForm.controls['widgetAddRestRow'].value;
-                this.widgetToEdit.properties.widgetType = 
-                    this.identificationForm.controls['widgetType'].value;
-            }
-
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'info',
-                summary:  'Success',
-                detail:   'Widget updated'
-            });
+            // Space to worry about EDIT only mode - for future use
         }
+
+        // Load fields from form - assume good as Validation will stop bad stuff
+        this.widgetToEdit.container.widgetTitle = 
+            this.identificationForm.controls['widgetTitle'].value;
+        this.widgetToEdit.properties.dashboardTabName = 
+            this.identificationForm.controls['dashboardTabName'].value;
+        this.widgetToEdit.properties.widgetCode = 
+            this.identificationForm.controls['widgetCode'].value;
+        this.widgetToEdit.properties.widgetName = 
+            this.identificationForm.controls['widgetName'].value;
+        this.widgetToEdit.properties.widgetAddRestRow = 
+            this.identificationForm.controls['widgetAddRestRow'].value;
+        this.widgetToEdit.properties.widgetDefaultExportFileType = 
+            this.identificationForm.controls['widgetDefaultExportFileType'].value;
+        this.widgetToEdit.properties.widgetDescription = 
+            this.identificationForm.controls['widgetDescription'].value;
+        this.widgetToEdit.properties.widgetHyperLinkTabNr = 
+            this.identificationForm.controls['widgetHyperLinkTabNr'].value;
+        this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
+            this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
+        this.widgetToEdit.properties.widgetPassword = 
+            this.identificationForm.controls['widgetPassword'].value;
+        this.widgetToEdit.properties.widgetRefreshFrequency = 
+            this.identificationForm.controls['widgetRefreshFrequency'].value;
+        this.widgetToEdit.properties.widgetRefreshMode = 
+            this.identificationForm.controls['widgetRefreshMode'].value;
+        this.widgetToEdit.properties.widgetReportName = 
+            this.identificationForm.controls['widgetReportName'].value;
+        this.widgetToEdit.properties.widgetReportParameters = 
+            this.identificationForm.controls['widgetReportParameters'].value;
+        this.widgetToEdit.properties.widgetShowLimitedRows = 
+            this.identificationForm.controls['widgetShowLimitedRows'].value;
+        this.widgetToEdit.properties.widgetType = 
+            this.identificationForm.controls['widgetType'].value;
+
+        // Add x,y from where Icon was dropped
+        this.widgetToEdit.container.left = this.globalFunctionService.alignToGripPoint(
+            this.widgetToEditX);
+        this.widgetToEdit.container.top = this.globalFunctionService.alignToGripPoint(
+            this.widgetToEditY);
 
         // Amend the specs IF given, according to the Widget Sets
         if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {

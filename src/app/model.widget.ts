@@ -77,35 +77,35 @@ export class Widget {
         dashboardTabName: string;               // FK to Tab Name where widget lives
         widgetCode: string;                     // Short Code ~ ShortName
         widgetName: string;                     // Descriptive Name
-        widgetAddRestRow: boolean;              // True means add a row to  = SUM(rest)
-        widgetCreatedDateTime: string;          // Created on
-        widgetCreatedUserID: string;            // Created by
-        widgetComments: string;                 // Optional comments
-        widgetDefaultExportFileType: string;    // User can select others at export time
         widgetDescription: string;              // User description
-        widgetIndex: number;                    // Sequence number on dashboard
-        widgetIsLocked: boolean;                // Protected against changes
+        widgetDefaultExportFileType: string;    // User can select others at export time
         widgetHyperLinkTabNr: string;           // Optional Tab Nr to jump to
         widgetHyperLinkWidgetID: string;        // Optional Widget ID to jump to
+        widgetRefreshMode: string;              // Manual, OnOpen, Repeatedly
+        widgetRefreshFrequency: number;         // Nr of seconds if RefreshMode = Repeatedly
+        widgetPassword: string;                 // Optional password
         widgetIsLiked: boolean;                 // True if Widget is liked by me
         widgetLiked: [                          // Array of UserIDs that likes this Widget
             {
                 widgetLikedUserID: string; 
             }
         ];
-        widgetPassword: string;                 // Optional password
-        widgetRefreshedDateTime: string;        // Data Refreshed on
-        widgetRefreshedUserID: string;          // Date Refreshed by
-        widgetRefreshFrequency: number;         // Nr of seconds if RefreshMode = Repeatedly
-        widgetRefreshMode: string;              // Manual, OnOpen, Repeatedly
         widgetReportID: number;                 // FK to report (query / data).  -1: dont load any report data
         widgetReportName: string;               // Report (query) name in Eazl (DS implied)
         widgetReportParameters: string;         // Optional Report parameters
         widgetShowLimitedRows: number;          // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
+        widgetAddRestRow: boolean;              // True means add a row to  = SUM(rest)
+        widgetType: string;                     // Bar, Pie, Text, etc - must correspond to coding
+        widgetComments: string;                 // Optional comments
+        widgetIndex: number;                    // Sequence number on dashboard
+        widgetIsLocked: boolean;                // Protected against changes
         widgetSize: string;                     // Small, Medium, Large
         widgetSystemMessage: string;            // Optional for Canvas to say something to user
         widgetTypeID: number;                   // Widget Type ID (for Bar, Pie, etc)
-        widgetType: string;                     // Bar, Pie, Text, etc - must correspond to coding
+        widgetRefreshedDateTime: string;        // Data Refreshed on
+        widgetRefreshedUserID: string;          // Date Refreshed by
+        widgetCreatedDateTime: string;          // Created on
+        widgetCreatedUserID: string;            // Created by
         widgetUpdatedDateTime: string;          // Updated on
         widgetUpdatedUserID: string;            // Updated by
     };
