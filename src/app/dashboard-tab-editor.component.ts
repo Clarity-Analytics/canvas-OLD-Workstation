@@ -17,14 +17,11 @@ import { SelectItem }                 from 'primeng/primeng';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
- 
+
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
+import { SelectedItem }               from './model.selectedItem';
 
-export class SelectedItem {
-    id: any;
-    name: string;
-}
 
 @Component({
     selector:    'dashboard-tab-editor',

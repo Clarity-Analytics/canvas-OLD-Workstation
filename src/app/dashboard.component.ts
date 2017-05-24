@@ -34,21 +34,13 @@ import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
 import { Filter }                     from './model.filter';
 import { Report }                     from './model.report';
+import { SelectedItem }               from './model.selectedItem';
+import { SelectedItemColor }          from './model.selectedItemColor';
 import { Widget }                     from './model.widget';
 
 // Vega stuffies
 let vg = require('vega/index.js');
 
-export class SelectedItem {
-    id: any;
-    name: string;
-}
-
-export class SelectedItemColor {
-    id: any;
-    name: string;
-    code: string;
-}
 
 @Component({
     moduleId: module.id,

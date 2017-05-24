@@ -24,6 +24,8 @@ import { GlobalVariableService }      from './global-variable.service';
 import { DashboardTab }               from './model.dashboardTabs';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
+import { SelectedItem }               from './model.selectedItem';
+import { SelectedItemColor }          from './model.selectedItemColor';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
@@ -34,16 +36,6 @@ import { CanvasColors }               from './chartcolors.data';
 // Vega stuffies
 let vg = require('vega/index.js');
 
-export class SelectedItem {
-    id: any;
-    name: string;
-}
-
-export class SelectedItemColor {
-    id: any;
-    name: string;
-    code: string;
-}
 
 @Component({
     selector:    'widget-editor',

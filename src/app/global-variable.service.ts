@@ -6,18 +6,9 @@ import { Injectable }                 from '@angular/core';
 import { Message }                    from 'primeng/primeng';  
 
 // Our Models
-import { CanvasUser }                from './model.user';
-
-export class SelectedItem {
-    id: any;
-    name: string;
-}
-
-export class SelectedItemColor {
-    id: any;
-    name: string;
-    code: string;
-}
+import { CanvasUser }                 from './model.user';
+import { SelectedItem }               from './model.selectedItem';
+import { SelectedItemColor }          from './model.selectedItemColor';
 
 @Injectable()
 export class GlobalVariableService {
