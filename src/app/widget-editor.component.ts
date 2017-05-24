@@ -16,6 +16,7 @@ import { ViewChild }                  from '@angular/core';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
+import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -30,8 +31,9 @@ import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 
-// Our Data
+// Our Models
 import { CanvasColors }               from './chartcolors.data';
+import { CanvasUser }                 from './model.user';
 
 // Vega stuffies
 let vg = require('vega/index.js');
@@ -58,6 +60,7 @@ export class WidgetEditorComponent implements OnInit {
 
     @ViewChild('widget') widgetGraph: ElementRef;             // Attaches to # in DOM
 
+    canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     submitted: boolean;                         // True if form submitted
     selectedReportID: number;                   // Selected in DropDown
     selectedReportFieldX: string;               // Selected in DropDown
@@ -145,6 +148,7 @@ export class WidgetEditorComponent implements OnInit {
             
     constructor(
         private canvasColors: CanvasColors,
+        private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
@@ -989,6 +993,15 @@ console.log('this.addEditMode',this.addEditMode)
                 this.globalVariableService.lastWidgetTop.getValue();
             this.widgetToEdit.container.width = 
                 this.globalVariableService.lastWidgetWidth.getValue();
+
+            let d = new Date();
+            this.widgetToEdit.properties.widgetCreatedDateTime = 
+                this.canvasDate.today('standard') + ' ' + 
+                this.canvasDate.curHour(d).toString() + ' ' + 
+                this.canvasDate.curMinute(d).toString();
+            this.widgetToEdit.properties.widgetCreatedUserID = 
+                this.canvasUser.username;
+                
         }
 console.log('8')
 
@@ -1169,9 +1182,25 @@ console.log ('13')
                         }
                 }
             }
-        }
+        } 
 console.log ('14')
  
+        // Set last updated, created and refreshed properties
+        let d = new Date();
+        this.widgetToEdit.properties.widgetRefreshedDateTime =
+            this.canvasDate.today('standard') + ' ' + 
+            this.canvasDate.curHour(d).toString() + ':' + 
+            this.canvasDate.curMinute(d).toString();
+        this.widgetToEdit.properties.widgetRefreshedUserID = 
+            this.canvasUser.username;
+        this.widgetToEdit.properties.widgetUpdatedDateTime = 
+            this.canvasDate.today('standard') + ' ' + 
+            this.canvasDate.curHour(d).toString() + ':' + 
+            this.canvasDate.curMinute(d).toString();
+        this.widgetToEdit.properties.widgetUpdatedUserID = 
+            this.canvasUser.username;
+console.log('15 - properties', this.widgetToEdit.properties)        
+
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
 
