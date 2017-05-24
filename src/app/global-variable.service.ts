@@ -80,18 +80,17 @@ export class GlobalVariableService {
             code: '#000000'
         }
     );
-    selectedBoxShadow = new BehaviorSubject<SelectedItemColor>(
+    selectedBoxShadow = new BehaviorSubject<SelectedItem>(
         {
             id:1, 
-            name: '',                      
-            code: ''
+            name: ''
         }
     );
-    selectedBorder = new BehaviorSubject<SelectedItemColor>(
+    selectedBorder = new BehaviorSubject<SelectedItem>(
         {
             id:1, 
-            name: 'transparent',           
-            code: ''}
+            name: 'transparent'
+        }
     );
     selectedBackgroundColor = new BehaviorSubject<SelectedItemColor>(
         {

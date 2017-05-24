@@ -120,8 +120,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     dashboardBackgroundImageSrc: SelectedItem;      // Image Src for the Dashboard body
     selectedItem: SelectedItem;                     // Selected Object: note ANY to cater for ID number, string
     selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
-    selectedBorder: SelectedItemColor;
-    selectedBoxShadow: SelectedItemColor;
+    selectedBorder: SelectedItem;
+    selectedBoxShadow: SelectedItem;
     selectedColor: SelectedItemColor;
     selectedContainerFontSize: SelectedItem;      // In em
     selectedContainerGridSize: number;      // In px
@@ -247,11 +247,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         //      - and maintained when they change via WebSocket messages
         this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
         this.gridSize = this.globalVariableService.gridSize.getValue();
-        this.selectedContainerFontSize = this.globalVariableService.ContainerFontSize.getValue();
-        this.selectedColor = this.globalVariableService.selectedColor.getValue();
-        this.selectedBoxShadow = this.globalVariableService.selectedBoxShadow.getValue();
-        this.selectedBorder = this.globalVariableService.selectedBorder.getValue();
         this.selectedBackgroundColor = this.globalVariableService.selectedBackgroundColor.getValue();
+        this.selectedBorder = this.globalVariableService.selectedBorder.getValue();
+        this.selectedBoxShadow = this.globalVariableService.selectedBoxShadow.getValue();
+        this.selectedColor = this.globalVariableService.selectedColor.getValue();
+        this.selectedContainerFontSize = this.globalVariableService.ContainerFontSize.getValue();
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -400,7 +400,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             if (this.widgetToEdit.properties.dashboardTabName['name'] == 
                 this.selectedDashboardTab.name) {
 
-                // TODO - this is crude & error prone: do it properly in DB
+                // TODO - this is crude & error prone: eventually autoIndex in DB
                 let lastWidgetID = 
                     this.widgets[this.widgets.length - 1].properties.widgetID;
 

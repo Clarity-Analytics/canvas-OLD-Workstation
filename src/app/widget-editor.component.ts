@@ -935,7 +935,7 @@ export class WidgetEditorComponent implements OnInit {
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
-            this.widgetToEdit.properties.widgetID = 0; // Set in calling routine
+            this.widgetToEdit.properties.widgetID = 0; // Set in DB
         }
 
         // Editing existing Widget
@@ -945,13 +945,22 @@ export class WidgetEditorComponent implements OnInit {
 
             // Space to worry about EDIT only mode - for future use
         }
+
+        // Load container fields from previously used values
+
+        // this.selectedBackgroundColor = this.globalVariableService.selectedBackgroundColor.getValue();
+        // this.selectedBorder = this.globalVariableService.selectedBorder.getValue();
+        // this.selectedBoxShadow = this.globalVariableService.selectedBoxShadow.getValue();
+        // this.selectedColor = this.globalVariableService.selectedColor.getValue();
+        // this.selectedContainerFontSize = this.globalVariableService.ContainerFontSize.getValue();
+
+
+
         // Load fields from form - assume good as Validation will stop bad stuff
         this.widgetToEdit.properties.dashboardTabID = 
             this.selectedDashboardTab.id;
         this.widgetToEdit.properties.dashboardTabName = 
             this.selectedDashboardTab.name;
-
-
         this.widgetToEdit.container.widgetTitle = 
             this.identificationForm.controls['widgetTitle'].value;
         this.widgetToEdit.properties.widgetCode = 
