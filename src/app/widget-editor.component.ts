@@ -987,13 +987,24 @@ console.log('this.addEditMode',this.addEditMode)
                 +this.globalVariableService.lastContainerFontSize.getValue().name;
             this.widgetToEdit.container.height = 
                 this.globalVariableService.lastWidgetHeight.getValue();
-            this.widgetToEdit.container.left = 
-                this.globalVariableService.lastWidgetLeft.getValue();
-            this.widgetToEdit.container.top = 
-                this.globalVariableService.lastWidgetTop.getValue();
             this.widgetToEdit.container.width = 
                 this.globalVariableService.lastWidgetWidth.getValue();
 
+            // Defaults
+            this.widgetToEdit.properties.widgetIsLocked = false;
+            this.widgetToEdit.properties.widgetIsLiked = false;
+            this.widgetToEdit.properties.widgetLiked = [{widgetLikedUserID: ''}];
+            this.widgetToEdit.properties.widgetIndex = 0;
+            this.widgetToEdit.properties.widgetSize = '';
+            this.widgetToEdit.properties.widgetSystemMessage = '';
+            
+            // Add x,y from where Icon was dropped
+            this.widgetToEdit.container.left = this.globalFunctionService.alignToGripPoint(
+                this.widgetToEditX);
+            this.widgetToEdit.container.top = this.globalFunctionService.alignToGripPoint(
+                this.widgetToEditY);
+
+            // Add creation info
             let d = new Date();
             this.widgetToEdit.properties.widgetCreatedDateTime = 
                 this.canvasDate.today('standard') + ' ' + 
@@ -1050,16 +1061,11 @@ console.log ('10')
             this.identificationForm.controls['widgetReportParameters'].value;
         this.widgetToEdit.properties.widgetShowLimitedRows = 
             this.identificationForm.controls['widgetShowLimitedRows'].value;
+        this.widgetToEdit.properties.widgetTypeID = 0;
         this.widgetToEdit.properties.widgetType = 
             this.identificationForm.controls['widgetType'].value;
 console.log ('11')
 
-        // Add x,y from where Icon was dropped
-        this.widgetToEdit.container.left = this.globalFunctionService.alignToGripPoint(
-            this.widgetToEditX);
-        this.widgetToEdit.container.top = this.globalFunctionService.alignToGripPoint(
-            this.widgetToEditY);
-console.log ('11.5')
 
         // Amend the specs IF given, according to the Widget Sets
         if (this.identificationForm.controls['widgetType'].value != null) {
@@ -1106,6 +1112,7 @@ console.log ('12')
                     this.identificationForm.controls['vegaGraphWidth'].value;
                 this.widgetToEdit.graph.spec.padding = 
                     this.identificationForm.controls['vegaGraphPadding'].value;                                        
+console.log('12.1')
 
                 if (this.identificationForm.controls['vegaXcolumn'].value.name != '' &&
                     this.identificationForm.controls['vegaXcolumn'].value.name != undefined) {
@@ -1118,6 +1125,7 @@ console.log ('12')
                         this.widgetToEdit.graph.spec.marks[1].encode.update.x.signal =
                             'tooltip.' + this.identificationForm.controls['vegaXcolumn'].value.name;
                 }
+console.log('12.3')
 
                 if (this.identificationForm.controls['vegaYcolumn'].value.name != '' &&
                     this.identificationForm.controls['vegaYcolumn'].value.name != undefined) {
@@ -1139,7 +1147,7 @@ console.log ('12')
                         this.widgetToEdit.graph.spec.marks[0].encode.hover.fill.value =
                             this.identificationForm.controls['vegaHoverColor'].value.name;
                 }
-
+console.log('12.5')
                 // Then wack in the data from the Report
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
                     this.identificationForm.controls['widgetReportName'].value != undefined) {
@@ -1151,6 +1159,7 @@ console.log ('12')
                             }
                         }
                 }
+console.log('12.7')
 
                 // Estimate height and width for NEW container, based on graph dimensions
                 if (this.addEditMode == 'Add') {
