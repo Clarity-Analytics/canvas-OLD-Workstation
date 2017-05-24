@@ -53,7 +53,7 @@ export class SelectedItemColor {
 export class WidgetEditorComponent implements OnInit {
 
     @Input() originalDashboardID: number;
-    @Input() originalDashboardTabName: string;
+    @Input() originalDashboardTab: any;
     @Input() widgetToEdit: Widget;
     @Input() addEditMode: string;
     @Input() displayEditWidget: boolean;
@@ -67,7 +67,6 @@ export class WidgetEditorComponent implements OnInit {
     @ViewChild('widget') widgetGraph: ElementRef;             // Attaches to # in DOM
 
     submitted: boolean;                         // True if form submitted
-    selectedTabName: any;                       // Current selected Tab
     selectedReportID: number;                   // Selected in DropDown
     selectedReportFieldX: string;               // Selected in DropDown
     selectedReportFieldY: string;               // Selected in DropDown
@@ -936,7 +935,7 @@ export class WidgetEditorComponent implements OnInit {
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
-            this.widgetToEdit.properties.widgetID = this.widgetIDtoEdit
+            this.widgetToEdit.properties.widgetID = 0; // Set in calling routine
         }
 
         // Editing existing Widget
@@ -946,12 +945,15 @@ export class WidgetEditorComponent implements OnInit {
 
             // Space to worry about EDIT only mode - for future use
         }
-
         // Load fields from form - assume good as Validation will stop bad stuff
+        this.widgetToEdit.properties.dashboardTabID = 
+            this.selectedDashboardTab.id;
+        this.widgetToEdit.properties.dashboardTabName = 
+            this.selectedDashboardTab.name;
+
+
         this.widgetToEdit.container.widgetTitle = 
             this.identificationForm.controls['widgetTitle'].value;
-        this.widgetToEdit.properties.dashboardTabName = 
-            this.identificationForm.controls['dashboardTabName'].value;
         this.widgetToEdit.properties.widgetCode = 
             this.identificationForm.controls['widgetCode'].value;
         this.widgetToEdit.properties.widgetName = 
