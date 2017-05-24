@@ -126,6 +126,17 @@ export class WidgetEditorComponent implements OnInit {
     textAlignOptions: SelectItem[];             // Options for horisontal align of the text (left, center, right)
     imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
 
+    // Vars read from config, setted once changed for next time
+    lastContainerFontSize: SelectedItem;
+    lastColor: SelectedItemColor;
+    lastBoxShadow: SelectedItem;
+    lastBorder: SelectedItem;
+    lastBackgroundColor: SelectedItemColor;
+    lastWidgetHeight: number;
+    lastWidgetWidth: number;
+    lastWidgetLeft: number;
+    lastWidgetTop: number;
+
     // ToolTippies stays after popup form closes, so setting in vars works for now ...
     // TODO - find BUG, our side or PrimeNG side
     dashboardsTabsTooltip: string = ""          // 'Selected Tab where Widget will live';
@@ -576,6 +587,7 @@ export class WidgetEditorComponent implements OnInit {
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
+console.log('1')
         // Validation
         if (this.identificationForm.controls['dashboardTabName'].value == ''  || 
             this.identificationForm.controls['dashboardTabName'].value == null) {
@@ -644,6 +656,7 @@ export class WidgetEditorComponent implements OnInit {
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Widget Type (Graph Panel) is compulsory.';
         }
+console.log('2')
 
         // Validate the Text fields, IF active
         if (this.showWidgetText) {
@@ -720,6 +733,7 @@ export class WidgetEditorComponent implements OnInit {
                         'The Width (Text panel) must be numeric';
             }
         }
+console.log('3')
 
         // Validate Table fields, IF active
         if (this.showWidgetTable) {
@@ -780,6 +794,7 @@ export class WidgetEditorComponent implements OnInit {
                         'The Top (Table panel) must be numeric';
             }
         }
+console.log('4')
 
         // validate Image fields, IF active
         if (this.showWidgetImage) {
@@ -848,6 +863,7 @@ export class WidgetEditorComponent implements OnInit {
                         'The Width (Image panel) must be numeric';
             }
         }
+console.log('4')
 
 
         // Tricksy bit: validate per Widget Type.  I know its a lot of work, but 
@@ -864,6 +880,7 @@ export class WidgetEditorComponent implements OnInit {
                         'The Report Widget Set is compulsory.';
             }
         }
+console.log('5')
 
         // BarChart field validation
         if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
@@ -912,6 +929,7 @@ export class WidgetEditorComponent implements OnInit {
             }
 
         }
+console.log('6')
 
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
@@ -923,12 +941,35 @@ export class WidgetEditorComponent implements OnInit {
             });
             return;
         }
-
+console.log('7')
+        
+console.log('this.addEditMode',this.addEditMode)
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
             this.widgetToEdit.properties.widgetID = 0; // Set in DB
+
+            // Load container fields from previously used values
+            this.widgetToEdit.container.backgroundColor = 
+                this.globalVariableService.lastBackgroundColor.getValue().name;
+            this.widgetToEdit.container.border = 
+                this.globalVariableService.lastBorder.getValue().name;
+            this.widgetToEdit.container.boxShadow = 
+                this.globalVariableService.lastBoxShadow.getValue().name;
+            this.widgetToEdit.container.color = 
+                this.globalVariableService.lastColor.getValue().name;
+            this.widgetToEdit.container.fontSize =  
+                +this.globalVariableService.lastContainerFontSize.getValue().name;
+            this.widgetToEdit.container.height = 
+                this.globalVariableService.lastWidgetHeight.getValue();
+            this.widgetToEdit.container.left = 
+                this.globalVariableService.lastWidgetLeft.getValue();
+            this.widgetToEdit.container.top = 
+                this.globalVariableService.lastWidgetTop.getValue();
+            this.widgetToEdit.container.width = 
+                this.globalVariableService.lastWidgetWidth.getValue();
         }
+console.log('8')
 
         // Editing existing Widget
         if (this.addEditMode == 'Edit' && this.displayEditWidget  &&
@@ -937,16 +978,7 @@ export class WidgetEditorComponent implements OnInit {
 
             // Space to worry about EDIT only mode - for future use
         }
-
-        // Load container fields from previously used values
-
-        // this.selectedBackgroundColor = this.globalVariableService.selectedBackgroundColor.getValue();
-        // this.selectedBorder = this.globalVariableService.selectedBorder.getValue();
-        // this.selectedBoxShadow = this.globalVariableService.selectedBoxShadow.getValue();
-        // this.selectedColor = this.globalVariableService.selectedColor.getValue();
-        // this.selectedContainerFontSize = this.globalVariableService.ContainerFontSize.getValue();
-
-
+console.log('9')
 
         // Load fields from form - assume good as Validation will stop bad stuff
         this.widgetToEdit.properties.dashboardTabID = 

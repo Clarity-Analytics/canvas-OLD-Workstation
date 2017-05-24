@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     selectedWidgetIDs: number[] = [];               // Array of WidgetIDs selected with mouse
 
     // Currently selected properties for a Widget, in the Palette
-    selectedBackgroundColor: any;                   // Selected bg color
+    selectedBackgroundColor: SelectedItemColor;     // Selected bg color
     dashboardBackgroundColor: SelectedItemColor;    // Bg Color for the Dashboard body
     dashboardBackgroundImageSrc: SelectedItem;      // Image Src for the Dashboard body
     selectedItem: SelectedItem;                     // Selected Object: note ANY to cater for ID number, string
@@ -239,11 +239,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         //      - and maintained when they change via WebSocket messages
         this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
         this.gridSize = this.globalVariableService.gridSize.getValue();
-        this.selectedBackgroundColor = this.globalVariableService.selectedBackgroundColor.getValue();
-        this.selectedBorder = this.globalVariableService.selectedBorder.getValue();
-        this.selectedBoxShadow = this.globalVariableService.selectedBoxShadow.getValue();
-        this.selectedColor = this.globalVariableService.selectedColor.getValue();
-        this.selectedContainerFontSize = this.globalVariableService.ContainerFontSize.getValue();
+        this.selectedBackgroundColor = this.globalVariableService.lastBackgroundColor.getValue();
+        this.selectedBorder = this.globalVariableService.lastBorder.getValue();
+        this.selectedBoxShadow = this.globalVariableService.lastBoxShadow.getValue();
+        this.selectedColor = this.globalVariableService.lastColor.getValue();
+        this.selectedContainerFontSize = this.globalVariableService.lastContainerFontSize.getValue();
 
         // Get the list of dashboards from the DB
         this.getDashboards()
@@ -564,7 +564,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedBackgroundColor['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.selectedBackgroundColor.next(this.selectedBackgroundColor);
+                    this.globalVariableService.lastBackgroundColor.next(this.selectedBackgroundColor);
                 }
 
                 // Border
@@ -581,7 +581,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedBorder['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.selectedBorder.next(this.selectedBorder);
+                    this.globalVariableService.lastBorder.next(this.selectedBorder);
                 }
 
                 // BoxShadow
@@ -598,7 +598,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedBoxShadow['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.selectedBoxShadow.next(this.selectedBoxShadow);
+                    this.globalVariableService.lastBoxShadow.next(this.selectedBoxShadow);
                 }
 
                 // Color
@@ -615,7 +615,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 this.selectedColor['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.selectedColor.next(this.selectedColor);
+                    this.globalVariableService.lastColor.next(this.selectedColor);
                 }
 
                 // Font Size
@@ -632,7 +632,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 +this.selectedContainerFontSize['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.ContainerFontSize.next(this.selectedContainerFontSize);
+                    this.globalVariableService.lastContainerFontSize.next(this.selectedContainerFontSize);
 
                 }
             }

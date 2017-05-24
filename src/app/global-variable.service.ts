@@ -58,39 +58,46 @@ export class GlobalVariableService {
     growlLife = new BehaviorSubject(3000); 
     gridSize = new BehaviorSubject(3);
     snapToGrid = new BehaviorSubject(true);
-    ContainerFontSize = new BehaviorSubject<SelectedItem>(
+
+    // Settings that can be set via UI for next time, from then on it will change
+    // as the user uses them, and used the next time (a Widget is created)
+    lastContainerFontSize = new BehaviorSubject<SelectedItem>(
         {
             id:1, 
             name: '1'
         }
     );
-    selectedColor = new BehaviorSubject<SelectedItemColor>(
+    lastColor = new BehaviorSubject<SelectedItemColor>(
         {
             id: 'black', 
             name: 'black', 
             code: '#000000'
         }
     );
-    selectedBoxShadow = new BehaviorSubject<SelectedItem>(
+    lastBoxShadow = new BehaviorSubject<SelectedItem>(
         {
             id:1, 
             name: ''
         }
     );
-    selectedBorder = new BehaviorSubject<SelectedItem>(
+    lastBorder = new BehaviorSubject<SelectedItem>(
         {
             id:1, 
             name: 'transparent'
         }
     );
-    selectedBackgroundColor = new BehaviorSubject<SelectedItemColor>(
+    lastBackgroundColor = new BehaviorSubject<SelectedItemColor>(
         {
             id: 'white', 
             name: 'white', 
             code: '#FFFFFF'
         }
     );
-    
+    lastWidgetHeight = new BehaviorSubject(300);
+    lastWidgetWidth = new BehaviorSubject(300);
+    lastWidgetLeft = new BehaviorSubject(250);
+    lastWidgetTop = new BehaviorSubject(80);
+
     constructor() { }
 
 }
