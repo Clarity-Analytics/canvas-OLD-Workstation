@@ -98,7 +98,7 @@ export class Widget {
         widgetRefreshedUserID: string;          // Date Refreshed by
         widgetRefreshFrequency: number;         // Nr of seconds if RefreshMode = Repeatedly
         widgetRefreshMode: string;              // Manual, OnOpen, Repeatedly
-        widgetReportID: number;                 // FK to report (query / data)
+        widgetReportID: number;                 // FK to report (query / data).  -1: dont load any report data
         widgetReportName: string;               // Report (query) name in Eazl (DS implied)
         widgetReportParameters: string;         // Optional Report parameters
         widgetShowLimitedRows: number;          // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3

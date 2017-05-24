@@ -931,7 +931,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserID: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
-                widgetReportID: 1,
+                widgetReportID: -1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,

@@ -2121,7 +2121,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Else, we assume no data has to be used for rendering
         // NOTE: we only store a report used once in this Array, even if used by >1 Widget
         for (var i = 0; i < this.widgets.length; i++) {
-
+console.log('widget # =',i)
             let foundReport: boolean = false;
             if (this.widgets[i].areas.showWidgetGraph  ||  
                 this.widgets[i].areas.showWidgetTable)    {
@@ -2140,6 +2140,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 );
                 if (reportToAdd != null) {
                     this.reports.push(reportToAdd);
+console.log('added Rpt for Rpt ID=',this.widgets[i].properties.widgetReportID)                    
                 }
             }
         }
@@ -2305,24 +2306,29 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         'top', this.widgets[i].graph.graphTop.toString() + 'px'
                     );
 
+                    // Replace the data, if reportID != -1
+                    if (this.widgets[i].properties.widgetReportID != -1) { 
 
-                    // Obtain the data for the report linked to this Widget
-                    let reportFields: string[] = ["Error", "reportID"];
-                    let reportData: any[] = [
-                        {
-                            "Error": "No data found", 
-                            "reportID": this.widgets[i].properties.widgetReportID}
-                    ];
+                        // 1. Obtain the data for the report linked to this Widget
+                        let reportFields: string[] = ["Error", "reportID"];
+                        let reportData: any[] = [
+                            {
+                                "Error": "No data found", 
+                                "reportID": this.widgets[i].properties.widgetReportID}
+                        ];
 
-                    for (var j = 0; j < this.reports.length; j++) {
-                        if (this.widgets[i].properties.widgetReportID ==
-                            this.reports[j].reportID) {
-                                reportFields = this.reports[j].reportFields;
-                                reportData = this.reports[j].reportData;
+                        for (var j = 0; j < this.reports.length; j++) {
+                            if (this.widgets[i].properties.widgetReportID ==
+                                this.reports[j].reportID) {
+                                    reportFields = this.reports[j].reportFields;
+                                    reportData = this.reports[j].reportData;
+                            }
                         }
+                        
+                        // 2. Replace the data
+                        this.widgets[i].graph.spec.data[0].values = reportData;
+console.log('replaced for ID, old-graph, rptdata',i, this.widgets[i].graph.spec.data[0].values , reportData)
                     }
-                    
-                    this.widgets[i].graph.spec.data[0].values = reportData;
 
                     // Show the Graphs
                     var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
@@ -2507,7 +2513,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Ending
         tableHTML = tableHTML + "</table>  </div>" 
-console.log('html1',tableHTML)
+
         // Return
          return tableHTML;
     }
