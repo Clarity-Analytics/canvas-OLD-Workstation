@@ -47,7 +47,7 @@ let vg = require('vega/index.js');
 export class WidgetEditorComponent implements OnInit {
 
     @Input() originalDashboardID: number;
-    @Input() originalDashboardTab: any;
+    @Input() originalDashboardTab: SelectedItem;
     @Input() widgetToEdit: Widget;
     @Input() addEditMode: string;
     @Input() displayEditWidget: boolean;
@@ -66,11 +66,11 @@ export class WidgetEditorComponent implements OnInit {
     selectedReportFieldX: string;               // Selected in DropDown
     selectedReportFieldY: string;               // Selected in DropDown
     selectedDashboardTab: SelectedItem;         // Selected in DropDown
-    selectedReport: any;                        // Selected in Report DropDown
-    selectedVegaXcolumn: any;                   // Selected in DropDown
-    selectedVegaYcolumn: any;                   // Selected in DropDown
-    selectedVegaFillColor: any;                 // Selected in DropDown
-    selectedVegaHoverColor: any;                // Selected in DropDown
+    selectedReport: SelectedItem;               // Selected in Report DropDown
+    selectedVegaXcolumn: SelectedItem;          // Selected in DropDown
+    selectedVegaYcolumn: SelectedItem;          // Selected in DropDown
+    selectedVegaFillColor: SelectedItemColor;   // Selected in DropDown
+    selectedVegaHoverColor: SelectedItemColor;  // Selected in DropDown
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
 
     showWidgetText: boolean = false;            // True to show Text in containter
@@ -92,7 +92,7 @@ export class WidgetEditorComponent implements OnInit {
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     widgetCreationDropDown: SelectItem[];       // Drop Down options
-    selectedWidgetCreation: any;                // Selected option to create Widget
+    selectedWidgetCreation: SelectedItem;       // Selected option to create Widget
     selectedTextBackground: SelectedItemColor;  // Selected option for Text Background
     selectedTextBorder: SelectedItem;           // Selected option for Text Border
     selectedTextColor: SelectedItem;            // Selected option for Text Color
