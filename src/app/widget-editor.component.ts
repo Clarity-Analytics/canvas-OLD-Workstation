@@ -640,21 +640,16 @@ console.log('1')
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Refresh Frequency (Behaviour Panel) must be numeric and >0';
         }
-        if (this.identificationForm.controls['widgetReportName'].value == ''  || 
-            this.identificationForm.controls['widgetReportName'].value == null) {
-                if (this.addEditMode == 'Add') {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Widget Report Name (Behaviour Panel) is compulsory when Adding.';
-                }
-        }
-        if (this.identificationForm.controls['widgetType'].value == ''  || 
-            this.identificationForm.controls['widgetType'].value == null) {
-                this.formIsValid = false;
-                this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Widget Type (Graph Panel) is compulsory.';
+        if (this.showWidgetGraph  ||  this.showWidgetTable) {
+            if (this.identificationForm.controls['widgetReportName'].value == ''  || 
+                this.identificationForm.controls['widgetReportName'].value == null) {
+                    if (this.addEditMode == 'Add') {
+                        this.formIsValid = false;
+                        this.numberErrors = this.numberErrors + 1;
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            'The Widget Report Name (Data Panel) is compulsory when Adding.';
+                    }
+            }
         }
 console.log('2')
 
@@ -863,71 +858,97 @@ console.log('4')
                         'The Width (Image panel) must be numeric';
             }
         }
-console.log('4')
-
+console.log('4.5', this.identificationForm.controls['widgetType'].value)
 
         // Tricksy bit: validate per Widget Type.  I know its a lot of work, but 
         // its the only solution for now
 
-        // Widget Set field validation
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
+        // Graph validation
+        if (this.showWidgetGraph) {
 
-            if (this.identificationForm.controls['widgetReportWidgetSet'].value == ''  || 
-                this.identificationForm.controls['widgetReportWidgetSet'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Report Widget Set is compulsory.';
-            }
-        }
-console.log('5')
+            // Widget Set field validation
+            if (this.identificationForm.controls['widgetType'].value == null) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The Widget Type (Graph panel) is compulsory.';
+            } else {
+                if (this.identificationForm.controls['widgetType'].value == ''  || 
+                    this.identificationForm.controls['widgetType'].value == null) {
+                        this.formIsValid = false;
+                        this.numberErrors = this.numberErrors + 1;
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            'The Widget Type (Graph Panel) is compulsory.';
+                }
 
-        // BarChart field validation
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
-            if (this.identificationForm.controls['widgetShowLimitedRows'].touched  && 
-                !this.identificationForm.controls['widgetShowLimitedRows'].valid) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The number of limited rows to show must be numeric';
-            }        
-            if (this.identificationForm.controls['vegaGraphHeight'].value == ''  ||
-                !this.identificationForm.controls['vegaGraphHeight'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The graph Height must be numeric';
-            }
-            if (this.identificationForm.controls['vegaGraphWidth'].value == ''  ||
-                !this.identificationForm.controls['vegaGraphWidth'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The graph Width must be numeric';
-            }
-            if (this.identificationForm.controls['vegaGraphPadding'].value == ''  || 
-                !this.identificationForm.controls['vegaGraphPadding'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The graph Padding must be numeric';
-            }
+                if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
 
-            if (this.identificationForm.controls['vegaXcolumn'].value == ''  || 
-                this.identificationForm.controls['vegaXcolumn'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The X axis field is compulsory.';
+                    if (this.identificationForm.controls['widgetReportWidgetSet'].value == ''  || 
+                        this.identificationForm.controls['widgetReportWidgetSet'].value == null) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The Report Widget Set (Graph panel is compulsory.';
+                    }
+                }
             }
-            if (this.identificationForm.controls['vegaYcolumn'].value == ''  || 
-                this.identificationForm.controls['vegaYcolumn'].value == null) {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Y axis field is compulsory.';
-            }
+console.log('5', this.identificationForm.controls['widgetType'].value)
 
+            // BarChart field validation
+            if (this.identificationForm.controls['widgetType'].value == null) {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Report Widget Type (Graph panel is compulsory.';
+            } else {
+
+                if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
+                    if (this.identificationForm.controls['widgetShowLimitedRows'].touched  && 
+                        !this.identificationForm.controls['widgetShowLimitedRows'].valid) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The number of limited rows (Data panel) to show must be numeric';
+                    }        
+                    if (this.identificationForm.controls['vegaGraphHeight'].value == ''  ||
+                        !this.identificationForm.controls['vegaGraphHeight'].value == null) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The Height (Graph panel) must be numeric';
+                    }
+                    if (this.identificationForm.controls['vegaGraphWidth'].value == ''  ||
+                        !this.identificationForm.controls['vegaGraphWidth'].value == null) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The Width (Graph panel) must be numeric';
+                    }
+                    if (this.identificationForm.controls['vegaGraphPadding'].value == ''  || 
+                        !this.identificationForm.controls['vegaGraphPadding'].value == null) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The Padding (Graph panel) must be numeric';
+                    }
+
+                    if (this.identificationForm.controls['vegaXcolumn'].value == ''  || 
+                        this.identificationForm.controls['vegaXcolumn'].value == null) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The X axis field (Graph panel) is compulsory.';
+                    }
+                    if (this.identificationForm.controls['vegaYcolumn'].value == ''  || 
+                        this.identificationForm.controls['vegaYcolumn'].value == null) {
+                            this.formIsValid = false;
+                            this.numberErrors = this.numberErrors + 1;
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                                'The Y axis field (Graph panel) is compulsory.';
+                    }
+
+                }
+            }
         }
 console.log('6')
 
@@ -1003,6 +1024,9 @@ console.log('9')
             this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
         this.widgetToEdit.properties.widgetPassword = 
             this.identificationForm.controls['widgetPassword'].value;
+
+console.log ('10')
+
         this.widgetToEdit.properties.widgetRefreshFrequency = 
             this.identificationForm.controls['widgetRefreshFrequency'].value;
         this.widgetToEdit.properties.widgetRefreshMode = 
@@ -1015,90 +1039,29 @@ console.log('9')
             this.identificationForm.controls['widgetShowLimitedRows'].value;
         this.widgetToEdit.properties.widgetType = 
             this.identificationForm.controls['widgetType'].value;
+console.log ('11')
 
         // Add x,y from where Icon was dropped
         this.widgetToEdit.container.left = this.globalFunctionService.alignToGripPoint(
             this.widgetToEditX);
         this.widgetToEdit.container.top = this.globalFunctionService.alignToGripPoint(
             this.widgetToEditY);
+console.log ('11.5')
 
         // Amend the specs IF given, according to the Widget Sets
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
-            for (var i = 0; i < this.reportWidgetSets.length; i++) {
-                if (this.reportWidgetSets[i].widgetSetID == 
-                    this.identificationForm.controls['widgetReportWidgetSet'].value.id) {
-                        this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
-                }
-            }
- 
-            // Then wack in the data from the Report
-            if (this.identificationForm.controls['widgetReportName'].value != '' &&
-                this.identificationForm.controls['widgetReportName'].value != undefined) {
-                for (var i = 0; i < this.reports.length; i++) {
-                    if (this.reports[i].reportID == 
-                        this.identificationForm.controls['widgetReportName'].value.id) {
-                            this.widgetToEdit.graph.spec.data[0].values = 
-                                this.reports[i].reportData;
+        if (this.identificationForm.controls['widgetType'].value != null) {
+            if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
+                for (var i = 0; i < this.reportWidgetSets.length; i++) {
+                    if (this.reportWidgetSets[i].widgetSetID == 
+                        this.identificationForm.controls['widgetReportWidgetSet'].value.id) {
+                            this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
                     }
                 }
-            }
-        }
-
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
-            // Get the corresponding widget template
-            this.loadWidgetTemplateFields();
-            
-            // this.widgetTemplates = this.eazlService.getWidgetTemplates (
-            //     this.identificationForm.controls['widgetType'].value['name']
-            // );
-
-            // Wack the whole Template spec into our working Widget
-            this.widgetToEdit.graph.spec = this.widgetTemplate.vegaSpec;
- 
-            // Now tweak according to the form
-            this.widgetToEdit.graph.spec.height = 
-                this.identificationForm.controls['vegaGraphHeight'].value;
-            this.widgetToEdit.graph.spec.width = 
-                this.identificationForm.controls['vegaGraphWidth'].value;
-            this.widgetToEdit.graph.spec.padding = 
-                this.identificationForm.controls['vegaGraphPadding'].value;                                        
-
-            if (this.identificationForm.controls['vegaXcolumn'].value.name != '' &&
-                this.identificationForm.controls['vegaXcolumn'].value.name != undefined) {
-                    this.widgetToEdit.graph.spec.scales[0].domain.field =  
-                        this.identificationForm.controls['vegaXcolumn'].value.name;
-
-                    this.widgetToEdit.graph.spec.marks[0].encode.enter.x.field =
-                        this.identificationForm.controls['vegaXcolumn'].value.name;
-
-                    this.widgetToEdit.graph.spec.marks[1].encode.update.x.signal =
-                        'tooltip.' + this.identificationForm.controls['vegaXcolumn'].value.name;
-            }
-
-            if (this.identificationForm.controls['vegaYcolumn'].value.name != '' &&
-                this.identificationForm.controls['vegaYcolumn'].value.name != undefined) {
-                    this.widgetToEdit.graph.spec.scales[1].domain.field =  
-                        this.identificationForm.controls['vegaYcolumn'].value.name;
-                    this.widgetToEdit.graph.spec.marks[0].encode.enter.y.field =
-                        this.identificationForm.controls['vegaYcolumn'].value.name;
-                        this.widgetToEdit.graph.spec.marks[1].encode.update.y.signal =
-                            'tooltip.' + this.identificationForm.controls['vegaYcolumn'].value.name;
-            }
-
-            if (this.identificationForm.controls['vegaFillColor'].value.name != '' &&
-                this.identificationForm.controls['vegaFillColor'].value.name != undefined) {
-                    this.widgetToEdit.graph.spec.marks[0].encode.update.fill.value =
-                        this.identificationForm.controls['vegaFillColor'].value.name;
-            }
-            if (this.identificationForm.controls['vegaHoverColor'].value.name != '' &&
-                this.identificationForm.controls['vegaHoverColor'].value.name != undefined) {
-                    this.widgetToEdit.graph.spec.marks[0].encode.hover.fill.value =
-                        this.identificationForm.controls['vegaHoverColor'].value.name;
-            }
-
-            // Then wack in the data from the Report
-            if (this.identificationForm.controls['widgetReportName'].value != '' &&
-                this.identificationForm.controls['widgetReportName'].value != undefined) {
+    console.log ('11.10')
+    
+                // Then wack in the data from the Report
+                if (this.identificationForm.controls['widgetReportName'].value != '' &&
+                    this.identificationForm.controls['widgetReportName'].value != undefined) {
                     for (var i = 0; i < this.reports.length; i++) {
                         if (this.reports[i].reportID == 
                             this.identificationForm.controls['widgetReportName'].value.id) {
@@ -1106,36 +1069,108 @@ console.log('9')
                                     this.reports[i].reportData;
                         }
                     }
+                }
             }
-
-            // Estimate height and width for NEW container, based on graph dimensions
-            if (this.addEditMode == 'Add') {
-                this.widgetToEdit.container.height = this.globalFunctionService.alignToGripPoint(
-                    +this.widgetToEdit.graph.spec.height + 
-                        (+this.widgetToEdit.graph.spec.padding * 2) + 40);
-                this.widgetToEdit.container.width = this.globalFunctionService.alignToGripPoint(
-                    +this.widgetToEdit.graph.spec.width + 
-                        (+this.widgetToEdit.graph.spec.padding * 2) + 40);
-            }
-
         }
+console.log ('12')
 
-        if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
-            this.widgetToEdit.graph.spec = JSON.parse(this.widgetToEditSpec);
+        if (this.identificationForm.controls['widgetType'].value != null) {
+            if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
+                // Get the corresponding widget template
+                this.loadWidgetTemplateFields();
+                
+                // this.widgetTemplates = this.eazlService.getWidgetTemplates (
+                //     this.identificationForm.controls['widgetType'].value['name']
+                // );
 
-            // Then wack in the data from the Report
-            if (this.identificationForm.controls['widgetReportName'].value != '' &&
-                this.identificationForm.controls['widgetReportName'].value != undefined) {
-                    for (var i = 0; i < this.reports.length; i++) {
-                        if (this.reports[i].reportID == 
-                            this.identificationForm.controls['widgetReportName'].value.id) {
+                // Wack the whole Template spec into our working Widget
+                this.widgetToEdit.graph.spec = this.widgetTemplate.vegaSpec;
+    
+                // Now tweak according to the form
+                this.widgetToEdit.graph.spec.height = 
+                    this.identificationForm.controls['vegaGraphHeight'].value;
+                this.widgetToEdit.graph.spec.width = 
+                    this.identificationForm.controls['vegaGraphWidth'].value;
+                this.widgetToEdit.graph.spec.padding = 
+                    this.identificationForm.controls['vegaGraphPadding'].value;                                        
 
-                                this.widgetToEdit.graph.spec.data[0].values = 
-                                    this.reports[i].reportData;
+                if (this.identificationForm.controls['vegaXcolumn'].value.name != '' &&
+                    this.identificationForm.controls['vegaXcolumn'].value.name != undefined) {
+                        this.widgetToEdit.graph.spec.scales[0].domain.field =  
+                            this.identificationForm.controls['vegaXcolumn'].value.name;
+
+                        this.widgetToEdit.graph.spec.marks[0].encode.enter.x.field =
+                            this.identificationForm.controls['vegaXcolumn'].value.name;
+
+                        this.widgetToEdit.graph.spec.marks[1].encode.update.x.signal =
+                            'tooltip.' + this.identificationForm.controls['vegaXcolumn'].value.name;
+                }
+
+                if (this.identificationForm.controls['vegaYcolumn'].value.name != '' &&
+                    this.identificationForm.controls['vegaYcolumn'].value.name != undefined) {
+                        this.widgetToEdit.graph.spec.scales[1].domain.field =  
+                            this.identificationForm.controls['vegaYcolumn'].value.name;
+                        this.widgetToEdit.graph.spec.marks[0].encode.enter.y.field =
+                            this.identificationForm.controls['vegaYcolumn'].value.name;
+                            this.widgetToEdit.graph.spec.marks[1].encode.update.y.signal =
+                                'tooltip.' + this.identificationForm.controls['vegaYcolumn'].value.name;
+                }
+
+                if (this.identificationForm.controls['vegaFillColor'].value.name != '' &&
+                    this.identificationForm.controls['vegaFillColor'].value.name != undefined) {
+                        this.widgetToEdit.graph.spec.marks[0].encode.update.fill.value =
+                            this.identificationForm.controls['vegaFillColor'].value.name;
+                }
+                if (this.identificationForm.controls['vegaHoverColor'].value.name != '' &&
+                    this.identificationForm.controls['vegaHoverColor'].value.name != undefined) {
+                        this.widgetToEdit.graph.spec.marks[0].encode.hover.fill.value =
+                            this.identificationForm.controls['vegaHoverColor'].value.name;
+                }
+
+                // Then wack in the data from the Report
+                if (this.identificationForm.controls['widgetReportName'].value != '' &&
+                    this.identificationForm.controls['widgetReportName'].value != undefined) {
+                        for (var i = 0; i < this.reports.length; i++) {
+                            if (this.reports[i].reportID == 
+                                this.identificationForm.controls['widgetReportName'].value.id) {
+                                    this.widgetToEdit.graph.spec.data[0].values = 
+                                        this.reports[i].reportData;
+                            }
                         }
-                    }
+                }
+
+                // Estimate height and width for NEW container, based on graph dimensions
+                if (this.addEditMode == 'Add') {
+                    this.widgetToEdit.container.height = this.globalFunctionService.alignToGripPoint(
+                        +this.widgetToEdit.graph.spec.height + 
+                            (+this.widgetToEdit.graph.spec.padding * 2) + 40);
+                    this.widgetToEdit.container.width = this.globalFunctionService.alignToGripPoint(
+                        +this.widgetToEdit.graph.spec.width + 
+                            (+this.widgetToEdit.graph.spec.padding * 2) + 40);
+                }
+
             }
         }
+console.log ('13')
+        if (this.identificationForm.controls['widgetType'].value != null) {
+            if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
+                this.widgetToEdit.graph.spec = JSON.parse(this.widgetToEditSpec);
+
+                // Then wack in the data from the Report
+                if (this.identificationForm.controls['widgetReportName'].value != '' &&
+                    this.identificationForm.controls['widgetReportName'].value != undefined) {
+                        for (var i = 0; i < this.reports.length; i++) {
+                            if (this.reports[i].reportID == 
+                                this.identificationForm.controls['widgetReportName'].value.id) {
+
+                                    this.widgetToEdit.graph.spec.data[0].values = 
+                                        this.reports[i].reportData;
+                            }
+                        }
+                }
+            }
+        }
+console.log ('14')
  
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
