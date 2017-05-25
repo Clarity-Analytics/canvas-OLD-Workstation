@@ -826,16 +826,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
-    clickWidgetIsLiked(idWidget: number) {
+    clickWidgetIsLiked(idWidget: number, isLikedNewState: boolean) {
         // Toggle IsLiked on a Widget
+        // - idWidget is the clicked Widget
+        // - isLikedNewState = new status to change into
         // TODO - when to DB, update properties.widgetLiked[j].widgetLikedUserID
         //        by adding user, or removing depending on likedness
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetIsLiked', '@Start');
 
+        // Update DB
+        let username: string = this.globalVariableService.canvasUser.getValue().username;
+        this.eazlService.updateIsLiked(
+                idWidget, 
+                username, 
+                isLikedNewState)
+        
+        // Update local
         for (var i = 0, len = this.widgets.length; i < len; i++) {
             if (this.widgets[i].properties.widgetID == idWidget) {
-                this.widgets[i].properties.widgetIsLiked = 
-                    !this.widgets[i].properties.widgetIsLiked;
+                this.widgets[i].properties.widgetIsLiked = isLikedNewState;
             }
         }
     }

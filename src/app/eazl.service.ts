@@ -3860,4 +3860,44 @@ export class EazlService implements OnInit {
         // End of story
         return workingTemplate;
     }
+
+    updateIsLiked(widgetID: number, username:string, isLikedNewState:boolean) {
+        // Adds / Removes a user from the widget:
+        // - widgetID
+        // - username to add / remove
+        // - isLikedNewState = new state, so true -> add user, else delete
+
+        let foundUser: boolean = false;
+
+        // Add
+        if (isLikedNewState) {
+            for (var i = 0; i < this.widgets.length; i++) {
+                if (this.widgets[i].properties.widgetID = widgetID) {
+                    this.widgets[i].properties.widgetIsLiked = isLikedNewState;
+                    for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
+                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID = username) {
+                            foundUser = true;
+                        }
+                    }
+                    if (!foundUser) {
+                        this.widgets[i].properties.widgetLiked.push(
+                            {
+                                widgetLikedUserID: username
+                            });
+                    }
+                }
+            }
+        } else  {
+            for (var i = 0; i < this.widgets.length; i++) {
+                if (this.widgets[i].properties.widgetID = widgetID) {
+                    this.widgets[i].properties.widgetIsLiked = isLikedNewState;
+                    for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
+                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID = username) {
+                            this.widgets[i].properties.widgetLiked.splice(j);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

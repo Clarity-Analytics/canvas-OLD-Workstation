@@ -1247,7 +1247,7 @@
             pTooltip="Click to toggle between Liked and UnLiked" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="clickWidgetIsLiked(w.properties.widgetID)"
+            (click)="clickWidgetIsLiked(w.properties.widgetID, false)"
             >
         </button>         
         <button
@@ -1260,7 +1260,7 @@
             pTooltip="Click to toggle between Liked and UnLiked" 
             tooltipPosition="right" 
             tooltipEvent="hover"
-            (click)="clickWidgetIsLiked(w.properties.widgetID)"
+            (click)="clickWidgetIsLiked(w.properties.widgetID, true)"
             >
         </button>         
 
