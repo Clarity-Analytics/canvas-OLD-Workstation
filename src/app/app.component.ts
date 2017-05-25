@@ -26,6 +26,7 @@ import { Notification }               from './model.notification';
 
 // For resti
 import { EazlUserService } from './eazl.user.service';
+import { EazlService } from './eazl.service';
 
 
 @Component({
@@ -69,6 +70,7 @@ export class AppComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
 
+        private eazl: EazlService,
         private eazlUser: EazlUserService,
         ) { 
             // Subscribe to Web Socket
@@ -87,7 +89,7 @@ export class AppComponent implements OnInit {
             this.globalVariableService.sessionDebugging.next(true);
 
             // Here we listen for changes in the login-ness of the user. If they logout the component should react accordingly.
-            this.eazlUser.authToken.subscribe(authToken => {
+            this.eazl.authToken.subscribe(authToken => {
                 this.isLoggedIn = authToken != null;
                 
                 this.loadMenu();
@@ -151,7 +153,7 @@ export class AppComponent implements OnInit {
         this.setFakeVariablesForTesting = true;
         
         // If there is a token present in the sessionStorage refresh the user object
-        if (this.eazlUser.hasAuthToken) {
+        if (this.eazl.authToken.value) {
             this.eazlUser.refresh();
         }
 
@@ -187,7 +189,7 @@ export class AppComponent implements OnInit {
                     });
                     
                     // Logged out!
-                    this.eazlUser.clearAuthToken();
+                    this.eazl.clearAuthToken();
 
                     // Show the login form
                     this.displayNewMessage = true;        

@@ -19,12 +19,14 @@ import { GlobalVariableService }      from './global.variable.service';
 
 // For the resti
 import { EazlUserService } from './eazl.user.service';
+import { EazlService } from './eazl.service';
 
 
 @Component({
     selector:    'login',
     templateUrl: 'login.component.html',
-    styleUrls:  ['login.component.html']
+    styleUrls:  ['login.component.html'],
+    inputs: ['usernameElement', ]
 })
 export class LoginComponent implements OnInit {
 
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private eazl: EazlService,
         private eazlUser: EazlUserService
         ) {}
     
@@ -53,12 +56,18 @@ export class LoginComponent implements OnInit {
         });
 
         // We subscribe reactively
-        this.eazlUser.authError.subscribe(authError => {
+        this.eazl.authError.subscribe(authError => {
             // We should probably growl or show a message that the user could not login
             if (authError != null) {
                 console.log(`Failed to log in - ${authError.non_field_errors}`); 
             }
         }); 
+
+        this.eazl.authToken.subscribe(authToken => {
+            if (authToken != null) {
+                this.eazlUser.refresh();
+            }
+        })
 
         this.eazlUser.user.subscribe(user => {
             if (user) {
@@ -72,6 +81,7 @@ export class LoginComponent implements OnInit {
                 this.formSubmit.emit(true);
             }
         }); // end user subscription
+
     }
     
     onSubmit(value: string) {
@@ -81,6 +91,6 @@ export class LoginComponent implements OnInit {
         var username = this.userform.get('username').value;
         var password = this.userform.get('password').value;
 
-        this.eazlUser.authenticate(username, password);
+        this.eazl.authenticate(username, password);
     }
 }

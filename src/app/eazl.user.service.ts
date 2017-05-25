@@ -6,14 +6,6 @@ import { EazlService } from './eazl.service';
 
 
 // Token came along for now.
-interface AuthenticationError {
-	non_field_errors: string[];
-}
-
-export interface Token {
-	token: string;
-}
-
 export interface User {
     pk: number;
     username: string;
@@ -45,22 +37,13 @@ abstract class BaseEazlService {
 export class EazlUserService extends BaseEazlService {
 	route: string = 'users'; 
 	user: BehaviorSubject<User>;
-	authToken: BehaviorSubject<Token>;
-	authError: BehaviorSubject<AuthenticationError>;
 	
 	constructor(
 		private eazl: EazlService)
 	{
 		super();
 
-		// Null for now
-		var user: User = null;
-		var token: Token = null;
-		var error: AuthenticationError = null;
-
-		this.user = new BehaviorSubject(user);
-		this.authToken = new BehaviorSubject(token);
-		this.authError = new BehaviorSubject(error);
+		this.user = new BehaviorSubject(null);
 	}
 
 	refresh() {
@@ -69,7 +52,7 @@ export class EazlUserService extends BaseEazlService {
 				this.user.next(user);
 			},
 			error => {
-				this.clearAuthToken();
+				this.eazl.clearAuthToken();
 				console.log(JSON.parse(error));
 			}
 		);
@@ -79,33 +62,33 @@ export class EazlUserService extends BaseEazlService {
     delete(): void {}
     update(): void {}
 
-	get hasAuthToken(): boolean {
-		return this.authToken.getValue() != null;
-	}
+	// get hasAuthToken(): boolean {
+	// 	return this.authToken.getValue() != null;
+	// }
 
-	clearAuthToken() {
-		window.sessionStorage.removeItem('canvas-token');
+	// clearAuthToken() {
+	// 	window.sessionStorage.removeItem('canvas-token');
 
-		this.authToken.next(null);
-	}
+	// 	this.authToken.next(null);
+	// }
 
-	authenticate(username: string, password: string): void {
-		var error: Observable<AuthenticationError> = null;
+	// authenticate(username: string, password: string): void {
+	// 	var error: Observable<AuthenticationError> = null;
 
-		this.eazl.post<Token>('auth-token', {username: username, password: password}).subscribe(
-		    authToken => {
-		        window.sessionStorage.setItem('canvas-token', authToken.token);
+	// 	this.eazl.post<Token>('auth-token', {username: username, password: password}).subscribe(
+	// 	    authToken => {
+	// 	        window.sessionStorage.setItem('canvas-token', authToken.token);
 		        
-		        this.authToken.next(authToken);
-		        this.eazl.setAuthToken(authToken.token);
+	// 	        this.authToken.next(authToken);
+	// 	        this.eazl.setAuthToken(authToken.token);
 		        
-		        this.refresh();
-		    },
-		    error => {
-		        this.clearAuthToken();
-		        this.authError.next(JSON.parse(error));
-		    }
-		)
-	}
+	// 	        this.refresh();
+	// 	    },
+	// 	    error => {
+	// 	        this.clearAuthToken();
+	// 	        this.authError.next(JSON.parse(error));
+	// 	    }
+	// 	)
+	// }
 
 }

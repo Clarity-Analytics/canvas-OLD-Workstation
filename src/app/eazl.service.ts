@@ -4,6 +4,8 @@ import { Response }                   from '@angular/http';
 import { Headers }                    from '@angular/http';
 import { RequestOptions }             from '@angular/http';
 import { Observable }                 from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/map';
 
@@ -3532,6 +3534,17 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
         }
     ]
 
+
+
+interface AuthenticationError {
+    non_field_errors: string[];
+}
+
+export interface Token {
+    token: string;
+}
+
+
 @Injectable()
 export class EazlService {
 
@@ -3548,24 +3561,56 @@ export class EazlService {
     baseUri: string;
     headers: Headers;
     options: RequestOptions;
+    authToken: BehaviorSubject<Token>;
+    authError: BehaviorSubject<AuthenticationError>;
+    storage: Storage
 
     constructor(
         private http: Http,
         private globalFunctionService: GlobalFunctionService,
-        private globalVariableService: GlobalVariableService) {
-        
+        private globalVariableService: GlobalVariableService)
+    {
+        this.storage = window.localStorage; // use local storage for testing so we don't have to login everytime
+        this.authError = new BehaviorSubject(null);
+        this.authToken = new BehaviorSubject(null);
+
         this.baseUri = `${window.location.protocol}//${window.location.hostname}:8000/api/`
         this.headers = new Headers({'Content-Type': 'application/json'});
         
-        if (window.sessionStorage.getItem('canvas-token')) {
-            this.setAuthToken(window.sessionStorage.getItem('canvas-token'));
+        if (this.storage.getItem('canvas-token')) {
+            let authToken: Token = {
+                'token': this.storage.getItem('canvas-token')
+            }
+
+            this.setAuthToken(authToken);
         }
 
         this.options = new RequestOptions({headers: this.headers});
     }
 
-    setAuthToken(token) {
-        this.headers.set('Authorization', `token ${token}`);
+    authenticate(username: string, password: string): void {
+        var error: Observable<AuthenticationError> = null;
+
+        this.post<Token>('auth-token', {username: username, password: password}).subscribe(
+            authToken => {
+                this.storage.setItem('canvas-token', authToken.token);
+                
+                this.setAuthToken(authToken);
+            },
+            error => {
+                this.authError.next(JSON.parse(error));
+            }
+        )
+    }
+
+    setAuthToken(authToken: Token) {
+        this.headers.set('Authorization', `token ${authToken.token}`);
+        this.authToken.next(authToken);
+    }
+
+    clearAuthToken() {
+        this.headers.delete('Authorization');
+        this.authToken.next(null);
     }
 
     // For the resti
