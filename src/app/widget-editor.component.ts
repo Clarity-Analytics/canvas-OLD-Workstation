@@ -38,7 +38,6 @@ import { CanvasUser }                 from './model.user';
 // Vega stuffies
 let vg = require('vega/index.js');
 
-
 @Component({
     selector:    'widget-editor',
     templateUrl: 'widget-editor.component.html',
