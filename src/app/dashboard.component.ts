@@ -2114,6 +2114,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedDashboardTab.name
         );
 console.log('widgets in loadDashBody',this.widgets)
+console.log(this.globalVariableService.canvasUser.getValue())
         // Set to review in ngAfterViewChecked
         this.refreshDashboard = true;
     }

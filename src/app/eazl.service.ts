@@ -3284,7 +3284,7 @@ export class EazlService implements OnInit {
                             last_login: eazlUser.last_login
                         });
                         this.globalVariableService.isAuthenticatedOnEazl.next(true);
-
+console.log('in login', this.globalVariableService.canvasUser.getValue())
                         // Inform the user
                         this.globalVariableService.growlGlobalMessage.next({
                             severity: 'info',
@@ -3574,7 +3574,7 @@ export class EazlService implements OnInit {
         if (this.globalVariableService.canvasUser.getValue() != null) {
             username = this.globalVariableService.canvasUser.getValue().username;
         }
-
+console.log('getWidgetsFor in Eaxl', this.globalVariableService.canvasUser.getValue())
         for (var i = 0, len = this.widgets.length; i < len; i++) {
  
             // Set properties.widgetIsLiked if there are users who liked it
