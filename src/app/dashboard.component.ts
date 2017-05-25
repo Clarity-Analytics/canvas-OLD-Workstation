@@ -304,7 +304,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 this.loadDashboardBody();
-                // this.loadDashboardBody( this.globalVariableService.sessionDashboardTabID.getValue());
             }
         }
     }
@@ -2114,7 +2113,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedDashboardID, 
             this.selectedDashboardTab.name
         );
-
+console.log('widgets in loadDashBody',this.widgets)
         // Set to review in ngAfterViewChecked
         this.refreshDashboard = true;
     }

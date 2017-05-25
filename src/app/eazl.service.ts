@@ -732,7 +732,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserID: 'janniei',
                     }
                 ],
                 widgetPassword: '',
@@ -3507,21 +3507,6 @@ export class EazlService implements OnInit {
 
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
 
-        // Calc WIDGET certain fields, as it is easy to use in *ngIf or *ngFor
-        // TODO - this is impure - do better
-        for (var i = 0, len = this.widgets.length; i < len; i++) {
-
-            // Set properties.widgetIsLiked if there are users who liked it
-            for (var j = 0, len = this.widgets[i].properties.widgetLiked.length; j < len; j++) {
-
-                if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID != '') {
-                    this.widgets[i].properties.widgetIsLiked = true;
-                } else {
-                    this.widgets[i].properties.widgetIsLiked = false;
-                }
-            }
-        }
-
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
 
@@ -3582,6 +3567,26 @@ export class EazlService implements OnInit {
     getWidgetsForDashboard(selectedDashboardID: number, selectedDashboarTabName: string) {
         // Return a list of Dashboards
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
+
+        // Calc WIDGET certain fields, as it is easy to use in *ngIf or *ngFor
+        // TODO - this is impure - do better
+        let username: string = ''; 
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            username = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        for (var i = 0, len = this.widgets.length; i < len; i++) {
+ 
+            // Set properties.widgetIsLiked if there are users who liked it
+            for (var j = 0, len = this.widgets[i].properties.widgetLiked.length; j < len; j++) {
+
+                if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID == username) {
+                    this.widgets[i].properties.widgetIsLiked = true;
+                } else {
+                    this.widgets[i].properties.widgetIsLiked = false;
+                }
+            }
+        }
 
         return this.widgets.filter(widget =>
             widget.properties.dashboardID == selectedDashboardID &&
@@ -3866,6 +3871,7 @@ export class EazlService implements OnInit {
         // - widgetID
         // - username to add / remove
         // - isLikedNewState = new state, so true -> add user, else delete
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateIsLiked', '@Start');
 
         let foundUser: boolean = false;
 
@@ -3900,4 +3906,5 @@ export class EazlService implements OnInit {
             }
         }
     }
+    
 }
