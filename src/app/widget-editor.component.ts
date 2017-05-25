@@ -1086,12 +1086,11 @@ export class WidgetEditorComponent implements OnInit {
                 }
             }
         }
-console.log('1')
+
         if (this.identificationForm.controls['widgetType'].value != null) {
             if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
                 // Get the corresponding widget template
                 this.loadWidgetTemplateFields();
-console.log('11')
                 
                 // this.widgetTemplates = this.eazlService.getWidgetTemplates (
                 //     this.identificationForm.controls['widgetType'].value['name']
@@ -1105,7 +1104,6 @@ console.log('11')
                     this.identificationForm.controls['vegaGraphHeight'].value;
                 this.widgetToEdit.graph.spec.width = 
                     this.identificationForm.controls['vegaGraphWidth'].value;
-console.log('12',this.identificationForm.controls['vegaGraphPadding'].value)
 
                 this.widgetToEdit.graph.spec.padding = 
                     this.identificationForm.controls['vegaGraphPadding'].value;                                        
@@ -1120,7 +1118,6 @@ console.log('12',this.identificationForm.controls['vegaGraphPadding'].value)
                         this.widgetToEdit.graph.spec.marks[1].encode.update.x.signal =
                             'tooltip.' + this.identificationForm.controls['vegaXcolumn'].value.name;
                 }
-console.log('13',this.identificationForm.controls['vegaYcolumn'].value)
 
                 if (this.identificationForm.controls['vegaYcolumn'].value.name != '' &&
                     this.identificationForm.controls['vegaYcolumn'].value.name != undefined) {
@@ -1131,8 +1128,6 @@ console.log('13',this.identificationForm.controls['vegaYcolumn'].value)
                             this.widgetToEdit.graph.spec.marks[1].encode.update.y.signal =
                                 'tooltip.' + this.identificationForm.controls['vegaYcolumn'].value.name;
                 }
-console.log('14', this.identificationForm.controls['vegaFillColor'].value,
-this.identificationForm.controls['vegaHoverColor'].value)
 
                 if (this.identificationForm.controls['vegaFillColor'].value != undefined) {
                         this.widgetToEdit.graph.spec.marks[0].encode.update.fill.value =
@@ -1142,7 +1137,6 @@ this.identificationForm.controls['vegaHoverColor'].value)
                         this.widgetToEdit.graph.spec.marks[0].encode.hover.fill.value =
                             this.identificationForm.controls['vegaHoverColor'].value.name;
                 }
-console.log('15',this.identificationForm.controls['widgetReportName'].value)
 
                 // Then wack in the data from the Report
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
@@ -1155,7 +1149,6 @@ console.log('15',this.identificationForm.controls['widgetReportName'].value)
                             }
                         }
                 }
-console.log('16')
 
                 // Estimate height and width for NEW container, based on graph dimensions
                 if (this.addEditMode == 'Add') {
@@ -1169,7 +1162,6 @@ console.log('16')
 
             }
         }
-console.log('2')
 
         if (this.identificationForm.controls['widgetType'].value != null) {
             if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
@@ -1189,7 +1181,6 @@ console.log('2')
                 }
             }
         } 
-console.log('3')
  
         // Load Text fields
         if (this.showWidgetText) {

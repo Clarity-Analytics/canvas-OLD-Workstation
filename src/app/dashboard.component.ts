@@ -385,10 +385,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Add new Widget to Array
         if (this.addEditModeWidgetEditor == "Add") {
-            // Add the new guy to the Array
 
-            // Only render our own
-            if (this.widgetToEdit.properties.dashboardTabName['name'] == 
+                this.selectedDashboardTab.name)
+            // Add the new guy to the Array, if it belongs to current Dashboar
+            if (this.widgetToEdit.properties.dashboardTabName == 
                 this.selectedDashboardTab.name) {
 
                 // TODO - this is crude & error prone: eventually autoIndex in DB
