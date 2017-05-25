@@ -2473,8 +2473,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Headers
         if (tableHideHeader) {
+            let w: number = 0;
             tableHTML = tableHTML + "<tr> " 
             for (var x in reportFields) {
+                if (w >= tableCols  &&  tableCols > 0) {break;}
+                w++
                 tableHTML = tableHTML + "<th> " + reportFields[x] + "</th> "  
             }
             tableHTML = tableHTML + "</tr> " 
