@@ -386,7 +386,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Add new Widget to Array
         if (this.addEditModeWidgetEditor == "Add") {
 
-                this.selectedDashboardTab.name)
             // Add the new guy to the Array, if it belongs to current Dashboar
             if (this.widgetToEdit.properties.dashboardTabName == 
                 this.selectedDashboardTab.name) {
@@ -2113,8 +2112,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedDashboardID, 
             this.selectedDashboardTab.name
         );
-console.log('widgets in loadDashBody',this.widgets)
-console.log(this.globalVariableService.canvasUser.getValue())
+
         // Set to review in ngAfterViewChecked
         this.refreshDashboard = true;
     }

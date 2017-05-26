@@ -14,7 +14,7 @@ export const routes: Route[] = [
 
   { path: 'startup',                  component: PageNotFoundComponent,   canActivate: [AuthGuard]},
   { path: 'users',                    component: UserComponent,           canActivate: [AuthGuard]},
-  { path: 'dashboard',                component: DashboardComponent},  
+  { path: 'dashboard',                component: DashboardComponent,      canActivate: [AuthGuard]},
   { path: 'pagenotfound',             component: PageNotFoundComponent},  
   { path: '**',                       component: PageNotFoundComponent}  
 ]

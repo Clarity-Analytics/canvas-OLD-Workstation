@@ -139,7 +139,7 @@ export class AppComponent implements OnInit {
             this.eazlService.login('janniei', 'canvas100*')
                 .then(eazlUser => {
                     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
-console.log('fake', this.globalVariableService.canvasUser.getValue())
+
                     // Load menu array
                     this.menuItems = this.loadMenu()
                     }
@@ -476,5 +476,3 @@ console.log('fake', this.globalVariableService.canvasUser.getValue())
         return this.menuItems;       
     }
 }
-
-
