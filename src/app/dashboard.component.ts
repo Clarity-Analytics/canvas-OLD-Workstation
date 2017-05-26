@@ -1471,8 +1471,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     detailTab() {
         // Show form with properties for the selected Tab
-
-        // TODO - design in detail, no duplications ...
         this.globalFunctionService.printToConsole(this.constructor.name,'detailTab', '@Start');
 
         if (this.selectedDashboardTab != undefined) {
@@ -1489,7 +1487,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     onDashboardDetail (event) {
         // Show detail about the selected Dashboard
-        // TODO - design in detail, no duplications ...
         this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDetail', '@Start');
 
         if (this.selectedDashboardName['name'] != undefined) {
@@ -1509,7 +1506,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     onDashboardDelete() {
         // Confirm if user really wants to delete
-        // TODO - this guy needs Two clicks to close dialogue, but then deletes twice!!
         this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDelete', '@Start');
 
         this.deleteMode = true;
@@ -1530,18 +1526,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Delete Dashboard button
         this.globalFunctionService.printToConsole(this.constructor.name,'DashboardDeleteIt', '@Start');
 
-        // Bring back the value field of the selected item.
-        // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
-        //       I had to make a workaround
-        let TM: any = this.selectedDashboardName;
-
         // If something was selected, loop and find the right one
-        if (TM != undefined) {
+        if (this.selectedDashboardName != undefined) {
 
             // Travers
             for (var i = 0; i < this.dashboards.length; i++ ) {
-                if (this.dashboards[i].dashboardID - TM.id == 0) {
-                    this.globalFunctionService.printToConsole(this.constructor.name,'DashboardDeleteIt', 'Deleting ' + TM.name + ' ...');
+                if (this.dashboards[i].dashboardID == this.selectedDashboardName.id) {
+                    this.globalFunctionService.printToConsole(this.constructor.name,
+                            'DashboardDeleteIt', 'Deleting ' + this.selectedDashboardName.name + ' ...');
                     this.dashboards.splice(i, 1);
                     this.resetDashboardDropDowns(this.currentFilter);
 
@@ -1549,7 +1541,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'info', 
                         summary:  'Dashboard deleted', 
-                        detail:   'The Dashboard has been deleted: ' + TM.name
+                        detail:   'The Dashboard has been deleted: ' + this.selectedDashboardName.name
                     });
 
                     break;
@@ -1559,7 +1551,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Reset Delete Mode
         this.deleteMode = false;
-        
+       
     }
 
     onDashboardAdd() {
