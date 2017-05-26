@@ -370,8 +370,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     public handleWidgetBuilderFormSubmit(returnCode: string): void {
         // Is triggered after the Advanced Filter form is submitted
-        // TODO - due to the *ngFor, this thing runs 3 times. So, it is essential
-        // to ensure we only update the correct and proper one
         this.globalFunctionService.printToConsole(this.constructor.name,'handleWidgetBuilderFormSubmit', '@Start');
 
         // Bail if Popup was Cancelled
@@ -769,8 +767,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'widgetDeleteIt', '@Start');
 
         // Bring back the value field of the selected item.
-        // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
-        //       I had to make a workaround
         // Note: deleteMode is important to switch the loop off since we are in an *ngFor
         //       So, switch on when Delete Button is clicked, and switch off after 
         //       delete routine is invoked.  Also, the popup is *ngIf-ed to it
@@ -1384,8 +1380,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 name: newdashboardTabName
             }
         });
-
-        // Tell the user
+// Tell the user
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'Tab added', 

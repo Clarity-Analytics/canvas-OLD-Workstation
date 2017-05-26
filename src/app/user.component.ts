@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
     
     // Local properties
     addEditMode: string;
+    deleteMode: boolean = false;                // True while busy deleting
     displayUserPopup: boolean = false;
     popupHeader: string = 'User Maintenance';
     popuMenuItems: MenuItem[];
@@ -134,9 +135,13 @@ export class UserComponent implements OnInit {
     userMenuDelete(user: User) {
         // Delete the selected user, but first confirm
 
+        this.deleteMode = true;
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this record?',
-            reject: () => { return},
+            reject: () => { 
+                this.deleteMode = false;
+                return;
+            },
             accept: () => {
 
                 // - User: currently selected row
@@ -149,7 +154,8 @@ export class UserComponent implements OnInit {
                     }
                 }
                 this.users.splice(index, 1);
-                
+                this.deleteMode = false;
+
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info', 
                     summary:  'User deleted', 
@@ -232,7 +238,6 @@ export class UserComponent implements OnInit {
     handleUserPopupFormClosed(howClosed: string) {
         // Handle the event: howClosed = Cancel / Submit
         this.displayUserPopup = false;
-console.log('usr cmp selUsr', this.selectedUser)
   }
 }
 
