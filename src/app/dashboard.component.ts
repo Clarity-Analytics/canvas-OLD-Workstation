@@ -1419,39 +1419,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Delete Dashboard button
         this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', '@Start');
 
-        // Bring back the value field of the selected item.
-        // TODO: could not get it via .value  Although this makes sense, see PrimeNG site,
-        //       I had to make a workaround
-        // TODO: for now I dont have a Tab-ID field, as I thought the name must be unique 
-        //       anyway.  Is this a really, really good idea?
-        let TM: any = this.selectedDashboardTab;
-
         // If something was selected, loop and find the right one
-        if (TM != undefined) {
+        if (this.selectedDashboardTab != undefined) {
 
             // Can only delete Widgetless Tabs
-            if (this.widgets.filter( w => w.properties.dashboardTabName == TM.name).length >0) {
-                this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'warn', 
-                    summary:  'Tab NOT empty', 
-                    detail:   'A Tab can only be deleted if it has no Widgets: ' + TM.name
-                });
+            if (this.widgets.filter( w => w.properties.dashboardTabID == 
+                this.selectedDashboardTab.id).length >0) {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn', 
+                        summary:  'Tab NOT empty', 
+                        detail:   'A Tab can only be deleted if it has no Widgets: ' + 
+                                  this.selectedDashboardTab.name
+                    });
 
             // Bail
             return;
-                
             }
+
             // Travers
             for (var i = 0; i < this.dashboardTabs.length; i++ ) {
-                if (this.dashboardTabs[i].dashboardTabName == TM.name) {
-                    this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', 'Deleting ' + TM.name + ' ...');
+                if (this.dashboardTabs[i].dashboardTabID == this.selectedDashboardTab.id) {
+                    this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', 
+                        'Deleting ' + this.selectedDashboardTab.name + ' ...');
                     this.dashboardTabs.splice(i, 1);
 
                     // Tell the user
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'info', 
                         summary:  'Tab deleted', 
-                        detail:   'The Tab has been deleted: ' + TM.name
+                        detail:   'The Tab has been deleted: ' + 
+                                  this.selectedDashboardTab.name
                     });
 
                     break;
@@ -1459,7 +1456,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
 
             for (var i = 0; i < this.dashboardTabsDropDown.length; i++ ) {
-                if (this.dashboardTabsDropDown[i].value.name == TM.name) {
+                if (this.dashboardTabsDropDown[i].value.name == this.selectedDashboardTab.name) {
                     this.dashboardTabsDropDown.splice(i, 1);
 
                     break;
