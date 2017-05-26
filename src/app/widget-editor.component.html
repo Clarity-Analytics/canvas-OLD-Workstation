@@ -1054,7 +1054,7 @@
                     formControlName="widgetReportName" 
                     [pTooltip]="reportsDropDownTooltip"
                     filter="true"
-                    (onChange)="loadReportRelatedInfo($event)"
+                    (onChange)="onChangeLoadReportRelatedInfo($event)"
                     >
                 </p-dropdown>
             </div>      <!--END Report selection-->
@@ -1933,7 +1933,7 @@
             type="button" 
             label="Cancel"
             icon="fa-undo"
-            (click)="onCancel()"
+            (click)="onClickCancel()"
             >
         </button>
         <button 
@@ -1942,7 +1942,7 @@
             type="submit" 
             label="Submit" 
             icon="fa-refresh"
-            (click)="onSubmit()"
+            (click)="onClickSubmit()"
             >
         </button>
     </div>

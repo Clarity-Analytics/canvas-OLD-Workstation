@@ -51,9 +51,9 @@ export class DashboardAdvFilterComponent implements OnInit {
         });
     }
     
-    clearForm() {
+    onClickClearForm() {
         // Clear the whole damn form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clearForm', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickClearForm', '@Start');
          this.userform.controls['owner'].setValue('');
          this.userform.controls['description'].setValue('');
     }

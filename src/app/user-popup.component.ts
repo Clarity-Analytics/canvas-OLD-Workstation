@@ -209,7 +209,10 @@ export class UserPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@End');
     }
 
-    onCancel() {
+    onClickCancel() {
+        // User clicked Cancel
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
+
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info',
             summary:  'Cancel',

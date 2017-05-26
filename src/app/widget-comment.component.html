@@ -9,7 +9,7 @@
         pTooltip="Add a new comment, on a new thread" 
         tooltipPosition="left" 
         tooltipEvent="hover"
-        (click)="addNewThread()" 
+        (click)="onClickAddNewThread()" 
         >
     </button> 
 
@@ -23,7 +23,7 @@
         pTooltip="Add a new comment, on a new thread" 
         tooltipPosition="left" 
         tooltipEvent="hover"
-        (click)="addSameThread()" 
+        (click)="onClickAddSameThread()" 
         >
     </button> 
 <!--END Buttons to add new Comments-->
@@ -95,7 +95,7 @@
                             pTooltip="Cancel adding a new comment" 
                             tooltipPosition="right" 
                             tooltipEvent="hover"
-                            (click)="cancel()"
+                            (click)="onClickCancel()"
                             >
                         </button>
                     </div>

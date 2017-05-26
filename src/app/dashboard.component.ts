@@ -1959,9 +1959,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
-    loadDashboardTabs(event) {
+    onChangeLoadDashboardTabs(event) {
         // Called from HTML with ID to load
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
 
         // Get its Tabs in this Dashboard
         this.selectedDashboardID = event.value.id;

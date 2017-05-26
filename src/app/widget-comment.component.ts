@@ -85,27 +85,27 @@ export class WidgetCommentComponent implements OnInit {
         }
     }
 
-    addNewThread() {
+    onClickAddNewThread() {
         // Open form to Add a New Comment, on a new Thread
-        this.globalFunctionService.printToConsole(this.constructor.name, 'addNewThread', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickAddNewThread', '@Start');
 
         // Set adding mode (using *ngIf) and indicate same thread
         this.addToSameThread = false;
         this.addingNew = true
     }
 
-    addSameThread() {
+    onClickAddSameThread() {
         // Open form to Add a new Comment on the last Thread
-        this.globalFunctionService.printToConsole(this.constructor.name, 'addSameThread', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickAddSameThread', '@Start');
 
         // Set adding mode (using *ngIf) and indicate a different thread
         this.addToSameThread = true;
         this.addingNew = true
     }
 
-    cancel() {
+    onClickCancel() {
         // Nothing to do, so go back
-        this.globalFunctionService.printToConsole(this.constructor.name, 'cancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
 
         // Stop adding mode
         this.addingNew = false;

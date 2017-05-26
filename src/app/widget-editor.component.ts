@@ -388,7 +388,7 @@ export class WidgetEditorComponent implements OnInit {
                 this.selectedReport = this.selectedItem;
 
                 // Set the field DropDown content
-                this.loadReportRelatedInfoBody(this.widgetToEdit.properties.widgetReportID);
+                this.onChangeLoadReportRelatedInfoBody(this.widgetToEdit.properties.widgetReportID);
                 this.identificationForm.controls['widgetReportParameters']
                     .setValue(this.widgetToEdit.properties.widgetReportParameters);
                 this.identificationForm.controls['widgetShowLimitedRows']
@@ -575,7 +575,10 @@ export class WidgetEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@End');
     }
 
-    onCancel() {
+    onClickCancel() {
+        //   User clicked Cancel
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
+
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
             summary:  'Cancel',
@@ -585,14 +588,14 @@ export class WidgetEditorComponent implements OnInit {
         this.formSubmit.emit('Cancel');
     }
 
-    onSubmit() {
+    onClickSubmit() {
         // User clicked submit button.
         // Note: it is assumed that 
         // - all the fields are tested to be valid and proper in the validation.
         //   If not, return right after validation.  
         // - all fields are loaded in widgetToEdit which is shared with the calling routine
         //   It is assumes is that widgetToEdit is 100% complete and accurate before return
-        this.globalFunctionService.printToConsole(this.constructor.name, 'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickSubmit', '@Start');
 
         // Validation: note that == null tests for undefined as well
         this.formIsValid = false;
@@ -1277,17 +1280,17 @@ console.log('@end', this.widgetToEdit)
         //        componenent to take effect (and thus close Dialogue)
     }
 
-    loadReportRelatedInfo(event) {
+    onChangeLoadReportRelatedInfo(event) {
         // Load the WidgetSets for the selected Report
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportRelatedInfo', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadReportRelatedInfo', '@Start');
 
         // Call the doer routine
-        this.loadReportRelatedInfoBody(+event.value.id);
+        this.onChangeLoadReportRelatedInfoBody(+event.value.id);
     }
 
-    loadReportRelatedInfoBody(selectedReportID) {
+    onChangeLoadReportRelatedInfoBody(selectedReportID) {
         // Load the WidgetSets for the selected Report
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadReportRelatedInfo', '@Start for ID: ' + selectedReportID);
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeL', '@Start for ID: ' + selectedReportID);
 
         // Get ReportFields
         this.reportFieldsDropDown = [];

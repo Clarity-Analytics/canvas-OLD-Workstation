@@ -115,9 +115,9 @@ export class DashboardTabEditorComponent implements OnInit {
 
     }
          
-    onCancel (){
+    onClickCancel (){
         // User clicked cancel button
-        this.globalFunctionService.printToConsole(this.constructor.name,'onCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickCancel', '@Start');
         this.formDashboarTabSubmit.emit(false);
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
@@ -126,9 +126,9 @@ export class DashboardTabEditorComponent implements OnInit {
         });
     }
 
-    onSubmit(value: string) {
+    onClickSubmit(value: string) {
         // User clicked submit button
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickSubmit', '@Start');
 
         // Validation
         // if (this.identificationForm.controls['widgetType'].value == ''  || 
