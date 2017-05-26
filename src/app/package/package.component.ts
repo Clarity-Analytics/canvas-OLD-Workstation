@@ -36,6 +36,7 @@ export class PackageComponent implements OnInit {
   	this.fields = this._package.fields;
   	this.parameters = this._package.parameters;
   }
+  
   get package(): Package {
   	return this._package;
   }

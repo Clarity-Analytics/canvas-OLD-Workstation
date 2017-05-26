@@ -157,6 +157,19 @@ export class AppComponent implements OnInit {
             this.eazlUser.refresh();
         }
 
+        // Growl authentication problems
+        this.eazl.authError.subscribe(authError => {
+            if (authError != null) {
+                this.globalVariableService.growlGlobalMessage.next(
+                    {
+                        severity: 'error', 
+                        summary:  'Error', 
+                        detail:   `${authError.non_field_errors}`
+                    }
+                );
+            }
+        }); 
+
         // Load menu array
         this.loadMenu()
     }

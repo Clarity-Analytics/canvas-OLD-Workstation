@@ -54,15 +54,7 @@ export class LoginComponent implements OnInit {
             'username': new FormControl('', Validators.required),
             'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
         });
-
-        // We subscribe reactively
-        this.eazl.authError.subscribe(authError => {
-            // We should probably growl or show a message that the user could not login
-            if (authError != null) {
-                console.log(`Failed to log in - ${authError.non_field_errors}`); 
-            }
-        }); 
-
+        
         this.eazl.authToken.subscribe(authToken => {
             if (authToken != null) {
                 this.eazlUser.refresh();
