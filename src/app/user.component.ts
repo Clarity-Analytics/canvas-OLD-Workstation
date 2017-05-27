@@ -1,8 +1,5 @@
 // User form
 import { Component }                  from '@angular/core';
-import { FormBuilder }                from '@angular/forms';
-import { FormControl }                from '@angular/forms';
-import { FormGroup }                  from '@angular/forms';
 import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
@@ -33,30 +30,22 @@ import { UserGroupMembership }        from './model.userGroupMembership';
 export class UserComponent implements OnInit {
     
     // Local properties
-    addEditMode: string;
-    
-
-displayGroupMembership: boolean = false;    
-checkboxGroupMembership: boolean;            // ...
-groupMembershipDropDown:any;
-selectedGroupMembership:any;
-groupMembershipForm: FormGroup;
-groups: Group[] = [];                               // List of Groups
-usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
-availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
-belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
-
-    deleteMode: boolean = false;                // True while busy deleting
-    displayUserPopup: boolean = false;
-    popupHeader: string = 'User Maintenance';
-    popuMenuItems: MenuItem[];
-    selectedUser: User;
+    addEditMode: string;                                // Add/Edit to indicate mode
+    availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
+    belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
+    deleteMode: boolean = false;                        // True while busy deleting
+    displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
+    displayUserPopup: boolean = false;                  // True to display single User
+    groups: Group[] = [];                               // List of Groups
+    popupHeader: string = 'User Maintenance';           // Popup header
+    popuMenuItems: MenuItem[];                          // Items in popup
+    selectedUser: User;                                 // User that was clicked on
     users: User[];
+    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
 
     constructor(
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
-        private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {
@@ -64,16 +53,6 @@ belongstoUserGroupMembership: Group[] = [];         // List of Groups user alrea
     
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
- 
-        // Define form group for first tab
-        this.groupMembershipForm = this.fb.group(
-            {
-                'checkboxGroupMembership':             new FormControl(''),
-                'dropdownGroupMembership':             new FormControl(''),
-                'textGroupMembership':               new FormControl(''),
-            });
-
-
  
         // Initialise variables
         this.eazlService.getUsers()
@@ -248,16 +227,16 @@ console.log('availableUserGroupMembership',this.availableUserGroupMembership)
     }
 
     onMoveToTargetUserGroupMembership() {
-        // User clicked onMoveToTarget on Group Membership
+        // User clicked onMoveToTarget on Group Membership: add grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
 
         // Add this makker
         this.eazlService.addUserGroupMembership('janniei',6)
-
+console.log(this.selectedUser)
     }
 
     onMoveToSourceUserGroupMembership() {
-        // User clicked onMoveToSource on Group Membership
+        // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
 
         // Remove this makker
@@ -273,8 +252,6 @@ console.log('availableUserGroupMembership',this.availableUserGroupMembership)
         // User clicked onTargetReorder on Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
     }
-
-
 
     userMenuAccess(user: User) {
         // Access to Data Sources for the selected user
