@@ -196,17 +196,17 @@ groupMembershipForm: FormGroup;
 
 
 this.displayGroupMembership = true; 
-this.eazlService.getUsersResti()
-    .then(eazlUser => {
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
+// this.eazlService.getUsersResti()
+//     .then(eazlUser => {
+//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
 
-        // Show
-console.log('gotit')    
-    })
-    .catch(err => {
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
-        }
-    ) 
+//         // Show
+// console.log('gotit')    
+//     })
+//     .catch(err => {
+//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
+//         }
+    // ) 
 
 
 

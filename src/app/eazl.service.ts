@@ -16,6 +16,8 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
 import { EazlUser }                   from './model.user';
+import { Group }                      from './model.group';
+import { UserGroupMembership }        from './model.userGroupMembership';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { User }                       from './model.user';
@@ -2902,6 +2904,103 @@ export const WIDGETTEMPLATES: WidgetTemplate[] =
         }
     ]
 
+export const GROUPS: Group[] = 
+    [
+        {
+            groupID: 0,
+            groupName: 'Admin',
+            groupDescription: 'Admin group has full rights to the whole system',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        },
+        {
+            groupID: 1,
+            groupName: 'Guest',
+            groupDescription: 'Guest group has no rights',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        },
+        {
+            groupID: 2,
+            groupName: 'BI Team',
+            groupDescription: 'BI Team',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        },
+        {
+            groupID: 3,
+            groupName: 'HR',
+            groupDescription: 'Human Resources Department',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        },
+        {
+            groupID: 4,
+            groupName: 'Finance',
+            groupDescription: 'Finance Department',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        },
+        {
+            groupID: 5,
+            groupName: 'Sales',
+            groupDescription: 'Sales Department',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        },
+        {
+            groupID: 6,
+            groupName: 'R&D',
+            groupDescription: 'Research and Development Department',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        },
+        {
+            groupID: 7,
+            groupName: 'IT',
+            groupDescription: 'Information Technology Department',
+            groupCreatedDateTime: '2017/05/01',
+            groupCreatedUserID: 'JamesK',
+            groupUpdatedDateTime: '2017/05/01', 
+            groupUpdatedUserID: 'JamesK' 
+        }
+    ]
+
+export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
+    [
+        {
+            groupID: 0,
+            userName: 'janniei',
+            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedUserID: 'JamesK'
+        },        
+        {
+            groupID: 4,
+            userName: 'janniei',
+            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedUserID: 'JamesK'
+        }        
+    ]
+
+
 export const REPORTWIDGETSET: ReportWidgetSet[] =
     [
         {
@@ -3206,13 +3305,15 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
 @Injectable()
 export class EazlService implements OnInit {
     httpBaseUri: string;                                    // url for the RESTi
-    dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
-    dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     httpHeaders: Headers;                                   // Header for http
     httpOptions: RequestOptions;                            // Options for http
+    route: string = 'users';                                // Route to RESTi - users/authen...
+
+    // Local Arrays to keep data for the rest of the Application
+    dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
+    dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     reports: Report[] = REPORTS;                            // List of Reports
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
-    route: string = 'users';                                // Route to RESTi - users/authen...
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
