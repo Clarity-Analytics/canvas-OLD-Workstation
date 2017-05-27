@@ -42,9 +42,9 @@ groupMembershipDropDown:any;
 selectedGroupMembership:any;
 groupMembershipForm: FormGroup;
 groups: Group[] = [];                               // List of Groups
-usergroupMembership: UserGroupMembership[] = [];  // List of User-Group   
-availableUserGroupMembership: UserGroupMembership[] = [];  // List of User-Groups available
-belongstoUserGroupMembership: UserGroupMembership[] = [];  // List of User-Groups already belongs to   
+usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
+availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
+belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
 
     deleteMode: boolean = false;                // True while busy deleting
     displayUserPopup: boolean = false;
@@ -205,8 +205,9 @@ this.belongstoUserGroupMembership = this.eazlService.getUserGroupMembership('jan
 console.log(this.availableUserGroupMembership )
 console.log(this.belongstoUserGroupMembership)
 this.displayGroupMembership = true; 
-console.log('all',this.eazlService.getUserGroupMembership(''))
-console.log('3',this.eazlService.getUserGroupMembership('janniei'))
+console.log('all',this.eazlService.getUserGroupMembership())
+console.log('janniei',this.eazlService.getUserGroupMembership('janniei'))
+console.log('!=janniei',this.eazlService.getUserGroupMembership('janniei',false))
 // this.eazlService.getUsersResti()
 //     .then(eazlUser => {
 //         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');

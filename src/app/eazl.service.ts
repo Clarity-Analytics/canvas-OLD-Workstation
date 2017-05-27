@@ -2999,7 +2999,7 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
             userGroupMembershipUpdatedUserID: 'JamesK'
         },        
         {
-            groupID: 0,
+            groupID: 1,
             userName: 'bradleyk',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
             userGroupMembershipCreatedUserID:  'JamesK',
@@ -4092,26 +4092,40 @@ console.log('getUsersResti',error)
         return resultGroups;
     }
 
-    getUserGroupMembership(username:string = '') {
+    getUserGroupMembership(username:string = '', include:boolean = true): Group[] {
         // Return a list of User - Group memberships
         // - username Optional parameter to select ONE, else select ALL (if >= 0)
+        // - include Optional parameter, true = include all for user, else group NOT for username
 
         this.globalFunctionService.printToConsole(this.constructor.name,'getUserGroupMembership', '@Start');
 
         // TODO - from DB
-        let resultUsergroupMembership: UserGroupMembership[] = [];
+        // Get Array of groups to in or ex clude
+        let resultUsergroupMembership: number[] = [];
+
+        // Return all if no username specified
         if (username == '') {
-            resultUsergroupMembership = this.usergroupMembership;
+            return this.groups;
         }
+        // Make an array of groupIDs to which this user belongs
         else {
-            resultUsergroupMembership = this.usergroupMembership.filter(
-                usrgrp => usrgrp.userName == username
-            )
+            this.usergroupMembership.forEach(
+                (usrgrp) => { 
+                                if (usrgrp.userName == username) 
+                                resultUsergroupMembership.push( usrgrp.groupID)  
+                            }
+            )   
         }
 
-        return resultUsergroupMembership;
+        // Return necesary groups, selectively depending on in/exclude
+        let resultGroups: Group[];
+        let found: boolean = false;
+        resultGroups = this.groups.filter(
+            grp => (include  &&  resultUsergroupMembership.indexOf(grp.groupID) >= 0) 
+                    ||
+                    (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0) 
+        )
+        return resultGroups;
     }
-    
-    // usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of USer-Group                               // List of Groups
 
 }
