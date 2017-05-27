@@ -200,8 +200,6 @@ export class UserComponent implements OnInit {
                     .catch(error => console.log (error))
             })
             .catch(error => console.log (error) )
-console.log('belongstoUserGroupMembership',this.belongstoUserGroupMembership)
-console.log('availableUserGroupMembership',this.availableUserGroupMembership)
 
 // this.eazlService.getUsersResti()
 //     .then(eazlUser => {
@@ -232,9 +230,15 @@ console.log('availableUserGroupMembership',this.availableUserGroupMembership)
 
         // Add this makker
         this.eazlService.addUserGroupMembership('janniei',6)
-console.log(this.selectedUser)
     }
 
+    onClickGroupMembershipCancel() {
+        // User clicked onMoveToSource on Group Membership - remove grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+
+        // Close popup
+        this.displayGroupMembership = false;        
+    }
     onMoveToSourceUserGroupMembership() {
         // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');

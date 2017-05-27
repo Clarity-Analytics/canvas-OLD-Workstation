@@ -242,8 +242,17 @@
         class="groupMembershipHeading"
         >
         Group Membership for {{ selectedUser.firstName }} 
+        <button 
+            class="panelButtonWithLabel"
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickGroupMembershipCancel()"
+            >
+        </button>
     </div>
-
+    
     <!--Content-->
     <form>
 

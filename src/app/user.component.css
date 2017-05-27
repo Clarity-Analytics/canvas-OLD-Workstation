@@ -37,25 +37,14 @@
         padding: 6px 0 2px 6px;
     }
 
-    .panelLine {
-        font-size: 1em;
-        margin: 2px 0 2px 0;
-        padding: 8px 0 3px 0px;
-    }
-    
-    .panelLineLabel {
-        font-weight: bold;
-        margin: 8px 0 0 0;
-        padding: 8px 0 0 2px;
-    }
-
     .panelButtonWithLabel {
         background-color: white;
         border: 1px solid darkgray;
         border-radius: 2px;
         color: gray;
+        float: right;
         height: 25px;
-        margin: 2px;
+        margin: -6px 0 0 0;
         padding: 1px;
-        width: 85px;
+        width: 90px;
     }
