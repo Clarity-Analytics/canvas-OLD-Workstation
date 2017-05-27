@@ -4092,7 +4092,7 @@ console.log('getUsersResti',error)
         return resultGroups;
     }
 
-    getUserGroupMembership(username:string = '', include:boolean = true): Group[] {
+    getUserGroupMembership(username:string = '', include:boolean = true): Promise<Group[]> {
         // Return a list of User - Group memberships
         // - username Optional parameter to select ONE, else select ALL (if >= 0)
         // - include Optional parameter, true = include all for user, else group NOT for username
@@ -4105,7 +4105,7 @@ console.log('getUsersResti',error)
 
         // Return all if no username specified
         if (username == '') {
-            return this.groups;
+            return Promise.resolve(this.groups);
         }
         // Make an array of groupIDs to which this user belongs
         else {
@@ -4125,7 +4125,7 @@ console.log('getUsersResti',error)
                     ||
                     (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0) 
         )
-        return resultGroups;
+        return Promise.resolve(resultGroups);
     }
 
 }

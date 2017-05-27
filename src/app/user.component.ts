@@ -65,10 +65,6 @@ belongstoUserGroupMembership: Group[] = [];         // List of Groups user alrea
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
  
-
-this.availableUserGroupMembership = this.eazlService.getUserGroupMembership();
-this.belongstoUserGroupMembership = this.eazlService.getUserGroupMembership('janniei')
-
         // Define form group for first tab
         this.groupMembershipForm = this.fb.group(
             {
@@ -202,12 +198,32 @@ this.belongstoUserGroupMembership = this.eazlService.getUserGroupMembership('jan
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
-console.log(this.availableUserGroupMembership )
-console.log(this.belongstoUserGroupMembership)
-this.displayGroupMembership = true; 
-console.log('all',this.eazlService.getUserGroupMembership())
-console.log('janniei',this.eazlService.getUserGroupMembership('janniei'))
-console.log('!=janniei',this.eazlService.getUserGroupMembership('janniei',false))
+        // Get the username
+        if (this.globalVariableService.canvasUser.getValue() == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn', 
+                summary:  'User not logged in!', 
+                detail:   user.firstName + ' - ' + user.lastName
+            });
+            return;
+        }
+        let username: string = this.globalVariableService.canvasUser.getValue().username;
+
+        // Get the current and available groups
+        this.eazlService.getUserGroupMembership(username, true)
+            .then(inclgrp => {
+                this.belongstoUserGroupMembership = inclgrp;
+                this.eazlService.getUserGroupMembership(username, false)
+                    .then (exclgrp => {
+                            this.availableUserGroupMembership  = exclgrp;
+                            this.displayGroupMembership = true; 
+                    })
+                    .catch(error => console.log (error))
+            })
+            .catch(error => console.log (error) )
+console.log('belongstoUserGroupMembership',this.belongstoUserGroupMembership)
+console.log('availableUserGroupMembership',this.availableUserGroupMembership)
+
 // this.eazlService.getUsersResti()
 //     .then(eazlUser => {
 //         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
