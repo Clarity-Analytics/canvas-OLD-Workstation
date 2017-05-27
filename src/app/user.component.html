@@ -250,69 +250,24 @@
         >
 
         <div
-            class="panelLine"
             >
-
-            <p-checkbox 
-                style="
-                            float: right;
-                            margin-bottom: 3px;
-                            margin-right: 5px;
-                            margin-top: 1px;
-                            padding: 0;
-                            width: 200px;
-                            " 
-                pTooltip="Check to show ..."
-                formControlName="checkboxGroupMembership" 
-                [(ngModel)]="checkboxGroupMembership" 
-                binary="true"
+            <p-pickList 
+                [source]="availableUserGroupMembership" 
+                [target]="belongstoUserGroupMembership"
+                sourceHeader="sourceHeader"
+                targetHeader="targetHeader"
+                (onMoveToTarget)="onMoveToTargetUserGroupMembership()"
+                (onMoveToSource)="onMoveToSourceUserGroupMembership()"
+                (onSourceReorder)="onSourceReorderUserGroupMembership()"
+                (onTargetReorder)="onTargetReorderUserGroupMembership()"
                 >
-            </p-checkbox>
-        </div>
-        <div
-            class="panelLine"
-            >
+                <template let-grp pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                        <div style="font-size:14px;float:left;margin:15px 5px 0 0">{{ grp.groupID }}</div>
+                    </div>
+                </template>
+            </p-pickList>
 
-            <p-dropdown 
-                [options]="groupMembershipDropDown" 
-                [(ngModel)]="selectedGroupMembership"
-                [style]="{
-                        'autofocus':'true',
-                        'background-color':'538cc6',
-                        'border':'1px solid lightgray',
-                        'border-radius':'2px',
-                        'float':'right',
-                        'font-size':'0.85em',
-                        'margin':'-2px 5px 0 0',
-                        'padding':'0',
-                        'width':'200px'
-                        }" 
-                placeholder="Required"
-                formControlName="dropdownGroupMembership" 
-                pTooltip=" ..."
-                filter="true"
-                >
-            </p-dropdown>
-        </div>
-        <div
-            class="panelLine"
-            >
-
-            <input 
-                pInputText 
-                style="
-                        float: right;
-                        margin-bottom: 3px;
-                        margin-right: 5px;
-                        margin-top: 0px;
-                        padding: 0;
-                        width: 200px;
-                        " 
-                type="text" 
-                formControlName="textGroupMembership" 
-                placeholder="Required"
-                pTooltip="..."
-                />
         </div>
 
         <!--Cancel / Submit buttons-->

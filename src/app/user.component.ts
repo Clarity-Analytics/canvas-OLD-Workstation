@@ -42,7 +42,9 @@ groupMembershipDropDown:any;
 selectedGroupMembership:any;
 groupMembershipForm: FormGroup;
 groups: Group[] = [];                               // List of Groups
-usergroupMembership: UserGroupMembership[] = [];  // List of USer-Group                               // List of Groups
+usergroupMembership: UserGroupMembership[] = [];  // List of User-Group   
+availableUserGroupMembership: UserGroupMembership[] = [];  // List of User-Groups available
+belongstoUserGroupMembership: UserGroupMembership[] = [];  // List of User-Groups already belongs to   
 
     deleteMode: boolean = false;                // True while busy deleting
     displayUserPopup: boolean = false;
@@ -64,6 +66,8 @@ usergroupMembership: UserGroupMembership[] = [];  // List of USer-Group         
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
  
 
+this.availableUserGroupMembership = this.eazlService.getUserGroupMembership();
+this.belongstoUserGroupMembership = this.eazlService.getUserGroupMembership('janniei')
 
         // Define form group for first tab
         this.groupMembershipForm = this.fb.group(
@@ -198,7 +202,8 @@ usergroupMembership: UserGroupMembership[] = [];  // List of USer-Group         
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
-
+console.log(this.availableUserGroupMembership )
+console.log(this.belongstoUserGroupMembership)
 this.displayGroupMembership = true; 
 console.log('all',this.eazlService.getUserGroupMembership(''))
 console.log('3',this.eazlService.getUserGroupMembership('janniei'))
@@ -242,6 +247,25 @@ console.log('3',this.eazlService.getUserGroupMembership('janniei'))
     
     }
 
+    onMoveToTargetUserGroupMembership() {
+        // User clicked onMoveToTarget on Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+    }
+
+    onMoveToSourceUserGroupMembership() {
+        // User clicked onMoveToSource on Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+    }
+
+    onSourceReorderUserGroupMembership() {
+        // User clicked onSourceReorder on Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderUserGroupMembership', '@Start');
+    }
+
+    onTargetReorderUserGroupMembership() {
+        // User clicked onTargetReorder on Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
+    }
 
 
 
