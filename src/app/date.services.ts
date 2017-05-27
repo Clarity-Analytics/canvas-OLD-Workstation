@@ -66,4 +66,11 @@ export class CanvasDate {
                         datum.getDate().toString() ) ;
          } 
      }
+ 	now(format: string): string {
+        let datum = new Date();
+        return this.today(format) + ' ' +
+                this.curHour(datum).toString() + ':' + 
+                this.curMinute(datum).toString();
+    } 
+
 }

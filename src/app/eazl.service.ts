@@ -8,6 +8,7 @@ import { Response }                   from '@angular/http';
 import { RequestOptions }             from '@angular/http';
 
 // Our Services
+import { CanvasDate }                 from './date.services';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
  
@@ -3338,6 +3339,7 @@ export class EazlService implements OnInit {
     users: User[] = [];                                     // List of Users
 
     constructor(
+        private canvasDate: CanvasDate,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private http: Http,
@@ -4112,7 +4114,7 @@ console.log('getUsersResti',error)
             this.usergroupMembership.forEach(
                 (usrgrp) => { 
                                 if (usrgrp.userName == username) 
-                                resultUsergroupMembership.push( usrgrp.groupID)  
+                                resultUsergroupMembership.push(usrgrp.groupID)  
                             }
             )   
         }
@@ -4128,4 +4130,41 @@ console.log('getUsersResti',error)
         return Promise.resolve(resultGroups);
     }
 
+
+    addUserGroupMembership(username:string, groupID:number) {
+        // Adds a User - Group record to the User Group Membership
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'addUserGroupMembership', '@Start');
+
+        let found: boolean = false;
+        for (var i = 0; i < this.usergroupMembership.length; i++) {
+            if (this.usergroupMembership[i].userName == username  &&
+                this.usergroupMembership[i].groupID == groupID) {
+                    found = true;
+                    break;
+                }
+        }
+
+        // Get current user
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+console.log('now',this.canvasDate.now('standard'))        
+        // Only add if not already there
+        if (!found) {
+            this.usergroupMembership.push(
+                {
+                    groupID: groupID,
+                    userName: username,
+                    userGroupMembershipCreatedDateTime: this.canvasDate.now('standard'),
+                    userGroupMembershipCreatedUserID: currentUser,
+                    userGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
+                    userGroupMembershipUpdatedUserID: currentUser
+                }        
+            )
+        }
+console.log('added',this.usergroupMembership)        
+    }
 }

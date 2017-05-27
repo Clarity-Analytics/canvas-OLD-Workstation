@@ -247,26 +247,13 @@ console.log('availableUserGroupMembership',this.availableUserGroupMembership)
         // });
     }
 
-    onClickGroupMembershipCancel(){
-        // User clicked Cancel on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
-
-        // Remove popup form
-        this.displayGroupMembership = false;
-    }
-
-    onClickGroupMembershipSubmit() {
-        // User clicked Submit on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipSubmit', '@Start');
-
-        // Remove popup form
-        this.displayGroupMembership = false;
-    
-    }
-
     onMoveToTargetUserGroupMembership() {
         // User clicked onMoveToTarget on Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+
+        // Add this makker
+        this.eazlService.addUserGroupMembership('janniei',6)
+        
     }
 
     onMoveToSourceUserGroupMembership() {
