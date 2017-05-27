@@ -2997,7 +2997,23 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
             userGroupMembershipCreatedUserID:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
             userGroupMembershipUpdatedUserID: 'JamesK'
-        }        
+        },        
+        {
+            groupID: 0,
+            userName: 'bradleyk',
+            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedUserID: 'JamesK'
+        },        
+        {
+            groupID: 5,
+            userName: 'bradleyk',
+            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedUserID: 'JamesK'
+        },        
     ]
 
 
@@ -4076,6 +4092,25 @@ console.log('getUsersResti',error)
         return resultGroups;
     }
 
+    getUserGroupMembership(username:string = '') {
+        // Return a list of User - Group memberships
+        // - username Optional parameter to select ONE, else select ALL (if >= 0)
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'getUserGroupMembership', '@Start');
+
+        // TODO - from DB
+        let resultUsergroupMembership: UserGroupMembership[] = [];
+        if (username == '') {
+            resultUsergroupMembership = this.usergroupMembership;
+        }
+        else {
+            resultUsergroupMembership = this.usergroupMembership.filter(
+                usrgrp => usrgrp.userName == username
+            )
+        }
+
+        return resultUsergroupMembership;
+    }
     
     // usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of USer-Group                               // List of Groups
 

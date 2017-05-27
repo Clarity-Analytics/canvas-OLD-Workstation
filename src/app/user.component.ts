@@ -200,8 +200,8 @@ usergroupMembership: UserGroupMembership[] = [];  // List of USer-Group         
 
 
 this.displayGroupMembership = true; 
-console.log('all',this.eazlService.getGroups())
-console.log('3',this.eazlService.getGroups(3))
+console.log('all',this.eazlService.getUserGroupMembership(''))
+console.log('3',this.eazlService.getUserGroupMembership('janniei'))
 // this.eazlService.getUsersResti()
 //     .then(eazlUser => {
 //         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
