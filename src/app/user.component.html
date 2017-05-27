@@ -1,3 +1,4 @@
+<!--Confirmation dialogue box-->
 <p-confirmDialog 
     *ngIf="deleteMode"
     header="Confirmation" 
@@ -7,6 +8,7 @@
 </p-confirmDialog>
 
 
+<!--Popup form for a single user (Add or Edit)-->
 <p-dialog 
     [(visible)]="displayUserPopup"
     [header]="popupHeader"
@@ -24,9 +26,12 @@
     </user-popup> 
 </p-dialog>
 
-  
+
+<!--Context (popup) menu  -->
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
- 
+
+
+<!--Table with user info -->
 <div class="myOverride">
     <p-dataTable  #dt
         columnResizeMode="expand"
@@ -220,6 +225,123 @@
 </div>
 
 
+
+
+
+
+
+
+
+<!--Group Membership panel-->
+<div
+    class="groupMembershipPanel"
+    *ngIf="displayGroupMembership"
+    >
+
+    <div
+        class="groupMembershipHeading"
+        >
+        Group Membership for ...
+    </div>
+
+    <!--Content-->
+    <form 
+        [formGroup]="groupMembershipForm" 
+        >
+
+        <div
+            class="panelLine"
+            >
+
+            <p-checkbox 
+                style="
+                            float: right;
+                            margin-bottom: 3px;
+                            margin-right: 5px;
+                            margin-top: 1px;
+                            padding: 0;
+                            width: 200px;
+                            " 
+                pTooltip="Check to show ..."
+                formControlName="checkboxGroupMembership" 
+                [(ngModel)]="checkboxGroupMembership" 
+                binary="true"
+                >
+            </p-checkbox>
+        </div>
+        <div
+            class="panelLine"
+            >
+
+            <p-dropdown 
+                [options]="groupMembershipDropDown" 
+                [(ngModel)]="selectedGroupMembership"
+                [style]="{
+                        'autofocus':'true',
+                        'background-color':'538cc6',
+                        'border':'1px solid lightgray',
+                        'border-radius':'2px',
+                        'float':'right',
+                        'font-size':'0.85em',
+                        'margin':'-2px 5px 0 0',
+                        'padding':'0',
+                        'width':'200px'
+                        }" 
+                placeholder="Required"
+                formControlName="dropdownGroupMembership" 
+                pTooltip=" ..."
+                filter="true"
+                >
+            </p-dropdown>
+        </div>
+        <div
+            class="panelLine"
+            >
+
+            <input 
+                pInputText 
+                style="
+                        float: right;
+                        margin-bottom: 3px;
+                        margin-right: 5px;
+                        margin-top: 0px;
+                        padding: 0;
+                        width: 200px;
+                        " 
+                type="text" 
+                formControlName="textGroupMembership" 
+                placeholder="Required"
+                pTooltip="..."
+                />
+        </div>
+
+        <!--Cancel / Submit buttons-->
+        <div
+            class="panelLine"
+            >
+
+            <button 
+                class="panelButtonWithLabel"
+                pButton 
+                type="button" 
+                label="Cancel"
+                icon="fa-undo"
+                (click)="onClickGroupMembershipCancel()"
+                >
+            </button>
+            <button 
+                class="panelButtonWithLabel"
+                pButton 
+                type="submit" 
+                label="Submit" 
+                icon="fa-refresh"
+                (click)="onClickGroupMembershipSubmit()"
+                >
+            </button>
+        </div>
+
+    </form>
+</div>
 
 
 

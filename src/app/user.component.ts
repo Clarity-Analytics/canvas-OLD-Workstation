@@ -1,5 +1,8 @@
 // User form
 import { Component }                  from '@angular/core';
+import { FormBuilder }                from '@angular/forms';
+import { FormControl }                from '@angular/forms';
+import { FormGroup }                  from '@angular/forms';
 import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
@@ -29,6 +32,14 @@ export class UserComponent implements OnInit {
     
     // Local properties
     addEditMode: string;
+    
+
+displayGroupMembership: boolean = false;    
+checkboxGroupMembership: boolean;            // ...
+groupMembershipDropDown:any;
+selectedGroupMembership:any;
+groupMembershipForm: FormGroup;
+
     deleteMode: boolean = false;                // True while busy deleting
     displayUserPopup: boolean = false;
     popupHeader: string = 'User Maintenance';
@@ -39,6 +50,7 @@ export class UserComponent implements OnInit {
     constructor(
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
+        private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {
@@ -46,6 +58,18 @@ export class UserComponent implements OnInit {
     
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+ 
+
+
+        // Define form group for first tab
+        this.groupMembershipForm = this.fb.group(
+            {
+                'checkboxGroupMembership':             new FormControl(''),
+                'dropdownGroupMembership':             new FormControl(''),
+                'textGroupMembership':               new FormControl(''),
+            });
+
+
  
         // Initialise variables
         this.eazlService.getUsers()
@@ -168,19 +192,57 @@ export class UserComponent implements OnInit {
     userMenuGroupMembership(user: User) {
         // Manage group membership for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User group membership', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
+
+this.displayGroupMembership = true; 
+this.eazlService.getUsersResti()
+    .then(eazlUser => {
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
+
+        // Show
+console.log('gotit')    
+    })
+    .catch(err => {
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
+        }
+    ) 
+
+
+
+
+        // Tell user ...
+        // this.globalVariableService.growlGlobalMessage.next({
+        //     severity: 'info', 
+        //     summary:  'User group membership', 
+        //     detail:   user.firstName + ' - ' + user.lastName
+        // });
     }
+
+    onClickGroupMembershipCancel(){
+        // User clicked Cancel on Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
+
+        // Remove popup form
+        this.displayGroupMembership = false;
+    }
+
+    onClickGroupMembershipSubmit() {
+        // User clicked Submit on Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipSubmit', '@Start');
+
+        // Remove popup form
+        this.displayGroupMembership = false;
+    
+    }
+
+
+
 
     userMenuAccess(user: User) {
         // Access to Data Sources for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccess', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
@@ -192,7 +254,7 @@ export class UserComponent implements OnInit {
     userMenuRelatedDataSources(user: User) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDataSources', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
@@ -204,7 +266,7 @@ export class UserComponent implements OnInit {
     userMenuMessageHistory(user: User) {
         // Show history of messages for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
@@ -216,7 +278,7 @@ export class UserComponent implements OnInit {
     userMenuReportHistory(user: User) {
         // Show history of reports ran for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuReportHistory', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
@@ -226,7 +288,7 @@ export class UserComponent implements OnInit {
     }
     
     userMenuResetPassword(user: User) {
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuResetPassword', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
@@ -237,6 +299,8 @@ export class UserComponent implements OnInit {
 
     handleUserPopupFormClosed(howClosed: string) {
         // Handle the event: howClosed = Cancel / Submit
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleUserPopupFormClosed', '@Start');
+
         this.displayUserPopup = false;
   }
 }

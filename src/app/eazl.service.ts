@@ -3906,5 +3906,52 @@ export class EazlService implements OnInit {
             }
         }
     }
-    
+
+    getUsersResti() {
+            this.users = [];
+            return this.get<any>('widgets')
+                    .toPromise()
+                    .then( user => {    
+console.log('getUsersResti', user )
+
+                        // for (var i = 0; i < eazlUser.length; i++) {
+                        //     this.users.push({
+                        //         userName: eazlUser[i].username,
+                        //         firstName: eazlUser[i].first_name,
+                        //         lastName: eazlUser[i].last_name,
+                        //         nickName: eazlUser[i].first_name,
+                        //         photoPath: 'pic',
+                        //         lastDatetimeLoggedIn: eazlUser[i].last_login,
+                        //         lastDatetimeReportWasRun: '',
+                        //         emailAddress: eazlUser[i].email,
+                        //         cellNumber: '082-011-1234',
+                        //         workTelephoneNumber: '011-222-3456',
+                        //         activeFromDate: '2017/05/01',
+                        //         inactiveDate: '',
+                        //         dateCreated: eazlUser[i].date_joined,
+                        //         userIDLastUpdated: '',
+                        //         isStaff: eazlUser[i].is_staff,
+                        //     });
+                        // }
+
+                        // Not dirty any longer
+                        this.globalVariableService.isDirtyUsers.next(false);
+
+                        // Return the data
+                        return this.users;
+                    } )
+                    .catch(error => {
+                    //     this.globalVariableService.growlGlobalMessage.next({
+                    //         severity: 'warn',
+                    //         summary:  'GetUsers',
+                    //         detail:   'Unsuccessful in getting users from the database'
+                    //     });
+                    //     error.message || error
+                    // })
+
+console.log('getUsersResti',error)        
+                    })
+    }
+
+
 }
