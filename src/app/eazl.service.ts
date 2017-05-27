@@ -17,10 +17,10 @@ import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
-import { UserGroupMembership }        from './model.userGroupMembership';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { User }                       from './model.user';
+import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
@@ -3312,6 +3312,8 @@ export class EazlService implements OnInit {
     // Local Arrays to keep data for the rest of the Application
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
+    groups: Group[] = GROUPS;                               // List of Groups
+    usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of USer-Group                               // List of Groups
     reports: Report[] = REPORTS;                            // List of Reports
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
@@ -4054,5 +4056,27 @@ console.log('getUsersResti',error)
                     })
     }
 
+    getGroups(groupID: number = -1) {
+        // Return a list of Groups
+        // - groupID Optional parameter to select ONE, else select ALL (if >= 0)
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGroups', '@Start');
+
+        // TODO - from DB
+        let resultGroups: Group[] = [];
+        if (groupID == -1) {
+            resultGroups = this.groups;
+        }
+        else {
+            resultGroups = this.groups.filter(
+                grp => grp.groupID == groupID
+            )
+        }
+
+        return resultGroups;
+    }
+
+    
+    // usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of USer-Group                               // List of Groups
 
 }

@@ -19,8 +19,10 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { EazlUser }                   from './model.user';
+import { Group }                      from './model.group';
 import { User }                       from './model.user';
-import { EazlUser }                       from './model.user';
+import { UserGroupMembership }        from './model.userGroupMembership';
 
 @Component({
     selector:    'user',
@@ -39,6 +41,8 @@ checkboxGroupMembership: boolean;            // ...
 groupMembershipDropDown:any;
 selectedGroupMembership:any;
 groupMembershipForm: FormGroup;
+groups: Group[] = [];                               // List of Groups
+usergroupMembership: UserGroupMembership[] = [];  // List of USer-Group                               // List of Groups
 
     deleteMode: boolean = false;                // True while busy deleting
     displayUserPopup: boolean = false;
@@ -196,6 +200,8 @@ groupMembershipForm: FormGroup;
 
 
 this.displayGroupMembership = true; 
+console.log('all',this.eazlService.getGroups())
+console.log('3',this.eazlService.getGroups(3))
 // this.eazlService.getUsersResti()
 //     .then(eazlUser => {
 //         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
