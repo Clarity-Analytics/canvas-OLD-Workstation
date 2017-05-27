@@ -177,22 +177,11 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
-        // Get the username
-        if (this.globalVariableService.canvasUser.getValue() == null) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn', 
-                summary:  'User not logged in!', 
-                detail:   user.firstName + ' - ' + user.lastName
-            });
-            return;
-        }
-        let username: string = this.globalVariableService.canvasUser.getValue().username;
-
         // Get the current and available groups
-        this.eazlService.getUserGroupMembership(username, true)
+        this.eazlService.getUserGroupMembership(this.selectedUser.userName, true)
             .then(inclgrp => {
                 this.belongstoUserGroupMembership = inclgrp;
-                this.eazlService.getUserGroupMembership(username, false)
+                this.eazlService.getUserGroupMembership(this.selectedUser.userName, false)
                     .then (exclgrp => {
                             this.availableUserGroupMembership  = exclgrp;
                             this.displayGroupMembership = true; 
@@ -224,14 +213,6 @@ export class UserComponent implements OnInit {
         // });
     }
 
-    onMoveToTargetUserGroupMembership() {
-        // User clicked onMoveToTarget on Group Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
-
-        // Add this makker
-        this.eazlService.addUserGroupMembership('janniei',6)
-    }
-
     onClickGroupMembershipCancel() {
         // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
@@ -239,20 +220,39 @@ export class UserComponent implements OnInit {
         // Close popup
         this.displayGroupMembership = false;        
     }
-    onMoveToSourceUserGroupMembership() {
+
+    onMoveToTargetUserGroupMembership(event) {
+        // User clicked onMoveToTarget on Group Membership: add grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+
+        // Add this / these makker(s) - array if multi select
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.addUserGroupMembership(
+                this.selectedUser.userName, 
+                event.items[i].groupID
+            );
+        }
+    }
+    
+    onMoveToSourceUserGroupMembership(event) {
         // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
 
-        // Remove this makker
-        this.eazlService.deleteUserGroupMembership('janniei',0)
+        // Remove the makker(s)
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.deleteUserGroupMembership(
+                this.selectedUser.userName, 
+                event.items[i].groupID
+            );
+        }
     }
 
-    onSourceReorderUserGroupMembership() {
+    onSourceReorderUserGroupMembership(event) {
         // User clicked onSourceReorder on Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderUserGroupMembership', '@Start');
     }
 
-    onTargetReorderUserGroupMembership() {
+    onTargetReorderUserGroupMembership(event) {
         // User clicked onTargetReorder on Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
     }

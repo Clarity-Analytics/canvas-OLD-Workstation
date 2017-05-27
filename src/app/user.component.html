@@ -263,10 +263,10 @@
                 [target]="belongstoUserGroupMembership"
                 sourceHeader="Available Groups"
                 targetHeader="Belongs to these Groups"
-                (onMoveToTarget)="onMoveToTargetUserGroupMembership()"
-                (onMoveToSource)="onMoveToSourceUserGroupMembership()"
-                (onSourceReorder)="onSourceReorderUserGroupMembership()"
-                (onTargetReorder)="onTargetReorderUserGroupMembership()"
+                (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
+                (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
+                (onSourceReorder)="onSourceReorderUserGroupMembership($event)"
+                (onTargetReorder)="onTargetReorderUserGroupMembership($event)"
                 >
                 <template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
