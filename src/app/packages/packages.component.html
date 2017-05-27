@@ -1,42 +1,37 @@
 <div>
-	<div class="ui-g">
-		<p-fieldset>
-			<div class="ui-g-5">
-				<div *ngFor="let package of packageList">
-					<h2>
-						{{package.name}}
-					</h2>
-					
-					<app-package
-						[url]="package.url"
-						[legend]="package.name"
-						[package]="package"
-						>
-					</app-package>
-				</div>
+	<div class="ui-g package-list">
+		<div class="ui-g-5">
+			<div 
+				*ngFor="let package of packageList; let index=index"
+				class="package"
+				[class.active]="package.selected"
+				(click)="selectPackage(package)"
+				>
+				
+				<h3>
+					{{package.name}}
+				</h3>
+				
+				<p>{{package.date_last_synced}}</p>
 			</div>
-		
-			<div class="ui-g-7">
-				<p-tabView>
-					<p-tabPanel
-						header="Tab number 1"
-						>
-						
-						<app-package-fields
-							[fields]="fields"
-						>
-							
-						</app-package-fields>
-					</p-tabPanel>
-					
-					<p-tabPanel
-						header="Tab number 2"
+		</div>
+	
+		<div class="ui-g-7">
+			<p-tabView>
+				<p-tabPanel
+					header="Fields"
 					>
 					
-					</p-tabPanel>
-				</p-tabView>
-			</div>
-		</p-fieldset>
+					<app-package-fields
+						[fields]="selectedFields">
+					</app-package-fields>
+				</p-tabPanel>
+				
+				<p-tabPanel
+					header="Parameters">
+				</p-tabPanel>
+			</p-tabView>
+		</div>
 	</div>
 	
 </div>
