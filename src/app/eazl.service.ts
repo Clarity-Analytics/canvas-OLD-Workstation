@@ -4164,4 +4164,13 @@ console.log('getUsersResti',error)
             )
         }
     }
+
+    deleteUserGroupMembership(username:string, groupID:number) {
+        // Deletes a User - Group record to the User Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
+
+        this.usergroupMembership = this.usergroupMembership.filter(
+            item => (!(item.userName == username  &&  item.groupID == groupID))
+        );
+    }
 }

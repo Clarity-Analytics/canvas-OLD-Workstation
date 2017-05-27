@@ -253,12 +253,15 @@ console.log('availableUserGroupMembership',this.availableUserGroupMembership)
 
         // Add this makker
         this.eazlService.addUserGroupMembership('janniei',6)
-        
+
     }
 
     onMoveToSourceUserGroupMembership() {
         // User clicked onMoveToSource on Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+
+        // Remove this makker
+        this.eazlService.deleteUserGroupMembership('janniei',0)
     }
 
     onSourceReorderUserGroupMembership() {
