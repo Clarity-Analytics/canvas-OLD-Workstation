@@ -4130,7 +4130,6 @@ console.log('getUsersResti',error)
         return Promise.resolve(resultGroups);
     }
 
-
     addUserGroupMembership(username:string, groupID:number) {
         // Adds a User - Group record to the User Group Membership
 
@@ -4151,7 +4150,6 @@ console.log('getUsersResti',error)
             currentUser = this.globalVariableService.canvasUser.getValue().username;
         }
 
-console.log('now',this.canvasDate.now('standard'))        
         // Only add if not already there
         if (!found) {
             this.usergroupMembership.push(
@@ -4165,6 +4163,5 @@ console.log('now',this.canvasDate.now('standard'))
                 }        
             )
         }
-console.log('added',this.usergroupMembership)        
     }
 }
