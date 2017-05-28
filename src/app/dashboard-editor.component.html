@@ -9,7 +9,6 @@
 <!--Form with selected Dashboard-->
 <form 
     [formGroup]="dashboardForm" 
-    (ngSubmit)="onSubmit(dashboardForm.value)"
     >
     <div 
         class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
@@ -234,17 +233,31 @@
             </div>
         </div>
 
-        <!--Submit Button-->
+        <!--Cancel / Submit Buttons-->
         <div class="ui-grid-row">
-            <div class="ui-grid-col-4"></div>
-            <div class="ui-grid-col-4">
-                <button pButton 
-                        type="submit" 
-                        label="Submit" 
-                        >
-                </button>
-            </div>
-            <div class="ui-grid-col-4"></div>
+            <div class="ui-grid-col-3"></div>
+            <button 
+                class="panelButtonWithLabel ui-grid-col-2"
+                pButton 
+                style="float:left;"
+                type="button" 
+                label="Cancel"
+                icon="fa-undo"
+                (click)="onClickDashboardCancel()"
+                >
+            </button>
+            <div class="ui-grid-col-2"></div>
+            <button 
+                class="panelButtonWithLabel ui-grid-col-2"
+                pButton 
+                style="float:right;"
+                type="button" 
+                label="Submit"
+                icon="fa-refresh"
+                (click)="onClickDashboardSubmit()"
+                >
+            </button>
+            <div class="ui-grid-col-3"></div>
         </div>
 
     </div>   

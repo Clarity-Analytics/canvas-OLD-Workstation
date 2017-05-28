@@ -150,7 +150,6 @@ export class DashboardManagerComponent implements OnInit {
             
         }
 
-
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'Selected Dashboard', 
@@ -359,9 +358,9 @@ export class DashboardManagerComponent implements OnInit {
         });
     }
 
-    handleUserPopupFormClosed(howClosed: string) {
+    handleFormDashboardSubmit(howClosed: string) {
         // Handle the event: howClosed = Cancel / Submit
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleUserPopupFormClosed', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleFormDashboardSubmit()', '@Start');
 
         this.displayDashboardPopup = false;
   }

@@ -31,7 +31,7 @@ export class DashboardEditorComponent implements OnInit {
     @Input() selectedDashboardID: number;
 
     // Event emitter sends event back to parent component once Submit button was clicked
-    @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
+    @Output() formDashboardSubmit: EventEmitter<string> = new EventEmitter();
     
     // Local properties
     dashboardForm: FormGroup;                           // FormBuilder Group
@@ -155,9 +155,18 @@ console.log ('refreshForm @End', this.selectedDashboardID,this.dashboardForm.con
 
 
     }
-         
-    onSubmit(value: string) {
-        // User clicked submit button
+    
+    onClickDashboardCancel() {
+        // User clicked Cancel button
+        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+
+        // Return to calling routine
+        this.formDashboardSubmit.emit('Cancel');
+
+    }
+
+    onClickDashboardSubmit() {
+        // User clicked Submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
 console.log ('subm', this.selectedDashboardID,this.dashboardForm.controls['dashboardName'].value)
@@ -188,6 +197,6 @@ console.log ('subm', this.selectedDashboardID,this.dashboardForm.controls['dashb
                 // this.identificationForm.controls['widgetTitle'].value;
 
          // Trigger event emitter 'emit' method
-         this.formSubmit.emit(true);
+         this.formDashboardSubmit.emit('Submit');
     }
 }
