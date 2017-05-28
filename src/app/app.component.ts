@@ -277,15 +277,6 @@ export class AppComponent implements OnInit {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }    
                     },
-                    {
-                        label: 'New Graphical', 
-                        icon:  'fa-image',
-                        routerLink: ['startup'],
-                        disabled: false,
-                        command: (event) => {
-                            this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
-                    },
                 ]
             },
             {
