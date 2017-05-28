@@ -8,22 +8,23 @@
 </p-confirmDialog>
 
 
-<!--Popup form for a single user (Add or Edit)-->
+<!--Popup form for a single Dashboard (Add or Edit)-->
 <p-dialog 
-    [(visible)]="displayUserPopup"
+    [(visible)]="displayDashboardPopup"
     [header]="popupHeader"
     [closeOnEscape]=false
     [closable]=false
     modal="true"
     responsive="true"
     >
-    <user-popup 
-        [selectedUser]="selectedUser"
+    <!--Single Dashboard to work with ...-->
+    <!--<user-popup 
+        [selectedDashboard]="selectedDashboard"
         [addEditMode]="addEditMode"
-        [displayUserPopup]="displayUserPopup"
+        [displayDashboardPopup]="displayDashboardPopup"
         (userPopupFormClosed)="handleUserPopupFormClosed($event)"
         >
-    </user-popup> 
+    </user-popup> -->
 </p-dialog>
 
 
@@ -31,11 +32,11 @@
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
 
 
-<!--Table with user info -->
+<!--Table with Dashboard info -->
 <div class="myOverride">
     <p-dataTable  #dt
         columnResizeMode="expand"
-        exportFilename="users"
+        exportFilename="dashboards"
         [contextMenu]="cm"
         [paginator]="true" 
         [pageLinks]="3" 
@@ -44,17 +45,17 @@
         [responsive]="true"
         [rows]="10" 
         [rowsPerPageOptions]="[5,10,20]"
-        [(selection)]="selectedUser"
+        [(selection)]="selectedDashboard"
         selectionMode="single" 
         [scrollable]="false"  
         [sortMode]="multiple"
-        [value]="users"  
-        (click)="onClickUserTable()"
+        [value]="dashboards"  
+        (click)="onClickDashboardTable()"
         >
         <p-header
             [style]="{'background-color': 'darkgray'}">
             <span>
-                List of Users
+                List of Dashboards
             </span>
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
@@ -71,157 +72,258 @@
             </span>
             
         </p-header>
+
         <p-column 
-            field="userName" 
+            field="dashboardID" 
             [filter]="true" 
             filterMatchMode="contains" 
-            header="UserName" 
+            header="ID" 
             [sortable]="true"
             [style]="{width: '80px', 
                     'text-align': 'center'}"
             >
         </p-column>
         <p-column 
-            field="firstName" 
+            field="dashboardCode" 
             [filter]="true" 
             filterMatchMode="contains" 
-            header="FirstName" 
+            header="Code" 
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '80px', 
                     'text-align': 'center'}"
             >
         </p-column>
         <p-column 
-            field="lastName" 
+            field="dashboardName" 
             [filter]="true" 
             filterMatchMode="contains" 
-            header="LastName" 
+            header="Name" 
             [sortable]="true"
-            >
-        </p-column>
-        <p-column field="nickName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="NickName"
-            [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '80px', 
                     'text-align': 'center'}"
             >
         </p-column>
         <p-column 
-            field="photoPath" 
+            field="isContainerHeaderDark" 
             [filter]="true" 
             filterMatchMode="contains" 
-            header="PhotoPath"
+            header="Dark Hdr?" 
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '80px', 
                     'text-align': 'center'}"
             >
-            <template let-col let-user="rowData" pTemplate="body">
-                <span [style.color]="user[col.field]">{{user[col.field]}}</span>
-            </template>
+        </p-column>
+        <p-column 
+            field="showContainerHeader" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Show Hdr" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardBackgroundColor" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Bg Color" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardBackgroundImageSrc" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Bg Image" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardComments" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Comments" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardDefaultExportFileType" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Export FType" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardDescription" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Description" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardNrGroups" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Nr Groups" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardIsLocked" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Locked?" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardIsLiked" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Liked?" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardOpenTabNr" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Open TabNr" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardOwnerUserID" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Owner" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardPassword" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Password" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardRefreshMode" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="RefreshMode" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardNrSharedWith" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Nr SharedWith" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardSystemMessage" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="SystemMessage" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardRefreshedDateTime" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Refreshed on" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardRefreshedUserID" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Refreshed by" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardUpdatedDateTime" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Updated on" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardUpdatedUserID" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Updated by" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardCreatedDateTime" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Created on" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardCreatedUserID" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Created by" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
         </p-column>
 
-        <p-column 
-            field="lastDatetimeLoggedIn" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Last Login" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="lastDatetimeReportWasRun" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Last Report" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="emailAddress" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Email" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="cellNumber" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Cell" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="workTelephoneNumber" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Work Tel" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="activeFromDate" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Active From" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="inactiveDate" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Inactive Date" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="dateCreated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Date Created" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="userIDLastUpdated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="UserID Last Upd" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="isStaff" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Is Staff" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
     </p-dataTable>
 </div>
 
@@ -242,7 +344,7 @@
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedUser.firstName }} 
+        Group Membership for {{ selectedDashboard.dashboardName }} 
         <button 
             class="panelButtonWithLabel"
             pButton 
