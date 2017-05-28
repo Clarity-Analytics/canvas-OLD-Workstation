@@ -129,6 +129,7 @@ import { PackageComponent } from './package/package.component';
 import { PackageTasksComponent } from './package-tasks/package-tasks.component';
 import { PackageTaskComponent } from './package-task/package-task.component';
 import { PackageFieldsComponent } from './package-fields/package-fields.component';
+import { PackageParametersComponent } from './package-parameters/package-parameters.component';
 
 
 @NgModule({
@@ -149,6 +150,7 @@ import { PackageFieldsComponent } from './package-fields/package-fields.componen
     PackageTasksComponent,
     PackageTaskComponent,
     PackageFieldsComponent,
+    PackageParametersComponent,
     // BarCharBuilder,
   ],
   imports: [

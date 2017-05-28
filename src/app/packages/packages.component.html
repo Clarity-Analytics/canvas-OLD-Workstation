@@ -12,23 +12,39 @@
 					{{package.name}}
 				</h3>
 				
+				<div>
+					Compiled
+					<i
+						class="fa"
+						[class.fa-check]="package.compiled"
+						[class.fa-times]="!package.compiled">
+					</i>
+				</div>	
+				
 				<p>{{package.date_last_synced}}</p>
+				
+				<button pButton
+					type="button"
+					label="Execute"
+					(click)="executePackage(package)">
+				</button>
 			</div>
 		</div>
 	
 		<div class="ui-g-7">
 			<p-tabView>
 				<p-tabPanel
-					header="Fields"
-					>
-					
+					header="Fields">
 					<app-package-fields
-						[fields]="selectedFields">
+						[fields]="selectedPackage.fields">
 					</app-package-fields>
 				</p-tabPanel>
 				
 				<p-tabPanel
 					header="Parameters">
+					<app-package-parameters
+						[parameters]="selectedPackage.parameters">
+					</app-package-parameters>
 				</p-tabPanel>
 			</p-tabView>
 		</div>

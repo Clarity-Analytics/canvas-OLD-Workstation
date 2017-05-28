@@ -1,10 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { EazlPackageService } from '../eazl-package.service';
-import { Package, Field } from '../models/model.package';
+import { Package } from '../models/model.package';
+import { Field } from '../models/model.package';
 
 
-interface IComponentPackage extends Package {
+class ComponentPackage extends Package {
 	selected: boolean;
+
+	static fromPackage(_package: Package, selected: boolean) {
+		let componentPackage = new ComponentPackage();
+
+		for (let key in _package) {
+			componentPackage[key] = _package[key];
+		}
+
+		componentPackage.selected = selected;
+		return componentPackage;
+	}
 }
 
 
@@ -14,27 +26,33 @@ interface IComponentPackage extends Package {
   styleUrls: ['./packages.component.css']
 })
 export class PackagesComponent implements OnInit {
-	packageList: IComponentPackage[] = [];
-	selectedPackage: IComponentPackage;
-	selectedFields: Field[];
+	packageList: ComponentPackage[] = [];
+	selectedPackage: ComponentPackage;
 
 	constructor(
-		private eazlPackages: EazlPackageService)
+		private eazlPackage: EazlPackageService)
 
-	{}
+	{
+		this.selectedPackage = new ComponentPackage();
+	}
 
-	selectPackage(_package: IComponentPackage){
+	selectPackage(selectedPackage: ComponentPackage){
 		this.packageList.forEach(item => {
 			item.selected = false;
 		});
 
-		_package.selected = true;
-		this.selectedPackage = _package;
-		this.selectedFields = this.selectedPackage.fields;
+		this.selectedPackage = selectedPackage;
+		this.selectedPackage.selected = true;
+	}
+
+	executePackage(selectedPackage: ComponentPackage) {
+		this.eazlPackage.execute(
+			selectedPackage.execute.toString()
+		);
 	}
 
 	ngOnInit() {
-		this.eazlPackages.packageList.model.subscribe(
+		this.eazlPackage.packageList.model.subscribe(
 			packages => {
 				if (packages == null) {
 					return;
@@ -42,27 +60,9 @@ export class PackagesComponent implements OnInit {
 
 				if (packages.length !== 0) {
 					packages.forEach( (item: Package, index: number) => {
-
-						let componentPackage: IComponentPackage = {
-							pk: item.pk,
-							name: item.name,
-							repository: item.repository,
-							parameters: item.parameters,
-							fields: item.fields,
-							queries: item.queries,
-							date_last_synced: item.date_last_synced,
-							last_runtime_error: item.last_runtime_error,
-							last_sync_successful: item.last_sync_successful,
-							last_sync_error: item.last_sync_error,
-							compiled: item.compiled,
-							execute: item.execute,
-							url: item.url,
-							selected: index === 0
-						}
-						
+						let componentPackage = ComponentPackage.fromPackage(item, index===0)
 						if (index === 0) {
 							this.selectedPackage = componentPackage;
-							this.selectedFields = this.selectedPackage.fields;
 						}
 
 						this.packageList.push(componentPackage);

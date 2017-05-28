@@ -8,7 +8,7 @@ import { Field } from '../models/model.package';
   inputs: ['fields'],
 })
 export class PackageFieldsComponent implements OnInit {
-  fields: Field[];
+  fields: Field[] = [];
 
   constructor() { }
 
