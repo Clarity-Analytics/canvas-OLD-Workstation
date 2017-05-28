@@ -1258,17 +1258,12 @@ export class WidgetEditorComponent implements OnInit {
         }
 
         // Set last updated, created and refreshed properties
-        let d = new Date();
         this.widgetToEdit.properties.widgetRefreshedDateTime =
-            this.canvasDate.today('standard') + ' ' + 
-            this.canvasDate.curHour(d).toString() + ':' + 
-            this.canvasDate.curMinute(d).toString();
+            this.canvasDate.now('standard');
         this.widgetToEdit.properties.widgetRefreshedUserID = 
             this.canvasUser.username;
         this.widgetToEdit.properties.widgetUpdatedDateTime = 
-            this.canvasDate.today('standard') + ' ' + 
-            this.canvasDate.curHour(d).toString() + ':' + 
-            this.canvasDate.curMinute(d).toString();
+            this.canvasDate.now('standard');
         this.widgetToEdit.properties.widgetUpdatedUserID = 
             this.canvasUser.username;
 console.log('@end', this.widgetToEdit)

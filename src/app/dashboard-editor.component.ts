@@ -79,12 +79,9 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardCreatedDateTime':         new FormControl(''),
             'dashboardCreatedUserID':           new FormControl('')
         });
- 
-console.log('@end ngOnInit')
     }
 
     ngOnChanges() {
-console.log('ngOnChanges',this.addEditMode, this.displayDashboardPopup, this.selectedDashboard)
 
         // Clear the form for new one
         if (this.addEditMode == 'Add' && this.displayDashboardPopup) {
@@ -189,31 +186,78 @@ console.log('ngOnChanges',this.addEditMode, this.displayDashboardPopup, this.sel
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
 console.log ('subm', this.selectedDashboardID,this.dashboardForm.controls['dashboardName'].value)
+        // User clicked submit button.
+        // Note: it is assumed that 
+        // - all the fields are tested to be valid and proper in the validation.
+        //   If not, return right after validation.  
+        // - all fields are loaded in widgetToEdit which is shared with the calling routine
+        //   It is assumes is that widgetToEdit is 100% complete and accurate before return
+//         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickSubmit', '@Start');
 
-        // Validation
-        // if (this.identificationForm.controls['widgetType'].value == ''  || 
-        //     this.identificationForm.controls['widgetType'].value == null) {
-        //         this.formIsValid = false;
-        //         this.numberErrors = this.numberErrors + 1;
-        //         this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-        //             'The Widget Type is compulsory.';
-        // }
+//         // Validation: note that == null tests for undefined as well
+//         this.formIsValid = false;
+//         this.errorMessageOnForm = '';
+//         this.numberErrors = 0;
+
+//         // Validation
+//         if (this.identificationForm.controls['dashboardTabName'].value == ''  || 
+//             this.identificationForm.controls['dashboardTabName'].value == null) {
+//                 this.formIsValid = false;
+//                 this.numberErrors = this.numberErrors + 1;
+//                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+//                     'The Widget Tab Name (Identification Panel) is compulsory.';
+//         }
 
 
-        // Oi, something is not right
-        // if (this.errorMessageOnForm != '') {
-        //     this.formIsValid = true;
-        //     this.globalVariableService.growlGlobalMessage.next({
-        //         severity: 'error',
-        //         summary: 'Error',
-        //         detail: this.numberErrors.toString() + ' error(s) encountered'
-        //     });
-        //     return;
-        // }
+//         // Oi, something is not right
+//         if (this.errorMessageOnForm != '') {
+//             this.formIsValid = true;
+//             this.globalVariableService.growlGlobalMessage.next({
+//                 severity: 'error',
+//                 summary: 'Error',
+//                 detail: this.numberErrors.toString() + ' error(s) encountered'
+//             });
+//             return;
+//         }
+        
+//         // Adding new Widget
+//         if (this.addEditMode == 'Add' && this.displayEditWidget) {
+//             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
+//             this.widgetToEdit.properties.widgetID = 0; // Set in DB
 
-        // Update DB
-                //     this.widgetToEdit.container.widgetTitle = 
-                // this.identificationForm.controls['widgetTitle'].value;
+//             // Load container fields from previously used values
+//             this.widgetToEdit.container.backgroundColor = 
+//                 this.globalVariableService.lastBackgroundColor.getValue().name;
+//         }
+
+
+//         // Editing existing Widget
+//         if (this.addEditMode == 'Edit' && this.displayEditWidget  &&
+//             this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit  &&
+//             !this.isLoadingForm) {
+
+//             // Space to worry about EDIT only mode - for future use
+//         }
+
+//         // Load fields from form - assume ALL good as Validation will stop bad stuff
+//         this.widgetToEdit.areas.showWidgetGraph = this.showWidgetGraph;        
+
+
+//         // Set last updated, created and refreshed properties
+//         let d = new Date();
+//         this.widgetToEdit.properties.widgetRefreshedDateTime =
+//             this.canvasDate.today('standard') + ' ' + 
+//             this.canvasDate.curHour(d).toString() + ':' + 
+//             this.canvasDate.curMinute(d).toString();
+//         this.widgetToEdit.properties.widgetRefreshedUserID = 
+//             this.canvasUser.username;
+//         this.widgetToEdit.properties.widgetUpdatedDateTime = 
+//             this.canvasDate.today('standard') + ' ' + 
+//             this.canvasDate.curHour(d).toString() + ':' + 
+//             this.canvasDate.curMinute(d).toString();
+//         this.widgetToEdit.properties.widgetUpdatedUserID = 
+//             this.canvasUser.username;
+// console.log('@end', this.widgetToEdit)
 
          // Trigger event emitter 'emit' method
          this.formDashboardSubmit.emit('Submit');
