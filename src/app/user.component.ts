@@ -225,7 +225,7 @@ export class UserComponent implements OnInit {
 
     onClickGroupMembershipCancel() {
         // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
 
         // Close popup
         this.displayGroupMembership = false;        

@@ -1,4 +1,4 @@
-// User form
+// Dashboard Manager form
 import { Component }                  from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
@@ -35,11 +35,11 @@ export class DashboardManagerComponent implements OnInit {
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
     deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
-    displayDashboardPopup: boolean = false;             // True to display single User
+    displayDashboardPopup: boolean = false;             // True to display single Dashboard
     groups: Group[] = [];                               // List of Groups
-    popupHeader: string = 'User Maintenance';           // Popup header
+    popupHeader: string = 'Dashboard Manager';          // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
-    selectedDashboard: Dashboard;                       // User that was clicked on
+    selectedDashboard: Dashboard;                       // Dashboard that was clicked on
     dashboards: Dashboard[];                            // List of Dashboards
     usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
 
@@ -66,7 +66,7 @@ export class DashboardManagerComponent implements OnInit {
             {
                 label: 'Add', 
                 icon: 'fa-plus', 
-                command: (event) => this.userMenuAdd(this.selectedDashboard)
+                command: (event) => this.dashboardMenuAdd(this.selectedDashboard)
             },
             {
                 label: '______________________________', 
@@ -76,64 +76,69 @@ export class DashboardManagerComponent implements OnInit {
             {
                 label: 'Edit', 
                 icon: 'fa-pencil', 
-                command: (event) => this.userMenuEdit(this.selectedDashboard)
+                command: (event) => this.dashboardMenuEdit(this.selectedDashboard)
             },
             {
                 label: 'Delete', 
                 icon: 'fa-minus', 
-                command: (event) => this.userMenuDelete(this.selectedDashboard)
+                command: (event) => this.dashboardMenuDelete(this.selectedDashboard)
             },
             {
                 label: 'Group Membership', 
                 icon: 'fa-users', 
-                command: (event) => this.userMenuGroupMembership(this.selectedDashboard)
+                command: (event) => this.dashboardMenuGroupMembership(this.selectedDashboard)
             },
             {
-                label: 'Access', 
+                label: 'Shared With', 
                 icon: 'fa-database', 
-                command: (event) => this.userMenuAccess(this.selectedDashboard)
+                command: (event) => this.dashboardMenuSharedWith(this.selectedDashboard)
             },
             {
                 label: 'Related Data Sources', 
                 icon: 'fa-list', 
-                command: (event) => this.userMenuRelatedDataSources(this.selectedDashboard)
+                command: (event) => this.dashboardMenuRelatedDataSources(this.selectedDashboard)
             },
             {
                 label: 'Message History', 
                 icon: 'fa-comments', 
-                command: (event) => this.userMenuMessageHistory(this.selectedDashboard)
+                command: (event) => this.dashboardMenuMessageHistory(this.selectedDashboard)
             },
             {
                 label: 'Report History', 
                 icon: 'fa-table', 
-                command: (event) => this.userMenuReportHistory(this.selectedDashboard)
+                command: (event) => this.dashboardMenuReportHistory(this.selectedDashboard)
             },
             {
-                label: 'Reset Password', 
-                icon: 'fa-unlock', 
-                command: (event) => this.userMenuResetPassword(this.selectedDashboard)
+                label: 'Like', 
+                icon: 'fa-heart', 
+                command: (event) => this.dashboardMenuResetLike(this.selectedDashboard)
+            },
+            {
+                label: 'Lock', 
+                icon: 'fa-lock', 
+                command: (event) => this.dashboardMenuResetLock(this.selectedDashboard)
             },
             
         ];
 
     }
 
-    userMenuAdd(dashboard: Dashboard) {
-        // Popup form to add a new user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAdd', '@Start');
+    dashboardMenuAdd(dashboard: Dashboard) {
+        // Popup form to add a new Dashboard
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuAdd', '@Start');
         this.addEditMode = 'Add';
         this.displayDashboardPopup = true;
     }
     
-    userMenuEdit(dashboard: Dashboard) {
-        // Edit selected user on a popup form
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuEdit', '@Start');
+    dashboardMenuEdit(dashboard: Dashboard) {
+        // Edit selected Dashboard on a popup form
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuEdit', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'Selected user', 
+            summary:  'Selected Dashboard', 
             detail:   dashboard.dashboardName
         });
 
@@ -141,8 +146,8 @@ export class DashboardManagerComponent implements OnInit {
         this.displayDashboardPopup = true;    
     }
 
-    userMenuDelete(dashboard: Dashboard) {
-        // Delete the selected user, but first confirm
+    dashboardMenuDelete(dashboard: Dashboard) {
+        // Delete the selected Dashboard, but first confirm
 
         this.deleteMode = true;
         this.confirmationService.confirm({
@@ -153,7 +158,7 @@ export class DashboardManagerComponent implements OnInit {
             },
             accept: () => {
 
-                // - User: currently selected row
+                // - Dashboard: currently selected row
                 this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
                 let index = -1;
                 for(let i = 0; i < this.dashboards.length; i++) {
@@ -167,7 +172,7 @@ export class DashboardManagerComponent implements OnInit {
 
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info', 
-                    summary:  'User deleted', 
+                    summary:  'Dashboard deleted', 
                     detail:   dashboard.dashboardName
                 });
             }
@@ -175,19 +180,19 @@ export class DashboardManagerComponent implements OnInit {
     }
 
     onClickDashboardTable() {
-        // User clicked on a row
+        // Dashboard clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardTable', '@Start');
 
-        // Update the user group membership if it is open
+        // Update the Dashboard group membership if it is open
         if (this.displayGroupMembership) {
-            this.userMenuGroupMembership(this.selectedDashboard) 
+            this.dashboardMenuGroupMembership(this.selectedDashboard) 
         }
     }
 
-    userMenuGroupMembership(dashboard: Dashboard) {
-        // Manage group membership for the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
+    dashboardMenuGroupMembership(dashboard: Dashboard) {
+        // Manage group membership for the selected Dashboard
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupMembership', '@Start');
 
         // Get the current and available groups
         // this.eazlService.getUserGroupMembership(this.selectedDashboard.dashboardID, true)
@@ -227,7 +232,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onClickGroupMembershipCancel() {
         // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
 
         // Close popup
         this.displayGroupMembership = false;        
@@ -269,22 +274,22 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
     }
 
-    userMenuAccess(dashboard: Dashboard) {
-        // Access to Data Sources for the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccess', '@Start');
+    dashboardMenuSharedWith(dashboard: Dashboard) {
+        // Access to Data Sources for the selected Dashboard
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuSharedWith', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'User Access', 
+            summary:  'Dashboard Access', 
             detail:   dashboard.dashboardName
         });
     }
 
-    userMenuRelatedDataSources(dashboard: Dashboard) {
+    dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDataSources', '@Start');
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuRelatedDataSources', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
@@ -293,36 +298,48 @@ export class DashboardManagerComponent implements OnInit {
         });
     }
 
-    userMenuMessageHistory(dashboard: Dashboard) {
-        // Show history of messages for the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
+    dashboardMenuMessageHistory(dashboard: Dashboard) {
+        // Show history of messages for the selected Dashboard
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuMessageHistory', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'User Message History', 
+            summary:  'Dashboard Message History', 
             detail:   dashboard.dashboardName
         });
     }
 
-    userMenuReportHistory(dashboard: Dashboard) {
-        // Show history of reports ran for the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuReportHistory', '@Start');
+    dashboardMenuReportHistory(dashboard: Dashboard) {
+        // Show history of reports ran for the selected Dashboard
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuReportHistory', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'User Report History', 
+            summary:  'Dashboard Report History', 
             detail:   dashboard.dashboardName
         });
     }
     
-    userMenuResetPassword(dashboard: Dashboard) {
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuResetPassword', '@Start');
+    dashboardMenuResetLike(dashboard: Dashboard) {
+        // Click Like popup menu option: toggle liked/not for current user on this Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuResetLike', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'User Password Reset', 
+            summary:  'Toggle Dashboard liked/not', 
+            detail:   dashboard.dashboardName
+        });
+    }
+
+    dashboardMenuResetLock(dashboard: Dashboard) {
+        // Click Lock popup menu option: toggle the lock for this user on this Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuResetLock', '@Start');
+
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info', 
+            summary:  'Toggle Dashboard locked/not', 
             detail:   dashboard.dashboardName
         });
     }
