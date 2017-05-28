@@ -23,6 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasColors }               from './chartcolors.data';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
+import { SelectedItemColor }          from './model.selectedItemColor';
 
 @Component({
     selector:    'dashboard-editor',
@@ -41,12 +42,16 @@ export class DashboardEditorComponent implements OnInit {
     
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    dashboardForm: FormGroup;                           // FormBuilder Group
-    errorMessageOnForm: string = '';                    // Error handling on form
-    formIsValid: boolean = false;                       // Error handling on form
-    numberErrors: number = 0;                           // Error handling on form
+    dashboardForm: FormGroup;                       // FormBuilder Group
+    errorMessageOnForm: string = '';                // Error handling on form
+    formIsValid: boolean = false;                   // Error handling on form
+    numberErrors: number = 0;                       // Error handling on form
+    selectedTextBackground: SelectedItemColor;      // Selected option for Text Background
+    selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
+    chartColor: SelectItem[];                       // Options for Backgroun-dColor DropDown
 
     constructor(
+        private canvasColors: CanvasColors,
         private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private fb: FormBuilder,
@@ -85,6 +90,10 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardCreatedDateTime':         new FormControl(''),
             'dashboardCreatedUserID':           new FormControl('')
         });
+
+        // Background Colors Options
+        this.chartColor = [];
+        this.chartColor = this.canvasColors.getColors();
     }
 
     ngOnChanges() {
@@ -159,9 +168,24 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['showContainerHeader'].setValue(
                 this.selectedDashboard.showContainerHeader
             );
+            // this.dashboardForm.controls['dashboardBackgroundColor'].setValue(
+            //     this.selectedDashboard.dashboardBackgroundColor
+            // );
+
+            this.selectedItemColor = {
+                id: this.selectedDashboard.dashboardBackgroundColor,             
+                name: this.selectedDashboard.dashboardBackgroundColor,             
+                code: this.canvasColors.hexCodeOfColor(
+                    this.selectedDashboard.dashboardBackgroundColor
+                )
+            }
             this.dashboardForm.controls['dashboardBackgroundColor'].setValue(
-                this.selectedDashboard.dashboardBackgroundColor
+                this.selectedItemColor
             );
+            this.selectedTextBackground = this.selectedItemColor;
+
+
+
             this.dashboardForm.controls['dashboardNrGroups'].setValue(
                 this.selectedDashboard.dashboardNrGroups
             );
@@ -260,8 +284,13 @@ console.log('30', this.addEditMode == 'Edit', this.displayDashboardPopup)
             this.dashboardForm.controls['isContainerHeaderDark'].value;
         this.dashboardToEdit.showContainerHeader = 
             this.dashboardForm.controls['showContainerHeader'].value;
+        // this.dashboardToEdit.dashboardBackgroundColor = 
+        //     this.dashboardForm.controls['dashboardBackgroundColor'].value;
+
         this.dashboardToEdit.dashboardBackgroundColor = 
-            this.dashboardForm.controls['dashboardBackgroundColor'].value;
+            this.selectedTextBackground.name;
+
+
         this.dashboardToEdit.dashboardNrGroups = 
             this.dashboardForm.controls['dashboardNrGroups'].value;
         this.dashboardToEdit.dashboardIsLiked = 

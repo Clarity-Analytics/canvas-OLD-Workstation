@@ -152,12 +152,6 @@ export class DashboardManagerComponent implements OnInit {
             
         }
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Selected Dashboard', 
-            detail:   dashboard.dashboardName
-        });
-
         this.addEditMode = 'Edit';
         this.dashboardToEdit = this.selectedDashboard;
         this.displayDashboardPopup = true;    

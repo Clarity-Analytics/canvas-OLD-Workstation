@@ -171,12 +171,25 @@
                 Bg Color:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="dashboardBackgroundColor" 
-                       placeholder="(Optional)"
-                       pTooltip="Optional background color to the Dashboard"
-                       />
+                <p-dropdown
+                    [(ngModel)]="selectedTextBackground"
+                    [style]="
+                        {
+                            'background-color':'538cc6',
+                            'border':'1px solid lightgray',
+                            'border-radius':'2px',
+                            'float':'right',
+                            'font-size':'0.85em',
+                            'margin':'-12px 5px 0 0',
+                            'padding':'0',
+                            'width':'200px'
+                        }" 
+                    [options]="chartColor" 
+                    formControlName="dashboardBackgroundColor"
+                    placeholder="(Optional)"
+                    filter="true"
+                    >
+                </p-dropdown>
             </div>
 
             <div 
@@ -219,7 +232,7 @@
                     >
                 </p-checkbox>
             </div>
-            
+
             <div 
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
