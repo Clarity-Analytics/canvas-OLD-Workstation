@@ -172,6 +172,16 @@ export class UserComponent implements OnInit {
         })
     }
 
+    onClickUserTable() {
+        // User clicked on a row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserTable', '@Start');
+
+        // Update the user group membership if it is open
+        if (this.displayGroupMembership) {
+            this.userMenuGroupMembership(this.selectedUser) 
+        }
+    }
+
     userMenuGroupMembership(user: User) {
         // Manage group membership for the selected user
         // - User: currently selected row
