@@ -11,12 +11,14 @@ export class Dashboard {
     dashboardComments: string;                  // Optional comments
     dashboardDefaultExportFileType: string;     // Excel, JSON, PDF, PowerPoint, Jupyter or csv
     dashboardDescription: string;               // User description
+    dashboardNrGroups: number;                  // @Runtime: # of groups this dashboard belongs to
     dashboardGroups: [                          // Array of groups to which it belongs
         {
-            dashboardGroupName: string;
+            dashboardGroupID: number;           // GroupID to which this Dashboard belongs
         }
     ];
     dashboardIsLocked: boolean;                 // If true, then cannot be modified
+    dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
     dashboardLiked: [                           // Array of UserIDs that likes this
         {
             dashboardLikedUserID: string; 
@@ -26,6 +28,7 @@ export class Dashboard {
     dashboardOwnerUserID: string;               // UserID of owner
     dashboardPassword: string;                  // Optional password to open
     dashboardRefreshMode: string;               // Manual, onOpen  
+    dashboardNrSharedWith: number;              // @RunTime: @ of UserIDs shared with
     dashboardSharedWith: [                      // Array of UserIDs shared with
         {
             dashboardSharedWithUserID: string;               

@@ -1577,11 +1577,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardCreatedUserID: 'BenVdMark',
                 dashboardDefaultExportFileType: 'PowerPoint',
                 dashboardDescription: 'This is a unique and special dashboard, like all others',
+                dashboardNrGroups: 0,
                 dashboardGroups: [
-                    { dashboardGroupName: 'Favourites' },
-                    { dashboardGroupName: 'Everyone'}
+                    { dashboardGroupID: 0 },
+                    { dashboardGroupID: 1}
                 ],
                 dashboardIsLocked: false,
+                dashboardIsLiked: false,
                 dashboardLiked: [
                     { dashboardLikedUserID: 'AnnieA' },
                     { dashboardLikedUserID: 'BennieB' },
@@ -1593,6 +1595,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardRefreshedDateTime: '',
                 dashboardRefreshedUserID: '',
                 dashboardRefreshMode: 'Manual',
+                dashboardNrSharedWith: 2,
                 dashboardSharedWith: [
                     {
                         dashboardSharedWithUserID: 'PeterP',

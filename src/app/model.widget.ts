@@ -84,10 +84,10 @@ export class Widget {
         widgetRefreshMode: string;              // Manual, OnOpen, Repeatedly
         widgetRefreshFrequency: number;         // Nr of seconds if RefreshMode = Repeatedly
         widgetPassword: string;                 // Optional password
-        widgetIsLiked: boolean;                 // True if Widget is liked by me
+        widgetIsLiked: boolean;                 // @RunTime: True if Widget is liked by me
         widgetLiked: [                          // Array of UserIDs that likes this Widget
             {
-                widgetLikedUserID: string; 
+                widgetLikedUserID: string;      // UserID that likes this widget
             }
         ];
         widgetReportID: number;                 // FK to report (query / data).  -1: dont load any report data

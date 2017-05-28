@@ -50,11 +50,13 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedUserID: 'BenVdMark',
             dashboardDefaultExportFileType: 'PowerPoint',
             dashboardDescription: 'This is a unique and special dashboard, like all others',
+            dashboardNrGroups: 0,
             dashboardGroups: [
-                { dashboardGroupName: 'Favourites' },
-                { dashboardGroupName: 'Everyone'}
+                { dashboardGroupID: 0 },
+                { dashboardGroupID: 1}
             ],
             dashboardIsLocked: false,
+            dashboardIsLiked: false,
             dashboardLiked: [
                 { dashboardLikedUserID: 'AnnieA' },
                 { dashboardLikedUserID: 'BennieB' },
@@ -66,6 +68,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
+            dashboardNrSharedWith: 1,
             dashboardSharedWith: [
                 {
                     dashboardSharedWithUserID: 'PeterP',
@@ -89,11 +92,13 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
+            dashboardNrGroups: 0,
             dashboardGroups: [
-                { dashboardGroupName: 'Stats' },
-                { dashboardGroupName: 'Everyone'}
+                { dashboardGroupID: 0 },
+                { dashboardGroupID: 1}
             ],
             dashboardIsLocked: true,
+            dashboardIsLiked: false,
             dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
@@ -103,6 +108,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
+            dashboardNrSharedWith: 0,
             dashboardSharedWith: [
                 {
                     dashboardSharedWithUserID: '',
@@ -126,11 +132,13 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
+            dashboardNrGroups: 0,
             dashboardGroups: [
-                { dashboardGroupName: 'Stats' },
-                { dashboardGroupName: 'Everyone'}
+                { dashboardGroupID: 0 },
+                { dashboardGroupID: 1}
             ],
             dashboardIsLocked: true,
+            dashboardIsLiked: false,
             dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
@@ -140,6 +148,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
+            dashboardNrSharedWith: 0,
             dashboardSharedWith: [
                 {
                     dashboardSharedWithUserID: '',
@@ -163,11 +172,13 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
+            dashboardNrGroups: 0,
             dashboardGroups: [
-                { dashboardGroupName: 'Stats' },
-                { dashboardGroupName: 'Everyone'}
+                { dashboardGroupID: 0 },
+                { dashboardGroupID: 1}
             ],
             dashboardIsLocked: true,
+            dashboardIsLiked: false,
             dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
@@ -177,6 +188,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
+            dashboardNrSharedWith: 0,
             dashboardSharedWith: [
                 {
                     dashboardSharedWithUserID: '',
@@ -200,11 +212,13 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
+            dashboardNrGroups: 0,
             dashboardGroups: [
-                { dashboardGroupName: 'Stats' },
-                { dashboardGroupName: 'Everyone'}
+                { dashboardGroupID: 0 },
+                { dashboardGroupID: 1}
             ],
             dashboardIsLocked: true,
+            dashboardIsLiked: false,
             dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
@@ -214,6 +228,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
+            dashboardNrSharedWith: 0,
             dashboardSharedWith: [
                 {
                     dashboardSharedWithUserID: '',
@@ -237,11 +252,13 @@ export const DASHBOARDS: Dashboard[] =
             dashboardCreatedUserID: 'GranalN',
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
+            dashboardNrGroups: 0,
             dashboardGroups: [
-                { dashboardGroupName: 'Stats' },
-                { dashboardGroupName: 'Everyone'}
+                { dashboardGroupID: 0 },
+                { dashboardGroupID: 1}
             ],
             dashboardIsLocked: true,
+            dashboardIsLiked: false,
             dashboardLiked: [
                 { dashboardLikedUserID: '' }
             ],
@@ -251,6 +268,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
+            dashboardNrSharedWith: 0,
             dashboardSharedWith: [
                 {
                     dashboardSharedWithUserID: '',
