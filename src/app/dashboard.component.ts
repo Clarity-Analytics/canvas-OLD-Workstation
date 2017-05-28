@@ -1480,24 +1480,24 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
-    onDashboardDetail (event) {
-        // Show detail about the selected Dashboard
-        this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDetail', '@Start');
+    // onDashboardDetail (event) {
+    //     // Show detail about the selected Dashboard
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDetail', '@Start');
 
-        if (this.selectedDashboardName['name'] != undefined) {
+    //     if (this.selectedDashboardName['name'] != undefined) {
 
-            // Refresh the data on the form, and then show it
-            this.displayDashboardDetails = true;
-            // this.dashboardEditor.refreshForm();
-        } else {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn', 
-                summary:  'No Dashboard', 
-                detail:   'Please select a Dashboard from the dropdown, then click to see its detail'
-            });
+    //         // Refresh the data on the form, and then show it
+    //         this.displayDashboardDetails = true;
+    //         // this.dashboardEditor.refreshForm();
+    //     } else {
+    //         this.globalVariableService.growlGlobalMessage.next({
+    //             severity: 'warn', 
+    //             summary:  'No Dashboard', 
+    //             detail:   'Please select a Dashboard from the dropdown, then click to see its detail'
+    //         });
             
-        }
-    }
+    //     }
+    // }
 
     onDashboardDelete() {
         // Confirm if user really wants to delete

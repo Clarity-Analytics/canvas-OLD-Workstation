@@ -18,13 +18,11 @@
     responsive="true"
     >
     <!--Single Dashboard to work with ...-->
-    <!--<user-popup 
-        [selectedDashboard]="selectedDashboard"
-        [addEditMode]="addEditMode"
-        [displayDashboardPopup]="displayDashboardPopup"
-        (userPopupFormClosed)="handleUserPopupFormClosed($event)"
+    <dashboard-editor
+        [selectedDashboardID]="selectedDashboardID" 
         >
-    </user-popup> -->
+        Loading Dashboard Editor ...
+    </dashboard-editor>
 </p-dialog>
 
 

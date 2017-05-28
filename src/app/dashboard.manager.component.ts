@@ -136,6 +136,21 @@ export class DashboardManagerComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuEdit', '@Start');
 
+        if (this.selectedDashboard != undefined) {
+
+            // Refresh the data on the form, and then show it
+            this.displayDashboardPopup = true;
+            // this.dashboardEditor.refreshForm();
+        } else {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn', 
+                summary:  'No Dashboard', 
+                detail:   'Please select a Dashboard in the table and try again'
+            });
+            
+        }
+
+
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'Selected Dashboard', 
