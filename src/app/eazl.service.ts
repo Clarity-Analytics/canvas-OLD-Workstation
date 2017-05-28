@@ -64,6 +64,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardOwnerUserID: 'JohnH',
             dashboardPassword: 'StudeBaker',
             dashboardRefreshedDateTime: '',
+            dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
@@ -100,6 +101,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
+            dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
@@ -136,6 +138,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
+            dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
@@ -172,6 +175,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
+            dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
@@ -208,6 +212,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
+            dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {
@@ -244,6 +249,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
             dashboardRefreshedDateTime: '2016/08/07',
+            dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardSharedWith: [
                 {

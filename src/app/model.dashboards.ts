@@ -9,8 +9,6 @@ export class Dashboard {
     dashboardBackgroundColor: string;           // Optional color of the whole Dashboard    
     dashboardBackgroundImageSrc: string;        // Optional picture to show in background
     dashboardComments: string;                  // Optional comments
-    dashboardCreatedDateTime: string;           // Created on
-    dashboardCreatedUserID: string;             // Created by
     dashboardDefaultExportFileType: string;     // Excel, JSON, PDF, PowerPoint, Jupyter or csv
     dashboardDescription: string;               // User description
     dashboardGroups: [                          // Array of groups to which it belongs
@@ -27,7 +25,6 @@ export class Dashboard {
     dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
     dashboardOwnerUserID: string;               // UserID of owner
     dashboardPassword: string;                  // Optional password to open
-    dashboardRefreshedDateTime: string;         // Data Refreshed on
     dashboardRefreshMode: string;               // Manual, onOpen  
     dashboardSharedWith: [                      // Array of UserIDs shared with
         {
@@ -36,6 +33,10 @@ export class Dashboard {
         }
     ];
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
+    dashboardRefreshedDateTime: string;         // Data Refreshed on
+    dashboardRefreshedUserID: string;           // Data Refreshed by
     dashboardUpdatedDateTime: string;           // Updated on
     dashboardUpdatedUserID: string;             // Updated by
+    dashboardCreatedDateTime: string;           // Created on
+    dashboardCreatedUserID: string;             // Created by
 }
