@@ -14,11 +14,14 @@ import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
+import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { CanvasColors }               from './chartcolors.data';
+import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 
 @Component({
@@ -37,12 +40,14 @@ export class DashboardEditorComponent implements OnInit {
     @Output() formDashboardSubmit: EventEmitter<string> = new EventEmitter();
     
     // Local properties
+    canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboardForm: FormGroup;                           // FormBuilder Group
     errorMessageOnForm: string = '';                    // Error handling on form
     formIsValid: boolean = false;                       // Error handling on form
     numberErrors: number = 0;                           // Error handling on form
 
     constructor(
+        private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
@@ -191,8 +196,6 @@ export class DashboardEditorComponent implements OnInit {
         //   It is assumes is that dashboardToEdit is 100% complete and accurate before return
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardSubmit', '@Start');
 
-console.log ('subm', this.selectedDashboard)
-console.log('code', this.dashboardForm.controls['dashboardCode'].value)
         // Validation: note that == null tests for undefined as well
         this.formIsValid = false;
         this.errorMessageOnForm = '';
@@ -224,7 +227,7 @@ console.log('code', this.dashboardForm.controls['dashboardCode'].value)
             });
             return;
         }
-        
+
 //         // Adding new Widget
 //         if (this.addEditMode == 'Add' && this.displayEditWidget) {
 //             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
@@ -235,17 +238,55 @@ console.log('code', this.dashboardForm.controls['dashboardCode'].value)
 //                 this.globalVariableService.lastBackgroundColor.getValue().name;
 //         }
 
+console.log('30', this.addEditMode == 'Edit', this.displayDashboardPopup) 
 
-//         // Editing existing Widget
-//         if (this.addEditMode == 'Edit' && this.displayEditWidget  &&
-//             this.widgetToEdit.properties.widgetID == this.widgetIDtoEdit  &&
-//             !this.isLoadingForm) {
+        // Editing existing Dashboard
+        if (this.addEditMode == 'Edit' && this.displayDashboardPopup) {
+            // Space to worry about EDIT only mode - for future use
+        }
 
-//             // Space to worry about EDIT only mode - for future use
-//         }
-
-//         // Load fields from form - assume ALL good as Validation will stop bad stuff
-//         this.widgetToEdit.areas.showWidgetGraph = this.showWidgetGraph;        
+        // Load fields from form - assume ALL good as Validation will stop bad stuff
+        this.dashboardToEdit.dashboardID = 
+            this.dashboardForm.controls['dashboardID'].value;
+        this.dashboardToEdit.dashboardCode = 
+            this.dashboardForm.controls['dashboardCode'].value;
+        this.dashboardToEdit.dashboardName = 
+            this.dashboardForm.controls['dashboardName'].value;
+        this.dashboardToEdit.dashboardBackgroundImageSrc = 
+            this.dashboardForm.controls['dashboardBackgroundImageSrc'].value;
+        this.dashboardToEdit.dashboardComments = 
+            this.dashboardForm.controls['dashboardComments'].value;
+        this.dashboardToEdit.isContainerHeaderDark = 
+            this.dashboardForm.controls['isContainerHeaderDark'].value;
+        this.dashboardToEdit.showContainerHeader = 
+            this.dashboardForm.controls['showContainerHeader'].value;
+        this.dashboardToEdit.dashboardBackgroundColor = 
+            this.dashboardForm.controls['dashboardBackgroundColor'].value;
+        this.dashboardToEdit.dashboardNrGroups = 
+            this.dashboardForm.controls['dashboardNrGroups'].value;
+        this.dashboardToEdit.dashboardIsLiked = 
+            this.dashboardForm.controls['dashboardIsLiked'].value;
+        this.dashboardToEdit.dashboardNrSharedWith = 
+            this.dashboardForm.controls['dashboardNrSharedWith'].value;
+        this.dashboardToEdit.dashboardDefaultExportFileType = 
+            this.dashboardForm.controls['dashboardDefaultExportFileType'].value;
+        this.dashboardToEdit.dashboardDescription = 
+            this.dashboardForm.controls['dashboardDescription'].value;
+        this.dashboardToEdit.dashboardIsLocked = 
+            this.dashboardForm.controls['dashboardIsLocked'].value;
+        this.dashboardToEdit.dashboardOpenTabNr = 
+            this.dashboardForm.controls['dashboardOpenTabNr'].value;
+        this.dashboardToEdit.dashboardOwnerUserID = 
+            this.dashboardForm.controls['dashboardOwnerUserID'].value;
+        this.dashboardToEdit.dashboardPassword = 
+            this.dashboardForm.controls['dashboardPassword'].value;
+        this.dashboardToEdit.dashboardRefreshMode = 
+            this.dashboardForm.controls['dashboardRefreshMode'].value;
+        this.dashboardToEdit.dashboardSystemMessage = 
+            this.dashboardForm.controls['dashboardSystemMessage'].value;
+            this.canvasDate.now('standard');
+        this.dashboardToEdit.dashboardUpdatedUserID = 
+            this.canvasUser.username;
 
 
 //         // Set last updated, created and refreshed properties
@@ -262,7 +303,7 @@ console.log('code', this.dashboardForm.controls['dashboardCode'].value)
 //             this.canvasDate.curMinute(d).toString();
 //         this.widgetToEdit.properties.widgetUpdatedUserID = 
 //             this.canvasUser.username;
-// console.log('@end', this.widgetToEdit)
+console.log('@end', this.dashboardToEdit)
 
          // Trigger event emitter 'emit' method
          this.formDashboardSubmit.emit('Submit');

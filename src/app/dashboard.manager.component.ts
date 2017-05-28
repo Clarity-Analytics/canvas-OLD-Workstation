@@ -129,6 +129,7 @@ export class DashboardManagerComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuAdd', '@Start');
         this.addEditMode = 'Add';
+        this.dashboardToEdit = new Dashboard;
         this.displayDashboardPopup = true;
     }
     
@@ -158,6 +159,7 @@ export class DashboardManagerComponent implements OnInit {
         });
 
         this.addEditMode = 'Edit';
+        this.dashboardToEdit = this.selectedDashboard;
         this.displayDashboardPopup = true;    
     }
 
