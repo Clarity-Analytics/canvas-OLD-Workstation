@@ -29,6 +29,7 @@
                        placeholder="(info)"
                        readonly
                        autocomplete="on"
+                       pTooltip="Unique ID for the Dashboard record"
                        />
             </div>
 
@@ -44,6 +45,7 @@
                        formControlName="dashboardCode" 
                        placeholder="Required"
                        autofocus
+                       pTooltip="Short Code for the Dashboard"
                        />
             </div>
         </div>
@@ -60,6 +62,7 @@
                        type="text" 
                        formControlName="dashboardName" 
                        placeholder="Required"
+                       pTooltip="Dashboard Name (be brief and descriptive)"
                        />
             </div>
 
@@ -74,6 +77,7 @@
                        type="text" 
                        formControlName="dashboardBackgroundImageSrc" 
                        placeholder="(Optional)"
+                       pTooltip="Path to the optional background picture"
                        />
             </div>
         </div>
@@ -90,6 +94,7 @@
                        type="text" 
                        formControlName="dashboardComments" 
                        placeholder="(Optional)"
+                       pTooltip="Comments on this Dashboard"
                        />
             </div>
 
@@ -97,7 +102,7 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                CreatedDateTime:
+                Created on:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
@@ -105,6 +110,7 @@
                        readonly
                        formControlName="dashboardCreatedDateTime" 
                        placeholder="(info)"
+                       pTooltip="DateTime when created first time"
                        />
             </div>
         </div>
@@ -117,12 +123,20 @@
                 Header Dark?:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-   
-                       formControlName="isContainerHeaderDark" 
-                       placeholder="(Optional)"
-                       />
+                <p-checkbox 
+                    class="ui-grid-col-4"
+                    style="
+                            margin-bottom: 3px;
+                            margin-left: 6px;
+                            margin-right: 5px;
+                            margin-top: 6px;
+                            padding: 0;
+                          " 
+                    pTooltip="Check to make the header dark"
+                    formControlName="isContainerHeaderDark" 
+                    binary="true"
+                    >
+                </p-checkbox>
             </div>
 
             <div 
@@ -132,11 +146,20 @@
                 Show Header:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="showContainerHeader" 
-                       placeholder="(Optional)"
-                       />
+                <p-checkbox 
+                    class="ui-grid-col-4"
+                    style="
+                            margin-bottom: 3px;
+                            margin-left: 6px;
+                            margin-right: 5px;
+                            margin-top: 6px;
+                            padding: 0;
+                          " 
+                    pTooltip="Check to show the header"
+                    formControlName="showContainerHeader" 
+                    binary="true"
+                    >
+                </p-checkbox>
             </div>
         </div>
 
@@ -145,13 +168,14 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                dashboardBackgroundColor:
+                Bg Color:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
                        type="text" 
                        formControlName="dashboardBackgroundColor" 
                        placeholder="(Optional)"
+                       pTooltip="Optional background color to the Dashboard"
                        />
             </div>
 
@@ -159,7 +183,7 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                dashboardNrGroups:
+                Nr Groups:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
@@ -167,6 +191,7 @@
                        readonly
                        formControlName="dashboardNrGroups" 
                        placeholder="(info)"
+                       pTooltip="Number of group to which this Dashboard belongs"
                        />
             </div>
         </div>
@@ -176,21 +201,30 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                dashboardIsLiked:
+                Is Liked?:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="dashboardIsLiked" 
-                       placeholder="(Optional)"
-                       />
+                <p-checkbox 
+                    class="ui-grid-col-4"
+                    style="
+                            margin-bottom: 3px;
+                            margin-left: 6px;
+                            margin-right: 5px;
+                            margin-top: 6px;
+                            padding: 0;
+                          " 
+                    pTooltip="Check if you like this Dashboard"
+                    formControlName="dashboardIsLiked" 
+                    binary="true"
+                    >
+                </p-checkbox>
             </div>
-
+            
             <div 
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                dashboardNrSharedWith:
+                Nr SharedWith:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
@@ -198,6 +232,7 @@
                        readonly
                        formControlName="dashboardNrSharedWith" 
                        placeholder="(info)"
+                       pTooltip="Nr of users with whom this Dashboard is shared"
                        />
             </div>
         </div>
@@ -207,7 +242,7 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                CreatedUserID:
+                Created by:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
@@ -215,6 +250,7 @@
                        readonly
                        formControlName="dashboardCreatedUserID" 
                        placeholder="(info)"
+                       pTooltip="UserID of the creator"
                        />
             </div>
 
@@ -229,6 +265,7 @@
                        type="text" 
                        formControlName="dashboardDefaultExportFileType" 
                        placeholder="(Optional)"
+                       pTooltip="Default file type when this dashboard is exported"
                        />
             </div>
         </div>
@@ -245,6 +282,7 @@
                        type="text" 
                        formControlName="dashboardDescription" 
                        placeholder="(Optional)"
+                       pTooltip="Detailed description"
                        />
             </div>
 
@@ -252,14 +290,23 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                Is Locked:
+                Is Locked?:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="dashboardIsLocked" 
-                       placeholder="(Optional)"
-                       />
+                <p-checkbox 
+                    class="ui-grid-col-4"
+                    style="
+                            margin-bottom: 3px;
+                            margin-left: 6px;
+                            margin-right: 5px;
+                            margin-top: 6px;
+                            padding: 0;
+                          " 
+                    pTooltip="Check if this Dashboard is locked for editing"
+                    formControlName="dashboardIsLocked" 
+                    binary="true"
+                    >
+                </p-checkbox>
             </div>
         </div>
 
@@ -275,6 +322,7 @@
                        type="text" 
                        formControlName="dashboardOpenTabNr" 
                        placeholder="(Optional)"
+                       pTooltip="Optional tab ID to show when this Dashboard is opened"
                        />
             </div>
 
@@ -282,7 +330,7 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                OwnerUserID:
+                Owner:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
@@ -290,6 +338,7 @@
                        readonly
                        formControlName="dashboardOwnerUserID" 
                        placeholder="(info)"
+                       pTooltip="UserID of the owner"
                        />
             </div>
         </div>
@@ -306,6 +355,7 @@
                        type="password" 
                        formControlName="dashboardPassword" 
                        placeholder="(Optional)"
+                       pTooltip="Optional Password to lock this Dashboard"
                        />
             </div>
             <div 
@@ -319,6 +369,7 @@
                        type="text" 
                        formControlName="dashboardRefreshMode" 
                        placeholder="(Optional)"
+                       pTooltip="Optional frequency at which this dashboard must be refreshed"
                        />
             </div>
         </div>
@@ -336,6 +387,7 @@
                        readonly
                        formControlName="dashboardRefreshedUserID" 
                        placeholder="(info)"
+                       pTooltip="UserID who last refreshed this Dashboard"
                        />
             </div>
             <div 
@@ -350,6 +402,7 @@
                        readonly
                        formControlName="dashboardRefreshedDateTime" 
                        placeholder="(info)"
+                       pTooltip="DateTime when this Dashboard was last refreshed"
                        />
             </div>
         </div>
@@ -361,13 +414,14 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                SystemMsg:
+                System Msg:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
                        type="text" 
                        formControlName="dashboardSystemMessage" 
                        placeholder="(Optional)"
+                       pTooltip="Message from the Canvas system"
                        />
             </div>
         </div>
@@ -385,6 +439,7 @@
                        readonly
                        formControlName="dashboardUpdatedDateTime" 
                        placeholder="(info)"
+                       pTooltip="DateTime when this Dashboard was last updated"
                        />
             </div>
 
@@ -400,6 +455,7 @@
                        readonly
                        formControlName="dashboardUpdatedUserID" 
                        placeholder="(info)"
+                       pTooltip="UserID who last updated this Dashboard"
                        />
             </div>
         </div>
