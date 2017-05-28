@@ -260,16 +260,16 @@ export class AppComponent implements OnInit {
                 disabled: !isLoggedIn,
                 items: [
                     {
-                        label: 'Show All', 
+                        label: 'Dashboard Manager', 
                         icon:  'fa-th',
-                        routerLink: ['dashboard'],
+                        routerLink: ['dashboardManager'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }    
                     },
                     {
-                        label: 'Dashboards', 
+                        label: 'Dashboard Editor', 
                         icon:  'fa-table',
                         routerLink: ['dashboard'],
                         disabled: false,
