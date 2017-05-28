@@ -16,9 +16,11 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { CanvasDate }                 from './date.services';
+import { CanvasUser }                 from './model.user';
+import { Dashboard }                  from './model.dashboards';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
-import { Dashboard }                  from './model.dashboards';
 import { UserGroupMembership }        from './model.userGroupMembership';
 
 @Component({
@@ -33,6 +35,7 @@ export class DashboardManagerComponent implements OnInit {
     addEditMode: string;                                // Add/Edit to indicate mode
     availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
+    canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboards: Dashboard[];                            // List of Dashboards
     dashboardToEdit: Dashboard;                         // Dashboard to edit in popup
     deleteMode: boolean = false;                        // True while busy deleting
@@ -46,6 +49,7 @@ export class DashboardManagerComponent implements OnInit {
 
     constructor(
         private confirmationService: ConfirmationService,
+        private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -355,10 +359,109 @@ export class DashboardManagerComponent implements OnInit {
         });
     }
 
-    handleFormDashboardSubmit(howClosed: string) {
+    handleFormDashboardSubmit(returnCode: string) {
         // Handle the event: howClosed = Cancel / Submit
         this.globalFunctionService.printToConsole(this.constructor.name,'handleFormDashboardSubmit()', '@Start');
 
+        // Bail if Popup was Cancelled
+        if (returnCode == "Cancel") {
+
+            // Close the popup form for the Widget Builder
+            this.displayDashboardPopup = false;
+
+            return;
+        }
+
+        // Add new Dashboard to Array
+        if (this.addEditMode == "Add") {
+
+            // Add the new guy to the Array, if it belongs to current Dashboar
+            // TODO - this is crude & error prone: eventually autoIndex in DB
+            let lastDashboardID = 
+                this.dashboards.length;
+
+            // Set the Widget ID & Add to Array
+            // TODO - do via Eazl into DB
+            this.dashboardToEdit.dashboardID = lastDashboardID;
+            this.dashboardToEdit.dashboardCreatedDateTime = this.canvasDate.now('standard')
+            this.dashboardToEdit.dashboardCreatedUserID = this.canvasUser.username;
+            this.dashboards.push(this.dashboardToEdit);
+
+            // Inform the user
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Success',
+                detail:   'New Dashboard added'
+            });
+
+            // // Close the popup form for the Widget Builder
+            // this.displayEditWidget = false;
+        }
+
+        // Save the editted Dashboard back to the Array
+        if (this.addEditMode == "Edit") {
+
+            // Loop on the Array, find the editted one and update
+            for (var i = 0; i < this.dashboards.length; i++) {
+
+                if (this.dashboards[i].dashboardID === 
+                    this.dashboardToEdit.dashboardID) {
+
+                        // Update individual fields: if you replace the whole Array
+                        // entry, everything dies.  Including position, svg rendered, etc
+                        this.dashboards[i].dashboardID = 
+                            this.dashboardToEdit.dashboardID;
+                        this.dashboards[i].dashboardCode = 
+                            this.dashboardToEdit.dashboardCode;
+                        this.dashboards[i].dashboardName = 
+                            this.dashboardToEdit.dashboardName;
+                        this.dashboards[i].dashboardBackgroundImageSrc = 
+                            this.dashboardToEdit.dashboardBackgroundImageSrc;
+                        this.dashboards[i].dashboardComments = 
+                            this.dashboardToEdit.dashboardComments;
+                        this.dashboards[i].isContainerHeaderDark = 
+                            this.dashboardToEdit.isContainerHeaderDark;
+                        this.dashboards[i].showContainerHeader = 
+                            this.dashboardToEdit.showContainerHeader;
+                        this.dashboards[i].dashboardBackgroundColor = 
+                            this.dashboardToEdit.dashboardBackgroundColor;
+                        this.dashboards[i].dashboardNrGroups = 
+                            this.dashboardToEdit.dashboardNrGroups;
+                        this.dashboards[i].dashboardIsLiked = 
+                            this.dashboardToEdit.dashboardIsLiked;
+                        this.dashboards[i].dashboardNrSharedWith = 
+                            this.dashboardToEdit.dashboardNrSharedWith;
+                        this.dashboards[i].dashboardDefaultExportFileType = 
+                            this.dashboardToEdit.dashboardDefaultExportFileType;
+                        this.dashboards[i].dashboardDescription = 
+                            this.dashboardToEdit.dashboardDescription;
+                        this.dashboards[i].dashboardIsLocked = 
+                            this.dashboardToEdit.dashboardIsLocked;
+                        this.dashboards[i].dashboardOpenTabNr = 
+                            this.dashboardToEdit.dashboardOpenTabNr;
+                        this.dashboards[i].dashboardOwnerUserID = 
+                            this.dashboardToEdit.dashboardOwnerUserID;
+                        this.dashboards[i].dashboardPassword = 
+                            this.dashboardToEdit.dashboardPassword;
+                        this.dashboards[i].dashboardRefreshMode = 
+                            this.dashboardToEdit.dashboardRefreshMode;
+                        this.dashboards[i].dashboardSystemMessage = 
+                            this.dashboardToEdit.dashboardSystemMessage;
+                        this.dashboards[i].dashboardUpdatedDateTime = 
+                            this.canvasDate.now('standard');
+                        this.dashboards[i].dashboardUpdatedUserID = 
+                             this.canvasUser.username;
+                }
+            }
+
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Success',
+                detail:   'Dashboard updated'
+            });
+        }
+
+        // Close the popup form 
         this.displayDashboardPopup = false;
   }
 }
