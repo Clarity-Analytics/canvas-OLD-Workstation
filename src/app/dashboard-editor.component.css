@@ -21,3 +21,12 @@
         margin: 8px 0 0 0;
         padding: 8px 0 0 2px;
     }    
+
+
+/*Errors*/
+.iserror {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 0;
+    padding: 0;
+}

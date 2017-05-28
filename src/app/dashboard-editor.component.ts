@@ -32,14 +32,15 @@ export class DashboardEditorComponent implements OnInit {
     @Input() displayDashboardPopup: boolean;
     @Input() selectedDashboardID: number;
     @Input() selectedDashboard: Dashboard;          // Dashboard selected on parent form
+    @Input() dashboardToEdit:Dashboard;             // Dashboard that is editted
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formDashboardSubmit: EventEmitter<string> = new EventEmitter();
     
     // Local properties
     dashboardForm: FormGroup;                           // FormBuilder Group
-    errorMessageOnForm: string = '';
-    formIsValid: boolean = false;
-    numberErrors: number = 0;
+    errorMessageOnForm: string = '';                    // Error handling on form
+    formIsValid: boolean = false;                       // Error handling on form
+    numberErrors: number = 0;                           // Error handling on form
 
     constructor(
         private eazlService: EazlService,
@@ -182,43 +183,47 @@ export class DashboardEditorComponent implements OnInit {
     }
 
     onClickDashboardSubmit() {
-        // User clicked Submit button
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
-
-console.log ('subm', this.selectedDashboardID,this.dashboardForm.controls['dashboardName'].value)
-        // User clicked submit button.
+        // User clicked Submit button.
         // Note: it is assumed that 
         // - all the fields are tested to be valid and proper in the validation.
         //   If not, return right after validation.  
-        // - all fields are loaded in widgetToEdit which is shared with the calling routine
-        //   It is assumes is that widgetToEdit is 100% complete and accurate before return
-//         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickSubmit', '@Start');
+        // - all fields are loaded in dashboardToEdit which is shared with the calling routine
+        //   It is assumes is that dashboardToEdit is 100% complete and accurate before return
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardSubmit', '@Start');
 
-//         // Validation: note that == null tests for undefined as well
-//         this.formIsValid = false;
-//         this.errorMessageOnForm = '';
-//         this.numberErrors = 0;
+console.log ('subm', this.selectedDashboard)
+console.log('code', this.dashboardForm.controls['dashboardCode'].value)
+        // Validation: note that == null tests for undefined as well
+        this.formIsValid = false;
+        this.errorMessageOnForm = '';
+        this.numberErrors = 0;
 
-//         // Validation
-//         if (this.identificationForm.controls['dashboardTabName'].value == ''  || 
-//             this.identificationForm.controls['dashboardTabName'].value == null) {
-//                 this.formIsValid = false;
-//                 this.numberErrors = this.numberErrors + 1;
-//                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-//                     'The Widget Tab Name (Identification Panel) is compulsory.';
-//         }
+        // Validation
+        if (this.dashboardForm.controls['dashboardCode'].value == ''  || 
+            this.dashboardForm.controls['dashboardCode'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Dashboard Code is compulsory.';
+        }
+        if (this.dashboardForm.controls['dashboardName'].value == ''  || 
+            this.dashboardForm.controls['dashboardName'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Dashboard Name is compulsory.';
+        }
 
-
-//         // Oi, something is not right
-//         if (this.errorMessageOnForm != '') {
-//             this.formIsValid = true;
-//             this.globalVariableService.growlGlobalMessage.next({
-//                 severity: 'error',
-//                 summary: 'Error',
-//                 detail: this.numberErrors.toString() + ' error(s) encountered'
-//             });
-//             return;
-//         }
+        // Oi, something is not right
+        if (this.errorMessageOnForm != '') {
+            this.formIsValid = true;
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'error',
+                summary: 'Error',
+                detail: this.numberErrors.toString() + ' error(s) encountered'
+            });
+            return;
+        }
         
 //         // Adding new Widget
 //         if (this.addEditMode == 'Add' && this.displayEditWidget) {

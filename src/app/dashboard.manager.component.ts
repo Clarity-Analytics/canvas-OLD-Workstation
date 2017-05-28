@@ -33,14 +33,15 @@ export class DashboardManagerComponent implements OnInit {
     addEditMode: string;                                // Add/Edit to indicate mode
     availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
+    dashboards: Dashboard[];                            // List of Dashboards
+    dashboardToEdit: Dashboard;                         // Dashboard to edit in popup
     deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayDashboardPopup: boolean = false;             // True to display single Dashboard
     groups: Group[] = [];                               // List of Groups
-    popupHeader: string = 'Dashboard Editor';               // Popup header
+    popupHeader: string = 'Dashboard Editor';           // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedDashboard: Dashboard;                       // Dashboard that was clicked on
-    dashboards: Dashboard[];                            // List of Dashboards
     usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
 
     constructor(
