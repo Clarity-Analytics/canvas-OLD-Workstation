@@ -20,6 +20,9 @@
     <!--Single Dashboard to work with ...-->
     <dashboard-editor
         [selectedDashboardID]="selectedDashboardID" 
+        [selectedDashboard]="selectedDashboard"
+        [displayDashboardPopup]="displayDashboardPopup"
+        [addEditMode]="addEditMode"
         (formDashboardSubmit)="handleFormDashboardSubmit($event)"
         >
         Loading Dashboard Editor ...

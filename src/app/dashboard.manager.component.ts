@@ -37,7 +37,7 @@ export class DashboardManagerComponent implements OnInit {
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayDashboardPopup: boolean = false;             // True to display single Dashboard
     groups: Group[] = [];                               // List of Groups
-    popupHeader: string = 'Dashboard Manager';          // Popup header
+    popupHeader: string = 'Dashboard Editor';               // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedDashboard: Dashboard;                       // Dashboard that was clicked on
     dashboards: Dashboard[];                            // List of Dashboards
