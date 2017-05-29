@@ -4361,7 +4361,7 @@ console.log('getUsersResti',error)
         return Promise.resolve(resultDashboardGroups);
     }
 
-    addDashboardGroupMembership(dashboardID: number, dashboardGroupID:number) {
+    addDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
         // Adds a Dashboard - Group record to the User Group Membership
 
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupMembership', '@Start');
@@ -4397,12 +4397,13 @@ console.log('getUsersResti',error)
         }
     }
 
-    deleteDashboardGroupMembership(dashboardID: number, groupID:number) {
+    deleteDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
         // Deletes a Dashboard - Group record to the Dashboard Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupMembership', '@Start');
 
         this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
-            item => (!(item.dashboardID == dashboardID  &&  item.dashboardGroupID == groupID))
+            item => (!(item.dashboardID == dashboardID  &&  
+                       item.dashboardGroupID == dashboardGroupID))
         );
     }
 

@@ -249,12 +249,12 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupMembership', '@Start');
 
         // Remove the makker(s)
-        // for (var i = 0; i < event.items.length; i++) {
-        //     this.eazlService.deleteDashboardGroupMembership(
-        //         this.selectedDashboard.dashboardID, 
-        //         event.items[i].groupID
-        //     );
-        // }
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.deleteDashboardGroupMembership(
+                this.selectedDashboard.dashboardID, 
+                event.items[i].dashboardGroupID
+            );
+        }
     }
 
     onSourceReorderDashboardGroupMembership(event) {
