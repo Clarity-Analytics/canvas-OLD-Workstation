@@ -15,6 +15,8 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our models
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
+import { DashboardGroup }             from './model.dashboardGroup';
+import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardTab }               from './model.dashboardTabs';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
@@ -280,6 +282,119 @@ export const DASHBOARDS: Dashboard[] =
             dashboardUpdatedUserID: 'JerimiaA'
         }
     ];
+
+
+export const DASHBOARDGROUPS: DashboardGroup[] = 
+    [
+        {
+            dashboardGroupID: 0,
+            dashboardGroupName: 'Admin',
+            dashboardGroupDescription: 'Dashboards for Admin users',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        },
+        {
+            dashboardGroupID: 1,
+            dashboardGroupName: 'Marketing',
+            dashboardGroupDescription: 'Dashboards for Marketing Team',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        },
+        {
+            dashboardGroupID: 2,
+            dashboardGroupName: 'BI Team',
+            dashboardGroupDescription: 'Dashboards for BI Team',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        },
+        {
+            dashboardGroupID: 3,
+            dashboardGroupName: 'HR',
+            dashboardGroupDescription: 'Dashboards for Human Resources Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        },
+        {
+            dashboardGroupID: 4,
+            dashboardGroupName: 'Finance',
+            dashboardGroupDescription: 'Dashboards for Finance Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        },
+        {
+            dashboardGroupID: 5,
+            dashboardGroupName: 'Sales',
+            dashboardGroupDescription: 'Dashboards for Sales Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        },
+        {
+            dashboardGroupID: 6,
+            dashboardGroupName: 'R&D',
+            dashboardGroupDescription: 'Dashboards for Research and Development Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        },
+        {
+            dashboardGroupID: 7,
+            dashboardGroupName: 'IT',
+            dashboardGroupDescription: 'Dashboards for Information Technology Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01', 
+            dashboardGroupUpdatedUserID: 'JamesK' 
+        }
+    ]
+
+export const DASHBOARDGROUPMEMBERSHIP: DashboardGroupMembership[] =
+    [
+        {
+            dashboardGroupID: 0,
+            dashboardID: 0,
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+        },        
+        {
+            dashboardGroupID: 4,
+            dashboardID: 0,
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+        },        
+        {
+            dashboardGroupID: 1,
+            dashboardID: 1,
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+        },        
+        {
+            dashboardGroupID: 5,
+            dashboardID: 1,
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+        },        
+    ]
 
 export const DASHBOARDTABS: DashboardTab[] =
     [
@@ -3352,15 +3467,17 @@ export class EazlService implements OnInit {
 
     // Local Arrays to keep data for the rest of the Application
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
+    dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
+    dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     groups: Group[] = GROUPS;                               // List of Groups
-    usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of USer-Group                               // List of Groups
     reports: Report[] = REPORTS;                            // List of Reports
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
+    users: User[] = [];                                     // List of Users
+    usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
-    users: User[] = [];                                     // List of Users
 
     constructor(
         private canvasDate: CanvasDate,
@@ -4118,7 +4235,7 @@ console.log('getUsersResti',error)
         return resultGroups;
     }
 
-    getUserGroupMembership(username:string = '', include:boolean = true): Promise<Group[]> {
+    getUserGroupMembership(username: string = '', include: boolean = true): Promise<Group[]> {
         // Return a list of User - Group memberships
         // - username Optional parameter to select ONE, else select ALL (if >= 0)
         // - include Optional parameter, true = include all for user, else group NOT for username
@@ -4133,6 +4250,7 @@ console.log('getUsersResti',error)
         if (username == '') {
             return Promise.resolve(this.groups);
         }
+
         // Make an array of groupIDs to which this user belongs
         else {
             this.usergroupMembership.forEach(
@@ -4154,7 +4272,7 @@ console.log('getUsersResti',error)
         return Promise.resolve(resultGroups);
     }
 
-    addUserGroupMembership(username:string, groupID:number) {
+    addUserGroupMembership(username: string, groupID: number) {
         // Adds a User - Group record to the User Group Membership
 
         this.globalFunctionService.printToConsole(this.constructor.name,'addUserGroupMembership', '@Start');
@@ -4189,7 +4307,7 @@ console.log('getUsersResti',error)
         }
     }
 
-    deleteUserGroupMembership(username:string, groupID:number) {
+    deleteUserGroupMembership(username: string, groupID: number) {
         // Deletes a User - Group record to the User Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
 
@@ -4197,4 +4315,62 @@ console.log('getUsersResti',error)
             item => (!(item.userName == username  &&  item.groupID == groupID))
         );
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    getDashboardGroupMembership(dashboardID:number = 0, include:boolean = true): Promise<DashboardGroup[]> {
+        // Return a list of Dashboard - Group memberships
+        // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
+        // - include Optional parameter, true = include all for one, else 
+        //   group NOT for dashboardID
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardGroupMembership', '@Start');
+
+        // TODO - from DB
+        // Get Array of groups to in or ex clude
+        let resultDashboardGroupMembership: number[] = [];
+
+        // Return all if no dashboardID specified
+        if (dashboardID == 0) {
+            return Promise.resolve(this.dashboardGroups);
+        }
+
+        // Make an array of groupIDs to which this user belongs
+        else {
+            this.dashboardGroupMembership.forEach(
+                (dashgrp) => { 
+                                if (dashgrp.dashboardID == dashboardID) 
+                                    resultDashboardGroupMembership.push(
+                                        dashgrp.dashboardGroupID
+                                )  
+                            }
+            )   
+        }
+
+        // Return necesary groups, selectively depending on in/exclude
+        let resultDashboardGroups: DashboardGroup[];
+        let found: boolean = false;
+        resultDashboardGroups = this.dashboardGroups.filter(
+            dashgrp => (
+                    include  &&  
+                        resultDashboardGroupMembership.indexOf(dashgrp.dashboardGroupID) >= 0
+                    ) 
+                    ||
+                    (!include && 
+                        resultDashboardGroupMembership.indexOf(dashgrp.dashboardGroupID) < 0
+                    ) 
+        )
+        return Promise.resolve(resultDashboardGroups);
+    }
+
 }

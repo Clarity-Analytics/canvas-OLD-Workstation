@@ -20,8 +20,8 @@ import { CanvasDate }                 from './date.services';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { EazlUser }                   from './model.user';
-import { Group }                      from './model.group';
-import { UserGroupMembership }        from './model.userGroupMembership';
+import { DashboardGroup }             from './model.dashboardGroup';
+import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 
 @Component({
     selector:    'dashboardManager',
@@ -32,20 +32,20 @@ import { UserGroupMembership }        from './model.userGroupMembership';
 export class DashboardManagerComponent implements OnInit {
     
     // Local properties
-    addEditMode: string;                                // Add/Edit to indicate mode
-    availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
-    belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
+    addEditMode: string;                                        // Add/Edit to indicate mode
+    availableDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard does NOT belongs to
+    belongstoDashboarGroup: DashboardGroup[] = [];              // List of Groups Dashboard already belongs to   
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    dashboards: Dashboard[];                            // List of Dashboards
-    dashboardToEdit: Dashboard;                         // Dashboard to edit in popup
-    deleteMode: boolean = false;                        // True while busy deleting
-    displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
-    displayDashboardPopup: boolean = false;             // True to display single Dashboard
-    groups: Group[] = [];                               // List of Groups
-    popupHeader: string = 'Dashboard Editor';           // Popup header
-    popuMenuItems: MenuItem[];                          // Items in popup
-    selectedDashboard: Dashboard;                       // Dashboard that was clicked on
-    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
+    dashboards: Dashboard[];                                    // List of Dashboards
+    dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
+    deleteMode: boolean = false;                                // True while busy deleting
+    displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
+    displayDashboardPopup: boolean = false;                     // True to display single Dashboard
+    groups: DashboardGroup[] = [];                              // List of Groups
+    popupHeader: string = 'Dashboard Editor';                   // Popup header
+    popuMenuItems: MenuItem[];                                  // Items in popup
+    selectedDashboard: Dashboard;                               // Dashboard that was clicked on
+    dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group   
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -58,13 +58,7 @@ export class DashboardManagerComponent implements OnInit {
     
     ngOnInit() {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
- 
-        // Initialise variables
-        // this.eazlService.getUsers()
-        //     .then(users => {this.getDashboards = users
-                
-        //     })
-        //     .catch( err => {console.log(err)} );
+
         this.dashboards = this.eazlService.getDashboards();
 
         this.popuMenuItems = [
@@ -253,9 +247,9 @@ export class DashboardManagerComponent implements OnInit {
         this.displayGroupMembership = false;        
     }
 
-    onMoveToTargetUserGroupMembership(event) {
+    onMoveToTargetDashboardGroupMembership(event) {
         // User clicked onMoveToTarget on Group Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardGroupMembership', '@Start');
 
         // Add this / these makker(s) - array if multi select
         // for (var i = 0; i < event.items.length; i++) {
@@ -266,9 +260,9 @@ export class DashboardManagerComponent implements OnInit {
         // }
     }
     
-    onMoveToSourceUserGroupMembership(event) {
+    onMoveToSourceDashboardGroupMembership(event) {
         // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupMembership', '@Start');
 
         // Remove the makker(s)
         // for (var i = 0; i < event.items.length; i++) {
@@ -279,14 +273,14 @@ export class DashboardManagerComponent implements OnInit {
         // }
     }
 
-    onSourceReorderUserGroupMembership(event) {
+    onSourceReorderDashboardGroupMembership(event) {
         // User clicked onSourceReorder on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderDashboardGroupMembership', '@Start');
     }
 
-    onTargetReorderUserGroupMembership(event) {
+    onTargetReorderDashboardGroupMembership(event) {
         // User clicked onTargetReorder on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardGroupMembership', '@Start');
     }
 
     dashboardMenuSharedWith(dashboard: Dashboard) {

@@ -1,6 +1,6 @@
-// Schema for the User-GroupMembership classes (many - many)
+// Schema for the User-GroupMembership class (many - many)
 
-// Users per group 
+// Users per Group 
 export class UserGroupMembership {
     groupID: number;
     userName: string;

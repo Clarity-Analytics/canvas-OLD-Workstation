@@ -365,14 +365,14 @@
         <div
             >
             <p-pickList 
-                [source]="availableUserGroupMembership" 
-                [target]="belongstoUserGroupMembership"
+                [source]="availableDashboardGroup" 
+                [target]="belongstoDashboarGroup"
                 sourceHeader="Available Groups"
                 targetHeader="Belongs to these Groups"
-                (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
-                (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
-                (onSourceReorder)="onSourceReorderUserGroupMembership($event)"
-                (onTargetReorder)="onTargetReorderUserGroupMembership($event)"
+                (onMoveToTarget)="onMoveToTargetDashboardGroupMembership($event)"
+                (onMoveToSource)="onMoveToSourceDashboardGroupMembership($event)"
+                (onSourceReorder)="onSourceReorderDashboardGroupMembership($event)"
+                (onTargetReorder)="onTargetReorderDashboardGroupMembership($event)"
                 >
                 <template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
