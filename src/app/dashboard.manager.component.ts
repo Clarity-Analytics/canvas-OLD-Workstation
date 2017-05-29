@@ -276,10 +276,6 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardGroupMembership', '@Start');
     }
 
-
-
-
-
     dashboardMenuSharedWith(dashboard: Dashboard) {
         // Access to Data Sources for the selected Dashboard
         // - dashboard: currently selected row
@@ -291,16 +287,14 @@ export class DashboardManagerComponent implements OnInit {
         this.selectedDashboard.dashboardSharedWith.forEach(
             sw => this.belongstoSharedWith.push(sw.dashboardSharedWithUserID)
         )
-console.log('this.belongstoSharedWith', this.belongstoSharedWith)        
+
         this.eazlService.getUsers()
             .then(usr => {
                 usr.forEach(sglusr => {
-                    // if (this.belongstoSharedWith.indexOf(sglusr.userName) >= 0) {
-                    //     this.availableSharedWith.push(sglusr.userName)
-                    // };
-this.availableSharedWith.push(sglusr.userName);
+                    if (this.belongstoSharedWith.indexOf(sglusr.userName) < 0) {
+                        this.availableSharedWith.push(sglusr.userName)
+                    };
                 })
-console.log('this.availableSharedWith', this.availableSharedWith) 
                 this.displaySharedWith = true;               
             })
             .catch(error => console.log (error) )
@@ -314,16 +308,15 @@ console.log('this.availableSharedWith', this.availableSharedWith)
         this.displaySharedWith = false;        
     }
 
-
     onMoveToTargetDashboardSharedWith(event) {
         // User clicked onMoveToTarget - add to SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardSharedWith', '@Start');
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDashboardGroupMembership(
+            this.eazlService.addDashboardSharedWith(
                 this.selectedDashboard.dashboardID, 
-                event.items[i].dashboardGroupID
+                event.items[i]
             );
         }
     }

@@ -4407,4 +4407,53 @@ console.log('getUsersResti',error)
         );
     }
 
+    addDashboardSharedWith(dashboardID: number, username: string) {
+        // Adds a user to shared with in Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardSharedWith', '@Start');
+
+        let found: boolean = false;
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboardID) {
+                for (var j = 0; j < this.dashboards[i].dashboardSharedWith.length; j++) { 
+                    if (this.dashboards[i].dashboardSharedWith[j].dashboardSharedWithUserID
+                        == username) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    this.dashboards[i].dashboardSharedWith.push(
+                        {
+                            dashboardSharedWithUserID: username,
+                            dashboardSharedWithType: 'Full'
+                        })
+                } 
+                let currentUser: string = '';
+                if (this.globalVariableService.canvasUser.getValue() != null) {
+                    currentUser = this.globalVariableService.canvasUser.getValue().username;
+                }
+                this.dashboards[i].dashboardUpdatedDateTime = this.canvasDate.now('standard');
+                this.dashboards[i].dashboardUpdatedUserID = currentUser;
+            }
+        }
+    }
+
+//     deleteDashboardSharedWith(dashboardID: number, username: string) {
+//         // Removes user from shares with Dashboard
+//         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardSharedWith', '@Start');
+
+//         this.dashboards = this.dashboards.filter(
+//             item => if (item.dashboardID == dashboardID) {
+//                         item.dashboardSharedWith.forEach(
+//                             sw => {
+//                                 if (sw.dashboardSharedWithUserID == username) {
+//                 {
+//                     dashboardSharedWithUserID: 'PeterP',
+//                     dashboardSharedWithType: 'Full'
+//                 }                       item.dashboardGroupID == dashboardGroupID))
+//         );
+//     }
+
+// }
 }
