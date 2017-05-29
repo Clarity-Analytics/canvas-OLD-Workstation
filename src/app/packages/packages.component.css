@@ -4,8 +4,8 @@
 }
 
 .package {
-	border: 1px solid whitesmoke;
-	padding: 5px 5px 5px 5px;
+	/*border: 1px solid whitesmoke;*/
+	padding: 5px 5px 30px 20px;
 	margin: 2px 2px 2px 2px;
 	position: relative;
 }
@@ -30,8 +30,8 @@
 	margin-right: 5px;
 	margin-top: 5px;
 	position: absolute;
-	top: 1px;
-	right: 1px;
+	top: 5px;
+	right: 5px;
 }
 
 .fa.fa-check {
