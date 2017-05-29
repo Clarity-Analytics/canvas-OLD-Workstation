@@ -1,4 +1,4 @@
-// Schema for the Group classes
+// Schema for the Group (for Users) class
 
 // Users registered to use the system
 export class Group {

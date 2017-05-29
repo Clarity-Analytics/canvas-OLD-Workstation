@@ -252,17 +252,11 @@ export class DashboardEditorComponent implements OnInit {
             return;
         }
 
-//         // Adding new Widget
-//         if (this.addEditMode == 'Add' && this.displayEditWidget) {
-//             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
-//             this.widgetToEdit.properties.widgetID = 0; // Set in DB
+        // Adding new Widget
+        if (this.addEditMode == 'Add' && this.displayDashboardPopup) {
+            // Space to worry about EDIT only mode - for future use
+        }
 
-//             // Load container fields from previously used values
-//             this.widgetToEdit.container.backgroundColor = 
-//                 this.globalVariableService.lastBackgroundColor.getValue().name;
-//         }
-
-console.log('30', this.addEditMode == 'Edit', this.displayDashboardPopup) 
 
         // Editing existing Dashboard
         if (this.addEditMode == 'Edit' && this.displayDashboardPopup) {
