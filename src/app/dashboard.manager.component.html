@@ -384,22 +384,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--Shared with panel-->
 <div
     class="groupMembershipPanel"
@@ -450,3 +434,21 @@
     </form>
 </div>
 
+
+
+
+<!--Popup form for Data Source table-->
+<p-dialog 
+    [(visible)]="displayDataSource"
+    header="Data Sources"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+    <p-dataTable [value]="datasources">
+        <p-column field="datasourceID" header="ID"></p-column>
+        <p-column field="datasourceName" header="Name"></p-column>
+        <p-column field="datasourceDescription" header="Description"></p-column>
+    </p-dataTable>
+</p-dialog>

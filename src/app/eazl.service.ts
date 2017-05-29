@@ -4644,7 +4644,7 @@ console.log('getUsersResti',error)
         }
 
         // Return those Datasources
-        return this.datasources.filter(ds => reportIDs.indexOf(ds.datasourceID) >= 0);
+        return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
 
 }

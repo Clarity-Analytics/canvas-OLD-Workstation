@@ -20,6 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardGroup }             from './model.dashboardGroup';
+import { DataSource }                 from './model.datasource';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
 import { User }                       from './model.user';
@@ -41,10 +42,12 @@ export class DashboardManagerComponent implements OnInit {
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
+    datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
     displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
     displaySharedWith: boolean = false;                         // True to display popup for Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
+    displayDataSource: boolean = false;                         // True to display table for DataSources
     groups: DashboardGroup[] = [];                              // List of Groups
     popupHeader: string = 'Dashboard Editor';                   // Popup header
     popuMenuItems: MenuItem[];                                  // Items in popup
@@ -340,12 +343,10 @@ export class DashboardManagerComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuRelatedDataSources', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Related Data Sources', 
-            detail:   dashboard.dashboardName
-        });
+        this.datasources = this.eazlService.getDataSources(dashboard.dashboardID);
+        this.displayDataSource = true;
     }
+
 
     dashboardMenuMessageHistory(dashboard: Dashboard) {
         // Show history of messages for the selected Dashboard
