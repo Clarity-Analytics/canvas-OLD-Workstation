@@ -19,9 +19,10 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasDate }                 from './date.services';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
-import { EazlUser }                   from './model.user';
 import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
+import { EazlUser }                   from './model.user';
+import { User }                       from './model.user';
 
 @Component({
     selector:    'dashboardManager',
@@ -34,12 +35,15 @@ export class DashboardManagerComponent implements OnInit {
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
     availableDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard does NOT belongs to
-    belongstoDashboarGroup: DashboardGroup[] = [];              // List of Groups Dashboard already belongs to   
+    belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to   
+    availableSharedWith: string[] = [];                         // List of UserIDs available to share with
+    belongstoSharedWith: string[] = [];                         // List of UserID with whom this Dashboard has been shared
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     deleteMode: boolean = false;                                // True while busy deleting
     displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
+    displaySharedWith: boolean = false;                         // True to display popup for Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
     groups: DashboardGroup[] = [];                              // List of Groups
     popupHeader: string = 'Dashboard Editor';                   // Popup header
@@ -196,6 +200,11 @@ export class DashboardManagerComponent implements OnInit {
         if (this.displayGroupMembership) {
             this.dashboardMenuGroupMembership(this.selectedDashboard) 
         }
+
+        // Update the Dashboard Shared With if it is open
+        if (this.displaySharedWith) {
+            this.dashboardMenuSharedWith(this.selectedDashboard) 
+        }
     }
 
     dashboardMenuGroupMembership(dashboard: Dashboard) {
@@ -208,7 +217,7 @@ export class DashboardManagerComponent implements OnInit {
             this.selectedDashboard.dashboardID, true
         )
             .then(inclgrp => {
-                this.belongstoDashboarGroup = inclgrp;
+                this.belongstoDashboardGroup = inclgrp;
         
                 this.eazlService.getDashboardGroupMembership(
                     this.selectedDashboard.dashboardID, false
@@ -267,17 +276,73 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardGroupMembership', '@Start');
     }
 
+
+
+
+
     dashboardMenuSharedWith(dashboard: Dashboard) {
         // Access to Data Sources for the selected Dashboard
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuSharedWith', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Dashboard Access', 
-            detail:   dashboard.dashboardName
-        });
+        // Get the current and available user shared with
+        this.belongstoSharedWith = [];
+        this.availableSharedWith = [];
+        this.selectedDashboard.dashboardSharedWith.forEach(
+            sw => this.belongstoSharedWith.push(sw.dashboardSharedWithUserID)
+        )
+console.log('this.belongstoSharedWith', this.belongstoSharedWith)        
+        this.eazlService.getUsers()
+            .then(usr => {
+                usr.forEach(sglusr => {
+                    // if (this.belongstoSharedWith.indexOf(sglusr.userName) >= 0) {
+                    //     this.availableSharedWith.push(sglusr.userName)
+                    // };
+this.availableSharedWith.push(sglusr.userName);
+                })
+console.log('this.availableSharedWith', this.availableSharedWith) 
+                this.displaySharedWith = true;               
+            })
+            .catch(error => console.log (error) )
     }
+
+    onClickSharedWithCancel() {
+        // User clicked onMoveToSource on Group Membership - remove grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
+
+        // Close popup
+        this.displaySharedWith = false;        
+    }
+
+
+    onMoveToTargetDashboardSharedWith(event) {
+        // User clicked onMoveToTarget - add to SharedWith
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardSharedWith', '@Start');
+
+        // Add this / these makker(s) - array if multi select
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.addDashboardGroupMembership(
+                this.selectedDashboard.dashboardID, 
+                event.items[i].dashboardGroupID
+            );
+        }
+    }
+    
+    onMoveToSourceDashboardSharedWith(event) {
+        // User clicked onMoveToSource - remove from SharedWith
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardSharedWith', '@Start');
+
+        // Remove the makker(s)
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.deleteDashboardGroupMembership(
+                this.selectedDashboard.dashboardID, 
+                event.items[i].dashboardGroupID
+            );
+        }
+    }
+
+
+
 
     dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
