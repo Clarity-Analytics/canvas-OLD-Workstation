@@ -202,41 +202,25 @@ export class DashboardManagerComponent implements OnInit {
         // Manage group membership for the selected Dashboard
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupMembership', '@Start');
-
+console.log('@strt',this.selectedDashboard.dashboardID)
         // Get the current and available groups
-        // this.eazlService.getUserGroupMembership(this.selectedDashboard.dashboardID, true)
-        //     .then(inclgrp => {
-        //         this.belongstoUserGroupMembership = inclgrp;
-        //         this.eazlService.getUserGroupMembership(this.selectedDashboard.dashboardID, false)
-        //             .then (exclgrp => {
-        //                     this.availableUserGroupMembership  = exclgrp;
-        //                     this.displayGroupMembership = true; 
-        //             })
-        //             .catch(error => console.log (error))
-        //     })
-        //     .catch(error => console.log (error) )
-
-// this.eazlService.getUsersResti()
-//     .then(eazlUser => {
-//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
-
-//         // Show
-// console.log('gotit')    
-//     })
-//     .catch(err => {
-//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
-//         }
-    // ) 
-
-
-
-
-        // Tell user ...
-        // this.globalVariableService.growlGlobalMessage.next({
-        //     severity: 'info', 
-        //     summary:  'User group membership', 
-        //     detail:   user.firstName + ' - ' + user.lastName
-        // });
+        this.eazlService.getDashboardGroupMembership(
+            this.selectedDashboard.dashboardID, true
+        )
+            .then(inclgrp => {
+                this.belongstoDashboarGroup = inclgrp;
+        
+                this.eazlService.getDashboardGroupMembership(
+                    this.selectedDashboard.dashboardID, false
+                )
+                    .then (exclgrp => {
+                            this.availableDashboardGroup  = exclgrp;
+                            this.displayGroupMembership = true; 
+console.log('after',this.availableDashboardGroup, this.belongstoDashboarGroup)                            
+                    })
+                    .catch(error => console.log (error))
+            })
+            .catch(error => console.log (error) )
     }
 
     onClickGroupMembershipCancel() {

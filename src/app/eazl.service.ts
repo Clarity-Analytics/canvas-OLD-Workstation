@@ -4263,7 +4263,6 @@ console.log('getUsersResti',error)
 
         // Return necesary groups, selectively depending on in/exclude
         let resultGroups: Group[];
-        let found: boolean = false;
         resultGroups = this.groups.filter(
             grp => (include  &&  resultUsergroupMembership.indexOf(grp.groupID) >= 0) 
                     ||
@@ -4316,19 +4315,7 @@ console.log('getUsersResti',error)
         );
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    getDashboardGroupMembership(dashboardID:number = 0, include:boolean = true): Promise<DashboardGroup[]> {
+    getDashboardGroupMembership(dashboardID:number = -1, include:boolean = true): Promise<DashboardGroup[]> {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else 
@@ -4341,7 +4328,7 @@ console.log('getUsersResti',error)
         let resultDashboardGroupMembership: number[] = [];
 
         // Return all if no dashboardID specified
-        if (dashboardID == 0) {
+        if (dashboardID == -1) {
             return Promise.resolve(this.dashboardGroups);
         }
 
@@ -4353,21 +4340,22 @@ console.log('getUsersResti',error)
                                     resultDashboardGroupMembership.push(
                                         dashgrp.dashboardGroupID
                                 )  
-                            }
+                             }
             )   
         }
 
         // Return necesary groups, selectively depending on in/exclude
         let resultDashboardGroups: DashboardGroup[];
-        let found: boolean = false;
         resultDashboardGroups = this.dashboardGroups.filter(
             dashgrp => (
                     include  &&  
-                        resultDashboardGroupMembership.indexOf(dashgrp.dashboardGroupID) >= 0
+                        resultDashboardGroupMembership.indexOf(
+                            dashgrp.dashboardGroupID) >= 0
                     ) 
                     ||
                     (!include && 
-                        resultDashboardGroupMembership.indexOf(dashgrp.dashboardGroupID) < 0
+                        resultDashboardGroupMembership.indexOf(
+                            dashgrp.dashboardGroupID) < 0
                     ) 
         )
         return Promise.resolve(resultDashboardGroups);
