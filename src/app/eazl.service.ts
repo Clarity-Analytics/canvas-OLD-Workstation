@@ -4373,4 +4373,49 @@ console.log('getUsersResti',error)
         return Promise.resolve(resultDashboardGroups);
     }
 
+    addDashboardGroupMembership(dashboardID: number, dashboardGroupID:number) {
+        // Adds a Dashboard - Group record to the User Group Membership
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupMembership', '@Start');
+
+        let found: boolean = false;
+        for (var i = 0; i < this.dashboardGroupMembership.length; i++) {
+            if (this.dashboardGroupMembership[i].dashboardID == dashboardID  &&
+                this.dashboardGroupMembership[i].dashboardGroupID == dashboardGroupID) {
+                    found = true;
+                    break;
+                }
+        }
+
+        // Get current Dashboard
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        // Only add if not already there
+        if (!found) {
+            this.dashboardGroupMembership.push(
+                {
+
+                    dashboardGroupID: dashboardGroupID,
+                    dashboardID: dashboardID,
+                    dashboardGroupMembershipCreatedDateTime: this.canvasDate.now('standard'),
+                    dashboardGroupMembershipCreatedUserID: currentUser,
+                    dashboardGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
+                    dashboardGroupMembershipUpdatedUserID: currentUser
+                }        
+            )
+        }
+    }
+
+    deleteDashboardGroupMembership(dashboardID: number, groupID:number) {
+        // Deletes a Dashboard - Group record to the Dashboard Group Membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupMembership', '@Start');
+
+        this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
+            item => (!(item.dashboardID == dashboardID  &&  item.dashboardGroupID == groupID))
+        );
+    }
+
 }
