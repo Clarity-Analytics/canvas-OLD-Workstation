@@ -18,6 +18,7 @@ import { Dashboard }                  from './model.dashboards';
 import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardTab }               from './model.dashboardTabs';
+import { DataSource }                 from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
@@ -36,7 +37,154 @@ export interface Token {
 var req = new XMLHttpRequest();
 
 // TODO - use RESTi
-
+export const DATASOURCES: DataSource[] = 
+    [
+        { 
+            datasourceID: 0,
+            datasourceName: 'Overlay Packages',
+            datasourceDescription: 'Complete list of packages on Overlay',
+            datasourceDBname: '',
+            datasourceSource: '',
+            datasourceDBType: '',
+            datasourceDBconnectionProd: '',
+            datasourceDBconnectionTest: '',
+            datasourceEnvironment: '',
+            datasourceDataQuality: '',
+            datasourceDataIssues: [
+                {
+                    dataIssueCreatedDate: '',
+                    dataIssueCreatedUserID: '',
+                    dataIssueDescription: '',
+                    dataIssueStatus: '',
+                }
+            ],
+            datasourceMaxRowsReturned: 0,
+            datasourceDefaultReturnFormat: '',
+            datasourceAccessUsers: 
+            [
+                {
+                    accessUserID: '',
+                    accessType: '',
+                    accessScope: '',
+                }
+            ],
+            datasourceAccessGroups: [
+                {
+                    accessGroup: '',
+                    accessType: '',
+                }
+            ],
+            datasourceUserEditable: false,
+            packagePk: 0,
+            packageName: '',
+            packageRepository: '',
+            packageCompiled: false,
+            datasourceParameters: 
+            [
+                {
+                    name: '',
+                    value: '',
+                    parser: '',
+                }
+            ],
+            datasourceFields: [                     // Array of Django fields
+                {
+                    name: '',
+                    dtype: '',
+                }
+            ],
+            datasourceQueries: [
+                {
+                    name : '',
+                    parameters : '',
+                }
+            ],
+            datasourceDateLastSynced: '',
+            datasourceLastSyncSuccessful: false,
+            datasourceLastSyncError: '',
+            datasourceLastRuntimeError: '',
+            datasourceExecuteURL: '',
+            datasourceUrl: '',
+            datasourceSQL: '',
+            datasourceCreatedDateTime: '',
+            datasourceCreatedUserID: '',
+            datasourceUpdatedDateTime: '',
+            datasourceUpdatedUserID: ''
+        },
+        { 
+            datasourceID: 1,
+            datasourceName: 'Overlay Reports',
+            datasourceDescription: 'Complete list of reports on Overlay',
+            datasourceDBname: '',
+            datasourceSource: '',
+            datasourceDBType: '',
+            datasourceDBconnectionProd: '',
+            datasourceDBconnectionTest: '',
+            datasourceEnvironment: '',
+            datasourceDataQuality: '',
+            datasourceDataIssues: [
+                {
+                    dataIssueCreatedDate: '',
+                    dataIssueCreatedUserID: '',
+                    dataIssueDescription: '',
+                    dataIssueStatus: '',
+                }
+            ],
+            datasourceMaxRowsReturned: 0,
+            datasourceDefaultReturnFormat: '',
+            datasourceAccessUsers: 
+            [
+                {
+                    accessUserID: '',
+                    accessType: '',
+                    accessScope: '',
+                }
+            ],
+            datasourceAccessGroups: [
+                {
+                    accessGroup: '',
+                    accessType: '',
+                }
+            ],
+            datasourceUserEditable: false,
+            packagePk: 0,
+            packageName: '',
+            packageRepository: '',
+            packageCompiled: false,
+            datasourceParameters: 
+            [
+                {
+                    name: '',
+                    value: '',
+                    parser: '',
+                }
+            ],
+            datasourceFields: [                     // Array of Django fields
+                {
+                    name: '',
+                    dtype: '',
+                }
+            ],
+            datasourceQueries: [
+                {
+                    name : '',
+                    parameters : '',
+                }
+            ],
+            datasourceDateLastSynced: '',
+            datasourceLastSyncSuccessful: false,
+            datasourceLastSyncError: '',
+            datasourceLastRuntimeError: '',
+            datasourceExecuteURL: '',
+            datasourceUrl: '',
+            datasourceSQL: '',
+            datasourceCreatedDateTime: '',
+            datasourceCreatedUserID: '',
+            datasourceUpdatedDateTime: '',
+            datasourceUpdatedUserID: ''
+        }
+    ]
+    
 export const DASHBOARDS: Dashboard[] =
     [
         {
@@ -2892,7 +3040,7 @@ export const REPORTS: Report[] =
             reportName: 'EDM weekly Values',
             description: 'Description ...  etc',
             reportParameters: '',
-            dataSourceID: 12,
+            dataSourceID: 0,
             dataSourceParameters: '',
             reportFields:
                 [ "category", "amount"],
@@ -3466,6 +3614,7 @@ export class EazlService implements OnInit {
     route: string = 'users';                                // Route to RESTi - users/authen...
 
     // Local Arrays to keep data for the rest of the Application
+    datasources: DataSource[] = DATASOURCES;                // List of Data Sources
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
@@ -4465,4 +4614,37 @@ console.log('getUsersResti',error)
             }
         }
     }
+
+    getDataSources(dashboardID: number = -1) {
+        // List of Data Sources
+        // - dashboardID is optional Dashboard to filter on
+        // Note: Dashboard <1-many> Widgets <1-1> Report <1-1> DataSource
+        // TODO - agree design to integrate with Overlay, and do in DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDataSources', '@Start');
+
+        // Return all if no filter
+        if (dashboardID == -1) {
+            return this.datasources;
+        }
+
+        // Get the ReportIDs from all the Widgets for the requested Dashboard
+        let widgetReportIDs: number[] = [];
+        for (var i = 0; i < this.widgets.length; i++) {
+            if (this.widgets[i].properties.dashboardID == dashboardID) {
+                    widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
+                }
+        }
+
+        // Return the DataSourceIDs from all the reports
+        let reportIDs: number[] = [];
+        for (var i = 0; i < this.reports.length; i++) {
+            if (widgetReportIDs.indexOf(this.reports[i].reportID) >= 0) {
+                    reportIDs.push(this.reports[i].dataSourceID);
+                }
+        }
+
+        // Return those Datasources
+        return this.datasources.filter(ds => reportIDs.indexOf(ds.datasourceID) >= 0);
+    }
+
 }

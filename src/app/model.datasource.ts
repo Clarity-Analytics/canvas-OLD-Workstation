@@ -1,7 +1,7 @@
 // Schema for Data Source
 
 export class DataSource {
-	datasourceID: string;                   // Data Source ID
+	datasourceID: number;                   // Data Source ID
 	datasourceName: string;                 // DS Name
 	datasourceDescription: string;          // DS full description
 	datasourceDBname: string;               // DB Name
@@ -14,14 +14,14 @@ export class DataSource {
 	datasourceDataIssues: [                 // Array of logged data issues
         {
             dataIssueCreatedDate: string;   // UserID who created / logged issue
-            dataIssueCreatedUserID;         // Date logged
-            dataIssueDescription;           // Detailed description
-            dataIssueStatus;                // Open, Resolved / Closed
+            dataIssueCreatedUserID: string; // Date logged
+            dataIssueDescription: string;   // Detailed description
+            dataIssueStatus: string;        // Open, Resolved / Closed
         }
     ];
     datasourceMaxRowsReturned: number;      // Max number of row returned, 0 = all
     datasourceDefaultReturnFormat: string;  // Data returned in JSON, csv, etc by default
-    datasourceAccessUserID: [               // Array of UserIDs with access
+    datasourceAccessUsers: [                // Array of UserIDs with access
         {
             accessUserID: string;           // UserID with access
             accessType: string;             // Type = Readonly, Update, Add, Delete, Full
