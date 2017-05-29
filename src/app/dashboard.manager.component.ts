@@ -202,7 +202,7 @@ export class DashboardManagerComponent implements OnInit {
         // Manage group membership for the selected Dashboard
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupMembership', '@Start');
-console.log('@strt',this.selectedDashboard.dashboardID)
+
         // Get the current and available groups
         this.eazlService.getDashboardGroupMembership(
             this.selectedDashboard.dashboardID, true
@@ -216,7 +216,7 @@ console.log('@strt',this.selectedDashboard.dashboardID)
                     .then (exclgrp => {
                             this.availableDashboardGroup  = exclgrp;
                             this.displayGroupMembership = true; 
-console.log('after',this.availableDashboardGroup, this.belongstoDashboarGroup)                            
+
                     })
                     .catch(error => console.log (error))
             })
@@ -236,12 +236,12 @@ console.log('after',this.availableDashboardGroup, this.belongstoDashboarGroup)
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardGroupMembership', '@Start');
 
         // Add this / these makker(s) - array if multi select
-        // for (var i = 0; i < event.items.length; i++) {
-        //     this.eazlService.addUserGroupMembership(
-        //         this.selectedDashboard.dashboardID, 
-        //         event.items[i].groupID
-        //     );
-        // }
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.addDashboardGroupMembership(
+                this.selectedDashboard.dashboardID, 
+                event.items[i].dashboardGroupID
+            );
+        }
     }
     
     onMoveToSourceDashboardGroupMembership(event) {
@@ -250,7 +250,7 @@ console.log('after',this.availableDashboardGroup, this.belongstoDashboarGroup)
 
         // Remove the makker(s)
         // for (var i = 0; i < event.items.length; i++) {
-        //     this.eazlService.deleteUserGroupMembership(
+        //     this.eazlService.deleteDashboardGroupMembership(
         //         this.selectedDashboard.dashboardID, 
         //         event.items[i].groupID
         //     );
