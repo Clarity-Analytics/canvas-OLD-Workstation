@@ -284,6 +284,7 @@ export class DashboardManagerComponent implements OnInit {
         // Get the current and available user shared with
         this.belongstoSharedWith = [];
         this.availableSharedWith = [];
+
         this.selectedDashboard.dashboardSharedWith.forEach(
             sw => this.belongstoSharedWith.push(sw.dashboardSharedWithUserID)
         )
@@ -327,15 +328,12 @@ export class DashboardManagerComponent implements OnInit {
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDashboardGroupMembership(
+            this.eazlService.deleteDashboardSharedWith(
                 this.selectedDashboard.dashboardID, 
-                event.items[i].dashboardGroupID
+                event.items[i]
             );
         }
     }
-
-
-
 
     dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
