@@ -1,4 +1,21 @@
-<p *ngFor="let field of fields">
-	{{field.name}}
-	{{field.dtype}}
-</p>
+<table>
+	<thead align="left">
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+		</tr>
+	</thead>
+
+	<p *ngFor="let field of fields">
+		<tbody>
+			<tr>
+				<td>
+					{{field.name}}
+				</td>
+				<td>
+					{{field.dtype}}
+				</td>
+			</tr>
+		</tbody>
+	</p>
+</table>

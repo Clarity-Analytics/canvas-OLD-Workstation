@@ -4,13 +4,44 @@
 }
 
 .package {
-	border-style: solid;
-	border-color: grey;
-	padding-left: 5px;
-	padding-bottom: 5px;
-	margin-bottom: 2px; 
+	border: 1px solid whitesmoke;
+	padding: 5px 5px 5px 5px;
+	margin: 2px 2px 2px 2px;
+	position: relative;
 }
 
-.active {
-	background-color: lightgrey;
+.active { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+.package:hover {
+	background-color: whitesmoke;
+}
+
+.package:hover .execute-package {
+	opacity: 1;
+	transition: opacity 0.5s linear;
+}
+
+.execute-package {
+	opacity: 0;
+	margin-right: 5px;
+	margin-top: 5px;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+}
+
+.fa.fa-check {
+	color: green;
+}
+
+.fa.fa-times {
+	color: red;
+}
+
+.fa.fa-refresh {
+	color: dimgrey;
 }

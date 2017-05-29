@@ -2,28 +2,29 @@
 	<div class="ui-g package-list">
 		<div class="ui-g-5">
 			<div 
-				*ngFor="let package of packageList; let index=index"
+				*ngFor="let package of packageList"
 				class="package"
 				[class.active]="package.selected"
 				(click)="selectPackage(package)"
 				>
-				
+
 				<h3>
 					{{package.name}}
-				</h3>
-				
-				<div>
-					Compiled
 					<i
+						title="Compiled"
 						class="fa"
 						[class.fa-check]="package.compiled"
 						[class.fa-times]="!package.compiled">
 					</i>
-				</div>	
-				
-				<p>{{package.date_last_synced}}</p>
+				</h3>
+
+				<i
+					class="fa fa-refresh">
+					{{package.date_last_synced | date: 'MMM dd, yyyy hh:mm:ss'}}
+				</i>
 				
 				<button pButton
+					class="execute-package"
 					type="button"
 					label="Execute"
 					(click)="executePackage(package)">
