@@ -4292,12 +4292,12 @@ export class EazlService implements OnInit {
         return workingTemplate;
     }
 
-    updateIsLiked(widgetID: number, username:string, isLikedNewState:boolean) {
+    updateWidgetIsLiked(widgetID: number, username:string, isLikedNewState:boolean) {
         // Adds / Removes a user from the widget:
         // - widgetID
         // - username to add / remove
         // - isLikedNewState = new state, so true -> add user, else delete
-        this.globalFunctionService.printToConsole(this.constructor.name,'updateIsLiked', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateWidgetIsLiked', '@Start');
 
         let foundUser: boolean = false;
 

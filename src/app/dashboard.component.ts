@@ -830,7 +830,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Update DB
         let username: string = this.globalVariableService.canvasUser.getValue().username;
-        this.eazlService.updateIsLiked(
+        this.eazlService.updateWidgetIsLiked(
                 idWidget, 
                 username, 
                 isLikedNewState)
