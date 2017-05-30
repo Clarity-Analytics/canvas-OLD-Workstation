@@ -24,7 +24,7 @@ import { DashboardGroup }             from './model.dashboardGroup';
 import { DataSource }                 from './model.datasource';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
-import { Report } from './model.report';
+import { Report }                     from './model.report';
 import { User }                       from './model.user';
 
 @Component({

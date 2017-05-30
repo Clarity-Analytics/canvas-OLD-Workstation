@@ -296,7 +296,7 @@ export class AppComponent implements OnInit {
                     {
                         label: 'Show Messages', 
                         icon:  'fa-comments',
-                        routerLink: ['startup'],
+                        routerLink: ['messageManager'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
