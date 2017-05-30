@@ -45,6 +45,16 @@
         </p-header>
 
         <p-column 
+            field="messageConversationID" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Convers. ID"
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
             field="messageID" 
             [filter]="true" 
             filterMatchMode="contains" 
@@ -129,6 +139,16 @@
             [filter]="true" 
             filterMatchMode="contains" 
             header="Body"
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="messageSentToMe" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="To me?"
             [sortable]="true"
             [style]="{width: '80px', 
                     'text-align': 'center'}"

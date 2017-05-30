@@ -483,15 +483,18 @@
     responsive="true"
     >
     <p-dataTable [value]="canvasMessages">
+        <p-column field="messageConversationID" header="Convers. ID"></p-column>
         <p-column field="messageID" header="ID"></p-column>
-        <p-column field="messageSenderUserID" header="Name"></p-column>
-        <p-column field="messageSentDateTime" header="Description"></p-column>
-        <p-column field="messageIsSystemGenerated" header="Parameters"></p-column>
+        <p-column field="messageSenderUserID" header="Sender"></p-column>
+        <p-column field="messageSentDateTime" header="Sent on"></p-column>
+        <p-column field="messageIsSystemGenerated" header="System?"></p-column>
         <p-column field="messageDashboardID" header="DS ID"></p-column>
-        <p-column field="messageReportID" header="DS Parameters"></p-column>
-        <p-column field="messageWidgetID" header="Fields"></p-column>
-        <p-column field="messageSubject" header="Fields"></p-column>
-        <p-column field="messageBody" header="Fields"></p-column>
+        <p-column field="messageReportID" header="Report ID"></p-column>
+        <p-column field="messageWidgetID" header="Widget ID"></p-column>
+        <p-column field="messageSubject" header="Subject"></p-column>
+        <p-column field="messageBody" header="Body"></p-column>
+        <p-column field="messageSentToMe" header="To me?"></p-column>
+        
     </p-dataTable>
 </p-dialog>
 

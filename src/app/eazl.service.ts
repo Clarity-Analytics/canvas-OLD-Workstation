@@ -3618,6 +3618,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageWidgetID: -1,
             messageSubject: 'Value looks too low',
             messageBody: 'Please look at value for May, particularly in Bonds',
+            messageSentToMe: false,
             messageRecipients: [
                 {
                     messageRecipientUserID: 'bradleyk',
@@ -3636,7 +3637,8 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageReportID: 1,
             messageWidgetID: -1,
             messageSubject: 'Value looks too low',
-            messageBody: 'Check, all good',
+            messageBody: 'Checked, all good',
+            messageSentToMe: true,
             messageRecipients: [
                 {
                     messageRecipientUserID: 'janniei',
@@ -3656,6 +3658,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageWidgetID: -1,
             messageSubject: 'Value looks too low',
             messageBody: 'Thank you',
+            messageSentToMe: false,
             messageRecipients: [
                 {
                     messageRecipientUserID: 'bradleyk',
@@ -3675,6 +3678,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageWidgetID: 3,
             messageSubject: 'Snacks available @ coffee machine',
             messageBody: 'Enjoy!',
+            messageSentToMe: false,
             messageRecipients: [
                 {
                     messageRecipientUserID: 'jamesv',
@@ -4808,12 +4812,39 @@ console.log('getUsersResti',error)
         this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
 
         // Return the necessary
-        return this.canvasMessages.filter(cm =>
-            (dashboardID == -1  || cm.messageDashboardID == dashboardID)  
-            &&
-            (reportID == -1     || cm.messageReportID == reportID)
-            &&
-            (widgetID == -1     || cm.messageWidgetID == widgetID)
-        )
+        let found: boolean = false;
+        let username: string = ''; 
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            username = this.globalVariableService.canvasUser.getValue().username;
+        }
+        return this.canvasMessages.filter(cm => {
+            if (
+                (dashboardID == -1  || cm.messageDashboardID == dashboardID)  
+                &&
+                (reportID == -1     || cm.messageReportID == reportID)
+                &&
+                (widgetID == -1     || cm.messageWidgetID == widgetID)
+            ) {
+                // messageSentToMe
+                for (var i = 0; i < this.canvasMessages.length; i++) {
+                    found = false;
+
+                    for (var j = 0; j < this.canvasMessages[i].messageRecipients.length; j++) {
+
+                        if (this.canvasMessages[i].messageRecipients[j].messageRecipientUserID == 
+                            username) {
+                                found = true;
+                            }
+                    };
+
+                    if (found) {
+                        this.canvasMessages[i].messageSentToMe = true;
+                    } else {
+                        this.canvasMessages[i].messageSentToMe = false;
+                    }
+                }
+                return cm;
+            }
+        })
     }
 }
