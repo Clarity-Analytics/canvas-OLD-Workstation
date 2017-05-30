@@ -4163,11 +4163,26 @@ export class EazlService implements OnInit {
         return DefaultWidgetConfig;
     }
 
-    getReports(): Report[] {
+    getReports(dashboardID: number = -1): Report[] {
         // Return a list of Reports
+        // - dashboardID Optional parameter to filter on
         this.globalFunctionService.printToConsole(this.constructor.name,'getReports', '@Start');
 
-        return this.reports;
+        if (dashboardID == -1) {
+            return this.reports;
+        }
+
+        // Get the ReportIDs from all the Widgets for the requested Dashboard
+        let widgetReportIDs: number[] = [];
+        for (var i = 0; i < this.widgets.length; i++) {
+            if (this.widgets[i].properties.dashboardID == dashboardID) {
+                    widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
+                }
+        }
+console.log(dashboardID, 'widgetReportIDs', widgetReportIDs)
+        // Return the DataSourceIDs from all the reports
+        return this.reports.filter(rpt => 
+             (widgetReportIDs.indexOf(this.reports[i].reportID) >= 0) )
     }
 
     getReport(reportID: number): Report {
