@@ -95,6 +95,7 @@ import { DashboardComponent }         from './dashboard.component';
 import { DashboardManagerComponent }  from './dashboard.manager.component';
 import { DashboardEditorComponent}    from './dashboard-editor.component';
 import { DashboardTabEditorComponent} from './dashboard-tab-editor.component';
+import { DataSourceComponent }        from './datasource.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { NewMessageComponent }        from './newmessage.component';
@@ -131,6 +132,7 @@ import { routes }                     from './app.routes';
     DashboardManagerComponent,
     DashboardEditorComponent,
     DashboardTabEditorComponent,
+    DataSourceComponent,
     LoginComponent,
     MessageManagerComponent,
     NewMessageComponent,

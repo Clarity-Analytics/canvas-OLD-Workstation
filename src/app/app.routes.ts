@@ -5,6 +5,7 @@ import { Route }                      from  '@angular/router';
 // Ours
 import { DashboardComponent }         from './dashboard.component';
 import { DashboardManagerComponent }  from './dashboard.manager.component';
+import { DataSourceComponent }        from './datasource.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
@@ -35,6 +36,11 @@ export const routes: Route[] = [
   { 
     path: 'dashboardManager',         
     component: DashboardManagerComponent, 
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'dataSource',         
+    component: DataSourceComponent, 
     canActivate: [AuthGuard]
   },
   { 

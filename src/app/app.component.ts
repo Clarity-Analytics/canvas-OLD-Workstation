@@ -356,7 +356,7 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                     {
                         label: 'Data Sources', 
                         icon:  'fa-database',
-                        routerLink: ['startup'],
+                        routerLink: ['dataSource'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
