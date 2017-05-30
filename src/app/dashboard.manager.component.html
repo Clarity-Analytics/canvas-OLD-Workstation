@@ -435,8 +435,6 @@
 </div>
 
 
-
-
 <!--Popup form for Data Source table-->
 <p-dialog 
     [(visible)]="displayDataSource"
@@ -452,3 +450,26 @@
         <p-column field="datasourceDescription" header="Description"></p-column>
     </p-dataTable>
 </p-dialog>
+
+
+<!--Popup form for Reports table-->
+<p-dialog 
+    [(visible)]="displayReports"
+    header="Reports"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+    <p-dataTable [value]="reports">
+        <p-column field="reportID" header="ID"></p-column>
+        <p-column field="reportName" header="Name"></p-column>
+        <p-column field="description" header="Description"></p-column>
+        <p-column field="reportParameters" header="Parameters"></p-column>
+        <p-column field="dataSourceID" header="DS ID"></p-column>
+        <p-column field="dataSourceParameters" header="DS Parameters"></p-column>
+        <p-column field="reportFields" header="Fields"></p-column>
+    </p-dataTable>
+</p-dialog>
+
+    

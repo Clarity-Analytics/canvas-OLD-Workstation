@@ -4179,10 +4179,10 @@ export class EazlService implements OnInit {
                     widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
                 }
         }
-console.log(dashboardID, 'widgetReportIDs', widgetReportIDs)
+
         // Return the DataSourceIDs from all the reports
         return this.reports.filter(rpt => 
-             (widgetReportIDs.indexOf(this.reports[i].reportID) >= 0) )
+             (widgetReportIDs.indexOf(rpt.reportID) >= 0) )
     }
 
     getReport(reportID: number): Report {

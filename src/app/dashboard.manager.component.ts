@@ -23,6 +23,7 @@ import { DashboardGroup }             from './model.dashboardGroup';
 import { DataSource }                 from './model.datasource';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
+import { Report } from './model.report';
 import { User }                       from './model.user';
 
 @Component({
@@ -43,11 +44,13 @@ export class DashboardManagerComponent implements OnInit {
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources
+    reports: Report[];                                          // List of Reports
     deleteMode: boolean = false;                                // True while busy deleting
     displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
     displaySharedWith: boolean = false;                         // True to display popup for Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
     displayDataSource: boolean = false;                         // True to display table for DataSources
+    displayReports: boolean = false;                            // True to display table for Reports
     groups: DashboardGroup[] = [];                              // List of Groups
     popupHeader: string = 'Dashboard Editor';                   // Popup header
     popuMenuItems: MenuItem[];                                  // Items in popup
@@ -365,11 +368,9 @@ export class DashboardManagerComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuReportHistory', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Dashboard Report History', 
-            detail:   dashboard.dashboardName
-        });
+        this.reports = this.eazlService.getReports(dashboard.dashboardID);
+        this.displayReports = true;
+
     }
     
     dashboardMenuResetLike(dashboard: Dashboard) {
