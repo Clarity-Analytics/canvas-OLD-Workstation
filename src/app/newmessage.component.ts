@@ -1,0 +1,133 @@
+// Login form
+import { Component }                  from '@angular/core';
+import { EventEmitter }               from '@angular/core';
+import { FormBuilder }                from '@angular/forms';
+import { FormControl }                from '@angular/forms';
+import { FormGroup }                  from '@angular/forms';
+import { OnInit }                     from '@angular/core';
+import { Output }                     from '@angular/core';
+import { Validators }                 from '@angular/forms';
+ 
+// PrimeNG
+import { Message }                    from 'primeng/primeng';  
+import { SelectItem }                 from 'primeng/primeng';
+
+// Our Services
+import { EazlService }                from './eazl.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
+
+@Component({
+    selector:    'newmessage',
+    templateUrl: 'newmessage.component.html',
+    styleUrls:  ['newmessage.component.html']
+})
+export class NewMessageComponent implements OnInit {
+
+    // Event emitter sends event back to parent component once Submit button was clicked
+    @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
+    
+    // Local properties
+    userform: FormGroup;
+    errorMessageOnForm: string = '';
+    formIsValid: boolean = false;
+    numberErrors: number = 0;
+
+    constructor(
+        private eazlService: EazlService,
+        private fb: FormBuilder,
+        private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
+        ) {}
+    
+    ngOnInit() {
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // FormBuilder
+        this.userform = this.fb.group({
+            
+            // 'messageSentToMe': new FormControl(''),
+            // 'messageMyStatus': new FormControl('')
+            // 'messageConversationID': new FormControl(''),
+            // 'messageID': new FormControl(''),
+            // 'messageSenderUserID': new FormControl('', Validators.required),
+            // 'messageSentDateTime': new FormControl('', Validators.required),
+            // 'messageIsSystemGenerated': new FormControl(''),
+
+            'messageDashboardID': new FormControl(''),
+            'messageReportID': new FormControl(''),
+            'messageWidgetID': new FormControl(''),
+            'messageSubject': new FormControl('', Validators.required),
+            'messageBody': new FormControl('', Validators.required)
+        });
+
+        // Load the startup form defaults
+        this.userform.controls['messageSubject'].setValue('');
+        this.userform.controls['messageBody'].setValue('');
+    }
+
+    onClickCancel() {
+        //   User clicked Cancel
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
+
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'warn',
+            summary:  'Cancel',
+            detail:   'No changes as requested'
+        });
+        
+        this.formNewMessageSubmit.emit('Cancel');
+    }
+
+    onClickSubmit() {
+        // User clicked submit button.
+        // Note: it is assumed that 
+        // - all the fields are tested to be valid and proper in the validation.
+        //   If not, return right after validation.  
+        // - all fields are loaded in widgetToEdit which is shared with the calling routine
+        //   It is assumes is that widgetToEdit is 100% complete and accurate before return
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickSubmit', '@Start');
+
+        // Validation: note that == null tests for undefined as well
+        this.formIsValid = false;
+        this.errorMessageOnForm = '';
+        this.numberErrors = 0;
+
+        // Validation
+        if (this.userform.controls['messageSubject'].value == ''  || 
+            this.userform.controls['messageSubject'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Subject is compulsory.';
+        }
+        if (this.userform.controls['messageBody'].value == ''  || 
+            this.userform.controls['messageBody'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Subject is compulsory.';
+        }
+ 
+        // Oi, something is not right
+        if (this.errorMessageOnForm != '') {
+            this.formIsValid = true;
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'error',
+                summary: 'Error',
+                detail: this.numberErrors.toString() + ' error(s) encountered'
+            });
+            return;
+        }
+        
+        // Send message
+console.log('@end', this.userform.controls['messageSubject'].value, this.userform.controls['messageBody'].value)
+
+        // Trigger event emitter 'emit' method
+        this.formNewMessageSubmit.emit('Submit');
+
+        //  Note: Do NOT set 'this.displayEditWidget = false' here - it has to change in the parent
+        //        componenent to take effect (and thus close Dialogue)
+    }
+
+} 

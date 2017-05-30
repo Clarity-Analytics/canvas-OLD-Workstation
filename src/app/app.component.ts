@@ -36,7 +36,8 @@ export class AppComponent implements OnInit {
     // Local Variables
     growlGlobalMessage: Message = [];
     growlMsgs: Message[] = [];
-    displayNewMessage: boolean = false;
+    displayLoginForm: boolean = false;              // True to display the Login form
+    displayNewMessage: boolean = false;             // True to display new message form
     setFakeVariablesForTesting: boolean = false;    // Jass for me
     isCurrentUserAdmin: boolean = false
     lastSelectedMenuItemLabel: string = '';     
@@ -155,9 +156,9 @@ export class AppComponent implements OnInit {
         // Pops up for new message
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
         
-        // Send dummy
-        // TODO - create space for real message
+        // Show the related popup form
         this.sendNotificationToServer();
+        this.displayNewMessage = true;
     }
 
     menuActionLoginLogout() {
@@ -187,7 +188,7 @@ export class AppComponent implements OnInit {
                     this.menuItems = this.loadMenu();
 
                     // Show the relevant page
-                    this.displayNewMessage = true;        
+                    this.displayLoginForm = true;        
                     this.router.navigate(['pagenotfound']);     
                     
                 }
@@ -196,9 +197,19 @@ export class AppComponent implements OnInit {
 
         if (this.lastSelectedMenuItemLabel == 'Login') {
             // Show the login form
-            this.displayNewMessage = true;        
+            this.displayLoginForm = true;        
         }
     }
+
+    handleCanvasMessageFormSubmit() {
+        // Is triggered after the new Message form is submitted
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCanvasMessageFormSubmit', '@Start');
+
+        // Rip away popup
+        this.displayNewMessage = false;        
+
+    }
+
 
     public handleFormSubmit(submit: boolean): void {
         // Is triggered after the login form is submitted
@@ -222,7 +233,7 @@ export class AppComponent implements OnInit {
         }
 
         // Rip away popup
-        this.displayNewMessage = false;        
+        this.displayLoginForm = false;        
     }
 
     loadMenu(): MenuItem[] {

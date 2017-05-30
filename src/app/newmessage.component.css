@@ -1,0 +1,19 @@
+
+/*Errors*/
+.iserror {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 0;
+    padding: 0;
+}
+
+.panelButtonWithLabel {
+    background-color: white;
+    border: 1px solid darkgray;
+    border-radius: 2px;
+    color: gray;
+    height: 25px;
+    margin: 2px;
+    padding: 1px;
+    width: 85px;
+}

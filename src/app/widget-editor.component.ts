@@ -285,7 +285,6 @@ export class WidgetEditorComponent implements OnInit {
         this.imageSourceOptions = [];
         this.imageSourceOptions.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});
 
-
         // Load the startup form info
         this.setStartupFormValues();
 

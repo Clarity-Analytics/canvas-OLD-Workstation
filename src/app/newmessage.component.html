@@ -1,0 +1,62 @@
+<!--Errors-->
+<p 
+    class="iserror" 
+    *ngIf="formIsValid"> 
+    {{ errorMessageOnForm }}
+</p>
+
+<!--Form for New Message-->
+<form 
+    [formGroup]="userform" 
+    >
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">
+            Subject :
+        </div>
+        <div class="ui-grid-col-8">
+            <input pInputText 
+                    type="text" 
+                    formControlName="messageSubject" 
+                    placeholder="Required"
+                    >
+        </div>
+    </div>
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-4">
+            Body :
+        </div>
+        <div class="ui-grid-col-8">
+            <input pInputText 
+                    type="text" 
+                    formControlName="messageBody" 
+                    placeholder="Required"
+                    >
+        </div>
+    </div>
+
+    <!--Buttun Area contains Cancel / Submit-->
+    <div
+        class="panelButtonArea"
+        > 
+        <button 
+            class="panelButtonWithLabel"
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickCancel()"
+            >
+        </button>
+        <button 
+            class="panelButtonWithLabel"
+            pButton 
+            type="submit" 
+            label="Submit" 
+            icon="fa-refresh"
+            (click)="onClickSubmit()"
+            >
+        </button>
+    </div>
+
+
+</form> 

@@ -21,12 +21,35 @@
 <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
 
 <p-dialog header="Login" 
+    [(visible)]="displayLoginForm" 
+    modal="modal" 
+    width="450" 
+    responsive="true"
+    >
+
+    <login 
+        (formSubmit)="handleFormSubmit($event)" 
+        >
+        Loading Login form ...
+    </login>
+
+</p-dialog>
+
+
+
+
+<p-dialog header="New Message" 
     [(visible)]="displayNewMessage" 
     modal="modal" 
     width="450" 
     responsive="true"
     >
 
-    <login (formSubmit)="handleFormSubmit($event)" ></login>
+    <newmessage 
+        (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)" 
+        >
+        Loading New Message form ...
+    </newmessage>
 
 </p-dialog>
+
