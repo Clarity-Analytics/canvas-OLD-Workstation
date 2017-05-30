@@ -13,6 +13,7 @@ export class CanvasMessage {
     messageSubject: string;                         // Message Subject
     messageBody: string;                            // Message Body text
     messageSentToMe: boolean;                       // True if this msg was sent to me, calced at Runtime
+    messageMyStatus: string;                        // Read, UnRead by me, calced at Runtime
     messageRecipients: [                            // Aray of users to whom msg were sent
         {
             messageRecipientUserID: string;         // UserID to whom msg was sent (groups are collapsed)

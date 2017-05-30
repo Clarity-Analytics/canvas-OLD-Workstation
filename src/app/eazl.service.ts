@@ -3619,6 +3619,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageSubject: 'Value looks too low',
             messageBody: 'Please look at value for May, particularly in Bonds',
             messageSentToMe: false,
+            messageMyStatus: 'UnRead',
             messageRecipients: [
                 {
                     messageRecipientUserID: 'bradleyk',
@@ -3639,6 +3640,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageSubject: 'Value looks too low',
             messageBody: 'Checked, all good',
             messageSentToMe: true,
+            messageMyStatus: 'Read',
             messageRecipients: [
                 {
                     messageRecipientUserID: 'janniei',
@@ -3659,6 +3661,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageSubject: 'Value looks too low',
             messageBody: 'Thank you',
             messageSentToMe: false,
+            messageMyStatus: 'UnRead',
             messageRecipients: [
                 {
                     messageRecipientUserID: 'bradleyk',
@@ -3679,6 +3682,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageSubject: 'Snacks available @ coffee machine',
             messageBody: 'Enjoy!',
             messageSentToMe: false,
+            messageMyStatus: 'UnRead',
             messageRecipients: [
                 {
                     messageRecipientUserID: 'jamesv',
@@ -4813,6 +4817,7 @@ console.log('getUsersResti',error)
 
         // Return the necessary
         let found: boolean = false;
+        let myStatus: string = '';
         let username: string = ''; 
         if (this.globalVariableService.canvasUser.getValue() != null) {
             username = this.globalVariableService.canvasUser.getValue().username;
@@ -4825,23 +4830,28 @@ console.log('getUsersResti',error)
                 &&
                 (widgetID == -1     || cm.messageWidgetID == widgetID)
             ) {
-                // messageSentToMe
+                // Determine calced fields: messageSentToMe, messageMyStatus, etc
                 for (var i = 0; i < this.canvasMessages.length; i++) {
                     found = false;
+                    myStatus= '';
 
                     for (var j = 0; j < this.canvasMessages[i].messageRecipients.length; j++) {
 
                         if (this.canvasMessages[i].messageRecipients[j].messageRecipientUserID == 
                             username) {
                                 found = true;
+                                myStatus = this.canvasMessages[i].messageRecipients[j].
+                                    messageRecipientStatus;
                             }
                     };
 
+                    this.canvasMessages[i].messageMyStatus = myStatus
                     if (found) {
                         this.canvasMessages[i].messageSentToMe = true;
                     } else {
                         this.canvasMessages[i].messageSentToMe = false;
                     }
+
                 }
                 return cm;
             }

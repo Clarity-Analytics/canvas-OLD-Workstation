@@ -154,6 +154,16 @@
                     'text-align': 'center'}"
             >
         </p-column>
+        <p-column 
+            field="messageMyStatus" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="My Status"
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>        
     </p-dataTable>
 </div>
 
