@@ -16,8 +16,7 @@ export class CanvasMessage {
         {
             messageRecipientUserID: string;         // UserID to whom msg was sent (groups are collapsed)
             messageRecipientStatus: string;         // UnRead, Read - maybe more later
+            messageReadDateTime: string;            // DateTime when msg was Read
         }
-    ]
-    messageUpdatedDateTime: string;                 // Updated on
-    messageUpdatedUserID: string;                   // Updated by
+    ];
 }

@@ -21,6 +21,7 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DataSource }                 from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
+import { CanvasMessage }              from './model.canvasMessage';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { User }                       from './model.user';
@@ -3604,6 +3605,97 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
         }
     ]
 
+export const CANVASMESSAGES: CanvasMessage[] = 
+    [
+        {
+            messageConversationID: 0,
+            messageID: 0,
+            messageSenderUserID: 'janniei',
+            messageSentDateTime: '2017/05/01 09:10',
+            messageIsSystemGenerated: false,
+            messageDashboardID: 0,
+            messageReportID: 1,
+            messageWidgetID: -1,
+            messageSubject: 'Value looks too low',
+            messageBody: 'Please look at value for May, particularly in Bonds',
+            messageRecipients: [
+                {
+                    messageRecipientUserID: 'bradleyk',
+                    messageRecipientStatus: 'Read',
+                    messageReadDateTime: '2017/05/01 09:11',
+                }
+            ]
+        },
+        {
+            messageConversationID: 0,
+            messageID: 1,
+            messageSenderUserID: 'bradleyk',
+            messageSentDateTime: '2017/05/01 10:17',
+            messageIsSystemGenerated: false,
+            messageDashboardID: 0,
+            messageReportID: 1,
+            messageWidgetID: -1,
+            messageSubject: 'Value looks too low',
+            messageBody: 'Check, all good',
+            messageRecipients: [
+                {
+                    messageRecipientUserID: 'janniei',
+                    messageRecipientStatus: 'Read',
+                    messageReadDateTime: '2017/05/01 11:50',
+                }
+            ]
+        },
+        {
+            messageConversationID: 0,
+            messageID: 2,
+            messageSenderUserID: 'janniei',
+            messageSentDateTime: '2017/05/01 11:51',
+            messageIsSystemGenerated: false,
+            messageDashboardID: 0,
+            messageReportID: 1,
+            messageWidgetID: -1,
+            messageSubject: 'Value looks too low',
+            messageBody: 'Thank you',
+            messageRecipients: [
+                {
+                    messageRecipientUserID: 'bradleyk',
+                    messageRecipientStatus: 'UnRead',
+                    messageReadDateTime: '',
+                }
+            ]
+        },
+        {
+            messageConversationID: 1,
+            messageID: 3,
+            messageSenderUserID: 'janniei',
+            messageSentDateTime: '2017/05/02 13:47',
+            messageIsSystemGenerated: false,
+            messageDashboardID: -1,
+            messageReportID: -1,
+            messageWidgetID: -1,
+            messageSubject: 'Snacks available @ coffee machine',
+            messageBody: 'Enjoy!',
+            messageRecipients: [
+                {
+                    messageRecipientUserID: 'jamesv',
+                    messageRecipientStatus: 'UnRead',
+                    messageReadDateTime: '',
+                },
+                {
+                    messageRecipientUserID: 'bradleyk',
+                    messageRecipientStatus: 'Read',
+                    messageReadDateTime: '2017/05/02 14:23',
+                },
+                {
+                    messageRecipientUserID: 'veronicas',
+                    messageRecipientStatus: 'UnRead',
+                    messageReadDateTime: '',
+                }
+            ]
+        }
+    ]
+
+
 @Injectable()
 export class EazlService implements OnInit {
     httpBaseUri: string;                                    // url for the RESTi
@@ -3612,6 +3704,7 @@ export class EazlService implements OnInit {
     route: string = 'users';                                // Route to RESTi - users/authen...
 
     // Local Arrays to keep data for the rest of the Application
+    canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages 
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
@@ -4707,4 +4800,20 @@ console.log('getUsersResti',error)
         }
     }
 
+    getCanvasMessages(dashboardID: number = -1, reportID: number = -1, widgetID: number = -1) {
+        // Returns CanvasMessages
+        // - dashboardID Optional filter, -1 = all
+        // - reportID Optional filter, -1 = all
+        // - widgetID Optional filter, -1 = all
+        this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
+
+        // Return the necessary
+        return this.canvasMessages.filter(cm =>
+            (dashboardID == -1  || cm.messageDashboardID == dashboardID)  
+            &&
+            (reportID == -1     || cm.messageReportID == reportID)
+            &&
+            (widgetID == -1     || cm.messageWidgetID == widgetID)
+        )
+    }
 }
