@@ -1,6 +1,7 @@
 <!--Errors-->
 <p 
     class="iserror" 
+    style="color:#D8000C;"
     *ngIf="formIsValid"> 
     {{ errorMessageOnForm }}
 </p>
@@ -9,6 +10,12 @@
 <form 
     [formGroup]="userform" 
     >
+    <div 
+        class="ui-grid-row"
+        style="margin-bottom: 8px;"
+        >
+        Nr of UnRead messages: {{ nrUnReadMessagesForMe }}
+    </div>
     <div class="ui-grid-row">
         <div class="ui-grid-col-4">
             Subject :

@@ -34,20 +34,21 @@ import { Notification }               from './model.notification';
 export class AppComponent implements OnInit {
 
     // Local Variables
-    growlGlobalMessage: Message = [];
-    growlMsgs: Message[] = [];
+    availableUsers: string[] = [];                  // List of UserIDs available to share with
     displayLoginForm: boolean = false;              // True to display the Login form
     displayNewMessage: boolean = false;             // True to display new message form
-    setFakeVariablesForTesting: boolean = false;    // Jass for me
-    isCurrentUserAdmin: boolean = false
-    lastSelectedMenuItemLabel: string = '';     
+    growlGlobalMessage: Message = [];               // Msg
+    growlMsgs: Message[] = [];                      // Msg
+    isCurrentUserAdmin: boolean = false             // True if current user is Admin
+    lastSelectedMenuItemLabel: string = '';         // Last selected Menu item
     loginLabel: string = '';                        // Label on login menu
     menuItems: MenuItem[];                          // Array of menu items
+    nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     routerLink:string = '';                         // RouterLink in Menu.Command
-    availableUsers: string[] = [];              // List of UserIDs available to share with
-    sendToTheseUsers: string[] = [];            // List of UserIDs to whom message is sent
+    setFakeVariablesForTesting: boolean = false;    // Jass for me
+    sendToTheseUsers: string[] = [];                // List of UserIDs to whom message is sent
 
-    private notificationFromServer: Notification;
+    private notificationFromServer: Notification;   // Websocket msg
 
     // Define Variables - define here if a global variable is used in html.
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
@@ -170,6 +171,10 @@ export class AppComponent implements OnInit {
             })
             .catch(error => console.log (error) )
 
+        // Count Nr of unread messages for me
+        this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
+            cm => (cm.messageSentToMe == true  &&  cm.messageMyStatus == 'UnRead')).length;
+console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')        
         // Show the related popup form
         this.displayNewMessage = true;
     }
@@ -219,7 +224,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCanvasMessageFormSubmit', '@Start');
 
         // TODO - proper websocket message
-console.log(event)
         // Send the message
         if (event == 'Submit') {
             this.sendNotificationToServer();
@@ -227,7 +231,6 @@ console.log(event)
         
         // Rip away popup
         this.displayNewMessage = false;        
-
     }
 
 
