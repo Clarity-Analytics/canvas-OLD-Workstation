@@ -120,7 +120,7 @@ export class DashboardManagerComponent implements OnInit {
             {
                 label: 'Like', 
                 icon: 'fa-heart', 
-                command: (event) => this.dashboardMenuResetLike(this.selectedDashboard)
+                command: (event) => this.dashboardMenuToggleLike(this.selectedDashboard)
             },
             {
                 label: 'Lock', 
@@ -373,15 +373,15 @@ export class DashboardManagerComponent implements OnInit {
 
     }
     
-    dashboardMenuResetLike(dashboard: Dashboard) {
+    dashboardMenuToggleLike(dashboard: Dashboard) {
         // Click Like popup menu option: toggle liked/not for current user on this Dashboard
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuResetLike', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuToggleLike', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Toggle Dashboard liked/not', 
-            detail:   dashboard.dashboardName
-        });
+        this.eazlService.updateDashboardIsLiked(
+            dashboard.dashboardID, 
+            this.canvasUser.username,
+            !dashboard.dashboardIsLiked
+        );
     }
 
     dashboardMenuResetLock(dashboard: Dashboard) {

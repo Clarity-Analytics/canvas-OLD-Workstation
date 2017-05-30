@@ -4304,7 +4304,7 @@ export class EazlService implements OnInit {
         // Add
         if (isLikedNewState) {
             for (var i = 0; i < this.widgets.length; i++) {
-                if (this.widgets[i].properties.widgetID = widgetID) {
+                if (this.widgets[i].properties.widgetID == widgetID) {
                     this.widgets[i].properties.widgetIsLiked = isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
                         if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID ==
@@ -4323,7 +4323,7 @@ export class EazlService implements OnInit {
         } else  {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].properties.widgetID = widgetID) {
-                    this.widgets[i].properties.widgetIsLiked = isLikedNewState;
+                    this.widgets[i].properties.widgetIsLiked == isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
                         if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID ==
                             username) {
@@ -4664,8 +4664,6 @@ console.log('getUsersResti',error)
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
 
-
-
     updateDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
         // Adds / Removes a user from the Dashboard:
         // - dashboardID
@@ -4678,7 +4676,8 @@ console.log('getUsersResti',error)
         // Add
         if (isLikedNewState) {
             for (var i = 0; i < this.dashboards.length; i++) {
-                if (this.dashboards[i].dashboardID = dashboardID) {
+                if (this.dashboards[i].dashboardID == dashboardID) {
+
                     this.dashboards[i].dashboardIsLiked = isLikedNewState;
                     for (var j = 0; j < this.dashboards[i].dashboardLiked.length; j++) {
                         if (this.dashboards[i].dashboardLiked[j].dashboardLikedUserID == 
@@ -4696,7 +4695,8 @@ console.log('getUsersResti',error)
             }
         } else  {
             for (var i = 0; i < this.dashboards.length; i++) {
-                if (this.dashboards[i].dashboardID = dashboardID) {
+                if (this.dashboards[i].dashboardID == dashboardID) {
+
                     this.dashboards[i].dashboardIsLiked = isLikedNewState;
                     for (var j = 0; j < this.dashboards[i].dashboardLiked.length; j++) {
                         if (this.dashboards[i].dashboardLiked[j].dashboardLikedUserID == 
