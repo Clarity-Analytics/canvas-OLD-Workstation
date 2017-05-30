@@ -113,7 +113,7 @@ export class DashboardManagerComponent implements OnInit {
                 command: (event) => this.dashboardMenuMessageHistory(this.selectedDashboard)
             },
             {
-                label: 'Report History', 
+                label: 'Related Reports', 
                 icon: 'fa-table', 
                 command: (event) => this.dashboardMenuReportHistory(this.selectedDashboard)
             },
