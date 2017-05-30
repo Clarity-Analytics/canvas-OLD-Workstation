@@ -388,11 +388,11 @@ export class DashboardManagerComponent implements OnInit {
         // Click Lock popup menu option: toggle the lock for this user on this Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuResetLock', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Toggle Dashboard locked/not', 
-            detail:   dashboard.dashboardName
-        });
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboard.dashboardID) {
+                this.dashboards[i].dashboardIsLocked = !this.dashboards[i].dashboardIsLocked;
+            }
+        }
     }
 
     handleFormDashboardSubmit(returnCode: string) {
