@@ -4,6 +4,7 @@ import { EventEmitter }               from '@angular/core';
 import { FormBuilder }                from '@angular/forms';
 import { FormControl }                from '@angular/forms';
 import { FormGroup }                  from '@angular/forms';
+import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
@@ -25,13 +26,15 @@ import { GlobalVariableService }      from './global-variable.service';
 export class NewMessageComponent implements OnInit {
 
     // Event emitter sends event back to parent component once Submit button was clicked
+    @Input() availableUsers: string[];          // List of UserIDs available to share with
+    @Input() sendToTheseUsers: string[];        // List of UserIDs to whom message is sent
     @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
     
     // Local properties
-    userform: FormGroup;
-    errorMessageOnForm: string = '';
-    formIsValid: boolean = false;
-    numberErrors: number = 0;
+    errorMessageOnForm: string = '';            // Accum error message             
+    formIsValid: boolean = false;               // True form passed validation
+    numberErrors: number = 0;                   // Number of errors during validation
+    userform: FormGroup;                        // Form Group object
 
     constructor(
         private eazlService: EazlService,
@@ -60,12 +63,33 @@ export class NewMessageComponent implements OnInit {
             'messageSubject': new FormControl('', Validators.required),
             'messageBody': new FormControl('', Validators.required)
         });
+      
 
         // Load the startup form defaults
         this.userform.controls['messageSubject'].setValue('');
         this.userform.controls['messageBody'].setValue('');
     }
 
+    onMoveToTargetDashboardSendTo(event) {
+        //   Add to list of Senders
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onMoveToTargetDashboardSendTo', '@Start');
+
+        for (var i = 0; i < event.items.length; i++) {
+            this.availableUsers = this.availableUsers.filter( au =>
+                au != event.items[i]) 
+            
+            if (this.sendToTheseUsers.indexOf(event.items[i]) < 0) {
+                this.sendToTheseUsers.push(event.items[i]);
+            }
+        }
+console.log(this.availableUsers, this.sendToTheseUsers)        
+    }
+
+    onMoveToSourceDashboardSendTo() {
+        //   Remove from list of Senders
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onMoveToSourceDashboardSendTo', '@Start');
+        
+    }
     onClickCancel() {
         //   User clicked Cancel
         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
@@ -73,7 +97,7 @@ export class NewMessageComponent implements OnInit {
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
             summary:  'Cancel',
-            detail:   'No changes as requested'
+            detail:   'No message sent as requested'
         });
         
         this.formNewMessageSubmit.emit('Cancel');
@@ -99,16 +123,23 @@ export class NewMessageComponent implements OnInit {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Subject is compulsory.';
+                    'The Message Subject is compulsory.';
         }
         if (this.userform.controls['messageBody'].value == ''  || 
             this.userform.controls['messageBody'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                    'The Subject is compulsory.';
+                    'The Message Body is compulsory.';
         }
- 
+
+        if (this.sendToTheseUsers.length == 0) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'Add at least one recipient';
+        }
+
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
             this.formIsValid = true;
@@ -119,9 +150,6 @@ export class NewMessageComponent implements OnInit {
             });
             return;
         }
-        
-        // Send message
-console.log('@end', this.userform.controls['messageSubject'].value, this.userform.controls['messageBody'].value)
 
         // Trigger event emitter 'emit' method
         this.formNewMessageSubmit.emit('Submit');

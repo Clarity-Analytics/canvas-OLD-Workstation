@@ -34,6 +34,30 @@
         </div>
     </div>
 
+    <div
+        style="margin-top:20px;"
+        >
+        <p-pickList 
+            [source]="availableUsers" 
+            [target]="sendToTheseUsers"
+            sourceHeader="Available Users"
+            targetHeader="Send to these Users"
+            (onMoveToTarget)="onMoveToTargetDashboardSendTo($event)"
+            (onMoveToSource)="onMoveToSourceDashboardSendTo($event)"
+            >
+            <template let-grp pTemplate="item">
+                <div class="ui-helper-clearfix">
+                    <div 
+                        style="font-size:14px;float:left;margin:15px 5px 0 0"
+                        >
+                        {{ grp }}
+                    </div>
+                </div>
+            </template>
+        </p-pickList>
+
+    </div>
+
     <!--Buttun Area contains Cancel / Submit-->
     <div
         class="panelButtonArea"

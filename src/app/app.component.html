@@ -41,11 +41,13 @@
 <p-dialog header="New Message" 
     [(visible)]="displayNewMessage" 
     modal="modal" 
-    width="450" 
+    width="610" 
     responsive="true"
     >
 
     <newmessage 
+        [availableUsers]="availableUsers"
+        [sendToTheseUsers]="sendToTheseUsers"
         (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)" 
         >
         Loading New Message form ...

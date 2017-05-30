@@ -17,3 +17,10 @@
     padding: 1px;
     width: 85px;
 }
+
+.iserror {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 0;
+    padding: 0;
+}

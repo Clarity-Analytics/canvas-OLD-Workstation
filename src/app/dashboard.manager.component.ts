@@ -38,15 +38,15 @@ export class DashboardManagerComponent implements OnInit {
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
     availableDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard does NOT belongs to
-    belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to   
     availableSharedWith: string[] = [];                         // List of UserIDs available to share with
+    belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to   
     belongstoSharedWith: string[] = [];                         // List of UserID with whom this Dashboard has been shared
+    canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
+    dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group   
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources
-    reports: Report[];                                          // List of Reports
-    canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     deleteMode: boolean = false;                                // True while busy deleting
     displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
     displaySharedWith: boolean = false;                         // True to display popup for Shared With (Dashboards)
@@ -57,8 +57,8 @@ export class DashboardManagerComponent implements OnInit {
     groups: DashboardGroup[] = [];                              // List of Groups
     popupHeader: string = 'Dashboard Editor';                   // Popup header
     popuMenuItems: MenuItem[];                                  // Items in popup
+    reports: Report[];                                          // List of Reports
     selectedDashboard: Dashboard;                               // Dashboard that was clicked on
-    dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group   
 
     constructor(
         private confirmationService: ConfirmationService,

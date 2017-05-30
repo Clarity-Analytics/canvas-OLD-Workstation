@@ -44,6 +44,8 @@ export class AppComponent implements OnInit {
     loginLabel: string = '';                        // Label on login menu
     menuItems: MenuItem[];                          // Array of menu items
     routerLink:string = '';                         // RouterLink in Menu.Command
+    availableUsers: string[] = [];              // List of UserIDs available to share with
+    sendToTheseUsers: string[] = [];            // List of UserIDs to whom message is sent
 
     private notificationFromServer: Notification;
 
@@ -155,9 +157,20 @@ export class AppComponent implements OnInit {
     menuActionNewMessage() {
         // Pops up for new message
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
-        
+
+        // Get the current and available user shared with
+        this.availableUsers = [];
+        this.sendToTheseUsers = [];
+
+        this.eazlService.getUsers()
+            .then(usr => {
+                usr.forEach(sglusr => {
+                    this.availableUsers.push(sglusr.userName)
+                })
+            })
+            .catch(error => console.log (error) )
+
         // Show the related popup form
-        this.sendNotificationToServer();
         this.displayNewMessage = true;
     }
 
@@ -201,10 +214,17 @@ export class AppComponent implements OnInit {
         }
     }
 
-    handleCanvasMessageFormSubmit() {
+    handleCanvasMessageFormSubmit(event) {
         // Is triggered after the new Message form is submitted
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCanvasMessageFormSubmit', '@Start');
 
+        // TODO - proper websocket message
+console.log(event)
+        // Send the message
+        if (event == 'Submit') {
+            this.sendNotificationToServer();
+        }
+        
         // Rip away popup
         this.displayNewMessage = false;        
 
