@@ -64,16 +64,24 @@ export class MessageManagerComponent implements OnInit {
         // Toggle the message between Read and UnRead
         // - canvasMessage: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
+
+        this.eazlService.canvasMessageToggleRead(this.selectedCanvasMessage.messageDashboardID);
+        
+        // Fix up, if for me
+        if (this.selectedCanvasMessage.messageSentToMe) {
+            if (this.selectedCanvasMessage.messageMyStatus == 'Read') {
+                this.selectedCanvasMessage.messageMyStatus = 'UnRead';
+            } else {
+                this.selectedCanvasMessage.messageMyStatus = 'Read';
+            }
+        }
     }
 
     onClickMessageTable() {
-        // User clicked on a row
+        // User clicked on a row - toggle Read / UnRead status for me
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickMessageTable', '@Start');
 
-        this.eazlService.updateDashboardIsLiked(
-            this.selectedCanvasMessage.messageDashboardID,
-            this.selectedCanvasMessage.messageMyStatus)
-
+        // Left for later ...
     }
 
 }
