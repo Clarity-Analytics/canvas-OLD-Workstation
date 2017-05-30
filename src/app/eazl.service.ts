@@ -3671,8 +3671,8 @@ export const CANVASMESSAGES: CanvasMessage[] =
             messageSentDateTime: '2017/05/02 13:47',
             messageIsSystemGenerated: false,
             messageDashboardID: -1,
-            messageReportID: -1,
-            messageWidgetID: -1,
+            messageReportID: 2,
+            messageWidgetID: 3,
             messageSubject: 'Snacks available @ coffee machine',
             messageBody: 'Enjoy!',
             messageRecipients: [

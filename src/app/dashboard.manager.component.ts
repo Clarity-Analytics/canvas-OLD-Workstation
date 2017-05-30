@@ -17,6 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { CanvasDate }                 from './date.services';
+import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardGroup }             from './model.dashboardGroup';
@@ -45,12 +46,14 @@ export class DashboardManagerComponent implements OnInit {
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources
     reports: Report[];                                          // List of Reports
+    canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     deleteMode: boolean = false;                                // True while busy deleting
     displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
     displaySharedWith: boolean = false;                         // True to display popup for Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
     displayDataSource: boolean = false;                         // True to display table for DataSources
     displayReports: boolean = false;                            // True to display table for Reports
+    displayMessages: boolean = false;                           // True to display table for Messages
     groups: DashboardGroup[] = [];                              // List of Groups
     popupHeader: string = 'Dashboard Editor';                   // Popup header
     popuMenuItems: MenuItem[];                                  // Items in popup
@@ -356,11 +359,8 @@ export class DashboardManagerComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuMessageHistory', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Dashboard Message History', 
-            detail:   dashboard.dashboardName
-        });
+        this.canvasMessages = this.eazlService.getCanvasMessages(dashboard.dashboardID,-1,-1);
+        this.displayMessages = true;
     }
 
     dashboardMenuReportHistory(dashboard: Dashboard) {
