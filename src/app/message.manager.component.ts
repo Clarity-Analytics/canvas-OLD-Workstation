@@ -70,6 +70,9 @@ export class MessageManagerComponent implements OnInit {
         // User clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickMessageTable', '@Start');
 
+        this.eazlService.updateDashboardIsLiked(
+            this.selectedCanvasMessage.messageDashboardID,
+            this.selectedCanvasMessage.messageMyStatus)
 
     }
 

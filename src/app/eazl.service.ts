@@ -4857,4 +4857,35 @@ console.log('getUsersResti',error)
             }
         })
     }
+
+    canvasMessageToggleRead(messageID: number) {
+        // Updates the status of the CanvasMessage for the current user
+        // - messageID message to update
+        this.globalFunctionService.printToConsole(this.constructor.name,'canvasMessageToggleRead', '@Start');
+
+        // Return the necessary
+        let username: string = ''; 
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            username = this.globalVariableService.canvasUser.getValue().username;
+        }
+        for (var i = 0; i < this.canvasMessages.length; i++) {
+            if (this.canvasMessages[i].messageID == messageID) {
+                for (var j = 0; j < this.canvasMessages[i].messageRecipients.length; j++) {
+                    if (this.canvasMessages[i].messageRecipients[j].messageRecipientUserID == 
+                            username) {
+                                if (this.canvasMessages[i].messageRecipients[j].
+                                    messageRecipientStatus == 'Read') {
+                                        this.canvasMessages[i].messageRecipients[j].
+                                            messageRecipientStatus = 'UnRead';
+                                }
+                                else {
+                                    this.canvasMessages[i].messageRecipients[j].
+                                        messageRecipientStatus = 'Read';
+                                }
+                    }
+                }
+            }
+        }
+    }
+
 }
