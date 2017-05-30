@@ -365,7 +365,7 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                     {
                         label: 'Reports', 
                         icon:  'fa-list-alt',
-                        routerLink: ['startup'],
+                        routerLink: ['report'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;

@@ -9,6 +9,7 @@ import { DataSourceComponent }        from './datasource.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
+import { ReportComponent }            from './report.component';
 import { UserComponent}               from './user.component';
 
 export const routes: Route[] = [
@@ -41,6 +42,11 @@ export const routes: Route[] = [
   { 
     path: 'dataSource',         
     component: DataSourceComponent, 
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'report',         
+    component: ReportComponent, 
     canActivate: [AuthGuard]
   },
   { 
