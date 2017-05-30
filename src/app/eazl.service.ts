@@ -4307,9 +4307,10 @@ export class EazlService implements OnInit {
                 if (this.widgets[i].properties.widgetID = widgetID) {
                     this.widgets[i].properties.widgetIsLiked = isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
-                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID = username) {
-                            foundUser = true;
-                        }
+                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID ==
+                            username) { 
+                                 foundUser = true;
+                            }
                     }
                     if (!foundUser) {
                         this.widgets[i].properties.widgetLiked.push(
@@ -4324,9 +4325,10 @@ export class EazlService implements OnInit {
                 if (this.widgets[i].properties.widgetID = widgetID) {
                     this.widgets[i].properties.widgetIsLiked = isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
-                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID = username) {
-                            this.widgets[i].properties.widgetLiked.splice(j);
-                        }
+                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID ==
+                            username) {
+                                this.widgets[i].properties.widgetLiked.splice(j);
+                            }
                     }
                 }
             }
@@ -4660,6 +4662,51 @@ console.log('getUsersResti',error)
 
         // Return those Datasources
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
+    }
+
+
+
+    updateDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
+        // Adds / Removes a user from the Dashboard:
+        // - dashboardID
+        // - username to add / remove
+        // - isLikedNewState = new state, so true -> add user, else delete
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardIsLiked', '@Start');
+
+        let foundUser: boolean = false;
+
+        // Add
+        if (isLikedNewState) {
+            for (var i = 0; i < this.dashboards.length; i++) {
+                if (this.dashboards[i].dashboardID = dashboardID) {
+                    this.dashboards[i].dashboardIsLiked = isLikedNewState;
+                    for (var j = 0; j < this.dashboards[i].dashboardLiked.length; j++) {
+                        if (this.dashboards[i].dashboardLiked[j].dashboardLikedUserID == 
+                            username) {
+                                foundUser = true;
+                            }
+                    }
+                    if (!foundUser) {
+                        this.dashboards[i].dashboardLiked.push(
+                            {
+                                dashboardLikedUserID: username
+                            });
+                    }
+                }
+            }
+        } else  {
+            for (var i = 0; i < this.dashboards.length; i++) {
+                if (this.dashboards[i].dashboardID = dashboardID) {
+                    this.dashboards[i].dashboardIsLiked = isLikedNewState;
+                    for (var j = 0; j < this.dashboards[i].dashboardLiked.length; j++) {
+                        if (this.dashboards[i].dashboardLiked[j].dashboardLikedUserID == 
+                            username) {
+                                this.dashboards[i].dashboardLiked.splice(j);
+                            }
+                    }
+                }
+            }
+        }
     }
 
 }
