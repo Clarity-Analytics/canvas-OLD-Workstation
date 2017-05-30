@@ -294,15 +294,6 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                 disabled: !isLoggedIn,
                 items: [
                     {
-                        label: 'Dashboard Manager', 
-                        icon:  'fa-th',
-                        routerLink: ['dashboardManager'],
-                        disabled: false,
-                        command: (event) => {
-                            this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
-                    },
-                    {
                         label: 'Dashboard Editor', 
                         icon:  'fa-table',
                         routerLink: ['dashboard'],
@@ -383,7 +374,7 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                     {
                         label: 'Dashboards',
                         icon:  'fa-dashboard', 
-                        routerLink: ['startup'],
+                        routerLink: ['dashboardManager'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
