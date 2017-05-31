@@ -254,6 +254,8 @@ export class UserPopupComponent implements OnInit {
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Email Address is compulsory.'
         }
+
+        // Error(s) encountered
         if (this.errorMessageOnForm != '') {
             this.formIsValid = true;
             this.globalVariableService.growlGlobalMessage.next({

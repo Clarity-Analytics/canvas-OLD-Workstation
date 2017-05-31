@@ -28,6 +28,7 @@ import { Group }                      from './model.group';
     templateUrl: 'group-popup.component.html',
     styleUrls:  ['group-popup.component.css']
 })
+
 export class GroupPopupComponent implements OnInit {
 
     // Variables received from the parent HTML tag
@@ -165,7 +166,7 @@ export class GroupPopupComponent implements OnInit {
     onSubmit() {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name, 'onSubmit', '@Start');
-
+console.log('sub',this.groupForm.controls['groupName'],this.groupForm.controls['groupDescription'])
         // Validation: note that == null tests for undefined as well
         this.formIsValid = false;
         this.errorMessageOnForm = '';
@@ -181,6 +182,17 @@ export class GroupPopupComponent implements OnInit {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Group Description is compulsory.'
+        }
+
+        // Error(s) encountered
+        if (this.errorMessageOnForm != '') {
+            this.formIsValid = true;
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'error',
+                summary: 'Error',
+                detail: this.numberErrors.toString() + ' error(s) encountered'
+            });
+            return;
         }
  
         // Adding new user
