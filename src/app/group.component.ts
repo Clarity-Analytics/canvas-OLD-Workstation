@@ -239,7 +239,7 @@ export class GroupComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addGroupDatasourceAccess(
-                event.items[i].userName,
+                event.items[i].datasourceID,
                 this.selectedGroup.groupID 
             );
         }
@@ -252,7 +252,7 @@ export class GroupComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteGroupDatasourceAccess(
-                event.items[i].userName,
+                event.items[i].datasourceID,
                 this.selectedGroup.groupID
             );
         }
@@ -266,7 +266,7 @@ export class GroupComponent implements OnInit {
   }
 }
 
-// Notes for newbees:
+// Notes for PrimeNG p-table newbees:
 //  Filtering is enabled by setting the filter property as true in column object. 
 //  Default match mode is "startsWith" and this can be configured
 //  using filterMatchMode property of column object that also accepts "contains", "endsWith", 
