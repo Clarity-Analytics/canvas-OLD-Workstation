@@ -4538,6 +4538,18 @@ console.log('getUsersResti',error)
         };
     }
 
+    deleteGroup(groupID: number) {
+        // Delete a given Group
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroup', '@Start');
+
+        // Delete the data
+        for (var i = 0; i < this.groups.length; i++) {
+            if (this.groups[i].groupID == groupID) {
+                this.groups.splice(i,1);
+            }
+        };
+    }
+
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
         // Return a list of Groups to which a user belongs
         // - username Optional parameter to select ONE, else select ALL (if >= 0)

@@ -27,13 +27,13 @@ import { UserGroupMembership }        from './model.userGroupMembership';
     styleUrls:  ['group.component.css'],
     encapsulation: ViewEncapsulation.None
 })
+
 export class GroupComponent implements OnInit {
     
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
     availableUserGroupMembership: User[] = [];          // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: User[] = [];          // List of Groups user already belongs to   
-    deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayGroupPopup: boolean = false;                 // True to display single User
     groups: Group[] = [];                               // List of Groups
@@ -127,26 +127,14 @@ export class GroupComponent implements OnInit {
         // Delete the selected group, but first confirm
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuDelete', '@Start');
 
-        this.deleteMode = true;
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this record?',
             reject: () => { 
-                this.deleteMode = false;
                 return;
             },
             accept: () => {
-
-                // - group: currently selected row
-                this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
-                let index = -1;
-                for(let i = 0; i < this.groups.length; i++) {
-                    if(this.groups[i].groupName == group.groupName) {
-                        index = i;
-                        break;
-                    }
-                }
-                this.groups.splice(index, 1);
-                this.deleteMode = false;
+                
+                this.eazlService.deleteGroup(this.selectedGroup.groupID);
 
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info', 

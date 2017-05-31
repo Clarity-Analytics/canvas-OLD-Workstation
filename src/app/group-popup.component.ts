@@ -166,7 +166,7 @@ export class GroupPopupComponent implements OnInit {
     onSubmit() {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name, 'onSubmit', '@Start');
-console.log('sub',this.groupForm.controls['groupName'],this.groupForm.controls['groupDescription'])
+
         // Validation: note that == null tests for undefined as well
         this.formIsValid = false;
         this.errorMessageOnForm = '';
