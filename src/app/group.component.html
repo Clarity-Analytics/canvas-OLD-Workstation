@@ -13,17 +13,17 @@
     [(visible)]="displayGroupPopup"
     [header]="popupHeader"
     [closeOnEscape]=false
-    [closable]=false
+    [closable]=true
     modal="true"
     responsive="true"
     >
-    <!--<group-popup 
+    <group-popup 
         [selectedGroup]="selectedGroup"
         [addEditMode]="addEditMode"
         [displayGroupPopup]="displayGroupPopup"
         (userPopupFormClosed)="handleGroupPopupFormClosed($event)"
         >
-    </group-popup> -->
+    </group-popup> 
 </p-dialog>
 
 

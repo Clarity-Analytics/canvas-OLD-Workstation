@@ -37,7 +37,7 @@ export class GroupComponent implements OnInit {
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayGroupPopup: boolean = false;                 // True to display single User
     groups: Group[] = [];                               // List of Groups
-    popupHeader: string = 'User Maintenance';           // Popup header
+    popupHeader: string = 'Group Maintenance';          // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedGroup: Group;                               // User that was clicked on
     usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   

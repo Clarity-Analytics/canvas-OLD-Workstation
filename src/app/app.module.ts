@@ -97,6 +97,7 @@ import { DashboardEditorComponent}    from './dashboard-editor.component';
 import { DashboardTabEditorComponent} from './dashboard-tab-editor.component';
 import { DataSourceComponent }        from './datasource.component';
 import { GroupComponent }             from './group.component';
+import { GroupPopupComponent }        from './group-popup.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { NewMessageComponent }        from './newmessage.component';
@@ -136,6 +137,7 @@ import { routes }                     from './app.routes';
     DashboardTabEditorComponent,
     DataSourceComponent,
     GroupComponent,
+    GroupPopupComponent,
     LoginComponent,
     MessageManagerComponent,
     NewMessageComponent,

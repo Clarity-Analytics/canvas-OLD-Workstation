@@ -28,7 +28,7 @@ import { Group }                      from './model.group';
     templateUrl: 'group-popup.component.html',
     styleUrls:  ['group-popup.component.css']
 })
-export class UserPopupComponent implements OnInit {
+export class GroupPopupComponent implements OnInit {
 
     // Variables received from the parent HTML tag
     @Input() addEditMode: string;
