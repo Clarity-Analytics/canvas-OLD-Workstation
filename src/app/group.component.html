@@ -156,6 +156,56 @@
 </div>
 
 
+<!--Datasource per Group panel-->
+<div
+    class="groupMembershipPanel"
+    *ngIf="displayDatasourceAccess"
+    >
+
+    <div
+        class="groupMembershipHeading"
+        >
+        Datasourc Acceess for {{ selectedGroup.groupName }} 
+        <button 
+            class="panelButtonWithLabel"
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickDataSourceCancel()"
+            >
+        </button>
+    </div>
+    
+    <!--Content-->
+    <form>
+
+        <div
+            >
+            <p-pickList 
+                [source]="availableGroupDS" 
+                [target]="belongstoGroupDS"
+                sourceHeader="Available Datasources"
+                targetHeader="Access to these DS"
+                (onMoveToTarget)="onMoveToTargetDatasourceGroup($event)"
+                (onMoveToSource)="onMoveToSourceDatasourceGroup($event)"
+                >
+                <template let-ds pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                        <div 
+                            style="font-size:14px;float:left;margin:15px 5px 0 0"
+                            >
+                            {{ ds.datasourceName }}
+                        </div>
+                    </div>
+                </template>
+            </p-pickList>
+
+        </div>
+
+    </form>
+</div>
+
 
 
 

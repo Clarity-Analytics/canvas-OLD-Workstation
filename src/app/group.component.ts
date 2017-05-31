@@ -38,6 +38,7 @@ export class GroupComponent implements OnInit {
     belongstoGroupDS: DataSource[];                     // List of DS to which Group has access 
     belongstoUserGroupMembership: User[] = [];          // List of Users already in Group   
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
+    displayDatasourceAccess: boolean = false;           // True to display popup for Datasources 
     displayGroupPopup: boolean = false;                 // True to display single User
     groups: Group[] = [];                               // List of Groups
     popupHeader: string = 'Group Maintenance';          // Popup header
@@ -151,6 +152,10 @@ export class GroupComponent implements OnInit {
         if (this.displayGroupMembership) {
             this.groupMenuGroupMembership(this.selectedGroup) 
         }
+
+        if (this.displayDatasourceAccess) {
+            this.groupMenuRelatedDataSources(this.selectedGroup) 
+        }
     }
 
     groupMenuGroupMembership(group: Group) {
@@ -173,11 +178,20 @@ export class GroupComponent implements OnInit {
     }
 
     onClickGroupMembershipCancel() {
-        // User clicked onMoveToSource on Group Membership - remove grp membership
+        // User clicked Cancel button on Group Membership panel
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
 
         // Close popup
         this.displayGroupMembership = false;        
+    }
+
+
+    onClickDataSourceCancel() {
+        // User clicked Cancel button for DS access panel
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDataSourceCancel', '@Start');
+
+        // Close popup
+        this.displayDatasourceAccess = false;        
     }
 
     onMoveToTargetUserGroupMembership(event) {
@@ -211,15 +225,38 @@ export class GroupComponent implements OnInit {
         // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuRelatedDataSources', '@Start');
 
-//     availableGroupDS = getGroupDSAccess
-//     belongstoGroupDS: DataSource[];                     // List of DS to which Group has access 
+        this.availableGroupDS = this.eazlService.getDatasourcesPerGroup(group.groupID, false);
+        this.belongstoGroupDS = this.eazlService.getDatasourcesPerGroup(group.groupID, true);
 
-// getGroupDatasourceAccess
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Related Data Sources', 
-            detail:   group.groupName
-        });
+        // Show popup
+        this.displayDatasourceAccess = true;
+    }
+
+
+    onMoveToTargetDatasourceGroup(event) {
+        // User clicked onMoveToTarget: add Datasource access
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDatasourceGroup', '@Start');
+
+        // Add this / these makker(s) - array if multi select
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.addUserGroupMembership(
+                event.items[i].userName,
+                this.selectedGroup.groupID 
+            );
+        }
+    }
+    
+    onMoveToSourceDatasourceGroup(event) {
+        // User clicked onMoveToSource: remove Datasource access
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDatasourceGroup', '@Start');
+
+        // Remove the makker(s)
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.deleteUserGroupMembership(
+                event.items[i].userName,
+                this.selectedGroup.groupID
+            );
+        }
     }
 
     handleGroupPopupFormClosed(howClosed: string) {
