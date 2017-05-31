@@ -4553,6 +4553,18 @@ console.log('getUsersResti',error)
         };
     }
 
+    getGroupDatasourceAccess(groupID: number = -1, datasourceID: number = -1) {
+        // Return of list with group - datasource acces
+        // - groupID Optional filter, -1 = all
+        // - datasourceID Optional filter,-1 = all
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupDatasourceAccess', '@Start');
+
+        return this.groupDatasourceAccess.filter(gDS => (
+            (groupID == -1  ||  gDS.groupID == groupID)
+            &&
+            (datasourceID == -1 || gDS.datasourceID == datasourceID)
+        ));
+    }
 
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
         // Return a list of Groups to which a user belongs
