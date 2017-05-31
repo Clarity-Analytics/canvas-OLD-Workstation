@@ -17,13 +17,13 @@
     modal="true"
     responsive="true"
     >
-    <!--<user-popup 
+    <!--<group-popup 
         [selectedGroup]="selectedGroup"
         [addEditMode]="addEditMode"
         [displayGroupPopup]="displayGroupPopup"
-        (userPopupFormClosed)="handleUserPopupFormClosed($event)"
+        (userPopupFormClosed)="handleGroupPopupFormClosed($event)"
         >
-    </user-popup> -->
+    </group-popup> -->
 </p-dialog>
 
 
@@ -144,8 +144,6 @@
                 targetHeader="Belongs to these Groups"
                 (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
                 (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
-                (onSourceReorder)="onSourceReorderUserGroupMembership($event)"
-                (onTargetReorder)="onTargetReorderUserGroupMembership($event)"
                 >
                 <template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">

@@ -1,4 +1,4 @@
-// User form
+// Group form
 import { Component }                  from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
@@ -31,8 +31,8 @@ export class GroupComponent implements OnInit {
     
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
-    availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
-    belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
+    availableUserGroupMembership: User[] = [];          // List of Groups user does NOT belongs to
+    belongstoUserGroupMembership: User[] = [];          // List of Groups user already belongs to   
     deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayGroupPopup: boolean = false;                 // True to display single User
@@ -102,21 +102,21 @@ export class GroupComponent implements OnInit {
     }
 
     groupMenuAdd(group: Group) {
-        // Popup form to add a new user
-        // - User: currently selected row
+        // Popup form to add a new group
+        // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuAdd', '@Start');
         this.addEditMode = 'Add';
         this.displayGroupPopup = true;
     }
     
     groupMenuEdit(group: Group) {
-        // Edit selected user on a popup form
-        // - User: currently selected row
+        // Edit selected group on a popup form
+        // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuEdit', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'Selected user', 
+            summary:  'Selected group', 
             detail:   group.groupName
         });
 
@@ -125,7 +125,7 @@ export class GroupComponent implements OnInit {
     }
 
     groupMenuDelete(group: Group) {
-        // Delete the selected user, but first confirm
+        // Delete the selected group, but first confirm
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuDelete', '@Start');
 
         this.deleteMode = true;
@@ -137,7 +137,7 @@ export class GroupComponent implements OnInit {
             },
             accept: () => {
 
-                // - User: currently selected row
+                // - group: currently selected row
                 this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
                 let index = -1;
                 for(let i = 0; i < this.groups.length; i++) {
@@ -146,7 +146,7 @@ export class GroupComponent implements OnInit {
                         break;
                     }
                 }
-                this.users.splice(index, 1);
+                this.groups.splice(index, 1);
                 this.deleteMode = false;
 
                 this.globalVariableService.growlGlobalMessage.next({
@@ -159,25 +159,25 @@ export class GroupComponent implements OnInit {
     }
 
     onClickGroupTable() {
-        // User clicked on a row
+        // group clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupTable', '@Start');
 
-        // Update the user group membership if it is open
+        // Update the group group membership if it is open
         if (this.displayGroupMembership) {
             this.groupMenuGroupMembership(this.selectedGroup) 
         }
     }
 
     groupMenuGroupMembership(group: Group) {
-        // Manage group membership for the selected user
-        // - User: currently selected row
+        // Manage users that belong to this group
+        // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuGroupMembership', '@Start');
 
         // Get the current and available groups
-        this.eazlService.getGroupsPerUser(this.selectedGroup.groupName, true)
+        this.eazlService.getUsersPerGroup(this.selectedGroup.groupID, true)
             .then(inclgrp => {
                 this.belongstoUserGroupMembership = inclgrp;
-                this.eazlService.getGroupsPerUser(this.selectedGroup.groupName, false)
+                this.eazlService.getUsersPerGroup(this.selectedGroup.groupID, false)
                     .then (exclgrp => {
                             this.availableUserGroupMembership  = exclgrp;
                             this.displayGroupMembership = true; 
@@ -185,28 +185,6 @@ export class GroupComponent implements OnInit {
                     .catch(error => console.log (error))
             })
             .catch(error => console.log (error) )
-
-// this.eazlService.getUsersResti()
-//     .then(eazlUser => {
-//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
-
-//         // Show
-// console.log('gotit')    
-//     })
-//     .catch(err => {
-//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
-//         }
-    // ) 
-
-
-
-
-        // Tell user ...
-        // this.globalVariableService.growlGlobalMessage.next({
-        //     severity: 'info', 
-        //     summary:  'User group membership', 
-        //     detail:   user.firstName + ' - ' + user.lastName
-        // });
     }
 
     onClickGroupMembershipCancel() {
@@ -224,8 +202,8 @@ export class GroupComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(
-                this.selectedGroup.groupName, 
-                event.items[i].groupID
+                event.items[i].username,
+                this.selectedGroup.groupID 
             );
         }
     }
@@ -237,37 +215,27 @@ export class GroupComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteUserGroupMembership(
-                this.selectedGroup.groupName, 
-                event.items[i].groupID
+                event.items[i].username,
+                this.selectedGroup.groupID
             );
         }
     }
 
-    onSourceReorderUserGroupMembership(event) {
-        // User clicked onSourceReorder on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderUserGroupMembership', '@Start');
-    }
-
-    onTargetReorderUserGroupMembership(event) {
-        // User clicked onTargetReorder on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
-    }
-
     groupMenuAccess(group: Group) {
-        // Access to Data Sources for the selected user
-        // - User: currently selected row
+        // Access to Data Sources for the selected group
+        // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuAccess', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'User Access', 
+            summary:  'Group Access', 
             detail:   group.groupName
         });
     }
 
     groupMenuRelatedDataSources(group: Group) {
         // Manage related Data Sources (owned, given rights and received rights)
-        // - User: currently selected row
+        // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuRelatedDataSources', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
@@ -277,9 +245,9 @@ export class GroupComponent implements OnInit {
         });
     }
 
-    handleUserPopupFormClosed(howClosed: string) {
+    handleGroupPopupFormClosed(howClosed: string) {
         // Handle the event: howClosed = Cancel / Submit
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleUserPopupFormClosed', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleGroupPopupFormClosed', '@Start');
 
         this.displayGroupPopup = false;
   }

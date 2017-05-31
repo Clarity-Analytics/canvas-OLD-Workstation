@@ -1,0 +1,73 @@
+<p 
+    class="iserror" 
+    *ngIf="formIsValid"> 
+    {{ errorMessageOnForm }}
+</p>
+
+<form 
+    [formGroup]="groupForm" 
+    >
+    <div 
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        style="margin: 10px 0px">
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Group Name : 
+            </div>
+            <div class="ui-grid-col-6">
+                <input pInputText 
+                        type="text" 
+                        formControlName="groupName" 
+                        placeholder="Required"
+                        pTooltip="Enter your Group Name"
+                        autofocus
+                        />
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Description : 
+            </div>
+            <div class="ui-grid-col-6">
+                <input pInputText 
+                        type="text" 
+                        formControlName="groupDescription" 
+                        placeholder="Required"
+                        pTooltip="Enter a detailed Description"
+                        />
+            </div>
+        </div>
+
+    </div>   
+</form> 
+<div *ngIf="selecteduser">   {{ selectedGroup.groupName }}  ....  </div>
+
+
+<!--Toolbar-->
+<p-toolbar>
+
+    <div class="ui-toolbar-group-left">
+        <button 
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickCancel()"
+            >
+        </button>
+    </div>
+    
+    <div class="ui-toolbar-group-right">
+        <button 
+            pButton 
+            type="submit" 
+            label="Submit" 
+            icon="fa-refresh"
+            (click)="onSubmit()"
+            >
+        </button>
+    </div>
+</p-toolbar>
+

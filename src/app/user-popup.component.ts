@@ -21,7 +21,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
-import { User } from './model.user';
+import { User }                       from './model.user';
 
 @Component({
     selector:    'user-popup',

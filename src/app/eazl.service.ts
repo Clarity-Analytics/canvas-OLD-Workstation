@@ -4500,6 +4500,27 @@ console.log('getUsersResti',error)
         return resultGroups;
     }
 
+
+    addGroup(groupName: string, groupDescription: string) {
+        // Add a new Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'addGroup', '@Start');
+
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        this.groups.push({
+            groupID: 0,
+            groupName: groupName,
+            groupDescription: groupDescription,
+            groupCreatedDateTime: this.canvasDate.now('standard'),
+            groupCreatedUserID: currentUser,
+            groupUpdatedDateTime:this.canvasDate.now('standard'),
+            groupUpdatedUserID: currentUser
+        })
+    }
+
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
         // Return a list of Groups to which a user belongs
         // - username Optional parameter to select ONE, else select ALL (if >= 0)
@@ -4535,7 +4556,6 @@ console.log('getUsersResti',error)
         )
         return Promise.resolve(resultGroups);
     }
-
 
     getUsersPerGroup(groupID: number = -1, include: boolean = true): Promise<User[]> {
         // Return a list of Users that belongs to a group
