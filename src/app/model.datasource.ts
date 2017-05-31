@@ -28,12 +28,6 @@ export class DataSource {
             accessScope: string;            // Applies to: All (records), context specific .. ?
         }
     ];
-    datasourceAccessGroups: [               // Array of groups with access
-        {
-            accessGroup: string;            // Group with access
-            accessType: string;             // Type = Readonly, Update, Add, Delete, Full
-        }
-    ];
     datasourceUserEditable: boolean;        // True if users may edit this DS    
     packagePk: number;                      // Django pk
 	packageName: string;                    // Django name of package

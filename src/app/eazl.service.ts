@@ -21,6 +21,7 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DataSource }                 from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
+import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { CanvasMessage }              from './model.canvasMessage';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
@@ -67,12 +68,6 @@ export const DATASOURCES: DataSource[] =
                     accessUserID: '',
                     accessType: '',
                     accessScope: '',
-                }
-            ],
-            datasourceAccessGroups: [
-                {
-                    accessGroup: '',
-                    accessType: '',
                 }
             ],
             datasourceUserEditable: false,
@@ -139,12 +134,6 @@ export const DATASOURCES: DataSource[] =
                     accessUserID: '',
                     accessType: '',
                     accessScope: '',
-                }
-            ],
-            datasourceAccessGroups: [
-                {
-                    accessGroup: '',
-                    accessType: '',
                 }
             ],
             datasourceUserEditable: false,
@@ -3268,6 +3257,19 @@ export const GROUPS: Group[] =
         }
     ]
 
+export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
+    [
+        {
+            groupID: 0,
+            datasourceID: 0,
+            groupDatasourceAccessAccessType: 'Read',
+            groupDatasourceAccessCreatedDateTime: '2017/05/01',
+            groupDatasourceAccessCreatedUserID: 'PatricOS',
+            groupDatasourceAccessUpdatedDateTime: '2017/05/01',
+            groupDatasourceAccessUpdatedUserID: 'PatricOS' 
+        }
+    ]
+
 export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
     [
         {
@@ -3719,6 +3721,7 @@ export class EazlService implements OnInit {
     dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     groups: Group[] = GROUPS;                               // List of Groups
+    groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     reports: Report[] = REPORTS;                            // List of Reports
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     users: User[] = [];                                     // List of Users
@@ -4550,11 +4553,11 @@ console.log('getUsersResti',error)
         };
     }
 
+
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
         // Return a list of Groups to which a user belongs
         // - username Optional parameter to select ONE, else select ALL (if >= 0)
         // - include Optional parameter, true = include all for user, else group NOT for username
-
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
 
         // TODO - from DB

@@ -66,7 +66,7 @@ export class GroupComponent implements OnInit {
                 command: (event) => this.groupMenuAdd(this.selectedGroup)
             },
             {
-                label: '______________________________', 
+                label: '______________________', 
                 icon: '',
                 disabled: true 
             },
@@ -189,7 +189,7 @@ export class GroupComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(
-                event.items[i].username,
+                event.items[i].userName,
                 this.selectedGroup.groupID 
             );
         }
@@ -202,7 +202,7 @@ export class GroupComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteUserGroupMembership(
-                event.items[i].username,
+                event.items[i].userName,
                 this.selectedGroup.groupID
             );
         }
