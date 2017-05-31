@@ -4536,6 +4536,43 @@ console.log('getUsersResti',error)
         return Promise.resolve(resultGroups);
     }
 
+
+    getUsersPerGroup(groupID: number = -1, include: boolean = true): Promise<User[]> {
+        // Return a list of Users that belongs to a group
+        // - groupID Optional parameter, -1 = include all
+        // - include, True means to which belongs, False means complements (NOT)
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
+
+        // TODO - from DB
+        // Get Array of users to in or ex clude
+        let resultUsergroupMembership: string[] = [];
+
+        // Return all if no username specified
+        if (groupID == -1) {
+            return Promise.resolve(this.users);
+        }
+
+        // Make an array of username that belongs to the Group
+        else {
+            this.usergroupMembership.forEach(
+                (usrgrp) => { 
+                                if (usrgrp.groupID == groupID) 
+                                resultUsergroupMembership.push(usrgrp.userName)  
+                            }
+            )   
+        }
+console.log('resultUsergroupMembership',resultUsergroupMembership)
+        // Return necesary groups, selectively depending on in/exclude
+        let resultUsers: User[];
+        resultUsers = this.users.filter(
+            usr => (include  &&  resultUsergroupMembership.indexOf(usr.userName) >= 0) 
+                    ||
+                   (!include &&  resultUsergroupMembership.indexOf(usr.userName) < 0) 
+        )
+console.log('resultUsers',resultUsers)
+        return Promise.resolve(resultUsers);
+    }
+
     addUserGroupMembership(username: string, groupID: number) {
         // Adds a User - Group record to the User Group Membership
 
