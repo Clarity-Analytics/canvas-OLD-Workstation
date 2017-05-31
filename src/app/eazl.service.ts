@@ -4555,6 +4555,7 @@ console.log('getUsersResti',error)
 
     getDatasourcesPerGroup(groupID: number, include: boolean): DataSource[] {
         // Return list of DataSource for a given Group
+        // - groupID filter
         // - include: True means that has access, False means has NO access
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerGroup', '@Start');
         
@@ -4574,6 +4575,32 @@ console.log('getUsersResti',error)
             ds => (include  &&  resultDS.indexOf(ds.datasourceID) >= 0) 
                     ||
                   (!include && resultDS.indexOf(ds.datasourceID) < 0) 
+        )
+    }
+
+
+    getGroupsPerDatasource(datasourceID: number, include: boolean): Group[] {
+        // Return list of Groups for a given DataSource
+        // - datasourceID filter
+        // - include: True means that has access, False means has NO access
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerDatasource', '@Start');
+        
+        // TODO - from DB
+        // Get Array of all Groups IDs
+        let resultGroup: number[] = [];
+
+        this.groupDatasourceAccess.forEach(
+            (gDS) => { 
+                        if (gDS.datasourceID == datasourceID) 
+                        resultGroup.push(gDS.groupID)  
+                     }
+        );   
+
+        // Return necesary Datasources, selectively depending on in/exclude
+        return this.groups.filter(
+            ds => (include  &&  resultGroup.indexOf(ds.groupID) >= 0) 
+                    ||
+                  (!include && resultGroup.indexOf(ds.groupID) < 0) 
         )
     }
 
