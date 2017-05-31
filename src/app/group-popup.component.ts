@@ -55,9 +55,6 @@ export class GroupPopupComponent implements OnInit {
 
         // FormBuilder - must be before subscribeToValue ...
         this.groupForm = this.fb.group({
-            // 'lastname': new FormControl('', Validators.required),
-            // 'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-
             'groupID':              new FormControl('', Validators.required),
             'groupName':            new FormControl('', Validators.required),
             'groupDescription':     new FormControl('', Validators.required),

@@ -383,7 +383,7 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                     {
                         label: 'System Configuration', 
                         icon:  'fa-wrench',
-                        routerLink: ['startup'],
+                        routerLink: ['systemconfig'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;

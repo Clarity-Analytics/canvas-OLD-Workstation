@@ -103,6 +103,7 @@ import { MessageManagerComponent }    from './message.manager.component';
 import { NewMessageComponent }        from './newmessage.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { ReportComponent }            from './report.component';
+import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
 import { UserPopupComponent }         from './user-popup.component';
 import { WidgetEditorComponent }      from './widget-editor.component';
@@ -143,6 +144,7 @@ import { routes }                     from './app.routes';
     NewMessageComponent,
     PageNotFoundComponent,
     ReportComponent,
+    SystemConfigComponent,
     UserComponent,
     UserPopupComponent,
     WidgetEditorComponent,

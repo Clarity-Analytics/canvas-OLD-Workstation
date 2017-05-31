@@ -1,0 +1,236 @@
+
+<form 
+    [formGroup]="configForm" 
+    >
+    <div 
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        style="margin: 10px 0px">
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Company Name : 
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="companyName" 
+                        placeholder="Required"
+                        pTooltip="Enter your Company Name"
+                        autofocus
+                        />
+            </div>
+
+            <div class="ui-grid-col-2">
+                Company Logo: 
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="companyLogo" 
+                        placeholder="(Optional)"
+                        pTooltip="Enter your Company Logo filename"
+                        />
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Backend Url:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="backendUrl" 
+                        placeholder="Required"
+                        pTooltip="Enter your URL for Backend Server (RESTi)"
+                        />
+            </div>
+
+            <div class="ui-grid-col-2">
+                Days ToKeep:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="defaultDaysToKeepResultSet" 
+                        placeholder="Required"
+                        pTooltip="Enter default number of days to keep ResultSets"
+                        />
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Avg Runtime:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        placeholder="(Optional)"
+                        formControlName="averageWarningRuntime"
+                        pTooltip="Warn user if a report is known to run longer than this averag RunTime in minutes"
+                        >
+            </div>
+
+            <div class="ui-grid-col-2">
+                Max RowsData:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText    
+                        type="text" 
+                        formControlName="maxRowsDataReturned"
+                        placeholder="Required"
+                        pTooltip="Enter maximum number of data rows to be returned from the server"
+                        >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Max RowsGraph:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="maxRowsPerWidgetGraph"
+                        placeholder="Required"
+                        pTooltip="Enter maximum number of rows returned per WidgetGraph"
+                        >
+            </div>
+
+            <div class="ui-grid-col-2">
+                Keep Dev:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="keepDevLoggedIn"
+                        placeholder="(Optional)"
+                        pTooltip="Click to keep user logged in Development Environment"
+                    >
+            </div>
+        </div>
+        
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                frontendColorScheme :
+            </div>
+            <div class="ui-grid-col-4">
+                <p-dropdown [options]="isStaffOptions" 
+                            formControlName="frontendColorScheme" 
+                            [autoWidth]="false"
+                            placeholder="Required"
+                            pTooltip="Select frontendColorScheme"
+                            >
+                </p-dropdown>
+            </div>
+
+            <div class="ui-grid-col-2">
+                defaultWidgetConfiguration:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="defaultWidgetConfiguration"
+                        placeholder="(Optional)"
+                        pTooltip="defaultWidgetConfiguration"
+                        >
+            </div>
+
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                RptFilters:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="defaultReportFilters"
+                        placeholder="(Optional)"
+                        pTooltip="Default Report Filters"
+                        >
+            </div>
+
+            <div class="ui-grid-col-2">
+                growlSticky:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="growlSticky"
+                        placeholder="(Optional)"
+                        pTooltip="growlSticky"
+                        >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                GrowlLife:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="growlLife"
+                        placeholder="Required"
+                        pTooltip="Duration for messages (grow) to be displayed"
+                        >
+            </div>
+
+            <div class="ui-grid-col-2">
+                Grid Size:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="gridSize"
+                        placeholder="Required"
+                        pTooltip="Size of grid on Dashboard in px"
+                        >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                SnapToGrid?:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                        type="text" 
+                        formControlName="snapToGrid"
+                        placeholder="(Optional)"
+                        pTooltip="Check to snap Widgets on the Dashboard to the Grid"
+                        >
+            </div>
+        </div>
+    </div>
+</form> 
+
+
+<!--Toolbar-->
+<p-toolbar>
+
+    <div class="ui-toolbar-group-left">
+        <button 
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickCancel()"
+            >
+        </button>
+        <!--<p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>-->
+    </div>
+    
+    <div class="ui-toolbar-group-right">
+        <button 
+            pButton 
+            type="submit" 
+            label="Submit" 
+            icon="fa-refresh"
+            (click)="onSubmit()"
+            >
+        </button>
+    </div>
+</p-toolbar>

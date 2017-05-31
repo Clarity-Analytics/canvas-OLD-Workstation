@@ -14,17 +14,22 @@ import { SelectedItemColor }          from './model.selectedItemColor';
 export class GlobalVariableService {
     
     // Company related variables
-    companyName = new BehaviorSubject('Clarity');
+    companyName = new BehaviorSubject('Clarity');               // Optional, set in SystemConfig
+    companyLogo = new BehaviorSubject(false);                   // Optional, set in SystemConfig
 
     // System-wide related variables, set at Installation
     systemTitle = new BehaviorSubject('Canvas');
     frontendName = new BehaviorSubject('Canvas');
     backendName = new BehaviorSubject('Eazl');
-    backendUrl = new BehaviorSubject('');
-    
+    backendUrl = new BehaviorSubject('');                       // RESTi url, set in SystemConfig
+    defaultDaysToKeepResultSet = new BehaviorSubject(1);        // Optional, set in SystemConfig    
+    maxRowsDataReturned = new BehaviorSubject(1000000);         // Optional, set in SystemConfig    
+    maxRowsPerWidgetGraph = new BehaviorSubject(15)             // Optional, set in SystemConfig    
+    keepDevLoggedIn = new BehaviorSubject(false);               // Optional, set in SystemConfig    
+
     // Current User
     canvasUser = new BehaviorSubject<CanvasUser>(null);
-    isAuthenticatedOnEazl = new BehaviorSubject(false);        // True if authenticated
+    isAuthenticatedOnEazl = new BehaviorSubject(false);         // True if authenticated
 
     // This session
     sessionDateTimeLoggedin = new BehaviorSubject('');
