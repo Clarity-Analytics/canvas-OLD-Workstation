@@ -4738,6 +4738,51 @@ console.log('getUsersResti',error)
         );
     }
 
+    addGroupDatasourceAccess(datasourceID: number, groupID: number) {
+        // Adds a Datasource - Group record to the DB
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'addGroupDatasourceAccess', '@Start');
+
+        let found: boolean = false;
+        for (var i = 0; i < this.groupDatasourceAccess.length; i++) {
+            if (this.groupDatasourceAccess[i].datasourceID == datasourceID  &&
+                this.groupDatasourceAccess[i].groupID == groupID) {
+                    found = true;
+                    break;
+                }
+        }
+
+        // Get current user
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        // Only add if not already there
+        if (!found) {
+            this.groupDatasourceAccess.push(
+                {
+                    groupID: groupID,
+                    datasourceID: datasourceID,
+                    groupDatasourceAccessAccessType: 'Read',
+                    groupDatasourceAccessCreatedDateTime: this.canvasDate.now('standard'),
+                    groupDatasourceAccessCreatedUserID: currentUser,
+                    groupDatasourceAccessUpdatedDateTime: this.canvasDate.now('standard'),
+                    groupDatasourceAccessUpdatedUserID: currentUser
+                }        
+            )
+        }
+    }
+
+    deleteGroupDatasourceAccess(datasourceID: number, groupID: number) {
+        // Deletes a Datasource - Group record from the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroupDatasourceAccess', '@Start');
+
+        this.groupDatasourceAccess = this.groupDatasourceAccess.filter(
+            item => (!(item.datasourceID == datasourceID  &&  item.groupID == groupID))
+        );
+    }
+
     getDashboardGroupMembership(dashboardID:number = -1, include:boolean = true): Promise<DashboardGroup[]> {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)

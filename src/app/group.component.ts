@@ -231,15 +231,14 @@ export class GroupComponent implements OnInit {
         // Show popup
         this.displayDatasourceAccess = true;
     }
-
-
+ 
     onMoveToTargetDatasourceGroup(event) {
         // User clicked onMoveToTarget: add Datasource access
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDatasourceGroup', '@Start');
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addUserGroupMembership(
+            this.eazlService.addGroupDatasourceAccess(
                 event.items[i].userName,
                 this.selectedGroup.groupID 
             );
@@ -252,7 +251,7 @@ export class GroupComponent implements OnInit {
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteUserGroupMembership(
+            this.eazlService.deleteGroupDatasourceAccess(
                 event.items[i].userName,
                 this.selectedGroup.groupID
             );
