@@ -8,7 +8,7 @@
 </p-confirmDialog>
 
 
-<!--Popup form for a single user (Add or Edit)-->
+<!--Popup form for a single group (Add or Edit)-->
 <p-dialog 
     [(visible)]="displayGroupPopup"
     [header]="popupHeader"
@@ -105,13 +105,6 @@
 </div>
 
 
-
-
-
-
-
-
-
 <!--Group Membership panel-->
 <div
     class="groupMembershipPanel"
@@ -121,7 +114,7 @@
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedGroup.firstName }} 
+        Group Membership for {{ selectedGroup.groupName }} 
         <button 
             class="panelButtonWithLabel"
             pButton 
@@ -141,17 +134,17 @@
             <p-pickList 
                 [source]="availableUserGroupMembership" 
                 [target]="belongstoUserGroupMembership"
-                sourceHeader="Available Groups"
-                targetHeader="Belongs to these Groups"
+                sourceHeader="Available Users"
+                targetHeader="Contains these Users"
                 (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
                 (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
                 >
-                <template let-grp pTemplate="item">
+                <template let-usr pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
-                            {{ grp.groupName }}
+                            {{ usr.userName }}
                         </div>
                     </div>
                 </template>

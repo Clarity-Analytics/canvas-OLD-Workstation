@@ -4610,16 +4610,22 @@ console.log('getUsersResti',error)
                             }
             )   
         }
-console.log('resultUsergroupMembership',resultUsergroupMembership)
+
         // Return necesary groups, selectively depending on in/exclude
         let resultUsers: User[];
-        resultUsers = this.users.filter(
-            usr => (include  &&  resultUsergroupMembership.indexOf(usr.userName) >= 0) 
-                    ||
-                   (!include &&  resultUsergroupMembership.indexOf(usr.userName) < 0) 
+
+        return Promise.resolve(
+            this.getUsers()
+                .then( usr => {
+                    resultUsers = usr.filter(
+                        u => (include  &&  resultUsergroupMembership.indexOf(u.userName) >= 0) 
+                              ||
+                             (!include &&  resultUsergroupMembership.indexOf(u.userName) < 0) 
+                    );   
+                    return Promise.resolve(resultUsers);
+                })
+            .catch(error => console.log (error) )
         )
-console.log('resultUsers',resultUsers)
-        return Promise.resolve(resultUsers);
     }
 
     addUserGroupMembership(username: string, groupID: number) {

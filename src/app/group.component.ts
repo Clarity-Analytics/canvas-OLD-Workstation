@@ -81,7 +81,7 @@ export class GroupComponent implements OnInit {
                 command: (event) => this.groupMenuDelete(this.selectedGroup)
             },
             {
-                label: 'Group Membership', 
+                label: 'Users in Group', 
                 icon: 'fa-users', 
                 command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
             },
