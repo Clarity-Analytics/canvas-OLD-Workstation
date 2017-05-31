@@ -6,6 +6,7 @@ import { Route }                      from  '@angular/router';
 import { DashboardComponent }         from './dashboard.component';
 import { DashboardManagerComponent }  from './dashboard.manager.component';
 import { DataSourceComponent }        from './datasource.component';
+import { GroupComponent }             from './group.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
@@ -29,6 +30,11 @@ export const routes: Route[] = [
     component: UserComponent,             
     canActivate: [AuthGuard]
   },
+  { 
+    path: 'group',                    
+    component: GroupComponent,             
+    canActivate: [AuthGuard]
+  },  
   { 
     path: 'dashboard',                
     component: DashboardComponent,        

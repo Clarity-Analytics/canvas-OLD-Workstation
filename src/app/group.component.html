@@ -1,0 +1,169 @@
+<!--Confirmation dialogue box-->
+<p-confirmDialog 
+    *ngIf="deleteMode"
+    header="Confirmation" 
+    icon="fa fa-question-circle" 
+    width="425"
+    >
+</p-confirmDialog>
+
+
+<!--Popup form for a single user (Add or Edit)-->
+<p-dialog 
+    [(visible)]="displayGroupPopup"
+    [header]="popupHeader"
+    [closeOnEscape]=false
+    [closable]=false
+    modal="true"
+    responsive="true"
+    >
+    <!--<user-popup 
+        [selectedGroup]="selectedGroup"
+        [addEditMode]="addEditMode"
+        [displayGroupPopup]="displayGroupPopup"
+        (userPopupFormClosed)="handleUserPopupFormClosed($event)"
+        >
+    </user-popup> -->
+</p-dialog>
+
+
+<!--Context (popup) menu  -->
+<p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
+
+
+<!--Table with group info -->
+<div class="myOverride">
+    <p-dataTable  #dt
+        columnResizeMode="expand"
+        exportFilename="groups"
+        [contextMenu]="cm"
+        [paginator]="true" 
+        [pageLinks]="3" 
+        [reorderableColumns]="true"
+        [resizableColumns]="true"
+        [responsive]="true"
+        [rows]="10" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [(selection)]="selectedGroup"
+        selectionMode="single" 
+        [scrollable]="false"  
+        [sortMode]="multiple"
+        [value]="groups"  
+        (click)="onClickGroupTable()"
+        >
+        <p-header
+            [style]="{'background-color': 'darkgray'}">
+            <span>
+                List of Groups
+            </span>
+            <span style="float:right"
+                class="ui-helper-clearfix csvButton"
+                >
+                <button 
+                    type="button" 
+                    pButton 
+                    icon="fa-file-o" 
+                    iconPos="left" 
+                    label="CSV" 
+                    (click)="dt.exportCSV()" 
+                    >
+                </button>
+            </span>
+            
+        </p-header>
+        <p-column 
+            field="groupID" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="ID" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="groupName" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Name" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="groupDescription" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Description" 
+            [sortable]="true"
+            [style]="{width: '320px', 
+                    'text-align': 'center'}"            >
+        </p-column>
+    </p-dataTable>
+</div>
+
+
+
+
+
+
+
+
+
+<!--Group Membership panel-->
+<div
+    class="groupMembershipPanel"
+    *ngIf="displayGroupMembership"
+    >
+
+    <div
+        class="groupMembershipHeading"
+        >
+        Group Membership for {{ selectedGroup.firstName }} 
+        <button 
+            class="panelButtonWithLabel"
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickGroupMembershipCancel()"
+            >
+        </button>
+    </div>
+    
+    <!--Content-->
+    <form>
+
+        <div
+            >
+            <p-pickList 
+                [source]="availableUserGroupMembership" 
+                [target]="belongstoUserGroupMembership"
+                sourceHeader="Available Groups"
+                targetHeader="Belongs to these Groups"
+                (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
+                (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
+                (onSourceReorder)="onSourceReorderUserGroupMembership($event)"
+                (onTargetReorder)="onTargetReorderUserGroupMembership($event)"
+                >
+                <template let-grp pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                        <div 
+                            style="font-size:14px;float:left;margin:15px 5px 0 0"
+                            >
+                            {{ grp.groupName }}
+                        </div>
+                    </div>
+                </template>
+            </p-pickList>
+
+        </div>
+
+    </form>
+</div>
+
+
+
+
+

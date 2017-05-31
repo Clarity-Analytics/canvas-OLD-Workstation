@@ -347,7 +347,7 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                     {
                         label: 'Groups',
                         icon:  'fa-group', 
-                        routerLink: ['startup'],
+                        routerLink: ['group'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;

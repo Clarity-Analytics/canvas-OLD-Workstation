@@ -22,12 +22,12 @@ import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 
 @Component({
-    selector:    'user',
-    templateUrl: 'user.component.html',
-    styleUrls:  ['user.component.css'],
+    selector:    'group',
+    templateUrl: 'group.component.html',
+    styleUrls:  ['group.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class UserComponent implements OnInit {
+export class GroupComponent implements OnInit {
     
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
@@ -35,12 +35,12 @@ export class UserComponent implements OnInit {
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
     deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
-    displayUserPopup: boolean = false;                  // True to display single User
+    displayGroupPopup: boolean = false;                 // True to display single User
     groups: Group[] = [];                               // List of Groups
     popupHeader: string = 'User Maintenance';           // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
-    selectedUser: User;                                 // User that was clicked on
-    users: User[];
+    selectedGroup: Group;                               // User that was clicked on
+    users: User[];                                      // List of users
     usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
 
     constructor(
@@ -64,7 +64,7 @@ export class UserComponent implements OnInit {
             {
                 label: 'Add', 
                 icon: 'fa-plus', 
-                command: (event) => this.userMenuAdd(this.selectedUser)
+                command: (event) => this.groupMenuAdd(this.selectedGroup)
             },
             {
                 label: '______________________________', 
@@ -74,74 +74,59 @@ export class UserComponent implements OnInit {
             {
                 label: 'Edit', 
                 icon: 'fa-pencil', 
-                command: (event) => this.userMenuEdit(this.selectedUser)
+                command: (event) => this.groupMenuEdit(this.selectedGroup)
             },
             {
                 label: 'Delete', 
                 icon: 'fa-minus', 
-                command: (event) => this.userMenuDelete(this.selectedUser)
+                command: (event) => this.groupMenuDelete(this.selectedGroup)
             },
             {
                 label: 'Group Membership', 
                 icon: 'fa-users', 
-                command: (event) => this.userMenuGroupMembership(this.selectedUser)
+                command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
             },
             {
                 label: 'Access', 
                 icon: 'fa-database', 
-                command: (event) => this.userMenuAccess(this.selectedUser)
+                command: (event) => this.groupMenuAccess(this.selectedGroup)
             },
             {
                 label: 'Related Data Sources', 
                 icon: 'fa-list', 
-                command: (event) => this.userMenuRelatedDataSources(this.selectedUser)
-            },
-            {
-                label: 'Message History', 
-                icon: 'fa-comments', 
-                command: (event) => this.userMenuMessageHistory(this.selectedUser)
-            },
-            {
-                label: 'Report History', 
-                icon: 'fa-table', 
-                command: (event) => this.userMenuReportHistory(this.selectedUser)
-            },
-            {
-                label: 'Reset Password', 
-                icon: 'fa-unlock', 
-                command: (event) => this.userMenuResetPassword(this.selectedUser)
+                command: (event) => this.groupMenuRelatedDataSources(this.selectedGroup)
             },
             
         ];
 
     }
 
-    userMenuAdd(user: User) {
+    groupMenuAdd(group: Group) {
         // Popup form to add a new user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuAdd', '@Start');
         this.addEditMode = 'Add';
-        this.displayUserPopup = true;
+        this.displayGroupPopup = true;
     }
     
-    userMenuEdit(user: User) {
+    groupMenuEdit(group: Group) {
         // Edit selected user on a popup form
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuEdit', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'Selected user', 
-            detail:   user.firstName + ' - ' + user.lastName
+            detail:   group.groupName
         });
 
         this.addEditMode = 'Edit';
-        this.displayUserPopup = true;    
+        this.displayGroupPopup = true;    
     }
 
-    userMenuDelete(user: User) {
+    groupMenuDelete(group: Group) {
         // Delete the selected user, but first confirm
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuDelete', '@Start');
 
         this.deleteMode = true;
         this.confirmationService.confirm({
@@ -155,8 +140,8 @@ export class UserComponent implements OnInit {
                 // - User: currently selected row
                 this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
                 let index = -1;
-                for(let i = 0; i < this.users.length; i++) {
-                    if(this.users[i].userName == user.firstName) {
+                for(let i = 0; i < this.groups.length; i++) {
+                    if(this.groups[i].groupName == group.groupName) {
                         index = i;
                         break;
                     }
@@ -166,33 +151,33 @@ export class UserComponent implements OnInit {
 
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info', 
-                    summary:  'User deleted', 
-                    detail:   user.firstName + ' - ' + user.lastName
+                    summary:  'Group deleted', 
+                    detail:   group.groupName 
                 });
             }
         })
     }
 
-    onClickUserTable() {
+    onClickGroupTable() {
         // User clicked on a row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserTable', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupTable', '@Start');
 
         // Update the user group membership if it is open
         if (this.displayGroupMembership) {
-            this.userMenuGroupMembership(this.selectedUser) 
+            this.groupMenuGroupMembership(this.selectedGroup) 
         }
     }
 
-    userMenuGroupMembership(user: User) {
+    groupMenuGroupMembership(group: Group) {
         // Manage group membership for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuGroupMembership', '@Start');
 
         // Get the current and available groups
-        this.eazlService.getUserGroupMembership(this.selectedUser.userName, true)
+        this.eazlService.getUserGroupMembership(this.selectedGroup.groupName, true)
             .then(inclgrp => {
                 this.belongstoUserGroupMembership = inclgrp;
-                this.eazlService.getUserGroupMembership(this.selectedUser.userName, false)
+                this.eazlService.getUserGroupMembership(this.selectedGroup.groupName, false)
                     .then (exclgrp => {
                             this.availableUserGroupMembership  = exclgrp;
                             this.displayGroupMembership = true; 
@@ -239,7 +224,7 @@ export class UserComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(
-                this.selectedUser.userName, 
+                this.selectedGroup.groupName, 
                 event.items[i].groupID
             );
         }
@@ -252,7 +237,7 @@ export class UserComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteUserGroupMembership(
-                this.selectedUser.userName, 
+                this.selectedGroup.groupName, 
                 event.items[i].groupID
             );
         }
@@ -268,61 +253,27 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
     }
 
-    userMenuAccess(user: User) {
+    groupMenuAccess(group: Group) {
         // Access to Data Sources for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccess', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuAccess', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'User Access', 
-            detail:   user.firstName + ' - ' + user.lastName
+            detail:   group.groupName
         });
     }
 
-    userMenuRelatedDataSources(user: User) {
+    groupMenuRelatedDataSources(group: Group) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDataSources', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuRelatedDataSources', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'Related Data Sources', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
-    }
-
-    userMenuMessageHistory(user: User) {
-        // Show history of messages for the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User Message History', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
-    }
-
-    userMenuReportHistory(user: User) {
-        // Show history of reports ran for the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuReportHistory', '@Start');
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User Report History', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
-    }
-    
-    userMenuResetPassword(user: User) {
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuResetPassword', '@Start');
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User Password Reset', 
-            detail:   user.firstName + ' - ' + user.lastName
+            detail:   group.groupName
         });
     }
 
@@ -330,7 +281,7 @@ export class UserComponent implements OnInit {
         // Handle the event: howClosed = Cancel / Submit
         this.globalFunctionService.printToConsole(this.constructor.name,'handleUserPopupFormClosed', '@Start');
 
-        this.displayUserPopup = false;
+        this.displayGroupPopup = false;
   }
 }
 
