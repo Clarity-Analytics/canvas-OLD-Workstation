@@ -4553,6 +4553,30 @@ console.log('getUsersResti',error)
         };
     }
 
+    getDatasourcesPerGroup(groupID: number, include: boolean): DataSource[] {
+        // Return list of DataSource for a given Group
+        // - include: True means that has access, False means has NO access
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerGroup', '@Start');
+        
+        // TODO - from DB
+        // Get Array of all Groups IDs
+        let resultDS: number[] = [];
+
+        this.groupDatasourceAccess.forEach(
+            (gDS) => { 
+                        if (gDS.groupID == groupID) 
+                        resultDS.push(gDS.datasourceID)  
+                        }
+        );   
+
+        // Return necesary Datasources, selectively depending on in/exclude
+        return this.datasources.filter(
+            ds => (include  &&  resultDS.indexOf(ds.datasourceID) >= 0) 
+                    ||
+                  (!include && resultDS.indexOf(ds.datasourceID) < 0) 
+        )
+    }
+
     getGroupDatasourceAccess(groupID: number = -1, datasourceID: number = -1) {
         // Return of list with group - datasource acces
         // - groupID Optional filter, -1 = all

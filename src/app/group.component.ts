@@ -16,6 +16,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { DataSource }                 from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { User }                       from './model.user';
@@ -32,8 +33,10 @@ export class GroupComponent implements OnInit {
     
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
-    availableUserGroupMembership: User[] = [];          // List of Groups user does NOT belongs to
-    belongstoUserGroupMembership: User[] = [];          // List of Groups user already belongs to   
+    availableGroupDS: DataSource[];                     // List of DS Group NOT have access
+    availableUserGroupMembership: User[] = [];          // List of Users NOT belonging to Group
+    belongstoGroupDS: DataSource[];                     // List of DS to which Group has access 
+    belongstoUserGroupMembership: User[] = [];          // List of Users already in Group   
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayGroupPopup: boolean = false;                 // True to display single User
     groups: Group[] = [];                               // List of Groups
@@ -84,11 +87,6 @@ export class GroupComponent implements OnInit {
                 label: 'Users in Group', 
                 icon: 'fa-users', 
                 command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
-            },
-            {
-                label: 'Access', 
-                icon: 'fa-database', 
-                command: (event) => this.groupMenuAccess(this.selectedGroup)
             },
             {
                 label: 'Related Data Sources', 
@@ -208,23 +206,15 @@ export class GroupComponent implements OnInit {
         }
     }
 
-    groupMenuAccess(group: Group) {
-        // Access to Data Sources for the selected group
-        // - group: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuAccess', '@Start');
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Group Access', 
-            detail:   group.groupName
-        });
-    }
-
     groupMenuRelatedDataSources(group: Group) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuRelatedDataSources', '@Start');
 
+//     availableGroupDS = getGroupDSAccess
+//     belongstoGroupDS: DataSource[];                     // List of DS to which Group has access 
+
+// getGroupDatasourceAccess
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'Related Data Sources', 
