@@ -174,10 +174,10 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuGroupMembership', '@Start');
 
         // Get the current and available groups
-        this.eazlService.getUserGroupMembership(this.selectedGroup.groupName, true)
+        this.eazlService.getGroupsPerUser(this.selectedGroup.groupName, true)
             .then(inclgrp => {
                 this.belongstoUserGroupMembership = inclgrp;
-                this.eazlService.getUserGroupMembership(this.selectedGroup.groupName, false)
+                this.eazlService.getGroupsPerUser(this.selectedGroup.groupName, false)
                     .then (exclgrp => {
                             this.availableUserGroupMembership  = exclgrp;
                             this.displayGroupMembership = true; 

@@ -4500,12 +4500,12 @@ console.log('getUsersResti',error)
         return resultGroups;
     }
 
-    getUserGroupMembership(username: string = '', include: boolean = true): Promise<Group[]> {
-        // Return a list of User - Group memberships
+    getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
+        // Return a list of Groups to which a user belongs
         // - username Optional parameter to select ONE, else select ALL (if >= 0)
         // - include Optional parameter, true = include all for user, else group NOT for username
 
-        this.globalFunctionService.printToConsole(this.constructor.name,'getUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
 
         // TODO - from DB
         // Get Array of groups to in or ex clude
