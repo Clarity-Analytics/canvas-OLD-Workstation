@@ -213,6 +213,11 @@ console.log('sub',this.groupForm.controls['groupName'],this.groupForm.controls['
         if (this.addEditMode == 'Edit' && this.displayGroupPopup) {
 
             // Only worry about changes when we are not loading
+            this.eazlService.updateGroup(
+                this.selectedGroup.groupID,
+                this.selectedGroup.groupName,
+                this.selectedGroup.groupDescription
+            );
             if (!this.isLoadingForm) {
                 this.selectedGroup.groupName = this.groupForm.controls['groupName'].value;
                 this.selectedGroup.groupDescription = this.groupForm.controls['groupDescription'].value;

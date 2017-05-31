@@ -4498,9 +4498,8 @@ console.log('getUsersResti',error)
         return Promise.resolve(resultGroups);
     }
 
-
     addGroup(groupName: string, groupDescription: string) {
-        // Add a new Widget
+        // Add a new Group
         this.globalFunctionService.printToConsole(this.constructor.name,'addGroup', '@Start');
 
         let currentUser: string = '';
@@ -4517,6 +4516,26 @@ console.log('getUsersResti',error)
             groupUpdatedDateTime:this.canvasDate.now('standard'),
             groupUpdatedUserID: currentUser
         })
+    }
+
+    updateGroup(groupID: number, groupName: string, groupDescription: string) {
+        // Update a given Group
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
+
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        // Update data
+        for (var i = 0; i < this.groups.length; i++) {
+            if (this.groups[i].groupID == groupID) {
+                this.groups[i].groupName = groupName;
+                this.groups[i].groupDescription = groupDescription;
+                this.groups[i].groupUpdatedDateTime = this.canvasDate.now('standard'),
+                this.groups[i].groupUpdatedUserID = currentUser
+            }
+        };
     }
 
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
