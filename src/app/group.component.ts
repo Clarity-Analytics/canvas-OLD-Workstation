@@ -40,7 +40,6 @@ export class GroupComponent implements OnInit {
     popupHeader: string = 'User Maintenance';           // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedGroup: Group;                               // User that was clicked on
-    users: User[];                                      // List of users
     usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
 
     constructor(
@@ -55,9 +54,9 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
  
         // Initialise variables
-        this.eazlService.getUsers()
-            .then(users => {this.users = users
-                
+        this.eazlService.getGroups()
+            .then(grp => {
+                this.groups = grp
             })
             .catch( err => {console.log(err)} );
         this.popuMenuItems = [

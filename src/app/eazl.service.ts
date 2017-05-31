@@ -4439,7 +4439,6 @@ export class EazlService implements OnInit {
             return this.get<any>('widgets')
                     .toPromise()
                     .then( user => {    
-console.log('getUsersResti', user )
 
                         // for (var i = 0; i < eazlUser.length; i++) {
                         //     this.users.push({
@@ -4480,10 +4479,9 @@ console.log('getUsersResti',error)
                     })
     }
 
-    getGroups(groupID: number = -1) {
+    getGroups(groupID: number = -1): Promise<Group[]> {
         // Return a list of Groups
         // - groupID Optional parameter to select ONE, else select ALL (if >= 0)
-
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroups', '@Start');
 
         // TODO - from DB
@@ -4497,7 +4495,7 @@ console.log('getUsersResti',error)
             )
         }
 
-        return resultGroups;
+        return Promise.resolve(resultGroups);
     }
 
 
