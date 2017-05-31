@@ -25,6 +25,7 @@ import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { CanvasMessage }              from './model.canvasMessage';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
+import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
@@ -39,6 +40,24 @@ export interface Token {
 var req = new XMLHttpRequest();
 
 // TODO - use RESTi
+export const SYSTEMCONFIGURATION: SystemConfiguration {
+    companyName: 'Clarity',
+    companyLogo: '',
+    backendUrl: 'localhost:8000',
+    defaultDaysToKeepResultSet: 1,
+    averageWarningRuntime: 3,
+    maxRowsDataReturned: 1000000,
+    maxRowsPerWidgetGraph: 15,
+    keepDevLoggedIn: false,
+    frontendColorScheme: '',
+    defaultWidgetConfiguration: '',
+    defaultReportFilters: '',
+    growlSticky: false,
+    growlLife: 3,
+    gridSize: 3,
+    snapToGrid: true 
+}
+
 export const DATASOURCES: DataSource[] = 
     [
         { 
@@ -3724,6 +3743,7 @@ export class EazlService implements OnInit {
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     reports: Report[] = REPORTS;                            // List of Reports
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
+    systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
     users: User[] = [];                                     // List of Users
     usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
@@ -3744,6 +3764,21 @@ export class EazlService implements OnInit {
     ngOnInit() {
         // Starters
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+    }
+
+    getSystemConfiguration() {
+        // Returns SystemConfiguration
+        this.globalFunctionService.printToConsole(this.constructor.name,'getSystemConfiguration', '@Start');
+
+        return this.systemConfiguration;
+    }
+
+    updateSystemConfiguration(systemConfiguration: SystemConfiguration) {
+        // Updates SystemConfiguration
+        // - systemConfiguration New data
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
+
+        this.systemConfiguration = systemConfiguration;
     }
 
     logout(username: string) {

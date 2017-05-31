@@ -43,7 +43,7 @@ export class SystemConfigComponent implements OnInit {
         // FormBuilder
         this.configForm = this.fb.group({
             'companyName':                  new FormControl('', Validators.required),
-            'companyLogo':                  new FormControl('', Validators.required),
+            'companyLogo':                  new FormControl(''),
             'backendUrl':                   new FormControl('', Validators.required),
             'defaultDaysToKeepResultSet':   new FormControl('', Validators.pattern('^[0-9]*$')),
             'averageWarningRuntime':        new FormControl('', Validators.pattern('^[0-9]*$')),

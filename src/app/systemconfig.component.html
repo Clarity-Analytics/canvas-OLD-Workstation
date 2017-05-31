@@ -66,7 +66,7 @@
             <div class="ui-grid-col-4">
                 <input pInputText 
                         type="text" 
-                        placeholder="(Optional)"
+                        placeholder="Required"
                         formControlName="averageWarningRuntime"
                         pTooltip="Warn user if a report is known to run longer than this averag RunTime in minutes"
                         >
@@ -113,27 +113,28 @@
         
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
-                frontendColorScheme :
+                ColorScheme :
             </div>
             <div class="ui-grid-col-4">
-                <p-dropdown [options]="isStaffOptions" 
-                            formControlName="frontendColorScheme" 
-                            [autoWidth]="false"
-                            placeholder="Required"
-                            pTooltip="Select frontendColorScheme"
-                            >
-                </p-dropdown>
+                <input pInputText 
+                        type="text" 
+                        formControlName="frontendColorScheme"
+                        placeholder="(Optional)"
+                        pTooltip="Select a Color Scheme for Canvas"
+                    >
+            </div>
+
             </div>
 
             <div class="ui-grid-col-2">
-                defaultWidgetConfiguration:
+                Widget Config:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
                         type="text" 
                         formControlName="defaultWidgetConfiguration"
                         placeholder="(Optional)"
-                        pTooltip="defaultWidgetConfiguration"
+                        pTooltip="Default configuration for new Widgets"
                         >
             </div>
 
