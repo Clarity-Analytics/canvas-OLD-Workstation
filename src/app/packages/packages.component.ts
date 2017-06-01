@@ -28,12 +28,18 @@ class ComponentPackage extends Package {
 export class PackagesComponent implements OnInit {
 	packageList: ComponentPackage[] = [];
 	selectedPackage: ComponentPackage;
+	packageRating: number = null;
 
 	constructor(
 		private eazlPackage: EazlPackageService)
 
 	{
 		this.selectedPackage = new ComponentPackage();
+	}
+
+	refresh() {
+		console.log("Refreshing, isn't it")
+		this.eazlPackage.refresh();
 	}
 
 	selectPackage(selectedPackage: ComponentPackage){
@@ -52,8 +58,9 @@ export class PackagesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.eazlPackage.packageList.model.subscribe(
-			packages => {
+		this.eazlPackage.packageList.subscribe(
+			(packages) => {
+				console.log("packages subscription")
 				if (packages == null) {
 					return;
 				}

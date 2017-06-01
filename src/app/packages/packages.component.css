@@ -10,6 +10,11 @@
 	position: relative;
 }
 
+.package-rating {
+	position: absolute;
+	right: 10px;
+}
+
 .active { 
     outline: none;
     border-color: #9ecaed;

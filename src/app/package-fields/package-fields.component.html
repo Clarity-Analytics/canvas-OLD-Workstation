@@ -5,17 +5,18 @@
 			<th>Type</th>
 		</tr>
 	</thead>
-
-	<p *ngFor="let field of fields">
-		<tbody>
-			<tr>
-				<td>
+	<tbody>
+		<tr *ngFor="let field of fields">
+			<td>
+				<!-- <p> -->
 					{{field.name}}
-				</td>
-				<td>
+				<!-- </p> -->
+			</td>
+			<td>
+				<!-- <p> -->
 					{{field.dtype}}
-				</td>
-			</tr>
-		</tbody>
-	</p>
+<!-- 				</p> -->
+			</td>
+		</tr>
+	</tbody>
 </table>

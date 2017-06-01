@@ -1,5 +1,8 @@
 <div>
 	<div class="ui-g package-list">
+		<button  pButton
+			(click)="refresh()">Press me.</button>
+
 		<div class="ui-g-5">
 			<div 
 				*ngFor="let package of packageList"
@@ -29,6 +32,13 @@
 					label="Execute"
 					(click)="executePackage(package)">
 				</button>
+
+				<p-rating
+					class="package-rating"
+					[ngModel]="packageRating"
+					[cancel]="false">
+					
+				</p-rating>
 			</div>
 		</div>
 	

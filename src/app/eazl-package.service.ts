@@ -1,30 +1,33 @@
 import { Injectable } from '@angular/core';
 import { EazlService } from './eazl.service';
+import { EazlUserService } from './eazl.user.service';
 import { Model, ModelFactory } from './models/generic.model';
 import { Package } from './models/model.package';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
 export class EazlPackageService {
-	packageList: Model<Package[]>;
+	packageList: BehaviorSubject<Package[]> = new BehaviorSubject([]);
 
 	constructor(
-		private packageFactory: ModelFactory<Package[]>,
 		private eazl: EazlService) 
 	{
-		this.packageList = this.packageFactory.create([]);
-		this.getPackageList();
+		this.eazl.get<Package[]>('packages').subscribe(
+			(packages) => {
+				this.packageList.next(packages);
+			}
+		)	
 	}
 
-	getPackageList() {
-		this.eazl.get<Package[]>('packages').subscribe(
-			packages => {
-				this.packageList.setValue(packages);
-			},
-			error => {
-				console.log(error);
-			}
-		);
+	refresh(): void {
+		console.log('Here is the refresh in the service.');
+		this.eazl.get<Package[]>('packages');
+	}
+
+	getPackageRating(pk: number){
+
 	}
 
 	execute(url: string) {
