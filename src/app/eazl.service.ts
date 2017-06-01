@@ -40,7 +40,8 @@ export interface Token {
 var req = new XMLHttpRequest();
 
 // TODO - use RESTi
-export const SYSTEMCONFIGURATION: SystemConfiguration {
+export const SYSTEMCONFIGURATION: SystemConfiguration = 
+{
     companyName: 'Clarity',
     companyLogo: '',
     backendUrl: 'localhost:8000',
@@ -3802,7 +3803,7 @@ export class EazlService implements OnInit {
         // User logs into the backend
         // - username to log into Eazl
         // - password for Eazl
-        this.globalFunctionService.printToConsole(this.constructor.name,'login', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'login', '@Start');
 
     		return this.post<Token>(
                 'auth-token',
@@ -4612,7 +4613,6 @@ console.log('getUsersResti',error)
                   (!include && resultDS.indexOf(ds.datasourceID) < 0) 
         )
     }
-
 
     getGroupsPerDatasource(datasourceID: number, include: boolean): Group[] {
         // Return list of Groups for a given DataSource

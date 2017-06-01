@@ -1,5 +1,12 @@
+<p 
+    class="iserror" 
+    *ngIf="formIsValid"> 
+    {{ errorMessageOnForm }}
+</p>
+
 
 <form 
+    class="formBody"
     [formGroup]="configForm" 
     >
     <div 
@@ -122,8 +129,6 @@
                         placeholder="(Optional)"
                         pTooltip="Select a Color Scheme for Canvas"
                     >
-            </div>
-
             </div>
 
             <div class="ui-grid-col-2">

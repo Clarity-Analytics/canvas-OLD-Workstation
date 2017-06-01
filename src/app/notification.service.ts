@@ -8,13 +8,14 @@ import { WebSocketService }           from './websocket.service';
 import { Notification }               from './model.notification';
 
 const CHAT_URL = 'ws://localhost:1337/chat';
+// const CHAT_URL = 'ws://localhost:8000/sockets/';
 
-// export interface Notification {
-//     author: string;
-//     dateSend: string,
-//     messageType: string,
-//     message: string;
-// }
+export interface Notification {
+    author: string;
+    dateSend: string,
+    messageType: string,
+    message: string;
+}
 
 @Injectable()
 export class NotificationService {
@@ -25,6 +26,7 @@ export class NotificationService {
         this.messages = <Subject<Notification>>wsService
             .connect(CHAT_URL)
             .map((response: MessageEvent): Notification => {
+console.log('not', response)                
                 let data = JSON.parse(response.data);
                 return {
                     author: data.author,
@@ -33,5 +35,6 @@ export class NotificationService {
                     message: data.message,
                 }
             });
+
     }
 }

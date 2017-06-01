@@ -21,7 +21,7 @@ import { GlobalVariableService }      from './global-variable.service';
 @Component({
     selector:    'newmessage',
     templateUrl: 'newmessage.component.html',
-    styleUrls:  ['newmessage.component.html']
+    styleUrls:  ['newmessage.component.css']
 })
 export class NewMessageComponent implements OnInit {
 

@@ -20,7 +20,7 @@ import { WidgetComment } from './model.widget.comment';
 @Component({
     selector: 'widget-comment',
     templateUrl: 'widget-comment.component.html',
-    styleUrls: ['widget-comment.component.html']
+    styleUrls: ['widget-comment.component.css']
 })
 export class WidgetCommentComponent implements OnInit {
 

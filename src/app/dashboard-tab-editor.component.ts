@@ -26,7 +26,7 @@ import { SelectedItem }               from './model.selectedItem';
 @Component({
     selector:    'dashboard-tab-editor',
     templateUrl: 'dashboard-tab-editor.component.html',
-    styleUrls:  ['dashboard-tab-editor.component.html']
+    styleUrls:  ['dashboard-tab-editor.component.css']
 })
 export class DashboardTabEditorComponent implements OnInit {
  

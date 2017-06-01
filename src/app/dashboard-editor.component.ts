@@ -28,7 +28,7 @@ import { SelectedItemColor }          from './model.selectedItemColor';
 @Component({
     selector:    'dashboard-editor',
     templateUrl: 'dashboard-editor.component.html',
-    styleUrls:  ['dashboard-editor.component.html']
+    styleUrls:  ['dashboard-editor.component.css']
 })
 export class DashboardEditorComponent implements OnInit {
 
