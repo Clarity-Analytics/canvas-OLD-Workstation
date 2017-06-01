@@ -20,6 +20,7 @@
  
 <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
 
+
 <p-dialog header="Login" 
     [(visible)]="displayLoginForm" 
     modal="modal" 
@@ -35,6 +36,22 @@
 
 </p-dialog>
 
+
+<p-dialog header="Who am I" 
+    [(visible)]="displayWhoAmIForm" 
+    modal="modal" 
+    width="450" 
+    responsive="true"
+    >
+
+    <whoami 
+        [displayWhoAmIForm]="displayWhoAmIForm"
+        (handleWhoAmISubmit)="handleWhoAmISubmit($event)" 
+        >
+        Loading Who Am I form ...
+    </whoami>
+
+</p-dialog>
 
 
 

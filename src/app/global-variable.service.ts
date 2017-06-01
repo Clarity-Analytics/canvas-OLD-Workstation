@@ -15,7 +15,7 @@ export class GlobalVariableService {
     
     // Company related variables
     companyName = new BehaviorSubject('Clarity');               // Optional, set in SystemConfig
-    companyLogo = new BehaviorSubject(false);                   // Optional, set in SystemConfig
+    companyLogo = new BehaviorSubject('');                      // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation
     systemTitle = new BehaviorSubject('Canvas');
@@ -57,7 +57,7 @@ export class GlobalVariableService {
     // System & operation config
     frontendColorScheme = new BehaviorSubject('');
     defaultWidgetConfiguration = new BehaviorSubject('');
-    averageWarningRuntime = new BehaviorSubject('');
+    averageWarningRuntime = new BehaviorSubject(0);
     defaultReportFilters = new BehaviorSubject(''); 
     growlSticky = new BehaviorSubject(false); 
     growlLife = new BehaviorSubject(3000); 

@@ -34,7 +34,7 @@ export interface EazlUser {
     date_joined: Date;
     last_login: Date;
 }
- 
+
 // Current user info in Canvas
 export class CanvasUser implements EazlUser {
     pk: number;

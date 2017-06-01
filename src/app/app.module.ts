@@ -106,6 +106,7 @@ import { ReportComponent }            from './report.component';
 import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
 import { UserPopupComponent }         from './user-popup.component';
+import { WhoAmIComponent }            from './whoami.component';
 import { WidgetEditorComponent }      from './widget-editor.component';
 import { WidgetCommentComponent }     from './widget-comment.component';
 
@@ -147,6 +148,7 @@ import { routes }                     from './app.routes';
     SystemConfigComponent,
     UserComponent,
     UserPopupComponent,
+    WhoAmIComponent,
     WidgetEditorComponent,
     WidgetCommentComponent,
     // BarCharBuilder,

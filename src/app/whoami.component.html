@@ -1,0 +1,135 @@
+<form 
+    [formGroup]="userform" 
+    >
+    <div 
+        *ngIf="displayWhoAmIForm"
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        style="margin: 10px 0px"
+        >
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                User Name:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="username" 
+                       placeholder="Required"
+                       readonly
+                       >
+            </div>
+
+            <div class="ui-grid-col-2">
+                First Name:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="first_name" 
+                       readonly
+                       >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Last Name:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="last_name" 
+                       readonly
+                       >
+            </div>
+
+            <div class="ui-grid-col-2">
+                Email:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="email" 
+                       readonly
+                       >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Super Usr?:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="is_superuser" 
+                       readonly
+                       >
+            </div>
+
+            <div class="ui-grid-col-2">
+                Is Staff?:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="is_staff" 
+                       readonly
+                       >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Active?:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="is_active" 
+                       readonly
+                       >
+            </div>
+
+            <div class="ui-grid-col-2">
+                Joined on:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="date_joined" 
+                       readonly
+                       >
+            </div>
+        </div>
+    
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-2">
+                Last Login:
+            </div>
+            <div class="ui-grid-col-4">
+                <input pInputText 
+                       type="text" 
+                       formControlName="last_login" 
+                       readonly
+                       >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+
+            <div class="ui-grid-col-5"></div>
+            <div class="ui-grid-col-2">
+                <button 
+                    pButton 
+                    type="button" 
+                    label="Cancel"
+                    icon="fa-undo"
+                    (click)="onClickCancel()"
+                    >
+                </button>
+            </div>
+            <div class="ui-grid-col-5"></div>
+        </div>
+    </div>   
+</form> 

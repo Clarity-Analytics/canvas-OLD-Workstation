@@ -3779,6 +3779,53 @@ export class EazlService implements OnInit {
         // - systemConfiguration New data
         this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
 
+        // Update local values that have changed
+        if (systemConfiguration.companyName != this.systemConfiguration.companyName) {
+            this.globalVariableService.companyName.next(systemConfiguration.companyName);
+        }
+        if (systemConfiguration.companyLogo != this.systemConfiguration.companyLogo) {
+            this.globalVariableService.companyLogo.next(systemConfiguration.companyLogo);
+        }
+        if (systemConfiguration.backendUrl != this.systemConfiguration.backendUrl) {
+            this.globalVariableService.backendUrl.next(systemConfiguration.backendUrl);
+        }
+        if (systemConfiguration.defaultDaysToKeepResultSet != this.systemConfiguration.defaultDaysToKeepResultSet) {
+            this.globalVariableService.defaultDaysToKeepResultSet.next(systemConfiguration.defaultDaysToKeepResultSet);
+        }
+        if (systemConfiguration.averageWarningRuntime != this.systemConfiguration.averageWarningRuntime) {
+            this.globalVariableService.averageWarningRuntime.next(systemConfiguration.averageWarningRuntime);
+        }
+        if (systemConfiguration.maxRowsDataReturned != this.systemConfiguration.maxRowsDataReturned) {
+            this.globalVariableService.maxRowsDataReturned.next(systemConfiguration.maxRowsDataReturned);
+        }
+        if (systemConfiguration.maxRowsPerWidgetGraph != this.systemConfiguration.maxRowsPerWidgetGraph) {
+            this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
+        }
+        if (systemConfiguration.keepDevLoggedIn != this.systemConfiguration.keepDevLoggedIn) {
+            this.globalVariableService.keepDevLoggedIn.next(systemConfiguration.keepDevLoggedIn);
+        }
+        if (systemConfiguration.frontendColorScheme != this.systemConfiguration.frontendColorScheme) {
+            this.globalVariableService.frontendColorScheme.next(systemConfiguration.frontendColorScheme);
+        }
+        if (systemConfiguration.defaultWidgetConfiguration != this.systemConfiguration.defaultWidgetConfiguration) {
+            this.globalVariableService.defaultWidgetConfiguration.next(systemConfiguration.defaultWidgetConfiguration);
+        }
+        if (systemConfiguration.defaultReportFilters != this.systemConfiguration.defaultReportFilters) {
+            this.globalVariableService.defaultReportFilters.next(systemConfiguration.defaultReportFilters);
+        }
+        if (systemConfiguration.growlSticky != this.systemConfiguration.growlSticky) {
+            this.globalVariableService.growlSticky.next(systemConfiguration.growlSticky);
+        }
+        if (systemConfiguration.growlLife != this.systemConfiguration.growlLife) {
+            this.globalVariableService.growlLife.next(systemConfiguration.growlLife);
+        }
+        if (systemConfiguration.gridSize != this.systemConfiguration.gridSize) {
+            this.globalVariableService.gridSize.next(systemConfiguration.gridSize);
+        }
+        if (systemConfiguration.snapToGrid != this.systemConfiguration.snapToGrid) {
+            this.globalVariableService.snapToGrid.next(systemConfiguration.snapToGrid);
+        }
+        
         this.systemConfiguration = systemConfiguration;
     }
 

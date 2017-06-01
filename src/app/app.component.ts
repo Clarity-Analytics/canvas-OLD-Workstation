@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
     // Local Variables
     availableUsers: string[] = [];                  // List of UserIDs available to share with
     displayLoginForm: boolean = false;              // True to display the Login form
+    displayWhoAmIForm: boolean = false;             // True to display the WhoAmI form
     displayNewMessage: boolean = false;             // True to display new message form
     growlGlobalMessage: Message = [];               // Msg
     growlMsgs: Message[] = [];                      // Msg
@@ -179,8 +180,15 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
         this.displayNewMessage = true;
     }
 
+    menuActionWhoAmI (){
+        // Pops up form for WhoAmI
+        this.globalFunctionService.printToConsole(this.constructor.name,'menuActionWhoAmI', '@Start');
+        
+        this.displayWhoAmIForm = true; 
+    }
+
     menuActionLoginLogout() {
-        // Pops up for new message
+        // Pops up form for logging in
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionLoginLogout', '@Start');
 
         // Lets confirm - everyone deserves a second chance
@@ -233,6 +241,13 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
         this.displayNewMessage = false;        
     }
 
+    public handleWhoAmISubmit(submit: boolean): void {
+        // Is triggered after the login form is submitted
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleWhoAmISubmit', '@Start');
+
+        // Rip away popup
+        this.displayWhoAmIForm = false;        
+    }
 
     public handleFormSubmit(submit: boolean): void {
         // Is triggered after the login form is submitted
@@ -399,14 +414,14 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                     {
                         label: 'Who Am I', 
                         icon:  'fa-male',
-                        routerLink: ['startup'],
                         disabled: !isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
+                            this.menuActionWhoAmI();
                         }    
                     },
                     {
-                    label: this.loginLabel, 
+                        label: this.loginLabel, 
                         icon:  'fa-refresh',
                         disabled: false,
                         command: (event) => {
