@@ -175,7 +175,7 @@ export class AppComponent implements OnInit {
         // Count Nr of unread messages for me
         this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
             cm => (cm.messageSentToMe == true  &&  cm.messageMyStatus == 'UnRead')).length;
-console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')        
+
         // Show the related popup form
         this.displayNewMessage = true;
     }
@@ -432,7 +432,7 @@ console.log('this.nrUnReadMessagesForMe, this.nrUnReadMessagesForMe')
                     {
                         label: 'My Profile', 
                         icon:  'fa-cog',
-                        routerLink: ['startup'],
+                        routerLink: ['myprofile'],
                         disabled: !isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;

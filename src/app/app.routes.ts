@@ -9,6 +9,7 @@ import { DataSourceComponent }        from './datasource.component';
 import { GroupComponent }             from './group.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
+import { MyProfileComponent }         from './myprofile.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { ReportComponent }            from './report.component';
 import { SystemConfigComponent }      from './systemconfig.component';
@@ -54,6 +55,11 @@ export const routes: Route[] = [
   { 
     path: 'report',         
     component: ReportComponent, 
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'myprofile',         
+    component: MyProfileComponent, 
     canActivate: [AuthGuard]
   },
   { 

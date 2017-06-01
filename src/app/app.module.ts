@@ -100,6 +100,7 @@ import { GroupComponent }             from './group.component';
 import { GroupPopupComponent }        from './group-popup.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
+import { MyProfileComponent }         from './myprofile.component';
 import { NewMessageComponent }        from './newmessage.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { ReportComponent }            from './report.component';
@@ -142,6 +143,7 @@ import { routes }                     from './app.routes';
     GroupPopupComponent,
     LoginComponent,
     MessageManagerComponent,
+    MyProfileComponent,
     NewMessageComponent,
     PageNotFoundComponent,
     ReportComponent,
