@@ -65,12 +65,8 @@ export class SystemConfigComponent implements OnInit {
 
         // Get the system wide settings
         this.systemConfiguration = this.eazlService.getSystemConfiguration();
-    }
 
-    ngOnChanges() {
-        // Reacts to changes in the form
-        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
-
+        // Move the data into the form
         this.configForm.controls['companyName'].setValue(
             this.systemConfiguration.companyName);
         this.configForm.controls['companyLogo'].setValue(
