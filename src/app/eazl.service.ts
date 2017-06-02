@@ -17,6 +17,7 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
+import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DataSource }                 from './model.datasource';
@@ -277,7 +278,37 @@ export const DATASOURCES: DataSource[] =
             datasourceUpdatedUserID: ''
         }
     ]
-    
+
+export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] = 
+[
+    {
+        dashboardGroupRelationshipID: 0,
+        dashboardID: 1,
+        groupID: 0,
+        dashboardGroupRelationshipType: 'SharedWith',
+        dashboardGroupRelationshipRating: 0,
+        dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
+        dashboardGroupRelationshipCreatedUserID: 'janniei',
+        dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
+        dashboardGroupRelationshipUpdatedUserID: 'janniei'
+    }
+]
+
+export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  = 
+[
+    {
+        dashboardUserRelationshipID: 0,
+        dashboardID: 0,
+        userName: 'janniei',
+        dashboardUserRelationshipType: 'SharedWith',
+        dashboardUserRelationshipRating: 0,
+        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipUpdatedUserID: 'janniei'
+    }
+]
+
 export const DASHBOARDS: Dashboard[] =
     [
         {
@@ -3821,6 +3852,8 @@ export class EazlService implements OnInit {
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
+    DashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
+    DashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     groups: Group[] = GROUPS;                               // List of Groups
@@ -5079,6 +5112,83 @@ console.log('getUsersResti',error)
             item => (!(item.dashboardID == dashboardID  &&  
                        item.dashboardGroupID == dashboardGroupID))
         );
+    }
+
+    addDashboardUserRelationship(
+        dashboardID: number, 
+        username: string, 
+        relationshipType: string) {
+        // Removes user from a Dashboard Relationship
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardUserRelationship', '@Start');
+
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        let found: boolean = false;
+        for (var i = 0; i < this.DashboardUserRelationship.length; i++) {
+            if (this.DashboardUserRelationship[i].dashboardID == dashboardID
+               && 
+               this.DashboardUserRelationship[i].userName == username
+               &&
+               this.DashboardUserRelationship[i].dashboardUserRelationshipType == 
+                relationshipType) {    
+                    found = true;
+                    break;
+                }
+        }
+
+        if (!found) {
+            let currentUser: string = '';
+            if (this.globalVariableService.canvasUser.getValue() != null) {
+                currentUser = this.globalVariableService.canvasUser.getValue().username;
+            }
+            this.DashboardUserRelationship.push(
+                {
+                    dashboardUserRelationshipID: 0,
+                    dashboardID: dashboardID,
+                    userName: username,
+                    dashboardUserRelationshipType: relationshipType,
+                    dashboardUserRelationshipRating: 0,
+                    dashboardUserRelationshipCreatedDateTime: 
+                        this.canvasDate.now('standard'),
+                    dashboardUserRelationshipCreatedUserID: currentUser,
+                    dashboardUserRelationshipUpdatedDateTime: 
+                        this.canvasDate.now('standard'),
+                    dashboardUserRelationshipUpdatedUserID: currentUser
+                });
+        }
+    }
+
+    deleteDashboardUserRelationship(
+        dashboardID: number, 
+        username: string, 
+        relationshipType: string) {
+        // Removes user from a Dashboard Relationship
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardUserRelationship', '@Start');
+
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+        
+        for (var i = 0; i < this.DashboardUserRelationship.length; i++) {
+            if (this.DashboardUserRelationship[i].dashboardID == dashboardID
+               && 
+               this.DashboardUserRelationship[i].userName == username
+               &&
+               this.DashboardUserRelationship[i].dashboardUserRelationshipType == 
+                relationshipType) {
+                this.DashboardUserRelationship = 
+                    this.DashboardUserRelationship.splice(i, 1);
+                    this.DashboardUserRelationship[i].
+                        dashboardUserRelationshipUpdatedDateTime = 
+                            this.canvasDate.now('standard');
+                    this.DashboardUserRelationship[i].
+                        dashboardUserRelationshipUpdatedUserID = currentUser;
+                }
+        }
     }
 
     addDashboardSharedWith(dashboardID: number, username: string) {
