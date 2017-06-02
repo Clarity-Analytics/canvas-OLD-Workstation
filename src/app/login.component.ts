@@ -61,7 +61,9 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.userform.controls['password'].setValue('');
     this.globalVariableService.isCurrentUserAdmin.next(user.is_superuser);
-    this.globalVariableService.currentUserUserName.next(user.first_name || user.username);
+    this.globalVariableService.currentUserUserName.next(user.username);
+    this.globalVariableService.currentUserFirstName.next(user.first_name);
+    this.globalVariableService.currentUserLastName.next(user.last_name);
 
     // Trigger event emitter 'emit' method
     this.formSubmit.emit(true);
@@ -74,7 +76,6 @@ export class LoginComponent implements OnInit {
     var username = this.userform.get('username').value;
     var password = this.userform.get('password').value;
 
-    
     this.authService.login(username, password)
       .flatMap( 
         (authToken: Token, index: number) => {

@@ -90,8 +90,9 @@ export class AppComponent implements OnInit {
             this.globalVariableService.sessionDebugging.next(true);
 
             // Here we listen for changes in the login-ness of the user. If they logout the component should react accordingly.
-            this.eazl.authToken.subscribe(authToken => {
-                this.isLoggedIn = authToken != null;
+            
+            this.globalVariableService.currentUserUserName.subscribe(name => {
+                this.isLoggedIn = name != null;
                 
                 this.loadMenu();
                 this.router.navigate(['login']);
@@ -211,6 +212,7 @@ export class AppComponent implements OnInit {
                     
                     // Logged out!
                     this.eazl.clearAuthToken();
+                    this.globalVariableService.currentUserUserName.next(null);
 
                     // Show the login form
                     this.displayNewMessage = true;        
