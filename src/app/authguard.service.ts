@@ -23,6 +23,7 @@ export class AuthGuard implements OnInit, CanActivate {
         ) { }
 
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
     }
 

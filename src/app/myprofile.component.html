@@ -1,3 +1,4 @@
+<!--Error message, IF any-->
 <p 
     class="iserror" 
     *ngIf="formIsValid"> 
@@ -5,6 +6,7 @@
 </p>
 
 
+<!--Individual User fields-->
 <form 
     class="formBody"
     [formGroup]="configForm" 
@@ -61,6 +63,714 @@
                        >
             </div>
         </div>
+
+        <div>
+            <button 
+                pButton 
+                type="button" 
+                label="Cancel"
+                icon="fa-undo"
+                (click)="onClickChangePassword()"
+                >
+            </button>
+        </div>
     </div>
 </form> 
 
+
+<!--Tabview with tables-->
+<p-tabView>
+    <!--Tables-->
+    <p-tabPanel header="My Groups">
+        <div class="myOverride">
+            <p-dataTable  #dt
+                columnResizeMode="expand"
+                exportFilename="groups"
+                [paginator]="false" 
+                [pageLinks]="3" 
+                [reorderableColumns]="true"
+                [resizableColumns]="true"
+                [responsive]="true"
+                [rows]="10" 
+                [rowsPerPageOptions]="[5,10,20]"
+                [(selection)]="selectedGroup"
+                selectionMode="single" 
+                [scrollable]="true"  
+                [sortMode]="multiple"
+                [value]="groups"  
+                >
+                <p-header
+                    [style]="{'background-color': 'darkgray'}">
+                    <span>
+                        List of Groups
+                    </span>
+                    <span style="float:right"
+                        class="ui-helper-clearfix csvButton"
+                        >
+                        <button 
+                            type="button" 
+                            pButton 
+                            icon="fa-file-o" 
+                            iconPos="left" 
+                            label="CSV" 
+                            (click)="dt.exportCSV()" 
+                            >
+                        </button>
+                    </span>
+                    
+                </p-header>
+                <p-column 
+                    field="groupID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="ID" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="groupName" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Name" 
+                    [sortable]="true"
+                    [style]="{width: '120px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="groupDescription" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Description" 
+                    [sortable]="true"
+                    [style]="{width: '320px', 
+                            'text-align': 'center'}"            >
+                </p-column>
+            </p-dataTable>
+        </div>
+    </p-tabPanel>
+
+    <!--Data Sources-->
+    <p-tabPanel header="My Datasources">
+        <p-dataTable [value]="datasources">
+            <p-column field="datasourceID" header="ID"></p-column>
+            <p-column field="datasourceName" header="Name"></p-column>
+            <p-column field="datasourceDescription" header="Description"></p-column>
+        </p-dataTable>
+    </p-tabPanel>
+
+    <!--Reports I own-->
+    <p-tabPanel header="Reports I own">
+        <p-dataTable [value]="reports">
+            <p-column field="reportID" header="ID"></p-column>
+            <p-column field="reportName" header="Name"></p-column>
+            <p-column field="description" header="Description"></p-column>
+            <p-column field="reportParameters" header="Parameters"></p-column>
+            <p-column field="dataSourceID" header="DS ID"></p-column>
+            <p-column field="dataSourceParameters" header="DS Parameters"></p-column>
+            <p-column field="reportFields" header="Fields"></p-column>
+        </p-dataTable>
+    </p-tabPanel>
+
+    <!--Dashboards I own-->
+    <p-tabPanel header="Dashboards I own">
+
+        <!--Table with Dashboard info -->
+        <div class="myOverride">
+            <p-dataTable  #dt
+                columnResizeMode="expand"
+                exportFilename="dashboardsIown"
+                [contextMenu]="cm"
+                [paginator]="true" 
+                [pageLinks]="3" 
+                [reorderableColumns]="true"
+                [resizableColumns]="true"
+                [responsive]="true"
+                [rows]="10" 
+                [rowsPerPageOptions]="[5,10,20]"
+                selectionMode="single" 
+                [scrollable]="false"  
+                [sortMode]="multiple"
+                [value]="dashboards"  
+                >
+                <p-header
+                    [style]="{'background-color': 'darkgray'}">
+                    <span>
+                        List of Dashboards
+                    </span>
+                    <span style="float:right"
+                        class="ui-helper-clearfix csvButton"
+                        >
+                        <button 
+                            type="button" 
+                            pButton 
+                            icon="fa-file-o" 
+                            iconPos="left" 
+                            label="CSV" 
+                            (click)="dt.exportCSV()" 
+                            >
+                        </button>
+                    </span>
+                    
+                </p-header>
+
+                <p-column 
+                    field="dashboardID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="ID" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardCode" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Code" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardName" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Name" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="isContainerHeaderDark" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Dark Hdr?" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="showContainerHeader" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Show Hdr" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardBackgroundColor" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Bg Color" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardBackgroundImageSrc" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Bg Image" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardComments" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Comments" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardDefaultExportFileType" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Export FType" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardDescription" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Description" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardNrGroups" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Nr Groups" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardIsLocked" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Locked?" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardIsLiked" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Liked?" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardOpenTabNr" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Open TabNr" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardOwnerUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Owner" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardPassword" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Password" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardRefreshMode" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="RefreshMode" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardNrSharedWith" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Nr SharedWith" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardSystemMessage" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="SystemMessage" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardRefreshedDateTime" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Refreshed on" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardRefreshedUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Refreshed by" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardUpdatedDateTime" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Updated on" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardUpdatedUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Updated by" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardCreatedDateTime" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Created on" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardCreatedUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Created by" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </p-tabPanel>
+
+    <!--Dashboards shared with me-->
+    <p-tabPanel header="Dashboards shared with me">
+
+        <!--Table with Dashboards shared with me-->
+        <div class="myOverride">
+            <p-dataTable  #dt
+                columnResizeMode="expand"
+                exportFilename="dashboardsSharedWithMe"
+                [contextMenu]="cm"
+                [paginator]="true" 
+                [pageLinks]="3" 
+                [reorderableColumns]="true"
+                [resizableColumns]="true"
+                [responsive]="true"
+                [rows]="10" 
+                [rowsPerPageOptions]="[5,10,20]"
+                selectionMode="single" 
+                [scrollable]="false"  
+                [sortMode]="multiple"
+                [value]="dashboards"  
+                >
+                <p-header
+                    [style]="{'background-color': 'darkgray'}">
+                    <span>
+                        List of Dashboards
+                    </span>
+                    <span style="float:right"
+                        class="ui-helper-clearfix csvButton"
+                        >
+                        <button 
+                            type="button" 
+                            pButton 
+                            icon="fa-file-o" 
+                            iconPos="left" 
+                            label="CSV" 
+                            (click)="dt.exportCSV()" 
+                            >
+                        </button>
+                    </span>
+                    
+                </p-header>
+
+                <p-column 
+                    field="dashboardID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="ID" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardCode" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Code" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardName" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Name" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="isContainerHeaderDark" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Dark Hdr?" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="showContainerHeader" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Show Hdr" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardBackgroundColor" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Bg Color" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardBackgroundImageSrc" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Bg Image" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardComments" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Comments" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardDefaultExportFileType" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Export FType" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardDescription" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Description" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardNrGroups" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Nr Groups" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardIsLocked" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Locked?" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardIsLiked" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Liked?" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardOpenTabNr" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Open TabNr" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardOwnerUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Owner" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardPassword" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Password" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardRefreshMode" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="RefreshMode" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardNrSharedWith" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Nr SharedWith" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardSystemMessage" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="SystemMessage" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardRefreshedDateTime" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Refreshed on" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardRefreshedUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Refreshed by" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardUpdatedDateTime" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Updated on" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardUpdatedUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Updated by" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardCreatedDateTime" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Created on" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardCreatedUserID" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="Created by" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+
+            </p-dataTable>
+        </div>
+    </p-tabPanel>
+
+
+    <!--History of Reports I ran-->
+    <p-tabPanel header="Reports I ran">
+        History of reports I ran
+    </p-tabPanel>
+</p-tabView>

@@ -70,6 +70,7 @@ export class DashboardManagerComponent implements OnInit {
     }
     
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.eazlService.getDashboards();

@@ -46,6 +46,7 @@ export class MessageManagerComponent implements OnInit {
     }
     
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);

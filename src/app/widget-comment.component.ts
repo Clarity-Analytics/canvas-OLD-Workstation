@@ -46,6 +46,7 @@ export class WidgetCommentComponent implements OnInit {
     }
 
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
         // FormBuilder

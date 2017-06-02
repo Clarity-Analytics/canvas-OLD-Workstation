@@ -114,6 +114,7 @@ export class AppComponent implements OnInit {
     }
  
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Subscribe to the global alerts (that are growled)

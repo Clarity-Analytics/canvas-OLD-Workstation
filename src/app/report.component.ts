@@ -44,6 +44,7 @@ export class ReportComponent implements OnInit {
     }
     
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.reports = this.eazlService.getReports();

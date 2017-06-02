@@ -157,6 +157,7 @@ export class WidgetEditorComponent implements OnInit {
     }
     
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
         // Define form group for first tab

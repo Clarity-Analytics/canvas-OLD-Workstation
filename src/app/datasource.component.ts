@@ -50,6 +50,7 @@ export class DataSourceComponent implements OnInit {
     }
     
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.datasources = this.eazlService.getDataSources();

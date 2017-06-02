@@ -17,6 +17,7 @@ export class PageNotFoundComponent implements OnInit {
       ) { }
       
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
      }
 }

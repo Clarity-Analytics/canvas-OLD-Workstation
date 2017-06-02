@@ -55,6 +55,7 @@ export class GroupComponent implements OnInit {
     }
     
     ngOnInit() {
+        //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
  
         // Initialise variables
