@@ -4,6 +4,9 @@ import { Package } from '../_models/model.package';
 import { Field } from '../_models/model.package';
 
 
+import { AuthenticationService, PinkyPromise } from '../_services';
+
+
 class ComponentPackage extends Package {
 	selected: boolean;
 
@@ -33,10 +36,18 @@ export class PackagesComponent implements OnInit {
 	search: string = '';
 
 	constructor(
-		private eazlPackage: EazlPackageService)
+		private eazlPackage: EazlPackageService,
+		private authService: AuthenticationService)
 
 	{
 		this.selectedPackage = new ComponentPackage();
+	}
+
+	testing() {
+		this.authService.login('bradleyk', 'canvas100*').subscribe(
+			(authToken) => { console.log(authToken) },
+			(error) => { console.log(error) }
+		)
 	}
 
 	completeMethod(event) {
@@ -47,11 +58,6 @@ export class PackagesComponent implements OnInit {
 		)
 
 		this.suggestions = results;
-	}
-
-	refresh() {
-		console.log("Refreshing, isn't it")
-		this.eazlPackage.refresh();
 	}
 
 	selectPackage(selectedPackage: ComponentPackage){

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EazlService } from './eazl.service';
 import { EazlUserService } from './eazl.user.service';
-import { Model, ModelFactory } from './models/generic.model';
-import { Package } from './models/model.package';
+import { Package } from './_models/model.package';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 

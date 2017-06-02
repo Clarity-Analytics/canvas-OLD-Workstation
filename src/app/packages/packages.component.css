@@ -4,7 +4,6 @@
 }
 
 .package {
-	/*border: 1px solid whitesmoke;*/
 	padding: 5px 5px 30px 20px;
 	margin: 2px 2px 2px 2px;
 	position: relative;
@@ -17,8 +16,7 @@
 
 .active { 
     outline: none;
-    border-color: #9ecaed;
-    box-shadow: 0 0 10px #9ecaed;
+    box-shadow: 0 0 10px lightgrey;
 }
 
 .package:hover {

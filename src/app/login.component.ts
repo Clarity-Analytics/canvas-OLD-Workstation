@@ -18,8 +18,9 @@ import { GlobalVariableService }      from './global.variable.service';
 
 
 // For the resti
-import { EazlUserService } from './eazl.user.service';
-import { EazlService } from './eazl.service';
+import { UserService, AuthenticationService } from './_services';
+import { User, Token } from './_models';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -30,59 +31,58 @@ import { EazlService } from './eazl.service';
 })
 export class LoginComponent implements OnInit {
 
-    // Event emitter sends event back to parent component once Submit button was clicked
-    @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
+  // Event emitter sends event back to parent component once Submit button was clicked
+  @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
+  
+  // Local properties
+  currentUser: string = '';
+  submitted: boolean;
+  userform: FormGroup;
+
+  constructor(
+      private fb: FormBuilder,
+      private globalFunctionService: GlobalFunctionService,
+      private globalVariableService: GlobalVariableService,
+      private authService: AuthenticationService,
+      private userService: UserService
+      ) {}
+  
+  ngOnInit() {
+      this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+      // FormBuilder
+      this.userform = this.fb.group({
+          'username': new FormControl('', Validators.required),
+          'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      });
+  }
+  
+  setCurrentUser(user: User) {
+    this.submitted = true;
+    this.userform.controls['password'].setValue('');
+    this.globalVariableService.isCurrentUserAdmin.next(user.is_superuser);
+    this.globalVariableService.currentUserUserName.next(user.first_name || user.username);
+
+    // Trigger event emitter 'emit' method
+    this.formSubmit.emit(true);
+  }
+
+  onSubmit(value: string) {
+    // User clicked submit button
+    this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+
+    var username = this.userform.get('username').value;
+    var password = this.userform.get('password').value;
+
     
-    // Local properties
-    currentUser: string = '';
-    submitted: boolean;
-    userform: FormGroup;
-
-    constructor(
-        private fb: FormBuilder,
-        private globalFunctionService: GlobalFunctionService,
-        private globalVariableService: GlobalVariableService,
-        private eazl: EazlService,
-        private eazlUser: EazlUserService
-        ) {}
-    
-    ngOnInit() {
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        // FormBuilder
-        this.userform = this.fb.group({
-            'username': new FormControl('', Validators.required),
-            'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-        });
-        
-        this.eazl.authToken.subscribe(authToken => {
-            if (authToken != null) {
-                this.eazlUser.refresh();
-            }
-        })
-
-        this.eazlUser.user.subscribe(user => {
-            if (user) {
-                // Clear the password, dont want it hanging around
-                this.submitted = true;
-                this.userform.controls['password'].setValue('');
-                this.globalVariableService.isCurrentUserAdmin.next(user.is_superuser);
-                this.globalVariableService.currentUserUserName.next(user.first_name || user.username);
-
-                // Trigger event emitter 'emit' method
-                this.formSubmit.emit(true);
-            }
-        }); // end user subscription
-
-    }
-    
-    onSubmit(value: string) {
-        // User clicked submit button
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
-
-        var username = this.userform.get('username').value;
-        var password = this.userform.get('password').value;
-
-        this.eazl.authenticate(username, password);
-    }
+    this.authService.login(username, password)
+      .flatMap( 
+        (authToken: Token, index: number) => {
+          return this.userService.getCurrentUser()
+      }).subscribe(
+        (currentUser: User) => { this.setCurrentUser(currentUser) },
+        (error) => { console.log(error) },
+        () => console.log('Complete')
+      )
+  }
 }

@@ -126,6 +126,10 @@ import { PackagesComponent } from './packages/packages.component';
 import { PackageFieldsComponent } from './package-fields/package-fields.component';
 import { PackageParametersComponent } from './package-parameters/package-parameters.component';
 
+// New idea
+import { UserService } from './_services';
+import { AuthenticationService } from './_services';
+
 
 @NgModule({
   declarations: [
@@ -233,6 +237,9 @@ import { PackageParametersComponent } from './package-parameters/package-paramet
     EazlService,
     EazlUserService,
     EazlPackageService,
+
+    UserService,
+    AuthenticationService,
 
     // NG Services
     ConfirmationService,

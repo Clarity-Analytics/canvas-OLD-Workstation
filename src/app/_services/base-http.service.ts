@@ -1,17 +1,30 @@
 import { Injectable } from '@angular/core';
+import { isDevMode } from '@angular/core';
 import { RequestOptions, Headers, Response } from '@angular/http';
-import { Token } from '../_models/'
 import { Observable } from 'rxjs/Observable';
+
+import { Token } from '../_models/'
+
+
+export function PinkyPromise(target, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
+  const originMethod = descriptor.value;
+
+  descriptor.value = function(...args: any[]) {
+    const result = originMethod.apply(this, args);
+
+    return result.toPromise();
+  }
+
+  return descriptor;
+}
 
 
 @Injectable()
 export class BaseHttpService {
-  storage: Storage;
   baseUri: string = `${window.location.protocol}//${window.location.hostname}:8000/api/`
+  storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
   
-  constructor() {
-  	this.storage = window.localStorage; // use local storage for testing so we don't have to login everytime
-  }
+  constructor() { }
 
   prepareRoute(route: string): string {
       if (route.slice(-1) !== '/') {
@@ -30,17 +43,20 @@ export class BaseHttpService {
   }
 
   handleError(response: Response | any): Observable<Response> {
-      return Observable.throw(response);
+      const error = response.json() || JSON.stringify(response.body);
+
+      return Observable.throw(error);
   }
 
   get options() {
-  	let headers = new Headers(
-	  	{
-	  		"Authorization": `Token ${this.storage.getItem('canvas-token')}`
-	  	}
-  	);
+  	let headers = new Headers({"Content-Type": "application/json"});
+
+    if (this.storage.getItem('canvas-token')) {
+      headers.set('Authorization', `Token ${this.storage.getItem('canvas-token')}`)  
+    }
 
   	return new RequestOptions({"headers": headers})
   }
 
 }
+

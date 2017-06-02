@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { BaseHttpService } from './base-http.service';
+import { Observable } from 'rxjs/Observable';
 
 import { Token, AuthenticationError } from '../_models';
 
@@ -9,36 +10,26 @@ export class AuthenticationService extends BaseHttpService {
 
   constructor(private http: Http) { super() }
 
-	authenticate(username: string, password: string) {
+	login(username: string, password: string): Observable<Token> {
 		let route = this.prepareRoute('auth-token');
 		let data = JSON.stringify({"username": username, "password": password})
 		
-		this.http.post(route, data, this.options)
-		    .map(this.parseResponse)
+		return this.http.post(route, data, this.options)
+		    .map(this.parseResponse.bind(this))
 		    .catch(this.handleError)
-		    .subscribe(
-		    	(authToken: Token) => {
-
-		    	},
-		    	(error: AuthenticationError) => {
-		    		alert(error.non_field_errors)
-		    	}
-		    )
-	}
-
-	setAuthToken(authToken: Token): Token {
-		this.storage.setItem('canvas-token', authToken.token);
-
-		return authToken;
 	}
 
 	clearAuthToken() {
 		this.storage.removeItem('canvas-token');
 	}
 
-	// Over-ride because auth is not standard issue
-	parseResponse(response: Response) {	
-		return this.setAuthToken(response.json());
+	setAuthToken(authToken: Token) {
+		this.storage.setItem('canvas-token', authToken.token);
 	}
 
+	parseResponse(response: Response) {
+		let authToken: Token = super.parseResponse(response);
+		this.setAuthToken(authToken);
+		return authToken
+	}
 }
