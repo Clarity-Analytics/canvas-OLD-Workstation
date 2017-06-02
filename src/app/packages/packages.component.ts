@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EazlPackageService } from '../eazl-package.service';
-import { Package } from '../models/model.package';
-import { Field } from '../models/model.package';
+import { Package } from '../_models/model.package';
+import { Field } from '../_models/model.package';
 
 
 class ComponentPackage extends Package {
@@ -29,12 +29,24 @@ export class PackagesComponent implements OnInit {
 	packageList: ComponentPackage[] = [];
 	selectedPackage: ComponentPackage;
 	packageRating: number = null;
+	suggestions: string[] = ['testing', 'anarchy'];
+	search: string = '';
 
 	constructor(
 		private eazlPackage: EazlPackageService)
 
 	{
 		this.selectedPackage = new ComponentPackage();
+	}
+
+	completeMethod(event) {
+		let results = ['testing', 'anarchy'].filter(
+			(item) => {
+				 return item.indexOf(event.query) != -1
+			}
+		)
+
+		this.suggestions = results;
 	}
 
 	refresh() {

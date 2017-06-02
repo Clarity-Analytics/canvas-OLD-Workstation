@@ -13,6 +13,10 @@ tr {
 	height: 40px;
 }
 
+tbody tr:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
 td {
 	width: 100%;
 	text-align: left;

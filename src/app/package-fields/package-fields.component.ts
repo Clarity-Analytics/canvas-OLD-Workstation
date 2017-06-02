@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Field } from '../models/model.package';
+import { Field } from '../_models/model.package';
 
 @Component({
   selector: 'app-package-fields',

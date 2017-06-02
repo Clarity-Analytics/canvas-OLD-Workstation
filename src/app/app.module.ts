@@ -122,12 +122,7 @@ import { routes }                     from './app.routes';
 // For resti
 import { EazlUserService } from './eazl.user.service';
 import { EazlPackageService } from './eazl-package.service';
-import { EazlPackageTaskService } from './eazl-package-task.service'
-import { CanvasModelProvider } from './models/generic.model';
 import { PackagesComponent } from './packages/packages.component';
-import { PackageComponent } from './package/package.component';
-import { PackageTasksComponent } from './package-tasks/package-tasks.component';
-import { PackageTaskComponent } from './package-task/package-task.component';
 import { PackageFieldsComponent } from './package-fields/package-fields.component';
 import { PackageParametersComponent } from './package-parameters/package-parameters.component';
 
@@ -146,9 +141,6 @@ import { PackageParametersComponent } from './package-parameters/package-paramet
     WidgetEditorComponent,
     WidgetCommentComponent,
     PackagesComponent,
-    PackageComponent,
-    PackageTasksComponent,
-    PackageTaskComponent,
     PackageFieldsComponent,
     PackageParametersComponent,
     // BarCharBuilder,
@@ -238,11 +230,9 @@ import { PackageParametersComponent } from './package-parameters/package-paramet
     },
 
     // For the resti
-    CanvasModelProvider,
     EazlService,
     EazlUserService,
     EazlPackageService,
-    EazlPackageTaskService,
 
     // NG Services
     ConfirmationService,

@@ -298,15 +298,6 @@ export class AppComponent implements OnInit {
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }
-                    },
-                    {
-                        label: 'Task list',
-                        icon: 'fa-tasks',
-                        routerLink: ['packages-tasks'],
-                        disabled:false,
-                        command: (event) => {
-                            this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
                     }
                 ]
             },
