@@ -4215,10 +4215,14 @@ export class EazlService implements OnInit {
         // TODO - update for real in DB
     }
 
-    getDashboards(dashboardID: number = -1) {
-        // Return a list of Dashboards
+    getDashboards(
+        dashboardID: number = -1, 
+        relatedUsername: string = '*', 
+        relationshipType: string = '') {
+        // Return a list of Dashboards, with optional filters
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
-
+        // - relatedUsername Optional username
+        // - relationshipType Optional type, ie SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
 
         // TODO - when from DB, fill the properties.widgetComments field with the latest
@@ -4227,17 +4231,27 @@ export class EazlService implements OnInit {
         // TODO - get a standard set of methods, ie getXXX returns all, findXXX returns one.
         //        OR, use TS standard with .filter, .find, etc .... ??
         // IF an ID was provided, only return that one.  Else, al
-        let resultDashboards: Dashboard[] = [];
-        if (dashboardID == -1) {
-            resultDashboards = this.dashboards;
-        }
-        else {
-            resultDashboards = this.dashboards.filter(
-                dash => dash.dashboardID == dashboardID
-            )
+
+        // Start with all
+        let dashboardsWorking: Dashboard[] = this.dashboards;
+
+        // Filter on related ones, IF so requested
+        if (relatedUsername != '*') {
+            let dashboardIDs: number[] = [];
+            for (var i; i < DashboardUserRelationship.length; i++) {
+                if (this.DashboardUserRelationship[i].userName == relatedUsername
+                   &&
+                   this.DashboardUserRelationship[i].dashboardUserRelationshipType ==
+                        relationshipType) {
+                        dashboardIDs.push(this.DashboardUserRelationship[i].dashboardID)
+                }
+            }    
+            dashboardsWorking = dashboardsWorking.filter( dw =>
+                (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
 
-        return resultDashboards;
+        return dashboardsWorking.filter(d =>
+            (dashboardID == -1  ||  d.dashboardID == dashboardID));
     }
 
     getDashboardTabs(selectedDashboardID: number, selectedDashboardTabID?: number): DashboardTab[] {
