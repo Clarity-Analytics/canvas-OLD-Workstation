@@ -26,6 +26,7 @@ import { CanvasMessage }              from './model.canvasMessage';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportWidgetSet }            from './model.report.widgetSets';
+import { ReportUserRelationship }     from './reportUserRelationship';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
@@ -112,6 +113,32 @@ export const REPORTHISTORY: ReportHistory[] =
         reportHistoryNrRowsReturned: 12,
         reportHistoryComments: ''
     },
+]
+
+export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] = 
+[
+    {
+        reportUserRelationshipID: 0,
+        userName: 'janniei',
+        reportID: 1,
+        reportUserRelationshipType: 'Owns',
+        reportUserRelationshipRating: 0,
+        reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+        reportUserRelationshipCreatedUserID: 'janniei',
+        reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+        reportUserRelationshipUpdatedUserID: 'janniei'
+    },
+    {
+        reportUserRelationshipID: 0,
+        userName: 'bradleyk',
+        reportID: 1,
+        reportUserRelationshipType: 'Owns',
+        reportUserRelationshipRating: 0,
+        reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+        reportUserRelationshipCreatedUserID: 'janniei',
+        reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+        reportUserRelationshipUpdatedUserID: 'janniei'
+    }
 ]
 
 export const DATASOURCES: DataSource[] = 
@@ -3799,6 +3826,7 @@ export class EazlService implements OnInit {
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     reports: Report[] = REPORTS;                            // List of Reports
     reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
+    reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
     users: User[] = [];                                     // List of Users
@@ -4404,26 +4432,53 @@ export class EazlService implements OnInit {
         return DefaultWidgetConfig;
     }
 
-    getReports(dashboardID: number = -1): Report[] {
+    getReports(
+        dashboardID: number = -1, 
+        username: string = '*', 
+        relationship: string = '*'
+        ): Report[] {
         // Return a list of Reports
         // - dashboardID Optional parameter to filter on
+        // - username Optional filter on relationships for this username
+        // - relationship Optiona filter of Type of relationship IF username: Likes, Rates, Owns
         this.globalFunctionService.printToConsole(this.constructor.name,'getReports', '@Start');
 
-        if (dashboardID == -1) {
-            return this.reports;
-        }
+        // Get all of them
+        let reportsWorking: Report[] = this.reports;
 
-        // Get the ReportIDs from all the Widgets for the requested Dashboard
-        let widgetReportIDs: number[] = [];
-        for (var i = 0; i < this.widgets.length; i++) {
-            if (this.widgets[i].properties.dashboardID == dashboardID) {
-                    widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
-                }
-        }
+        if (dashboardID != -1) {
 
-        // Return the DataSourceIDs from all the reports
-        return this.reports.filter(rpt => 
+            // Get the ReportIDs from all the Widgets for the requested Dashboard
+            let widgetReportIDs: number[] = [];
+            for (var i = 0; i < this.widgets.length; i++) {
+                if (this.widgets[i].properties.dashboardID == dashboardID) {
+                        widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
+                    }
+            }
+            
+            reportsWorking = reportsWorking.filter(rpt => 
              (widgetReportIDs.indexOf(rpt.reportID) >= 0) )
+        }
+
+        if (username != '*') {
+
+            // Get the ReportIDs from all the Widgets for the requested Dashboard
+            let userRelatedRptIDs: number[] = [];
+            for (var i = 0; i < this.reportUserRelationship.length; i++) {
+                if (this.reportUserRelationship[i].userName == username 
+                    && (relationship == '*'  || 
+                        this.reportUserRelationship[i].reportUserRelationshipType == 
+                            relationship)) {
+                        userRelatedRptIDs.push(this.reportUserRelationship[i].reportID);
+                }
+            }
+            
+            reportsWorking = reportsWorking.filter(rpt => 
+                (userRelatedRptIDs.indexOf(rpt.reportID) >= 0) )
+        }
+
+        // Return the (filtered) Reports
+        return reportsWorking;
     }
 
     getReport(reportID: number): Report {
@@ -4464,6 +4519,18 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportWidgetSets', '@Start');
 
         return this.reportWidgetSet.filter(wset => wset.reportID == reportID);
+    }
+
+    getReportHistory(userName: string ='*',reportID: number = -1){
+        // Return history of reports run, optionally filtered
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
+                
+        return this.reportHistory.filter(rh =>
+            (userName == '*'   ||   rh.userName == userName)
+            &&
+            (reportID == -1    ||   rh.reportID == reportID)
+        )
+        
     }
 
     getWidgetTemplates(widgetTemplateName: string): WidgetTemplate {
@@ -4788,18 +4855,6 @@ console.log('getUsersResti',error)
                     (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0) 
         )
         return Promise.resolve(resultGroups);
-    }
-
-    getReportHistory(userName: string ='*',reportID: number = -1){
-        // Return history of reports run, optionally filtered
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
-                
-        return this.reportHistory.filter(rh =>
-            (userName == '*'   ||   rh.userName == userName)
-            &&
-            (reportID == -1    ||   rh.reportID == reportID)
-        )
-        
     }
 
     getUsersPerGroup(groupID: number = -1, include: boolean = true): Promise<User[]> {
