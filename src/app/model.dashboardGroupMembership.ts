@@ -1,4 +1,4 @@
-// Schema for the Dashboard-GroupMembership classes (many - many)
+// Schema for the Dashboard-DashboardGroup Membership classes (many - many)
 
 // Dashboard per Group 
 export class DashboardGroupMembership {

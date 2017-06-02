@@ -63,17 +63,6 @@
                        >
             </div>
         </div>
-
-        <div>
-            <button 
-                pButton 
-                type="button" 
-                label="Cancel"
-                icon="fa-undo"
-                (click)="onClickChangePassword()"
-                >
-            </button>
-        </div>
     </div>
 </form> 
 
@@ -181,7 +170,7 @@
         <div class="myOverride">
             <p-dataTable  #dt
                 columnResizeMode="expand"
-                exportFilename="dashboardsIown"
+                exportFilename="dashboards"
                 [contextMenu]="cm"
                 [paginator]="true" 
                 [pageLinks]="3" 
@@ -193,7 +182,7 @@
                 selectionMode="single" 
                 [scrollable]="false"  
                 [sortMode]="multiple"
-                [value]="dashboards"  
+                [value]="dashboardsIown"  
                 >
                 <p-header
                     [style]="{'background-color': 'darkgray'}">
@@ -478,7 +467,7 @@
         <div class="myOverride">
             <p-dataTable  #dt
                 columnResizeMode="expand"
-                exportFilename="dashboardsSharedWithMe"
+                exportFilename="dashboards"
                 [contextMenu]="cm"
                 [paginator]="true" 
                 [pageLinks]="3" 
@@ -490,7 +479,7 @@
                 selectionMode="single" 
                 [scrollable]="false"  
                 [sortMode]="multiple"
-                [value]="dashboards"  
+                [value]="dashboardsSharedWithMe"  
                 >
                 <p-header
                     [style]="{'background-color': 'darkgray'}">
