@@ -82,7 +82,15 @@ export class LoginComponent implements OnInit {
           return this.userService.getCurrentUser()
       }).subscribe(
         (currentUser: User) => { this.setCurrentUser(currentUser) },
-        (error) => { console.log(error) },
+        (error) => { 
+          this.globalVariableService.growlGlobalMessage.next(
+            {
+              severity: 'error', 
+              summary: 'Error', 
+              detail: `${JSON.stringify(error)}`
+            }
+          ) 
+        },
         () => console.log('Complete')
       )
   }
