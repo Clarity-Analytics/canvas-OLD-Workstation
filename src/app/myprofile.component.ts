@@ -18,6 +18,7 @@ import { DataSource }                 from './model.datasource';
 import { Dashboard }                  from './model.dashboards';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
+import { ReportHistory }              from './model.reportHistory';
 
 // Our Services
 import { EazlService }                from './eazl.service';
@@ -43,6 +44,7 @@ export class MyProfileComponent implements OnInit {
     groups: Group[] = [];                               // List of Groups
     selectedGroup: Group;                               // User that was clicked on
     datasources: DataSource[];                          // List of DataSources
+    reportHistory: ReportHistory[];                     // List of Report History (ran)
     reports: Report[];                                  // List of Reports
     dashboardsIown: Dashboard[];                        // List of Dashboards I own
     dashboardsSharedWithMe: Dashboard[];                // List of Dashboards
@@ -96,6 +98,9 @@ export class MyProfileComponent implements OnInit {
 
         // My Dashboards shared with me
         this.dashboardsSharedWithMe = this.eazlService.getDashboards();
+
+        // Report History for me
+        this.reportHistory = this.eazlService.getReportHistory(this.canvasUser.username)
 
     }
 

@@ -24,6 +24,7 @@ import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { CanvasMessage }              from './model.canvasMessage';
 import { Report }                     from './model.report';
+import { ReportHistory }              from './model.reportHistory';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
@@ -58,6 +59,60 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
     gridSize: 3,
     snapToGrid: true 
 }
+
+export const REPORTHISTORY: ReportHistory[] = 
+[
+    {
+        reportHistoryID: 0,
+        userName: 'janniei',
+        reportID: 1,
+        reportHistoryStartDateTime: '2017/05/01 08:21',
+        reportHistoryEndDateTime: '2017/05/01 08:24',
+        reportHistoryStatus: 'Succes',
+        reportHistoryNrRowsReturned: 12,
+        reportHistoryComments: ''
+    },
+    {
+        reportHistoryID: 1,
+        userName: 'janniei',
+        reportID: 2,
+        reportHistoryStartDateTime: '2017/05/01 08:21',
+        reportHistoryEndDateTime: '2017/05/01 08:24',
+        reportHistoryStatus: 'Succes',
+        reportHistoryNrRowsReturned: 12,
+        reportHistoryComments: ''
+    },
+    {
+        reportHistoryID: 2,
+        userName: 'janniei',
+        reportID: 1,
+        reportHistoryStartDateTime: '2017/05/01 08:21',
+        reportHistoryEndDateTime: '2017/05/01 08:24',
+        reportHistoryStatus: 'Failed',
+        reportHistoryNrRowsReturned: 12,
+        reportHistoryComments: ''
+    },
+    {
+        reportHistoryID: 3,
+        userName: 'janniei',
+        reportID: 1,
+        reportHistoryStartDateTime: '2017/05/01 08:21',
+        reportHistoryEndDateTime: '2017/05/01 08:24',
+        reportHistoryStatus: 'Succes',
+        reportHistoryNrRowsReturned: 12,
+        reportHistoryComments: 'At last'
+    },
+    {
+        reportHistoryID: 4,
+        userName: 'bradleyk',
+        reportID: 1,
+        reportHistoryStartDateTime: '2017/05/01 08:21',
+        reportHistoryEndDateTime: '2017/05/01 08:24',
+        reportHistoryStatus: 'Succes',
+        reportHistoryNrRowsReturned: 12,
+        reportHistoryComments: ''
+    },
+]
 
 export const DATASOURCES: DataSource[] = 
     [
@@ -3743,6 +3798,7 @@ export class EazlService implements OnInit {
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     reports: Report[] = REPORTS;                            // List of Reports
+    reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
     users: User[] = [];                                     // List of Users
@@ -4732,6 +4788,18 @@ console.log('getUsersResti',error)
                     (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0) 
         )
         return Promise.resolve(resultGroups);
+    }
+
+    getReportHistory(userName: string ='*',reportID: number = -1){
+        // Return history of reports run, optionally filtered
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
+                
+        return this.reportHistory.filter(rh =>
+            (userName == '*'   ||   rh.userName == userName)
+            &&
+            (reportID == -1    ||   rh.reportID == reportID)
+        )
+        
     }
 
     getUsersPerGroup(groupID: number = -1, include: boolean = true): Promise<User[]> {
