@@ -5128,8 +5128,29 @@ console.log('getUsersResti',error)
         );
     }
 
+    getGroupsRelatedToDashboard(dashboardID: number, relationshipType: string): Group[] { 
+        // Return Groups with a given relationship to any Dashboard
+        // - dashboardID: string
+        // - relationshipType: string
+        this.globalFunctionService.printToConsole(this.constructor.name, 'getGroupsRelatedToDashboard', '@Start');
 
+        let groupIDs: number[];
+        this.DashboardGroupRelationship.forEach(gd => {
+            if (gd.dashboardID == dashboardID 
+             &&  
+             gd.dashboardGroupRelationshipType == relationshipType) {
+                 groupIDs.push(gd.groupID)
+             }
+        })
+        
+        // Return necesary groups, selectively depending on in/exclude
+        let resultGroups: User[];
 
+        return this.groups.filter( g =>
+                    (groupIDs.indexOf(g.groupID) >= 0) 
+        );   
+           
+    }
 
     getUsersRelatedToDashboard(dashboardID: number, relationshipType: string): Promise<User[]> { 
         // Return users with a given relationship to any Dashboard
