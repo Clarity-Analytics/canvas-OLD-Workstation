@@ -298,6 +298,13 @@ export class DashboardManagerComponent implements OnInit {
         this.selectedDashboard.dashboardSharedWith.forEach(
             sw => this.belongstoSharedWith.push(sw.dashboardSharedWithUserID)
         )
+console.log('1',this.belongstoSharedWith)
+        this.eazlService.getDashboards
+            (this.selectedDashboard.dashboardID,
+             this.canvasUser.username,
+             'SharedWith')
+             .forEach( d => this.belongstoSharedWith.push(d.dashboardID);
+console.log('2',this.belongstoSharedWith)
 
         this.eazlService.getUsers()
             .then(usr => {

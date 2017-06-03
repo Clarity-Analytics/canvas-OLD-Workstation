@@ -3853,7 +3853,7 @@ export class EazlService implements OnInit {
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     DashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
-    DashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
+    dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     groups: Group[] = GROUPS;                               // List of Groups
@@ -4218,7 +4218,7 @@ export class EazlService implements OnInit {
     getDashboards(
         dashboardID: number = -1, 
         relatedUsername: string = '*', 
-        relationshipType: string = '') {
+        relationshipType: string xxxxx= '') {
         // Return a list of Dashboards, with optional filters
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
         // - relatedUsername Optional username
@@ -4239,11 +4239,11 @@ export class EazlService implements OnInit {
         if (relatedUsername != '*') {
             let dashboardIDs: number[] = [];
             for (var i; i < DashboardUserRelationship.length; i++) {
-                if (this.DashboardUserRelationship[i].userName == relatedUsername
+                if (this.dashboardUserRelationship[i].userName == relatedUsername
                    &&
-                   this.DashboardUserRelationship[i].dashboardUserRelationshipType ==
+                   this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
                         relationshipType) {
-                        dashboardIDs.push(this.DashboardUserRelationship[i].dashboardID)
+                        dashboardIDs.push(this.dashboardUserRelationship[i].dashboardID)
                 }
             }    
             dashboardsWorking = dashboardsWorking.filter( dw =>
@@ -5128,6 +5128,39 @@ console.log('getUsersResti',error)
         );
     }
 
+
+
+
+    getUsersRelatedToDashboard(dashboardID: number, relationshipType: string): Promise<User[]> { 
+        // Return users with a given relationship to any Dashboard
+        // - dashboardID: string
+        // - relationshipType: string
+        this.globalFunctionService.printToConsole(this.constructor.name, 'getUsersRelatedToDashboard', '@Start');
+
+        let userIDs: string[];
+        this.dashboardUserRelationship.forEach(urd => {
+            if (urd.dashboardID == dashboardID 
+             &&  
+             urd.dashboardUserRelationshipType == relationshipType) {
+                 userIDs.push(urd.userName)
+             }
+        })
+                
+        // Return necesary groups, selectively depending on in/exclude
+        let resultUsers: User[];
+
+        return Promise.resolve(
+            this.getUsers()
+                .then( usr => {
+                    resultUsers = usr.filter(
+                        u => (userIDs.indexOf(u.userName) >= 0) 
+                    );   
+                    return Promise.resolve(resultUsers);
+                })
+            .catch(error => console.log (error) )
+        )
+    }
+
     addDashboardUserRelationship(
         dashboardID: number, 
         username: string, 
@@ -5141,12 +5174,12 @@ console.log('getUsersResti',error)
         }
 
         let found: boolean = false;
-        for (var i = 0; i < this.DashboardUserRelationship.length; i++) {
-            if (this.DashboardUserRelationship[i].dashboardID == dashboardID
+        for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
+            if (this.dashboardUserRelationship[i].dashboardID == dashboardID
                && 
-               this.DashboardUserRelationship[i].userName == username
+               this.dashboardUserRelationship[i].userName == username
                &&
-               this.DashboardUserRelationship[i].dashboardUserRelationshipType == 
+               this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
                 relationshipType) {    
                     found = true;
                     break;
@@ -5158,7 +5191,7 @@ console.log('getUsersResti',error)
             if (this.globalVariableService.canvasUser.getValue() != null) {
                 currentUser = this.globalVariableService.canvasUser.getValue().username;
             }
-            this.DashboardUserRelationship.push(
+            this.dashboardUserRelationship.push(
                 {
                     dashboardUserRelationshipID: 0,
                     dashboardID: dashboardID,
@@ -5187,19 +5220,19 @@ console.log('getUsersResti',error)
             currentUser = this.globalVariableService.canvasUser.getValue().username;
         }
         
-        for (var i = 0; i < this.DashboardUserRelationship.length; i++) {
-            if (this.DashboardUserRelationship[i].dashboardID == dashboardID
+        for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
+            if (this.dashboardUserRelationship[i].dashboardID == dashboardID
                && 
-               this.DashboardUserRelationship[i].userName == username
+               this.dashboardUserRelationship[i].userName == username
                &&
-               this.DashboardUserRelationship[i].dashboardUserRelationshipType == 
+               this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
                 relationshipType) {
-                this.DashboardUserRelationship = 
-                    this.DashboardUserRelationship.splice(i, 1);
-                    this.DashboardUserRelationship[i].
+                this.dashboardUserRelationship = 
+                    this.dashboardUserRelationship.splice(i, 1);
+                    this.dashboardUserRelationship[i].
                         dashboardUserRelationshipUpdatedDateTime = 
                             this.canvasDate.now('standard');
-                    this.DashboardUserRelationship[i].
+                    this.dashboardUserRelationship[i].
                         dashboardUserRelationshipUpdatedUserID = currentUser;
                 }
         }
