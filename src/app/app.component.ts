@@ -142,7 +142,7 @@ export class AppComponent implements OnInit {
  
         if (this.setFakeVariablesForTesting) {
             // Login, get back eazlUser from RESTi and set currentUser if successful
-            this.eazlService.login('janniei', 'canvas100*')
+            this.eazlService.login('jannieixxx', 'canvas100*')
                 .then(eazlUser => {
                     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
 
@@ -151,7 +151,12 @@ export class AppComponent implements OnInit {
                     }
                 )
                 .catch(err => {
-                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
+                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Auto login failed!!');
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn', 
+                        summary:  'Login Failed', 
+                        detail:   'Auto login for janniei failed'
+                    });
                     }
                 ) 
         }
