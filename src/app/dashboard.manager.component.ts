@@ -41,6 +41,8 @@ export class DashboardManagerComponent implements OnInit {
     availableSharedWith: string[] = [];                         // List of UserIDs available to share with
     belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to   
     belongstoSharedWith: string[] = [];                         // List of UserID with whom this Dashboard has been shared
+    belongstoGroupsSharedWith: number[] = [];                   // List of Groups to which Dashboard has been shared
+    availableGroupSharedWith: number[] = [];                    // List of Groups groups available for sharing
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group   
@@ -105,6 +107,11 @@ export class DashboardManagerComponent implements OnInit {
                 label: 'Shared Users', 
                 icon: 'fa-database', 
                 command: (event) => this.dashboardMenuUsersSharedWith(this.selectedDashboard)
+            },
+            {
+                label: 'Shared Groups', 
+                icon: 'fa-database', 
+                command: (event) => this.dashboardMenuGroupsSharedWith(this.selectedDashboard)
             },
             {
                 label: 'Related Data Sources', 
@@ -286,8 +293,26 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardGroupMembership', '@Start');
     }
 
-    dashboardMenuUsersSharedWith(dashboard: Dashboard) {
+    dashboardMenuGroupsSharedWith(dashboard: Dashboard) {
         // Groups with which the selected Dashboard is shared
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupsSharedWith', '@Start');
+
+        // Get the related Groups
+        this.eazlService.getGroupsRelatedToDashboard(
+            this.selectedDashboard.dashboardID,
+            'SharedWith'
+        ).forEach( g => this.belongstoGroupsSharedWith.push(g.groupID));
+
+        this.eazlService.getGroupsRelatedToDashboard(
+            this.selectedDashboard.dashboardID,
+            'SharedWith',
+            false
+        ).forEach( g => this.availableGroupSharedWith.push(g.groupID));;
+    }
+
+    dashboardMenuUsersSharedWith(dashboard: Dashboard) {
+        // Users with whom the selected Dashboard is shared
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuUsersSharedWith', '@Start');
 
