@@ -102,9 +102,9 @@ export class DashboardManagerComponent implements OnInit {
                 command: (event) => this.dashboardMenuGroupMembership(this.selectedDashboard)
             },
             {
-                label: 'Shared With', 
+                label: 'Shared Users', 
                 icon: 'fa-database', 
-                command: (event) => this.dashboardMenuSharedWith(this.selectedDashboard)
+                command: (event) => this.dashboardMenuUsersSharedWith(this.selectedDashboard)
             },
             {
                 label: 'Related Data Sources', 
@@ -213,7 +213,7 @@ export class DashboardManagerComponent implements OnInit {
 
         // Update the Dashboard Shared With if it is open
         if (this.displaySharedWith) {
-            this.dashboardMenuSharedWith(this.selectedDashboard) 
+            this.dashboardMenuUsersSharedWith(this.selectedDashboard) 
         }
     }
 
@@ -286,19 +286,14 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardGroupMembership', '@Start');
     }
 
-    dashboardMenuSharedWith(dashboard: Dashboard) {
+    dashboardMenuUsersSharedWith(dashboard: Dashboard) {
         // Groups with which the selected Dashboard is shared
         // - dashboard: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuSharedWith', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuUsersSharedWith', '@Start');
 
         // Get the current and available user shared with
         this.belongstoSharedWith = [];
         this.availableSharedWith = [];
-
-//         this.selectedDashboard.dashboardSharedWith.forEach(
-//             sw => this.belongstoSharedWith.push(sw.dashboardSharedWithUserID)
-//         )
-// console.log('1',this.belongstoSharedWith)
 
         // Get the related Users
         this.eazlService.getUsersRelatedToDashboard
