@@ -5264,13 +5264,9 @@ console.log('getUsersResti',error)
                 relationshipType) {
                 this.dashboardUserRelationship = 
                     this.dashboardUserRelationship.splice(i, 1);
-                    this.dashboardUserRelationship[i].
-                        dashboardUserRelationshipUpdatedDateTime = 
-                            this.canvasDate.now('standard');
-                    this.dashboardUserRelationship[i].
-                        dashboardUserRelationshipUpdatedUserID = currentUser;
                 }
         }
+console.log('end', this.dashboardUserRelationship)        
     }
 
     deleteDashboardSharedWith(dashboardID: number, username: string) {
