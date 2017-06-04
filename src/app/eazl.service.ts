@@ -5269,33 +5269,6 @@ console.log('getUsersResti',error)
 console.log('end', this.dashboardUserRelationship)        
     }
 
-    deleteDashboardSharedWith(dashboardID: number, username: string) {
-        // Removes user from shares with Dashboard
-        // TODO - physically delete empty ones which are currently changed to '' when to DB
-        // TODO - decide on rule for empty / missing (null) shared sub array - critical in code
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardSharedWith', '@Start');
-
-        for (var i = 0; i < this.dashboards.length; i++) {
-            if (this.dashboards[i].dashboardID == dashboardID) {
-                for (var j = 0; j < this.dashboards[i].dashboardSharedWith.length; j++) { 
-                    if (this.dashboards[i].dashboardSharedWith[j].dashboardSharedWithUserID
-                        == username) {
-                         this.dashboards[i].dashboardSharedWith[j].dashboardSharedWithUserID 
-                            = '';
-                         this.dashboards[i].dashboardSharedWith[j].dashboardSharedWithType 
-                            = '';
-                        }  
-                    let currentUser: string = '';
-                    if (this.globalVariableService.canvasUser.getValue() != null) {
-                        currentUser = this.globalVariableService.canvasUser.getValue().username;
-                    }
-                    this.dashboards[i].dashboardUpdatedDateTime = this.canvasDate.now('standard');
-                    this.dashboards[i].dashboardUpdatedUserID = currentUser;
-                }
-            }
-        }
-    }
-
     getDataSources(dashboardID: number = -1) {
         // List of Data Sources
         // - dashboardID is optional Dashboard to filter on
