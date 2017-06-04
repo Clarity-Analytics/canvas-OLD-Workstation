@@ -5128,17 +5128,25 @@ console.log('getUsersResti',error)
         );
     }
 
-    getGroupsRelatedToDashboard(dashboardID: number, relationshipType: string): Group[] { 
+    getGroupsRelatedToDashboard(
+            dashboardID: number, 
+            relationshipType: string,
+            include: boolean = true,
+            groupID: number = -1): Group[] { 
         // Return Groups with a given relationship to any Dashboard
         // - dashboardID: string
         // - relationshipType: string
+        // - include: True = related, False = complement (NOT related)
+        // - groupID: Optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'getGroupsRelatedToDashboard', '@Start');
 
         let groupIDs: number[];
         this.DashboardGroupRelationship.forEach(gd => {
             if (gd.dashboardID == dashboardID 
              &&  
-             gd.dashboardGroupRelationshipType == relationshipType) {
+             gd.dashboardGroupRelationshipType == relationshipType
+             &&
+             (groupID == -1  ||  gd.groupID == groupID) ) {
                  groupIDs.push(gd.groupID)
              }
         })
@@ -5146,10 +5154,13 @@ console.log('getUsersResti',error)
         // Return necesary groups, selectively depending on in/exclude
         let resultGroups: User[];
 
-        return this.groups.filter( g =>
-                    (groupIDs.indexOf(g.groupID) >= 0) 
-        );   
-           
+        return this.groups.filter( g => {
+            if ( (include   &&   groupIDs.indexOf(g.groupID) >= 0) 
+                 ||
+                 (!include  &&   groupIDs.indexOf(g.groupID) < 0) ) {
+                return g;
+            }
+        });   
     } 
 
     getUsersRelatedToDashboard(
@@ -5266,7 +5277,6 @@ console.log('getUsersResti',error)
                     this.dashboardUserRelationship.splice(i, 1);
                 }
         }
-console.log('end', this.dashboardUserRelationship)        
     }
 
     getDataSources(dashboardID: number = -1) {
