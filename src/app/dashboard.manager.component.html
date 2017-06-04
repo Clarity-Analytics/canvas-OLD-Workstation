@@ -384,7 +384,7 @@
 </div>
 
 
-<!--Shared with panel-->
+<!--Shared Users panel-->
 <div
     class="groupMembershipPanel"
     *ngIf="displaySharedWith"
@@ -400,7 +400,7 @@
             type="button" 
             label="Cancel"
             icon="fa-undo"
-            (click)="onClickSharedWithCancel()"
+            (click)="onClickUsersSharedWithCancel()"
             >
         </button>
     </div>
@@ -417,6 +417,57 @@
                 targetHeader="Shared with these Users"
                 (onMoveToTarget)="onMoveToTargetDashboardSharedWith($event)"
                 (onMoveToSource)="onMoveToSourceDashboardSharedWith($event)"
+                >
+                <template let-grp pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                        <div 
+                            style="font-size:14px;float:left;margin:15px 5px 0 0"
+                            >
+                            {{ grp }}
+                        </div>
+                    </div>
+                </template>
+            </p-pickList>
+
+        </div>
+
+    </form>
+</div>
+
+
+<!--Shared Groups panel-->
+<div
+    class="groupMembershipPanel"
+    *ngIf="displayGroupsSharedWith"
+    >
+
+    <div
+        class="groupMembershipHeading"
+        >
+        Groups this Dashboard is Shared with
+        <button 
+            class="panelButtonWithLabel"
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickGroupsSharedWithCancel()"
+            >
+        </button>
+    </div>
+    
+    <!--Content-->
+    <form>
+
+        <div
+            >
+            <p-pickList 
+                [source]="availableGroupSharedWith" 
+                [target]="belongstoGroupsSharedWith"
+                sourceHeader="Available Groups"
+                targetHeader="Shared with these Groups"
+                (onMoveToTarget)="onMoveToTargetDashboardGroupSharedWith($event)"
+                (onMoveToSource)="onMoveToSourceDashboardGroupSharedWith($event)"
                 >
                 <template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">

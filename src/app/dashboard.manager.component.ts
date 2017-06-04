@@ -51,7 +51,8 @@ export class DashboardManagerComponent implements OnInit {
     datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
     displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
-    displaySharedWith: boolean = false;                         // True to display popup for Shared With (Dashboards)
+    displaySharedWith: boolean = false;                         // True to display popup for Users Shared With (Dashboards)
+    displayGroupsSharedWith: boolean = false;                   // True to display popup for Groups Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
     displayDataSource: boolean = false;                         // True to display table for DataSources
     displayReports: boolean = false;                            // True to display table for Reports
@@ -222,6 +223,10 @@ export class DashboardManagerComponent implements OnInit {
         if (this.displaySharedWith) {
             this.dashboardMenuUsersSharedWith(this.selectedDashboard) 
         }
+        if (this.displayGroupsSharedWith) {
+            this.dashboardMenuGroupsSharedWith(this.selectedDashboard) 
+        }
+        
     }
 
     dashboardMenuGroupMembership(dashboard: Dashboard) {
@@ -299,16 +304,58 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupsSharedWith', '@Start');
 
         // Get the related Groups
-        this.eazlService.getGroupsRelatedToDashboard(
-            this.selectedDashboard.dashboardID,
-            'SharedWith'
-        ).forEach( g => this.belongstoGroupsSharedWith.push(g.groupID));
+        this.availableGroupSharedWith = [];
+        this.belongstoGroupsSharedWith = [];
 
-        this.eazlService.getGroupsRelatedToDashboard(
-            this.selectedDashboard.dashboardID,
-            'SharedWith',
-            false
-        ).forEach( g => this.availableGroupSharedWith.push(g.groupID));;
+        // this.eazlService.getGroupsRelatedToDashboard(
+        //     this.selectedDashboard.dashboardID,
+        //     'SharedWith'
+        // ).forEach( g => this.belongstoGroupsSharedWith.push(g.groupID));
+
+        // this.eazlService.getGroupsRelatedToDashboard(
+        //     this.selectedDashboard.dashboardID,
+        //     'SharedWith',
+        //     false
+        // ).forEach( g => this.availableGroupSharedWith.push(g.groupID));;
+
+        // Show popup
+        this.displayGroupsSharedWith = true;
+    }
+
+    onClickGroupsSharedWithCancel() {
+        // User clicked onMoveToSource on Group Membership - remove grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUsersSharedWithCancel', '@Start');
+
+        // Close popup
+        this.displayGroupsSharedWith = false;        
+    }
+
+    onMoveToTargetDashboardGroupSharedWith(event) {
+        // User clicked onMoveToTarget - add to SharedWith
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardSharedWith', '@Start');
+
+        // Add this / these makker(s) - array if multi select
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.addDashboardUserRelationship(
+                this.selectedDashboard.dashboardID, 
+                event.items[i],
+                'SharedWith'
+            );
+        }
+    }
+    
+    onMoveToSourceDashboardGroupSharedWith(event) {
+        // User clicked onMoveToSource - remove from SharedWith
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardSharedWith', '@Start');
+
+        // Remove the makker(s)
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.deleteDashboardUserRelationship(
+                this.selectedDashboard.dashboardID, 
+                event.items[i],
+                'SharedWith'
+            );
+        }
     }
 
     dashboardMenuUsersSharedWith(dashboard: Dashboard) {
@@ -350,9 +397,9 @@ export class DashboardManagerComponent implements OnInit {
              .catch(error => console.log (error) )
     }
 
-    onClickSharedWithCancel() {
+    onClickUsersSharedWithCancel() {
         // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUsersSharedWithCancel', '@Start');
 
         // Close popup
         this.displaySharedWith = false;        
