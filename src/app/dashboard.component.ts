@@ -1481,24 +1481,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
-    onDashboardDelete() {
-        // Confirm if user really wants to delete
-        this.globalFunctionService.printToConsole(this.constructor.name,'onDashboardDelete', '@Start');
-
-        this.deleteMode = true;
-        
-        this.confirmationService.confirm({
-            message: 'Are you sure that you want to delete this Dashboard?',
-            accept: () => {
-                this.DashboardDeleteIt();
-                this.deleteMode = false;
-            },
-            reject: () => {
-                this.deleteMode = false;
-            }
-        });
-    }
-
     DashboardDeleteIt() {
         // Delete Dashboard button
         this.globalFunctionService.printToConsole(this.constructor.name,'DashboardDeleteIt', '@Start');
