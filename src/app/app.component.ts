@@ -275,6 +275,18 @@ export class AppComponent implements OnInit {
         this.displayLoginForm = false;        
     }
 
+    personalisation(){
+        // Re-get the variables, ie logged in, etc.  Then create the array of menu items for PrimeNG
+        this.globalFunctionService.printToConsole(this.constructor.name,'personalisation', '@Start');
+
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info', 
+            summary:  'Future personalistaion', 
+            detail:   'Can add: 1. startup options (dark dashboard, color, theme), 2. environment, 3. defaults for new widget,  4. default report filters'
+        });
+
+    }
+
     loadMenu(): MenuItem[] {
         // Re-get the variables, ie logged in, etc.  Then create the array of menu items for PrimeNG
         this.globalFunctionService.printToConsole(this.constructor.name,'loadMenu', '@Start');
@@ -442,10 +454,10 @@ export class AppComponent implements OnInit {
                     {
                         label: 'Personalisation', 
                         icon:  'fa-cogs',
-                        routerLink: ['startup'],
                         disabled: !isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
+                            this.personalisation();
                         }    
                     },
                 ]
