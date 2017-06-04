@@ -5140,7 +5140,7 @@ console.log('getUsersResti',error)
         // - groupID: Optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'getGroupsRelatedToDashboard', '@Start');
 
-        let groupIDs: number[];
+        let groupIDs: number[] = [];
         this.DashboardGroupRelationship.forEach(gd => {
             if (gd.dashboardID == dashboardID 
              &&  
@@ -5150,7 +5150,7 @@ console.log('getUsersResti',error)
                  groupIDs.push(gd.groupID)
              }
         })
-        
+
         // Return necesary groups, selectively depending on in/exclude
         let resultGroups: User[];
 
@@ -5207,11 +5207,83 @@ console.log('getUsersResti',error)
             .catch(error => console.log (error) )
     }
 
+    addDashboardGroupRelationship(
+        dashboardID: number, 
+        groupID: number, 
+        relationshipType: string) {
+        // Removes user from a Dashboard Relationship
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupRelationship', '@Start');
+
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        let found: boolean = false;
+        for (var i = 0; i < this.DashboardGroupRelationship.length; i++) {
+            if (this.DashboardGroupRelationship[i].dashboardID == dashboardID
+               && 
+               this.DashboardGroupRelationship[i].groupID == groupID
+               &&
+               this.DashboardGroupRelationship[i].dashboardGroupRelationshipType == 
+                relationshipType) {    
+                    found = true;
+                    break;
+                }
+        }
+
+        if (!found) {
+            let currentUser: string = '';
+            if (this.globalVariableService.canvasUser.getValue() != null) {
+                currentUser = this.globalVariableService.canvasUser.getValue().username;
+            }
+            this.DashboardGroupRelationship.push(
+                {
+                    dashboardGroupRelationshipID: 0,
+                    dashboardID: dashboardID,
+                    groupID: groupID,
+                    dashboardGroupRelationshipType: relationshipType,
+                    dashboardGroupRelationshipRating: 0,
+                    dashboardGroupRelationshipCreatedDateTime: 
+                        this.canvasDate.now('standard'),
+                    dashboardGroupRelationshipCreatedUserID: currentUser,
+                    dashboardGroupRelationshipUpdatedDateTime: 
+                        this.canvasDate.now('standard'),
+                    dashboardGroupRelationshipUpdatedUserID: currentUser
+                });
+        }
+    }
+
+    deleteDashboardGroupRelationship(
+        dashboardID: number, 
+        groupID: number, 
+        relationshipType: string) {
+        // Removes Group from a Dashboard Relationship
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupRelationship', '@Start');
+
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+        
+        for (var i = 0; i < this.DashboardGroupRelationship.length; i++) {
+            if (this.DashboardGroupRelationship[i].dashboardID == dashboardID
+               && 
+               this.DashboardGroupRelationship[i].groupID == groupID
+               &&
+               this.DashboardGroupRelationship[i].dashboardGroupRelationshipType == 
+                relationshipType) {
+                this.DashboardGroupRelationship = 
+                    this.DashboardGroupRelationship.splice(i, 1);
+                }
+        }
+    }
+
     addDashboardUserRelationship(
         dashboardID: number, 
         username: string, 
         relationshipType: string) {
-        // Removes user from a Dashboard Relationship
+        // Add user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardUserRelationship', '@Start');
 
         let currentUser: string = '';

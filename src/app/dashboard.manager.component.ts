@@ -24,6 +24,7 @@ import { DashboardGroup }             from './model.dashboardGroup';
 import { DataSource }                 from './model.datasource';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
+import { Group }                      from './model.group';
 import { Report }                     from './model.report';
 import { User }                       from './model.user';
 
@@ -41,8 +42,8 @@ export class DashboardManagerComponent implements OnInit {
     availableSharedWith: string[] = [];                         // List of UserIDs available to share with
     belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to   
     belongstoSharedWith: string[] = [];                         // List of UserID with whom this Dashboard has been shared
-    belongstoGroupsSharedWith: number[] = [];                   // List of Groups to which Dashboard has been shared
-    availableGroupSharedWith: number[] = [];                    // List of Groups groups available for sharing
+    belongstoGroupsSharedWith: Group[] = [];            // List of Groups to which Dashboard has been shared
+    availableGroupSharedWith: Group[] = [];             // List of Groups groups available for sharing
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group   
@@ -307,16 +308,16 @@ export class DashboardManagerComponent implements OnInit {
         this.availableGroupSharedWith = [];
         this.belongstoGroupsSharedWith = [];
 
-        // this.eazlService.getGroupsRelatedToDashboard(
-        //     this.selectedDashboard.dashboardID,
-        //     'SharedWith'
-        // ).forEach( g => this.belongstoGroupsSharedWith.push(g.groupID));
+        this.eazlService.getGroupsRelatedToDashboard(
+            this.selectedDashboard.dashboardID,
+            'SharedWith'
+        ).forEach( g => this.belongstoGroupsSharedWith.push(g));
 
-        // this.eazlService.getGroupsRelatedToDashboard(
-        //     this.selectedDashboard.dashboardID,
-        //     'SharedWith',
-        //     false
-        // ).forEach( g => this.availableGroupSharedWith.push(g.groupID));;
+        this.eazlService.getGroupsRelatedToDashboard(
+            this.selectedDashboard.dashboardID,
+            'SharedWith',
+            false
+        ).forEach( g => this.availableGroupSharedWith.push(g));;
 
         // Show popup
         this.displayGroupsSharedWith = true;
@@ -336,9 +337,9 @@ export class DashboardManagerComponent implements OnInit {
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDashboardUserRelationship(
+            this.eazlService.addDashboardGroupRelationship(
                 this.selectedDashboard.dashboardID, 
-                event.items[i],
+                event.items[i].groupID,
                 'SharedWith'
             );
         }
@@ -350,9 +351,9 @@ export class DashboardManagerComponent implements OnInit {
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDashboardUserRelationship(
+            this.eazlService.deleteDashboardGroupRelationship(
                 this.selectedDashboard.dashboardID, 
-                event.items[i],
+                event.items[i].groupID,
                 'SharedWith'
             );
         }
