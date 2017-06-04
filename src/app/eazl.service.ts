@@ -4218,7 +4218,7 @@ export class EazlService implements OnInit {
     getDashboards(
         dashboardID: number = -1, 
         relatedUsername: string = '*', 
-        relationshipType: string xxxxx= '') {
+        relationshipType: string = '') {
         // Return a list of Dashboards, with optional filters
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
         // - relatedUsername Optional username
@@ -5150,36 +5150,50 @@ console.log('getUsersResti',error)
                     (groupIDs.indexOf(g.groupID) >= 0) 
         );   
            
-    }
+    } 
 
-    getUsersRelatedToDashboard(dashboardID: number, relationshipType: string): Promise<User[]> { 
+    getUsersRelatedToDashboard(
+            dashboardID: number, 
+            relationshipType: string,
+            include: boolean = true,
+            username: string = '*'
+        ): Promise<User[]> { 
         // Return users with a given relationship to any Dashboard
-        // - dashboardID: string
-        // - relationshipType: string
+        // - dashboardID for this Dashboard
+        // - relationshipType for this Relationship
+        // - include: True = include, False = give complement (NOT related)
+        // - username Optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'getUsersRelatedToDashboard', '@Start');
 
-        let userIDs: string[];
-        this.dashboardUserRelationship.forEach(urd => {
-            if (urd.dashboardID == dashboardID 
-             &&  
-             urd.dashboardUserRelationshipType == relationshipType) {
-                 userIDs.push(urd.userName)
-             }
-        })
-                
-        // Return necesary groups, selectively depending on in/exclude
-        let resultUsers: User[];
+        // Get Array of UserIDs that are related to this Dashboard, or Not if include = false
+        let userIDs: string[] = [];
+        this.dashboardUserRelationship.forEach(dur => {
+            if (dur.dashboardID == dashboardID 
+                &&  
+                dur.dashboardUserRelationshipType == relationshipType
+                &&
+                (username == '*'  ||  dur.userName == username ) ) {
+                    userIDs.push(dur.userName);
+            }
+        });
 
-        return Promise.resolve(
-            this.getUsers()
+        // Return necesary groups, selectively depending on in/exclude
+        // Struggle Avoidance Technique: set as [] upfront, else .IndexOf undefined fails
+        let resultUsers: User[] = [];
+        return this.getUsers()
                 .then( usr => {
                     resultUsers = usr.filter(
-                        u => (userIDs.indexOf(u.userName) >= 0) 
+                        u => {
+                                if ( (include  &&  userIDs.indexOf(u.userName) >= 0 ) 
+                                    ||
+                                   (!include  &&  userIDs.indexOf(u.userName) < 0) ) {
+                                    return u
+                                }
+                        }
                     );   
-                    return Promise.resolve(resultUsers);
+                    return resultUsers;
                 })
             .catch(error => console.log (error) )
-        )
     }
 
     addDashboardUserRelationship(

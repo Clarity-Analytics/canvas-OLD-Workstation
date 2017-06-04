@@ -287,7 +287,7 @@ export class DashboardManagerComponent implements OnInit {
     }
 
     dashboardMenuSharedWith(dashboard: Dashboard) {
-        // Access to Data Sources for the selected Dashboard
+        // Groups with which the selected Dashboard is shared
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuSharedWith', '@Start');
 
@@ -295,27 +295,39 @@ export class DashboardManagerComponent implements OnInit {
         this.belongstoSharedWith = [];
         this.availableSharedWith = [];
 
-        this.selectedDashboard.dashboardSharedWith.forEach(
-            sw => this.belongstoSharedWith.push(sw.dashboardSharedWithUserID)
-        )
-console.log('1',this.belongstoSharedWith)
-        this.eazlService.getDashboards
-            (this.selectedDashboard.dashboardID,
-             this.canvasUser.username,
-             'SharedWith')
-             .forEach( d => this.belongstoSharedWith.push(d.dashboardID);
-console.log('2',this.belongstoSharedWith)
+//         this.selectedDashboard.dashboardSharedWith.forEach(
+//             sw => this.belongstoSharedWith.push(sw.dashboardSharedWithUserID)
+//         )
+// console.log('1',this.belongstoSharedWith)
 
-        this.eazlService.getUsers()
-            .then(usr => {
-                usr.forEach(sglusr => {
-                    if (this.belongstoSharedWith.indexOf(sglusr.userName) < 0) {
-                        this.availableSharedWith.push(sglusr.userName)
-                    };
+        // Get the related Users
+        this.eazlService.getUsersRelatedToDashboard
+            (this.selectedDashboard.dashboardID,
+             'SharedWith'
+             )
+             .then( u => {
+                u.forEach(sglusr => {
+                    this.belongstoSharedWith.push(sglusr.userName); 
                 })
+
+                // Get the complement (NOT related Users)
+                this.eazlService.getUsersRelatedToDashboard
+                    (this.selectedDashboard.dashboardID,
+                    'SharedWith',
+                    false
+                    )
+                    .then( u => {
+                        u.forEach(sglusr => {
+                            this.availableSharedWith.push(sglusr.userName);
+                        })
+                        this.displaySharedWith = true;               
+                    })
+                    .catch(error => console.log (error) )
+
+
                 this.displaySharedWith = true;               
-            })
-            .catch(error => console.log (error) )
+             })
+             .catch(error => console.log (error) )
     }
 
     onClickSharedWithCancel() {
