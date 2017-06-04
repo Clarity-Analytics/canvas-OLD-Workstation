@@ -339,9 +339,10 @@ export class DashboardManagerComponent implements OnInit {
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDashboardSharedWith(
+            this.eazlService.addDashboardUserRelationship(
                 this.selectedDashboard.dashboardID, 
-                event.items[i]
+                event.items[i],
+                'SharedWith'
             );
         }
     }
@@ -352,9 +353,10 @@ export class DashboardManagerComponent implements OnInit {
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDashboardSharedWith(
+            this.eazlService.deleteDashboardUserRelationship(
                 this.selectedDashboard.dashboardID, 
-                event.items[i]
+                event.items[i],
+                'SharedWith'
             );
         }
     }
