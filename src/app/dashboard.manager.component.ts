@@ -467,7 +467,7 @@ export class DashboardManagerComponent implements OnInit {
         // Click Like popup menu option: toggle liked/not for current user on this Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuToggleLike', '@Start');
 
-        this.eazlService.updateDashboardIsLiked(
+        this.eazlService.toggleDashboardIsLiked(
             dashboard.dashboardID, 
             this.canvasUser.username,
             !dashboard.dashboardIsLiked

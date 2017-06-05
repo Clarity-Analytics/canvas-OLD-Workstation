@@ -306,6 +306,28 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
         dashboardUserRelationshipCreatedUserID: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
         dashboardUserRelationshipUpdatedUserID: 'janniei'
+    },
+    {
+        dashboardUserRelationshipID: 1,
+        dashboardID: 0,
+        userName: 'janniei',
+        dashboardUserRelationshipType: 'Likes',
+        dashboardUserRelationshipRating: 0,
+        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipUpdatedUserID: 'janniei'
+    },
+    {
+        dashboardUserRelationshipID: 2,
+        dashboardID: 1,
+        userName: 'bradleyk',
+        dashboardUserRelationshipType: 'Likes',
+        dashboardUserRelationshipRating: 0,
+        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipUpdatedUserID: 'janniei'
     }
 ]
 
@@ -5357,6 +5379,33 @@ console.log('getUsersResti',error)
 
         // Return those Datasources
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
+    }
+
+
+
+    toggleDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
+        // Adds / Removes a user from the Dashboard:
+        // - dashboardID
+        // - username to add / remove
+        // - isLikedNewState = new state, so true -> add user, else delete
+        this.globalFunctionService.printToConsole(this.constructor.name,'toggleDashboardIsLiked', '@Start');
+
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboardID) {
+                this.dashboards[i].dashboardIsLiked = isLikedNewState;
+                if (isLikedNewState) {
+                    this.addDashboardUserRelationship(
+                        dashboardID,
+                        username,
+                        'Likes');
+                } else {
+                    this.deleteDashboardUserRelationship(
+                        dashboardID,
+                        username,
+                        'Likes');
+                }
+            }
+        }
     }
 
     updateDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
