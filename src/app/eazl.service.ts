@@ -328,7 +328,18 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
         dashboardUserRelationshipCreatedUserID: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
         dashboardUserRelationshipUpdatedUserID: 'janniei'
-    }
+    },
+    {
+        dashboardUserRelationshipID: 3,
+        dashboardID: 0,
+        userName: 'bradleyk',
+        dashboardUserRelationshipType: 'SharedWith',
+        dashboardUserRelationshipRating: 0,
+        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipUpdatedUserID: 'janniei'
+    },
 ]
 
 export const DASHBOARDS: Dashboard[] =
@@ -355,7 +366,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
-            dashboardNrSharedWith: 1,
+            dashboardNrUsersSharedWith: 1,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2017/07/08',
             dashboardUpdatedUserID: 'GordenJ'
@@ -382,7 +393,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
-            dashboardNrSharedWith: 0,
+            dashboardNrUsersSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -409,7 +420,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
-            dashboardNrSharedWith: 0,
+            dashboardNrUsersSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -436,7 +447,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
-            dashboardNrSharedWith: 0,
+            dashboardNrUsersSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -463,7 +474,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
-            dashboardNrSharedWith: 0,
+            dashboardNrUsersSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -490,7 +501,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
-            dashboardNrSharedWith: 0,
+            dashboardNrUsersSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'

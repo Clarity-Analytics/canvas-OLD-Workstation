@@ -555,8 +555,8 @@ export class DashboardManagerComponent implements OnInit {
                             this.dashboardToEdit.dashboardNrGroups;
                         this.dashboards[i].dashboardIsLiked = 
                             this.dashboardToEdit.dashboardIsLiked;
-                        this.dashboards[i].dashboardNrSharedWith = 
-                            this.dashboardToEdit.dashboardNrSharedWith;
+                        this.dashboards[i].dashboardNrUsersSharedWith = 
+                            this.dashboardToEdit.dashboardNrUsersSharedWith;
                         this.dashboards[i].dashboardDefaultExportFileType = 
                             this.dashboardToEdit.dashboardDefaultExportFileType;
                         this.dashboards[i].dashboardDescription = 
