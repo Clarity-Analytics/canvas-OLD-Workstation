@@ -269,12 +269,12 @@ export class UserComponent implements OnInit {
         this.availableUserDatasource = this.eazlService.getDatasourceAccessedByUser(
             this.selectedUser.userName,
             '*',
-            true
+            false
         );
         this.belongstoUserDatasource = this.eazlService.getDatasourceAccessedByUser(
             this.selectedUser.userName,
             '*',
-            false
+            true
         );
 
         // Show popup
@@ -299,12 +299,12 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
 
         // Add this / these makker(s) - array if multi select
-        // for (var i = 0; i < event.items.length; i++) {
-        //     this.eazlService.addDatasourceUserAccess(
-        //         this.selectedUser.userName, 
-        //         event.items[i].datasourceID
-        //     );
-        // }
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.addDatasourceUserAccess(
+                event.items[i].datasourceID,
+                this.selectedUser.userName
+            );
+        }
     }
     
     onMoveToSourceUserDatasource(event) {
@@ -312,12 +312,12 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
 
         // Remove the makker(s)
-        // for (var i = 0; i < event.items.length; i++) {
-        //     this.eazlService.deleteDatasourceUserAccess(
-        //         this.selectedUser.userName, 
-        //         event.items[i].datasourceID
-        //     );
-        // }
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.deleteDatasourceUserAccess(
+                event.items[i].datasourceID,
+                this.selectedUser.userName
+            );
+        }
     }
 
     userMenuShowDatasources(user: User) {

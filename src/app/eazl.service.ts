@@ -4957,10 +4957,10 @@ export class EazlService implements OnInit {
         this.dataSourceUserAccess.forEach( da => {
                 if ( (username == '*'    ||   da.userName == username) 
                      &&
-                     (accessType != '*'  ||  da.dataSourceUserAccessType == accessType)
+                     (accessType == '*'  ||  da.dataSourceUserAccessType == accessType)
                    ) {
                     dataSourceIDs.push(da.datasourceID)
-                }
+                   }
         });
 
         // Return
@@ -5024,10 +5024,11 @@ export class EazlService implements OnInit {
     deleteDatasourceUserAccess(datasourceID: number, username: string) {
         // Deletes a Datasource - Group record from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDatasourceUserAccess', '@Start');
-
+console.log(datasourceID, username)
         this.dataSourceUserAccess = this.dataSourceUserAccess.filter(
             item => (!(item.datasourceID == datasourceID  &&  item.userName == username))
         );
+console.log('this.dataSourceUserAccess', this.dataSourceUserAccess)
     }
 
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
