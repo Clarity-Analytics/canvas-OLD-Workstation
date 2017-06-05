@@ -352,7 +352,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
         dashboardUserRelationshipUpdatedUserID: 'janniei'
     },
     {
-        dashboardUserRelationshipID: 4,
+        dashboardUserRelationshipID: 5,
         dashboardID: 3,
         userName: 'janniei',
         dashboardUserRelationshipType: 'Owns',
@@ -4219,14 +4219,14 @@ export class EazlService implements OnInit {
         // Filter on related ones, IF so requested
         if (relatedUsername != '*') {
             let dashboardIDs: number[] = [];
-            for (var i; i < DashboardUserRelationship.length; i++) {
+            for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
                 if (this.dashboardUserRelationship[i].userName == relatedUsername
                    &&
                    this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
                         relationshipType) {
                         dashboardIDs.push(this.dashboardUserRelationship[i].dashboardID)
                 }
-            }    
+            } 
             dashboardsWorking = dashboardsWorking.filter( dw =>
                 (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
