@@ -4988,6 +4988,48 @@ export class EazlService implements OnInit {
         ));
     }
 
+    addDatasourceUserAccess(datasourceID: number, username: string) {
+        // Adds a Datasource - User record to the DB
+
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDatasourceUserAccess', '@Start');
+
+        let found: boolean = false;
+        for (var i = 0; i < this.dataSourceUserAccess.length; i++) {
+            if (this.dataSourceUserAccess[i].datasourceID == datasourceID  &&
+                this.dataSourceUserAccess[i].userName == username) {
+                    found = true;
+                    break;
+                }
+        }
+
+        // Get current user
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+
+        // Only add if not already there
+        if (!found) {
+            this.dataSourceUserAccess.push(
+                {
+                    datasourceID: datasourceID,
+	                userName: username,
+                    dataSourceUserAccessType: 'Readonly',
+                    dataSourceUserAccessScope: 'All'
+                }        
+            )
+        }
+    }
+
+    deleteDatasourceUserAccess(datasourceID: number, username: string) {
+        // Deletes a Datasource - Group record from the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDatasourceUserAccess', '@Start');
+
+        this.dataSourceUserAccess = this.dataSourceUserAccess.filter(
+            item => (!(item.datasourceID == datasourceID  &&  item.userName == username))
+        );
+    }
+
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
         // Return a list of Groups to which a user belongs
         // - username Optional parameter to select ONE, else select ALL (if >= 0)

@@ -295,29 +295,29 @@ export class UserComponent implements OnInit {
 // getDatasourceAccessedByUser
 
     onMoveToTargetUserDatasource(event) {
-    //     // User clicked onMoveToTarget on Group Membership: add grp membership
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+        // User clicked onMoveToTarget on Group Membership: add grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
 
-    //     // Add this / these makker(s) - array if multi select
-    //     for (var i = 0; i < event.items.length; i++) {
-    //         this.eazlService.addUserGroupMembership(
-    //             this.selectedUser.userName, 
-    //             event.items[i].groupID
-    //         );
-    //     }
+        // Add this / these makker(s) - array if multi select
+        // for (var i = 0; i < event.items.length; i++) {
+        //     this.eazlService.addDatasourceUserAccess(
+        //         this.selectedUser.userName, 
+        //         event.items[i].datasourceID
+        //     );
+        // }
     }
     
     onMoveToSourceUserDatasource(event) {
-    //     // User clicked onMoveToSource on Group Membership - remove grp membership
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+        // User clicked onMoveToSource on Group Membership - remove grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
 
-    //     // Remove the makker(s)
-    //     for (var i = 0; i < event.items.length; i++) {
-    //         this.eazlService.deleteUserGroupMembership(
-    //             this.selectedUser.userName, 
-    //             event.items[i].groupID
-    //         );
-    //     }
+        // Remove the makker(s)
+        // for (var i = 0; i < event.items.length; i++) {
+        //     this.eazlService.deleteDatasourceUserAccess(
+        //         this.selectedUser.userName, 
+        //         event.items[i].datasourceID
+        //     );
+        // }
     }
 
     userMenuShowDatasources(user: User) {
