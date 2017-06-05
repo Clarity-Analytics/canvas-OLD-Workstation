@@ -356,12 +356,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrSharedWith: 1,
-            dashboardSharedWith: [
-                {
-                    dashboardSharedWithUserID: 'PeterP',
-                    dashboardSharedWithType: 'Full'
-                }
-            ],
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2017/07/08',
             dashboardUpdatedUserID: 'GordenJ'
@@ -389,12 +383,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrSharedWith: 0,
-            dashboardSharedWith: [
-                {
-                    dashboardSharedWithUserID: '',
-                    dashboardSharedWithType: ''
-                }
-            ],
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -422,12 +410,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrSharedWith: 0,
-            dashboardSharedWith: [
-                {
-                    dashboardSharedWithUserID: '',
-                    dashboardSharedWithType: ''
-                }
-            ],
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -455,12 +437,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrSharedWith: 0,
-            dashboardSharedWith: [
-                {
-                    dashboardSharedWithUserID: '',
-                    dashboardSharedWithType: ''
-                }
-            ],
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -488,12 +464,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrSharedWith: 0,
-            dashboardSharedWith: [
-                {
-                    dashboardSharedWithUserID: '',
-                    dashboardSharedWithType: ''
-                }
-            ],
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -521,12 +491,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrSharedWith: 0,
-            dashboardSharedWith: [
-                {
-                    dashboardSharedWithUserID: '',
-                    dashboardSharedWithType: ''
-                }
-            ],
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
