@@ -4209,7 +4209,7 @@ export class EazlService implements OnInit {
             currentUser = this.globalVariableService.canvasUser.getValue().username;
         }
 
-        // Add NrGroups calculated fields
+        // Add NrGroups calculated field
         dashboardsWorking.forEach( dw => {
             dw.dashboardNrGroups = 0;          
             dw.dashboardNrGroups = this.dashboardGroupMembership.filter( dg => {
@@ -4218,6 +4218,23 @@ export class EazlService implements OnInit {
                 }
             }).length;
         });
+
+        // Add dashboardIsLiked calculated field
+        dashboardsWorking.forEach( dw => {
+            dw.dashboardIsLiked = false;   
+            if (this.dashboardUserRelationship.filter(dur =>  
+                (
+                    dur.dashboardID == dw.dashboardID  
+                    && 
+                    dur.userName == currentUser
+                    && 
+                    dur.dashboardUserRelationshipType == 'Likes'
+                )
+            ).length > 0) {
+                dw.dashboardIsLiked = true;
+            }
+        });
+
 console.log('grp', dashboardsWorking)
 
         // Return the filtered result
