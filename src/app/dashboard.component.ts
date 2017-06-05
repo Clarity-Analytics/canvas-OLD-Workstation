@@ -1544,11 +1544,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardNrGroups: 0,
                 dashboardIsLocked: false,
                 dashboardIsLiked: false,
-                dashboardLiked: [
-                    { dashboardLikedUserID: 'AnnieA' },
-                    { dashboardLikedUserID: 'BennieB' },
-                    { dashboardLikedUserID: 'CharlesC' }
-                ],
                 dashboardOpenTabNr: 1,
                 dashboardOwnerUserID: 'JohnH',
                 dashboardPassword: 'StudeBaker',

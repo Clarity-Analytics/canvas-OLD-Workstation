@@ -14,11 +14,6 @@ export class Dashboard {
     dashboardNrGroups: number;                  // @Runtime: # of groups this dashboard belongs to
     dashboardIsLocked: boolean;                 // If true, then cannot be modified
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
-    dashboardLiked: [                           // Array of UserIDs that likes this
-        {
-            dashboardLikedUserID: string; 
-        }
-    ];
     dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
     dashboardOwnerUserID: string;               // UserID of owner
     dashboardPassword: string;                  // Optional password to open

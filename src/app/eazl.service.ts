@@ -349,11 +349,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardNrGroups: 0,
             dashboardIsLocked: false,
             dashboardIsLiked: false,
-            dashboardLiked: [
-                { dashboardLikedUserID: 'AnnieA' },
-                { dashboardLikedUserID: 'BennieB' },
-                { dashboardLikedUserID: 'CharlesC' }
-            ],
             dashboardOpenTabNr: 1,
             dashboardOwnerUserID: 'JohnH',
             dashboardPassword: 'StudeBaker',
@@ -387,9 +382,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardNrGroups: 0,
             dashboardIsLocked: true,
             dashboardIsLiked: false,
-            dashboardLiked: [
-                { dashboardLikedUserID: '' }
-            ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
@@ -423,9 +415,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardNrGroups: 0,
             dashboardIsLocked: true,
             dashboardIsLiked: false,
-            dashboardLiked: [
-                { dashboardLikedUserID: '' }
-            ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
@@ -459,9 +448,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardNrGroups: 0,
             dashboardIsLocked: true,
             dashboardIsLiked: false,
-            dashboardLiked: [
-                { dashboardLikedUserID: '' }
-            ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
@@ -495,9 +481,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardNrGroups: 0,
             dashboardIsLocked: true,
             dashboardIsLiked: false,
-            dashboardLiked: [
-                { dashboardLikedUserID: '' }
-            ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
@@ -531,9 +514,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardNrGroups: 0,
             dashboardIsLocked: true,
             dashboardIsLiked: false,
-            dashboardLiked: [
-                { dashboardLikedUserID: '' }
-            ],
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
             dashboardPassword: '',
