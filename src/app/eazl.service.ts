@@ -325,10 +325,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'PowerPoint',
             dashboardDescription: 'This is a unique and special dashboard, like all others',
             dashboardNrGroups: 0,
-            dashboardGroups: [
-                { dashboardGroupID: 0 },
-                { dashboardGroupID: 1}
-            ],
             dashboardIsLocked: false,
             dashboardIsLiked: false,
             dashboardLiked: [
@@ -367,10 +363,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardGroups: [
-                { dashboardGroupID: 0 },
-                { dashboardGroupID: 1}
-            ],
             dashboardIsLocked: true,
             dashboardIsLiked: false,
             dashboardLiked: [
@@ -407,10 +399,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardGroups: [
-                { dashboardGroupID: 0 },
-                { dashboardGroupID: 1}
-            ],
             dashboardIsLocked: true,
             dashboardIsLiked: false,
             dashboardLiked: [
@@ -447,10 +435,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardGroups: [
-                { dashboardGroupID: 0 },
-                { dashboardGroupID: 1}
-            ],
             dashboardIsLocked: true,
             dashboardIsLiked: false,
             dashboardLiked: [
@@ -487,10 +471,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardGroups: [
-                { dashboardGroupID: 0 },
-                { dashboardGroupID: 1}
-            ],
             dashboardIsLocked: true,
             dashboardIsLiked: false,
             dashboardLiked: [
@@ -527,10 +507,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardGroups: [
-                { dashboardGroupID: 0 },
-                { dashboardGroupID: 1}
-            ],
             dashboardIsLocked: true,
             dashboardIsLiked: false,
             dashboardLiked: [

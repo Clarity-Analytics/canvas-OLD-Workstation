@@ -142,7 +142,7 @@ export class AppComponent implements OnInit {
  
         if (this.setFakeVariablesForTesting) {
             // Login, get back eazlUser from RESTi and set currentUser if successful
-            this.eazlService.login('jannieixxx', 'canvas100*')
+            this.eazlService.login('janniei', 'canvas100*')
                 .then(eazlUser => {
                     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
 

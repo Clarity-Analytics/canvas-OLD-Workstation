@@ -1542,10 +1542,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardDefaultExportFileType: 'PowerPoint',
                 dashboardDescription: 'This is a unique and special dashboard, like all others',
                 dashboardNrGroups: 0,
-                dashboardGroups: [
-                    { dashboardGroupID: 0 },
-                    { dashboardGroupID: 1}
-                ],
                 dashboardIsLocked: false,
                 dashboardIsLiked: false,
                 dashboardLiked: [
