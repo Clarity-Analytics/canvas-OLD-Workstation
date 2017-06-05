@@ -340,6 +340,18 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
         dashboardUserRelationshipUpdatedUserID: 'janniei'
     },
+,
+    {
+        dashboardUserRelationshipID: 4,
+        dashboardID: 3,
+        userName: 'bradleyk',
+        dashboardUserRelationshipType: 'SharedWith',
+        dashboardUserRelationshipRating: 0,
+        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipUpdatedUserID: 'janniei'
+    }
 ]
 
 export const DASHBOARDS: Dashboard[] =
@@ -4235,6 +4247,17 @@ export class EazlService implements OnInit {
             }
         });
 
+        // Add TOTAL dashboardNrUsersSharedWith calculated field
+        dashboardsWorking.forEach( dw => {
+            dw.dashboardNrUsersSharedWith = 0;   
+            dw.dashboardNrUsersSharedWith = this.dashboardUserRelationship.filter(dur =>  
+                (
+                    dur.dashboardID == dw.dashboardID  
+                    && 
+                    dur.dashboardUserRelationshipType == 'SharedWith'
+                )
+            ).length 
+        });
 console.log('grp', dashboardsWorking)
 
         // Return the filtered result
