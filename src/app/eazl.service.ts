@@ -4941,11 +4941,13 @@ export class EazlService implements OnInit {
 
     getDatasourceAccessedByUser(
             username: string,
-            accessType: string = '*'): DataSource[] {
+            accessType: string = '*',
+            include: boolean = true
+        ): DataSource[] {
         // Return a list of Datasources accessed by a User
-        // - datasourceID Optional filter, 
         // - username Optional filter
         // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
+        // - include Optional filter: True = include, False = complement (NO access)
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
 
         // Create list of Datasource IDs that are relevant
@@ -4962,8 +4964,15 @@ export class EazlService implements OnInit {
         });
 
         // Return
-        return this.datasources.filter(ds => 
-        dataSourceIDs.indexOf(ds.datasourceID) >= 0);
+        return this.datasources.filter(ds => {
+            if ( 
+                 (include   &&   dataSourceIDs.indexOf(ds.datasourceID) >= 0)
+                 ||
+                 (!include  &&   dataSourceIDs.indexOf(ds.datasourceID) < 0)
+               ) {
+                    return ds;
+                 }
+        });
     }
 
     getGroupDatasourceAccess(groupID: number = -1, datasourceID: number = -1) {

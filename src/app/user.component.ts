@@ -16,6 +16,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { DataSource }                 from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { User }                       from './model.user';
@@ -33,6 +34,8 @@ export class UserComponent implements OnInit {
     addEditMode: string;                                // Add/Edit to indicate mode
     availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
+    availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
+    belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
     deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
@@ -257,48 +260,41 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
     }
 
-
-
-
-
-
-
-
-
-
     userMenuAccessToDatasources(user: User) {
         // Access to Data Sources for the selected user
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccessToDatasources', '@Start');
 
-        // // Get the current and available groups
-        // this.eazlService.getGroupsPerUser(this.selectedUser.userName, true)
-        //     .then(inclgrp => {
-        //         this.belongstoUserGroupMembership = inclgrp;
-        //         this.eazlService.getGroupsPerUser(this.selectedUser.userName, false)
-        //             .then (exclgrp => {
-        //                     this.availableUserGroupMembership  = exclgrp;
-        //                     this.displayUserDatasource = true; 
-        //             })
-        //             .catch(error => console.log (error))
-        //     })
-        //     .catch(error => console.log (error) )
+        // Get the current and available users
+        this.availableUserDatasource = this.eazlService.getDatasourceAccessedByUser(
+            this.selectedUser.userName,
+            '*',
+            true
+        );
+        this.belongstoUserDatasource = this.eazlService.getDatasourceAccessedByUser(
+            this.selectedUser.userName,
+            '*',
+            false
+        );
+
+        // Show popup
+        this.displayUserDatasource = true;
     }
 
-    // onClickGroupMembershipCancel() {
-    //     // User clicked onMoveToSource on Group Membership - remove grp membership
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
+    onClickUserDatasourceCancel() {
+        // User clicked onMoveToSource on Group Membership - remove grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserDatasourceCancel', '@Start');
 
-    //     // Close popup
-    //     this.displayGroupMembership = false;        
-    // }
+        // Close popup
+        this.displayUserDatasource = false;        
+    }
 
 // addGroupDatasourceAccess
 // deleteGroupDatasourceAccess
 // getGroupDatasourceAccess
 // getDatasourceAccessedByUser
 
-    // onMoveToTargetUserGroupMembership(event) {
+    onMoveToTargetUserDatasource(event) {
     //     // User clicked onMoveToTarget on Group Membership: add grp membership
     //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
 
@@ -309,9 +305,9 @@ export class UserComponent implements OnInit {
     //             event.items[i].groupID
     //         );
     //     }
-    // }
+    }
     
-    // onMoveToSourceUserGroupMembership(event) {
+    onMoveToSourceUserDatasource(event) {
     //     // User clicked onMoveToSource on Group Membership - remove grp membership
     //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
 
@@ -322,12 +318,7 @@ export class UserComponent implements OnInit {
     //             event.items[i].groupID
     //         );
     //     }
-    // }
-
-
-
-
-
+    }
 
     userMenuShowDatasources(user: User) {
         // Show all the Datasources that the user has access to, and via username or groups

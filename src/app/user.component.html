@@ -279,13 +279,13 @@
 </div>
 
 
-<!--Datasource panel-->
+<!--User Datasource panel-->
 <div
     class="groupMembershipPanel"
-    *ngIf="displayGroupMembership"
+    *ngIf="displayUserDatasource"
     >
 
-    <!--<div
+    <div
         class="groupMembershipHeading"
         >
         Group Membership for {{ selectedUser.firstName }} 
@@ -295,32 +295,30 @@
             type="button" 
             label="Cancel"
             icon="fa-undo"
-            (click)="onClickGroupMembershipCancel()"
+            (click)="onClickUserDatasourceCancel()"
             >
         </button>
-    </div>-->
+    </div>
     
     <!--Content-->
-    <!--<form>
+    <form>
 
         <div
             >
             <p-pickList 
-                [source]="availableUserGroupMembership" 
-                [target]="belongstoUserGroupMembership"
-                sourceHeader="Available Groups"
-                targetHeader="Belongs to these Groups"
-                (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
-                (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
-                (onSourceReorder)="onSourceReorderUserGroupMembership($event)"
-                (onTargetReorder)="onTargetReorderUserGroupMembership($event)"
+                [source]="availableUserDatasource" 
+                [target]="belongstoUserDatasource"
+                sourceHeader="Available Datasources"
+                targetHeader="Access to these Datasources"
+                (onMoveToTarget)="onMoveToTargetUserDatasource($event)"
+                (onMoveToSource)="onMoveToSourceUserDatasource($event)"
                 >
-                <template let-grp pTemplate="item">
+                <template let-ds pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
-                            {{ grp.groupName }}
+                            {{ ds.datasourceName }}
                         </div>
                     </div>
                 </template>
@@ -328,5 +326,5 @@
 
         </div>
 
-    </form>-->
+    </form>
 </div>
