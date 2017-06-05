@@ -88,14 +88,14 @@ export class UserComponent implements OnInit {
                 command: (event) => this.userMenuGroupMembership(this.selectedUser)
             },
             {
-                label: 'Access', 
+                label: 'Datasources', 
                 icon: 'fa-database', 
-                command: (event) => this.userMenuAccess(this.selectedUser)
+                command: (event) => this.userMenuAccessableDatasources(this.selectedUser)
             },
             {
-                label: 'Related Data Sources', 
+                label: 'Related Dashboards', 
                 icon: 'fa-list', 
-                command: (event) => this.userMenuRelatedDataSources(this.selectedUser)
+                command: (event) => this.userMenuRelatedDashboards(this.selectedUser)
             },
             {
                 label: 'Message History', 
@@ -269,10 +269,10 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
     }
 
-    userMenuAccess(user: User) {
+    userMenuAccessableDatasources(user: User) {
         // Access to Data Sources for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccess', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccessableDatasources', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
@@ -281,10 +281,10 @@ export class UserComponent implements OnInit {
         });
     }
 
-    userMenuRelatedDataSources(user: User) {
+    userMenuRelatedDashboards(user: User) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDataSources', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 

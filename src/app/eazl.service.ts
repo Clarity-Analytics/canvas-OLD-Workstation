@@ -21,6 +21,7 @@ import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DataSource }                 from './model.datasource';
+import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
@@ -62,6 +63,34 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
     gridSize: 3,
     snapToGrid: true 
 }
+
+export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
+[
+    {
+        datasourceID: 0,
+        userName: 'janniei',
+        accessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+    },
+    {
+        datasourceID: 1,
+        userName: 'janniei',
+        accessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
+        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+    },
+    {
+        datasourceID: 0,
+        userName: 'bradleyk',
+        accessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+    },
+    {
+        datasourceID: 1,
+        userName: 'bradleyk',
+        accessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
+        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+    }
+]
 
 export const REPORTHISTORY: ReportHistory[] = 
 [
@@ -408,7 +437,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardIsLocked: true,
+            dashboardIsLocked: false,
             dashboardIsLiked: false,
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
@@ -436,7 +465,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardIsLocked: true,
+            dashboardIsLocked: false,
             dashboardIsLiked: false,
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
@@ -464,7 +493,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardIsLocked: true,
+            dashboardIsLocked: false,
             dashboardIsLiked: false,
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
@@ -492,7 +521,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardIsLocked: true,
+            dashboardIsLocked: false,
             dashboardIsLiked: false,
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
@@ -520,7 +549,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardDefaultExportFileType: 'Excel',
             dashboardDescription: 'Just another Dashboard',
             dashboardNrGroups: 0,
-            dashboardIsLocked: true,
+            dashboardIsLocked: false,
             dashboardIsLiked: false,
             dashboardOpenTabNr: 0,
             dashboardOwnerUserID: 'AshR',
@@ -3830,13 +3859,14 @@ export class EazlService implements OnInit {
 
     // Local Arrays to keep data for the rest of the Application
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages 
-    datasources: DataSource[] = DATASOURCES;                // List of Data Sources
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
+    datasources: DataSource[] = DATASOURCES;                // List of Data Sources
+    dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     reports: Report[] = REPORTS;                            // List of Reports
@@ -5392,7 +5422,7 @@ console.log('getUsersResti',error)
     getDataSources(dashboardID: number = -1) {
         // List of Data Sources
         // - dashboardID is optional Dashboard to filter on
-        // Note: Dashboard <1-many> Widgets <1-1> Report <1-1> DataSource
+        // Note: Dashboard <1-many> Widget <1-1> Report <1-1> DataSource
         // TODO - agree design to integrate with Overlay, and do in DB
         this.globalFunctionService.printToConsole(this.constructor.name,'getDataSources', '@Start');
 
