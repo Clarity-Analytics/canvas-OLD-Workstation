@@ -76,6 +76,7 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardNrGroups':                new FormControl(''),
             'dashboardIsLiked':                 new FormControl(''),
             'dashboardNrUsersSharedWith':       new FormControl(''),
+            'dashboardNrGroupsSharedWith':       new FormControl(''),
             'dashboardDefaultExportFileType':   new FormControl(''),
             'dashboardDescription':             new FormControl(''),
             'dashboardIsLocked':                new FormControl(''),
@@ -196,6 +197,9 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardNrUsersSharedWith'].setValue(
                 this.selectedDashboard.dashboardNrUsersSharedWith
             );
+            this.dashboardForm.controls['dashboardNrGroupsSharedWith'].setValue(
+                this.selectedDashboard.dashboardNrGroupsSharedWith
+            );
             this.dashboardForm.controls['dashboardRefreshedUserID'].setValue(
                 this.selectedDashboard.dashboardRefreshedUserID
             );
@@ -292,6 +296,8 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardIsLiked'].value;
         this.dashboardToEdit.dashboardNrUsersSharedWith = 
             this.dashboardForm.controls['dashboardNrUsersSharedWith'].value;
+        this.dashboardToEdit.dashboardNrGroupsSharedWith = 
+            this.dashboardForm.controls['dashboardNrGroupsSharedWith'].value;
         this.dashboardToEdit.dashboardDefaultExportFileType = 
             this.dashboardForm.controls['dashboardDefaultExportFileType'].value;
         this.dashboardToEdit.dashboardDescription = 
