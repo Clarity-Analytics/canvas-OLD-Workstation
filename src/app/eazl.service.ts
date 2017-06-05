@@ -69,26 +69,26 @@ export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     {
         datasourceID: 0,
         userName: 'janniei',
-        accessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     },
     {
         datasourceID: 1,
         userName: 'janniei',
-        accessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
-        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
+        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     },
     {
         datasourceID: 0,
         userName: 'bradleyk',
-        accessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     },
     {
         datasourceID: 1,
         userName: 'bradleyk',
-        accessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
-        accessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
+        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     }
 ]
 
@@ -195,14 +195,6 @@ export const DATASOURCES: DataSource[] =
             ],
             datasourceMaxRowsReturned: 0,
             datasourceDefaultReturnFormat: '',
-            datasourceAccessUsers: 
-            [
-                {
-                    accessUserID: '',
-                    accessType: '',
-                    accessScope: '',
-                }
-            ],
             datasourceUserEditable: false,
             packagePk: 0,
             packageName: '',
@@ -261,14 +253,6 @@ export const DATASOURCES: DataSource[] =
             ],
             datasourceMaxRowsReturned: 0,
             datasourceDefaultReturnFormat: '',
-            datasourceAccessUsers: 
-            [
-                {
-                    accessUserID: '',
-                    accessType: '',
-                    accessScope: '',
-                }
-            ],
             datasourceUserEditable: false,
             packagePk: 0,
             packageName: '',

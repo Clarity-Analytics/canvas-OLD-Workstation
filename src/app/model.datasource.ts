@@ -21,13 +21,6 @@ export class DataSource {
     ];
     datasourceMaxRowsReturned: number;      // Max number of row returned, 0 = all
     datasourceDefaultReturnFormat: string;  // Data returned in JSON, csv, etc by default
-    datasourceAccessUsers: [                // Array of UserIDs with access
-        {
-            accessUserID: string;           // UserID with access
-            accessType: string;             // Type = Readonly, Update, Add, Delete, Full
-            accessScope: string;            // Applies to: All (records), context specific .. ?
-        }
-    ];
     datasourceUserEditable: boolean;        // True if users may edit this DS    
     packagePk: number;                      // Django pk
 	packageName: string;                    // Django name of package
