@@ -3823,7 +3823,7 @@ export class EazlService implements OnInit {
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
-    DashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
+    dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
@@ -4263,6 +4263,18 @@ export class EazlService implements OnInit {
                     dur.dashboardUserRelationshipType == 'SharedWith'
                 )
             ).length 
+        });
+
+        // Add TOTAL dashboardNrGroupsSharedWith calculated field
+        dashboardsWorking.forEach( dw => {
+            dw.dashboardNrGroupsSharedWith = 0;   
+            dw.dashboardNrGroupsSharedWith = this.dashboardGroupRelationship.filter(dgr =>  
+                (
+                    dgr.dashboardID == dw.dashboardID  
+                    && 
+                    dgr.dashboardGroupRelationshipType == 'SharedWith'
+                )
+            ).length; 
         });
 console.log('grp', dashboardsWorking)
 
@@ -5158,7 +5170,7 @@ console.log('getUsersResti',error)
         this.globalFunctionService.printToConsole(this.constructor.name, 'getGroupsRelatedToDashboard', '@Start');
 
         let groupIDs: number[] = [];
-        this.DashboardGroupRelationship.forEach(gd => {
+        this.dashboardGroupRelationship.forEach(gd => {
             if (gd.dashboardID == dashboardID 
              &&  
              gd.dashboardGroupRelationshipType == relationshipType
@@ -5237,12 +5249,12 @@ console.log('getUsersResti',error)
         }
 
         let found: boolean = false;
-        for (var i = 0; i < this.DashboardGroupRelationship.length; i++) {
-            if (this.DashboardGroupRelationship[i].dashboardID == dashboardID
+        for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
+            if (this.dashboardGroupRelationship[i].dashboardID == dashboardID
                && 
-               this.DashboardGroupRelationship[i].groupID == groupID
+               this.dashboardGroupRelationship[i].groupID == groupID
                &&
-               this.DashboardGroupRelationship[i].dashboardGroupRelationshipType == 
+               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType == 
                 relationshipType) {    
                     found = true;
                     break;
@@ -5254,7 +5266,7 @@ console.log('getUsersResti',error)
             if (this.globalVariableService.canvasUser.getValue() != null) {
                 currentUser = this.globalVariableService.canvasUser.getValue().username;
             }
-            this.DashboardGroupRelationship.push(
+            this.dashboardGroupRelationship.push(
                 {
                     dashboardGroupRelationshipID: 0,
                     dashboardID: dashboardID,
@@ -5283,15 +5295,15 @@ console.log('getUsersResti',error)
             currentUser = this.globalVariableService.canvasUser.getValue().username;
         }
         
-        for (var i = 0; i < this.DashboardGroupRelationship.length; i++) {
-            if (this.DashboardGroupRelationship[i].dashboardID == dashboardID
+        for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
+            if (this.dashboardGroupRelationship[i].dashboardID == dashboardID
                && 
-               this.DashboardGroupRelationship[i].groupID == groupID
+               this.dashboardGroupRelationship[i].groupID == groupID
                &&
-               this.DashboardGroupRelationship[i].dashboardGroupRelationshipType == 
+               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType == 
                 relationshipType) {
-                this.DashboardGroupRelationship = 
-                    this.DashboardGroupRelationship.splice(i, 1);
+                this.dashboardGroupRelationship = 
+                    this.dashboardGroupRelationship.splice(i, 1);
                 }
         }
     }

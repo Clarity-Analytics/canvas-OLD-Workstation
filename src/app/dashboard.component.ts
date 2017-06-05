@@ -1550,7 +1550,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardRefreshedDateTime: '',
                 dashboardRefreshedUserID: '',
                 dashboardRefreshMode: 'Manual',
-                dashboardNrUsersSharedWith: 2,
+                dashboardNrUsersSharedWith: 0,
+                dashboardNrGroupsSharedWith: 0,
                 dashboardSystemMessage: '',
                 dashboardUpdatedDateTime: '2017/07/08',
                 dashboardUpdatedUserID: 'GordenJ'
