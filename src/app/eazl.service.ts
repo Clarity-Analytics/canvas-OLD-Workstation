@@ -4203,15 +4203,24 @@ export class EazlService implements OnInit {
                 (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
 
-        // Add calculated fields
+        // Get current user
         let currentUser: string = '';
         if (this.globalVariableService.canvasUser.getValue() != null) {
             currentUser = this.globalVariableService.canvasUser.getValue().username;
         }
-        // dashboardsWorking.forEach( dw => {
 
-        // });
+        // Add NrGroups calculated fields
+        dashboardsWorking.forEach( dw => {
+            dw.dashboardNrGroups = 0;          
+            dw.dashboardNrGroups = this.dashboardGroupMembership.filter( dg => {
+                if (dg.dashboardID == dw.dashboardID) {
+                    return dg;
+                }
+            }).length;
+        });
+console.log('grp', dashboardsWorking)
 
+        // Return the filtered result
         return dashboardsWorking.filter(d =>
             (dashboardID == -1  ||  d.dashboardID == dashboardID));
     }
