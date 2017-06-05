@@ -91,13 +91,21 @@ export class MyProfileComponent implements OnInit {
         this.datasources = this.eazlService.getDataSources();
 
         // My Reports
-        this.reports = this.eazlService.getReports(-1, 'janniei', 'Owns');
+        this.reports = this.eazlService.getReports(-1, this.canvasUser.username, 'Owns');
 
         // My Dashboards I own
-        this.dashboardsIown = this.eazlService.getDashboards();
+        this.dashboardsSharedWithMe = this.eazlService.getDashboards(
+            -1,
+            this.canvasUser.username,
+            'Owns'
+        );
 
         // My Dashboards shared with me
-        this.dashboardsSharedWithMe = this.eazlService.getDashboards();
+        this.dashboardsSharedWithMe = this.eazlService.getDashboards(
+            -1,
+            this.canvasUser.username,
+            'SharedWith'
+        );
 
         // Report History for me
         this.reportHistory = this.eazlService.getReportHistory(this.canvasUser.username)

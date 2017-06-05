@@ -5,7 +5,7 @@ export class DashboardUserRelationship {
     dashboardID: number;                                    // Dashboard who has relationship
     userName: string;                                       // User who has relationship
     dashboardUserRelationshipType: string;                  // Type of relationship: 
-                                                            // - SharedWith, Likes, Rates
+                                                            // - SharedWith, Likes, Rates, Owns
     dashboardUserRelationshipRating: number;                // Rating
     dashboardUserRelationshipCreatedDateTime: string;       // Created on
     dashboardUserRelationshipCreatedUserID: string;         // Created by

@@ -340,12 +340,22 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
         dashboardUserRelationshipUpdatedUserID: 'janniei'
     },
-,
     {
         dashboardUserRelationshipID: 4,
         dashboardID: 3,
         userName: 'bradleyk',
         dashboardUserRelationshipType: 'SharedWith',
+        dashboardUserRelationshipRating: 0,
+        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+        dashboardUserRelationshipUpdatedUserID: 'janniei'
+    },
+    {
+        dashboardUserRelationshipID: 4,
+        dashboardID: 3,
+        userName: 'janniei',
+        dashboardUserRelationshipType: 'Owns',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
         dashboardUserRelationshipCreatedUserID: 'janniei',
@@ -4276,7 +4286,6 @@ export class EazlService implements OnInit {
                 )
             ).length; 
         });
-console.log('grp', dashboardsWorking)
 
         // Return the filtered result
         return dashboardsWorking.filter(d =>
