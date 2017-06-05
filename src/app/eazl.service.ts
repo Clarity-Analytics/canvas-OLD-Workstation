@@ -5408,51 +5408,6 @@ console.log('getUsersResti',error)
         }
     }
 
-    updateDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
-        // Adds / Removes a user from the Dashboard:
-        // - dashboardID
-        // - username to add / remove
-        // - isLikedNewState = new state, so true -> add user, else delete
-        this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardIsLiked', '@Start');
-
-        let foundUser: boolean = false;
-
-        // Add
-        if (isLikedNewState) {
-            for (var i = 0; i < this.dashboards.length; i++) {
-                if (this.dashboards[i].dashboardID == dashboardID) {
-
-                    this.dashboards[i].dashboardIsLiked = isLikedNewState;
-                    for (var j = 0; j < this.dashboards[i].dashboardLiked.length; j++) {
-                        if (this.dashboards[i].dashboardLiked[j].dashboardLikedUserID == 
-                            username) {
-                                foundUser = true;
-                            }
-                    }
-                    if (!foundUser) {
-                        this.dashboards[i].dashboardLiked.push(
-                            {
-                                dashboardLikedUserID: username
-                            });
-                    }
-                }
-            }
-        } else  {
-            for (var i = 0; i < this.dashboards.length; i++) {
-                if (this.dashboards[i].dashboardID == dashboardID) {
-
-                    this.dashboards[i].dashboardIsLiked = isLikedNewState;
-                    for (var j = 0; j < this.dashboards[i].dashboardLiked.length; j++) {
-                        if (this.dashboards[i].dashboardLiked[j].dashboardLikedUserID == 
-                            username) {
-                                this.dashboards[i].dashboardLiked.splice(j);
-                            }
-                    }
-                }
-            }
-        }
-    }
-
     getCanvasMessages(dashboardID: number = -1, reportID: number = -1, widgetID: number = -1) {
         // Returns CanvasMessages
         // - dashboardID Optional filter, -1 = all
