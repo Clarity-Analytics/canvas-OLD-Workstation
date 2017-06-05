@@ -288,7 +288,7 @@
     <div
         class="groupMembershipHeading"
         >
-        Datasource Access for {{ selectedUser.firstName }} 
+        Datasource Access for {{ selectedUser.userName }} 
         <button 
             class="panelButtonWithLabel"
             pButton 
@@ -328,3 +328,13 @@
 
     </form>
 </div>
+
+
+<!--Data Sources-->
+<p-tabPanel header="All Datasources">
+    <p-dataTable [value]="datasourcesPerUser">
+        <p-column field="datasourceID" header="ID"></p-column>
+        <p-column field="datasourceName" header="Name"></p-column>
+        <p-column field="datasourceDescription" header="Description"></p-column>
+    </p-dataTable>
+</p-tabPanel>

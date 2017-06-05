@@ -17,6 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { DataSource }                 from './model.datasource';
+import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { User }                       from './model.user';
@@ -36,6 +37,7 @@ export class UserComponent implements OnInit {
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
     availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
+    datasourcesPerUser: DatasourcesPerUser[];           // List of Datasources per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
@@ -325,15 +327,13 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
 
+        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.userName); 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
             summary:  'Related Data Sources', 
             detail:   user.firstName + ' - ' + user.lastName
         });
     }
-
-
-
 
     userMenuRelatedDashboards(user: User) {
         // Manage related Data Sources (owned, given rights and received rights)

@@ -21,6 +21,7 @@ import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DataSource }                 from './model.datasource';
+import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
@@ -4857,6 +4858,48 @@ export class EazlService implements OnInit {
                 this.groups.splice(i,1);
             }
         };
+    }
+
+    getDatasourcesPerUser(username: string): DatasourcesPerUser[] {
+        // Return list of DataSource for a given user (via Username & Groups)
+        // - username filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerGroup', '@Start');
+
+        // Filter on users
+        let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
+        this.dataSourceUserAccess.forEach(du => {
+            if (du.userName == username) {
+                datasourcesPerUserWorking.push( {
+                    datasourceID: du.datasourceID,
+                    username: username,
+                    datasourcesPerUserAccessVia: username,
+                    datasourcesPerUserAccessType: du.dataSourceUserAccessType
+                })
+            }
+        })
+
+        // Get list of GroupIDs that the User belongs to
+        let groupIDs: number[] = [];
+        this.usergroupMembership.forEach((usrgrp) => { 
+            if (usrgrp.userName == username) 
+                groupIDs.push(usrgrp.groupID)  
+            }
+        )   
+
+        // Add the DS that those groups have access to
+        this.groupDatasourceAccess.forEach(gd => {
+            if (groupIDs.indexOf(gd.groupID) >= 0) {
+                datasourcesPerUserWorking.push( {
+                    datasourceID: gd.datasourceID,
+                    username: username,
+                    datasourcesPerUserAccessVia: gd.groupID.toString(),
+                    datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType
+                })
+            }        
+        })        
+
+        // Return the result
+        return datasourcesPerUserWorking;
     }
 
     getDatasourcesPerGroup(groupID: number, include: boolean): DataSource[] {
