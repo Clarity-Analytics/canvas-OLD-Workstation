@@ -237,15 +237,14 @@
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                Nr Shared:
+                Sys. Msg:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
                        type="text" 
-                       readonly
-                       formControlName="dashboardNrSharedWith" 
-                       placeholder="(info)"
-                       pTooltip="Nr of users with whom this Dashboard is shared"
+                       formControlName="dashboardSystemMessage" 
+                       placeholder="(Optional)"
+                       pTooltip="Message from the Canvas system"
                        />
             </div>
         </div>
@@ -422,21 +421,22 @@
 
         <div class="ui-grid-row">
 
-
             <div 
                 class="ui-grid-col-2" 
                 style="margin-top:4px;"
                 >
-                Sys. Msg:
+                Nr Shared:
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
                        type="text" 
-                       formControlName="dashboardSystemMessage" 
-                       placeholder="(Optional)"
-                       pTooltip="Message from the Canvas system"
+                       readonly
+                       formControlName="dashboardNrSharedWith" 
+                       placeholder="(info)"
+                       pTooltip="Nr of users with whom this Dashboard is shared"
                        />
             </div>
+
         </div>
 
         <div class="ui-grid-row">

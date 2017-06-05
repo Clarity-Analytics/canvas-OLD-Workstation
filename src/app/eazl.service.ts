@@ -4192,6 +4192,15 @@ export class EazlService implements OnInit {
                 (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
 
+        // Add calculated fields
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+        // dashboardsWorking.forEach( dw => {
+
+        // });
+
         return dashboardsWorking.filter(d =>
             (dashboardID == -1  ||  d.dashboardID == dashboardID));
     }
