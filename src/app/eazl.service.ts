@@ -4784,7 +4784,7 @@ export class EazlService implements OnInit {
                     //     error.message || error
                     // })
 
-console.log('getUsersResti',error)        
+    console.log('getUsersResti',error)        
                     })
     }
 
@@ -4907,6 +4907,36 @@ console.log('getUsersResti',error)
                     ||
                   (!include && resultGroup.indexOf(ds.groupID) < 0) 
         )
+    }
+
+    getDatasourceUserAccess(
+            datasourceID: number = -1, 
+            username: string = '*',
+            accessType: string = '*') {
+        // Return a list of Datasource-User and their access
+        // - datasourceID Optional filter, 
+        // - username Optional filter
+        // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
+
+        let dataSourceUserAccessWorking = this.dataSourceUserAccess;
+
+        // Filter as needed
+        if (datasourceID != -1) {
+            dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
+                da.datasourceID = datasourceID)
+        };
+        if (username != '*') {
+            dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
+                da.userName = username)
+        };
+        if (accessType != '*') {
+            dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
+                da.dataSourceUserAccessType = accessType)
+        };
+
+        // Return
+        return dataSourceUserAccessWorking;
     }
 
     getGroupDatasourceAccess(groupID: number = -1, datasourceID: number = -1) {
@@ -5434,8 +5464,6 @@ console.log('getUsersResti',error)
         // Return those Datasources
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
-
-
 
     toggleDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
         // Adds / Removes a user from the Dashboard:

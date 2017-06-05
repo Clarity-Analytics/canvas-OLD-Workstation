@@ -35,6 +35,7 @@ export class UserComponent implements OnInit {
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
     deleteMode: boolean = false;                        // True while busy deleting
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
+    displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
     displayUserPopup: boolean = false;                  // True to display single User
     groups: Group[] = [];                               // List of Groups
     popupHeader: string = 'User Maintenance';           // Popup header
@@ -90,7 +91,12 @@ export class UserComponent implements OnInit {
             {
                 label: 'Datasources', 
                 icon: 'fa-database', 
-                command: (event) => this.userMenuAccessableDatasources(this.selectedUser)
+                command: (event) => this.userMenuAccessToDatasources(this.selectedUser)
+            },
+            {
+                label: 'Show Datasources', 
+                icon: 'fa-database', 
+                command: (event) => this.userMenuShowDatasources(this.selectedUser)
             },
             {
                 label: 'Related Dashboards', 
@@ -182,6 +188,10 @@ export class UserComponent implements OnInit {
         if (this.displayGroupMembership) {
             this.userMenuGroupMembership(this.selectedUser) 
         }
+        if (this.displayUserDatasource) {
+            this.userMenuAccessToDatasources(this.selectedUser) 
+        }
+
     }
 
     userMenuGroupMembership(user: User) {
@@ -201,28 +211,6 @@ export class UserComponent implements OnInit {
                     .catch(error => console.log (error))
             })
             .catch(error => console.log (error) )
-
-// this.eazlService.getUsersResti()
-//     .then(eazlUser => {
-//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
-
-//         // Show
-// console.log('gotit')    
-//     })
-//     .catch(err => {
-//         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Fake login failed!!');
-//         }
-    // ) 
-
-
-
-
-        // Tell user ...
-        // this.globalVariableService.growlGlobalMessage.next({
-        //     severity: 'info', 
-        //     summary:  'User group membership', 
-        //     detail:   user.firstName + ' - ' + user.lastName
-        // });
     }
 
     onClickGroupMembershipCancel() {
@@ -269,17 +257,91 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
     }
 
-    userMenuAccessableDatasources(user: User) {
+
+
+
+
+
+
+
+
+
+    userMenuAccessToDatasources(user: User) {
         // Access to Data Sources for the selected user
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccessableDatasources', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccessToDatasources', '@Start');
+
+        // // Get the current and available groups
+        // this.eazlService.getGroupsPerUser(this.selectedUser.userName, true)
+        //     .then(inclgrp => {
+        //         this.belongstoUserGroupMembership = inclgrp;
+        //         this.eazlService.getGroupsPerUser(this.selectedUser.userName, false)
+        //             .then (exclgrp => {
+        //                     this.availableUserGroupMembership  = exclgrp;
+        //                     this.displayUserDatasource = true; 
+        //             })
+        //             .catch(error => console.log (error))
+        //     })
+        //     .catch(error => console.log (error) )
+    }
+
+    // onClickGroupMembershipCancel() {
+    //     // User clicked onMoveToSource on Group Membership - remove grp membership
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
+
+    //     // Close popup
+    //     this.displayGroupMembership = false;        
+    // }
+
+// addGroupDatasourceAccess
+// deleteGroupDatasourceAccess
+// getGroupDatasourceAccess
+
+    // onMoveToTargetUserGroupMembership(event) {
+    //     // User clicked onMoveToTarget on Group Membership: add grp membership
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+
+    //     // Add this / these makker(s) - array if multi select
+    //     for (var i = 0; i < event.items.length; i++) {
+    //         this.eazlService.addUserGroupMembership(
+    //             this.selectedUser.userName, 
+    //             event.items[i].groupID
+    //         );
+    //     }
+    // }
+    
+    // onMoveToSourceUserGroupMembership(event) {
+    //     // User clicked onMoveToSource on Group Membership - remove grp membership
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+
+    //     // Remove the makker(s)
+    //     for (var i = 0; i < event.items.length; i++) {
+    //         this.eazlService.deleteUserGroupMembership(
+    //             this.selectedUser.userName, 
+    //             event.items[i].groupID
+    //         );
+    //     }
+    // }
+
+
+
+
+
+
+    userMenuShowDatasources(user: User) {
+        // Show all the Datasources that the user has access to, and via username or groups
+        // - User: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info', 
-            summary:  'User Access', 
+            summary:  'Related Data Sources', 
             detail:   user.firstName + ' - ' + user.lastName
         });
     }
+
+
+
 
     userMenuRelatedDashboards(user: User) {
         // Manage related Data Sources (owned, given rights and received rights)
