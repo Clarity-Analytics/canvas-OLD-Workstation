@@ -39,6 +39,7 @@ export class UserComponent implements OnInit {
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
     datasourcesPerUser: DatasourcesPerUser[];           // List of Datasources per User
     deleteMode: boolean = false;                        // True while busy deleting
+    displayUserDatasources: boolean;                    // True to display Datasource per user
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
     displayUserPopup: boolean = false;                  // True to display single User
@@ -328,11 +329,9 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
 
         this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.userName); 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Related Data Sources', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
+
+        // Show the popup
+        this.displayUserDatasources = true;
     }
 
     userMenuRelatedDashboards(user: User) {

@@ -4872,7 +4872,8 @@ export class EazlService implements OnInit {
                 datasourcesPerUserWorking.push( {
                     datasourceID: du.datasourceID,
                     username: username,
-                    datasourcesPerUserAccessVia: username,
+                    datasourceName: 'ds.name',
+                    datasourcesPerUserAccessVia: 'User: ' + username,
                     datasourcesPerUserAccessType: du.dataSourceUserAccessType
                 })
             }
@@ -4887,12 +4888,18 @@ export class EazlService implements OnInit {
         )   
 
         // Add the DS that those groups have access to
+        // TODO - eliminate duplicates (already in User above)
+        let groupWorking: Group[] = [];
         this.groupDatasourceAccess.forEach(gd => {
             if (groupIDs.indexOf(gd.groupID) >= 0) {
+                groupWorking = this.groups.filter(g =>
+                    (g.groupID == gd.groupID) 
+                )
                 datasourcesPerUserWorking.push( {
                     datasourceID: gd.datasourceID,
                     username: username,
-                    datasourcesPerUserAccessVia: gd.groupID.toString(),
+                    datasourceName: 'ds.name',
+                    datasourcesPerUserAccessVia: 'Group: ' + groupWorking[0].groupName,
                     datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType
                 })
             }        
