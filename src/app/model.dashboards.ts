@@ -19,6 +19,7 @@ export class Dashboard {
     dashboardPassword: string;                  // Optional password to open
     dashboardRefreshMode: string;               // Manual, onOpen  
     dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserIDs shared with
+    dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
     dashboardRefreshedDateTime: string;         // Data Refreshed on
     dashboardRefreshedUserID: string;           // Data Refreshed by

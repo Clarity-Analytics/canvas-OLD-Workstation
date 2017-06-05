@@ -378,7 +378,8 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '',
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
-            dashboardNrUsersSharedWith: 1,
+            dashboardNrUsersSharedWith: 0,
+            dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2017/07/08',
             dashboardUpdatedUserID: 'GordenJ'
@@ -406,6 +407,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrUsersSharedWith: 0,
+            dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -433,6 +435,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrUsersSharedWith: 0,
+            dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -460,6 +463,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrUsersSharedWith: 0,
+            dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -487,6 +491,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrUsersSharedWith: 0,
+            dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
@@ -514,6 +519,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedUserID: '',
             dashboardRefreshMode: 'Manual',
             dashboardNrUsersSharedWith: 0,
+            dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserID: 'JerimiaA'
