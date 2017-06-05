@@ -4939,6 +4939,33 @@ export class EazlService implements OnInit {
         return dataSourceUserAccessWorking;
     }
 
+    getDatasourceAccessedByUser(
+            username: string,
+            accessType: string = '*'): DataSource[] {
+        // Return a list of Datasources accessed by a User
+        // - datasourceID Optional filter, 
+        // - username Optional filter
+        // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
+
+        // Create list of Datasource IDs that are relevant
+        let dataSourceIDs: number[] = [];
+
+        // Filter as needed
+        this.dataSourceUserAccess.forEach( da => {
+                if ( (username == '*'    ||   da.userName == username) 
+                     &&
+                     (accessType != '*'  ||  da.dataSourceUserAccessType == accessType)
+                   ) {
+                    dataSourceIDs.push(da.datasourceID)
+                }
+        });
+
+        // Return
+        return this.datasources.filter(ds => 
+        dataSourceIDs.indexOf(ds.datasourceID) >= 0);
+    }
+
     getGroupDatasourceAccess(groupID: number = -1, datasourceID: number = -1) {
         // Return of list with group - datasource acces
         // - groupID Optional filter, -1 = all

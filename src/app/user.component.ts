@@ -296,6 +296,7 @@ export class UserComponent implements OnInit {
 // addGroupDatasourceAccess
 // deleteGroupDatasourceAccess
 // getGroupDatasourceAccess
+// getDatasourceAccessedByUser
 
     // onMoveToTargetUserGroupMembership(event) {
     //     // User clicked onMoveToTarget on Group Membership: add grp membership
