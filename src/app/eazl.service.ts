@@ -4866,14 +4866,23 @@ export class EazlService implements OnInit {
         // - username filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerUser', '@Start');
 
+        let datasourceWorking: DataSource[] = [];
+        let datasourceName: string = '';
+
         // Filter on users
         let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
         this.dataSourceUserAccess.forEach(du => {
             if (du.userName == username) {
+                datasourceName = '';
+                datasourceWorking = this.datasources.filter(d =>
+                    d.datasourceID == du.datasourceID);
+                if (datasourceWorking.length > 0) {
+                    datasourceName = datasourceWorking[0].datasourceName;
+                }
                 datasourcesPerUserWorking.push( {
                     datasourceID: du.datasourceID,
                     username: username,
-                    datasourceName: 'ds.name',
+                    datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'User: ' + username,
                     datasourcesPerUserAccessType: du.dataSourceUserAccessType
                 })
@@ -4896,10 +4905,16 @@ export class EazlService implements OnInit {
                 groupWorking = this.groups.filter(g =>
                     (g.groupID == gd.groupID) 
                 )
+                datasourceName = '';
+                datasourceWorking = this.datasources.filter(d =>
+                    d.datasourceID == gd.datasourceID);
+                if (datasourceWorking.length > 0) {
+                    datasourceName = datasourceWorking[0].datasourceName;
+                }
                 datasourcesPerUserWorking.push( {
                     datasourceID: gd.datasourceID,
                     username: username,
-                    datasourceName: 'ds.name',
+                    datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'Group: ' + groupWorking[0].groupName,
                     datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType
                 })
