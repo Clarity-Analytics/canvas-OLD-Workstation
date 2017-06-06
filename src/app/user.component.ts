@@ -16,6 +16,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { CanvasMessage }              from './model.canvasMessage';
 import { DataSource }                 from './model.datasource';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
@@ -38,12 +39,14 @@ export class UserComponent implements OnInit {
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
     availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
+    canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     datasourcesPerUser: DatasourcesPerUser[];           // @Runtime List of Datasources per User
     dashboardsPerUser: DashboardsPerUser[];             // @Runtime List of Dashboards per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
     displayUserDashboards: boolean = false;             // True to display popup for Dashboards
+    displayMessages: boolean = false;                   // True to display popup for Messages
     displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
     displayUserPopup: boolean = false;                  // True to display single User
     groups: Group[] = [];                               // List of Groups
@@ -353,11 +356,10 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User Message History', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
+        this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);
+
+        // Show the popup
+        this.displayMessages = true;
     }
 
     userMenuReportHistory(user: User) {
