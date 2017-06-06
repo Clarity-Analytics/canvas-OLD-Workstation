@@ -4027,6 +4027,15 @@ export class EazlService implements OnInit {
         return Promise.reject(error.message || error);
     }
 
+    changePassword(username: string, newPassword: string): string {
+        // Change the password for a user
+        // Return '' if good, else return error message
+        this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
+        
+        // TODO - this must be done in DB
+        return '';
+    }
+
     prepareRoute(route: string): string {
         if (route.slice(-1) !== '/') {
             route = `${route}/`;

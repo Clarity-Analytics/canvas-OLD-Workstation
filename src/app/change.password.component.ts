@@ -117,16 +117,24 @@ export class ChangePasswordComponent implements OnInit {
         }
  
         // Adding new user
-        // this.eazlService.changePassword(
-        //     this.selectedUser.userName,
-        //     this.userform.controls['password'].value
-        // )
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Success',
-            detail:   'Password changed'
-        });
+        let result = this.eazlService.changePassword(
+            this.selectedUser.userName,
+            this.userform.controls['password'].value
+            );
+        if (result == '') {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Success',
+                detail:   'Password changed'
+            });
+        }
+        else {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Failed',
+                detail:   'Password changed attempted but failed with: ' + result
+            });
+        }
 
         // Trigger event emitter 'emit' method
         this.formChangePasswordSubmit.emit('Submit');
