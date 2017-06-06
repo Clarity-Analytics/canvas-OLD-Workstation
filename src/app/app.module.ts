@@ -90,6 +90,7 @@ import { StepsModule }                from 'primeng/primeng';  // p-steps
 
 // Our Components
 import { AppComponent }               from './app.component';
+import { ChangePasswordComponent }    from './change.password.component';
 import { DashboardAdvFilterComponent} from './dashboard-advancedfilter.component';
 import { DashboardComponent }         from './dashboard.component';
 import { DashboardManagerComponent }  from './dashboard.manager.component';
@@ -133,6 +134,7 @@ import { routes }                     from './app.routes';
   declarations: [
     // Our Components
     AppComponent,
+    ChangePasswordComponent,
     DashboardAdvFilterComponent,
     DashboardComponent,
     DashboardManagerComponent,

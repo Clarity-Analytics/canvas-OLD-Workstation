@@ -573,7 +573,6 @@
 </p-dialog>
 
 
-
 <!--Popup for Reports I ran-->
 <p-dialog 
     [(visible)]="displayReports"
@@ -582,7 +581,7 @@
     [closable]=true
     modal="true"
     responsive="true"
-    >   
+    >    
     <p-dataTable [value]="reportHistory">
         <p-column field="reportHistoryID" header="ID"></p-column>
         <p-column field="userName" header="User"></p-column>
@@ -594,3 +593,23 @@
         <p-column field="reportHistoryComments" header="Comments"></p-column>
     </p-dataTable>
 </p-dialog>
+
+
+<!--Popup for Reset Password-->
+<p-dialog 
+    [(visible)]="displayResetPassword"
+    header="Reset Password"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+    <change-password 
+        [selectedUser]="selectedUser"
+        (formChangePasswordSubmit)="handleFormChangePasswordSubmit($event)" 
+        >
+        Loading Reset Password form ...
+    </change-password>
+
+</p-dialog>
+

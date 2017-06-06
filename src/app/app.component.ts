@@ -232,6 +232,16 @@ export class AppComponent implements OnInit {
             this.displayLoginForm = true;        
         }
     }
+    
+    userMenuResetPassword() {
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuResetPassword', '@Start');
+
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info', 
+            summary:  'User Password Reset', 
+            detail:   'Resetted user password'
+        });
+    }
 
     handleCanvasMessageFormSubmit(event) {
         // Is triggered after the new Message form is submitted

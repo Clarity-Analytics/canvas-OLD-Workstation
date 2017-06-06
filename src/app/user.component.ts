@@ -51,6 +51,7 @@ export class UserComponent implements OnInit {
     displayUserDashboards: boolean = false;             // True to display popup for Dashboards
     displayMessages: boolean = false;                   // True to display popup for Messages
     displayReports: boolean = false;                    // True to display popup for Reports
+    displayResetPassword: boolean = false;              // True to display popup for Reset Password
     displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
     displayUserPopup: boolean = false;                  // True to display single User
     groups: Group[] = [];                               // List of Groups
@@ -385,13 +386,17 @@ export class UserComponent implements OnInit {
     userMenuResetPassword(user: User) {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuResetPassword', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User Password Reset', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
+        // Show popup
+        this.displayResetPassword = true;
     }
 
+    handleFormChangePasswordSubmit(howClosed: string) {
+        // Handle the event: howClosed = Cancel / Submit
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleFormChangePasswordSubmit', '@Start');
+
+        this.displayResetPassword = false;
+    }
+    
     handleUserPopupFormClosed(howClosed: string) {
         // Handle the event: howClosed = Cancel / Submit
         this.globalFunctionService.printToConsole(this.constructor.name,'handleUserPopupFormClosed', '@Start');
