@@ -18,6 +18,7 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our models
 import { DataSource }                 from './model.datasource';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { User }                       from './model.user';
@@ -37,10 +38,12 @@ export class UserComponent implements OnInit {
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
     availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
-    datasourcesPerUser: DatasourcesPerUser[];           // List of Datasources per User
+    datasourcesPerUser: DatasourcesPerUser[];           // @Runtime List of Datasources per User
+    dashboardsPerUser: DashboardsPerUser[];             // @Runtime List of Dashboards per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
-    displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
+    displayGroupMembership: boolean = false;            // True to display popup for Datasources
+    displayUserDashboards: boolean = false;             // True to display popup for Dashboards
     displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
     displayUserPopup: boolean = false;                  // True to display single User
     groups: Group[] = [];                               // List of Groups
@@ -339,11 +342,10 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Related Data Sources', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
+        this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user.userName);
+
+        // Show the popup
+        this.displayUserDashboards = true;
     }
 
     userMenuMessageHistory(user: User) {

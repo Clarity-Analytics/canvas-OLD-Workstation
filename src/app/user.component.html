@@ -364,3 +364,39 @@
         </p-column>
     </p-dataTable>
 </p-dialog>
+
+
+<!--Popup for Dashboards-->
+<p-dialog 
+    [(visible)]="displayUserDashboards"
+    header="Related Dashboards"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+    <p-dataTable 
+        [value]="dashboardsPerUser"
+        >
+        <p-column 
+            field="dashboardID"                  
+            header="ID"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardName"                
+            header="Name"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardsPerUserAccessVia"   
+            header="Access Via"
+            >
+        </p-column>
+        <p-column 
+            field="dashboardsPerUserAccessType"  
+            header="Type"
+            >
+        </p-column>
+    </p-dataTable>
+</p-dialog>

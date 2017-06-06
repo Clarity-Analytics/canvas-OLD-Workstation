@@ -4910,10 +4910,10 @@ export class EazlService implements OnInit {
         return datasourcesPerUserWorking;
     }
 
-    getDashboardsPerGroup(username: string): DashboardsPerUser[] {
+    getDashboardsPerUser(username: string): DashboardsPerUser[] {
         // Return list of Dashboards for a given user (via Username & Groups)
         // - username filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerGroup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerUser', '@Start');
 
         // Filter on users
         let dashboardsPerUserWorking: DashboardsPerUser[] = [];
@@ -4949,7 +4949,7 @@ export class EazlService implements OnInit {
                     dashboardID: dg.dashboardID,
                     dashboardName: 'ds.name',
                     username: username,
-                    dashboardsPerUserAccessVia: 'Group ' + username,
+                    dashboardsPerUserAccessVia: 'Group ' + g.groupName,
                     dashboardsPerUserAccessType: dg.dashboardGroupRelationshipType
                 })
             }        
