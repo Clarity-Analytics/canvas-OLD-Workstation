@@ -17,11 +17,13 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { CanvasMessage }              from './model.canvasMessage';
+import { CanvasUser }                 from './model.user';
 import { DataSource }                 from './model.datasource';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
+import { ReportHistory }              from './model.reportHistory';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 
@@ -39,6 +41,7 @@ export class UserComponent implements OnInit {
     belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
     availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
+    canvasUser: CanvasUser;                             // Current user
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     datasourcesPerUser: DatasourcesPerUser[];           // @Runtime List of Datasources per User
     dashboardsPerUser: DashboardsPerUser[];             // @Runtime List of Dashboards per User
@@ -47,11 +50,13 @@ export class UserComponent implements OnInit {
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
     displayUserDashboards: boolean = false;             // True to display popup for Dashboards
     displayMessages: boolean = false;                   // True to display popup for Messages
+    displayReports: boolean = false;                    // True to display popup for Reports
     displayUserDatasource: boolean = false;             // True to display popup for Datasource access per user
     displayUserPopup: boolean = false;                  // True to display single User
     groups: Group[] = [];                               // List of Groups
     popupHeader: string = 'User Maintenance';           // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
+    reportHistory: ReportHistory[];                     // List of Report History (ran)
     selectedUser: User;                                 // User that was clicked on
     users: User[];
     usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
@@ -67,6 +72,9 @@ export class UserComponent implements OnInit {
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Current User
+        this.canvasUser = this.globalVariableService.canvasUser.getValue();
  
         // Initialise variables
         this.eazlService.getUsers()
@@ -356,6 +364,7 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
 
+        // TODO -decide whether to show all, sent by me, received by me, unread, top 10, etc
         this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);
 
         // Show the popup
@@ -367,11 +376,10 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuReportHistory', '@Start');
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User Report History', 
-            detail:   user.firstName + ' - ' + user.lastName
-        });
+        this.reportHistory = this.eazlService.getReportHistory(user.userName)
+
+        // Show popup
+        this.displayReports = true;
     }
     
     userMenuResetPassword(user: User) {
