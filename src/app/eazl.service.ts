@@ -4915,13 +4915,23 @@ export class EazlService implements OnInit {
         // - username filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerUser', '@Start');
 
+        let dashboardsWorking: Dashboard[] = [];
+        let dashboardName: string = '';
+
         // Filter on users
         let dashboardsPerUserWorking: DashboardsPerUser[] = [];
         this.dashboardUserRelationship.forEach(du => {
             if (du.userName == username) {
+
+                dashboardName = '';
+                dashboardsWorking = this.dashboards.filter(d =>
+                    d.dashboardID == du.dashboardID);
+                if (dashboardsWorking.length > 0) {
+                    dashboardName = dashboardsWorking[0].dashboardName;
+                }
                 dashboardsPerUserWorking.push( {
                     dashboardID: du.dashboardID,
-                    dashboardName: 'ds.name',
+                    dashboardName: dashboardName,
                     username: username,
                     dashboardsPerUserAccessVia: 'User ' + username,
                     dashboardsPerUserAccessType: du.dashboardUserRelationshipType
@@ -4945,11 +4955,17 @@ export class EazlService implements OnInit {
                 groupWorking = this.groups.filter(g =>
                     (g.groupID == dg.groupID) 
                 )
+                dashboardName = '';
+                dashboardsWorking = this.dashboards.filter(d =>
+                    d.dashboardID == dg.dashboardID);
+                if (dashboardsWorking.length > 0) {
+                    dashboardName = dashboardsWorking[0].dashboardName;
+                }
                 dashboardsPerUserWorking.push( {
                     dashboardID: dg.dashboardID,
-                    dashboardName: 'ds.name',
+                    dashboardName: dashboardName,
                     username: username,
-                    dashboardsPerUserAccessVia: 'Group ' + g.groupName,
+                    dashboardsPerUserAccessVia: 'Group ' + groupWorking[0].groupName,
                     dashboardsPerUserAccessType: dg.dashboardGroupRelationshipType
                 })
             }        
