@@ -18,6 +18,7 @@ import { Dashboard }                  from './model.dashboards';
 import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
+import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DataSource }                 from './model.datasource';
@@ -4863,7 +4864,7 @@ export class EazlService implements OnInit {
     getDatasourcesPerUser(username: string): DatasourcesPerUser[] {
         // Return list of DataSource for a given user (via Username & Groups)
         // - username filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerGroup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerUser', '@Start');
 
         // Filter on users
         let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
@@ -4907,6 +4908,55 @@ export class EazlService implements OnInit {
 
         // Return the result
         return datasourcesPerUserWorking;
+    }
+
+    getDashboardsPerGroup(username: string): DashboardsPerUser[] {
+        // Return list of Dashboards for a given user (via Username & Groups)
+        // - username filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerGroup', '@Start');
+
+        // Filter on users
+        let dashboardsPerUserWorking: DashboardsPerUser[] = [];
+        this.dashboardUserRelationship.forEach(du => {
+            if (du.userName == username) {
+                dashboardsPerUserWorking.push( {
+                    dashboardID: du.dashboardID,
+                    dashboardName: 'ds.name',
+                    username: username,
+                    dashboardsPerUserAccessVia: 'User ' + username,
+                    dashboardsPerUserAccessType: du.dashboardUserRelationshipType
+                })
+            }
+        })
+
+        // Get list of GroupIDs that the User belongs to
+        let groupIDs: number[] = [];
+        this.usergroupMembership.forEach((usrgrp) => { 
+            if (usrgrp.userName == username) 
+                groupIDs.push(usrgrp.groupID)  
+            }
+        )   
+
+        // Add the DS that those groups have access to
+        // TODO - eliminate duplicates (already in User above)
+        let groupWorking: Group[] = [];
+        this.dashboardGroupRelationship.forEach(dg => {
+            if (groupIDs.indexOf(dg.groupID) >= 0) {
+                groupWorking = this.groups.filter(g =>
+                    (g.groupID == dg.groupID) 
+                )
+                dashboardsPerUserWorking.push( {
+                    dashboardID: dg.dashboardID,
+                    dashboardName: 'ds.name',
+                    username: username,
+                    dashboardsPerUserAccessVia: 'Group ' + username,
+                    dashboardsPerUserAccessType: dg.dashboardGroupRelationshipType
+                })
+            }        
+        })        
+
+        // Return the result
+        return dashboardsPerUserWorking;
     }
 
     getDatasourcesPerGroup(groupID: number, include: boolean): DataSource[] {
@@ -5074,11 +5124,10 @@ export class EazlService implements OnInit {
     deleteDatasourceUserAccess(datasourceID: number, username: string) {
         // Deletes a Datasource - Group record from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDatasourceUserAccess', '@Start');
-console.log(datasourceID, username)
+
         this.dataSourceUserAccess = this.dataSourceUserAccess.filter(
             item => (!(item.datasourceID == datasourceID  &&  item.userName == username))
         );
-console.log('this.dataSourceUserAccess', this.dataSourceUserAccess)
     }
 
     getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
