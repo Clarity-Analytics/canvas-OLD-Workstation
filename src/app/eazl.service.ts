@@ -3180,7 +3180,7 @@ export const REPORTS: Report[] =
             reportName: 'Bond monthly Values',
             description: 'Description ...  etc',
             reportParameters: '',
-            dataSourceID: 143,
+            dataSourceID: 1,
             dataSourceParameters: '',
             reportFields:
                 [ "category", "amount"],
@@ -4546,7 +4546,8 @@ export class EazlService implements OnInit {
     getReports(
         dashboardID: number = -1, 
         username: string = '*', 
-        relationship: string = '*'
+        relationship: string = '*',
+        dataSourceID: number = -1
         ): Report[] {
         // Return a list of Reports
         // - dashboardID Optional parameter to filter on
@@ -4588,6 +4589,10 @@ export class EazlService implements OnInit {
                 (userRelatedRptIDs.indexOf(rpt.reportID) >= 0) )
         }
 
+        if (dataSourceID != -1) {
+            reportsWorking = reportsWorking.filter(rpt => 
+                (rpt.dataSourceID == dataSourceID) )
+        }
         // Return the (filtered) Reports
         return reportsWorking;
     }
