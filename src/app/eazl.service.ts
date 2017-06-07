@@ -4644,14 +4644,17 @@ export class EazlService implements OnInit {
 
     getReportHistory(
             userName: string ='*',
-            reportID: number = -1) {
+            reportID: number = -1,
+            datasourceID: number = -1) {
         // Return history of reports run, optionally filtered
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
                 
         return this.reportHistory.filter(rh =>
-            (userName == '*'   ||   rh.userName == userName)
+            (userName == '*'        ||   rh.userName == userName)
             &&
-            (reportID == -1    ||   rh.reportID == reportID)
+            (reportID == -1         ||   rh.reportID == reportID)
+            &&
+            (datasourceID == -1     ||   rh.datasourceID == reportID)
         )
         
     }
