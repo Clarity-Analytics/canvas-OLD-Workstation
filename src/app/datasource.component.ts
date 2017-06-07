@@ -24,6 +24,7 @@ import { DashboardGroup }             from './model.dashboardGroup';
 import { DataSource }                 from './model.datasource';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
+import { Group }                      from './model.group';
 import { Report }                     from './model.report';
 import { User }                       from './model.user';
 
@@ -40,6 +41,7 @@ export class DataSourceComponent implements OnInit {
     datasources: DataSource[];                          // List of DataSources
     displayUserAccess: boolean;                         // True to display User access
     displayGroupAccess: boolean;                        // True to display Group Access
+    groups: Group[];                                    // List of Groups
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedDatasource: DataSource;                     // Selected one
     users: User[];                                      // List of Users with Access
@@ -100,7 +102,7 @@ export class DataSourceComponent implements OnInit {
         // Show all the Users with Access to the selected Datasource
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuUserAccess', '@Start');
-console.log('selectedDatasource', selectedDatasource.datasourceID)
+
         // this.users = this.eazlService.getUsersWhoCanAccessDatasource(
         //     selectedDatasource.datasourceID
         // ); 
@@ -120,7 +122,10 @@ console.log('selectedDatasource', selectedDatasource.datasourceID)
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupAccess', '@Start');
 
-        // this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.userName); 
+        this.groups = this.eazlService.getGroupsPerDatasource(
+            selectedDatasource.datasourceID,
+            true
+        ); 
 
         // Show the popup
         this.displayGroupAccess = true;
