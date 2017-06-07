@@ -97,8 +97,10 @@ export class DataSourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuReportHistory', '@Start');
 
         this.reports = this.eazlService.getReports(
-            // selectedDatasource.datasourceID,
-            // true
+            -1,
+            '*',
+            '*',
+            selectedDatasource.datasourceID
         ); 
 
         // Show popup
