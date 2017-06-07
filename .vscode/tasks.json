@@ -2,7 +2,35 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "command": "markdown-it",
-    "isShellCommand": true,
-    "args": ["./src/documentation/references.md", "-o", "./src/documentation/references.html"],
-    "showOutput": "always"
+    "tasks": [
+        {
+            "taskName": "references",    
+            "command": "markdown-it",
+            "isShellCommand": true,
+            "args": ["./src/documentation/references.md", "-o", "./src/documentation/references.html"],
+            "showOutput": "always"
+        },
+        {
+            "taskName": "tutorials",
+            "command": "markdown-it",
+            "isShellCommand": true,
+            "args": ["./src/documentation/tutorials.md", "-o", "./src/documentation/tutorials.html"],
+            "showOutput": "always"
+        },
+        {
+            "taskName": "discussions",
+            "command": "markdown-it",
+            "isShellCommand": true,
+            "args": ["./src/documentation/discussions.md", "-o", "./src/documentation/discussions.html"],
+            "showOutput": "always"
+        },
+        {
+            "taskName": "how-to-guides",
+            "command": "markdown-it",
+            "isShellCommand": true,
+            "args": ["./src/documentation/how-to-guides.md", "-o", "./src/documentation/how-to-guides.html"],
+            "showOutput": "always"
+        }
+    ]
+}
+
