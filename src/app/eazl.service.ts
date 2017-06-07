@@ -4654,7 +4654,7 @@ export class EazlService implements OnInit {
             &&
             (reportID == -1         ||   rh.reportID == reportID)
             &&
-            (datasourceID == -1     ||   rh.datasourceID == reportID)
+            (datasourceID == -1     ||   rh.datasourceID == datasourceID)
         )
         
     }

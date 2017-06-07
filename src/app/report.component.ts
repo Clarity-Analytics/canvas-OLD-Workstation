@@ -73,7 +73,7 @@ export class ReportComponent implements OnInit {
             {
                 label: 'Report History', 
                 icon: 'fa-table', 
-                command: (event) => this.reportMenuReportHistory()
+                command: (event) => this.reportMenuReportHistory(this.selectedReport)
             },
         ];
     }
@@ -123,13 +123,17 @@ export class ReportComponent implements OnInit {
         // For future use ...
     }
 
-    reportMenuReportHistory() {
+    reportMenuReportHistory(selectedReport: Report) {
         // Show history of reports ran for the selected Dashboard
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuReportHistory', '@Start');
 
         // Report History for me
-        this.reportHistory = this.eazlService.getReportHistory(this.canvasUser.username)
+        this.reportHistory = this.eazlService.getReportHistory(
+            '*',
+            -1,
+            selectedReport.dataSourceID
+        )
 
         // Show the popup
         this.displayReportHistory = true;
