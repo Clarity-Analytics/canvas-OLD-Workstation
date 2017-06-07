@@ -42,6 +42,7 @@ export class DataSourceComponent implements OnInit {
     displayGroupAccess: boolean;                        // True to display Group Access
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedDatasource: DataSource;                     // Selected one
+    users: User[];                                      // List of Users with Access
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -95,13 +96,12 @@ export class DataSourceComponent implements OnInit {
 
     }
 
-
     datasourceMenuUserAccess(selectedDatasource: DataSource) {
         // Show all the Users with Access to the selected Datasource
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuUserAccess', '@Start');
 
-        // this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.userName); 
+        this.users = this.eazlService.getUsersWhoCanAccessDatasource(selectedDatasource.datasourceID); 
 
         // Show the popup
         this.displayUserAccess = true;

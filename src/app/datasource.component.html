@@ -37,7 +37,195 @@
     modal="true"
     responsive="true"
     >
-hallo
+    <p-dataTable  #dt
+        columnResizeMode="expand"
+        exportFilename="users"
+        [contextMenu]="cm"
+        [paginator]="true" 
+        [pageLinks]="3" 
+        [reorderableColumns]="true"
+        [resizableColumns]="true"
+        [responsive]="true"
+        [rows]="10" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [(selection)]="selectedUser"
+        selectionMode="single" 
+        [scrollable]="false"  
+        [sortMode]="multiple"
+        [value]="users"  
+        >
+        <p-header
+            [style]="{'background-color': 'darkgray'}">
+            <span>
+                List of Users
+            </span>
+            <span style="float:right"
+                class="ui-helper-clearfix csvButton"
+                >
+                <button 
+                    type="button" 
+                    pButton 
+                    icon="fa-file-o" 
+                    iconPos="left" 
+                    label="CSV" 
+                    (click)="dt.exportCSV()" 
+                    >
+                </button>
+            </span>
+            
+        </p-header>
+        <p-column 
+            field="userName" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="UserName" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="firstName" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="FirstName" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="lastName" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="LastName" 
+            [sortable]="true"
+            >
+        </p-column>
+        <p-column field="nickName" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="NickName"
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="photoPath" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="PhotoPath"
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+            <template let-col let-user="rowData" pTemplate="body">
+                <span [style.color]="user[col.field]">{{user[col.field]}}</span>
+            </template>
+        </p-column>
+
+        <p-column 
+            field="lastDatetimeLoggedIn" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Last Login" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="lastDatetimeReportWasRun" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Last Report" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="emailAddress" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Email" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="cellNumber" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Cell" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="workTelephoneNumber" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Work Tel" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="activeFromDate" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Active From" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="inactiveDate" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Inactive Date" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="dateCreated" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Date Created" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="userIDLastUpdated" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="UserID Last Upd" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="isStaff" 
+            [filter]="true" 
+            filterMatchMode="contains" 
+            header="Is Staff" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+    </p-dataTable>
 </p-dialog>
 
 
@@ -50,5 +238,83 @@ hallo
     modal="true"
     responsive="true"
     >
-hallo
+    <p-dataTable  #dt
+        columnResizeMode="expand"
+        exportFilename="groups"
+        [paginator]="false" 
+        [pageLinks]="3" 
+        [reorderableColumns]="true"
+        [resizableColumns]="true"
+        [responsive]="true"
+        [rows]="10" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [(selection)]="selectedGroup"
+        selectionMode="single" 
+        [scrollable]="true"  
+        [sortMode]="multiple"
+        [value]="groups"  
+        >
+        <p-header
+            [style]="{'background-color': 'darkgray'}">
+            <span>
+                List of Groups
+            </span>
+            <span style="float:right"
+                class="ui-helper-clearfix csvButton"
+                >
+                <button 
+                    type="button" 
+                    pButton 
+                    icon="fa-file-o" 
+                    iconPos="left" 
+                    label="CSV" 
+                    (click)="dt.exportCSV()" 
+                    >
+                </button>
+            </span>
+            
+        </p-header>
+        <p-column 
+            field="groupID" 
+            [filter]="false" 
+            filterMatchMode="contains" 
+            header="ID" 
+            [sortable]="true"
+            [style]="{width: '80px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="groupName" 
+            [filter]="false" 
+            filterMatchMode="contains" 
+            header="Name" 
+            [sortable]="true"
+            [style]="{width: '120px', 
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="groupDescription" 
+            [filter]="false" 
+            filterMatchMode="contains" 
+            header="Description" 
+            [sortable]="true"
+            [style]="{width: '320px', 
+                    'text-align': 'center'}"            >
+        </p-column>
+    </p-dataTable>
 </p-dialog>
+
+    <!--Reports I own-->
+    <p-tabPanel header="Reports I own">
+        <p-dataTable [value]="reports">
+            <p-column field="reportID" header="ID"></p-column>
+            <p-column field="reportName" header="Name"></p-column>
+            <p-column field="description" header="Description"></p-column>
+            <p-column field="reportParameters" header="Parameters"></p-column>
+            <p-column field="dataSourceID" header="DS ID"></p-column>
+            <p-column field="dataSourceParameters" header="DS Parameters"></p-column>
+            <p-column field="reportFields" header="Fields"></p-column>
+        </p-dataTable>
+    </p-tabPanel>
