@@ -100,6 +100,7 @@ export const REPORTHISTORY: ReportHistory[] =
         reportHistoryID: 0,
         userName: 'janniei',
         reportID: 1,
+        datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
         reportHistoryEndDateTime: '2017/05/01 08:24',
         reportHistoryStatus: 'Succes',
@@ -110,6 +111,7 @@ export const REPORTHISTORY: ReportHistory[] =
         reportHistoryID: 1,
         userName: 'janniei',
         reportID: 2,
+        datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
         reportHistoryEndDateTime: '2017/05/01 08:24',
         reportHistoryStatus: 'Succes',
@@ -120,6 +122,7 @@ export const REPORTHISTORY: ReportHistory[] =
         reportHistoryID: 2,
         userName: 'janniei',
         reportID: 1,
+        datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
         reportHistoryEndDateTime: '2017/05/01 08:24',
         reportHistoryStatus: 'Failed',
@@ -130,6 +133,7 @@ export const REPORTHISTORY: ReportHistory[] =
         reportHistoryID: 3,
         userName: 'janniei',
         reportID: 1,
+        datasourceID: 1,
         reportHistoryStartDateTime: '2017/05/01 08:21',
         reportHistoryEndDateTime: '2017/05/01 08:24',
         reportHistoryStatus: 'Succes',
@@ -140,6 +144,7 @@ export const REPORTHISTORY: ReportHistory[] =
         reportHistoryID: 4,
         userName: 'bradleyk',
         reportID: 1,
+        datasourceID: 1,
         reportHistoryStartDateTime: '2017/05/01 08:21',
         reportHistoryEndDateTime: '2017/05/01 08:24',
         reportHistoryStatus: 'Succes',
@@ -4637,7 +4642,9 @@ export class EazlService implements OnInit {
         return this.reportWidgetSet.filter(wset => wset.reportID == reportID);
     }
 
-    getReportHistory(userName: string ='*',reportID: number = -1){
+    getReportHistory(
+            userName: string ='*',
+            reportID: number = -1) {
         // Return history of reports run, optionally filtered
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
                 
