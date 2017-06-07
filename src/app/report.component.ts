@@ -19,7 +19,10 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasDate }                 from './date.services';
 import { CanvasUser }                 from './model.user';
 import { EazlUser }                   from './model.user';
+import { Group }                      from './model.group';
 import { Report }                     from './model.report';
+import { User }                       from './model.user';
+
 
 @Component({
     selector:    'report',
@@ -31,8 +34,14 @@ export class ReportComponent implements OnInit {
     
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    reports: Report[];                                          // List of Reports
-    popuMenuItems: MenuItem[];                                  // Items in popup
+    displayUserAccess: boolean;                         // True to display User access
+    displayGroupAccess: boolean;                        // True to display Group Access
+    displayReportHistory: boolean;                      // True to display Report History
+    groups: Group[];                                    // List of Groups
+    popuMenuItems: MenuItem[];                          // Items in popup
+    reports: Report[];                                  // List of Reports
+    selectedReport: Report;                             // Selected one
+    users: User[];                                      // List of Users with Access
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -51,25 +60,72 @@ export class ReportComponent implements OnInit {
 
         this.popuMenuItems = [
             {
-                label: 'Related Reports', 
+                label: 'User Access', 
+                icon: 'fa-database', 
+                command: (event) => this.reportMenuUserAccess(this.selectedReport)
+            },
+            {
+                label: 'Group Access', 
+                icon: 'fa-list', 
+                command: (event) => this.reportMenuGroupAccess(this.selectedReport)
+            },
+            {
+                label: 'Report History', 
                 icon: 'fa-table', 
-                command: (event) => this.dashboardMenuReportHistory()
+                command: (event) => this.reportMenuReportHistory()
             },
         ];
-
     }
 
-    onClickDashboardTable() {
+    onClickReportTable() {
         // Dashboard clicked on a row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardTable', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickReportTable', '@Start');
 
         // For later ...
     }
 
-    dashboardMenuReportHistory() {
+    reportMenuUserAccess(selectedReport: Report) {
+        // Show all the Users with Access to the selected Datasource
+        // - User: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuUserAccess', '@Start');
+
+        this.eazlService.getUsersWhoCanAccessDatasource(
+            selectedReport.dataSourceID
+        )
+            .then(users => {this.users = users
+
+            // Show the popup
+            this.displayUserAccess = true;
+                
+            })
+            .catch( err => {console.log(err)} );
+    }
+
+    reportMenuGroupAccess(selectedReport: Report) {
+        // Show all the Groups with access to the selected Datasource
+        // - User: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuGroupAccess', '@Start');
+
+        this.groups = this.eazlService.getGroupsPerDatasource(
+            1,
+            true
+        ); 
+
+        // Show the popup
+        this.displayGroupAccess = true;
+    }
+
+    onClickUserDatasource() {
+        // User clicked on a row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserDatasource', '@Start');
+
+        // For future use ...
+    }
+
+    reportMenuReportHistory() {
         // Show history of reports ran for the selected Dashboard
         // - dashboard: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuReportHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuReportHistory', '@Start');
 
         // For future use ...
 

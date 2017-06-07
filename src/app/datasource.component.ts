@@ -19,10 +19,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
-import { Dashboard }                  from './model.dashboards';
-import { DashboardGroup }             from './model.dashboardGroup';
 import { DataSource }                 from './model.datasource';
-import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
@@ -84,17 +81,10 @@ export class DataSourceComponent implements OnInit {
 
     }
 
-    onClickDashboardTable() {
-        // Dashboard clicked on a row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardTable', '@Start');
-
-        // For later ...
-    }
-
     datasourceMenuReports(selectedDatasource: DataSource) {
         // Show Reports based on the selected Datasource
-        // - dashboard: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuReportHistory', '@Start');
+        // - selectedDatasource: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuReports', '@Start');
 
         this.reports = this.eazlService.getReports(
             -1,
@@ -111,26 +101,23 @@ export class DataSourceComponent implements OnInit {
     datasourceMenuUserAccess(selectedDatasource: DataSource) {
         // Show all the Users with Access to the selected Datasource
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuUserAccess', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserAccess', '@Start');
 
-        // this.users = this.eazlService.getUsersWhoCanAccessDatasource(
-        //     selectedDatasource.datasourceID
-        // ); 
         this.eazlService.getUsersWhoCanAccessDatasource(
             selectedDatasource.datasourceID
         )
             .then(users => {this.users = users
-                
+
+            // Show the popup
+            this.displayUserAccess = true;                
             })
             .catch( err => {console.log(err)} );
-        // Show the popup
-        this.displayUserAccess = true;
     }
 
     datasourceMenuGroupAccess(selectedDatasource: DataSource) {
         // Show all the Groups with access to the selected Datasource
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupAccess', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuGroupAccess', '@Start');
 
         this.groups = this.eazlService.getGroupsPerDatasource(
             selectedDatasource.datasourceID,
@@ -143,7 +130,7 @@ export class DataSourceComponent implements OnInit {
 
     onClickUserDatasource() {
         // User clicked on a row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserTable', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserDatasource', '@Start');
 
         // For future use ...
     }
