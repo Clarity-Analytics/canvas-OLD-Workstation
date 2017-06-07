@@ -107,7 +107,7 @@ export class ReportComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuGroupAccess', '@Start');
 
         this.groups = this.eazlService.getGroupsPerDatasource(
-            1,
+            selectedReport.dataSourceID,
             true
         ); 
 
