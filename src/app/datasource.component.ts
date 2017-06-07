@@ -41,8 +41,10 @@ export class DataSourceComponent implements OnInit {
     datasources: DataSource[];                          // List of DataSources
     displayUserAccess: boolean;                         // True to display User access
     displayGroupAccess: boolean;                        // True to display Group Access
+    displayReports: boolean;                            // True to display Reports
     groups: Group[];                                    // List of Groups
     popuMenuItems: MenuItem[];                          // Items in popup
+    reports: Report[];                                  // List of Reports
     selectedDatasource: DataSource;                     // Selected one
     users: User[];                                      // List of Users with Access
 
@@ -75,7 +77,7 @@ export class DataSourceComponent implements OnInit {
             {
                 label: 'Related Reports', 
                 icon: 'fa-table', 
-                command: (event) => this.datasourceMenuReportHistory()
+                command: (event) => this.datasourceMenuReports(this.selectedDatasource)
             },
             
         ];
@@ -89,12 +91,18 @@ export class DataSourceComponent implements OnInit {
         // For later ...
     }
 
-    datasourceMenuReportHistory() {
-        // Show history of reports ran for the selected Dashboard
+    datasourceMenuReports(selectedDatasource: DataSource) {
+        // Show Reports based on the selected Datasource
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuReportHistory', '@Start');
 
-        // For future use ...
+        this.reports = this.eazlService.getReports(
+            // selectedDatasource.datasourceID,
+            // true
+        ); 
+
+        // Show popup
+        this.displayReports = true;
 
     }
 

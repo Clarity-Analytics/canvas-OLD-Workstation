@@ -263,14 +263,21 @@
 </p-dialog>
 
     <!--Reports I own-->
-    <p-tabPanel header="Reports I own">
-        <p-dataTable [value]="reports">
-            <p-column field="reportID" header="ID"></p-column>
-            <p-column field="reportName" header="Name"></p-column>
-            <p-column field="description" header="Description"></p-column>
-            <p-column field="reportParameters" header="Parameters"></p-column>
-            <p-column field="dataSourceID" header="DS ID"></p-column>
-            <p-column field="dataSourceParameters" header="DS Parameters"></p-column>
-            <p-column field="reportFields" header="Fields"></p-column>
-        </p-dataTable>
-    </p-tabPanel>
+<p-dialog 
+    [(visible)]="displayReports"
+    header="Linked Reports"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+    <p-dataTable [value]="reports">
+        <p-column field="reportID" header="ID"></p-column>
+        <p-column field="reportName" header="Name"></p-column>
+        <p-column field="description" header="Description"></p-column>
+        <p-column field="reportParameters" header="Parameters"></p-column>
+        <p-column field="dataSourceID" header="DS ID"></p-column>
+        <p-column field="dataSourceParameters" header="DS Parameters"></p-column>
+        <p-column field="reportFields" header="Fields"></p-column>
+    </p-dataTable>
+</p-dialog>
