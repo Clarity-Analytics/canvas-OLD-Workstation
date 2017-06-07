@@ -21,8 +21,8 @@ import { CanvasUser }                 from './model.user';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
+import { ReportHistory }              from './model.reportHistory';
 import { User }                       from './model.user';
-
 
 @Component({
     selector:    'report',
@@ -39,6 +39,7 @@ export class ReportComponent implements OnInit {
     displayReportHistory: boolean;                      // True to display Report History
     groups: Group[];                                    // List of Groups
     popuMenuItems: MenuItem[];                          // Items in popup
+    reportHistory: ReportHistory[];                     // List of Report History (ran)
     reports: Report[];                                  // List of Reports
     selectedReport: Report;                             // Selected one
     users: User[];                                      // List of Users with Access
@@ -127,8 +128,11 @@ export class ReportComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuReportHistory', '@Start');
 
-        // For future use ...
+        // Report History for me
+        this.reportHistory = this.eazlService.getReportHistory(this.canvasUser.username)
 
+        // Show the popup
+        this.displayReportHistory = true;
     }
     
 }
