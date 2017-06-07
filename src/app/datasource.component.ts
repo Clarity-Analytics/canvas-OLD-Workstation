@@ -100,9 +100,17 @@ export class DataSourceComponent implements OnInit {
         // Show all the Users with Access to the selected Datasource
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuUserAccess', '@Start');
-
-        this.users = this.eazlService.getUsersWhoCanAccessDatasource(selectedDatasource.datasourceID); 
-
+console.log('selectedDatasource', selectedDatasource.datasourceID)
+        // this.users = this.eazlService.getUsersWhoCanAccessDatasource(
+        //     selectedDatasource.datasourceID
+        // ); 
+        this.eazlService.getUsersWhoCanAccessDatasource(
+            selectedDatasource.datasourceID
+        )
+            .then(users => {this.users = users
+                
+            })
+            .catch( err => {console.log(err)} );
         // Show the popup
         this.displayUserAccess = true;
     }

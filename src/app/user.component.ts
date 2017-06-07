@@ -79,8 +79,8 @@ export class UserComponent implements OnInit {
  
         // Initialise variables
         this.eazlService.getUsers()
-            .then(users => {this.users = users
-                
+            .then(users => {
+                this.users = users
             })
             .catch( err => {console.log(err)} );
         this.popuMenuItems = [

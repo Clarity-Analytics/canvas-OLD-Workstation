@@ -4870,19 +4870,29 @@ export class EazlService implements OnInit {
         };
     }
 
-    getUsersWhoCanAccessDatasource(datasourceID: number): User[] {
+    getUsersWhoCanAccessDatasource(datasourceID: number): Promise<User[]> {
         // Return list of Users who has access to a given DataSource
         // - username filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersWhoCanAccessDatasource', '@Start');
         
         // Get list of usernames with access
+        // TODO - when from DB, add access type as I think this will be useful
         let userNames: string[] = [];
         this.dataSourceUserAccess.forEach(du => {
             if (du.datasourceID == datasourceID) {
                 userNames.push(du.userName)
             };
         });
-        return this.users.filter(u => userNames.indexOf(u.userName) >= 0)
+
+        return Promise.resolve(
+            this.getUsers()
+            .then( usr => {
+                return usr.filter(
+                    u => (userNames.indexOf(u.userName) >= 0) 
+                );   
+            })
+            .catch(error => console.log (error) )
+        );
     }
 
     getDatasourcesPerUser(username: string): DatasourcesPerUser[] {

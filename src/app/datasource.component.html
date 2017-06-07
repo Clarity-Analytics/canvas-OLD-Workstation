@@ -57,7 +57,7 @@
         <p-header
             [style]="{'background-color': 'darkgray'}">
             <span>
-                List of Users
+                List of Users with Access
             </span>
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
@@ -112,34 +112,10 @@
             >
         </p-column>
         <p-column 
-            field="photoPath" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="PhotoPath"
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-            <template let-col let-user="rowData" pTemplate="body">
-                <span [style.color]="user[col.field]">{{user[col.field]}}</span>
-            </template>
-        </p-column>
-
-        <p-column 
             field="lastDatetimeLoggedIn" 
             [filter]="true" 
             filterMatchMode="contains" 
             header="Last Login" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="lastDatetimeReportWasRun" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Last Report" 
             [sortable]="true"
             [style]="{width: '120px', 
                     'text-align': 'center'}"
@@ -190,26 +166,6 @@
             [filter]="true" 
             filterMatchMode="contains" 
             header="Inactive Date" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="dateCreated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Date Created" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="userIDLastUpdated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="UserID Last Upd" 
             [sortable]="true"
             [style]="{width: '120px', 
                     'text-align': 'center'}"
