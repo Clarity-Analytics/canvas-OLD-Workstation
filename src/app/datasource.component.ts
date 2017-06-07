@@ -37,8 +37,11 @@ export class DataSourceComponent implements OnInit {
     
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    datasources: DataSource[];                                  // List of DataSources
-    popuMenuItems: MenuItem[];                                  // Items in popup
+    datasources: DataSource[];                          // List of DataSources
+    displayUserAccess: boolean;                         // True to display User access
+    displayGroupAccess: boolean;                        // True to display Group Access
+    popuMenuItems: MenuItem[];                          // Items in popup
+    selectedDatasource: DataSource;                     // Selected one
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -57,10 +60,21 @@ export class DataSourceComponent implements OnInit {
 
         this.popuMenuItems = [
             {
+                label: 'User Access', 
+                icon: 'fa-database', 
+                command: (event) => this.datasourceMenuUserAccess(this.selectedDatasource)
+            },
+            {
+                label: 'Group Access', 
+                icon: 'fa-list', 
+                command: (event) => this.datasourceMenuGroupAccess(this.selectedDatasource)
+            },
+            {
                 label: 'Related Reports', 
                 icon: 'fa-table', 
-                command: (event) => this.dashboardMenuReportHistory()
+                command: (event) => this.datasourceMenuReportHistory()
             },
+            
         ];
 
     }
@@ -72,7 +86,7 @@ export class DataSourceComponent implements OnInit {
         // For later ...
     }
 
-    dashboardMenuReportHistory() {
+    datasourceMenuReportHistory() {
         // Show history of reports ran for the selected Dashboard
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuReportHistory', '@Start');
@@ -80,7 +94,36 @@ export class DataSourceComponent implements OnInit {
         // For future use ...
 
     }
-    
+
+
+    datasourceMenuUserAccess(selectedDatasource: DataSource) {
+        // Show all the Users with Access to the selected Datasource
+        // - User: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuUserAccess', '@Start');
+
+        // this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.userName); 
+
+        // Show the popup
+        this.displayUserAccess = true;
+    }
+
+    datasourceMenuGroupAccess(selectedDatasource: DataSource) {
+        // Show all the Groups with access to the selected Datasource
+        // - User: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupAccess', '@Start');
+
+        // this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.userName); 
+
+        // Show the popup
+        this.displayGroupAccess = true;
+    }
+
+    onClickUserDatasource() {
+        // User clicked on a row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserTable', '@Start');
+
+        // For future use ...
+    }
 }
 
 // Notes for newbees:

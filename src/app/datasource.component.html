@@ -1,5 +1,54 @@
-<p-dataTable [value]="datasources">
+
+<p-dataTable 
+  #dt
+        columnResizeMode="expand"
+        exportFilename="users"
+        [contextMenu]="cm"
+        [paginator]="true" 
+        [pageLinks]="3" 
+        [reorderableColumns]="true"
+        [resizableColumns]="true"
+        [responsive]="true"
+        [rows]="10" 
+        [rowsPerPageOptions]="[5,10,20]"
+        [(selection)]="selectedDatasource"
+        selectionMode="single" 
+        [scrollable]="false"  
+        [sortMode]="multiple"
+        [value]="datasources"  
+        (click)="onClickUserDatasource()"
+        >
     <p-column field="datasourceID" header="ID"></p-column>
     <p-column field="datasourceName" header="Name"></p-column>
     <p-column field="datasourceDescription" header="Description"></p-column>
 </p-dataTable>
+
+
+<!--Context (popup) menu  -->
+<p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
+
+
+<!--Popup for User Access-->
+<p-dialog 
+    [(visible)]="displayUserAccess"
+    header="Users with access"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+hallo
+</p-dialog>
+
+
+<!--Popup for Group Access-->
+<p-dialog 
+    [(visible)]="displayGroupAccess"
+    header="Groups with access"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+hallo
+</p-dialog>
