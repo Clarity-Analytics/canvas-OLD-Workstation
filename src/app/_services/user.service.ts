@@ -9,14 +9,12 @@ import { User, SocketMessage } from '../_models';
 
 @Injectable()
 export class UserService extends BaseHttpService {
-  // socket: Observable<any>;
-
   constructor(
     private http: Http,
-    private channel: ReconnectingWebSocket
-  ) { 
+    private channel: ReconnectingWebSocket) { 
+    
     super()
-
+    
     channel.socket.retry().subscribe(
       (message: SocketMessage) => { console.log(message) },
       (error) => { console.log(JSON.parse(error)) },

@@ -121,13 +121,13 @@ import { routes }                     from './app.routes';
 
 // For resti
 import { EazlUserService } from './eazl.user.service';
-import { EazlPackageService } from './eazl-package.service';
 import { PackagesComponent } from './packages/packages.component';
 import { PackageFieldsComponent } from './package-fields/package-fields.component';
 import { PackageParametersComponent } from './package-parameters/package-parameters.component';
 
 // New idea
 import { UserService } from './_services';
+import { PackageService } from './_services';
 import { AuthenticationService } from './_services';
 import { ReconnectingWebSocket } from './_services';
 
@@ -237,9 +237,9 @@ import { ReconnectingWebSocket } from './_services';
     // For the resti
     EazlService,
     EazlUserService,
-    EazlPackageService,
 
     UserService,
+    PackageService,
     AuthenticationService,
     ReconnectingWebSocket,
 

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EazlPackageService } from '../eazl-package.service';
 import { Package } from '../_models/model.package';
 import { Field } from '../_models/model.package';
 
-
-import { AuthenticationService } from '../_services';
+import { PackageService } from '../_services';
 
 
 class ComponentPackage extends Package {
@@ -36,18 +34,9 @@ export class PackagesComponent implements OnInit {
 	search: string = '';
 
 	constructor(
-		private eazlPackage: EazlPackageService,
-		private authService: AuthenticationService)
-
-	{
+		private packageService: PackageService) {
+		
 		this.selectedPackage = new ComponentPackage();
-	}
-
-	testing() {
-		this.authService.login('bradleyk', 'canvas100*').subscribe(
-			(authToken) => { console.log(authToken) },
-			(error) => { console.log(error) }
-		)
 	}
 
 	completeMethod(event) {
@@ -70,29 +59,25 @@ export class PackagesComponent implements OnInit {
 	}
 
 	executePackage(selectedPackage: ComponentPackage) {
-		this.eazlPackage.execute(
-			selectedPackage.execute.toString()
-		);
+		let url = selectedPackage.execute.toString();
+		
+		this.packageService.execute(url)
+		    .subscribe(
+		    	(packageTask) => { console.log(packageTask) }
+		    )
 	}
 
 	ngOnInit() {
-		this.eazlPackage.packageList.subscribe(
+		this.packageService.packages.subscribe(
 			(packages) => {
-				console.log("packages subscription")
-				if (packages == null) {
-					return;
-				}
+				packages.forEach( (item: Package, index: number) => {
+					let componentPackage = ComponentPackage.fromPackage(item, index===0)
+					if (index === 0) {
+						this.selectedPackage = componentPackage;
+					}
 
-				if (packages.length !== 0) {
-					packages.forEach( (item: Package, index: number) => {
-						let componentPackage = ComponentPackage.fromPackage(item, index===0)
-						if (index === 0) {
-							this.selectedPackage = componentPackage;
-						}
-
-						this.packageList.push(componentPackage);
-					});
-				}
+					this.packageList.push(componentPackage);
+				});
 			}, 
 			error => {
 				console.log(JSON.parse(error));

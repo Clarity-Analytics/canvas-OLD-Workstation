@@ -27,7 +27,7 @@ import { Notification }               from './model.notification';
 // For resti
 import { EazlUserService } from './eazl.user.service';
 import { EazlService } from './eazl.service';
-import { EazlPackageService } from './eazl-package.service';
+
 
 @Component({
     selector:    'app-root',
@@ -71,8 +71,7 @@ export class AppComponent implements OnInit {
         private router: Router,
 
         private eazl: EazlService,
-        private eazlUser: EazlUserService,
-        private eazlPackage: EazlPackageService,
+        private eazlUser: EazlUserService
         ) { 
             // Subscribe to Web Socket
             notificationService.messages.subscribe(msg => {			
@@ -97,13 +96,6 @@ export class AppComponent implements OnInit {
                 this.loadMenu();
                 this.router.navigate(['login']);
             }); // end subscription
-
-
-            this.eazlPackage.packageList.subscribe(
-                (packages) => {
-                    console.log('There are packages in the root', packages)
-                }
-            )
         }
 
     sendNotificationToServer() {
