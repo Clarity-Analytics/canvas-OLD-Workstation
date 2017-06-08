@@ -5156,7 +5156,7 @@ export class EazlService implements OnInit {
     }
 
     getGroupDatasourceAccess(groupID: number = -1, datasourceID: number = -1) {
-        // Return of list with group - datasource acces
+        // Return of list with group - datasource access
         // - groupID Optional filter, -1 = all
         // - datasourceID Optional filter,-1 = all
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupDatasourceAccess', '@Start');
