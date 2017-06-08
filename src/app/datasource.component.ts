@@ -65,18 +65,18 @@ export class DataSourceComponent implements OnInit {
 
         this.popuMenuItems = [
             {
-                label: 'User Access', 
+                label: 'List User Access', 
                 icon: 'fa-database', 
-                command: (event) => this.datasourceMenuUserAccess(this.selectedDatasource)
+                command: (event) => this.datasourceMenuListUserAccess(this.selectedDatasource)
             },
             {
                 label: 'Group Membership', 
                 icon: 'fa-users', 
                 command: (event) => this.datasourceMenuGroupMembership(this.selectedDatasource)
             },            {
-                label: 'Group Access', 
+                label: 'List Group Access', 
                 icon: 'fa-list', 
-                command: (event) => this.datasourceMenuGroupAccess(this.selectedDatasource)
+                command: (event) => this.datasourceMenuListGroupAccess(this.selectedDatasource)
             },
             {
                 label: 'Related Reports', 
@@ -105,10 +105,10 @@ export class DataSourceComponent implements OnInit {
 
     }
 
-    datasourceMenuUserAccess(selectedDatasource: DataSource) {
+    datasourceMenuListUserAccess(selectedDatasource: DataSource) {
         // Show all the Users with Access to the selected Datasource
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserAccess', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuListUserAccess', '@Start');
 
         this.eazlService.getUsersWhoCanAccessDatasource(
             selectedDatasource.datasourceID
@@ -121,10 +121,10 @@ export class DataSourceComponent implements OnInit {
             .catch( err => {console.log(err)} );
     }
 
-    datasourceMenuGroupAccess(selectedDatasource: DataSource) {
+    datasourceMenuListGroupAccess(selectedDatasource: DataSource) {
         // Show all the Groups with access to the selected Datasource
         // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuGroupAccess', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuListGroupAccess', '@Start');
 
         this.groups = this.eazlService.getGroupsPerDatasource(
             selectedDatasource.datasourceID,
