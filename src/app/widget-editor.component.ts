@@ -307,9 +307,9 @@ export class WidgetEditorComponent implements OnInit {
             this.widgetToEditSpec = JSON.stringify(this.widgetToEdit.graph.spec);
         }
 
-        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
+        this.globalFunctionService.printToConsole(this.constructor.name, 'setStartupFormValues',
             'Mode (Add / Edit) is: ' + this.addEditMode);
-        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
+        this.globalFunctionService.printToConsole(this.constructor.name, 'setStartupFormValues',
             'Edit Widget Form is open: ' + this.displayEditWidget.toString());
 
         // Load the Reports, and Dashboard Tabs
@@ -572,7 +572,7 @@ export class WidgetEditorComponent implements OnInit {
             }
         }
 
-        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@End');
+        this.globalFunctionService.printToConsole(this.constructor.name, 'setStartupFormValues', '@End');
     }
 
     onClickCancel() {
@@ -1285,7 +1285,7 @@ console.log('@end', this.widgetToEdit)
 
     onChangeLoadReportRelatedInfoBody(selectedReportID) {
         // Load the WidgetSets for the selected Report
-        this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeL', '@Start for ID: ' + selectedReportID);
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadReportRelatedInfoBody', '@Start for ID: ' + selectedReportID);
 
         // Get ReportFields
         this.reportFieldsDropDown = [];

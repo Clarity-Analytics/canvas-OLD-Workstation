@@ -1,4 +1,4 @@
-# Hello Markdown in VS Code!
+# References for Canvas
 
 This is a simple introduction to compiling Markdown in VS Code.
 

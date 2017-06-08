@@ -4035,7 +4035,7 @@ export class EazlService implements OnInit {
     changePassword(username: string, newPassword: string): string {
         // Change the password for a user
         // Return '' if good, else return error message
-        this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'changePassword', '@Start');
         
         // TODO - this must be done in DB
         return '';
@@ -4058,7 +4058,7 @@ export class EazlService implements OnInit {
 
     handleError(response: Response | any): Observable<Response> {
         // Error for observable
-        this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleError', '@Start');
 
         var error: string = '';
          // Do some logging one day
@@ -4647,7 +4647,7 @@ export class EazlService implements OnInit {
             reportID: number = -1,
             datasourceID: number = -1) {
         // Return history of reports run, optionally filtered
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
                 
         return this.reportHistory.filter(rh =>
             (userName == '*'        ||   rh.userName == userName)

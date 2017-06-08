@@ -1,4 +1,4 @@
-# Discussions!
+# Discussions for Canvas
 
 This is a simple introduction to compiling Markdown in VS Code.
 

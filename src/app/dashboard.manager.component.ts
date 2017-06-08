@@ -180,6 +180,7 @@ export class DashboardManagerComponent implements OnInit {
 
     dashboardMenuDelete(dashboard: Dashboard) {
         // Delete the selected Dashboard, but first confirm
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuDelete', '@Start');
 
         this.deleteMode = true;
         this.confirmationService.confirm({
@@ -191,7 +192,6 @@ export class DashboardManagerComponent implements OnInit {
             accept: () => {
 
                 // - Dashboard: currently selected row
-                this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
                 let index = -1;
                 for(let i = 0; i < this.dashboards.length; i++) {
                     if(this.dashboards[i].dashboardID == dashboard.dashboardID) {
@@ -325,7 +325,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onClickGroupsSharedWithCancel() {
         // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUsersSharedWithCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupsSharedWithCancel', '@Start');
 
         // Close popup
         this.displayGroupsSharedWith = false;        
@@ -333,7 +333,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onMoveToTargetDashboardGroupSharedWith(event) {
         // User clicked onMoveToTarget - add to SharedWith
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardSharedWith', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardGroupSharedWith', '@Start');
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
@@ -347,7 +347,7 @@ export class DashboardManagerComponent implements OnInit {
     
     onMoveToSourceDashboardGroupSharedWith(event) {
         // User clicked onMoveToSource - remove from SharedWith
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardSharedWith', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupSharedWith', '@Start');
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {

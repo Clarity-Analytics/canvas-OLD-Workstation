@@ -209,7 +209,7 @@ export class DashboardEditorComponent implements OnInit {
     
     onClickDashboardCancel() {
         // User clicked Cancel button
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardCancel', '@Start');
 
         // Return to calling routine
         this.formDashboardSubmit.emit('Cancel');
