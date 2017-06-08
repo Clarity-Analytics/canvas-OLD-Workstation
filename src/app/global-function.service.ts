@@ -53,4 +53,16 @@ export class GlobalFunctionService {
         // Return the value
         return inputValue;
     }
+
+    currentUser(): string {
+        // Returns the current username as a string (not Observable)
+        this.printToConsole(this.constructor.name, 'currentUser', '@Start');
+
+        let currentUser: string = '';
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            currentUser = this.globalVariableService.canvasUser.getValue().username;
+        }
+        return currentUser;
+    }
+
 }
