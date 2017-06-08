@@ -4262,10 +4262,7 @@ export class EazlService implements OnInit {
         }
 
         // Get current user
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         // Add NrGroups calculated field
         dashboardsWorking.forEach( dw => {
@@ -4837,10 +4834,7 @@ export class EazlService implements OnInit {
         // Add a new Group
         this.globalFunctionService.printToConsole(this.constructor.name,'addGroup', '@Start');
 
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         this.groups.push({
             groupID: 0,
@@ -4857,10 +4851,7 @@ export class EazlService implements OnInit {
         // Update a given Group
         this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
 
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         // Update data
         for (var i = 0; i < this.groups.length; i++) {
@@ -5188,10 +5179,7 @@ export class EazlService implements OnInit {
         }
 
         // Get current user
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         // Only add if not already there
         if (!found) {
@@ -5307,10 +5295,7 @@ export class EazlService implements OnInit {
         }
 
         // Get current user
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         // Only add if not already there
         if (!found) {
@@ -5351,10 +5336,7 @@ export class EazlService implements OnInit {
         }
 
         // Get current user
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         // Only add if not already there
         if (!found) {
@@ -5442,10 +5424,7 @@ export class EazlService implements OnInit {
         }
 
         // Get current Dashboard
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         // Only add if not already there
         if (!found) {
@@ -5559,10 +5538,7 @@ export class EazlService implements OnInit {
         // Removes user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupRelationship', '@Start');
 
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         let found: boolean = false;
         for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
@@ -5578,10 +5554,8 @@ export class EazlService implements OnInit {
         }
 
         if (!found) {
-            let currentUser: string = '';
-            if (this.globalVariableService.canvasUser.getValue() != null) {
-                currentUser = this.globalVariableService.canvasUser.getValue().username;
-            }
+            let currentUser: string = this.globalFunctionService.currentUser();
+
             this.dashboardGroupRelationship.push(
                 {
                     dashboardGroupRelationshipID: 0,
@@ -5606,11 +5580,8 @@ export class EazlService implements OnInit {
         // Removes Group from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupRelationship', '@Start');
 
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
-        
+        let currentUser: string = this.globalFunctionService.currentUser();
+
         for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
             if (this.dashboardGroupRelationship[i].dashboardID == dashboardID
                && 
@@ -5631,10 +5602,7 @@ export class EazlService implements OnInit {
         // Add user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardUserRelationship', '@Start');
 
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
+        let currentUser: string = this.globalFunctionService.currentUser();
 
         let found: boolean = false;
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
@@ -5650,10 +5618,8 @@ export class EazlService implements OnInit {
         }
 
         if (!found) {
-            let currentUser: string = '';
-            if (this.globalVariableService.canvasUser.getValue() != null) {
-                currentUser = this.globalVariableService.canvasUser.getValue().username;
-            }
+        let currentUser: string = this.globalFunctionService.currentUser();
+
             this.dashboardUserRelationship.push(
                 {
                     dashboardUserRelationshipID: 0,
@@ -5678,11 +5644,8 @@ export class EazlService implements OnInit {
         // Removes user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardUserRelationship', '@Start');
 
-        let currentUser: string = '';
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            currentUser = this.globalVariableService.canvasUser.getValue().username;
-        }
-        
+        let currentUser: string = this.globalFunctionService.currentUser();
+
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
             if (this.dashboardUserRelationship[i].dashboardID == dashboardID
                && 
