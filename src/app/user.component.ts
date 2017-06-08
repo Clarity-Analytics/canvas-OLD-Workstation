@@ -306,14 +306,9 @@ export class UserComponent implements OnInit {
         this.displayUserDatasource = false;        
     }
 
-// addGroupDatasourceAccess
-// deleteGroupDatasourceAccess
-// getGroupDatasourceAccess
-// getDatasourceAccessedByUser
-
     onMoveToTargetUserDatasource(event) {
         // User clicked onMoveToTarget on Group Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserDatasource', '@Start');
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {

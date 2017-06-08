@@ -36,12 +36,18 @@ export class DataSourceComponent implements OnInit {
     // Local properties
     availableDatasourceGroupMembership: Group[] = [];   // List of Groups user does NOT belongs to
     belongstoDatasourceGroupMembership: Group[] = [];   // List of Groups user already belongs to   
+
+    availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
+    belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
+
+
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     datasources: DataSource[];                          // List of DataSources
     displayUserAccess: boolean;                         // True to display User access
     displayGroupAccess: boolean;                        // True to display Group Access
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
     displayReports: boolean;                            // True to display Reports
+    displayUserDatasourceAccess: boolean = false;       // True to display popup for User access per Datasource
     groups: Group[];                                    // List of Groups
     popuMenuItems: MenuItem[];                          // Items in popup
     reports: Report[];                                  // List of Reports
@@ -65,6 +71,10 @@ export class DataSourceComponent implements OnInit {
 
         this.popuMenuItems = [
             {
+                label: 'User Access', 
+                icon: 'fa-database', 
+                command: (event) => this.datasourceMenuUserMembership(this.selectedDatasource)
+            },            {
                 label: 'List User Access', 
                 icon: 'fa-database', 
                 command: (event) => this.datasourceMenuListUserAccess(this.selectedDatasource)
@@ -194,7 +204,61 @@ export class DataSourceComponent implements OnInit {
             );
         }
     }
-    
+
+
+
+
+
+    datasourceMenuUserMembership(selectedDatasource: DataSource) {
+        // Manage group membership for the selected user
+        // - User: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserMembership', '@Start');
+
+        // Get the current and available groups
+        this.belongstoDatasourceGroupMembership = 
+            this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,true);
+        this.availableDatasourceGroupMembership  = 
+            this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,false);
+
+        // Show popup
+        this.displayGroupMembership = true; 
+    }
+
+    onClickUserMembershipCancel() {
+        // User clicked Cancel
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserMembershipCancel', '@Start');
+
+        // Close popup
+        this.displayGroupMembership = false;        
+    }
+
+    onMoveToSourceDatasourceUserMembership(event) {
+        // User clicked onMoveToSource on User Membership: add grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDatasourceUserMembership', '@Start');
+
+        // Add this / these makker(s) - array if multi select
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.deleteGroupDatasourceAccess(
+                this.selectedDatasource.datasourceID, 
+                event.items[i].groupID
+            );
+        }
+    }
+
+    onMoveToTargetDatasourceUserMembership(event) {
+        // User clicked onMoveToTarget on User Membership: add grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDatasourceUserMembership', '@Start');
+
+        // Add this / these makker(s) - array if multi select
+        for (var i = 0; i < event.items.length; i++) {
+            this.eazlService.addGroupDatasourceAccess(
+                this.selectedDatasource.datasourceID, 
+                event.items[i].groupID
+            );
+        }
+    }
+
+
 }
 
 // Notes for newbees:
