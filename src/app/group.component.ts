@@ -202,7 +202,7 @@ export class GroupComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(
-                event.items[i].userName,
+                event.items[i].username,
                 this.selectedGroup.groupID 
             );
         }
@@ -215,7 +215,7 @@ export class GroupComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteUserGroupMembership(
-                event.items[i].userName,
+                event.items[i].username,
                 this.selectedGroup.groupID
             );
         }

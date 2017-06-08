@@ -375,7 +375,7 @@ export class DashboardManagerComponent implements OnInit {
              )
              .then( u => {
                 u.forEach(sglusr => {
-                    this.belongstoSharedWith.push(sglusr.userName); 
+                    this.belongstoSharedWith.push(sglusr.username); 
                 })
 
                 // Get the complement (NOT related Users)
@@ -386,7 +386,7 @@ export class DashboardManagerComponent implements OnInit {
                     )
                     .then( u => {
                         u.forEach(sglusr => {
-                            this.availableSharedWith.push(sglusr.userName);
+                            this.availableSharedWith.push(sglusr.username);
                         })
                         this.displaySharedWith = true;               
                     })

@@ -1,7 +1,7 @@
 // Schema for Report History (ran by users)
 export class ReportHistory {
     reportHistoryID: number;                    // Unique ID
-    userName: string;                           // User who ran report
+    username: string;                           // User who ran report
     reportID: number;                           // Report ID
     datasourceID: number;                       // Underlying Datasource for the report
     reportHistoryStartDateTime: string;         // Start DateTime

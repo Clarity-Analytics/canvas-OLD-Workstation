@@ -67,7 +67,7 @@ export class ChangePasswordComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
         if (this.selectedUser != undefined) {
-            this.userform.controls['username'].setValue(this.selectedUser.userName);
+            this.userform.controls['username'].setValue(this.selectedUser.username);
         }
     }
 
@@ -118,7 +118,7 @@ export class ChangePasswordComponent implements OnInit {
  
         // Adding new user
         let result = this.eazlService.changePassword(
-            this.selectedUser.userName,
+            this.selectedUser.username,
             this.userform.controls['password'].value
             );
         if (result == '') {

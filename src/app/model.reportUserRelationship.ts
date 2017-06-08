@@ -1,7 +1,7 @@
 // Schema for Report User Relationship
 export class ReportUserRelationship {
     reportUserRelationshipID: number;                   // Unique ID
-    userName: string;                                   // User who has relationship
+    username: string;                                   // User who has relationship
     reportID: number;                                   // Report ID
     reportUserRelationshipType: string;                 // Type of relationship: Likes, Rates, Owns
     reportUserRelationshipRating: number;               // Rating

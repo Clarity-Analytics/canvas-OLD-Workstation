@@ -2,7 +2,7 @@
 
 // Users registered to use the system
 export class User {
-    userName: string;
+    username: string;
     firstName: string;
     lastName: string;
     nickName: string;

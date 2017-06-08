@@ -183,7 +183,7 @@ export class UserComponent implements OnInit {
                 // - User: currently selected row
                 let index = -1;
                 for(let i = 0; i < this.users.length; i++) {
-                    if(this.users[i].userName == user.firstName) {
+                    if(this.users[i].username == user.firstName) {
                         index = i;
                         break;
                     }
@@ -220,10 +220,10 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
         // Get the current and available groups
-        this.eazlService.getGroupsPerUser(this.selectedUser.userName, true)
+        this.eazlService.getGroupsPerUser(this.selectedUser.username, true)
             .then(inclgrp => {
                 this.belongstoUserGroupMembership = inclgrp;
-                this.eazlService.getGroupsPerUser(this.selectedUser.userName, false)
+                this.eazlService.getGroupsPerUser(this.selectedUser.username, false)
                     .then (exclgrp => {
                             this.availableUserGroupMembership  = exclgrp;
                             this.displayGroupMembership = true; 
@@ -248,7 +248,7 @@ export class UserComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(
-                this.selectedUser.userName, 
+                this.selectedUser.username, 
                 event.items[i].groupID
             );
         }
@@ -261,7 +261,7 @@ export class UserComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteUserGroupMembership(
-                this.selectedUser.userName, 
+                this.selectedUser.username, 
                 event.items[i].groupID
             );
         }
@@ -284,12 +284,12 @@ export class UserComponent implements OnInit {
 
         // Get the current and available users
         this.availableUserDatasource = this.eazlService.getDatasourceAccessedByUser(
-            this.selectedUser.userName,
+            this.selectedUser.username,
             '*',
             false
         );
         this.belongstoUserDatasource = this.eazlService.getDatasourceAccessedByUser(
-            this.selectedUser.userName,
+            this.selectedUser.username,
             '*',
             true
         );
@@ -314,7 +314,7 @@ export class UserComponent implements OnInit {
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addDatasourceUserAccess(
                 event.items[i].datasourceID,
-                this.selectedUser.userName
+                this.selectedUser.username
             );
         }
     }
@@ -327,7 +327,7 @@ export class UserComponent implements OnInit {
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteDatasourceUserAccess(
                 event.items[i].datasourceID,
-                this.selectedUser.userName
+                this.selectedUser.username
             );
         }
     }
@@ -337,7 +337,7 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
 
-        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.userName); 
+        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.username); 
 
         // Show the popup
         this.displayUserDatasources = true;
@@ -348,7 +348,7 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
 
-        this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user.userName);
+        this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user.username);
 
         // Show the popup
         this.displayUserDashboards = true;
@@ -371,7 +371,7 @@ export class UserComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuReportHistory', '@Start');
 
-        this.reportHistory = this.eazlService.getReportHistory(user.userName)
+        this.reportHistory = this.eazlService.getReportHistory(user.username)
 
         // Show popup
         this.displayReports = true;

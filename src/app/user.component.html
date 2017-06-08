@@ -72,7 +72,7 @@
             
         </p-header>
         <p-column 
-            field="userName" 
+            field="username" 
             [filter]="true" 
             filterMatchMode="contains" 
             header="UserName" 
@@ -235,7 +235,7 @@
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedUser.firstName  ||   selectedUser.userName }} 
+        Group Membership for {{ selectedUser.firstName  ||   selectedUser.username }} 
         <button 
             class="panelButtonWithLabel"
             pButton 
@@ -288,7 +288,7 @@
     <div
         class="groupMembershipHeading"
         >
-        Datasource Access for {{ selectedUser.userName }} 
+        Datasource Access for {{ selectedUser.username }} 
         <button 
             class="panelButtonWithLabel"
             pButton 
@@ -584,7 +584,7 @@
     >    
     <p-dataTable [value]="reportHistory">
         <p-column field="reportHistoryID" header="ID"></p-column>
-        <p-column field="userName" header="User"></p-column>
+        <p-column field="username" header="User"></p-column>
         <p-column field="reportID" header="ReportID"></p-column>
         <p-column field="reportHistoryStartDateTime" header="Start on"></p-column>
         <p-column field="reportHistoryEndDateTime" header="End on"></p-column>

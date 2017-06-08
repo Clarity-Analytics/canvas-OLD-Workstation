@@ -70,25 +70,25 @@ export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
 [
     {
         datasourceID: 0,
-        userName: 'janniei',
+        username: 'janniei',
         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     },
     {
         datasourceID: 1,
-        userName: 'janniei',
+        username: 'janniei',
         dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     },
     {
         datasourceID: 0,
-        userName: 'bradleyk',
+        username: 'bradleyk',
         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     },
     {
         datasourceID: 1,
-        userName: 'bradleyk',
+        username: 'bradleyk',
         dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
     }
@@ -98,7 +98,7 @@ export const REPORTHISTORY: ReportHistory[] =
 [
     {
         reportHistoryID: 0,
-        userName: 'janniei',
+        username: 'janniei',
         reportID: 1,
         datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -109,7 +109,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 1,
-        userName: 'janniei',
+        username: 'janniei',
         reportID: 2,
         datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -120,7 +120,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 2,
-        userName: 'janniei',
+        username: 'janniei',
         reportID: 1,
         datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -131,7 +131,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 3,
-        userName: 'janniei',
+        username: 'janniei',
         reportID: 1,
         datasourceID: 1,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -142,7 +142,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 4,
-        userName: 'bradleyk',
+        username: 'bradleyk',
         reportID: 1,
         datasourceID: 1,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -157,7 +157,7 @@ export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
 [
     {
         reportUserRelationshipID: 0,
-        userName: 'janniei',
+        username: 'janniei',
         reportID: 1,
         reportUserRelationshipType: 'Owns',
         reportUserRelationshipRating: 0,
@@ -168,7 +168,7 @@ export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
     },
     {
         reportUserRelationshipID: 0,
-        userName: 'bradleyk',
+        username: 'bradleyk',
         reportID: 1,
         reportUserRelationshipType: 'Owns',
         reportUserRelationshipRating: 0,
@@ -319,7 +319,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
     {
         dashboardUserRelationshipID: 0,
         dashboardID: 0,
-        userName: 'janniei',
+        username: 'janniei',
         dashboardUserRelationshipType: 'SharedWith',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
@@ -330,7 +330,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
     {
         dashboardUserRelationshipID: 1,
         dashboardID: 0,
-        userName: 'janniei',
+        username: 'janniei',
         dashboardUserRelationshipType: 'Likes',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
@@ -341,7 +341,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
     {
         dashboardUserRelationshipID: 2,
         dashboardID: 1,
-        userName: 'bradleyk',
+        username: 'bradleyk',
         dashboardUserRelationshipType: 'Likes',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
@@ -352,7 +352,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
     {
         dashboardUserRelationshipID: 3,
         dashboardID: 0,
-        userName: 'bradleyk',
+        username: 'bradleyk',
         dashboardUserRelationshipType: 'SharedWith',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
@@ -363,7 +363,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
     {
         dashboardUserRelationshipID: 4,
         dashboardID: 3,
-        userName: 'bradleyk',
+        username: 'bradleyk',
         dashboardUserRelationshipType: 'SharedWith',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
@@ -374,7 +374,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
     {
         dashboardUserRelationshipID: 5,
         dashboardID: 3,
-        userName: 'janniei',
+        username: 'janniei',
         dashboardUserRelationshipType: 'Owns',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
@@ -3409,7 +3409,7 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
     [
         {
             groupID: 0,
-            userName: 'janniei',
+            username: 'janniei',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
             userGroupMembershipCreatedUserID:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
@@ -3417,7 +3417,7 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
         },        
         {
             groupID: 4,
-            userName: 'janniei',
+            username: 'janniei',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
             userGroupMembershipCreatedUserID:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
@@ -3425,7 +3425,7 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
         },        
         {
             groupID: 1,
-            userName: 'bradleyk',
+            username: 'bradleyk',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
             userGroupMembershipCreatedUserID:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
@@ -3433,7 +3433,7 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
         },        
         {
             groupID: 5,
-            userName: 'bradleyk',
+            username: 'bradleyk',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
             userGroupMembershipCreatedUserID:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
@@ -4096,7 +4096,7 @@ export class EazlService implements OnInit {
         // TODO - remove this hack once Users in separate DB
         let today = new Date();
         let workingUser: any = {
-            username: user.userName,
+            username: user.username,
             first_name: user.firstName,
             last_name: user.lastName,
             email: user.emailAddress,
@@ -4148,7 +4148,7 @@ export class EazlService implements OnInit {
 
                         for (var i = 0; i < eazlUser.length; i++) {
                             this.users.push({
-                                userName: eazlUser[i].username,
+                                username: eazlUser[i].username,
                                 firstName: eazlUser[i].first_name,
                                 lastName: eazlUser[i].last_name,
                                 nickName: eazlUser[i].first_name,
@@ -4250,7 +4250,7 @@ export class EazlService implements OnInit {
         if (relatedUsername != '*') {
             let dashboardIDs: number[] = [];
             for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
-                if (this.dashboardUserRelationship[i].userName == relatedUsername
+                if (this.dashboardUserRelationship[i].username == relatedUsername
                    &&
                    this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
                         relationshipType) {
@@ -4284,7 +4284,7 @@ export class EazlService implements OnInit {
                 (
                     dur.dashboardID == dw.dashboardID  
                     && 
-                    dur.userName == currentUser
+                    dur.username == currentUser
                     && 
                     dur.dashboardUserRelationshipType == 'Likes'
                 )
@@ -4582,7 +4582,7 @@ export class EazlService implements OnInit {
             // Get the ReportIDs from all the Widgets for the requested Dashboard
             let userRelatedRptIDs: number[] = [];
             for (var i = 0; i < this.reportUserRelationship.length; i++) {
-                if (this.reportUserRelationship[i].userName == username 
+                if (this.reportUserRelationship[i].username == username 
                     && (relationship == '*'  || 
                         this.reportUserRelationship[i].reportUserRelationshipType == 
                             relationship)) {
@@ -4643,14 +4643,14 @@ export class EazlService implements OnInit {
     }
 
     getReportHistory(
-            userName: string ='*',
+            username: string ='*',
             reportID: number = -1,
             datasourceID: number = -1) {
         // Return history of reports run, optionally filtered
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
                 
         return this.reportHistory.filter(rh =>
-            (userName == '*'        ||   rh.userName == userName)
+            (username == '*'        ||   rh.username == username)
             &&
             (reportID == -1         ||   rh.reportID == reportID)
             &&
@@ -4777,7 +4777,7 @@ export class EazlService implements OnInit {
 
                         // for (var i = 0; i < eazlUser.length; i++) {
                         //     this.users.push({
-                        //         userName: eazlUser[i].username,
+                        //         username: eazlUser[i].username,
                         //         firstName: eazlUser[i].first_name,
                         //         lastName: eazlUser[i].last_name,
                         //         nickName: eazlUser[i].first_name,
@@ -4895,10 +4895,10 @@ export class EazlService implements OnInit {
         
         // Get list of usernames with access
         // TODO - when from DB, add access type as I think this will be useful
-        let userNames: string[] = [];
+        let usernames: string[] = [];
         this.dataSourceUserAccess.forEach(du => {
             if (du.datasourceID == datasourceID) {
-                userNames.push(du.userName)
+                usernames.push(du.username)
             };
         });
 
@@ -4906,9 +4906,9 @@ export class EazlService implements OnInit {
             this.getUsers()
             .then( usr => {
                 return usr.filter(
-                    u => (include   &&  userNames.indexOf(u.userName) >= 0) 
+                    u => (include   &&  usernames.indexOf(u.username) >= 0) 
                          ||
-                         (!include  &&  userNames.indexOf(u.userName) < 0) 
+                         (!include  &&  usernames.indexOf(u.username) < 0) 
                 );   
             })
             .catch(error => console.log (error) )
@@ -4926,7 +4926,7 @@ export class EazlService implements OnInit {
         // Filter on users
         let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
         this.dataSourceUserAccess.forEach(du => {
-            if (du.userName == username) {
+            if (du.username == username) {
                 datasourceName = '';
                 datasourceWorking = this.datasources.filter(d =>
                     d.datasourceID == du.datasourceID);
@@ -4946,7 +4946,7 @@ export class EazlService implements OnInit {
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
         this.usergroupMembership.forEach((usrgrp) => { 
-            if (usrgrp.userName == username) 
+            if (usrgrp.username == username) 
                 groupIDs.push(usrgrp.groupID)  
             }
         )   
@@ -4990,7 +4990,7 @@ export class EazlService implements OnInit {
         // Filter on users
         let dashboardsPerUserWorking: DashboardsPerUser[] = [];
         this.dashboardUserRelationship.forEach(du => {
-            if (du.userName == username) {
+            if (du.username == username) {
 
                 dashboardName = '';
                 dashboardsWorking = this.dashboards.filter(d =>
@@ -5011,7 +5011,7 @@ export class EazlService implements OnInit {
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
         this.usergroupMembership.forEach((usrgrp) => { 
-            if (usrgrp.userName == username) 
+            if (usrgrp.username == username) 
                 groupIDs.push(usrgrp.groupID)  
             }
         )   
@@ -5113,7 +5113,7 @@ export class EazlService implements OnInit {
         };
         if (username != '*') {
             dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.userName = username)
+                da.username = username)
         };
         if (accessType != '*') {
             dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
@@ -5140,7 +5140,7 @@ export class EazlService implements OnInit {
 
         // Filter as needed
         this.dataSourceUserAccess.forEach( da => {
-                if ( (username == '*'    ||   da.userName == username) 
+                if ( (username == '*'    ||   da.username == username) 
                      &&
                      (accessType == '*'  ||  da.dataSourceUserAccessType == accessType)
                    ) {
@@ -5181,7 +5181,7 @@ export class EazlService implements OnInit {
         let found: boolean = false;
         for (var i = 0; i < this.dataSourceUserAccess.length; i++) {
             if (this.dataSourceUserAccess[i].datasourceID == datasourceID  &&
-                this.dataSourceUserAccess[i].userName == username) {
+                this.dataSourceUserAccess[i].username == username) {
                     found = true;
                     break;
                 }
@@ -5198,7 +5198,7 @@ export class EazlService implements OnInit {
             this.dataSourceUserAccess.push(
                 {
                     datasourceID: datasourceID,
-	                userName: username,
+	                username: username,
                     dataSourceUserAccessType: 'Readonly',
                     dataSourceUserAccessScope: 'All'
                 }        
@@ -5211,7 +5211,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDatasourceUserAccess', '@Start');
 
         this.dataSourceUserAccess = this.dataSourceUserAccess.filter(
-            item => (!(item.datasourceID == datasourceID  &&  item.userName == username))
+            item => (!(item.datasourceID == datasourceID  &&  item.username == username))
         );
     }
 
@@ -5234,7 +5234,7 @@ export class EazlService implements OnInit {
         else {
             this.usergroupMembership.forEach(
                 (usrgrp) => { 
-                                if (usrgrp.userName == username) 
+                                if (usrgrp.username == username) 
                                 resultUsergroupMembership.push(usrgrp.groupID)  
                             }
             )   
@@ -5270,7 +5270,7 @@ export class EazlService implements OnInit {
             this.usergroupMembership.forEach(
                 (usrgrp) => { 
                                 if (usrgrp.groupID == groupID) 
-                                resultUsergroupMembership.push(usrgrp.userName)  
+                                resultUsergroupMembership.push(usrgrp.username)  
                             }
             )   
         }
@@ -5282,9 +5282,9 @@ export class EazlService implements OnInit {
             this.getUsers()
                 .then( usr => {
                     resultUsers = usr.filter(
-                        u => (include  &&  resultUsergroupMembership.indexOf(u.userName) >= 0) 
+                        u => (include  &&  resultUsergroupMembership.indexOf(u.username) >= 0) 
                               ||
-                             (!include &&  resultUsergroupMembership.indexOf(u.userName) < 0) 
+                             (!include &&  resultUsergroupMembership.indexOf(u.username) < 0) 
                     );   
                     return Promise.resolve(resultUsers);
                 })
@@ -5299,7 +5299,7 @@ export class EazlService implements OnInit {
 
         let found: boolean = false;
         for (var i = 0; i < this.usergroupMembership.length; i++) {
-            if (this.usergroupMembership[i].userName == username  &&
+            if (this.usergroupMembership[i].username == username  &&
                 this.usergroupMembership[i].groupID == groupID) {
                     found = true;
                     break;
@@ -5317,7 +5317,7 @@ export class EazlService implements OnInit {
             this.usergroupMembership.push(
                 {
                     groupID: groupID,
-                    userName: username,
+                    username: username,
                     userGroupMembershipCreatedDateTime: this.canvasDate.now('standard'),
                     userGroupMembershipCreatedUserID: currentUser,
                     userGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
@@ -5332,7 +5332,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
 
         this.usergroupMembership = this.usergroupMembership.filter(
-            item => (!(item.userName == username  &&  item.groupID == groupID))
+            item => (!(item.username == username  &&  item.groupID == groupID))
         );
     }
 
@@ -5528,8 +5528,8 @@ export class EazlService implements OnInit {
                 &&  
                 dur.dashboardUserRelationshipType == relationshipType
                 &&
-                (username == '*'  ||  dur.userName == username ) ) {
-                    userIDs.push(dur.userName);
+                (username == '*'  ||  dur.username == username ) ) {
+                    userIDs.push(dur.username);
             }
         });
 
@@ -5540,9 +5540,9 @@ export class EazlService implements OnInit {
                 .then( usr => {
                     resultUsers = usr.filter(
                         u => {
-                                if ( (include  &&  userIDs.indexOf(u.userName) >= 0 ) 
+                                if ( (include  &&  userIDs.indexOf(u.username) >= 0 ) 
                                     ||
-                                   (!include  &&  userIDs.indexOf(u.userName) < 0) ) {
+                                   (!include  &&  userIDs.indexOf(u.username) < 0) ) {
                                     return u
                                 }
                         }
@@ -5640,7 +5640,7 @@ export class EazlService implements OnInit {
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
             if (this.dashboardUserRelationship[i].dashboardID == dashboardID
                && 
-               this.dashboardUserRelationship[i].userName == username
+               this.dashboardUserRelationship[i].username == username
                &&
                this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
                 relationshipType) {    
@@ -5658,7 +5658,7 @@ export class EazlService implements OnInit {
                 {
                     dashboardUserRelationshipID: 0,
                     dashboardID: dashboardID,
-                    userName: username,
+                    username: username,
                     dashboardUserRelationshipType: relationshipType,
                     dashboardUserRelationshipRating: 0,
                     dashboardUserRelationshipCreatedDateTime: 
@@ -5686,7 +5686,7 @@ export class EazlService implements OnInit {
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
             if (this.dashboardUserRelationship[i].dashboardID == dashboardID
                && 
-               this.dashboardUserRelationship[i].userName == username
+               this.dashboardUserRelationship[i].username == username
                &&
                this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
                 relationshipType) {

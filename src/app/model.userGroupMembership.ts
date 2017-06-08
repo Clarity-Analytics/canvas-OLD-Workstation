@@ -3,7 +3,7 @@
 // Users per Group 
 export class UserGroupMembership {
     groupID: number;
-    userName: string;
+    username: string;
     userGroupMembershipCreatedDateTime: string;          // Created on
     userGroupMembershipCreatedUserID: string;            // Created by
     userGroupMembershipUpdatedDateTime: string;          // Updated on

@@ -252,7 +252,7 @@ export class DataSourceComponent implements OnInit {
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteDatasourceUserAccess(
                 this.selectedDatasource.datasourceID, 
-                event.items[i].userName
+                event.items[i].username
             );
         }
     }
@@ -265,7 +265,7 @@ export class DataSourceComponent implements OnInit {
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addDatasourceUserAccess(
                 this.selectedDatasource.datasourceID, 
-                event.items[i].userName
+                event.items[i].username
             );
         }
     }

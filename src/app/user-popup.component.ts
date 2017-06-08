@@ -56,7 +56,7 @@ export class UserPopupComponent implements OnInit {
 
         // FormBuilder - must be before subscribeToValue ...
         this.userformID = this.fb.group({
-            'userName':             new FormControl('', Validators.required),
+            'username':             new FormControl('', Validators.required),
             'firstName':            new FormControl('', Validators.required),
             'lastName':             new FormControl('', Validators.required),
             'nickName':             new FormControl(''),
@@ -153,8 +153,8 @@ export class UserPopupComponent implements OnInit {
             this.isLoadingForm = true;
             if (this.selectedUser) {
 
-                if (this.selectedUser.userName) {
-                    this.userformID.controls['userName'].setValue(this.selectedUser.userName);
+                if (this.selectedUser.username) {
+                    this.userformID.controls['username'].setValue(this.selectedUser.username);
                 }
                 if (this.selectedUser.firstName) {
                     this.userformID.controls['firstName'].setValue(this.selectedUser.firstName);
@@ -228,8 +228,8 @@ export class UserPopupComponent implements OnInit {
         this.formIsValid = false;
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
-        if (this.userformID.controls['userName'].value == ''  || 
-            this.userformID.controls['userName'].value == null) {
+        if (this.userformID.controls['username'].value == ''  || 
+            this.userformID.controls['username'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The UserName is compulsory.'
@@ -267,7 +267,7 @@ export class UserPopupComponent implements OnInit {
         // Adding new user
         if (this.addEditMode == 'Add' && this.displayUserPopup) {
             this.eazlService.addUser({
-                userName:                   this.userformID.controls['userName'].value,
+                username:                   this.userformID.controls['username'].value,
                 firstName:                  this.userformID.controls['firstName'].value,
                 lastName:                   this.userformID.controls['lastName'].value,
                 nickName:                   this.userformID.controls['nickName'].value,
@@ -296,7 +296,7 @@ export class UserPopupComponent implements OnInit {
 
             // Only worry about changes when we are not loading
             if (!this.isLoadingForm) {
-                this.selectedUser.userName = this.userformID.controls['userName'].value;
+                this.selectedUser.username = this.userformID.controls['username'].value;
                 this.selectedUser.firstName = this.userformID.controls['firstName'].value;
                 this.selectedUser.lastName = this.userformID.controls['lastName'].value;
                 this.selectedUser.nickName = this.userformID.controls['nickName'].value;

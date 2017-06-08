@@ -173,7 +173,7 @@ export class AppComponent implements OnInit {
         this.eazlService.getUsers()
             .then(usr => {
                 usr.forEach(sglusr => {
-                    this.availableUsers.push(sglusr.userName)
+                    this.availableUsers.push(sglusr.username)
                 })
             })
             .catch(error => console.log (error) )
