@@ -36,11 +36,8 @@ export class DataSourceComponent implements OnInit {
     // Local properties
     availableDatasourceGroupMembership: Group[] = [];   // List of Groups user does NOT belongs to
     belongstoDatasourceGroupMembership: Group[] = [];   // List of Groups user already belongs to   
-
-    availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
-    belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
-
-
+    availableUserDatasource: User[] = [];         // List of Users that cannot access this DS
+    belongstoUserDatasource: User[] = [];         // List of Users that can access this DS
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     datasources: DataSource[];                          // List of DataSources
     displayUserAccess: boolean;                         // True to display User access
@@ -154,6 +151,9 @@ export class DataSourceComponent implements OnInit {
         if (this.displayGroupMembership) {
             this.datasourceMenuGroupMembership(this.selectedDatasource) 
         }
+        if (this.displayUserDatasourceAccess) {
+            this.datasourceMenuUserMembership(this.selectedDatasource) 
+        }
     }
 
     datasourceMenuGroupMembership(selectedDatasource: DataSource) {
@@ -205,23 +205,35 @@ export class DataSourceComponent implements OnInit {
         }
     }
 
-
-
-
-
     datasourceMenuUserMembership(selectedDatasource: DataSource) {
         // Manage group membership for the selected user
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserMembership', '@Start');
 
-        // Get the current and available groups
-        this.belongstoDatasourceGroupMembership = 
-            this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,true);
-        this.availableDatasourceGroupMembership  = 
-            this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,false);
+        // Get the current and available users
+        this.eazlService.getUsersWhoCanAccessDatasource(
+            selectedDatasource.datasourceID,
+            true
+        )
+            .then(
+                users => {
+                    this.belongstoUserDatasource = users
+                    this.eazlService.getUsersWhoCanAccessDatasource(
+                        selectedDatasource.datasourceID,
+                        false
+                    )
+                        .then(
+                            users => {
+                                this.availableUserDatasource = users
 
-        // Show popup
-        this.displayGroupMembership = true; 
+                                // Show the popup
+                                this.displayUserDatasourceAccess = true;                
+                            }
+                        )
+                        .catch( err => {console.log(err)} );
+
+            })
+            .catch( err => {console.log(err)} );
     }
 
     onClickUserMembershipCancel() {
@@ -229,7 +241,7 @@ export class DataSourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserMembershipCancel', '@Start');
 
         // Close popup
-        this.displayGroupMembership = false;        
+        this.displayUserDatasourceAccess = false;        
     }
 
     onMoveToSourceDatasourceUserMembership(event) {
@@ -238,9 +250,9 @@ export class DataSourceComponent implements OnInit {
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteGroupDatasourceAccess(
+            this.eazlService.deleteDatasourceUserAccess(
                 this.selectedDatasource.datasourceID, 
-                event.items[i].groupID
+                event.items[i].userName
             );
         }
     }
@@ -251,9 +263,9 @@ export class DataSourceComponent implements OnInit {
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addGroupDatasourceAccess(
+            this.eazlService.addDatasourceUserAccess(
                 this.selectedDatasource.datasourceID, 
-                event.items[i].groupID
+                event.items[i].userName
             );
         }
     }

@@ -28,23 +28,23 @@
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
 
 
-<!--Group Membership panel-->
+<!--Popup for User Membership panel-->
 <div
     class="groupMembershipPanel"
-    *ngIf="displayGroupMembership"
+    *ngIf="displayUserDatasourceAccess"
     >
 
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedDatasource.datasourceName }} 
+        User Membership for {{ selectedDatasource.datasourceName }} 
         <button 
             class="panelButtonWithLabel"
             pButton 
             type="button" 
             label="Cancel"
             icon="fa-undo"
-            (click)="onClickGroupMembershipCancel()"
+            (click)="onClickUserMembershipCancel()"
             >
         </button>
     </div>
@@ -55,19 +55,19 @@
         <div
             >
             <p-pickList 
-                [source]="availableDatasourceGroupMembership" 
-                [target]="belongstoDatasourceGroupMembership"
-                sourceHeader="Available Groups"
-                targetHeader="Belongs to these Groups"
-                (onMoveToTarget)="onMoveToTargetDatasourceGroupMembership($event)"
-                (onMoveToSource)="onMoveToSourceDatasourceGroupMembership($event)"
+                [source]="availableUserDatasource" 
+                [target]="belongstoUserDatasource"
+                sourceHeader="Available Users"
+                targetHeader="Users with access"
+                (onMoveToTarget)="onMoveToTargetDatasourceUserMembership($event)"
+                (onMoveToSource)="onMoveToSourceDatasourceUserMembership($event)"
                 >
-                <template let-grp pTemplate="item">
+                <template let-usr pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
-                            {{ grp.groupName }}
+                            {{ usr.userName }}
                         </div>
                     </div>
                 </template>
@@ -79,7 +79,9 @@
 </div>
 
 
-<!--Popup for User Access-->
+
+
+<!--Popup to List User Access-->
 <p-dialog 
     [(visible)]="displayUserAccess"
     header="Users with access"
@@ -236,85 +238,58 @@
 </p-dialog>
 
 
-<!--User Datasource panel-->
-<p-dialog 
-    [(visible)]="displayUserDatasourceAccess"
-    header="Groups with access"
-    [closeOnEscape]=false
-    [closable]=true
-    modal="true"
-    responsive="true"
+<!--Popup for Group Membership panel-->
+<div
+    class="groupMembershipPanel"
+    *ngIf="displayGroupMembership"
     >
-    <p-dataTable  #dt
-        columnResizeMode="expand"
-        exportFilename="groups"
-        [paginator]="false" 
-        [pageLinks]="3" 
-        [reorderableColumns]="true"
-        [resizableColumns]="true"
-        [responsive]="true"
-        [rows]="10" 
-        [rowsPerPageOptions]="[5,10,20]"
-        [(selection)]="selectedGroup"
-        selectionMode="single" 
-        [scrollable]="true"  
-        [sortMode]="multiple"
-        [value]="groups"  
+
+    <div
+        class="groupMembershipHeading"
         >
-        <p-header
-            [style]="{'background-color': 'darkgray'}">
-            <span>
-                List of Groups
-            </span>
-            <span style="float:right"
-                class="ui-helper-clearfix csvButton"
+        Group Membership for {{ selectedDatasource.datasourceName }} 
+        <button 
+            class="panelButtonWithLabel"
+            pButton 
+            type="button" 
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickGroupMembershipCancel()"
+            >
+        </button>
+    </div>
+    
+    <!--Content-->
+    <form>
+
+        <div
+            >
+            <p-pickList 
+                [source]="availableDatasourceGroupMembership" 
+                [target]="belongstoDatasourceGroupMembership"
+                sourceHeader="Available Groups"
+                targetHeader="Belongs to these Groups"
+                (onMoveToTarget)="onMoveToTargetDatasourceGroupMembership($event)"
+                (onMoveToSource)="onMoveToSourceDatasourceGroupMembership($event)"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
-                    >
-                </button>
-            </span>
-            
-        </p-header>
-        <p-column 
-            field="groupID" 
-            [filter]="false" 
-            filterMatchMode="contains" 
-            header="ID" 
-            [sortable]="true"
-            [style]="{width: '80px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="groupName" 
-            [filter]="false" 
-            filterMatchMode="contains" 
-            header="Name" 
-            [sortable]="true"
-            [style]="{width: '120px', 
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column 
-            field="groupDescription" 
-            [filter]="false" 
-            filterMatchMode="contains" 
-            header="Description" 
-            [sortable]="true"
-            [style]="{width: '320px', 
-                    'text-align': 'center'}"            >
-        </p-column>
-    </p-dataTable>
-</p-dialog>
+                <template let-grp pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                        <div 
+                            style="font-size:14px;float:left;margin:15px 5px 0 0"
+                            >
+                            {{ grp.groupName }}
+                        </div>
+                    </div>
+                </template>
+            </p-pickList>
+
+        </div>
+
+    </form>
+</div>
 
 
-<!--Popup for Group Access-->
+<!--Popup to List Group Access-->
 <p-dialog 
     [(visible)]="displayGroupAccess"
     header="Groups with access"
