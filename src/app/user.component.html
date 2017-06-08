@@ -235,7 +235,7 @@
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedUser.firstName }} 
+        Group Membership for {{ selectedUser.firstName  ||   selectedUser.userName }} 
         <button 
             class="panelButtonWithLabel"
             pButton 
