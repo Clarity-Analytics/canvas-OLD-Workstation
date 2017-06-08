@@ -2,28 +2,16 @@ import { Injectable } from '@angular/core';
 import { isDevMode } from '@angular/core';
 import { RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { Token } from '../_models/'
-
-
-export function PinkyPromise(target, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
-  const originMethod = descriptor.value;
-
-  descriptor.value = function(...args: any[]) {
-    const result = originMethod.apply(this, args);
-
-    return result.toPromise();
-  }
-
-  return descriptor;
-}
 
 
 @Injectable()
 export class BaseHttpService {
   baseUri: string = `${window.location.protocol}//${window.location.hostname}:8000/api/`
   storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
-  
+ 
   constructor() { }
 
   prepareRoute(route: string): string {

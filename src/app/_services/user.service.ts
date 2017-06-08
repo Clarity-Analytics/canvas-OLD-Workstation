@@ -3,13 +3,26 @@ import { Http } from '@angular/http';
 import { BaseHttpService } from './base-http.service';
 import { Observable } from 'rxjs/Observable';
 
-import { User } from '../_models';
+import { ReconnectingWebSocket } from './websocket.service';
+import { User, SocketMessage } from '../_models';
 
 
 @Injectable()
 export class UserService extends BaseHttpService {
+  // socket: Observable<any>;
 
-  constructor(private http: Http) { super() }
+  constructor(
+    private http: Http,
+    private channel: ReconnectingWebSocket
+  ) { 
+    super()
+
+    channel.socket.retry().subscribe(
+      (message: SocketMessage) => { console.log(message) },
+      (error) => { console.log(JSON.parse(error)) },
+      () => { console.log('Socket complete') },
+    )
+  }
 
   getCurrentUser(): Observable<User> {
   	let route = this.prepareRoute('users/authenticated-user/');

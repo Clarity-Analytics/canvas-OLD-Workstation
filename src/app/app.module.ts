@@ -129,6 +129,7 @@ import { PackageParametersComponent } from './package-parameters/package-paramet
 // New idea
 import { UserService } from './_services';
 import { AuthenticationService } from './_services';
+import { ReconnectingWebSocket } from './_services';
 
 
 @NgModule({
@@ -240,6 +241,7 @@ import { AuthenticationService } from './_services';
 
     UserService,
     AuthenticationService,
+    ReconnectingWebSocket,
 
     // NG Services
     ConfirmationService,

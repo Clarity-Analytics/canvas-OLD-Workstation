@@ -4,7 +4,7 @@ import { Package } from '../_models/model.package';
 import { Field } from '../_models/model.package';
 
 
-import { AuthenticationService, PinkyPromise } from '../_services';
+import { AuthenticationService } from '../_services';
 
 
 class ComponentPackage extends Package {

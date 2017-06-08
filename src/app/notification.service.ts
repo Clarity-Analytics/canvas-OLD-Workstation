@@ -7,7 +7,7 @@ import { WebSocketService }           from './websocket.service';
 // Our Models
 import { Notification }               from './model.notification';
 
-const CHAT_URL = 'ws://localhost:8000/sockets/';
+const CHAT_URL = 'ws://localhost:8000/';
 
 // export interface Notification {
 //     author: string;
