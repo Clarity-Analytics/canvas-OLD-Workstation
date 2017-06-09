@@ -5100,15 +5100,15 @@ export class EazlService implements OnInit {
         // Filter as needed
         if (datasourceID != -1) {
             dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.datasourceID = datasourceID)
+                da.datasourceID == datasourceID)
         };
         if (username != '*') {
             dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.username = username)
+                da.username == username)
         };
         if (accessType != '*') {
             dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.dataSourceUserAccessType = accessType)
+                da.dataSourceUserAccessType == accessType)
         };
 
         // Return

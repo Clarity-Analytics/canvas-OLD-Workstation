@@ -501,9 +501,9 @@ export class AppComponent implements OnInit {
                         }    
                     },
                     {
-                        label: 'User Manual',
+                        label: 'Reference guide',
                         icon:  'fa-file-text-o', 
-                        routerLink: ['startup'],
+                        routerLink: ['refrence-doc'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;

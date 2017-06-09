@@ -11,6 +11,7 @@ import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
+import { ReferenceDocComponent }      from './reference.doc';
 import { ReportComponent }            from './report.component';
 import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
@@ -73,6 +74,11 @@ export const routes: Route[] = [
     canActivate: [AuthGuard]
   },
   { 
+    path: 'refrence-doc',         
+    component: ReferenceDocComponent, 
+    canActivate: [AuthGuard]
+  },
+  { 
     path: 'pagenotfound',             
     component: PageNotFoundComponent
   },  
@@ -80,6 +86,7 @@ export const routes: Route[] = [
     path: '**',                       
     component: PageNotFoundComponent
   }  
+  
 ]
 
 
