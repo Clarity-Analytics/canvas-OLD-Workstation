@@ -501,27 +501,27 @@ export class AppComponent implements OnInit {
                         }    
                     },
                     {
+                        label: 'Tutorials', 
+                        icon:  'fa-tags',
+                        routerLink: ['doc-tutorials'],
+                        disabled: false,
+                        command: (event) => {
+                            this.lastSelectedMenuItemLabel = event.item.label;
+                        }    
+                    },
+                    {
                         label: 'Reference guide',
                         icon:  'fa-file-text-o', 
-                        routerLink: ['refrence-doc'],
+                        routerLink: ['doc-reference'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                         }    
                     },
                     {
-                        label: 'Backend Docs', 
+                        label: 'Discussions', 
                         icon:  'fa-file-text',
-                        routerLink: ['startup'],
-                        disabled: false,
-                        command: (event) => {
-                            this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
-                    },
-                    {
-                        label: 'System Installation', 
-                        icon:  'fa-tags',
-                        routerLink: ['startup'],
+                        routerLink: ['doc-discussions'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;

@@ -6,12 +6,14 @@ import { Route }                      from  '@angular/router';
 import { DashboardComponent }         from './dashboard.component';
 import { DashboardManagerComponent }  from './dashboard.manager.component';
 import { DataSourceComponent }        from './datasource.component';
+import { DocDiscussionsComponent }    from './doc.discussions.component';
+import { DocReferenceComponent }      from './doc.reference.component';
+import { DocTutorialsComponent }      from './doc.tutorials.component';
 import { GroupComponent }             from './group.component';
 import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
-import { ReferenceDocComponent }      from './reference.doc';
 import { ReportComponent }            from './report.component';
 import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
@@ -74,8 +76,18 @@ export const routes: Route[] = [
     canActivate: [AuthGuard]
   },
   { 
-    path: 'refrence-doc',         
-    component: ReferenceDocComponent, 
+    path: 'doc-discussions',         
+    component: DocDiscussionsComponent, 
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'doc-reference',         
+    component: DocReferenceComponent, 
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'doc-tutorials',         
+    component: DocTutorialsComponent, 
     canActivate: [AuthGuard]
   },
   { 
@@ -88,5 +100,4 @@ export const routes: Route[] = [
   }  
   
 ]
-
 

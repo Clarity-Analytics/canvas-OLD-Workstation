@@ -97,6 +97,9 @@ import { DashboardManagerComponent }  from './dashboard.manager.component';
 import { DashboardEditorComponent}    from './dashboard-editor.component';
 import { DashboardTabEditorComponent} from './dashboard-tab-editor.component';
 import { DataSourceComponent }        from './datasource.component';
+import { DocDiscussionsComponent }    from './doc.discussions.component';
+import { DocReferenceComponent }      from './doc.reference.component';
+import { DocTutorialsComponent }      from './doc.tutorials.component';
 import { GroupComponent }             from './group.component';
 import { GroupPopupComponent }        from './group-popup.component';
 import { LoginComponent }             from './login.component';
@@ -104,7 +107,6 @@ import { MessageManagerComponent }    from './message.manager.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { NewMessageComponent }        from './newmessage.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
-import { ReferenceDocComponent }      from './reference.doc';
 import { ReportComponent }            from './report.component';
 import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
@@ -142,6 +144,9 @@ import { routes }                     from './app.routes';
     DashboardEditorComponent,
     DashboardTabEditorComponent,
     DataSourceComponent,
+    DocDiscussionsComponent,
+    DocReferenceComponent,
+    DocTutorialsComponent,
     GroupComponent,
     GroupPopupComponent,
     LoginComponent,
@@ -149,7 +154,6 @@ import { routes }                     from './app.routes';
     MyProfileComponent,
     NewMessageComponent,
     PageNotFoundComponent,
-    ReferenceDocComponent,
     ReportComponent,
     SystemConfigComponent,
     UserComponent,
