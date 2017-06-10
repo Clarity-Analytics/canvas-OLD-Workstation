@@ -12,7 +12,10 @@ This guide aims to provide technical descriptions of the machinery and how to op
 4. Overlay package and query structures
 5. Overlay task management
 
-Things you'll need:
+
+___
+
+# MD cheatsheet
 
 * [node](https://nodejs.org)
 * [markdown-it](https://www.npmjs.com/package/markdown-it)
