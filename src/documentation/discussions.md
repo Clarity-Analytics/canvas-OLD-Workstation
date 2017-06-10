@@ -1,15 +1,24 @@
 # Discussions for Canvas
 
+This document aims to to enhance understanding of the product with explanations that clarify and illuminate a particular topic.  It gives context, provides an explaining why,
+use multiple examples, and alternative approaches while making connections between different
+aspects of the system.
 
 ## Table of Contentt
 
-1. Architecture – how everything fits together
-2. Canvas user manual: 
-1. forms, fields and buttons
-2. ER
-3. Eazl admin – Django console
-4. Overlay package and query structures
-5. Overlay task management
+1. Basic philospophy 
+2. The flow / steps in creating a report
+3. The actions when running a report
+4. Why some reports take longer / async processing
+5. How a deleted a user is treated
+6. Audit information kept by the system
+7. Explain datastructures in Canvas (ER in words)
+8. Different types and uses of a Dashboard
+9. Dashboard design principles
+10. Problem solving / fault finding
+11. Technology and software used
+12. Design limits
+13. 
 
 Things you'll need:
 
