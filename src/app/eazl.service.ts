@@ -4753,7 +4753,7 @@ export class EazlService implements OnInit {
             }
         } else  {
             for (var i = 0; i < this.widgets.length; i++) {
-                if (this.widgets[i].properties.widgetID = widgetID) {
+                if (this.widgets[i].properties.widgetID == widgetID) {
                     this.widgets[i].properties.widgetIsLiked == isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
                         if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID ==

@@ -55,7 +55,7 @@ export class CanvasDate {
          if (format == 'locale') {
             let datum = new Date();
             return datum.toLocaleDateString().toString();
-         } else if (format = 'standard') {
+         } else if (format == 'standard') {
             let datum = new Date();
             return datum.getFullYear().toString() + '/' + 
                    (  (datum.getMonth() < 10) ? 

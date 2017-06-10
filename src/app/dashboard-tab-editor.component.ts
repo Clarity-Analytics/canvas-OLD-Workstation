@@ -67,10 +67,7 @@ export class DashboardTabEditorComponent implements OnInit {
             'dashboardTabUpdatedUserID':        new FormControl(''),
         });
 
-        // Refresh the form
-        // if (this.displayTabDetails) {
             this.refreshForm()
-        // }
     }
 
     refreshForm() {
