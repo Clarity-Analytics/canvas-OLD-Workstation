@@ -302,6 +302,7 @@ export class AppComponent implements OnInit {
 
     }
 
+
     loadMenu(): MenuItem[] {
         // Re-get the variables, ie logged in, etc.  Then create the array of menu items for PrimeNG
         this.globalFunctionService.printToConsole(this.constructor.name,'loadMenu', '@Start');
@@ -320,7 +321,7 @@ export class AppComponent implements OnInit {
         else {
             this.loginLabel = 'Logout';
             isLoggedIn = true;
-        }
+        }if (
 
         this.menuItems = [
             {
