@@ -15,7 +15,7 @@ export class UserService extends BaseHttpService {
     
     super()
     
-    channel.socket.retry().subscribe(
+    channel.socket.retry(2).subscribe(
       (message: SocketMessage) => { console.log(message) },
       (error) => { console.log(JSON.parse(error)) },
       () => { console.log('Socket complete') },

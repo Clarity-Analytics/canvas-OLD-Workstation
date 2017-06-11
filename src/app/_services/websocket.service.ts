@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 import { Observable } from 'rxjs/Observable';
-
+import { BaseHttpService } from './base-http.service';
 
 @Injectable()
 export class ReconnectingWebSocket {
 	baseUri: string = `${window.location.protocol === 'http:' ? 'ws:': 'wss:'}//${window.location.hostname}:8000/sockets/`;
-	socket: Subject<any>;
+	socket: WebSocketSubject<any>;
 
 	constructor() {
-    this.socket = Observable.webSocket(`${this.baseUri}`);
-    this.socket.next('ping');
+		let token = localStorage.getItem('canvas-token');
+		
+	    this.socket = Observable.webSocket(`${this.baseUri}?token=${token}`);
+		this.socket.next('ping');
 	}
 }

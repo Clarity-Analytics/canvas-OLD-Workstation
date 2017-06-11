@@ -3,7 +3,9 @@ import { Http, Response } from '@angular/http';
 import { BaseHttpService } from './base-http.service';
 import { Observable } from 'rxjs/Observable';
 
+import { ReconnectingWebSocket } from './websocket.service';
 import { Token, AuthenticationError } from '../_models';
+
 
 @Injectable()
 export class AuthenticationService extends BaseHttpService {

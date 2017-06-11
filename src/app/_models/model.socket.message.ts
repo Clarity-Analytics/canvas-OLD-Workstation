@@ -1,3 +1,12 @@
 export class SocketMessage {
-	message: string;
+	message_type: string;
+
+}
+
+
+class ChatMessage {
+	sender: string;
+	receiver: string;
+	timestamp: Date;
+	message: string
 }
