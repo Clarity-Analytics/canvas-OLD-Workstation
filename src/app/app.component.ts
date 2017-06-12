@@ -15,6 +15,7 @@ import { Message }                    from 'primeng/primeng';
 
 // Our Services
 import { CanvasDate }                 from './date.services';
+import { CDAL }                       from './cdal.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { NotificationService }        from './notification.service';
@@ -24,6 +25,13 @@ import { WebSocketService }           from './websocket.service';
 import { CanvasUser }                 from './model.user';
 import { EazlService }                from './eazl.service';
 import { Notification }               from './model.notification';
+
+
+
+
+//testFn()
+import { Observable }                 from 'rxjs/Observable';
+import { User } from './model.user';
 
 @Component({
     selector:    'app-root',
@@ -48,7 +56,7 @@ export class AppComponent implements OnInit {
     routerLink:string = '';                         // RouterLink in Menu.Command
     setFakeVariablesForTesting: boolean = false;    // Jass for me
     sendToTheseUsers: string[] = [];                // List of UserIDs to whom message is sent
-
+usersCDAL: User[];
     private notificationFromServer: Notification;   // Websocket msg
 
     // Define Variables - define here if a global variable is used in html.
@@ -61,6 +69,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private canvasDate: CanvasDate,
+        private cdal: CDAL,
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
@@ -96,27 +105,27 @@ export class AppComponent implements OnInit {
 
 		this.notificationService.messages.next(this.notificationFromServer);
 		this.notificationFromServer.message = '';
-// let d = new Date();
-// console.log(d);
-// console.log(this.canvasDate.weekDay(1))
-// console.log(this.canvasDate.daysOfWeek());
-// console.log(this.canvasDate.dayOfWeek(d));
-// console.log(this.canvasDate.dayOfMonth(d));
-// console.log(this.canvasDate.months());
-// console.log(this.canvasDate.curMonth(d));
-// console.log(this.canvasDate.curYear(d));
-// console.log(this.canvasDate.curHour(d));
-// console.log(this.canvasDate.curMinute(d));
-// console.log(this.canvasDate.curSeconds(d));
-// console.log(this.canvasDate.curMeridiem(d));
-// console.log(this.canvasDate.today('locale'));
-// console.log(this.canvasDate.today('standard'));
+        // let d = new Date();
+        // console.log(d);
+        // console.log(this.canvasDate.weekDay(1))
+        // console.log(this.canvasDate.daysOfWeek());
+        // console.log(this.canvasDate.dayOfWeek(d));
+        // console.log(this.canvasDate.dayOfMonth(d));
+        // console.log(this.canvasDate.months());
+        // console.log(this.canvasDate.curMonth(d));
+        // console.log(this.canvasDate.curYear(d));
+        // console.log(this.canvasDate.curHour(d));
+        // console.log(this.canvasDate.curMinute(d));
+        // console.log(this.canvasDate.curSeconds(d));
+        // console.log(this.canvasDate.curMeridiem(d));
+        // console.log(this.canvasDate.today('locale'));
+        // console.log(this.canvasDate.today('standard'));
     }
  
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+// this.usersCDAL = this.cdal.users.subscribe(usr => usr.values());
         // Subscribe to the global alerts (that are growled)
         // growlGlobalMessage = observable new (single) message
         this.globalVariableService.growlGlobalMessage.subscribe (
@@ -302,7 +311,6 @@ export class AppComponent implements OnInit {
 
     }
 
-
     loadMenu(): MenuItem[] {
         // Re-get the variables, ie logged in, etc.  Then create the array of menu items for PrimeNG
         this.globalFunctionService.printToConsole(this.constructor.name,'loadMenu', '@Start');
@@ -317,11 +325,10 @@ export class AppComponent implements OnInit {
         if (this.globalVariableService.canvasUser.getValue().username == '' ) {
             this.loginLabel = 'Login'; 
             isLoggedIn = false;
-        }
-        else {
+        } else {
             this.loginLabel = 'Logout';
             isLoggedIn = true;
-        }if (
+        }
 
         this.menuItems = [
             {
@@ -535,4 +542,187 @@ export class AppComponent implements OnInit {
         // Return stuff
         return this.menuItems;       
     }
+
+
+testFn() {
+
+console.log('this.eazlService.cdalUsers', this.eazlService.cdalUsers);
+// console.log('users', this.cdal.users);
+
+// this.usersCDAL = this.cdal.getUsers()
+// console.log('After this.cdal.getUsers()', this.cdal.getUsers())
+// console.log('After this.cdal.getUsers()', this.eazlService.cdalGetUsers() )
+let eksit: boolean = false;
+eksit = true;
+if (eksit) {return}
+
+console.log('COMBINELATEST')    
+    /* Have staggering intervals */
+var source11 = Observable.interval(100)
+  .map(function (i) { return 'First: ' + i; });
+
+var source12 = Observable.interval(150)
+  .map(function (i) { return 'Second: ' + i; });
+
+// Combine latest of source11 and source12 whenever either gives a value
+var source1 = Observable.combineLatest(
+    source11,
+    source12
+  ).take(4);
+
+var subscription = source1.subscribe(
+  function (x) {
+    console.log('Next 1: %s', JSON.stringify(x));
+  },
+  function (err) {
+    console.log('Error 1: %s', err);
+  },
+  function () {
+    console.log('Completed 1');
+  });
+
+// => Next: ["First: 0","Second: 0"]
+// => Next: ["First: 1","Second: 0"]
+// => Next: ["First: 1","Second: 1"]
+// => Next: ["First: 2","Second: 1"]
+// => Completed
+
+
+console.log('WITH-LATEST-FROM')
+/* Have staggering intervals */
+var source21 = Observable.interval(140)
+    .map(function (i) { return 'First: ' + i; });
+
+var source22 = Observable.interval(50)
+    .map(function (i) { return 'Second: ' + i; });
+
+// When source1 emits a value, combine it with the latest emission from source2.
+var source2 = source21.withLatestFrom(
+    source22,
+    function (s1, s2) { return s1 + ', ' + s2; }
+).take(4);
+
+var subscription = source2.subscribe(
+    function (x) {
+        console.log('Next 2: ' + x.toString());
+    },
+    function (err) {
+        console.log('Error 2: ' + err);
+    },
+    function () {
+        console.log('Completed 2');
+    });
+
+// => Next: First: 0, Second: 1
+// => Next: First: 1, Second: 4
+// => Next: First: 2, Second: 7
+// => Next: First: 3, Second: 10
+// => Completed
+
+
+/* With a result selector */
+var range = Observable.range(0, 5);
+
+var source3 = Observable.zip(
+  range,
+  function (s1) {
+    return s1 + ':'  + ':'  ;
+  }
+);
+
+var subscription = source3.subscribe(
+  function (x) {
+    console.log('Next 3: %s', x);
+  },
+  function (err) {
+    console.log('Error 3: %s', err);
+  },
+  function () {
+    console.log('Completed 3');
+  });
+
+
+/* With a result selector */
+var range2 = Observable.range(0, 8);
+
+var source4 = Observable.zip(
+  range2,
+  range2.skip(1),
+  function (s1, s2) {
+    return s1 + ':' + s2 + ':' ;
+  }
+);
+
+var subscription = source4.subscribe(
+  function (x) {
+    console.log('Next 4: %s', x);
+  },
+  function (err) {
+    console.log('Error 4: %s', err);
+  },
+  function () {
+    console.log('Completed 4');
+  });
+
+
+var source51 = Observable.interval(100)
+    .timeInterval()
+    .pluck('interval');
+var source52 = Observable.interval(150)
+    .timeInterval()
+    .pluck('interval');
+
+var source = Observable.merge(
+    source51,
+    source52)
+    .take(5);
+
+var subscription = source.subscribe(
+    function (x) {
+        console.log('Next 5: ' + x);
+    },
+    function (err) {
+        console.log('Error 5: ' + err);
+    },
+    function () {
+        console.log('Completed 5');
+    });
+
+// => Next: 100
+// => Next: 150
+// => Next: 100
+// => Next: 150
+// => Next: 100
+// => Completed
+
+var AA: string[] = [];
+
+var source6 = Observable
+  .range(1, 3)
+  .flatMap(function(x) {
+    return Observable.from([x.toString() + 'a', x.toString() + 'b']);
+  });
+
+var subscription = source6.subscribe(
+  function (x) {
+    AA.push(x);
+    console.log('Next 6: %s', x);
+  },
+  function (err) {
+    console.log('Error 6: %s', err);
+  },
+  function () {
+    console.log('Completed 6');
+  });
+
+// Next: 1a
+// Next: 2a
+// Next: 3a
+// Next: 3b
+// Completed
+
+console.log('AA', AA)
+}
+
+
 }

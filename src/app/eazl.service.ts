@@ -3871,6 +3871,9 @@ export class EazlService implements OnInit {
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
 
+
+cdalUsers: EazlUser[] = [];
+
     constructor(
         private canvasDate: CanvasDate,
         private globalFunctionService: GlobalFunctionService,
@@ -3885,6 +3888,10 @@ export class EazlService implements OnInit {
     ngOnInit() {
         // Starters
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+console.log('calling cdalGetUsers()')
+this.cdalGetUsers();
+
     }
 
     getSystemConfiguration() {
@@ -4007,6 +4014,12 @@ export class EazlService implements OnInit {
                             summary:  'Succes',
                             detail:   'Login successful for ' + eazlUser.username
                         });
+
+
+console.log('calling cdalGetUsers()')
+this.cdalGetUsers();
+
+
 
                         // Return the user object from the RESTi
                         return eazlUser;
@@ -5795,5 +5808,23 @@ export class EazlService implements OnInit {
             }
         }
     }
+
+
+
+// Testing stuffies
+cdalGetUsers() {
+console.log('cdal Eazl')
+    this.get<EazlUser>(`${this.route}`)
+                .subscribe(
+                    (eazlUser) => {
+                        this.cdalUsers = [];
+
+                        for (var i = 0; i < eazlUser.length; i++) {
+                            this.cdalUsers.push(eazlUser[i])
+                        }
+                    })
+    
+}
+
 
 }
