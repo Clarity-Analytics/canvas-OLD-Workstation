@@ -5167,7 +5167,7 @@ export class EazlService implements OnInit {
         );
     }
 
-    getGroupsPerUser(username: string = '', include: boolean = true): Promise<Group[]> {
+    getGroupsPerUser(username: string = '', include: boolean = true): Group[] {
         // Return a list of Groups to which a user belongs
         // - username Optional parameter to select ONE, else select ALL (if >= 0)
         // - include Optional parameter, true = include all for user, else group NOT for username
@@ -5179,34 +5179,30 @@ export class EazlService implements OnInit {
 
         // Return all if no username specified
         if (username == '') {
-            return Promise.resolve(this.groups);
+            return this.groups;
         }
 
         // Make an array of groupIDs to which this user belongs
-        else {
-            this.usergroupMembership.forEach(
-                (usrgrp) => { 
-                                if (usrgrp.username == username) 
-                                resultUsergroupMembership.push(usrgrp.groupID)  
-                            }
-            )   
-        }
+        this.usergroupMembership.forEach(
+            (usrgrp) => { 
+                            if (usrgrp.username == username) 
+                            resultUsergroupMembership.push(usrgrp.groupID)  
+                        }
+        )   
 
         // Return necesary groups, selectively depending on in/exclude
-        let resultGroups: Group[];
-        resultGroups = this.groups.filter(
+        return this.groups.filter(
             grp => (include  &&  resultUsergroupMembership.indexOf(grp.groupID) >= 0) 
                     ||
                     (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0) 
         )
-        return Promise.resolve(resultGroups);
     }
 
     getUsersPerGroup(groupID: number = -1, include: boolean = true): Promise<User[]> {
         // Return a list of Users that belongs to a group
         // - groupID Optional parameter, -1 = include all
         // - include, True means to which belongs, False means complements (NOT)
-        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getUsersPerGroup', '@Start');
 
         // TODO - from DB
         // Get Array of users to in or ex clude
