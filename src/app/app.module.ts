@@ -120,7 +120,6 @@ import { WidgetCommentComponent }     from './widget-comment.component';
 // Our Services
 import { AuthGuard }                  from './authguard.service';
 import { CanvasDate }                 from './date.services';
-import { CDAL }                       from './cdal.service';
 import { EazlService }                from './eazl.service';
 import { GlobalErrorHandler }         from './error-handler.service';
 import { GlobalFunctionService }      from './global-function.service';
@@ -254,7 +253,6 @@ import { routes }                     from './app.routes';
     // Our Services
     AuthGuard,
     CanvasDate,
-    CDAL,
     CanvasColors,
     EazlService,
     GlobalFunctionService,

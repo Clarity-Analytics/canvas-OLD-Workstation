@@ -15,7 +15,6 @@ import { Message }                    from 'primeng/primeng';
 
 // Our Services
 import { CanvasDate }                 from './date.services';
-import { CDAL }                       from './cdal.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { NotificationService }        from './notification.service';
@@ -68,7 +67,6 @@ export class AppComponent implements OnInit {
 
     constructor(
         private canvasDate: CanvasDate,
-        private cdal: CDAL,
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
@@ -551,12 +549,8 @@ export class AppComponent implements OnInit {
 testFn() {
 // this.eazlService.cacheCanvasData()
 this.sendNotificationToServer()
-console.log('this.eazlService.cdalUsers', this.eazlService.getUsersArray());
-// console.log('users', this.cdal.users);
+console.log('this.eazlService.getUsers', this.eazlService.getUsersArray());
 
-// this.usersCDAL = this.cdal.getUsers()
-// console.log('After this.cdal.getUsers()', this.cdal.getUsers())
-// console.log('After this.cdal.getUsers()', this.eazlService.cdalGetUsers() )
 let eksit: boolean = false;
 eksit = true;
 if (eksit) {return}
