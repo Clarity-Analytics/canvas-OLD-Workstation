@@ -236,23 +236,17 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupMembership', '@Start');
 
         // Get the current and available groups
-        this.eazlService.getDashboardGroupMembership(
-            this.selectedDashboard.dashboardID, true
-        )
-            .then(inclgrp => {
-                this.belongstoDashboardGroup = inclgrp;
-        
-                this.eazlService.getDashboardGroupMembership(
-                    this.selectedDashboard.dashboardID, false
-                )
-                    .then (exclgrp => {
-                            this.availableDashboardGroup  = exclgrp;
-                            this.displayGroupMembership = true; 
+        this.belongstoDashboardGroup = this.eazlService.getDashboardGroupMembership(
+            this.selectedDashboard.dashboardID, 
+            true
+        );
+        this.availableDashboardGroup = this.eazlService.getDashboardGroupMembership(
+                    this.selectedDashboard.dashboardID, 
+                    false
+        );
 
-                    })
-                    .catch(error => console.log (error))
-            })
-            .catch(error => console.log (error) )
+        // Show popup 
+        this.displayGroupMembership = true; 
     }
 
     onClickGroupMembershipCancel() {

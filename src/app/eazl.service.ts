@@ -5313,7 +5313,10 @@ export class EazlService implements OnInit {
         );
     }
 
-    getDashboardGroupMembership(dashboardID:number = -1, include:boolean = true): Promise<DashboardGroup[]> {
+    getDashboardGroupMembership(
+            dashboardID:number = -1, 
+            include:boolean = true
+    ): DashboardGroup[] {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else 
@@ -5327,24 +5330,21 @@ export class EazlService implements OnInit {
 
         // Return all if no dashboardID specified
         if (dashboardID == -1) {
-            return Promise.resolve(this.dashboardGroups);
+            return this.dashboardGroups;
         }
 
         // Make an array of groupIDs to which this user belongs
-        else {
-            this.dashboardGroupMembership.forEach(
-                (dashgrp) => { 
-                                if (dashgrp.dashboardID == dashboardID) 
-                                    resultDashboardGroupMembership.push(
-                                        dashgrp.dashboardGroupID
-                                )  
-                             }
-            )   
-        }
+        this.dashboardGroupMembership.forEach(
+            (dashgrp) => { 
+                if (dashgrp.dashboardID == dashboardID) 
+                    resultDashboardGroupMembership.push(
+                        dashgrp.dashboardGroupID
+                )  
+            }
+        );   
 
         // Return necesary groups, selectively depending on in/exclude
-        let resultDashboardGroups: DashboardGroup[];
-        resultDashboardGroups = this.dashboardGroups.filter(
+        return this.dashboardGroups.filter(
             dashgrp => (
                     include  &&  
                         resultDashboardGroupMembership.indexOf(
@@ -5356,7 +5356,6 @@ export class EazlService implements OnInit {
                             dashgrp.dashboardGroupID) < 0
                     ) 
         )
-        return Promise.resolve(resultDashboardGroups);
     }
 
     addDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
