@@ -90,16 +90,12 @@ export class ReportComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuUserAccess', '@Start');
 
-        this.eazlService.getUsersWhoCanAccessDatasource(
+        this.users = this.eazlService.getUsersWhoCanAccessDatasource(
             selectedReport.dataSourceID
-        )
-            .then(users => {this.users = users
+        );
 
-            // Show the popup
-            this.displayUserAccess = true;
-                
-            })
-            .catch( err => {console.log(err)} );
+        // Show the popup
+        this.displayUserAccess = true;
     }
 
     reportMenuGroupAccess(selectedReport: Report) {

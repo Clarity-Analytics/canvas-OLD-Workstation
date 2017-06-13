@@ -4144,7 +4144,7 @@ export class EazlService implements OnInit {
     getUsersArray(): User[] {
         return this.users;
     }
-     
+
     getUsers(): Promise<User[]> {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
@@ -4848,7 +4848,7 @@ export class EazlService implements OnInit {
 
     getUsersWhoCanAccessDatasource(
             datasourceID: number,
-            include: boolean = true): Promise<User[]> {
+            include: boolean = true): User[] {
         // Return list of Users who has access to a given DataSource
         // - username filter
         // - include: True = those who can access, False = CANNOT access
@@ -4863,17 +4863,11 @@ export class EazlService implements OnInit {
             };
         });
 
-        return Promise.resolve(
-            this.getUsers()
-            .then( usr => {
-                return usr.filter(
-                    u => (include   &&  usernames.indexOf(u.username) >= 0) 
-                         ||
-                         (!include  &&  usernames.indexOf(u.username) < 0) 
-                );   
-            })
-            .catch(error => console.log (error) )
-        );
+        return this.users.filter(
+            u => (include   &&  usernames.indexOf(u.username) >= 0) 
+                  ||
+                 (!include  &&  usernames.indexOf(u.username) < 0) 
+            );   
     }
 
     getDatasourcesPerUser(username: string): DatasourcesPerUser[] {

@@ -117,15 +117,12 @@ export class DataSourceComponent implements OnInit {
         // - User: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuListUserAccess', '@Start');
 
-        this.eazlService.getUsersWhoCanAccessDatasource(
+        this.users = this.eazlService.getUsersWhoCanAccessDatasource(
             selectedDatasource.datasourceID
-        )
-            .then(users => {this.users = users
+        );
 
-            // Show the popup
-            this.displayUserAccess = true;                
-            })
-            .catch( err => {console.log(err)} );
+        // Show the popup
+        this.displayUserAccess = true;                
     }
 
     datasourceMenuListGroupAccess(selectedDatasource: DataSource) {
@@ -211,29 +208,17 @@ export class DataSourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserMembership', '@Start');
 
         // Get the current and available users
-        this.eazlService.getUsersWhoCanAccessDatasource(
+        this.belongstoUserDatasource = this.eazlService.getUsersWhoCanAccessDatasource(
             selectedDatasource.datasourceID,
             true
-        )
-            .then(
-                users => {
-                    this.belongstoUserDatasource = users
-                    this.eazlService.getUsersWhoCanAccessDatasource(
-                        selectedDatasource.datasourceID,
-                        false
-                    )
-                        .then(
-                            users => {
-                                this.availableUserDatasource = users
+        );
+        this.availableUserDatasource = this.eazlService.getUsersWhoCanAccessDatasource(
+            selectedDatasource.datasourceID,
+            false
+        );
 
-                                // Show the popup
-                                this.displayUserDatasourceAccess = true;                
-                            }
-                        )
-                        .catch( err => {console.log(err)} );
-
-            })
-            .catch( err => {console.log(err)} );
+        // Show the popup
+        this.displayUserDatasourceAccess = true;                
     }
 
     onClickUserMembershipCancel() {
