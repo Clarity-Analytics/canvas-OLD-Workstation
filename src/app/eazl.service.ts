@@ -3990,8 +3990,8 @@ export class EazlService implements OnInit {
                 .toPromise()
                 .then(
                     eazlUser => {
-                        // Set global Canvas user & that is authenticated on Eazl
 
+                        // Set global Canvas user & that is authenticated on Eazl
                         this.globalVariableService.canvasUser.next({
                             pk: eazlUser.pk,
                             username: eazlUser.username,
@@ -4003,7 +4003,15 @@ export class EazlService implements OnInit {
                             is_staff: eazlUser.is_staff,
                             is_active: eazlUser.is_active,
                             date_joined: eazlUser.date_joined,
-                            last_login: eazlUser.last_login
+                            last_login: eazlUser.last_login,
+                            profile: 
+                                {
+                                    nick_name:  eazlUser.profile.nick_name,
+                                    cell_number: eazlUser.profile.cell_number,
+                                    work_number: eazlUser.profile.work_number,
+                                    profile_picture: eazlUser.profile.profile_picture
+                                }
+                            
                         });
                         this.globalVariableService.isAuthenticatedOnEazl.next(true);
 
@@ -4115,7 +4123,14 @@ export class EazlService implements OnInit {
             is_superuser: false,        //ro
             is_staff: user.isStaff, //ro
             is_active: true,
-            last_login: null
+            last_login: null,
+            profile: 
+                {
+                    nick_name: user.nickName,
+                    cell_number: user.cellNumber,
+                    work_number: user.workTelephoneNumber,
+                    profile_picture: user.photoPath
+                }
         }
 
         return this.post<EazlUser>('users',workingUser)
@@ -4147,62 +4162,6 @@ export class EazlService implements OnInit {
 
         return this.users;
     }
-
-    // getUsers(): User[] {
-    //     // Return a list of Users
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
-
-    //     // Determine if the users are dirty, else present existing Array
-    //     let isDirtyUsers: boolean = this.globalVariableService.isDirtyUsers.getValue();
-        
-    //     if (isDirtyUsers) {
-            
-    //         // Clear out what we have, for now
-    //         // let workingUsers: User[] = [];
-    //         let usersWorking: User[] = [];
-    //         this.get<EazlUser>(`${this.route}`)
-    //             .toPromise()
-    //             .then( eazlUser => {    
-
-    //                 for (var i = 0; i < eazlUser.length; i++) {
-    //                     this.users.push({
-    //                         username: eazlUser[i].username,
-    //                         firstName: eazlUser[i].first_name,
-    //                         lastName: eazlUser[i].last_name,
-    //                         nickName: eazlUser[i].first_name,
-    //                         photoPath: 'pic',
-    //                         lastDatetimeLoggedIn: eazlUser[i].last_login,
-    //                         lastDatetimeReportWasRun: '',
-    //                         emailAddress: eazlUser[i].email,
-    //                         cellNumber: '082-011-1234',
-    //                         workTelephoneNumber: '011-222-3456',
-    //                         activeFromDate: '2017/05/01',
-    //                         inactiveDate: '',
-    //                         dateCreated: eazlUser[i].date_joined,
-    //                         userIDLastUpdated: '',
-    //                         isStaff: eazlUser[i].is_staff,
-    //                     });
-    //                 }
-
-    //                 // Not dirty any longer
-    //                 this.globalVariableService.isDirtyUsers.next(false);
-
-    //                 // Return the data
-    //                 return this.users;
-    //             } )
-    //             .catch(error => {
-    //                 this.globalVariableService.growlGlobalMessage.next({
-    //                     severity: 'warn',
-    //                     summary:  'GetUsers',
-    //                     detail:   'Unsuccessful in getting users from the database'
-    //                 });
-    //                 error.message || error
-    //             })
-    //     } else {
-    //         // Just return what we have got, as its clean
-    //         return Promise.resolve(this.users);
-    //     }
-    // }
 
     updateDashboardContainerHeader(
         dashboardID: number,
@@ -5758,27 +5717,43 @@ export class EazlService implements OnInit {
 
                 // Get all the users via API
                 let usersworking = [];
+                let nickNameWorking: string;
+                let cellNumberWorking: string;
+                let workTelephoneNumberWorking: string;
+                let photoPathWorking: string;
                 this.get<EazlUser>(`${this.route}`)
                         .subscribe(
                             (eazlUser) => {
 
                                 for (var i = 0; i < eazlUser.length; i++) {
+                                    nickNameWorking = '';
+                                    cellNumberWorking = '';
+                                    workTelephoneNumberWorking = '';
+                                    photoPathWorking = '';
+
+                                    if (eazlUser[i].profile != null) {
+                                            nickNameWorking =  eazlUser[i].profile.nick_name;
+                                            cellNumberWorking = eazlUser[i].profile.cell_number;
+                                            workTelephoneNumberWorking = eazlUser[i].profile.work_number;
+                                            photoPathWorking = eazlUser[i].profile.profile_picture;
+                                        }
                                     usersworking.push({
                                         username: eazlUser[i].username,
                                         firstName: eazlUser[i].first_name,
                                         lastName: eazlUser[i].last_name,
-                                        nickName: eazlUser[i].first_name,
-                                        photoPath: 'pic',
                                         lastDatetimeLoggedIn: eazlUser[i].last_login,
                                         lastDatetimeReportWasRun: '',
                                         emailAddress: eazlUser[i].email,
-                                        cellNumber: '082-011-1234',
-                                        workTelephoneNumber: '011-222-3456',
                                         activeFromDate: '2017/05/01',
                                         inactiveDate: '',
                                         dateCreated: eazlUser[i].date_joined,
                                         userIDLastUpdated: '',
                                         isStaff: eazlUser[i].is_staff,
+
+                                        nickName: nickNameWorking,
+                                        cellNumber: cellNumberWorking,
+                                        workTelephoneNumber: workTelephoneNumberWorking,
+                                        photoPath: photoPathWorking
                                     });
                                 }
 
