@@ -3961,6 +3961,11 @@ cdalUsers: EazlUser[] = [];
         this.globalVariableService.isAuthenticatedOnEazl.next(false);
         window.sessionStorage.removeItem('canvas-token');
 
+        // Clear local data
+        this.globalFunctionService.printToConsole(
+            this.constructor.name,'login', '  refresh the Cache');
+        this.cacheCanvasData('all', 'clear');
+
         // Inform the user
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info',
@@ -4012,11 +4017,10 @@ cdalUsers: EazlUser[] = [];
                             detail:   'Login successful for ' + eazlUser.username
                         });
 
-
-console.log('calling cacheCanvasData()')
-this.cacheCanvasData();
-
-
+                        // Get the data locally
+                        this.globalFunctionService.printToConsole(
+                            this.constructor.name,'login', '  refresh the Cache');
+                        this.cacheCanvasData('all', 'reset');
 
                         // Return the user object from the RESTi
                         return eazlUser;
@@ -4774,51 +4778,6 @@ this.cacheCanvasData();
                 }
             }
         }
-    }
-
-    getUsersResti() {
-            this.users = [];
-            return this.get<any>('widgets')
-                    .toPromise()
-                    .then( user => {    
-
-                        // for (var i = 0; i < eazlUser.length; i++) {
-                        //     this.users.push({
-                        //         username: eazlUser[i].username,
-                        //         firstName: eazlUser[i].first_name,
-                        //         lastName: eazlUser[i].last_name,
-                        //         nickName: eazlUser[i].first_name,
-                        //         photoPath: 'pic',
-                        //         lastDatetimeLoggedIn: eazlUser[i].last_login,
-                        //         lastDatetimeReportWasRun: '',
-                        //         emailAddress: eazlUser[i].email,
-                        //         cellNumber: '082-011-1234',
-                        //         workTelephoneNumber: '011-222-3456',
-                        //         activeFromDate: '2017/05/01',
-                        //         inactiveDate: '',
-                        //         dateCreated: eazlUser[i].date_joined,
-                        //         userIDLastUpdated: '',
-                        //         isStaff: eazlUser[i].is_staff,
-                        //     });
-                        // }
-
-                        // Not dirty any longer
-                        this.globalVariableService.isDirtyUsers.next(false);
-
-                        // Return the data
-                        return this.users;
-                    } )
-                    .catch(error => {
-                    //     this.globalVariableService.growlGlobalMessage.next({
-                    //         severity: 'warn',
-                    //         summary:  'GetUsers',
-                    //         detail:   'Unsuccessful in getting users from the database'
-                    //     });
-                    //     error.message || error
-                    // })
-
-    console.log('getUsersResti',error)        
-                    })
     }
 
     getGroups(groupID: number = -1): Promise<Group[]> {
