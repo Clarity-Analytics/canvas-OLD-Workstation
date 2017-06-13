@@ -85,7 +85,6 @@ export class NewMessageComponent implements OnInit {
                 this.sendToTheseUsers.push(event.items[i]);
             }
         }
-console.log(this.availableUsers, this.sendToTheseUsers)        
     }
 
     onMoveToSourceDashboardSendTo() {

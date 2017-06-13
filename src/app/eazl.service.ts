@@ -4140,7 +4140,11 @@ export class EazlService implements OnInit {
                     error.message || error
                 })
     }
- 
+
+    getUsersArray(): User[] {
+        return this.users;
+    }
+     
     getUsers(): Promise<User[]> {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
@@ -5760,13 +5764,6 @@ export class EazlService implements OnInit {
                 }
             }
         }
-    }
-
-
-
-    // Testing stuffies
-    getUsersArray(): User[] {
-        return this.users;
     }
 
     cacheCanvasData(

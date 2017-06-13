@@ -181,13 +181,9 @@ export class AppComponent implements OnInit {
         this.availableUsers = [];
         this.sendToTheseUsers = [];
 
-        this.eazlService.getUsers()
-            .then(usr => {
-                usr.forEach(sglusr => {
+        this.eazlService.getUsersArray().forEach(sglusr => {
                     this.availableUsers.push(sglusr.username)
                 })
-            })
-            .catch(error => console.log (error) )
 
         // Count Nr of unread messages for me
         this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
