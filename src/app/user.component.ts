@@ -78,7 +78,7 @@ export class UserComponent implements OnInit {
         this.canvasUser = this.globalVariableService.canvasUser.getValue();
  
         // Initialise variables
-        this.users = this.eazlService.getUsersArray();
+        this.users = this.eazlService.getUsers();
 
         this.popuMenuItems = [
             {

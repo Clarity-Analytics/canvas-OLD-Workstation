@@ -181,9 +181,9 @@ export class AppComponent implements OnInit {
         this.availableUsers = [];
         this.sendToTheseUsers = [];
 
-        this.eazlService.getUsersArray().forEach(sglusr => {
-                    this.availableUsers.push(sglusr.username)
-                })
+        this.eazlService.getUsers().forEach(sglusr => {
+            this.availableUsers.push(sglusr.username)
+        })
 
         // Count Nr of unread messages for me
         this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
@@ -545,7 +545,7 @@ export class AppComponent implements OnInit {
 testFn() {
 // this.eazlService.cacheCanvasData()
 this.sendNotificationToServer()
-console.log('this.eazlService.getUsers', this.eazlService.getUsersArray());
+console.log('this.eazlService.getUsers', this.eazlService.getUsers());
 
 let eksit: boolean = false;
 eksit = true;

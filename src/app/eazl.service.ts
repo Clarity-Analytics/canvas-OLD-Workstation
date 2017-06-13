@@ -4141,65 +4141,68 @@ export class EazlService implements OnInit {
                 })
     }
 
-    getUsersArray(): User[] {
-        return this.users;
-    }
-
-    getUsers(): Promise<User[]> {
+    getUsers(): User[] {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
 
-        // Determine if the users are dirty, else present existing Array
-        let isDirtyUsers: boolean = this.globalVariableService.isDirtyUsers.getValue();
-        
-        if (isDirtyUsers) {
-            
-            // Clear out what we have, for now
-            // let workingUsers: User[] = [];
-            this.users = [];
-            return this.get<EazlUser>(`${this.route}`)
-                    .toPromise()
-                    .then( eazlUser => {    
-
-                        for (var i = 0; i < eazlUser.length; i++) {
-                            this.users.push({
-                                username: eazlUser[i].username,
-                                firstName: eazlUser[i].first_name,
-                                lastName: eazlUser[i].last_name,
-                                nickName: eazlUser[i].first_name,
-                                photoPath: 'pic',
-                                lastDatetimeLoggedIn: eazlUser[i].last_login,
-                                lastDatetimeReportWasRun: '',
-                                emailAddress: eazlUser[i].email,
-                                cellNumber: '082-011-1234',
-                                workTelephoneNumber: '011-222-3456',
-                                activeFromDate: '2017/05/01',
-                                inactiveDate: '',
-                                dateCreated: eazlUser[i].date_joined,
-                                userIDLastUpdated: '',
-                                isStaff: eazlUser[i].is_staff,
-                            });
-                        }
-
-                        // Not dirty any longer
-                        this.globalVariableService.isDirtyUsers.next(false);
-
-                        // Return the data
-                        return this.users;
-                    } )
-                    .catch(error => {
-                        this.globalVariableService.growlGlobalMessage.next({
-                            severity: 'warn',
-                            summary:  'GetUsers',
-                            detail:   'Unsuccessful in getting users from the database'
-                        });
-                        error.message || error
-                    })
-        } else {
-            // Just return what we have got, as its clean
-            return Promise.resolve(this.users);
-        }
+        return this.users;
     }
+
+    // getUsers(): User[] {
+    //     // Return a list of Users
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
+
+    //     // Determine if the users are dirty, else present existing Array
+    //     let isDirtyUsers: boolean = this.globalVariableService.isDirtyUsers.getValue();
+        
+    //     if (isDirtyUsers) {
+            
+    //         // Clear out what we have, for now
+    //         // let workingUsers: User[] = [];
+    //         let usersWorking: User[] = [];
+    //         this.get<EazlUser>(`${this.route}`)
+    //             .toPromise()
+    //             .then( eazlUser => {    
+
+    //                 for (var i = 0; i < eazlUser.length; i++) {
+    //                     this.users.push({
+    //                         username: eazlUser[i].username,
+    //                         firstName: eazlUser[i].first_name,
+    //                         lastName: eazlUser[i].last_name,
+    //                         nickName: eazlUser[i].first_name,
+    //                         photoPath: 'pic',
+    //                         lastDatetimeLoggedIn: eazlUser[i].last_login,
+    //                         lastDatetimeReportWasRun: '',
+    //                         emailAddress: eazlUser[i].email,
+    //                         cellNumber: '082-011-1234',
+    //                         workTelephoneNumber: '011-222-3456',
+    //                         activeFromDate: '2017/05/01',
+    //                         inactiveDate: '',
+    //                         dateCreated: eazlUser[i].date_joined,
+    //                         userIDLastUpdated: '',
+    //                         isStaff: eazlUser[i].is_staff,
+    //                     });
+    //                 }
+
+    //                 // Not dirty any longer
+    //                 this.globalVariableService.isDirtyUsers.next(false);
+
+    //                 // Return the data
+    //                 return this.users;
+    //             } )
+    //             .catch(error => {
+    //                 this.globalVariableService.growlGlobalMessage.next({
+    //                     severity: 'warn',
+    //                     summary:  'GetUsers',
+    //                     detail:   'Unsuccessful in getting users from the database'
+    //                 });
+    //                 error.message || error
+    //             })
+    //     } else {
+    //         // Just return what we have got, as its clean
+    //         return Promise.resolve(this.users);
+    //     }
+    // }
 
     updateDashboardContainerHeader(
         dashboardID: number,
