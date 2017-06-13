@@ -5316,7 +5316,7 @@ export class EazlService implements OnInit {
     getDashboardGroupMembership(
             dashboardID:number = -1, 
             include:boolean = true
-    ): DashboardGroup[] {
+        ): DashboardGroup[] {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else 
@@ -5441,7 +5441,7 @@ export class EazlService implements OnInit {
             relationshipType: string,
             include: boolean = true,
             username: string = '*'
-        ): Promise<User[]> { 
+        ): User[] { 
         // Return users with a given relationship to any Dashboard
         // - dashboardID for this Dashboard
         // - relationshipType for this Relationship
@@ -5463,21 +5463,15 @@ export class EazlService implements OnInit {
 
         // Return necesary groups, selectively depending on in/exclude
         // Struggle Avoidance Technique: set as [] upfront, else .IndexOf undefined fails
-        let resultUsers: User[] = [];
-        return this.getUsers()
-                .then( usr => {
-                    resultUsers = usr.filter(
-                        u => {
-                                if ( (include  &&  userIDs.indexOf(u.username) >= 0 ) 
-                                    ||
-                                   (!include  &&  userIDs.indexOf(u.username) < 0) ) {
-                                    return u
-                                }
-                        }
-                    );   
-                    return resultUsers;
-                })
-            .catch(error => console.log (error) )
+        return this.users.filter(
+            u => {
+                    if ( (include  &&  userIDs.indexOf(u.username) >= 0 ) 
+                        ||
+                        (!include  &&  userIDs.indexOf(u.username) < 0) ) {
+                        return u
+                    }
+            }
+        );   
     }
 
     addDashboardGroupRelationship(

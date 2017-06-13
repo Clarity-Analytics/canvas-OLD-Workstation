@@ -366,30 +366,23 @@ export class DashboardManagerComponent implements OnInit {
         this.eazlService.getUsersRelatedToDashboard
             (this.selectedDashboard.dashboardID,
              'SharedWith'
-             )
-             .then( u => {
-                u.forEach(sglusr => {
-                    this.belongstoSharedWith.push(sglusr.username); 
-                })
+             ).forEach(sglusr => {
+                this.belongstoSharedWith.push(sglusr.username); 
+            }
+        )
 
-                // Get the complement (NOT related Users)
-                this.eazlService.getUsersRelatedToDashboard
-                    (this.selectedDashboard.dashboardID,
-                    'SharedWith',
-                    false
-                    )
-                    .then( u => {
-                        u.forEach(sglusr => {
-                            this.availableSharedWith.push(sglusr.username);
-                        })
-                        this.displaySharedWith = true;               
-                    })
-                    .catch(error => console.log (error) )
+        // Get the complement (NOT related Users)
+        this.eazlService.getUsersRelatedToDashboard
+            (this.selectedDashboard.dashboardID,
+            'SharedWith',
+            false
+            ).forEach(sglusr => {
+                this.availableSharedWith.push(sglusr.username);
+            }
+        )
 
-
-                this.displaySharedWith = true;               
-             })
-             .catch(error => console.log (error) )
+        // Show popup
+        this.displaySharedWith = true;               
     }
 
     onClickUsersSharedWithCancel() {
