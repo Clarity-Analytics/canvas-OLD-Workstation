@@ -5198,7 +5198,7 @@ export class EazlService implements OnInit {
         )
     }
 
-    getUsersPerGroup(groupID: number = -1, include: boolean = true): Promise<User[]> {
+    getUsersPerGroup(groupID: number = -1, include: boolean = true): User[] {
         // Return a list of Users that belongs to a group
         // - groupID Optional parameter, -1 = include all
         // - include, True means to which belongs, False means complements (NOT)
@@ -5210,34 +5210,24 @@ export class EazlService implements OnInit {
 
         // Return all if no username specified
         if (groupID == -1) {
-            return Promise.resolve(this.users);
+            return this.users;
         }
 
         // Make an array of username that belongs to the Group
-        else {
-            this.usergroupMembership.forEach(
-                (usrgrp) => { 
-                                if (usrgrp.groupID == groupID) 
-                                resultUsergroupMembership.push(usrgrp.username)  
-                            }
-            )   
-        }
+        this.usergroupMembership.forEach(
+            (usrgrp) => { 
+                        if (usrgrp.groupID == groupID) 
+                        resultUsergroupMembership.push(usrgrp.username)  
+                    }
+        )   
 
         // Return necesary groups, selectively depending on in/exclude
-        let resultUsers: User[];
 
-        return Promise.resolve(
-            this.getUsers()
-                .then( usr => {
-                    resultUsers = usr.filter(
-                        u => (include  &&  resultUsergroupMembership.indexOf(u.username) >= 0) 
-                              ||
-                             (!include &&  resultUsergroupMembership.indexOf(u.username) < 0) 
-                    );   
-                    return Promise.resolve(resultUsers);
-                })
-            .catch(error => console.log (error) )
-        )
+        return this.users.filter(
+            u => (include  &&  resultUsergroupMembership.indexOf(u.username) >= 0) 
+                  ||
+                 (!include &&  resultUsergroupMembership.indexOf(u.username) < 0) 
+        );   
     }
 
     addUserGroupMembership(username: string, groupID: number) {
