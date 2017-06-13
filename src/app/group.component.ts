@@ -59,11 +59,8 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
  
         // Initialise variables
-        this.eazlService.getGroups()
-            .then(grp => {
-                this.groups = grp
-            })
-            .catch( err => {console.log(err)} );
+        this.groups = this.eazlService.getGroups();
+
         this.popuMenuItems = [
             {
                 label: 'Add', 

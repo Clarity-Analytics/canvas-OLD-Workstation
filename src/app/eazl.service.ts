@@ -4781,23 +4781,20 @@ export class EazlService implements OnInit {
         }
     }
 
-    getGroups(groupID: number = -1): Promise<Group[]> {
+    getGroups(groupID: number = -1): Group[] {
         // Return a list of Groups
         // - groupID Optional parameter to select ONE, else select ALL (if >= 0)
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroups', '@Start');
 
         // TODO - from DB
-        let resultGroups: Group[] = [];
         if (groupID == -1) {
-            resultGroups = this.groups;
+            return this.groups;
         }
         else {
-            resultGroups = this.groups.filter(
+            return this.groups.filter(
                 grp => grp.groupID == groupID
             )
         }
-
-        return Promise.resolve(resultGroups);
     }
 
     addGroup(groupName: string, groupDescription: string) {
