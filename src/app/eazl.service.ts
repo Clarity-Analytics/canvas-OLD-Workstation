@@ -3871,9 +3871,6 @@ export class EazlService implements OnInit {
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
 
-
-cdalUsers: EazlUser[] = [];
-
     constructor(
         private canvasDate: CanvasDate,
         private globalFunctionService: GlobalFunctionService,
@@ -5794,7 +5791,6 @@ cdalUsers: EazlUser[] = [];
                 this.get<EazlUser>(`${this.route}`)
                         .subscribe(
                             (eazlUser) => {
-                                this.cdalUsers = [];
 
                                 for (var i = 0; i < eazlUser.length; i++) {
                                     usersworking.push({
