@@ -3889,9 +3889,6 @@ cdalUsers: EazlUser[] = [];
         // Starters
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-console.log('calling cdalGetUsers()')
-this.cdalGetUsers();
-
     }
 
     getSystemConfiguration() {
@@ -4016,8 +4013,8 @@ this.cdalGetUsers();
                         });
 
 
-console.log('calling cdalGetUsers()')
-this.cdalGetUsers();
+console.log('calling cacheCanvasData()')
+this.cacheCanvasData();
 
 
 
@@ -5811,20 +5808,60 @@ this.cdalGetUsers();
 
 
 
-// Testing stuffies
-cdalGetUsers() {
-console.log('cdal Eazl')
-    this.get<EazlUser>(`${this.route}`)
-                .subscribe(
-                    (eazlUser) => {
-                        this.cdalUsers = [];
+    // Testing stuffies
+    getUsersArray(): User[] {
+        return this.users;
+    }
 
-                        for (var i = 0; i < eazlUser.length; i++) {
-                            this.cdalUsers.push(eazlUser[i])
-                        }
-                    })
-    
-}
+    cacheCanvasData(
+            resetObject: string = 'all',  
+            resetAction: string = 'reset',
+            resetID: number = -1
+    ) {
+        // Make a local cache of Canvas Data
+        // - resetObject: all to reset all, else type like users
+        // - resetAction: reset, add, delete, update
+        // - resetID: id of single object if not all
+        this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '@Start');
 
+        // Users
+        if (resetObject == 'all'   ||   resetObject == 'users') {
 
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the users via API
+                let usersworking = [];
+                this.get<EazlUser>(`${this.route}`)
+                        .subscribe(
+                            (eazlUser) => {
+                                this.cdalUsers = [];
+
+                                for (var i = 0; i < eazlUser.length; i++) {
+                                    usersworking.push({
+                                        username: eazlUser[i].username,
+                                        firstName: eazlUser[i].first_name,
+                                        lastName: eazlUser[i].last_name,
+                                        nickName: eazlUser[i].first_name,
+                                        photoPath: 'pic',
+                                        lastDatetimeLoggedIn: eazlUser[i].last_login,
+                                        lastDatetimeReportWasRun: '',
+                                        emailAddress: eazlUser[i].email,
+                                        cellNumber: '082-011-1234',
+                                        workTelephoneNumber: '011-222-3456',
+                                        activeFromDate: '2017/05/01',
+                                        inactiveDate: '',
+                                        dateCreated: eazlUser[i].date_joined,
+                                        userIDLastUpdated: '',
+                                        isStaff: eazlUser[i].is_staff,
+                                    });
+                                }
+
+                            // Replace
+                            this.users = usersworking;
+                            }
+                    )
+            }
+        }
+    }
 }

@@ -56,7 +56,6 @@ export class AppComponent implements OnInit {
     routerLink:string = '';                         // RouterLink in Menu.Command
     setFakeVariablesForTesting: boolean = false;    // Jass for me
     sendToTheseUsers: string[] = [];                // List of UserIDs to whom message is sent
-usersCDAL: User[];
     private notificationFromServer: Notification;   // Websocket msg
 
     // Define Variables - define here if a global variable is used in html.
@@ -95,6 +94,12 @@ usersCDAL: User[];
         }
 
     sendNotificationToServer() {
+        //   Send Notification To Server
+        this.globalFunctionService.printToConsole(this.constructor.name,'sendNotificationToServer', '@Start');
+
+        // Refresh the data
+        this.eazlService.cacheCanvasData();
+
         // Temp solution to generate a Web Socket message
         this.notificationFromServer = {
             author:  'James Lawrance',
@@ -125,7 +130,6 @@ usersCDAL: User[];
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-// this.usersCDAL = this.cdal.users.subscribe(usr => usr.values());
         // Subscribe to the global alerts (that are growled)
         // growlGlobalMessage = observable new (single) message
         this.globalVariableService.growlGlobalMessage.subscribe (
@@ -545,8 +549,9 @@ usersCDAL: User[];
 
 
 testFn() {
-
-console.log('this.eazlService.cdalUsers', this.eazlService.cdalUsers);
+// this.eazlService.cacheCanvasData()
+this.sendNotificationToServer()
+console.log('this.eazlService.cdalUsers', this.eazlService.getUsersArray());
 // console.log('users', this.cdal.users);
 
 // this.usersCDAL = this.cdal.getUsers()
