@@ -5821,7 +5821,7 @@ export class EazlService implements OnInit {
                                 }
 
                             // Replace
-console.log('widgetsWorking', widgetsWorking)                            
+console.log('widgetsWorking', )                            
                             // this.groups = widgetsWorking;
                             }
                     )
