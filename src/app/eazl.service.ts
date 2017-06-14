@@ -24,7 +24,9 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DataSource }                 from './model.datasource';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
+import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
+import { EazlWidget }                 from './model.widget';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { CanvasMessage }              from './model.canvasMessage';
@@ -5715,8 +5717,8 @@ export class EazlService implements OnInit {
             // Reset 
             if (resetAction == 'reset') {
 
-                // Get all the users via API
-                let usersworking = [];
+                // Get all the data via API
+                let usersWorking = [];
                 let nickNameWorking: string;
                 let cellNumberWorking: string;
                 let workTelephoneNumberWorking: string;
@@ -5737,7 +5739,7 @@ export class EazlService implements OnInit {
                                             workTelephoneNumberWorking = eazlUser[i].profile.work_number;
                                             photoPathWorking = eazlUser[i].profile.profile_picture;
                                         }
-                                    usersworking.push({
+                                    usersWorking.push({
                                         username: eazlUser[i].username,
                                         firstName: eazlUser[i].first_name,
                                         lastName: eazlUser[i].last_name,
@@ -5758,10 +5760,76 @@ export class EazlService implements OnInit {
                                 }
 
                             // Replace
-                            this.users = usersworking;
+                            this.users = usersWorking;
                             }
                     )
             }
         }
+
+        // Groups
+        if (resetObject == 'all'   ||   resetObject == 'groups') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let groupsWorking: Group[] = [];
+                // this.get<EazlGroup>(`${this.route}`)
+                this.get<EazlGroup>('groups')
+                        .subscribe(
+                            (eazlGroup) => {
+                                for (var i = 0; i < eazlGroup.length; i++) {
+                                    groupsWorking.push({
+                                        groupID: i,
+                                        groupName: eazlGroup[i].name,
+                                        groupDescription: eazlGroup[i].name,
+                                        groupCreatedDateTime: '2017/05/01',
+                                        groupCreatedUserID: 'Janniei',
+                                        groupUpdatedDateTime: '2017/05/01',
+                                        groupUpdatedUserID: 'Janniei'
+                                    });
+                                }
+
+                            // Replace
+                            this.groups = groupsWorking;
+                            }
+                    )
+            }
+        }
+
+
+        // Widgets
+        if (resetObject == 'all'   ||   resetObject == 'widgets') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let widgetsWorking: EazlWidget[] = [];
+                // this.get<EazlGroup>(`${this.route}`)
+                this.get<EazlWidget>('widgets')
+                        .subscribe(
+                            (eazlWidget => {
+                                for (var i = 0; i < eazlWidget.length; i++) {
+                                    widgetsWorking.push({
+                                        id: eazlWidget[i].id,
+                                        name: eazlWidget[i].name,
+                                        query: eazlWidget[i].query,
+                                        widget_type: eazlWidget[i].widget_type,
+                                        specification: eazlWidget[i].specification
+                                    });
+                                }
+
+                            // Replace
+console.log('widgetsWorking', widgetsWorking)                            
+                            // this.groups = widgetsWorking;
+                            }
+                    )
+            }
+        }
+
+console.log('this.groups', this.groups)
+
+
     }
 }

@@ -1,5 +1,15 @@
 // Schema for Widget object
 
+// Eazl
+export class EazlWidget {
+    id: number;
+    name: string;
+    query: string;
+    widget_type: string;
+    specification: any;
+}
+
+// Canvas
 export class Widget {
     // Widget layout - all dimensions in px EXCEPT font-size in em
     container: {

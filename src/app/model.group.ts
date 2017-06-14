@@ -10,3 +10,11 @@ export class Group {
     groupUpdatedDateTime: string;          // Updated on
     groupUpdatedUserID: string;            // Updated by
 }
+
+// Group returned by REST, determined by Django
+export interface EazlGroup 
+    {
+        // Defines data model for User Entity
+        pk: number;
+        username: string;
+    }
