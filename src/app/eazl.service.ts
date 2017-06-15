@@ -3748,96 +3748,96 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
 export const CANVASMESSAGES: CanvasMessage[] = 
     [
         {
-            messageConversationID: 0,
-            messageID: 0,
-            messageSenderUserID: 'janniei',
-            messageSentDateTime: '2017/05/01 09:10',
-            messageIsSystemGenerated: false,
-            messageDashboardID: 0,
-            messageReportID: 1,
-            messageWidgetID: -1,
-            messageSubject: 'Value looks too low',
-            messageBody: 'Please look at value for May, particularly in Bonds',
-            messageSentToMe: false,
-            messageMyStatus: 'UnRead',
-            messageRecipients: [
+            canvasMessageConversationID: 0,
+            canvasMessageID: 0,
+            canvasMessageSenderUserID: 'janniei',
+            canvasMessageSentDateTime: '2017/05/01 09:10',
+            canvasMessageIsSystemGenerated: false,
+            canvasMessageDashboardID: 0,
+            canvasMessageReportID: 1,
+            canvasMessageWidgetID: -1,
+            canvasMessageSubject: 'Value looks too low',
+            canvasMessageBody: 'Please look at value for May, particularly in Bonds',
+            canvasMessageSentToMe: false,
+            canvasMessageMyStatus: 'UnRead',
+            canvasMessageRecipients: [
                 {
-                    messageRecipientUserID: 'bradleyk',
-                    messageRecipientStatus: 'Read',
-                    messageReadDateTime: '2017/05/01 09:11',
+                    canvasMessageRecipientUserID: 'bradleyk',
+                    canvasMessageRecipientStatus: 'Read',
+                    canvasMessageReadDateTime: '2017/05/01 09:11',
                 }
             ]
         },
         {
-            messageConversationID: 0,
-            messageID: 1,
-            messageSenderUserID: 'bradleyk',
-            messageSentDateTime: '2017/05/01 10:17',
-            messageIsSystemGenerated: false,
-            messageDashboardID: 0,
-            messageReportID: 1,
-            messageWidgetID: -1,
-            messageSubject: 'Value looks too low',
-            messageBody: 'Checked, all good',
-            messageSentToMe: true,
-            messageMyStatus: 'Read',
-            messageRecipients: [
+            canvasMessageConversationID: 0,
+            canvasMessageID: 1,
+            canvasMessageSenderUserID: 'bradleyk',
+            canvasMessageSentDateTime: '2017/05/01 10:17',
+            canvasMessageIsSystemGenerated: false,
+            canvasMessageDashboardID: 0,
+            canvasMessageReportID: 1,
+            canvasMessageWidgetID: -1,
+            canvasMessageSubject: 'Value looks too low',
+            canvasMessageBody: 'Checked, all good',
+            canvasMessageSentToMe: true,
+            canvasMessageMyStatus: 'Read',
+            canvasMessageRecipients: [
                 {
-                    messageRecipientUserID: 'janniei',
-                    messageRecipientStatus: 'Read',
-                    messageReadDateTime: '2017/05/01 11:50',
+                    canvasMessageRecipientUserID: 'janniei',
+                    canvasMessageRecipientStatus: 'Read',
+                    canvasMessageReadDateTime: '2017/05/01 11:50',
                 }
             ]
         },
         {
-            messageConversationID: 0,
-            messageID: 2,
-            messageSenderUserID: 'janniei',
-            messageSentDateTime: '2017/05/01 11:51',
-            messageIsSystemGenerated: false,
-            messageDashboardID: 0,
-            messageReportID: 1,
-            messageWidgetID: -1,
-            messageSubject: 'Value looks too low',
-            messageBody: 'Thank you',
-            messageSentToMe: false,
-            messageMyStatus: 'UnRead',
-            messageRecipients: [
+            canvasMessageConversationID: 0,
+            canvasMessageID: 2,
+            canvasMessageSenderUserID: 'janniei',
+            canvasMessageSentDateTime: '2017/05/01 11:51',
+            canvasMessageIsSystemGenerated: false,
+            canvasMessageDashboardID: 0,
+            canvasMessageReportID: 1,
+            canvasMessageWidgetID: -1,
+            canvasMessageSubject: 'Value looks too low',
+            canvasMessageBody: 'Thank you',
+            canvasMessageSentToMe: false,
+            canvasMessageMyStatus: 'UnRead',
+            canvasMessageRecipients: [
                 {
-                    messageRecipientUserID: 'bradleyk',
-                    messageRecipientStatus: 'UnRead',
-                    messageReadDateTime: '',
+                    canvasMessageRecipientUserID: 'bradleyk',
+                    canvasMessageRecipientStatus: 'UnRead',
+                    canvasMessageReadDateTime: '',
                 }
             ]
         },
         {
-            messageConversationID: 1,
-            messageID: 3,
-            messageSenderUserID: 'janniei',
-            messageSentDateTime: '2017/05/02 13:47',
-            messageIsSystemGenerated: false,
-            messageDashboardID: -1,
-            messageReportID: 2,
-            messageWidgetID: 3,
-            messageSubject: 'Snacks available @ coffee machine',
-            messageBody: 'Enjoy!',
-            messageSentToMe: false,
-            messageMyStatus: 'UnRead',
-            messageRecipients: [
+            canvasMessageConversationID: 1,
+            canvasMessageID: 3,
+            canvasMessageSenderUserID: 'janniei',
+            canvasMessageSentDateTime: '2017/05/02 13:47',
+            canvasMessageIsSystemGenerated: false,
+            canvasMessageDashboardID: -1,
+            canvasMessageReportID: 2,
+            canvasMessageWidgetID: 3,
+            canvasMessageSubject: 'Snacks available @ coffee machine',
+            canvasMessageBody: 'Enjoy!',
+            canvasMessageSentToMe: false,
+            canvasMessageMyStatus: 'UnRead',
+            canvasMessageRecipients: [
                 {
-                    messageRecipientUserID: 'jamesv',
-                    messageRecipientStatus: 'UnRead',
-                    messageReadDateTime: '',
+                    canvasMessageRecipientUserID: 'jamesv',
+                    canvasMessageRecipientStatus: 'UnRead',
+                    canvasMessageReadDateTime: '',
                 },
                 {
-                    messageRecipientUserID: 'bradleyk',
-                    messageRecipientStatus: 'Read',
-                    messageReadDateTime: '2017/05/02 14:23',
+                    canvasMessageRecipientUserID: 'bradleyk',
+                    canvasMessageRecipientStatus: 'Read',
+                    canvasMessageReadDateTime: '2017/05/02 14:23',
                 },
                 {
-                    messageRecipientUserID: 'veronicas',
-                    messageRecipientStatus: 'UnRead',
-                    messageReadDateTime: '',
+                    canvasMessageRecipientUserID: 'veronicas',
+                    canvasMessageRecipientStatus: 'UnRead',
+                    canvasMessageReadDateTime: '',
                 }
             ]
         }
@@ -5637,32 +5637,32 @@ export class EazlService implements OnInit {
         }
         return this.canvasMessages.filter(cm => {
             if (
-                (dashboardID == -1  || cm.messageDashboardID == dashboardID)  
+                (dashboardID == -1  || cm.canvasMessageDashboardID == dashboardID)  
                 &&
-                (reportID == -1     || cm.messageReportID == reportID)
+                (reportID == -1     || cm.canvasMessageReportID == reportID)
                 &&
-                (widgetID == -1     || cm.messageWidgetID == widgetID)
+                (widgetID == -1     || cm.canvasMessageWidgetID == widgetID)
             ) {
                 // Determine calced fields: messageSentToMe, messageMyStatus, etc
                 for (var i = 0; i < this.canvasMessages.length; i++) {
                     found = false;
                     myStatus= '';
 
-                    for (var j = 0; j < this.canvasMessages[i].messageRecipients.length; j++) {
+                    for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
 
-                        if (this.canvasMessages[i].messageRecipients[j].messageRecipientUserID == 
+                        if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserID == 
                             username) {
                                 found = true;
-                                myStatus = this.canvasMessages[i].messageRecipients[j].
-                                    messageRecipientStatus;
+                                myStatus = this.canvasMessages[i].canvasMessageRecipients[j].
+                                    canvasMessageRecipientStatus;
                             }
                     };
 
-                    this.canvasMessages[i].messageMyStatus = myStatus
+                    this.canvasMessages[i].canvasMessageMyStatus = myStatus
                     if (found) {
-                        this.canvasMessages[i].messageSentToMe = true;
+                        this.canvasMessages[i].canvasMessageSentToMe = true;
                     } else {
-                        this.canvasMessages[i].messageSentToMe = false;
+                        this.canvasMessages[i].canvasMessageSentToMe = false;
                     }
 
                 }
@@ -5682,18 +5682,18 @@ export class EazlService implements OnInit {
             username = this.globalVariableService.canvasUser.getValue().username;
         }
         for (var i = 0; i < this.canvasMessages.length; i++) {
-            if (this.canvasMessages[i].messageID == messageID) {
-                for (var j = 0; j < this.canvasMessages[i].messageRecipients.length; j++) {
-                    if (this.canvasMessages[i].messageRecipients[j].messageRecipientUserID == 
+            if (this.canvasMessages[i].canvasMessageID == messageID) {
+                for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
+                    if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserID == 
                             username) {
-                                if (this.canvasMessages[i].messageRecipients[j].
-                                    messageRecipientStatus == 'Read') {
-                                        this.canvasMessages[i].messageRecipients[j].
-                                            messageRecipientStatus = 'UnRead';
+                                if (this.canvasMessages[i].canvasMessageRecipients[j].
+                                    canvasMessageRecipientStatus == 'Read') {
+                                        this.canvasMessages[i].canvasMessageRecipients[j].
+                                            canvasMessageRecipientStatus = 'UnRead';
                                 }
                                 else {
-                                    this.canvasMessages[i].messageRecipients[j].
-                                        messageRecipientStatus = 'Read';
+                                    this.canvasMessages[i].canvasMessageRecipients[j].
+                                        canvasMessageRecipientStatus = 'Read';
                                 }
                     }
                 }
