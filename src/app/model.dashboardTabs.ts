@@ -11,7 +11,7 @@ export class DashboardTab {
     dashboardTabName: string;                   // Tab Name inside
     dashboardTabDescription: string;            // Tab Description
     dashboardTabCreatedDateTime: string;        // Updated on
-    dashboardCreatedUserID: string;             // Updated by
+    dashboardTabCreatedUserID: string;             // Updated by
     dashboardTabUpdatedDateTime: string;        // Created on
     dashboardTabUpdatedUserID: string;          // Created by
 } 

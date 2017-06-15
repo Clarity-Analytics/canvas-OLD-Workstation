@@ -679,7 +679,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '0-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
         },
@@ -689,7 +689,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Volume',
             dashboardTabDescription: '0-Volume: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
         },        
@@ -699,7 +699,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: 'Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
         },
@@ -709,7 +709,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Volume',
             dashboardTabDescription: '1-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
         },
@@ -719,7 +719,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '3-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
         },
@@ -729,7 +729,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '4-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
         },
@@ -739,7 +739,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '5-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
         },
@@ -5849,7 +5849,7 @@ console.log('widgetsWorking', )
                                         dashboardTabName:'',
                                         dashboardTabDescription: '',
                                         dashboardTabCreatedDateTime: '2017/05/01',
-                                        dashboardCreatedUserID: 'Janniei',
+                                        dashboardTabCreatedUserID: 'Janniei',
                                         dashboardTabUpdatedDateTime: '2017/05/01',
                                         dashboardTabUpdatedUserID: 'Janniei'
                                     });
