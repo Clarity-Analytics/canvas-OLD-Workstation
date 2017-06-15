@@ -26,8 +26,6 @@ import { EazlService }                from './eazl.service';
 import { Notification }               from './model.notification';
 
 
-
-
 //testFn()
 import { Observable }                 from 'rxjs/Observable';
 import { User } from './model.user';
