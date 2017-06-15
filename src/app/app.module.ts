@@ -126,9 +126,13 @@ import { PackageFieldsComponent } from './package-fields/package-fields.componen
 import { PackageParametersComponent } from './package-parameters/package-parameters.component';
 
 // New idea
-import { UserService } from './_services';
-import { PackageService } from './_services';
-import { AuthenticationService } from './_services';
+import { 
+    UserService, 
+    PackageService, 
+    AuthenticationService,
+    DataService
+} from './_services';
+
 import { ReconnectingWebSocket } from './_services';
 
 
@@ -240,6 +244,7 @@ import { ReconnectingWebSocket } from './_services';
 
     UserService,
     PackageService,
+    DataService,
     AuthenticationService,
     ReconnectingWebSocket,
 

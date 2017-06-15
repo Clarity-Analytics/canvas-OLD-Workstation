@@ -1,6 +1,5 @@
 export class SocketMessage {
 	message_type: string;
-
 }
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Package } from '../_models/model.package';
 import { Field } from '../_models/model.package';
 
-import { PackageService } from '../_services';
+import { DataService, PackageService } from '../_services';
 
 
 class ComponentPackage extends Package {
@@ -34,8 +34,9 @@ export class PackagesComponent implements OnInit {
 	search: string = '';
 
 	constructor(
-		private packageService: PackageService) {
-		
+		private dataService: DataService,
+		private packageService: PackageService)
+	{	
 		this.selectedPackage = new ComponentPackage();
 	}
 
@@ -68,21 +69,30 @@ export class PackagesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.packageService.packages.subscribe(
-			(packages) => {
-				packages.forEach( (item: Package, index: number) => {
-					let componentPackage = ComponentPackage.fromPackage(item, index===0)
-					if (index === 0) {
-						this.selectedPackage = componentPackage;
-					}
-
-					this.packageList.push(componentPackage);
-				});
-			}, 
-			error => {
-				console.log(JSON.parse(error));
+		this.dataService.packages.forEach( (item: Package, index: number) => {
+			let componentPackage = ComponentPackage.fromPackage(item, index===0)
+			if (index === 0) {
+				this.selectedPackage = componentPackage;
 			}
-		);
+
+			this.packageList.push(componentPackage);
+		});
+
+		// this.packageService.packages.subscribe(
+		// 	(packages) => {
+		// 		packages.forEach( (item: Package, index: number) => {
+		// 			let componentPackage = ComponentPackage.fromPackage(item, index===0)
+		// 			if (index === 0) {
+		// 				this.selectedPackage = componentPackage;
+		// 			}
+
+		// 			this.packageList.push(componentPackage);
+		// 		});
+		// 	}, 
+		// 	error => {
+		// 		console.log(JSON.parse(error));
+		// 	}
+		// );
 	}
 
 }

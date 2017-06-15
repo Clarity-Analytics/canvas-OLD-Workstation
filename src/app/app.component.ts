@@ -27,6 +27,7 @@ import { Notification }               from './model.notification';
 // For resti
 import { EazlUserService } from './eazl.user.service';
 import { EazlService } from './eazl.service';
+import { DataService } from './_services/data.service';
 
 
 @Component({
@@ -71,7 +72,8 @@ export class AppComponent implements OnInit {
         private router: Router,
 
         private eazl: EazlService,
-        private eazlUser: EazlUserService
+        private eazlUser: EazlUserService,
+        private dataService: DataService,
         ) { 
             // Subscribe to Web Socket
             notificationService.messages.subscribe(msg => {			
@@ -90,11 +92,15 @@ export class AppComponent implements OnInit {
 
             // Here we listen for changes in the login-ness of the user. If they logout the component should react accordingly.
             
-            this.globalVariableService.currentUserUserName.subscribe(name => {
-                this.isLoggedIn = name != null;
-                
-                this.loadMenu();
+            this.isLoggedIn = this.dataService.storage.getItem('canvas-token') != null
+            if (!this.isLoggedIn) {
                 this.router.navigate(['login']);
+            } else {
+                this.dataService.refreshAll();
+            }
+
+            this.globalVariableService.currentUserUserName.subscribe(name => {
+                this.loadMenu();
             }); // end subscription
         }
 
@@ -153,24 +159,6 @@ export class AppComponent implements OnInit {
         // Fake login & preferences for testing - KEEP for next time - just set to FALSE
         this.setFakeVariablesForTesting = true;
         
-        // If there is a token present in the sessionStorage refresh the user object
-        if (this.eazl.authToken.value) {
-            this.eazlUser.refresh();
-        }
-
-        // Growl authentication problems
-        this.eazl.authError.subscribe(authError => {
-            if (authError != null) {
-                this.globalVariableService.growlGlobalMessage.next(
-                    {
-                        severity: 'error', 
-                        summary:  'Error', 
-                        detail:   `${authError.non_field_errors}`
-                    }
-                );
-            }
-        }); 
-
         // Load menu array
         this.loadMenu()
     }

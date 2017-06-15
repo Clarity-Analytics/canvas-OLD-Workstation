@@ -18,7 +18,7 @@ import { GlobalVariableService }      from './global.variable.service';
 
 
 // For the resti
-import { UserService, AuthenticationService } from './_services';
+import { UserService, DataService, AuthenticationService, ReconnectingWebSocket } from './_services';
 import { User, Token } from './_models';
 import { Observable } from 'rxjs';
 
@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
       private globalFunctionService: GlobalFunctionService,
       private globalVariableService: GlobalVariableService,
       private authService: AuthenticationService,
-      private userService: UserService
+      private userService: UserService,
+      private dataService: DataService,
+      private channel: ReconnectingWebSocket,
       ) {}
   
   ngOnInit() {
@@ -79,6 +81,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password)
       .flatMap( 
         (authToken: Token, index: number) => {
+          this.channel.connect(authToken);
+          this.dataService.refreshAll();
+          
           return this.userService.getCurrentUser()
       }).subscribe(
         (currentUser: User) => { this.setCurrentUser(currentUser) },
