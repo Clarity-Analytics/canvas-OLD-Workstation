@@ -8,9 +8,9 @@ export class EazlDashboardTab {
 export class DashboardTab {
     dashboardID: number;                        // FK to Unique DB ID
     dashboardTabID: number;                     // Unique DB key
-    dashboardTabName: string;                      // Tab Name inside
-    dashboardTabDescription: string;               // Tab Description
-    dashboardCreatedDateTime: string;           // Updated on
+    dashboardTabName: string;                   // Tab Name inside
+    dashboardTabDescription: string;            // Tab Description
+    dashboardTabCreatedDateTime: string;        // Updated on
     dashboardCreatedUserID: string;             // Updated by
     dashboardTabUpdatedDateTime: string;        // Created on
     dashboardTabUpdatedUserID: string;          // Created by

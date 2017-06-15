@@ -678,7 +678,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabID: 0,
             dashboardTabName: 'Value',
             dashboardTabDescription: '0-Value: Full and detailed desription of tab - purpose',
-            dashboardCreatedDateTime: '2017/05/01',
+            dashboardTabCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
@@ -688,7 +688,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabID: 1,
             dashboardTabName: 'Volume',
             dashboardTabDescription: '0-Volume: Full and detailed desription of tab - purpose',
-            dashboardCreatedDateTime: '2017/05/01',
+            dashboardTabCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
@@ -698,7 +698,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabID: 2,
             dashboardTabName: 'Value',
             dashboardTabDescription: 'Full and detailed desription of tab - purpose',
-            dashboardCreatedDateTime: '2017/05/01',
+            dashboardTabCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
@@ -708,7 +708,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabID: 3,
             dashboardTabName: 'Volume',
             dashboardTabDescription: '1-Value: Full and detailed desription of tab - purpose',
-            dashboardCreatedDateTime: '2017/05/01',
+            dashboardTabCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
@@ -718,7 +718,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabID: 4,
             dashboardTabName: 'Value',
             dashboardTabDescription: '3-Value: Full and detailed desription of tab - purpose',
-            dashboardCreatedDateTime: '2017/05/01',
+            dashboardTabCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
@@ -728,7 +728,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabID: 5,
             dashboardTabName: 'Value',
             dashboardTabDescription: '4-Value: Full and detailed desription of tab - purpose',
-            dashboardCreatedDateTime: '2017/05/01',
+            dashboardTabCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
@@ -738,7 +738,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabID: 6,
             dashboardTabName: 'Value',
             dashboardTabDescription: '5-Value: Full and detailed desription of tab - purpose',
-            dashboardCreatedDateTime: '2017/05/01',
+            dashboardTabCreatedDateTime: '2017/05/01',
             dashboardCreatedUserID: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
             dashboardTabUpdatedUserID: 'Leonard Cohen'   
@@ -5848,7 +5848,7 @@ console.log('widgetsWorking', )
                                         dashboardTabID: eazlDasboardTab[i].id,
                                         dashboardTabName:'',
                                         dashboardTabDescription: '',
-                                        dashboardCreatedDateTime: '2017/05/01',
+                                        dashboardTabCreatedDateTime: '2017/05/01',
                                         dashboardCreatedUserID: 'Janniei',
                                         dashboardTabUpdatedDateTime: '2017/05/01',
                                         dashboardTabUpdatedUserID: 'Janniei'
