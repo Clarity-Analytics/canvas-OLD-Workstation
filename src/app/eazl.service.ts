@@ -19,11 +19,12 @@ import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
-import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
+import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSource }                 from './model.datasource';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
+import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
 import { EazlWidget }                 from './model.widget';
@@ -5809,7 +5810,7 @@ export class EazlService implements OnInit {
                 // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlWidget>('widgets')
                         .subscribe(
-                            (eazlWidget => {
+                            (eazlWidget) => {
                                 for (var i = 0; i < eazlWidget.length; i++) {
                                     widgetsWorking.push({
                                         id: eazlWidget[i].id,
@@ -5828,7 +5829,44 @@ console.log('widgetsWorking', )
             }
         }
 
-console.log('this.groups', this.groups)
+
+        // DasboardTabs
+        if (resetObject == 'all'   ||   resetObject == 'dahboardtabs') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let dasboardTabWorking: DashboardTab[] = [];
+                // this.get<EazlGroup>(`${this.route}`)
+                this.get<EazlDashboardTab>('dashboard-tabs')
+                        .subscribe(
+                            (eazlDasboardTab) => {
+                                for (var i = 0; i < eazlDasboardTab.length; i++) {
+                                    dasboardTabWorking.push({
+                                        dashboardID: eazlDasboardTab[i].id,
+                                        dashboardTabID: eazlDasboardTab[i].id,
+                                        dashboardTabName:'',
+                                        dashboardTabDescription: '',
+                                        dashboardCreatedDateTime: '2017/05/01',
+                                        dashboardCreatedUserID: 'Janniei',
+                                        dashboardTabUpdatedDateTime: '2017/05/01',
+                                        dashboardTabUpdatedUserID: 'Janniei'
+                                    });
+                                }
+
+                            // Replace
+                            // this.groups = groupsWorking;
+console.log('dasboardTabWorking', dasboardTabWorking)
+                            }
+                    )
+            }
+        }
+
+
+
+
+
 
 
     }
