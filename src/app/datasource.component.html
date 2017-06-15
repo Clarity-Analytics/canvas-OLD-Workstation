@@ -62,7 +62,7 @@
                 (onMoveToTarget)="onMoveToTargetDatasourceUserMembership($event)"
                 (onMoveToSource)="onMoveToSourceDatasourceUserMembership($event)"
                 >
-                <template let-usr pTemplate="item">
+                <ng-template let-usr pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -70,7 +70,7 @@
                             {{ usr.username }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>
@@ -272,7 +272,7 @@
                 (onMoveToTarget)="onMoveToTargetDatasourceGroupMembership($event)"
                 (onMoveToSource)="onMoveToSourceDatasourceGroupMembership($event)"
                 >
-                <template let-grp pTemplate="item">
+                <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -280,7 +280,7 @@
                             {{ grp.groupName }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>

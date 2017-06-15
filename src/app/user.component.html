@@ -117,9 +117,9 @@
             [style]="{width: '120px', 
                     'text-align': 'center'}"
             >
-            <template let-col let-user="rowData" pTemplate="body">
+            <ng-template let-col let-user="rowData" pTemplate="body">
                 <span [style.color]="user[col.field]">{{user[col.field]}}</span>
-            </template>
+            </ng-template>
         </p-column>
 
         <p-column 
@@ -262,7 +262,7 @@
                 (onSourceReorder)="onSourceReorderUserGroupMembership($event)"
                 (onTargetReorder)="onTargetReorderUserGroupMembership($event)"
                 >
-                <template let-grp pTemplate="item">
+                <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -270,7 +270,7 @@
                             {{ grp.groupName }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>
@@ -313,7 +313,7 @@
                 (onMoveToTarget)="onMoveToTargetUserDatasource($event)"
                 (onMoveToSource)="onMoveToSourceUserDatasource($event)"
                 >
-                <template let-ds pTemplate="item">
+                <ng-template let-ds pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -321,7 +321,7 @@
                             {{ ds.datasourceName }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>

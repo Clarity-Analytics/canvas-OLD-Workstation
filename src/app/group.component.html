@@ -139,7 +139,7 @@
                 (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
                 (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
                 >
-                <template let-usr pTemplate="item">
+                <ng-template let-usr pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -147,7 +147,7 @@
                             {{ usr.username }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>
@@ -190,7 +190,7 @@
                 (onMoveToTarget)="onMoveToTargetDatasourceGroup($event)"
                 (onMoveToSource)="onMoveToSourceDatasourceGroup($event)"
                 >
-                <template let-ds pTemplate="item">
+                <ng-template let-ds pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -198,7 +198,7 @@
                             {{ ds.datasourceName }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>

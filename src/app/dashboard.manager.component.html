@@ -377,7 +377,7 @@
                 (onSourceReorder)="onSourceReorderDashboardGroupMembership($event)"
                 (onTargetReorder)="onTargetReorderDashboardGroupMembership($event)"
                 >
-                <template let-grp pTemplate="item">
+                <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -385,7 +385,7 @@
                             {{ grp.dashboardGroupName }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>
@@ -428,7 +428,7 @@
                 (onMoveToTarget)="onMoveToTargetDashboardSharedWith($event)"
                 (onMoveToSource)="onMoveToSourceDashboardSharedWith($event)"
                 >
-                <template let-grp pTemplate="item">
+                <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -436,7 +436,7 @@
                             {{ grp }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>
@@ -479,7 +479,7 @@
                 (onMoveToTarget)="onMoveToTargetDashboardGroupSharedWith($event)"
                 (onMoveToSource)="onMoveToSourceDashboardGroupSharedWith($event)"
                 >
-                <template let-grp pTemplate="item">
+                <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div 
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
@@ -487,7 +487,7 @@
                             {{ grp.groupName }}
                         </div>
                     </div>
-                </template>
+                </ng-template>
             </p-pickList>
 
         </div>
