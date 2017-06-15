@@ -1,5 +1,6 @@
-// Schema for the Message class
+// Schema for the CanvasMessage class
 
+// DB
 export class EazlCanvasMessage {
     conversation_id: number;                    // Conversation thread that joins msgs
     id: number;                                 // Unique DB id
@@ -22,7 +23,7 @@ export class EazlCanvasMessage {
     ];
 }
 
-// Users registered to use the system
+// Canvas
 export class CanvasMessage {
     messageConversationID: number;              // Conversation thread that joins msgs
     messageID: number;                          // Unique DB id
