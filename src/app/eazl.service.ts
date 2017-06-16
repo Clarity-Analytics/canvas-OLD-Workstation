@@ -9,6 +9,7 @@ import { RequestOptions }             from '@angular/http';
 
 // Our Services
 import { CanvasDate }                 from './date.services';
+import { CDAL }                       from './cdal.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
  
@@ -3876,6 +3877,7 @@ export class EazlService implements OnInit {
 
     constructor(
         private canvasDate: CanvasDate,
+        private cdal: CDAL,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private http: Http,
@@ -5719,7 +5721,7 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
 
                 // Get all the data via API
-                let usersWorking = [];
+                let usersWorking: User[] = [];
                 let nickNameWorking: string;
                 let cellNumberWorking: string;
                 let workTelephoneNumberWorking: string;
@@ -5728,43 +5730,46 @@ export class EazlService implements OnInit {
                         .subscribe(
                             (eazlUser) => {
 
-let userTest = new User;
-console.log('te', (eazlUser))
-
-
+                                // Loop on Array returned, convert to Canvas format into local Array
                                 for (var i = 0; i < eazlUser.length; i++) {
-                                    nickNameWorking = '';
-                                    cellNumberWorking = '';
-                                    workTelephoneNumberWorking = '';
-                                    photoPathWorking = '';
+                                    let userTest = new User;
+                                    userTest = this.cdal.loadUser(eazlUser[i]);
+                                    usersWorking.push(userTest);
 
-                                    if (eazlUser[i].profile != null) {
-                                            nickNameWorking =  eazlUser[i].profile.nick_name;
-                                            cellNumberWorking = eazlUser[i].profile.cell_number;
-                                            workTelephoneNumberWorking = eazlUser[i].profile.work_number;
-                                            photoPathWorking = eazlUser[i].profile.profile_picture;
-                                        }
-                                    usersWorking.push({
-                                        username: eazlUser[i].username,
-                                        firstName: eazlUser[i].first_name,
-                                        lastName: eazlUser[i].last_name,
-                                        lastDatetimeLoggedIn: eazlUser[i].last_login,
-                                        lastDatetimeReportWasRun: '',
-                                        emailAddress: eazlUser[i].email,
-                                        activeFromDate: '2017/05/01',
-                                        inactiveDate: '',
-                                        dateCreated: eazlUser[i].date_joined,
-                                        userIDLastUpdated: '',
-                                        isStaff: eazlUser[i].is_staff,
+                                    // nickNameWorking = '';
+                                    // cellNumberWorking = '';
+                                    // workTelephoneNumberWorking = '';
+                                    // photoPathWorking = '';
 
-                                        nickName: nickNameWorking,
-                                        cellNumber: cellNumberWorking,
-                                        workTelephoneNumber: workTelephoneNumberWorking,
-                                        photoPath: photoPathWorking
-                                    });
+                                    // if (eazlUser[i].profile !=   null) {
+                                    //         nickNameWorking =  eazlUser[i].profile.nick_name;
+                                    //         cellNumberWorking = eazlUser[i].profile.cell_number;
+                                    //         workTelephoneNumberWorking = eazlUser[i].profile.work_number;
+                                    //         photoPathWorking = eazlUser[i].profile.profile_picture;
+                                    // }
+
+                                    // usersWorking.push({
+                                    //     username: eazlUser[i].username,
+                                    //     firstName: eazlUser[i].first_name,
+                                    //     lastName: eazlUser[i].last_name,
+                                    //     lastDatetimeLoggedIn: eazlUser[i].last_login,
+                                    //     lastDatetimeReportWasRun: '',
+                                    //     emailAddress: eazlUser[i].email,
+                                    //     activeFromDate: '2017/05/01',
+                                    //     inactiveDate: '',
+                                    //     dateCreated: eazlUser[i].date_joined,
+                                    //     userIDLastUpdated: '',
+                                    //     isStaff: eazlUser[i].is_staff,
+                                    //     isSuperUser: eazlUser[i].is_superuser,
+                                    //     nickName: nickNameWorking,
+                                    //     cellNumber: cellNumberWorking,
+                                    //     workTelephoneNumber: workTelephoneNumberWorking,
+                                    //     photoPath: photoPathWorking
+                                    // });
                                 }
 
                             // Replace
+console.log('usersWorking', usersWorking)                            
                             this.users = usersWorking;
                             }
                     )
