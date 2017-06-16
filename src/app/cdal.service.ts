@@ -35,6 +35,9 @@ import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlNotification }           from './model.notification';
 import { EazlReport }                 from './model.report';
+import { EazlReportHistory }          from './model.reportHistory';
+import { EazlReportUserRelationship } from './model.reportUserRelationship';
+import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlUser }                   from './model.user';
 import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
@@ -42,6 +45,9 @@ import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { Notification }               from './model.notification';
 import { Report }                     from './model.report';
+import { ReportHistory }              from './model.reportHistory';
+import { ReportUserRelationship }     from './model.reportUserRelationship';
+import { ReportWidgetSet }            from './model.report.widgetSets';
 import { User }                       from './model.user';
 
 // TODO - add loadDataSources
@@ -1098,6 +1104,41 @@ export class CDAL {
         return ReportWorking;
     }             
 
+    loadReportWidgetSet(eazlReportWidgetSet: EazlReportWidgetSet): ReportWidgetSet {
+        // Load ReportWidgetSet: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadReportWidgetSet', '@Start');
+    
+        let reportWidgetSetWorking = new ReportWidgetSet();
+        
+        reportWidgetSetWorking.widgetSetID = eazlReportWidgetSet.id;
+
+        if (eazlReportWidgetSet.report_id != null) {
+            reportWidgetSetWorking.reportID = eazlReportWidgetSet.report_id;
+        } else {
+            reportWidgetSetWorking.reportID = 0;
+        }
+
+        if (eazlReportWidgetSet.name != null) {
+            reportWidgetSetWorking.widgetSetName = eazlReportWidgetSet.name;
+        } else {
+            reportWidgetSetWorking.widgetSetName = '';
+        }
+
+        if (eazlReportWidgetSet.description != null) {
+            reportWidgetSetWorking.widgetSetDescription = eazlReportWidgetSet.description;
+        } else {
+            reportWidgetSetWorking.widgetSetDescription = '';
+        }
+
+        if (eazlReportWidgetSet.vega_spec != null) {
+            reportWidgetSetWorking.vegaSpec = eazlReportWidgetSet.vega_spec;
+        } else {
+            reportWidgetSetWorking.vegaSpec = '';
+        }
+        
+        // Return the result
+        return reportWidgetSetWorking;
+    }             
 
 
 
