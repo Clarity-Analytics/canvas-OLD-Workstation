@@ -1,7 +1,7 @@
 // Schema for the WidgetTemplates class
 
 // Eazl
-
+// TODO - create this !
 
 // Canvas
 export class WidgetTemplate {
