@@ -36,6 +36,8 @@ import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
 import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
+import { GroupDatasourceAccess }      from './model.groupDSaccess';
+import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { User }                       from './model.user';
 
 // TODO - add loadDataSources
@@ -151,6 +153,7 @@ export class CDAL {
 
     loadGroup(eazlGroup: EazlGroup): Group {
         // Load Group: move data Eazl -> Canvas
+        // TODO - add more fields in time
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
         
         let groupWorking = new Group();
@@ -932,6 +935,62 @@ export class CDAL {
         
         // Return the result
         return filterWorking;
+    }             
+
+    loadGroupDatasourceAccess(
+        eazlGroupDatasourceAccess: EazlGroupDatasourceAccess
+        ): GroupDatasourceAccess {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadGroupDatasourceAccess', '@Start');
+    
+        let groupDatasourceAccessWorking = new GroupDatasourceAccess();
+        
+        groupDatasourceAccessWorking.groupID = eazlGroupDatasourceAccess.id;
+
+        if (eazlGroupDatasourceAccess.datasource_id != null) {
+            groupDatasourceAccessWorking.datasourceID = 
+                eazlGroupDatasourceAccess.datasource_id;
+        } else {
+            groupDatasourceAccessWorking.datasourceID = 0;
+        }
+
+        if (eazlGroupDatasourceAccess.access_type != null) {
+            groupDatasourceAccessWorking.groupDatasourceAccessAccessType = 
+                eazlGroupDatasourceAccess.access_type;
+        } else {
+            groupDatasourceAccessWorking.groupDatasourceAccessAccessType = '';
+        }
+
+        if (eazlGroupDatasourceAccess.created_on != null) {
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedDateTime = 
+                eazlGroupDatasourceAccess.created_on;
+        } else {
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedDateTime = '';
+        }
+
+        if (eazlGroupDatasourceAccess.created_by != null) {
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserID = 
+                eazlGroupDatasourceAccess.created_by;
+        } else {
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserID = '';
+        }
+
+        if (eazlGroupDatasourceAccess.updated_on != null) {
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedDateTime = 
+                eazlGroupDatasourceAccess.updated_on;
+        } else {
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedDateTime = '';
+        }
+
+        if (eazlGroupDatasourceAccess.updated_by != null) {
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserID = 
+                eazlGroupDatasourceAccess.updated_by;
+        } else {
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserID = '';
+        }
+
+        // Return the result
+        return groupDatasourceAccessWorking;
     }             
 
 
