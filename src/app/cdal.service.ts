@@ -12,10 +12,14 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { DashboardGroup }             from './model.dashboardGroup';
+import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
+import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroup }         from './model.dashboardGroup';
+import { EazlDashboardGroupMembership }     from './model.dashboardGroupMembership';
+import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
@@ -372,6 +376,55 @@ export class CDAL {
         // Return the result
         return dashboardGroupWorking;
     } 
+
+    loadDashboardGroupMembership(
+        eazlDashboardGroupMembership: EazlDashboardGroupMembership
+        ): DashboardGroupMembership {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupMembership', '@Start');
+        let dashboardGroupMembershipWorking = new DashboardGroupMembership();
+        
+        dashboardGroupMembershipWorking.dashboardGroupID = eazlDashboardGroupMembership.id;
+
+        if (eazlDashboardGroupMembership.dashboard_id != null) {
+            dashboardGroupMembershipWorking.dashboardID = 
+                eazlDashboardGroupMembership.dashboard_id;
+        } else {
+            dashboardGroupMembershipWorking.dashboardID = 0;
+        }
+    
+        if (eazlDashboardGroupMembership.updated_on != null) {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedDateTime = 
+                eazlDashboardGroupMembership.updated_on;
+        } else {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedDateTime = '';
+        }
+    
+        if (eazlDashboardGroupMembership.updated_by != null) {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserID = 
+                eazlDashboardGroupMembership.updated_by;
+        } else {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserID = '';
+        }
+
+        if (eazlDashboardGroupMembership.created_on != null) {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedDateTime = 
+                eazlDashboardGroupMembership.created_on;
+        } else {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedDateTime = '';
+        }
+    
+        if (eazlDashboardGroupMembership.created_by != null) {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserID = 
+                eazlDashboardGroupMembership.created_by;
+        } else {
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserID = '';
+        }
+
+        // Return the result
+        return dashboardGroupMembershipWorking;
+    }             
+
 
 
 
