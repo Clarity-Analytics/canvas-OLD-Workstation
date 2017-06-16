@@ -5728,6 +5728,10 @@ export class EazlService implements OnInit {
                         .subscribe(
                             (eazlUser) => {
 
+let userTest = new User;
+console.log('te', (eazlUser))
+
+
                                 for (var i = 0; i < eazlUser.length; i++) {
                                     nickNameWorking = '';
                                     cellNumberWorking = '';

@@ -18,16 +18,8 @@ export class User
         dateCreated: string;
         userIDLastUpdated: string;
         isStaff: boolean;
-
-        static fromEazlUser(eazlUser: EazlUser){
-            var user = new User();
-            
-            user.username = eazlUser.username;
-            return user;
-
-        }
     }
- 
+
 // User returned by REST, determined by Django
 export interface EazlUser 
     {
@@ -74,4 +66,5 @@ export class CanvasUser implements EazlUser
                 profile_picture: string;
             }
     }
+
 
