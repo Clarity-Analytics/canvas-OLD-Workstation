@@ -76,25 +76,41 @@ export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
         datasourceID: 0,
         username: 'janniei',
         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+        datasourceUserAccessCreatedDateTime: '2017/05/01',
+	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
+	    datasourceUserAccessUpdatedUserID: 'janniei'
     },
     {
         datasourceID: 1,
         username: 'janniei',
         dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+        datasourceUserAccessCreatedDateTime: '2017/05/01',
+	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
+	    datasourceUserAccessUpdatedUserID: 'janniei'
     },
     {
         datasourceID: 0,
         username: 'bradleyk',
         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+        datasourceUserAccessCreatedDateTime: '2017/05/01',
+	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
+	    datasourceUserAccessUpdatedUserID: 'janniei'
     },
     {
         datasourceID: 1,
         username: 'bradleyk',
         dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All'              // Applies to: All (records), context specific .. ?
+        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+        datasourceUserAccessCreatedDateTime: '2017/05/01',
+	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
+	    datasourceUserAccessUpdatedUserID: 'janniei'
     }
 ]
 
@@ -5120,7 +5136,11 @@ export class EazlService implements OnInit {
                     datasourceID: datasourceID,
 	                username: username,
                     dataSourceUserAccessType: 'Readonly',
-                    dataSourceUserAccessScope: 'All'
+                    dataSourceUserAccessScope: 'All',
+                    datasourceUserAccessCreatedDateTime: '2017/05/01',
+                    datasourceUserAccessCreatedUserID: 'janniei',
+                    datasourceUserAccessUpdatedDateTime: '2017/05/01',
+                    datasourceUserAccessUpdatedUserID: 'janniei'
                 }        
             )
         }
