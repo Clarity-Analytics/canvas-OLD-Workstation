@@ -1,4 +1,9 @@
-// Schema for Report User Relationship
+// Schema for the Report User Relationship class
+
+// Eazl
+
+
+// Canvas
 export class ReportUserRelationship {
     reportUserRelationshipID: number;                   // Unique ID
     username: string;                                   // User who has relationship

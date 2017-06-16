@@ -1,5 +1,8 @@
 // Schema for Datasource per User, both via User & via Group membership
 
+// Eazl
+
+// Canvas
 export interface DashboardsPerUser {
     dashboardID: number;                        // Dashboard ID
     dashboardName: string;                      // Dashboard Name

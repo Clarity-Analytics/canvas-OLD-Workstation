@@ -1,4 +1,9 @@
-// Schema for WidgetTemplates
+// Schema for the WidgetTemplates class
+
+// Eazl
+
+
+// Canvas
 export class WidgetTemplate {
     widgetTemplateID: number;                   // Unique DB ID
     widgetTemplateName: string;                 // Name

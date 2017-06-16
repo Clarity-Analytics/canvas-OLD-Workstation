@@ -1,6 +1,9 @@
 import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Observable }                 from 'rxjs/Observable';
 
+// Eazl
+
+// Canvas
 export class Model<T> {
 	model: Observable<T>;
 	private _data: BehaviorSubject<T>;

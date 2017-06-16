@@ -1,4 +1,9 @@
-// Schema for Report WidgetSet
+// Schema for the Report WidgetSet class
+
+// Eazl
+
+
+// Canvas
 export class ReportWidgetSet {
     reportID: number;                       // FK to model.report
     widgetSetID: number;                    // Unique DB ID

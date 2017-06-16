@@ -12,7 +12,7 @@ export class Group {
 }
 
 // TODO - we need more fields in DB - sort out somehow
-// Group returned by REST, determined by Django
+// Eazl
 export interface EazlGroup {
     // Defines data model for User Entity
     id: number;

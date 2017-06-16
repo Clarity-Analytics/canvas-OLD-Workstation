@@ -1,5 +1,9 @@
-// Schema for Dashboard object
+// Schema for Dashboard class
 
+// Eazl
+
+
+// Canvas
 export class Dashboard {
     dashboardID: number;                        // Unique DB ID
     dashboardCode: string;                      // Code or ShortName

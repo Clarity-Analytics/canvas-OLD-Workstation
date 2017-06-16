@@ -1,5 +1,8 @@
-// Schema for User Access to Data Sources
+// Schema for the User Access to Data Sources class
 
+// Eazl
+
+// Canvas
 export class DataSourceUserAccess {
 	datasourceID: number;                   // Data Source ID
 	username: string;						// User who has acces

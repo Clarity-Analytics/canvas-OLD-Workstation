@@ -1,5 +1,9 @@
 // Schema for Dashboard User Relationship
 
+// Eazl
+
+
+// Canvas
 export class DashboardUserRelationship {
     dashboardUserRelationshipID: number;                    // Unique ID
     dashboardID: number;                                    // Dashboard who has relationship

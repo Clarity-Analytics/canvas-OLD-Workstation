@@ -1,5 +1,9 @@
-// Schema for System Configuration
+// Schema for the System Configuration class
 
+// Eazl
+
+
+// Canvas
 export class SystemConfiguration {
     companyName: string;                    // Company Name (of user)
     companyLogo: string;                    // File name of Company Logo - for later use

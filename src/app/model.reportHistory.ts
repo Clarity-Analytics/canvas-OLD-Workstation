@@ -1,4 +1,9 @@
-// Schema for Report History (ran by users)
+// Schema for the Report History (ran by users) class
+
+// Eazl
+
+
+// Canvas
 export class ReportHistory {
     reportHistoryID: number;                    // Unique ID
     username: string;                           // User who ran report

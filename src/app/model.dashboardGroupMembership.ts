@@ -1,6 +1,9 @@
 // Schema for the Dashboard-DashboardGroup Membership classes (many - many)
 
-// Dashboard per Group 
+// Eazl
+
+
+// Canvas
 export class DashboardGroupMembership {
     dashboardGroupID: number;
     dashboardID: number;

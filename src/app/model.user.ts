@@ -1,27 +1,6 @@
-// Schema for the User classes
+// Schema for the User class
 
-// Canvas
-export class User 
-    {
-        username: string;
-        firstName: string;
-        lastName: string;
-        nickName: string;
-        photoPath: string;
-        lastDatetimeLoggedIn: string;
-        lastDatetimeReportWasRun: string;
-        emailAddress: string;
-        cellNumber: string;
-        workTelephoneNumber: string;
-        activeFromDate: string;
-        inactiveDate: string;
-        dateCreated: string;
-        userIDLastUpdated: string;
-        isStaff: boolean;
-        isSuperUser: boolean;
-    }
-
-// User returned by REST, determined by Django
+// Eazl
 export interface EazlUser 
     {
         // Defines data model for User Entity
@@ -43,6 +22,27 @@ export interface EazlUser
                 work_number: string;
                 profile_picture: string;
             }
+    }
+
+// Canvas
+export class User 
+    {
+        username: string;
+        firstName: string;
+        lastName: string;
+        nickName: string;
+        photoPath: string;
+        lastDatetimeLoggedIn: string;
+        lastDatetimeReportWasRun: string;
+        emailAddress: string;
+        cellNumber: string;
+        workTelephoneNumber: string;
+        activeFromDate: string;
+        inactiveDate: string;
+        dateCreated: string;
+        userIDLastUpdated: string;
+        isStaff: boolean;
+        isSuperUser: boolean;
     }
 
 // Current user info in Canvas

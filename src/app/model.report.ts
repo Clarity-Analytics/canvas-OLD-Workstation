@@ -1,4 +1,9 @@
-// Schema for Report
+// Schema for the Report class
+
+// Eazl
+
+
+// Canvas
 export class Report {
     reportID: number;                   // Unique DB ID
     reportName: string;                 // Name

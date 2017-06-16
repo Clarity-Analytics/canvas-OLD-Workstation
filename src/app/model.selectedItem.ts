@@ -1,6 +1,9 @@
-// Schema for items in PrimeNG dropdown
+// Schema for the items in PrimeNG dropdown
 
-// Users registered to use the system
+// Eazl
+
+
+// Canvas
 export class SelectedItem {
     id: any;
     name: string;

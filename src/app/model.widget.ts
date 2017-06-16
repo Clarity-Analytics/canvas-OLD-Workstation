@@ -1,4 +1,4 @@
-// Schema for Widget object
+// Schema for the Widget class
 
 // Eazl
 export class EazlWidget {

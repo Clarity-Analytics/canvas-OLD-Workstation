@@ -1,5 +1,8 @@
-// Schema for Widget Comment object
+// Schema for Widget Comment class
 
+// Eazl
+
+// Canvas
 export class WidgetComment {
     widgetCommentID: number;                        // Unique DB ID
     widgetID: number;                               // FK to Widget ID 

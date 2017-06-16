@@ -1,4 +1,10 @@
 // Schema for Dashboard Group Relationship
+
+// Eazl
+
+
+
+// Canvas
 export class DashboardGroupRelationship {
     dashboardGroupRelationshipID: number;                   // Unique ID
     dashboardID: number;                                    // Dashboard which has relationship

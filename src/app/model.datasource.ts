@@ -1,5 +1,9 @@
-// Schema for Data Source
+// Schema for the Data Source class
 
+// Eazl
+
+
+// Canvas
 export class DataSource {
 	datasourceID: number;                   // Data Source ID
 	datasourceName: string;                 // DS Name

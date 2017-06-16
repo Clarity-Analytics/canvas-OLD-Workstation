@@ -1,6 +1,9 @@
 // Schema for the User-GroupMembership class (many - many)
 
-// Users per Group 
+// Eazl
+
+
+// Canvas
 export class UserGroupMembership {
     groupID: number;
     username: string;

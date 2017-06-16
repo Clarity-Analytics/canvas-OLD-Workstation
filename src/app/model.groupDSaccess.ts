@@ -1,5 +1,9 @@
-// Schema for Group Datasource Access
+// Schema for the Group Datasource Access class
 
+// Eazl
+
+
+// Canvas
 export class GroupDatasourceAccess {
 	groupID: number;                                    // Group ID
 	datasourceID: number;                               // Data Source ID
