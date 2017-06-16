@@ -11,9 +11,11 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
+import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardTab }               from './model.dashboardTabs';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
+import { EazlDashboardGroup }         from './model.dashboardGroup';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
@@ -31,6 +33,7 @@ export class CDAL {
     loadUser(eazlUser: EazlUser): User {
         // Load User: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUser', '@Start');
+        
         let userWorking = new User();
         
         if (eazlUser.username != null) {
@@ -131,6 +134,7 @@ export class CDAL {
     loadGroup(eazlGroup: EazlGroup): Group {
         // Load Group: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
+        
         let groupWorking = new Group();
         
         groupWorking.groupID = eazlGroup.id;
@@ -159,6 +163,7 @@ export class CDAL {
     loadDashboardTab(eazlDashboardTab: EazlDashboardTab): DashboardTab {
         // Load DashboardTab: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardTab', '@Start');
+        
         let dashboardTabWorking = new DashboardTab();
         
         dashboardTabWorking.dashboardID = eazlDashboardTab.id;
@@ -208,6 +213,7 @@ export class CDAL {
     loadCanvasMessage(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
         // Load Group: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessage', '@Start');
+        
         let canvasMessageWorking = new CanvasMessage();
         
         canvasMessageWorking.canvasMessageID = eazlCanvasMessage.id;
@@ -282,9 +288,10 @@ export class CDAL {
         return canvasMessageWorking;
     }             
 
-   loadMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
+    loadMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
         // Load MessageRecipient: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadMessageRecipient', '@Start');
+        
         let canvasMessageRecipientWorking = new CanvasMessageRecipient();
         
         canvasMessageRecipientWorking.canvasMessageRecipientID = eazlCanvasMessageRecipient.id;
@@ -316,6 +323,56 @@ export class CDAL {
         // Return the result
         return canvasMessageRecipientWorking;
     } 
+
+    loadDashboardGroup(eazlDashboardGroup: EazlDashboardGroup): DashboardGroup {
+        // Load DashboardGroup: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroup', '@Start');
+
+        let dashboardGroupWorking = new DashboardGroup();
+        
+        dashboardGroupWorking.dashboardGroupID = eazlDashboardGroup.id;
+
+        if (eazlDashboardGroup.name != null) {
+            dashboardGroupWorking.dashboardGroupName = eazlDashboardGroup.name;
+        } else {
+            dashboardGroupWorking.dashboardGroupName = '';
+        }
+    
+        if (eazlDashboardGroup.description != null) {
+            dashboardGroupWorking.dashboardGroupDescription = eazlDashboardGroup.description;
+        } else {
+            dashboardGroupWorking.dashboardGroupDescription = '';
+        }
+    
+        if (eazlDashboardGroup.created_on != null) {
+            dashboardGroupWorking.dashboardGroupCreatedDateTime = eazlDashboardGroup.created_on;
+        } else {
+            dashboardGroupWorking.dashboardGroupCreatedDateTime = '';
+        }
+    
+        if (eazlDashboardGroup.created_by != null) {
+            dashboardGroupWorking.dashboardGroupCreatedUserID = eazlDashboardGroup.created_by;
+        } else {
+            dashboardGroupWorking.dashboardGroupCreatedUserID = '';
+        }
+    
+        if (eazlDashboardGroup.updated_on != null) {
+            dashboardGroupWorking.dashboardGroupUpdatedDateTime = eazlDashboardGroup.updated_on;
+        } else {
+            dashboardGroupWorking.dashboardGroupUpdatedDateTime = '';
+        }
+    
+        if (eazlDashboardGroup.updated_by != null) {
+            dashboardGroupWorking.dashboardGroupUpdatedUserID = eazlDashboardGroup.updated_by;
+        } else {
+            dashboardGroupWorking.dashboardGroupUpdatedUserID = '';
+        }
+
+
+        // Return the result
+        return dashboardGroupWorking;
+    } 
+
 
 
 
