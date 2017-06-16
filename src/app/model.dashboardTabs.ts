@@ -2,6 +2,7 @@
 
 // TODO - replace dashboard with ID of Dashboard
 // TODO - make names consistent with Eazl naming conventions
+// Eazl
 export class EazlDashboardTab {
     id: number;
     dashboard: string;
@@ -13,6 +14,7 @@ export class EazlDashboardTab {
     updatedUserID
 }
 
+// Canvas
 export class DashboardTab {
     dashboardID: number;                        // FK to Unique DB ID
     dashboardTabID: number;                     // Unique DB key

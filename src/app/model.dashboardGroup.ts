@@ -1,6 +1,17 @@
 // Schema for the Dashboard Group class
 
-// Users registered to use the system
+// Eazl
+export class EazlDashboardGroup {
+    id: number;
+    name: string;
+    description: string;
+    created_on: string;                             // Created on
+    created_by: string;                             // Created by
+    updated_on: string;                             // Updated on
+    updated_by: string;                             // Updated by
+}
+
+// Canvas
 export class DashboardGroup {
     dashboardGroupID: number;
     dashboardGroupName: string;

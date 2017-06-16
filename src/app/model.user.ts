@@ -1,6 +1,6 @@
 // Schema for the User classes
 
-// Users registered to use the system
+// Canvas
 export class User 
     {
         username: string;

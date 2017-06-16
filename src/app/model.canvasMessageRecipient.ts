@@ -1,6 +1,6 @@
 // Schema for the Canvas Message Recipient class
 
-// DB
+// Eazl
 export class EazlCanvasMessageRecipient {
     id: number;                                 // Unique DB id
     message_id: number;                         // Canvas Message id

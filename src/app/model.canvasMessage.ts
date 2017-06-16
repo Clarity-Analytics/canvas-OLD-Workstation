@@ -1,6 +1,6 @@
 // Schema for the CanvasMessage class
 
-// DB
+// Eazl
 export class EazlCanvasMessage {
     conversation_id: number;                        // Conversation thread that joins msgs
     id: number;                                     // Unique DB id
