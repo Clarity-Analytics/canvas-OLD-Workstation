@@ -1200,6 +1200,72 @@ export class CDAL {
         return reportHistoryWorking;
     }             
 
+    loadReportUserRelationship(eazlReportUserRelationship: EazlReportUserRelationship): ReportUserRelationship {
+        // Load ReportUserRelationship: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadReportUserRelationship', '@Start');
+    
+        let ReportUserRelationshipWorking = new ReportUserRelationship();
+        
+        ReportUserRelationshipWorking.reportUserRelationshipID = eazlReportUserRelationship.id;
+
+        if (eazlReportUserRelationship.username != null) {
+            ReportUserRelationshipWorking.username = eazlReportUserRelationship.username;
+        } else {
+            ReportUserRelationshipWorking.username = '';
+        }
+
+        if (eazlReportUserRelationship.report_id != null) {
+            ReportUserRelationshipWorking.reportID = eazlReportUserRelationship.report_id;
+        } else {
+            ReportUserRelationshipWorking.reportID = 0;
+        }
+
+        if (eazlReportUserRelationship.type != null) {
+            ReportUserRelationshipWorking.reportUserRelationshipType = 
+                eazlReportUserRelationship.type;
+        } else {
+            ReportUserRelationshipWorking.reportUserRelationshipType = '';
+        }
+
+        if (eazlReportUserRelationship.rating != null) {
+            ReportUserRelationshipWorking.reportUserRelationshipRating = 
+                eazlReportUserRelationship.rating;
+        } else {
+            ReportUserRelationshipWorking.reportUserRelationshipRating = 0;
+        }
+
+        if (eazlReportUserRelationship.created_on != null) {
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedDateTime = 
+                eazlReportUserRelationship.created_on;
+        } else {
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedDateTime = '';
+        }
+
+        if (eazlReportUserRelationship.created_by != null) {
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserID = 
+                eazlReportUserRelationship.created_by;
+        } else {
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserID = '';
+        }
+
+        if (eazlReportUserRelationship.updated_on != null) {
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedDateTime = 
+                eazlReportUserRelationship.updated_on;
+        } else {
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedDateTime = '';
+        }
+
+        if (eazlReportUserRelationship.updated_by != null) {
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserID = 
+                eazlReportUserRelationship.updated_by;
+        } else {
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserID = '';
+        }
+
+        // Return the result
+        return ReportUserRelationshipWorking;
+    }             
+
 
 
 
