@@ -122,5 +122,33 @@ export class CDAL {
         return userWorking;
     }
 
+
+    loadGroup(eazlGroup: EazlGroup): Group {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
+        let groupWorking = new Group();
+        
+        groupWorking.groupID = 0;
+
+        if (eazlGroup.name != null) {
+            groupWorking.groupName = eazlGroup.name;
+        } else {
+            groupWorking.groupName = '';
+        }
+
+        if (eazlGroup.name != null) {
+            groupWorking.groupDescription = eazlGroup.name;
+        } else {
+            groupWorking.groupDescription = '';
+        }
+
+        groupWorking.groupCreatedDateTime = '';
+        groupWorking.groupCreatedUserID = '';
+        groupWorking.groupUpdatedDateTime = '';
+        groupWorking.groupUpdatedUserID = '';
+        
+        // Return the User
+        return groupWorking;
+    }                                        
 }
 
