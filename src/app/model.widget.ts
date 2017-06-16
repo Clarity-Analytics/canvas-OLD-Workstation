@@ -1,6 +1,7 @@
 // Schema for the Widget class
 
 // Eazl
+// TODO - expand
 export class EazlWidget {
     id: number;
     name: string;
