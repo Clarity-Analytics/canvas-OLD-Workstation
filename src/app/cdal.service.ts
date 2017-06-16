@@ -33,11 +33,13 @@ import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
 import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
+import { EazlNotification }           from './model.notification';
 import { EazlUser }                   from './model.user';
 import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
+import { Notification }               from './model.notification';
 import { User }                       from './model.user';
 
 // TODO - add loadDataSources
@@ -849,8 +851,8 @@ export class CDAL {
         return datasourcesPerUserWorking;
     }             
 
-    loaDataSourceUserAccess(eazlDataSourceUserAccess: EazlDataSourceUserAccess): DataSourceUserAccess {
-        // Load Group: move data Eazl -> Canvas
+    loadDataSourceUserAccess(eazlDataSourceUserAccess: EazlDataSourceUserAccess): DataSourceUserAccess {
+        // Load DataSourceUserAccess: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDataSourceUserAccess', '@Start');
     
         let dataSourceUserAccessWorking = new DataSourceUserAccess();
@@ -910,7 +912,7 @@ export class CDAL {
     }             
 
     loadFilter(eazlFilter: EazlFilter): Filter {
-        // Load Group: move data Eazl -> Canvas
+        // Load Filter: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFilter', '@Start');
     
         let filterWorking = new Filter();
@@ -940,7 +942,7 @@ export class CDAL {
     loadGroupDatasourceAccess(
         eazlGroupDatasourceAccess: EazlGroupDatasourceAccess
         ): GroupDatasourceAccess {
-        // Load Group: move data Eazl -> Canvas
+        // Load GroupDatasourceAccess: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGroupDatasourceAccess', '@Start');
     
         let groupDatasourceAccessWorking = new GroupDatasourceAccess();
@@ -993,7 +995,58 @@ export class CDAL {
         return groupDatasourceAccessWorking;
     }             
 
+    loadNotification(eazlNotification: EazlNotification): Notification {
+        // Load Notification: move data Eazl -> Canvas
+        // TODO - do we really need this guy (see CanvasMessage), else add fields like id
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadNotification', '@Start');
+    
+        let notificationWorking = new Notification();
+        
+        if (eazlNotification.author != null) {
+            notificationWorking.author = eazlNotification.author;
+        } else {
+            notificationWorking.author = '';
+        }
 
+        if (eazlNotification.date_send != null) {
+            notificationWorking.dateSend = eazlNotification.date_send;
+        } else {
+            notificationWorking.dateSend = '';
+        }
+
+        if (eazlNotification.message_type != null) {
+            notificationWorking.messageType = eazlNotification.message_type;
+        } else {
+            notificationWorking.messageType = '';
+        }
+
+        if (eazlNotification.message != null) {
+            notificationWorking.message = eazlNotification.message;
+        } else {
+            notificationWorking.message = '';
+        }
+
+        // Return the result
+        return notificationWorking;
+    }             
+
+    // loadGroup(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
+    //     // Load Group: move data Eazl -> Canvas
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
+    
+    //     let canvasMessageWorking = new CanvasMessage();
+        
+    //     canvasMessageWorking.groupID = eazlCanvasMessage.id;
+
+    //     if (eazlCanvasMessage.name != null) {
+    //         canvasMessageWorking.groupName = eazlCanvasMessage.name;
+    //     } else {
+    //         canvasMessageWorking.groupName = '';
+    //     }
+        
+    //     // Return the result
+    //     return canvasMessageWorking;
+    // }             
 
 
 
@@ -1012,13 +1065,13 @@ export class CDAL {
     //     canvasMessageWorking.groupID = eazlCanvasMessage.id;
 
     //     if (eazlCanvasMessage.name != null) {
-    //         canvasMessage.groupName = eazlCanvasMessage.name;
+    //         canvasMessageWorking.groupName = eazlCanvasMessage.name;
     //     } else {
-    //         canvasMessage.groupName = '';
+    //         canvasMessageWorking.groupName = '';
     //     }
         
     //     // Return the result
-    //     return groupWorking;
+    //     return canvasMessageWorking;
     // }             
 
 
