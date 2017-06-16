@@ -38,6 +38,7 @@ import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
+import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
 import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
@@ -48,6 +49,7 @@ import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
+import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 
 // TODO - add loadDataSources
@@ -1266,6 +1268,105 @@ export class CDAL {
         return ReportUserRelationshipWorking;
     }             
 
+    loadSystemConfiguration(eazlSystemConfiguration: EazlSystemConfiguration): SystemConfiguration {
+        // Load SystemConfiguration: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadSystemConfiguration', '@Start');
+    
+        let systemConfigurationWorking = new SystemConfiguration();
+
+        if (eazlSystemConfiguration.company_name != null) {
+            systemConfigurationWorking.companyName = eazlSystemConfiguration.company_name;
+        } else {
+            systemConfigurationWorking.companyName = '';
+        }
+
+        if (eazlSystemConfiguration.company_logo != null) {
+            systemConfigurationWorking.companyLogo = eazlSystemConfiguration.company_logo;
+        } else {
+            systemConfigurationWorking.companyLogo = '';
+        }
+
+        if (eazlSystemConfiguration.backend_url != null) {
+            systemConfigurationWorking.backendUrl = eazlSystemConfiguration.backend_url;
+        } else {
+            systemConfigurationWorking.backendUrl = '';
+        }
+
+        if (eazlSystemConfiguration.default_days_to_keep_resultset != null) {
+            systemConfigurationWorking.defaultDaysToKeepResultSet = eazlSystemConfiguration.default_days_to_keep_resultset;
+        } else {
+            systemConfigurationWorking.defaultDaysToKeepResultSet = 0;
+        }
+
+        if (eazlSystemConfiguration.average_warning_runtime != null) {
+            systemConfigurationWorking.averageWarningRuntime = eazlSystemConfiguration.average_warning_runtime;
+        } else {
+            systemConfigurationWorking.averageWarningRuntime = 0;
+        }
+
+        if (eazlSystemConfiguration.max_rows_data_returned != null) {
+            systemConfigurationWorking.maxRowsDataReturned = eazlSystemConfiguration.max_rows_data_returned;
+        } else {
+            systemConfigurationWorking.maxRowsDataReturned = 0;
+        }
+
+        if (eazlSystemConfiguration.max_rows_per_widget_graph != null) {
+            systemConfigurationWorking.maxRowsPerWidgetGraph = eazlSystemConfiguration.max_rows_per_widget_graph;
+        } else {
+            systemConfigurationWorking.maxRowsPerWidgetGraph = 0;
+        }
+
+        if (eazlSystemConfiguration.keep_dev_logged_in != null) {
+            systemConfigurationWorking.keepDevLoggedIn = eazlSystemConfiguration.keep_dev_logged_in;
+        } else {
+            systemConfigurationWorking.keepDevLoggedIn = false;
+        }
+
+        if (eazlSystemConfiguration.frontend_color_scheme != null) {
+            systemConfigurationWorking.frontendColorScheme = eazlSystemConfiguration.frontend_color_scheme;
+        } else {
+            systemConfigurationWorking.frontendColorScheme = '';
+        }
+
+        if (eazlSystemConfiguration.default_widget_configuration != null) {
+            systemConfigurationWorking.defaultWidgetConfiguration = eazlSystemConfiguration.default_widget_configuration;
+        } else {
+            systemConfigurationWorking.defaultWidgetConfiguration = '';
+        }
+
+        if (eazlSystemConfiguration.default_report_filters != null) {
+            systemConfigurationWorking.defaultReportFilters = eazlSystemConfiguration.default_report_filters;
+        } else {
+            systemConfigurationWorking.defaultReportFilters = '';
+        }
+
+        if (eazlSystemConfiguration.growl_sticky != null) {
+            systemConfigurationWorking.growlSticky = eazlSystemConfiguration.growl_sticky;
+        } else {
+            systemConfigurationWorking.growlSticky = false;
+        }
+
+        if (eazlSystemConfiguration.growl_life != null) {
+            systemConfigurationWorking.growlLife = eazlSystemConfiguration.growl_life;
+        } else {
+            systemConfigurationWorking.growlLife = 0;
+        }
+
+        if (eazlSystemConfiguration.grid_size != null) {
+            systemConfigurationWorking.gridSize = eazlSystemConfiguration.grid_size;
+        } else {
+            systemConfigurationWorking.gridSize = 0;
+        }
+
+        if (eazlSystemConfiguration.snap_to_grid != null) {
+            systemConfigurationWorking.snapToGrid = eazlSystemConfiguration.snap_to_grid;
+        } else {
+            systemConfigurationWorking.snapToGrid = false;
+        }
+        
+        // Return the result
+        return systemConfigurationWorking;
+    }             
 
 
 
