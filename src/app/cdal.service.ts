@@ -34,12 +34,14 @@ import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlNotification }           from './model.notification';
+import { EazlReport }                 from './model.report';
 import { EazlUser }                   from './model.user';
 import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { Notification }               from './model.notification';
+import { Report }                     from './model.report';
 import { User }                       from './model.user';
 
 // TODO - add loadDataSources
@@ -1030,23 +1032,71 @@ export class CDAL {
         return notificationWorking;
     }             
 
-    // loadGroup(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
-    //     // Load Group: move data Eazl -> Canvas
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
+    loadReport(eazlReport: EazlReport): Report {
+        // Load Report: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadReport', '@Start');
     
-    //     let canvasMessageWorking = new CanvasMessage();
+        let ReportWorking = new Report();
         
-    //     canvasMessageWorking.groupID = eazlCanvasMessage.id;
+        ReportWorking.reportID = eazlReport.id;
 
-    //     if (eazlCanvasMessage.name != null) {
-    //         canvasMessageWorking.groupName = eazlCanvasMessage.name;
-    //     } else {
-    //         canvasMessageWorking.groupName = '';
-    //     }
+        if (eazlReport.name != null) {
+            ReportWorking.reportName = eazlReport.name;
+        } else {
+            ReportWorking.reportName = '';
+        }
+
+        if (eazlReport.description != null) {
+            ReportWorking.description = eazlReport.description;
+        } else {
+            ReportWorking.description = '';
+        }
+
+        if (eazlReport.parameters != null) {
+            ReportWorking.reportParameters = eazlReport.parameters;
+        } else {
+            ReportWorking.reportParameters = '';
+        }
+
+        if (eazlReport.datasource_id != null) {
+            ReportWorking.dataSourceID = eazlReport.datasource_id;
+        } else {
+            ReportWorking.dataSourceID = 0;
+        }
+
+        if (eazlReport.datasource_parameters != null) {
+            ReportWorking.dataSourceParameters = eazlReport.datasource_parameters;
+        } else {
+            ReportWorking.dataSourceParameters = '';
+        }
+
+        if (eazlReport.report_fields != null) {
+            ReportWorking.reportFields = eazlReport.report_fields;
+        } else {
+            ReportWorking.reportFields = [];
+        }
+
+        if (eazlReport.report_data != null) {
+            ReportWorking.reportData = eazlReport.report_data;
+        } else {
+            ReportWorking.reportData = [];
+        }
+
+        if (eazlReport.created_on != null) {
+            ReportWorking.reportCreatedDateTime = eazlReport.created_on;
+        } else {
+            ReportWorking.reportCreatedDateTime = '';
+        }
+
+        if (eazlReport.created_by != null) {
+            ReportWorking.reportCreatedUserID = eazlReport.created_by;
+        } else {
+            ReportWorking.reportCreatedUserID = '';
+        }
         
-    //     // Return the result
-    //     return canvasMessageWorking;
-    // }             
+        // Return the result
+        return ReportWorking;
+    }             
 
 
 
@@ -1056,9 +1106,9 @@ export class CDAL {
 
 
 
-    // loadGroup(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
-    //     // Load Group: move data Eazl -> Canvas
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
+    // loadCanvasMessage(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
+    //     // Load CanvasMessage: move data Eazl -> Canvas
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessage', '@Start');
     
     //     let canvasMessageWorking = new CanvasMessage();
         
