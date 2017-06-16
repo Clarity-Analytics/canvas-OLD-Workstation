@@ -3118,7 +3118,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetCommentID: 1,
             widgetID: 1,
             widgetCommentThreadID: 1,
-            widgetCommentCreateDateTime: '2017/02/14 13:01',
+            widgetCommentCreatedDateTime: '2017/02/14 13:01',
             widgetCommentCreatorUserID: 'JohnS',
             widgetCommentHeading: 'Data Accuracy',
             widgetCommentBody: 'Is the Nov data correct?'
@@ -3127,7 +3127,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetCommentID: 2,
             widgetID: 1,
             widgetCommentThreadID: 1,
-            widgetCommentCreateDateTime: '2017/02/14 13:15',
+            widgetCommentCreatedDateTime: '2017/02/14 13:15',
             widgetCommentCreatorUserID: 'SandyB',
             widgetCommentHeading: 'Data Accuracy',
             widgetCommentBody: 'Yip, checked against external source'
@@ -3136,7 +3136,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetCommentID: 3,
             widgetID: 1,
             widgetCommentThreadID: 1,
-            widgetCommentCreateDateTime: '2017/02/14 14:03',
+            widgetCommentCreatedDateTime: '2017/02/14 14:03',
             widgetCommentCreatorUserID: 'JohnS',
             widgetCommentHeading: 'Data Accuracy',
             widgetCommentBody: 'Thanx'
@@ -3145,7 +3145,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetCommentID: 4,
             widgetID: 1,
             widgetCommentThreadID: 2,
-            widgetCommentCreateDateTime: '2017/02/17 07:50',
+            widgetCommentCreatedDateTime: '2017/02/17 07:50',
             widgetCommentCreatorUserID: 'DonnaD',
             widgetCommentHeading: 'Congrats',
             widgetCommentBody: 'Excellent sales, keep going!'
@@ -3154,7 +3154,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetCommentID: 5,
             widgetID: 1,
             widgetCommentThreadID: 14,
-            widgetCommentCreateDateTime: '2017/04/14',
+            widgetCommentCreatedDateTime: '2017/04/14',
             widgetCommentCreatorUserID: 'HenriD',
             widgetCommentHeading: 'More research required on incidents',
             widgetCommentBody: ''
@@ -4374,7 +4374,7 @@ export class EazlService implements OnInit {
         inputWidgetCommentID: number,
         inputWidgetID: number,
         inputWidgetCommentThreadID: number,
-        inputWidgetCommentCreateDateTime: string,
+        inputWidgetCommentCreatedDateTime: string,
         inputWidgetCommentCreatorUserID: string,
         inputWidgetCommentHeading: string,
         inputWidgetCommentBody: string
@@ -4386,7 +4386,7 @@ export class EazlService implements OnInit {
                 widgetCommentID: inputWidgetCommentID,
                 widgetID: inputWidgetID,
                 widgetCommentThreadID: inputWidgetCommentThreadID,
-                widgetCommentCreateDateTime: inputWidgetCommentCreateDateTime,
+                widgetCommentCreatedDateTime: inputWidgetCommentCreatedDateTime,
                 widgetCommentCreatorUserID: inputWidgetCommentCreatorUserID,
                 widgetCommentHeading: inputWidgetCommentHeading,
                 widgetCommentBody: inputWidgetCommentBody

@@ -71,8 +71,8 @@ export class WidgetCommentComponent implements OnInit {
         // Get a sorted list from the backend
         this.widgetComments = this.eazlService.getWidgetsComments(this.selectedWidgetID).sort(
             function (a, b) {
-                return +b.widgetCommentCreateDateTime.substring(6, 2) -
-                    +a.widgetCommentCreateDateTime.substring(6, 2);
+                return +b.widgetCommentCreatedDateTime.substring(6, 2) -
+                    +a.widgetCommentCreatedDateTime.substring(6, 2);
             })
 
         // Load some detail for the lastest Comment
