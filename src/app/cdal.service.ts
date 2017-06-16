@@ -10,8 +10,10 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { CanvasMessage }              from './model.canvasMessage';
+import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { DashboardTab }               from './model.dashboardTabs';
 import { EazlCanvasMessage }          from './model.canvasMessage';
+import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
@@ -156,7 +158,7 @@ export class CDAL {
 
     loadDashboardTab(eazlDashboardTab: EazlDashboardTab): DashboardTab {
         // Load DashboardTab: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardTab', '@Start');
         let dashboardTabWorking = new DashboardTab();
         
         dashboardTabWorking.dashboardID = eazlDashboardTab.id;
@@ -202,13 +204,6 @@ export class CDAL {
         // Return the result
         return dashboardTabWorking;
     }            
-
-
-
-
-
-
-
 
     loadCanvasMessage(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
         // Load Group: move data Eazl -> Canvas
@@ -287,6 +282,43 @@ export class CDAL {
         return canvasMessageWorking;
     }             
 
+   loadMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
+        // Load MessageRecipient: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadMessageRecipient', '@Start');
+        let canvasMessageRecipientWorking = new CanvasMessageRecipient();
+        
+        canvasMessageRecipientWorking.canvasMessageRecipientID = eazlCanvasMessageRecipient.id;
+
+        if (eazlCanvasMessageRecipient.message_id != null) {
+            canvasMessageRecipientWorking.canvasMessageID = eazlCanvasMessageRecipient.message_id;
+        } else {
+            canvasMessageRecipientWorking.canvasMessageID = 0;
+        }
+
+        if (eazlCanvasMessageRecipient.username != null) {
+            canvasMessageRecipientWorking.username = eazlCanvasMessageRecipient.username;
+        } else {
+            canvasMessageRecipientWorking.username = '';
+        }
+
+        if (eazlCanvasMessageRecipient.recipient_status != null) {
+            canvasMessageRecipientWorking.canvasMessageRecipientStatus = eazlCanvasMessageRecipient.recipient_status;
+        } else {
+            canvasMessageRecipientWorking.canvasMessageRecipientStatus = '';
+        }
+
+        if (eazlCanvasMessageRecipient.read_datetime != null) {
+            canvasMessageRecipientWorking.canvasMessageReadDateTime = eazlCanvasMessageRecipient.read_datetime;
+        } else {
+            canvasMessageRecipientWorking.canvasMessageReadDateTime = '';
+        }
+
+        // Return the result
+        return canvasMessageRecipientWorking;
+    } 
+
+
+
 
     // loadGroup(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
     //     // Load Group: move data Eazl -> Canvas
@@ -301,7 +333,7 @@ export class CDAL {
     //         canvasMessage.groupName = '';
     //     }
         
-    //     // Return the User
+    //     // Return the result
     //     return groupWorking;
     // }             
 
