@@ -2,8 +2,8 @@
 
 // Eazl
 export class EazlCanvasMessage {
-    conversation_id: number;                        // Conversation thread that joins msgs
     id: number;                                     // Unique DB id
+    conversation_id: number;                        // Conversation thread that joins msgs
     sender_username: string;                        // Created by
     sent_datetime: string;                          // Created on
     issystem_generated: boolean;                    // True if a system message, not created by User

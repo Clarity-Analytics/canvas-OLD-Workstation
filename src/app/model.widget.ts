@@ -1,7 +1,6 @@
 // Schema for the Widget class
 
 // Eazl
-// TODO - expand
 export class EazlWidget {
     container_background_color: string;
     container_border: string;

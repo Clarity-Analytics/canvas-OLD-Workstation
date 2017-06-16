@@ -5834,7 +5834,6 @@ console.log('widgetsWorking', )
             }
         }
 
-
         // DasboardTabs
         if (resetObject == 'all'   ||   resetObject == 'dahboardtabs') {
 
@@ -5852,26 +5851,18 @@ console.log('widgetsWorking', )
                                     dashboardTabSingle = this.cdal.loadDashboardTab(eazlDasboardTab[i]);
                                     dashboardTabWorking.push(dashboardTabSingle);                                    
 
-                                    // dasboardTabWorking.push({
-                                    //     dashboardID: eazlDasboardTab[i].id,
-                                    //     dashboardTabID: eazlDasboardTab[i].id,
-                                    //     dashboardTabName:'',
-                                    //     dashboardTabDescription: '',
-                                    //     dashboardTabCreatedDateTime: '2017/05/01',
-                                    //     dashboardTabCreatedUserID: 'Janniei',
-                                    //     dashboardTabUpdatedDateTime: '2017/05/01',
-                                    //     dashboardTabUpdatedUserID: 'Janniei'
-                                    // });
                                 }
 
                             // Replace
-                            // TODO - replace dashboardTabs after Bradley's done initial upload
-                            //  this.dashboardTabs = groupsWorking;
-console.log('dasboardTabWorking', dashboardTabWorking)
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this... = groupsWorking;
                             }
-                    )
+                )
             }
         }
+
+
+
 
 
 
