@@ -10,7 +10,8 @@ export class EazlReport {
     datasource_parameters: string;      // Data Source Parameters
     report_fields: string[];            // Array of report fields, obtained from DB
     report_data: any[];                 // Array (json) of data rows
-
+    created_on: string;                 // Created on
+    created_by: string;                 // Created by
 }
 
 // Canvas
@@ -23,5 +24,6 @@ export class Report {
     dataSourceParameters: string;       // Data Source Parameters
     reportFields: string[];             // Array of report fields, obtained from DB
     reportData: any[];                  // Array (json) of data rows
-
+    reportCreatedDateTime: string;      // Date time of creation
+    reportCreatedUserID: string;        // UserID who created record
 }
