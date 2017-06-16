@@ -1,7 +1,17 @@
 // Schema for Dashboard User Relationship
 
 // Eazl
-
+export class EazlDashboardUserRelationship {
+    id: number;                                             // Unique ID
+    dashboard_id: number;                                   // Dashboard who has relationship
+    username: string;                                       // User who has relationship
+    type: string;                                           // Type of relationship: 
+    rating: number;                                         // Rating
+    created_on: string;                                     // Created on
+    created_by: string;                                     // Created by
+    updated_on: string;                                     // Updated on
+    updated_by: string;                                     // Updated by
+}
 
 // Canvas
 export class DashboardUserRelationship {
