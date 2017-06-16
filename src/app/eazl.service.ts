@@ -4877,7 +4877,11 @@ export class EazlService implements OnInit {
                     username: username,
                     datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'User: ' + username,
-                    datasourcesPerUserAccessType: du.dataSourceUserAccessType
+                    datasourcesPerUserAccessType: du.dataSourceUserAccessType,
+                    datasourcesPerUserCreatedDateTime: '2017/05/01',
+                    datasourcesPerUserCreatedUserID: 'janniei',
+                    datasourcesPerUserUpdatedDateTime: '2017/05/01',
+                    datasourcesPerUserUpdatedUserID: 'janniei'                    
                 })
             }
         })
@@ -4904,13 +4908,18 @@ export class EazlService implements OnInit {
                 if (datasourceWorking.length > 0) {
                     datasourceName = datasourceWorking[0].datasourceName;
                 }
+
+                // TODO - make the push once - this is not DRY
                 datasourcesPerUserWorking.push( {
                     datasourceID: gd.datasourceID,
                     username: username,
                     datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'Group: ' + groupWorking[0].groupName,
-                    datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType
-                })
+                    datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType,
+                    datasourcesPerUserCreatedDateTime: '2017/05/01',
+                    datasourcesPerUserCreatedUserID: 'janniei',
+                    datasourcesPerUserUpdatedDateTime: '2017/05/01',
+                    datasourcesPerUserUpdatedUserID: 'janniei'                })
             }        
         })        
 
@@ -5137,10 +5146,10 @@ export class EazlService implements OnInit {
 	                username: username,
                     dataSourceUserAccessType: 'Readonly',
                     dataSourceUserAccessScope: 'All',
-                    datasourceUserAccessCreatedDateTime: '2017/05/01',
-                    datasourceUserAccessCreatedUserID: 'janniei',
-                    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-                    datasourceUserAccessUpdatedUserID: 'janniei'
+                datasourceUserAccessCreatedDateTime: '2017/05/01',
+                datasourceUserAccessCreatedUserID: 'janniei',
+                datasourceUserAccessUpdatedDateTime: '2017/05/01',
+                datasourceUserAccessUpdatedUserID: 'janniei'
                 }        
             )
         }

@@ -7,6 +7,10 @@ export interface EazlDatasourcesPerUser {
     username: string;                           // User who has access
     access_via: string;                         // Username or Group
     access_type: string;                        // Readonly, etc
+	created_on: string;       						// Created on
+	created_by: string;         					// Created by
+	updated_on: string;       						// Updated on
+	updated_by: string;         					// Updated by
 }
 
 // Canvas
@@ -16,4 +20,8 @@ export interface DatasourcesPerUser {
     username: string;                           // User who has access
     datasourcesPerUserAccessVia: string;        // Username or Group
     datasourcesPerUserAccessType: string;       // Readonly, etc
+	datasourcesPerUserCreatedDateTime: string; 	// Created on
+	datasourcesPerUserCreatedUserID: string;   	// Created by
+	datasourcesPerUserUpdatedDateTime: string; 	// Updated on
+	datasourcesPerUserUpdatedUserID: string;   	// Updated by}
 }
