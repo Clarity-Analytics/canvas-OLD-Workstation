@@ -40,8 +40,8 @@ export class CDAL {
         userWorking.dateCreated = eazlUser.date_joined.toString()
         userWorking.userIDLastUpdated = '';
         userWorking.isStaff = eazlUser.is_staff;
-// is_superuser
-//         is_superuser: boolean;
+        // is_superuser
+        //         is_superuser: boolean;
 
         // Return the User
         return userWorking;

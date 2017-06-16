@@ -1,9 +1,10 @@
 // Global functions
-import { GlobalVariableService }      from './global-variable.service';
 import { Injectable }                 from '@angular/core';
 
+// Our Services
+import { GlobalVariableService }      from './global-variable.service';
+
 // Our Models
-import { EazlUser }                   from './model.user';
 import { CanvasUser }                 from './model.user';
 
 @Injectable()
@@ -13,8 +14,9 @@ export class GlobalFunctionService {
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
 
-  constructor(
-      private globalVariableService: GlobalVariableService) { }
+    constructor(
+      private globalVariableService: GlobalVariableService) { 
+    }
 
     // Prints a message to the console if in debugging mode GLOBALLY
     printToConsole(componentName: string, functionName: string, message: string) {
