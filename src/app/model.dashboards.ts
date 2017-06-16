@@ -1,7 +1,34 @@
 // Schema for Dashboard class
 
 // Eazl
-
+export class EazlDashboard {
+    id: number;                                 // Unique DB ID
+    code: string;                               // Code or ShortName
+    name: string;                               // Descriptive name
+    is_containerheader_dark: boolean;           // True if container header widgets dark (else light)
+    show_container_header: boolean;             // True to show Container Header
+    background_color: string;                   // Optional color of the whole Dashboard    
+    background_image_src: string;               // Optional picture to show in background
+    comments: string;                           // Optional comments
+    default_export_filetype: string;            // Excel, JSON, PDF, PowerPoint, Jupyter or csv
+    description: string;                        // User description
+    nr_groups: number;                          // @Runtime: # of groups this dashboard belongs to
+    is_locked: boolean;                         // If true, then cannot be modified
+    is_liked: boolean;                          // @RunTime: True if Dashboard is liked by me
+    open_tab_nr: number;                        // Optional Tab Nr to open on (default = 0)
+    owner_userid: string;                       // UserID of owner
+    password: string;                           // Optional password to open
+    refresh_mode: string;                       // Manual, onOpen  
+    nrUsers_shared_with: number;                // @RunTime: @ of UserIDs shared with
+    nr_groups_shared_with: number;              // @RunTime: @ of Groups shared with
+    system_message: string;                     // Optional for Canvas to say something to user
+    refreshed_on: string;                       // Data Refreshed on
+    refreshed_by: string;                       // Data Refreshed by
+    updated_on: string;                         // Updated on
+    updated_by: string;                         // Updated by
+    created_on: string;                         // Created on
+    created_by: string;                         // Created by
+}
 
 // Canvas
 export class Dashboard {
