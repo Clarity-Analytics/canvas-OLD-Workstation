@@ -1,12 +1,18 @@
 // Schema for the Report WidgetSet class
 
 // Eazl
-
+export class EazlReportWidgetSet {
+    id: number;                             // Unique DB ID
+    report_id: number;                      // FK to model.report
+    name: string;                           // Name
+    description: string;                    // Description
+    vega_spec: any;                         // Vega spec (layout varies)
+}
 
 // Canvas
 export class ReportWidgetSet {
-    reportID: number;                       // FK to model.report
     widgetSetID: number;                    // Unique DB ID
+    reportID: number;                       // FK to model.report
     widgetSetName: string;                  // Name
     widgetSetDescription: string;           // Description
     vegaSpec: any;                          // Vega spec (layout varies)
