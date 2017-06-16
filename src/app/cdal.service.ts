@@ -9,6 +9,8 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { DashboardTab }               from './model.dashboardTabs';
+import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
@@ -151,8 +153,53 @@ export class CDAL {
         return groupWorking;
     }             
 
+    loadDashboardTab(eazlDashboardTab: EazlDashboardTab): DashboardTab {
+        // Load DashboardTab: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
+        let dashboardTabWorking = new DashboardTab();
+        
+        dashboardTabWorking.dashboardID = eazlDashboardTab.id;
+        dashboardTabWorking.dashboardTabID = 0;
 
-          
+        if (eazlDashboardTab.name != null) {
+            dashboardTabWorking.dashboardTabName = eazlDashboardTab.name;
+        } else {
+            dashboardTabWorking.dashboardTabName = '';
+        }
+
+        if (eazlDashboardTab.description != null) {
+            dashboardTabWorking.dashboardTabDescription = eazlDashboardTab.description;
+        } else {
+            dashboardTabWorking.dashboardTabDescription = '';
+        }
+
+        if (eazlDashboardTab.createdDateTime != null) {
+            dashboardTabWorking.dashboardTabCreatedDateTime = eazlDashboardTab.createdDateTime;
+        } else {
+            dashboardTabWorking.dashboardTabCreatedDateTime = '';
+        }        
+
+        if (eazlDashboardTab.createdUserID != null) {
+            dashboardTabWorking.dashboardTabCreatedUserID = eazlDashboardTab.createdUserID;
+        } else {
+            dashboardTabWorking.dashboardTabCreatedUserID = '';
+        }
+
+        if (eazlDashboardTab.updatedDateTime != null) {
+            dashboardTabWorking.dashboardTabUpdatedDateTime = eazlDashboardTab.updatedDateTime;
+        } else {
+            dashboardTabWorking.dashboardTabUpdatedDateTime = '';
+        }
+
+        if (eazlDashboardTab.updatedUserID != null) {
+            dashboardTabWorking.dashboardTabUpdatedUserID = eazlDashboardTab.updatedUserID;
+        } else {
+            dashboardTabWorking.dashboardTabUpdatedUserID = '';
+        }
+        
+        // Return the User
+        return dashboardTabWorking;
+    }            
 
 }
 
