@@ -3,6 +3,12 @@
 export class EazlDashboardTab {
     id: number;
     dashboard: string;
+    name: string;
+    description: string;
+    createdDateTime: string;
+    createdUserID: string;
+    updatedDateTime: string;
+    updatedUserID
 }
 
 export class DashboardTab {
