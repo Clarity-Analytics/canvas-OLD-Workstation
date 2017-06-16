@@ -844,6 +844,69 @@ export class CDAL {
         return datasourcesPerUserWorking;
     }             
 
+    loaDataSourceUserAccess(eazlDataSourceUserAccess: EazlDataSourceUserAccess): DataSourceUserAccess {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDataSourceUserAccess', '@Start');
+    
+        let dataSourceUserAccessWorking = new DataSourceUserAccess();
+        
+        dataSourceUserAccessWorking.datasourceID = eazlDataSourceUserAccess.id;
+
+        if (eazlDataSourceUserAccess.username != null) {
+            dataSourceUserAccessWorking.username = eazlDataSourceUserAccess.username;
+        } else {
+            dataSourceUserAccessWorking.username = '';
+        }
+
+        if (eazlDataSourceUserAccess.type != null) {
+            dataSourceUserAccessWorking.dataSourceUserAccessType = 
+                eazlDataSourceUserAccess.type;
+        } else {
+            dataSourceUserAccessWorking.dataSourceUserAccessType = '';
+        }
+
+        if (eazlDataSourceUserAccess.scope != null) {
+            dataSourceUserAccessWorking.dataSourceUserAccessScope = 
+                eazlDataSourceUserAccess.scope;
+        } else {
+            dataSourceUserAccessWorking.dataSourceUserAccessScope = '';
+        }
+
+        if (eazlDataSourceUserAccess.created_on != null) {
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedDateTime = 
+                eazlDataSourceUserAccess.created_on;
+        } else {
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedDateTime = '';
+        }
+
+        if (eazlDataSourceUserAccess.created_by != null) {
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserID = 
+                eazlDataSourceUserAccess.created_by;
+        } else {
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserID = '';
+        }
+
+        if (eazlDataSourceUserAccess.updated_on != null) {
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedDateTime = 
+                eazlDataSourceUserAccess.updated_on;
+        } else {
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedDateTime = '';
+        }
+
+        if (eazlDataSourceUserAccess.updated_by != null) {
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserID = 
+                eazlDataSourceUserAccess.updated_by;
+        } else {
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserID = '';
+        }
+        
+        // Return the result
+        return dataSourceUserAccessWorking;
+    }             
+
+
+
+
 
 
 

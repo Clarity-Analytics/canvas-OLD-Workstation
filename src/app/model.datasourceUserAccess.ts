@@ -22,5 +22,4 @@ export class DataSourceUserAccess {
 	datasourceUserAccessCreatedUserID: string;   	// Created by
 	datasourceUserAccessUpdatedDateTime: string; 	// Updated on
 	datasourceUserAccessUpdatedUserID: string;   	// Updated by}
-
 }
