@@ -9,7 +9,9 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
+import { Group }                      from './model.group';
 import { User }                       from './model.user';
 
 @Injectable()
@@ -118,7 +120,7 @@ export class CDAL {
         
         // Return the User
         return userWorking;
-
     }
+
 }
 

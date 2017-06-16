@@ -12,9 +12,8 @@ export class Group {
 }
 
 // Group returned by REST, determined by Django
-export interface EazlGroup 
-    {
-        // Defines data model for User Entity
-        pk: number;
-        username: string;
-    }
+export interface EazlGroup {
+    // Defines data model for User Entity
+    pk: number;
+    name: string;
+}

@@ -5736,40 +5736,9 @@ export class EazlService implements OnInit {
                                     userTest = this.cdal.loadUser(eazlUser[i]);
                                     usersWorking.push(userTest);
 
-                                    // nickNameWorking = '';
-                                    // cellNumberWorking = '';
-                                    // workTelephoneNumberWorking = '';
-                                    // photoPathWorking = '';
-
-                                    // if (eazlUser[i].profile !=   null) {
-                                    //         nickNameWorking =  eazlUser[i].profile.nick_name;
-                                    //         cellNumberWorking = eazlUser[i].profile.cell_number;
-                                    //         workTelephoneNumberWorking = eazlUser[i].profile.work_number;
-                                    //         photoPathWorking = eazlUser[i].profile.profile_picture;
-                                    // }
-
-                                    // usersWorking.push({
-                                    //     username: eazlUser[i].username,
-                                    //     firstName: eazlUser[i].first_name,
-                                    //     lastName: eazlUser[i].last_name,
-                                    //     lastDatetimeLoggedIn: eazlUser[i].last_login,
-                                    //     lastDatetimeReportWasRun: '',
-                                    //     emailAddress: eazlUser[i].email,
-                                    //     activeFromDate: '2017/05/01',
-                                    //     inactiveDate: '',
-                                    //     dateCreated: eazlUser[i].date_joined,
-                                    //     userIDLastUpdated: '',
-                                    //     isStaff: eazlUser[i].is_staff,
-                                    //     isSuperUser: eazlUser[i].is_superuser,
-                                    //     nickName: nickNameWorking,
-                                    //     cellNumber: cellNumberWorking,
-                                    //     workTelephoneNumber: workTelephoneNumberWorking,
-                                    //     photoPath: photoPathWorking
-                                    // });
                                 }
 
                             // Replace
-console.log('usersWorking', usersWorking)                            
                             this.users = usersWorking;
                             }
                     )
