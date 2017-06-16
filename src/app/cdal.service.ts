@@ -11,6 +11,8 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
+import { Dashboard }                  from './model.dashboards';
+import { EazlDashboard }              from './model.dashboards';
 import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
@@ -494,6 +496,169 @@ export class CDAL {
         // Return the result
         return DashboardGroupRelationshipWorking;
     }             
+
+    loadDashboard(eazlDashboard: EazlDashboard): Dashboard {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboard', '@Start');
+        
+        let dashboardWorking = new Dashboard();
+        
+        dashboardWorking.dashboardID = eazlDashboard.id;
+
+        if (eazlDashboard.code != null) {
+            dashboardWorking.dashboardCode = eazlDashboard.code;
+        } else {
+            dashboardWorking.dashboardCode = '';
+        }
+
+        if (eazlDashboard.name != null) {
+            dashboardWorking.dashboardName = eazlDashboard.name;
+        } else {
+            dashboardWorking.dashboardName = '';
+        }
+
+        if (eazlDashboard.is_containerheader_dark != null) {
+            dashboardWorking.isContainerHeaderDark = eazlDashboard.is_containerheader_dark;
+        } else {
+            dashboardWorking.isContainerHeaderDark = false;
+        }
+
+        if (eazlDashboard.show_container_header != null) {
+            dashboardWorking.showContainerHeader = eazlDashboard.show_container_header;
+        } else {
+            dashboardWorking.showContainerHeader = false;
+        }
+
+        if (eazlDashboard.background_color != null) {
+            dashboardWorking.dashboardBackgroundColor = eazlDashboard.background_color;
+        } else {
+            dashboardWorking.dashboardBackgroundColor = '';
+        }
+
+        if (eazlDashboard.background_image_src != null) {
+            dashboardWorking.dashboardBackgroundImageSrc = eazlDashboard.background_image_src;
+        } else {
+            dashboardWorking.dashboardBackgroundImageSrc = '';
+        }
+
+        if (eazlDashboard.comments != null) {
+            dashboardWorking.dashboardComments = eazlDashboard.comments;
+        } else {
+            dashboardWorking.dashboardComments = '';
+        }
+
+        if (eazlDashboard.default_export_filetype != null) {
+            dashboardWorking.dashboardDefaultExportFileType = eazlDashboard.default_export_filetype;
+        } else {
+            dashboardWorking.dashboardDefaultExportFileType = '';
+        }
+
+        if (eazlDashboard.description != null) {
+            dashboardWorking.dashboardDescription = eazlDashboard.description;
+        } else {
+            dashboardWorking.dashboardDescription = '';
+        }
+
+        if (eazlDashboard.nr_groups != null) {
+            dashboardWorking.dashboardNrGroups = eazlDashboard.nr_groups;
+        } else {
+            dashboardWorking.dashboardNrGroups = 0;
+        }
+
+        if (eazlDashboard.is_locked != null) {
+            dashboardWorking.dashboardIsLocked = eazlDashboard.is_locked;
+        } else {
+            dashboardWorking.dashboardIsLocked = false;
+        }
+
+        if (eazlDashboard.is_liked != null) {
+            dashboardWorking.dashboardIsLiked = eazlDashboard.is_liked;
+        } else {
+            dashboardWorking.dashboardIsLiked = false;
+        }
+
+        if (eazlDashboard.open_tab_nr != null) {
+            dashboardWorking.dashboardOpenTabNr = eazlDashboard.open_tab_nr;
+        } else {
+            dashboardWorking.dashboardOpenTabNr = 0;
+        }
+
+        if (eazlDashboard.owner_userid != null) {
+            dashboardWorking.dashboardOwnerUserID = eazlDashboard.owner_userid;
+        } else {
+            dashboardWorking.dashboardOwnerUserID = '';
+        }
+
+        if (eazlDashboard.password != null) {
+            dashboardWorking.dashboardPassword = eazlDashboard.password;
+        } else {
+            dashboardWorking.dashboardPassword = '';
+        }
+
+        if (eazlDashboard.refresh_mode != null) {
+            dashboardWorking.dashboardRefreshMode = eazlDashboard.refresh_mode;
+        } else {
+            dashboardWorking.dashboardRefreshMode = '';
+        }
+
+        if (eazlDashboard.nrUsers_shared_with != null) {
+            dashboardWorking.dashboardNrUsersSharedWith = eazlDashboard.nrUsers_shared_with;
+        } else {
+            dashboardWorking.dashboardNrUsersSharedWith = 0;
+        }
+
+        if (eazlDashboard.nr_groups_shared_with != null) {
+            dashboardWorking.dashboardNrGroupsSharedWith = eazlDashboard.nr_groups_shared_with;
+        } else {
+            dashboardWorking.dashboardNrGroupsSharedWith = 0;
+        }
+
+        if (eazlDashboard.system_message != null) {
+            dashboardWorking.dashboardSystemMessage = eazlDashboard.system_message;
+        } else {
+            dashboardWorking.dashboardSystemMessage = '';
+        }
+
+        if (eazlDashboard.refreshed_on != null) {
+            dashboardWorking.dashboardRefreshedDateTime = eazlDashboard.refreshed_on;
+        } else {
+            dashboardWorking.dashboardRefreshedDateTime = '';
+        }
+
+        if (eazlDashboard.refreshed_by != null) {
+            dashboardWorking.dashboardRefreshedUserID = eazlDashboard.refreshed_by;
+        } else {
+            dashboardWorking.dashboardRefreshedUserID = '';
+        }
+
+        if (eazlDashboard.updated_on != null) {
+            dashboardWorking.dashboardUpdatedDateTime = eazlDashboard.updated_on;
+        } else {
+            dashboardWorking.dashboardUpdatedDateTime = '';
+        }
+
+        if (eazlDashboard.updated_by != null) {
+            dashboardWorking.dashboardUpdatedUserID = eazlDashboard.updated_by;
+        } else {
+            dashboardWorking.dashboardUpdatedUserID = '';
+        }
+
+        if (eazlDashboard.created_on != null) {
+            dashboardWorking.dashboardCreatedDateTime = eazlDashboard.created_on;
+        } else {
+            dashboardWorking.dashboardCreatedDateTime = '';
+        }
+
+        if (eazlDashboard.created_by != null) {
+            dashboardWorking.dashboardCreatedUserID = eazlDashboard.created_by;
+        } else {
+            dashboardWorking.dashboardCreatedUserID = '';
+        }
+
+        // Return the result
+        return dashboardWorking;
+    }             
+
 
 
 
