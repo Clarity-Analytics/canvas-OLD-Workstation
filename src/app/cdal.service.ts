@@ -1140,6 +1140,65 @@ export class CDAL {
         return reportWidgetSetWorking;
     }             
 
+    loadReportHistory(eazlReportHistory: EazlReportHistory): ReportHistory {
+        // Load ReportHistory: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadReportHistory', '@Start');
+    
+        let reportHistoryWorking = new ReportHistory();
+        
+        reportHistoryWorking.reportHistoryID = eazlReportHistory.id;
+
+        if (eazlReportHistory.username != null) {
+            reportHistoryWorking.username = eazlReportHistory.username;
+        } else {
+            reportHistoryWorking.username = '';
+        }
+
+        if (eazlReportHistory.report_id != null) {
+            reportHistoryWorking.reportID = eazlReportHistory.report_id;
+        } else {
+            reportHistoryWorking.reportID = 0;
+        }
+
+        if (eazlReportHistory.datasource_id != null) {
+            reportHistoryWorking.datasourceID = eazlReportHistory.datasource_id;
+        } else {
+            reportHistoryWorking.datasourceID = 0;
+        }
+
+        if (eazlReportHistory.start_on != null) {
+            reportHistoryWorking.reportHistoryStartDateTime = eazlReportHistory.start_on;
+        } else {
+            reportHistoryWorking.reportHistoryStartDateTime = '';
+        }
+
+        if (eazlReportHistory.end_on != null) {
+            reportHistoryWorking.reportHistoryEndDateTime = eazlReportHistory.end_on;
+        } else {
+            reportHistoryWorking.reportHistoryEndDateTime = '';
+        }
+
+        if (eazlReportHistory.status != null) {
+            reportHistoryWorking.reportHistoryStatus = eazlReportHistory.status;
+        } else {
+            reportHistoryWorking.reportHistoryStatus = '';
+        }
+
+        if (eazlReportHistory.nr_rows_returned != null) {
+            reportHistoryWorking.reportHistoryNrRowsReturned = eazlReportHistory.nr_rows_returned;
+        } else {
+            reportHistoryWorking.reportHistoryNrRowsReturned = 0;
+        }
+
+        if (eazlReportHistory.comments != null) {
+            reportHistoryWorking.reportHistoryComments = eazlReportHistory.comments;
+        } else {
+            reportHistoryWorking.reportHistoryComments = '';
+        }
+        
+        // Return the result
+        return reportHistoryWorking;
+    }             
 
 
 
