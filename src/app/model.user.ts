@@ -18,6 +18,7 @@ export class User
         dateCreated: string;
         userIDLastUpdated: string;
         isStaff: boolean;
+        isSuperUser: boolean;
     }
 
 // User returned by REST, determined by Django

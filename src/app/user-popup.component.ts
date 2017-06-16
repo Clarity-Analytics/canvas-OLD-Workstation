@@ -43,6 +43,7 @@ export class UserPopupComponent implements OnInit {
     formIsValid: boolean = false;
     isLoadingForm: boolean = false;
     isStaffOptions: SelectItem[];
+    isSuperuserOptions: SelectItem[];
     numberErrors: number = 0;
     userformID: any;
     userformActivity: FormGroup;
@@ -64,7 +65,8 @@ export class UserPopupComponent implements OnInit {
             'emailAddress':         new FormControl('', Validators.required),
             'cellNumber':           new FormControl(''),
             'workTelephoneNumber':  new FormControl(''),
-            'isStaff':              new FormControl('')
+            'isStaff':              new FormControl(''),
+            'isSuperUser':          new FormControl('')
         }
         );
 
@@ -89,6 +91,12 @@ export class UserPopupComponent implements OnInit {
         this.isStaffOptions.push({ label: 'Select option', value: '' });
         this.isStaffOptions.push({ label: 'Is Staff Member', value: 'True' });
         this.isStaffOptions.push({ label: 'Non-staff', value: 'False' });
+
+        this.isSuperuserOptions = [];
+        this.isSuperuserOptions.push({ label: 'Select option', value: '' });
+        this.isSuperuserOptions.push({ label: 'Is Superuser', value: 'True' });
+        this.isSuperuserOptions.push({ label: 'Normal staff', value: 'False' });
+
     }
 
     subscribeToValue() {
@@ -198,6 +206,9 @@ export class UserPopupComponent implements OnInit {
                 if (this.selectedUser.isStaff) {
                     this.userformID.controls['isStaff'].setValue(this.selectedUser.isStaff);
                 }
+                if (this.selectedUser.isSuperUser) {
+                    this.userformID.controls['isSuperUser'].setValue(this.selectedUser.isSuperUser);
+                }
 
                 // Indicate we are done loading form
                 this.isLoadingForm = false;
@@ -282,6 +293,7 @@ export class UserPopupComponent implements OnInit {
                 dateCreated:                this.userformActivity.controls['dateCreated'].value,
                 userIDLastUpdated:          this.userformActivity.controls['userIDLastUpdated'].value,
                 isStaff:                    this.userformID.controls['isStaff'].valuel,
+                isSuperUser:                this.userformID.controls['isSuperUser'].valuel,
             });
 
         this.globalVariableService.growlGlobalMessage.next({
@@ -305,6 +317,7 @@ export class UserPopupComponent implements OnInit {
                 this.selectedUser.cellNumber = this.userformID.controls['cellNumber'].value;
                 this.selectedUser.workTelephoneNumber = this.userformID.controls['workTelephoneNumber'].value;
                 this.selectedUser.isStaff = this.userformID.controls['isStaff'].value;
+                this.selectedUser.isSuperUser = this.userformID.controls['isSuperUser'].value;
             }
 
             if (!this.isLoadingForm) {
