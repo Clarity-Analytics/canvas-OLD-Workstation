@@ -17,7 +17,7 @@ export class WidgetComment {
     widgetID: number;                               // FK to Widget ID 
     widgetCommentThreadID: number;                  // Thread ID (for 1 or more comments)
     widgetCommentCreatedDateTime: string;           // Date time of creation
-    widgetCommentCreatorUserID: string;             // UserID who created record
+    widgetCommentCreatedUserID: string;             // UserID who created record
     widgetCommentHeading: string;                   // Short message heading
     widgetCommentBody: string;                      // Message body
 }
