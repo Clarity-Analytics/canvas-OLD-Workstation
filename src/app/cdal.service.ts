@@ -12,6 +12,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { Dashboard }                  from './model.dashboards';
+import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
@@ -23,6 +24,7 @@ import { EazlDashboardGroup }         from './model.dashboardGroup';
 import { EazlDashboardGroupMembership }     from './model.dashboardGroupMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
+import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
 import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
@@ -659,7 +661,43 @@ export class CDAL {
         return dashboardWorking;
     }             
 
+    loadDashboardsPerUser(eazlDashboardsPerUser: EazlDashboardsPerUser): DashboardsPerUser {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardsPerUser', '@Start');
+        
+        let dashboardsPerUserWorking = new DashboardsPerUser();
+        
+        dashboardsPerUserWorking.dashboardID = eazlDashboardsPerUser.dashboard_id;
+    
+        if (eazlDashboardsPerUser.name != null) {
+            dashboardsPerUserWorking.dashboardName = eazlDashboardsPerUser.name;
+        } else {
+            dashboardsPerUserWorking.dashboardName = '';
+        }
+    
+        if (eazlDashboardsPerUser.username != null) {
+            dashboardsPerUserWorking.username = eazlDashboardsPerUser.username;
+        } else {
+            dashboardsPerUserWorking.username = '';
+        }
+    
+        if (eazlDashboardsPerUser.accessVia != null) {
+            dashboardsPerUserWorking.dashboardsPerUserAccessVia = 
+                eazlDashboardsPerUser.accessVia;
+        } else {
+            dashboardsPerUserWorking.dashboardsPerUserAccessVia = '';
+        }
+    
+        if (eazlDashboardsPerUser.accessType != null) {
+            dashboardsPerUserWorking.dashboardsPerUserAccessType = 
+                eazlDashboardsPerUser.accessType;
+        } else {
+            dashboardsPerUserWorking.dashboardsPerUserAccessType = '';
+        }
 
+        // Return the result
+        return dashboardsPerUserWorking;
+    }  
 
 
 
@@ -667,7 +705,7 @@ export class CDAL {
     // loadGroup(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
     //     // Load Group: move data Eazl -> Canvas
     //     this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
-    //     let canvasMessage = new CanvasMessage();
+    //     let canvasMessageWorking = new CanvasMessage();
         
     //     canvasMessageWorking.groupID = eazlCanvasMessage.id;
 

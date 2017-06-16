@@ -1,7 +1,7 @@
 // Schema for Datasource per User, both via User & via Group membership
 
 // Eazl
-export interface EazlDashboardsPerUser {
+export class EazlDashboardsPerUser {
     dashboard_id: number;                       // Dashboard ID
     name: string;                               // Dashboard Name
     username: string;                           // User who has access
@@ -10,7 +10,7 @@ export interface EazlDashboardsPerUser {
 }
 
 // Canvas
-export interface DashboardsPerUser {
+export class DashboardsPerUser {
     dashboardID: number;                        // Dashboard ID
     dashboardName: string;                      // Dashboard Name
     username: string;                           // User who has access
