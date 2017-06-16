@@ -17,7 +17,11 @@ import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
-import { DashboardUserRelationship }        from './model.dashboardUserRelationship';
+import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
+import { DataSourceUserAccess }       from './model.datasourceUserAccess';
+import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
+import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
@@ -31,6 +35,8 @@ import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { User }                       from './model.user';
+
+// TODO - add loadDataSources
 
 @Injectable()
 export class CDAL {
@@ -386,7 +392,7 @@ export class CDAL {
     loadDashboardGroupMembership(
         eazlDashboardGroupMembership: EazlDashboardGroupMembership
         ): DashboardGroupMembership {
-        // Load Group: move data Eazl -> Canvas
+        // Load DashboardGroupMembership: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupMembership', '@Start');
         
         let dashboardGroupMembershipWorking = new DashboardGroupMembership();
@@ -433,7 +439,7 @@ export class CDAL {
     }             
 
     loadDashboardGroupRelationship(eazlDashboardGroupRelationship: EazlDashboardGroupRelationship): DashboardGroupRelationship {
-        // Load Group: move data Eazl -> Canvas
+        // Load DashboardGroupRelationship: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupRelationship', '@Start');
 
         let DashboardGroupRelationshipWorking = new DashboardGroupRelationship();
@@ -502,7 +508,7 @@ export class CDAL {
     }             
 
     loadDashboard(eazlDashboard: EazlDashboard): Dashboard {
-        // Load Group: move data Eazl -> Canvas
+        // Load dDashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboard', '@Start');
         
         let dashboardWorking = new Dashboard();
@@ -664,7 +670,7 @@ export class CDAL {
     }             
 
     loadDashboardsPerUser(eazlDashboardsPerUser: EazlDashboardsPerUser): DashboardsPerUser {
-        // Load Group: move data Eazl -> Canvas
+        // Load DashboardsPerUser: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardsPerUser', '@Start');
         
         let dashboardsPerUserWorking = new DashboardsPerUser();
@@ -704,7 +710,7 @@ export class CDAL {
     loadDashboardUserRelationship(
         eazlDashboardUserRelationship: EazlDashboardUserRelationship
         ): DashboardUserRelationship {
-        // Load Group: move data Eazl -> Canvas
+        // Load DashboardUserRelationship: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserRelationship', '@Start');
         
         let dashboardUserRelationshipWorking = new DashboardUserRelationship();
@@ -771,6 +777,74 @@ export class CDAL {
         // Return the result
         return dashboardUserRelationshipWorking;
     }  
+
+    loadDatasourcesPerUser(eazlDatasourcesPerUser: EazlDatasourcesPerUser): DatasourcesPerUser {
+        // Load DatasourcesPerUser: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDatasourcesPerUser', '@Start');
+    
+        let datasourcesPerUserWorking = new DatasourcesPerUser();
+        
+        datasourcesPerUserWorking.datasourceID = eazlDatasourcesPerUser.id;
+
+        if (eazlDatasourcesPerUser.name != null) {
+            datasourcesPerUserWorking.datasourceName = eazlDatasourcesPerUser.name;
+        } else {
+            datasourcesPerUserWorking.datasourceName = '';
+        }
+ 
+        if (eazlDatasourcesPerUser.username != null) {
+            datasourcesPerUserWorking.username = eazlDatasourcesPerUser.username;
+        } else {
+            datasourcesPerUserWorking.username = '';
+        }
+ 
+        if (eazlDatasourcesPerUser.access_via != null) {
+            datasourcesPerUserWorking.datasourcesPerUserAccessVia = 
+                eazlDatasourcesPerUser.access_via;
+        } else {
+            datasourcesPerUserWorking.datasourcesPerUserAccessVia = '';
+        }
+ 
+        if (eazlDatasourcesPerUser.access_type != null) {
+            datasourcesPerUserWorking.datasourcesPerUserAccessType = 
+                eazlDatasourcesPerUser.access_type;
+        } else {
+            datasourcesPerUserWorking.datasourcesPerUserAccessType = '';
+        }
+
+        if (eazlDatasourcesPerUser.created_on != null) {
+            datasourcesPerUserWorking.datasourcesPerUserCreatedDateTime = 
+                eazlDatasourcesPerUser.created_on;
+        } else {
+            datasourcesPerUserWorking.datasourcesPerUserCreatedDateTime = '';
+        }
+
+        if (eazlDatasourcesPerUser.created_by != null) {
+            datasourcesPerUserWorking.datasourcesPerUserCreatedUserID = 
+                eazlDatasourcesPerUser.created_by;
+        } else {
+            datasourcesPerUserWorking.datasourcesPerUserCreatedUserID = '';
+        }
+
+        if (eazlDatasourcesPerUser.updated_on != null) {
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedDateTime = 
+                eazlDatasourcesPerUser.updated_on;
+        } else {
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedDateTime = '';
+        }
+
+        if (eazlDatasourcesPerUser.updated_by != null) {
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserID = 
+                eazlDatasourcesPerUser.updated_by;
+        } else {
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserID = '';
+        }
+
+        // Return the result
+        return datasourcesPerUserWorking;
+    }             
+
+
 
 
 

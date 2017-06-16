@@ -1,7 +1,7 @@
 // Schema for Datasource per User, both via User & via Group membership
 
 // Eazl
-export interface EazlDatasourcesPerUser {
+export class EazlDatasourcesPerUser {
     id: number;                                 // Datasource ID
     name: string;                               // Datasource Name
     username: string;                           // User who has access
@@ -14,7 +14,7 @@ export interface EazlDatasourcesPerUser {
 }
 
 // Canvas
-export interface DatasourcesPerUser {
+export class DatasourcesPerUser {
     datasourceID: number;                       // Datasource ID
     datasourceName: string;                     // Datasource Name
     username: string;                           // User who has access
