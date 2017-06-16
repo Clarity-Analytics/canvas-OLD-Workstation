@@ -5732,9 +5732,9 @@ export class EazlService implements OnInit {
 
                                 // Loop on Array returned, convert to Canvas format into local Array
                                 for (var i = 0; i < eazlUser.length; i++) {
-                                    let userTest = new User;
-                                    userTest = this.cdal.loadUser(eazlUser[i]);
-                                    usersWorking.push(userTest);
+                                    let userSingle = new User;
+                                    userSingle = this.cdal.loadUser(eazlUser[i]);
+                                    usersWorking.push(userSingle);
 
                                 }
 
@@ -5758,15 +5758,9 @@ export class EazlService implements OnInit {
                         .subscribe(
                             (eazlGroup) => {
                                 for (var i = 0; i < eazlGroup.length; i++) {
-                                    groupsWorking.push({
-                                        groupID: i,
-                                        groupName: eazlGroup[i].name,
-                                        groupDescription: eazlGroup[i].name,
-                                        groupCreatedDateTime: '2017/05/01',
-                                        groupCreatedUserID: 'Janniei',
-                                        groupUpdatedDateTime: '2017/05/01',
-                                        groupUpdatedUserID: 'Janniei'
-                                    });
+                                    let groupSingle = new Group();
+                                    groupSingle = this.cdal.loadGroup(eazlGroup[i]);
+                                    groupsWorking.push(groupSingle);                                    groupsWorking.push
                                 }
 
                             // Replace

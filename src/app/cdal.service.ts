@@ -128,7 +128,7 @@ export class CDAL {
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
         let groupWorking = new Group();
         
-        groupWorking.groupID = 0;
+        groupWorking.groupID = eazlGroup.id;
 
         if (eazlGroup.name != null) {
             groupWorking.groupName = eazlGroup.name;
