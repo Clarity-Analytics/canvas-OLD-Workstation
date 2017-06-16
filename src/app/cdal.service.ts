@@ -31,8 +31,10 @@ import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelation
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
 import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship';
+import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlUser }                   from './model.user';
+import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
 import { User }                       from './model.user';
 
@@ -903,6 +905,36 @@ export class CDAL {
         // Return the result
         return dataSourceUserAccessWorking;
     }             
+
+    loadFilter(eazlFilter: EazlFilter): Filter {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadFilter', '@Start');
+    
+        let filterWorking = new Filter();
+
+        if (eazlFilter.has_atleast_one_filter != null) {
+            filterWorking.hasAtLeastOneFilter = eazlFilter.has_atleast_one_filter;
+        } else {
+            filterWorking.hasAtLeastOneFilter = false;
+        }
+ 
+        if (eazlFilter.owner != null) {
+            filterWorking.owner = eazlFilter.owner;
+        } else {
+            filterWorking.owner = '';
+        }
+ 
+        if (eazlFilter.description != null) {
+            filterWorking.description = eazlFilter.description;
+        } else {
+            filterWorking.description = '';
+        }
+        
+        // Return the result
+        return filterWorking;
+    }             
+
+
 
 
 
