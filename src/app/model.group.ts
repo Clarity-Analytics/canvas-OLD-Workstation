@@ -1,5 +1,13 @@
 // Schema for the Group (for Users) class
 
+// TODO - we need more fields in DB - sort out somehow
+// Eazl
+export interface EazlGroup {
+    // Defines data model for User Entity
+    id: number;
+    name: string;
+}
+
 // Users registered to use the system
 export class Group {
     groupID: number;
@@ -9,12 +17,4 @@ export class Group {
     groupCreatedUserID: string;            // Created by
     groupUpdatedDateTime: string;          // Updated on
     groupUpdatedUserID: string;            // Updated by
-}
-
-// TODO - we need more fields in DB - sort out somehow
-// Eazl
-export interface EazlGroup {
-    // Defines data model for User Entity
-    id: number;
-    name: string;
 }
