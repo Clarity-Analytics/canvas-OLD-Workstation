@@ -159,6 +159,7 @@ export class CDAL {
         let dashboardTabWorking = new DashboardTab();
         
         dashboardTabWorking.dashboardID = eazlDashboardTab.id;
+        // TODO - replace with correct IDs
         dashboardTabWorking.dashboardTabID = 0;
 
         if (eazlDashboardTab.name != null) {

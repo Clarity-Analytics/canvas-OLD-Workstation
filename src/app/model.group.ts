@@ -11,6 +11,7 @@ export class Group {
     groupUpdatedUserID: string;            // Updated by
 }
 
+// TODO - we need more fields in DB - sort out somehow
 // Group returned by REST, determined by Django
 export interface EazlGroup {
     // Defines data model for User Entity

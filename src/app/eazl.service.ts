@@ -5809,27 +5809,32 @@ console.log('widgetsWorking', )
             if (resetAction == 'reset') {
 
                 // Get all the data via API
-                let dasboardTabWorking: DashboardTab[] = [];
+                let dashboardTabWorking: DashboardTab[] = [];
                 // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlDashboardTab>('dashboard-tabs')
                         .subscribe(
                             (eazlDasboardTab) => {
                                 for (var i = 0; i < eazlDasboardTab.length; i++) {
-                                    dasboardTabWorking.push({
-                                        dashboardID: eazlDasboardTab[i].id,
-                                        dashboardTabID: eazlDasboardTab[i].id,
-                                        dashboardTabName:'',
-                                        dashboardTabDescription: '',
-                                        dashboardTabCreatedDateTime: '2017/05/01',
-                                        dashboardTabCreatedUserID: 'Janniei',
-                                        dashboardTabUpdatedDateTime: '2017/05/01',
-                                        dashboardTabUpdatedUserID: 'Janniei'
-                                    });
+                                    let dashboardTabSingle = new DashboardTab();
+                                    dashboardTabSingle = this.cdal.loadDashboardTab(eazlDasboardTab[i]);
+                                    dashboardTabWorking.push(dashboardTabSingle);                                    
+
+                                    // dasboardTabWorking.push({
+                                    //     dashboardID: eazlDasboardTab[i].id,
+                                    //     dashboardTabID: eazlDasboardTab[i].id,
+                                    //     dashboardTabName:'',
+                                    //     dashboardTabDescription: '',
+                                    //     dashboardTabCreatedDateTime: '2017/05/01',
+                                    //     dashboardTabCreatedUserID: 'Janniei',
+                                    //     dashboardTabUpdatedDateTime: '2017/05/01',
+                                    //     dashboardTabUpdatedUserID: 'Janniei'
+                                    // });
                                 }
 
                             // Replace
-                            // this.groups = groupsWorking;
-console.log('dasboardTabWorking', dasboardTabWorking)
+                            // TODO - replace dashboardTabs after Bradley's done initial upload
+                            //  this.dashboardTabs = groupsWorking;
+console.log('dasboardTabWorking', dashboardTabWorking)
                             }
                     )
             }
