@@ -382,6 +382,7 @@ export class CDAL {
         ): DashboardGroupMembership {
         // Load Group: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupMembership', '@Start');
+        
         let dashboardGroupMembershipWorking = new DashboardGroupMembership();
         
         dashboardGroupMembershipWorking.dashboardGroupID = eazlDashboardGroupMembership.id;
@@ -425,6 +426,74 @@ export class CDAL {
         return dashboardGroupMembershipWorking;
     }             
 
+    loadDashboardGroupRelationship(eazlDashboardGroupRelationship: EazlDashboardGroupRelationship): DashboardGroupRelationship {
+        // Load Group: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupRelationship', '@Start');
+
+        let DashboardGroupRelationshipWorking = new DashboardGroupRelationship();
+        
+        DashboardGroupRelationshipWorking.dashboardGroupRelationshipID = 
+            eazlDashboardGroupRelationship.id;
+
+        if (eazlDashboardGroupRelationship.dashboard_id != null) {
+            DashboardGroupRelationshipWorking.dashboardID = 
+                eazlDashboardGroupRelationship.dashboard_id;
+        } else {
+            DashboardGroupRelationshipWorking.dashboardID = 0;
+        }
+
+        if (eazlDashboardGroupRelationship.group_id != null) {
+            DashboardGroupRelationshipWorking.groupID = 
+                eazlDashboardGroupRelationship.group_id;
+        } else {
+            DashboardGroupRelationshipWorking.groupID = 0;
+        }
+
+        if (eazlDashboardGroupRelationship.type != null) {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipType = 
+                eazlDashboardGroupRelationship.type;
+        } else {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipType = '';
+        }
+
+        if (eazlDashboardGroupRelationship.rating != null) {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipRating = 
+                eazlDashboardGroupRelationship.rating;
+        } else {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipRating = 0;
+        }
+
+        if (eazlDashboardGroupRelationship.updated_on != null) {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedDateTime = 
+                eazlDashboardGroupRelationship.updated_on;
+        } else {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedDateTime = '';
+        }
+
+        if (eazlDashboardGroupRelationship.updated_by != null) {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedUserID = 
+                eazlDashboardGroupRelationship.updated_by;
+        } else {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedUserID = '';
+        }
+
+        if (eazlDashboardGroupRelationship.created_on != null) {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedDateTime = 
+                eazlDashboardGroupRelationship.created_on;
+        } else {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedDateTime = '';
+        }
+
+        if (eazlDashboardGroupRelationship.created_by != null) {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedUserID = 
+                eazlDashboardGroupRelationship.created_by;
+        } else {
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedUserID = '';
+        }
+        
+        // Return the result
+        return DashboardGroupRelationshipWorking;
+    }             
 
 
 
