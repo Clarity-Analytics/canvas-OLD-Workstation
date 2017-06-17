@@ -6381,9 +6381,86 @@ console.log('widgetsWorking', )
                 )
             }
         }
-// loadWidgetComment
+
+        // WidgetComment
+        if (resetObject == 'all'   ||   resetObject == 'WidgetComments') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let WidgetCommentWorking: WidgetComment[] = [];
+                this.get<EazlWidgetComment>('widget-comments')
+                        .subscribe(
+                            (eazlWidgetComment) => {
+                                for (var i = 0; i < eazlWidgetComment.length; i++) {
+                                    let WidgetCommentSingle = new WidgetComment();
+                                    WidgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
+                                    WidgetCommentWorking.push(WidgetCommentSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.WidgetComments = WidgetCommentWorking;
+                            }
+                )
+            }
+        }
 // loadWidgetTemplate
+
+        // Dashboard
+        if (resetObject == 'all'   ||   resetObject == 'Dashboards') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardWorking: Dashboard[] = [];
+                this.get<EazlDashboard>('dashboards')
+                        .subscribe(
+                            (eazlDashboard) => {
+                                for (var i = 0; i < eazlDashboard.length; i++) {
+                                    let DashboardSingle = new Dashboard();
+                                    DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
+                                    DashboardWorking.push(DashboardSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.dashboards = dashboardWorking;
+                            }
+                )
+            }
+        }
 // loadWidget
+
+        // Dashboard
+        if (resetObject == 'all'   ||   resetObject == 'Dashboards') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardWorking: Dashboard[] = [];
+                this.get<EazlDashboard>('dashboards')
+                        .subscribe(
+                            (eazlDashboard) => {
+                                for (var i = 0; i < eazlDashboard.length; i++) {
+                                    let DashboardSingle = new Dashboard();
+                                    DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
+                                    DashboardWorking.push(DashboardSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.dashboards = dashboardWorking;
+                            }
+                )
+            }
+        }
 
 
 
