@@ -6174,7 +6174,32 @@ console.log('widgetsWorking', )
             }
         }
 
-// loadGroupDatasourceAccess
+        // GroupDatasourceAccess
+        if (resetObject == 'all'   ||   resetObject == 'GroupDatasourceAccesss') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let GroupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
+                this.get<EazlGroupDatasourceAccess>('group-datasource-accesss')
+                        .subscribe(
+                            (eazlGroupDatasourceAccess) => {
+                                for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
+                                    let GroupDatasourceAccessSingle = new GroupDatasourceAccess();
+                                    GroupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
+                                    GroupDatasourceAccessWorking.push(GroupDatasourceAccessSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.GroupDatasourceAccesss = GroupDatasourceAccessWorking;
+                            }
+                )
+            }
+        }
+
 // loadNotification
 // loadReport
 // loadReportWidgetSet
