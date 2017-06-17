@@ -41,6 +41,7 @@ import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
 import { EazlUserGroupMembership }    from './model.userGroupMembership';
+import { EazlWidget }                 from './model.widget';
 import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { Filter }                     from './model.filter';
@@ -55,6 +56,7 @@ import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
+import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 
@@ -1554,28 +1556,553 @@ export class CDAL {
         return widgetTemplateWorking;
     }             
 
-
-
-    // loadCanvasMessage(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
-    //     // Load CanvasMessage: move data Eazl -> Canvas
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessage', '@Start');
+    loadWidget(eazlWidget: EazlWidget): Widget {
+        // Load Widget: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadWidget', '@Start');
     
-    //     let canvasMessageWorking = new CanvasMessage();
+        let widgetWorking = new Widget();
+
+// TODO - add multiple users who likes it; or not and treat elsewhere
+        if (eazlWidget.container_background_color != null) {
+            widgetWorking.container.backgroundColor = eazlWidget.container_background_color;
+        } else {
+            widgetWorking.container.backgroundColor = '';
+        }
+
+        if (eazlWidget.container_border != null) {
+            widgetWorking.container.border = eazlWidget.container_border;
+        } else {
+            widgetWorking.container.border = '';
+        }
+
+        if (eazlWidget.container_box_shadow != null) {
+            widgetWorking.container.boxShadow = eazlWidget.container_box_shadow;
+        } else {
+            widgetWorking.container.boxShadow = '';
+        }
+
+        if (eazlWidget.container_color != null) {
+            widgetWorking.container.color = eazlWidget.container_color;
+        } else {
+            widgetWorking.container.color = '';
+        }
+
+        if (eazlWidget.container_font_size != null) {
+            widgetWorking.container.fontSize = eazlWidget.container_font_size;
+        } else {
+            widgetWorking.container.fontSize = 0;
+        }
+
+        if (eazlWidget.container_height != null) {
+            widgetWorking.container.height = eazlWidget.container_height;
+        } else {
+            widgetWorking.container.height = 0;
+        }
+
+        if (eazlWidget.container_left != null) {
+            widgetWorking.container.left = eazlWidget.container_left;
+        } else {
+            widgetWorking.container.left = 0;
+        }
+
+        if (eazlWidget.container_widget_title != null) {
+            widgetWorking.container.widgetTitle = eazlWidget.container_widget_title;
+        } else {
+            widgetWorking.container.widgetTitle = '';
+        }
+
+        if (eazlWidget.container_top != null) {
+            widgetWorking.container.top = eazlWidget.container_top;
+        } else {
+            widgetWorking.container.top = 0;
+        }
+
+        if (eazlWidget.container_width != null) {
+            widgetWorking.container.width = eazlWidget.container_width;
+        } else {
+            widgetWorking.container.width = 0;
+        }
+
+        if (eazlWidget.areas_show_widget_text != null) {
+            widgetWorking.areas.showWidgetText = eazlWidget.areas_show_widget_text;
+        } else {
+            widgetWorking.areas.showWidgetText = false;
+        }
+
+        if (eazlWidget.areas_show_widget_graph != null) {
+            widgetWorking.areas.showWidgetGraph = eazlWidget.areas_show_widget_graph;
+        } else {
+            widgetWorking.areas.showWidgetGraph = false;
+        }
+
+        if (eazlWidget.areas_show_widget_table != null) {
+            widgetWorking.areas.showWidgetTable = eazlWidget.areas_show_widget_table;
+        } else {
+            widgetWorking.areas.showWidgetTable = false;
+        }
+
+        if (eazlWidget.areas_show_widget_image != null) {
+            widgetWorking.areas.showWidgetImage = eazlWidget.areas_show_widget_image;
+        } else {
+            widgetWorking.areas.showWidgetImage = false;
+        }
+
+        if (eazlWidget.textual_text_text != null) {
+            widgetWorking.textual.textText = eazlWidget.textual_text_text;
+        } else {
+            widgetWorking.textual.textText = '';
+        }
+
+        if (eazlWidget.textual_text_backgroundColor != null) {
+            widgetWorking.textual.textBackgroundColor = eazlWidget.textual_text_backgroundColor;
+        } else {
+            widgetWorking.textual.textBackgroundColor = '';
+        }
+
+        if (eazlWidget.textual_text_border != null) {
+            widgetWorking.textual.textBorder = eazlWidget.textual_text_border;
+        } else {
+            widgetWorking.textual.textBorder = '';
+        }
+
+        if (eazlWidget.textual_text_color != null) {
+            widgetWorking.textual.textColor = eazlWidget.textual_text_color;
+        } else {
+            widgetWorking.textual.textColor = '';
+        }
+
+        if (eazlWidget.textual_text_fontSize != null) {
+            widgetWorking.textual.textFontSize = eazlWidget.textual_text_fontSize;
+        } else {
+            widgetWorking.textual.textFontSize = 16;
+        }
+
+        if (eazlWidget.textual_text_fontWeight != null) {
+            widgetWorking.textual.textFontWeight = eazlWidget.textual_text_fontWeight;
+        } else {
+            widgetWorking.textual.textFontWeight = '';
+        }
+
+        if (eazlWidget.textual_text_height != null) {
+            widgetWorking.textual.textHeight = eazlWidget.textual_text_height;
+        } else {
+            widgetWorking.textual.textHeight = 16;
+        }
+
+        if (eazlWidget.textual_text_left != null) {
+            widgetWorking.textual.textLeft = eazlWidget.textual_text_left;
+        } else {
+            widgetWorking.textual.textLeft = 0;
+        }
+
+        if (eazlWidget.textual_text_margin != null) {
+            widgetWorking.textual.textMargin = eazlWidget.textual_text_margin;
+        } else {
+            widgetWorking.textual.textMargin = '';
+        }
+
+        if (eazlWidget.textual_text_padding != null) {
+            widgetWorking.textual.textPadding = eazlWidget.textual_text_padding;
+        } else {
+            widgetWorking.textual.textPadding = '';
+        }
+
+        if (eazlWidget.textual_text_position != null) {
+            widgetWorking.textual.textPosition = eazlWidget.textual_text_position;
+        } else {
+            widgetWorking.textual.textPosition = '';
+        }
+
+        if (eazlWidget.textual_text_textAlign != null) {
+            widgetWorking.textual.textTextAlign = eazlWidget.textual_text_textAlign;
+        } else {
+            widgetWorking.textual.textTextAlign = '';
+        }
+
+        if (eazlWidget.textual_text_top != null) {
+            widgetWorking.textual.textTop = eazlWidget.textual_text_top;
+        } else {
+            widgetWorking.textual.textTop = 0;
+        }
+
+        if (eazlWidget.textual_text_width != null) {
+            widgetWorking.textual.textWidth = eazlWidget.textual_text_width;
+        } else {
+            widgetWorking.textual.textWidth = 0;
+        }
+
+        if (eazlWidget.graph_graph_id != null) {
+            widgetWorking.graph.graphID = eazlWidget.graph_graph_id;
+        } else {
+            widgetWorking.graph.graphID = 0;
+        }
+
+        if (eazlWidget.graph_graph_left != null) {
+            widgetWorking.graph.graphLeft = eazlWidget.graph_graph_left;
+        } else {
+            widgetWorking.graph.graphLeft = 0;
+        }
+
+        if (eazlWidget.graph_graph_top != null) {
+            widgetWorking.graph.graphTop = eazlWidget.graph_graph_top;
+        } else {
+            widgetWorking.graph.graphTop = 0;
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_graphHeight != null) {
+            widgetWorking.graph.vegaParameters.vegaGraphHeight = 
+                eazlWidget.graph_vega_parameters_vega_graphHeight;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaGraphHeight = 0;
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_graphWidth != null) {
+            widgetWorking.graph.vegaParameters.vegaGraphWidth = 
+                eazlWidget.graph_vega_parameters_vega_graphWidth;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaGraphWidth = 0;
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_graphPadding != null) {
+            widgetWorking.graph.vegaParameters.vegaGraphPadding = 
+                eazlWidget.graph_vega_parameters_vega_graphPadding;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaGraphPadding = 0;
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_hasSignals != null) {
+            widgetWorking.graph.vegaParameters.vegaHasSignals = 
+                eazlWidget.graph_vega_parameters_vega_hasSignals;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaHasSignals = false;
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_xcolumn != null) {
+            widgetWorking.graph.vegaParameters.vegaXcolumn = 
+                eazlWidget.graph_vega_parameters_vega_xcolumn;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaXcolumn = '';
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_ycolumn != null) {
+            widgetWorking.graph.vegaParameters.vegaYcolumn = 
+                eazlWidget.graph_vega_parameters_vega_ycolumn;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaYcolumn = '';
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_fillColor != null) {
+            widgetWorking.graph.vegaParameters.vegaFillColor = 
+                eazlWidget.graph_vega_parameters_vega_fillColor;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaFillColor = '';
+        }
+
+        if (eazlWidget.graph_vega_parameters_vega_hoverColor != null) {
+            widgetWorking.graph.vegaParameters.vegaHoverColor = 
+                eazlWidget.graph_vega_parameters_vega_hoverColor;
+        } else {
+            widgetWorking.graph.vegaParameters.vegaHoverColor = '';
+        }
+
+        if (eazlWidget.graph_spec != null) {
+            widgetWorking.graph.spec = eazlWidget.graph_spec;
+        } else {
+            widgetWorking.graph.spec = '';
+        }
+
+        if (eazlWidget.table_color != null) {
+            widgetWorking.table.tableColor = eazlWidget.table_color;
+        } else {
+            widgetWorking.table.tableColor = '';
+        }
+
+        if (eazlWidget.table_cols != null) {
+            widgetWorking.table.tableCols = eazlWidget.table_cols;
+        } else {
+            widgetWorking.table.tableCols = 0;
+        }
+
+        if (eazlWidget.table_height != null) {
+            widgetWorking.table.tableHeight = eazlWidget.table_height;
+        } else {
+            widgetWorking.table.tableHeight = 0;
+        }
+
+        if (eazlWidget.table_hideHeader != null) {
+            widgetWorking.table.tableHideHeader = eazlWidget.table_hideHeader;
+        } else {
+            widgetWorking.table.tableHideHeader = false;
+        }
+
+        if (eazlWidget.table_left != null) {
+            widgetWorking.table.tableLeft = eazlWidget.table_left;
+        } else {
+            widgetWorking.table.tableLeft = 0;
+        }
+
+        if (eazlWidget.table_rows != null) {
+            widgetWorking.table.tableRows = eazlWidget.table_rows;
+        } else {
+            widgetWorking.table.tableRows = 0;
+        }
+
+        if (eazlWidget.table_top != null) {
+            widgetWorking.table.tableTop = eazlWidget.table_top;
+        } else {
+            widgetWorking.table.tableTop = 0;
+        }
+
+        if (eazlWidget.table_width != null) {
+            widgetWorking.table.tableWidth = eazlWidget.table_width;
+        } else {
+            widgetWorking.table.tableWidth = 0;
+        }
+
+        if (eazlWidget.image_alt != null) {
+            widgetWorking.image.imageAlt = eazlWidget.image_alt;
+        } else {
+            widgetWorking.image.imageAlt = '';
+        }
+
+        if (eazlWidget.image_heigt != null) {
+            widgetWorking.image.imageHeigt = eazlWidget.image_heigt;
+        } else {
+            widgetWorking.image.imageHeigt = 0;
+        }
+
+        if (eazlWidget.image_left != null) {
+            widgetWorking.image.imageLeft = eazlWidget.image_left;
+        } else {
+            widgetWorking.image.imageLeft = 0;
+        }
+
+        if (eazlWidget.image_source != null) {
+            widgetWorking.image.imageSource = eazlWidget.image_source;
+        } else {
+            widgetWorking.image.imageSource = '';
+        }
+
+        if (eazlWidget.image_top != null) {
+            widgetWorking.image.imageTop = eazlWidget.image_top;
+        } else {
+            widgetWorking.image.imageTop = 0;
+        }
+
+        if (eazlWidget.image_width != null) {
+            widgetWorking.image.imageWidth = eazlWidget.image_width;
+        } else {
+            widgetWorking.image.imageWidth = 0;
+        }
+
+        if (eazlWidget.properties_widget_id != null) {
+            widgetWorking.properties.widgetID = eazlWidget.properties_widget_id;
+        } else {
+            widgetWorking.properties.widgetID = 0;
+        }
+
+        if (eazlWidget.properties_dashboard_id != null) {
+            widgetWorking.properties.dashboardID = eazlWidget.properties_dashboard_id;
+        } else {
+            widgetWorking.properties.dashboardID = 0;
+        }
+
+        if (eazlWidget.properties_dashboard_tab_id != null) {
+            widgetWorking.properties.dashboardTabID = eazlWidget.properties_dashboard_tab_id;
+        } else {
+            widgetWorking.properties.dashboardTabID = 0;
+        }
+
+        if (eazlWidget.properties_dashboard_tab_name != null) {
+            widgetWorking.properties.dashboardTabName = 
+                eazlWidget.properties_dashboard_tab_name;
+        } else {
+            widgetWorking.properties.dashboardTabName = '';
+        }
+
+        if (eazlWidget.properties_widget_code != null) {
+            widgetWorking.properties.widgetCode = eazlWidget.properties_widget_code;
+        } else {
+            widgetWorking.properties.widgetCode = '';
+        }
+
+        if (eazlWidget.properties_widget_name != null) {
+            widgetWorking.properties.widgetName = eazlWidget.properties_widget_name;
+        } else {
+            widgetWorking.properties.widgetName = '';
+        }
+
+        if (eazlWidget.properties_widget_description != null) {
+            widgetWorking.properties.widgetDescription = 
+                eazlWidget.properties_widget_description;
+        } else {
+            widgetWorking.properties.widgetDescription = '';
+        }
+
+        if (eazlWidget.properties_widget_default_export_filetype != null) {
+            widgetWorking.properties.widgetDefaultExportFileType = 
+                eazlWidget.properties_widget_default_export_filetype;
+        } else {
+            widgetWorking.properties.widgetDefaultExportFileType = '';
+        }
+
+        if (eazlWidget.properties_widget_hyperlink_tab_nr != null) {
+            widgetWorking.properties.widgetHyperLinkTabNr = 
+                eazlWidget.properties_widget_hyperlink_tab_nr;
+        } else {
+            widgetWorking.properties.widgetHyperLinkTabNr = '';
+        }
+
+        if (eazlWidget.properties_widget_hyperlinkWidget_id != null) {
+            widgetWorking.properties.widgetHyperLinkWidgetID = 
+                eazlWidget.properties_widget_hyperlinkWidget_id;
+        } else {
+            widgetWorking.properties.widgetHyperLinkWidgetID = '';
+        }
+
+        if (eazlWidget.properties_widget_refresh_mode != null) {
+            widgetWorking.properties.widgetRefreshMode = 
+                eazlWidget.properties_widget_refresh_mode;
+        } else {
+            widgetWorking.properties.widgetRefreshMode = '';
+        }
+
+        if (eazlWidget.properties_widget_refresh_frequency != null) {
+            widgetWorking.properties.widgetRefreshFrequency = 
+                eazlWidget.properties_widget_refresh_frequency;
+        } else {
+            widgetWorking.properties.widgetRefreshFrequency = 0;
+        }
+
+        if (eazlWidget.properties_widget_password != null) {
+            widgetWorking.properties.widgetPassword = eazlWidget.properties_widget_password;
+        } else {
+            widgetWorking.properties.widgetPassword = '';
+        }
+
+        if (eazlWidget.properties_widget_is_liked != null) {
+            widgetWorking.properties.widgetIsLiked = eazlWidget.properties_widget_is_liked;
+        } else {
+            widgetWorking.properties.widgetIsLiked = false;
+        }
+
+        if (eazlWidget.properties_widget_report_id != null) {
+            widgetWorking.properties.widgetReportID = eazlWidget.properties_widget_report_id;
+        } else {
+            widgetWorking.properties.widgetReportID = 0;
+        }
+
+        if (eazlWidget.properties_widget_report_name != null) {
+            widgetWorking.properties.widgetReportName = 
+                eazlWidget.properties_widget_report_name;
+        } else {
+            widgetWorking.properties.widgetReportName = '';
+        }
+
+        if (eazlWidget.properties_widget_report_parameters != null) {
+            widgetWorking.properties.widgetReportParameters = 
+                eazlWidget.properties_widget_report_parameters;
+        } else {
+            widgetWorking.properties.widgetReportParameters = '';
+        }
+
+        if (eazlWidget.properties_widget_show_limited_rows != null) {
+            widgetWorking.properties.widgetShowLimitedRows = 
+                eazlWidget.properties_widget_show_limited_rows;
+        } else {
+            widgetWorking.properties.widgetShowLimitedRows = 0;
+        }
+
+        if (eazlWidget.properties_widget_add_rest_row != null) {
+            widgetWorking.properties.widgetAddRestRow = eazlWidget.properties_widget_add_rest_row;
+        } else {
+            widgetWorking.properties.widgetAddRestRow = false;
+        }
+
+        if (eazlWidget.properties_widget_type != null) {
+            widgetWorking.properties.widgetType = eazlWidget.properties_widget_type;
+        } else {
+            widgetWorking.properties.widgetType = '';
+        }
+
+        if (eazlWidget.properties_widget_comments != null) {
+            widgetWorking.properties.widgetComments = eazlWidget.properties_widget_comments;
+        } else {
+            widgetWorking.properties.widgetComments = '';
+        }
+
+        if (eazlWidget.properties_widget_index != null) {
+            widgetWorking.properties.widgetIndex = eazlWidget.properties_widget_index;
+        } else {
+            widgetWorking.properties.widgetIndex = 0;
+        }
+
+        if (eazlWidget.properties_widget_is_locked != null) {
+            widgetWorking.properties.widgetIsLocked = eazlWidget.properties_widget_is_locked;
+        } else {
+            widgetWorking.properties.widgetIsLocked = false;
+        }
+
+        if (eazlWidget.properties_widget_size != null) {
+            widgetWorking.properties.widgetSize = eazlWidget.properties_widget_size;
+        } else {
+            widgetWorking.properties.widgetSize = '';
+        }
+
+        if (eazlWidget.properties_widget_system_message != null) {
+            widgetWorking.properties.widgetSystemMessage = eazlWidget.properties_widget_system_message;
+        } else {
+            widgetWorking.properties.widgetSystemMessage = '';
+        }
+
+        if (eazlWidget.properties_widget_type_id != null) {
+            widgetWorking.properties.widgetTypeID = eazlWidget.properties_widget_type_id;
+        } else {
+            widgetWorking.properties.widgetTypeID = 0;
+        }
+
+        if (eazlWidget.properties_widget_refreshed_on != null) {
+            widgetWorking.properties.widgetRefreshedDateTime = eazlWidget.properties_widget_refreshed_on;
+        } else {
+            widgetWorking.properties.widgetRefreshedDateTime = '';
+        }
+
+        if (eazlWidget.properties_widget_refreshed_by != null) {
+            widgetWorking.properties.widgetRefreshedUserID = 
+                eazlWidget.properties_widget_refreshed_by;
+        } else {
+            widgetWorking.properties.widgetRefreshedUserID = '';
+        }
+
+        if (eazlWidget.properties_widget_Created_on != null) {
+            widgetWorking.properties.widgetCreatedDateTime = 
+                eazlWidget.properties_widget_Created_on;
+        } else {
+            widgetWorking.properties.widgetCreatedDateTime = '';
+        }
+
+        if (eazlWidget.properties_widget_Created_by != null) {
+            widgetWorking.properties.widgetCreatedUserID = 
+                eazlWidget.properties_widget_Created_by;
+        } else {
+            widgetWorking.properties.widgetCreatedUserID = '';
+        }
+
+        if (eazlWidget.properties_widget_updated_on != null) {
+            widgetWorking.properties.widgetUpdatedDateTime = eazlWidget.properties_widget_updated_on;
+        } else {
+            widgetWorking.properties.widgetUpdatedDateTime = '';
+        }
+
+        if (eazlWidget.properties_widget_updated_by != null) {
+            widgetWorking.properties.widgetUpdatedUserID = eazlWidget.properties_widget_updated_by;
+        } else {
+            widgetWorking.properties.widgetUpdatedUserID = '';
+        }
         
-    //     canvasMessageWorking.groupID = eazlCanvasMessage.id;
-
-    //     if (eazlCanvasMessage.name != null) {
-    //         canvasMessageWorking.groupName = eazlCanvasMessage.name;
-    //     } else {
-    //         canvasMessageWorking.groupName = '';
-    //     }
-        
-    //     // Return the result
-    //     return canvasMessageWorking;
-    // }             
-
-
-
+        // Return the result
+        return widgetWorking;
+    }             
 
 }
 

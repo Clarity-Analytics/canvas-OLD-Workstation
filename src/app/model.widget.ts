@@ -45,8 +45,7 @@ export class EazlWidget {
     graph_vega_parameters_vega_ycolumn: string;
     graph_vega_parameters_vega_fillColor: string;
     graph_vega_parameters_vega_hoverColor: string;
-
-    spec: any; 
+    graph_spec: any; 
 
     table_color: string;                    // Text color
     table_cols: number;                     // Nr of cols, 0 means all
