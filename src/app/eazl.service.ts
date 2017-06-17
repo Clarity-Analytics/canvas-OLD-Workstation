@@ -5773,7 +5773,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '@Start');
 
         // Users
-        if (resetObject == 'all'   ||   resetObject == 'users') {
+        if (resetObject == 'all'   ||   resetObject == 'Users') {
 
             // Reset 
             if (resetAction == 'reset') {
@@ -5830,7 +5830,7 @@ export class EazlService implements OnInit {
 
 
         // Widgets
-        if (resetObject == 'all'   ||   resetObject == 'widgets') {
+        if (resetObject == 'all'   ||   resetObject == 'Widgets') {
 
             // Reset 
             if (resetAction == 'reset') {
@@ -5862,7 +5862,7 @@ console.log('widgetsWorking', )
         }
 
         // DasboardTabs
-        if (resetObject == 'all'   ||   resetObject == 'dahboardtabs') {
+        if (resetObject == 'all'   ||   resetObject == 'DashboardTabs') {
 
             // Reset 
             if (resetAction == 'reset') {
@@ -5889,7 +5889,7 @@ console.log('widgetsWorking', )
         }
 
         // CanvasMessage
-        if (resetObject == 'all'   ||   resetObject == 'canvasmessages') {
+        if (resetObject == 'all'   ||   resetObject == 'CanvasMessages') {
 
             // Reset 
             if (resetAction == 'reset') {
@@ -5915,7 +5915,7 @@ console.log('widgetsWorking', )
         }
 
         // CanvasMessageRecipient
-        if (resetObject == 'all'   ||   resetObject == 'canvasMessageRecipients') {
+        if (resetObject == 'all'   ||   resetObject == 'CanvasMessageRecipients') {
 
             // Reset 
             if (resetAction == 'reset') {
@@ -5941,7 +5941,7 @@ console.log('widgetsWorking', )
         }
 
         // DashboardGroup
-        if (resetObject == 'all'   ||   resetObject == 'dashboardgroups') {
+        if (resetObject == 'all'   ||   resetObject == 'DashboardGroups') {
 
             // Reset 
             if (resetAction == 'reset') {
@@ -5960,12 +5960,38 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.DashboardGroups = DashboardGroupWorking;
+                            //  this.dashboardGroups = dashboardGroupWorking;
                             }
                 )
             }
         }
 
+
+        // DashboardGroupMembership
+        if (resetObject == 'all'   ||   resetObject == 'DashboardGroupMemberships') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardGroupMembershipWorking: DashboardGroupMembership[] = [];
+                this.get<EazlDashboardGroupMembership>('dashboard-group-membership')
+                        .subscribe(
+                            (eazlDashboardGroupMembership) => {
+                                for (var i = 0; i < eazlDashboardGroupMembership.length; i++) {
+                                    let DashboardGroupMembershipSingle = new DashboardGroupMembership();
+                                    DashboardGroupMembershipSingle = this.cdal.loadDashboardGroupMembership(eazlDashboardGroupMembership[i]);
+                                    DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.dashboardGroupMemberships = dashboardGroupMembershipWorking;
+                            }
+                )
+            }
+        }
 
 
 
