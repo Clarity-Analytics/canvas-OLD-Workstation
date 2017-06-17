@@ -6338,7 +6338,7 @@ console.log('widgetsWorking', )
 
                 // Get all the data via API
                 let SystemConfigurationWorking: SystemConfiguration[] = [];
-                this.get<EazlSystemConfiguration>('system-configurations')
+                this.get<EazlSystemConfiguration>('system-configuration')
                         .subscribe(
                             (eazlSystemConfiguration) => {
                                 for (var i = 0; i < eazlSystemConfiguration.length; i++) {
@@ -6402,7 +6402,7 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.WidgetComments = WidgetCommentWorking;
+                            //  this.widgetComments = widgetCommentWorking;
                             }
                 )
             }
@@ -6428,34 +6428,33 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.WidgetTemplates = WidgetTemplateWorking;
+                            //  this.widgetTemplates = widgetTemplateWorking;
                             }
                 )
             }
         }
-// loadWidget
 
-        // Dashboard
-        if (resetObject == 'all'   ||   resetObject == 'Dashboards') {
+        // Widget
+        if (resetObject == 'all'   ||   resetObject == 'Widgets') {
 
             // Reset 
             if (resetAction == 'reset') {
 
                 // Get all the data via API
-                let DashboardWorking: Dashboard[] = [];
-                this.get<EazlDashboard>('dashboards')
+                let WidgetWorking: Widget[] = [];
+                this.get<EazlWidget>('widgets')
                         .subscribe(
-                            (eazlDashboard) => {
-                                for (var i = 0; i < eazlDashboard.length; i++) {
-                                    let DashboardSingle = new Dashboard();
-                                    DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
-                                    DashboardWorking.push(DashboardSingle);                                    
+                            (eazlWidget) => {
+                                for (var i = 0; i < eazlWidget.length; i++) {
+                                    let WidgetSingle = new Widget();
+                                    WidgetSingle = this.cdal.loadWidget(eazlWidget[i]);
+                                    WidgetWorking.push(WidgetSingle);                                    
 
                                 }
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboards = dashboardWorking;
+                            //  this.widgets = widgetWorking;
                             }
                 )
             }
