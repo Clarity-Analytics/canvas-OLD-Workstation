@@ -6122,8 +6122,32 @@ console.log('widgetsWorking', )
             }
         }
 
+        // DataSourceUserAccess
+        if (resetObject == 'all'   ||   resetObject == 'DataSourceUserAccesss') {
 
-// loadDataSourceUserAccess
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DataSourceUserAccessWorking: DataSourceUserAccess[] = [];
+                this.get<EazlDataSourceUserAccess>('datasource-user-accesss')
+                        .subscribe(
+                            (eazlDataSourceUserAccess) => {
+                                for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
+                                    let DataSourceUserAccessSingle = new DataSourceUserAccess();
+                                    DataSourceUserAccessSingle = this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
+                                    DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.DataSourceUserAccesss = DataSourceUserAccessWorking;
+                            }
+                )
+            }
+        }
+
 // loadFilter
 // loadGroupDatasourceAccess
 // loadNotification
