@@ -6407,29 +6407,28 @@ console.log('widgetsWorking', )
                 )
             }
         }
-// loadWidgetTemplate
 
-        // Dashboard
-        if (resetObject == 'all'   ||   resetObject == 'Dashboards') {
+        // WidgetTemplate
+        if (resetObject == 'all'   ||   resetObject == 'WidgetTemplates') {
 
             // Reset 
             if (resetAction == 'reset') {
 
                 // Get all the data via API
-                let DashboardWorking: Dashboard[] = [];
-                this.get<EazlDashboard>('dashboards')
+                let WidgetTemplateWorking: WidgetTemplate[] = [];
+                this.get<EazlWidgetTemplate>('widget-templates')
                         .subscribe(
-                            (eazlDashboard) => {
-                                for (var i = 0; i < eazlDashboard.length; i++) {
-                                    let DashboardSingle = new Dashboard();
-                                    DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
-                                    DashboardWorking.push(DashboardSingle);                                    
+                            (eazlWidgetTemplate) => {
+                                for (var i = 0; i < eazlWidgetTemplate.length; i++) {
+                                    let WidgetTemplateSingle = new WidgetTemplate();
+                                    WidgetTemplateSingle = this.cdal.loadWidgetTemplate(eazlWidgetTemplate[i]);
+                                    WidgetTemplateWorking.push(WidgetTemplateSingle);                                    
 
                                 }
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboards = dashboardWorking;
+                            //  this.WidgetTemplates = WidgetTemplateWorking;
                             }
                 )
             }
