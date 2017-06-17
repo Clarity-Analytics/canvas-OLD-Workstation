@@ -5914,7 +5914,57 @@ console.log('widgetsWorking', )
             }
         }
 
+        // CanvasMessageRecipient
+        if (resetObject == 'all'   ||   resetObject == 'canvasMessageRecipients') {
 
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let canvasMessageRecipientWorking: CanvasMessageRecipient[] = [];
+                this.get<EazlCanvasMessageRecipient>('canvasMessageRecipients')
+                        .subscribe(
+                            (eazlCanvasMessageRecipient) => {
+                                for (var i = 0; i < eazlCanvasMessageRecipient.length; i++) {
+                                    let canvasMessageRecipientSingle = new CanvasMessageRecipient();
+                                    canvasMessageRecipientSingle = this.cdal.loadCanvasMessageRecipient(eazlCanvasMessageRecipient[i]);
+                                    canvasMessageRecipientWorking.push(canvasMessageRecipientSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.canvasMessageRecipients = canvasMessageRecipientWorking;
+                            }
+                )
+            }
+        }
+
+        // DashboardGroup
+        if (resetObject == 'all'   ||   resetObject == 'dashboardgroups') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardGroupWorking: DashboardGroup[] = [];
+                this.get<EazlDashboardGroup>('dashboard-groups')
+                        .subscribe(
+                            (eazlDashboardGroup) => {
+                                for (var i = 0; i < eazlDashboardGroup.length; i++) {
+                                    let DashboardGroupSingle = new DashboardGroup();
+                                    DashboardGroupSingle = this.cdal.loadDashboardGroup(eazlDashboardGroup[i]);
+                                    DashboardGroupWorking.push(DashboardGroupSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.DashboardGroups = DashboardGroupWorking;
+                            }
+                )
+            }
+        }
 
 
 

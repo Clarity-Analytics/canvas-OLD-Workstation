@@ -329,9 +329,9 @@ export class CDAL {
         return canvasMessageWorking;
     }             
 
-    loadMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
+    loadCanvasMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
         // Load MessageRecipient: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadMessageRecipient', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessageRecipient', '@Start');
         
         let canvasMessageRecipientWorking = new CanvasMessageRecipient();
         
