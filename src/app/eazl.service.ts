@@ -6090,7 +6090,7 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.DashboardUserRelationships = DashboardUserRelationshipWorking;
+                            //  this.dashboardUserRelationships = dashboardUserRelationshipWorking;
                             }
                 )
             }
@@ -6116,7 +6116,7 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.DatasourcesPerUsers = DatasourcesPerUserWorking;
+                            //  this.datasourcesPerUsers = datasourcesPerUserWorking;
                             }
                 )
             }
@@ -6142,13 +6142,38 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.DataSourceUserAccesss = DataSourceUserAccessWorking;
+                            //  this.dataSourceUserAccesss = dataSourceUserAccessWorking;
                             }
                 )
             }
         }
 
-// loadFilter
+        // Filter
+        if (resetObject == 'all'   ||   resetObject == 'filters') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let FilterWorking: Filter[] = [];
+                this.get<EazlFilter>('Filters')
+                        .subscribe(
+                            (eazlFilter) => {
+                                for (var i = 0; i < eazlFilter.length; i++) {
+                                    let FilterSingle = new Filter();
+                                    FilterSingle = this.cdal.loadFilter(eazlFilter[i]);
+                                    FilterWorking.push(FilterSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.filters = filterWorking;
+                            }
+                )
+            }
+        }
+
 // loadGroupDatasourceAccess
 // loadNotification
 // loadReport
