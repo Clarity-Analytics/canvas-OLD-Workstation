@@ -6226,7 +6226,31 @@ console.log('widgetsWorking', )
             }
         }
 
-// loadReport
+        // Report
+        if (resetObject == 'all'   ||   resetObject == 'Reports') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let ReportWorking: Report[] = [];
+                this.get<EazlReport>('reports')
+                        .subscribe(
+                            (eazlReport) => {
+                                for (var i = 0; i < eazlReport.length; i++) {
+                                    let ReportSingle = new Report();
+                                    ReportSingle = this.cdal.loadReport(eazlReport[i]);
+                                    ReportWorking.push(ReportSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.Reports = ReportWorking;
+                            }
+                )
+            }
+        }
 // loadReportWidgetSet
 // loadReportHistory
 // loadReportUserRelationship
