@@ -6251,7 +6251,32 @@ console.log('widgetsWorking', )
                 )
             }
         }
-// loadReportWidgetSet
+
+        // ReportWidgetSet
+        if (resetObject == 'all'   ||   resetObject == 'ReportWidgetSets') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let ReportWidgetSetWorking: ReportWidgetSet[] = [];
+                this.get<EazlReportWidgetSet>('report-widget-sets')
+                        .subscribe(
+                            (eazlReportWidgetSet) => {
+                                for (var i = 0; i < eazlReportWidgetSet.length; i++) {
+                                    let ReportWidgetSetSingle = new ReportWidgetSet();
+                                    ReportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
+                                    ReportWidgetSetWorking.push(ReportWidgetSetSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.ReportWidgetSets = ReportWidgetSetWorking;
+                            }
+                )
+            }
+        }
 // loadReportHistory
 // loadReportUserRelationship
 // loadSystemConfiguration
