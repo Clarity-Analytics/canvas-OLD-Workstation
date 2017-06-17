@@ -6070,7 +6070,32 @@ console.log('widgetsWorking', )
             }
         }
 
-// loadDashboardUserRelationship
+        // DashboardUserRelationship
+        if (resetObject == 'all'   ||   resetObject == 'DashboardUserRelationships') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
+                this.get<EazlDashboardUserRelationship>('dashboard-user-relationships')
+                        .subscribe(
+                            (eazlDashboardUserRelationship) => {
+                                for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
+                                    let DashboardUserRelationshipSingle = new DashboardUserRelationship();
+                                    DashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
+                                    DashboardUserRelationshipWorking.push(DashboardUserRelationshipSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.DashboardUserRelationships = DashboardUserRelationshipWorking;
+                            }
+                )
+            }
+        }
+
 // loadDatasourcesPerUser
 // loadDataSourceUserAccess
 // loadFilter
