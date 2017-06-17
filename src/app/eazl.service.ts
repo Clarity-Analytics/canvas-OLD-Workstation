@@ -6324,12 +6324,37 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.ReportUserRelationships = ReportUserRelationshipWorking;
+                            //  this.reportUserRelationships = reportUserRelationshipWorking;
                             }
                 )
             }
         }
-// loadSystemConfiguration
+
+        // SystemConfiguration
+        if (resetObject == 'all'   ||   resetObject == 'SystemConfigurations') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let SystemConfigurationWorking: SystemConfiguration[] = [];
+                this.get<EazlSystemConfiguration>('system-configurations')
+                        .subscribe(
+                            (eazlSystemConfiguration) => {
+                                for (var i = 0; i < eazlSystemConfiguration.length; i++) {
+                                    let SystemConfigurationSingle = new SystemConfiguration();
+                                    SystemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
+                                    SystemConfigurationWorking.push(SystemConfigurationSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.systemConfigurations = systemConfigurationWorking;
+                            }
+                )
+            }
+        }
 // loadUserGroupMembership
 // loadWidgetComment
 // loadWidgetTemplate
