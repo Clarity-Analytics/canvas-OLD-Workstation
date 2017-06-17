@@ -6096,7 +6096,33 @@ console.log('widgetsWorking', )
             }
         }
 
-// loadDatasourcesPerUser
+        // DatasourcesPerUser
+        if (resetObject == 'all'   ||   resetObject == 'DatasourcesPerUsers') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DatasourcesPerUserWorking: DatasourcesPerUser[] = [];
+                this.get<EazlDatasourcesPerUser>('datasources-per-user')
+                        .subscribe(
+                            (eazlDatasourcesPerUser) => {
+                                for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
+                                    let DatasourcesPerUserSingle = new DatasourcesPerUser();
+                                    DatasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
+                                    DatasourcesPerUserWorking.push(DatasourcesPerUserSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.DatasourcesPerUsers = DatasourcesPerUserWorking;
+                            }
+                )
+            }
+        }
+
+
 // loadDataSourceUserAccess
 // loadFilter
 // loadGroupDatasourceAccess
