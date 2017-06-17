@@ -40,7 +40,9 @@ import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
-import { UserGroupMembership }        from './model.userGroupMembership';
+import { EazlUserGroupMembership }    from './model.userGroupMembership';
+import { EazlWidgetComment }          from './model.widget.comment';
+import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
@@ -52,7 +54,9 @@ import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
-import { EazlUserGroupMembership }    from './model.userGroupMembership';
+import { UserGroupMembership }        from './model.userGroupMembership';
+import { WidgetComment }              from './model.widget.comment';
+import { WidgetTemplate }             from './model.widgetTemplates';
 
 // TODO - add loadDataSources
 
@@ -1416,6 +1420,54 @@ export class CDAL {
         // Return the result
         return userGroupMembershipWorking;
     }      
+
+    loadWidgetComment(eazlWidgetComment: EazlWidgetComment): WidgetComment {
+        // Load WidgetComment: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetComment', '@Start');
+    
+        let widgetCommentWorking = new WidgetComment();
+        
+        widgetCommentWorking.widgetCommentID = eazlWidgetComment.id;
+
+        if (eazlWidgetComment.widget_id != null) {
+            widgetCommentWorking.widgetID = eazlWidgetComment.widget_id;
+        } else {
+            widgetCommentWorking.widgetID = 0;
+        }
+
+        if (eazlWidgetComment.thread_id != null) {
+            widgetCommentWorking.widgetCommentThreadID = eazlWidgetComment.thread_id;
+        } else {
+            widgetCommentWorking.widgetCommentThreadID = 0;
+        }
+
+        if (eazlWidgetComment.created_on != null) {
+            widgetCommentWorking.widgetCommentCreatedDateTime = eazlWidgetComment.created_on;
+        } else {
+            widgetCommentWorking.widgetCommentCreatedDateTime = '';
+        }
+
+        if (eazlWidgetComment.created_by != null) {
+            widgetCommentWorking.widgetCommentCreatedUserID = eazlWidgetComment.created_by;
+        } else {
+            widgetCommentWorking.widgetCommentCreatedUserID = '';
+        }
+
+        if (eazlWidgetComment.heading != null) {
+            widgetCommentWorking.widgetCommentHeading = eazlWidgetComment.heading;
+        } else {
+            widgetCommentWorking.widgetCommentHeading = '';
+        }
+
+        if (eazlWidgetComment.body != null) {
+            widgetCommentWorking.widgetCommentBody = eazlWidgetComment.body;
+        } else {
+            widgetCommentWorking.widgetCommentBody = '';
+        }
+        
+        // Return the result
+        return widgetCommentWorking;
+    }             
 
 
 
