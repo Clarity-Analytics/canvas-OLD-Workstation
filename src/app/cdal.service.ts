@@ -1556,13 +1556,13 @@ export class CDAL {
         return widgetTemplateWorking;
     }             
 
+// TODO - add multiple users who likes it; or not and treat elsewhere
     loadWidget(eazlWidget: EazlWidget): Widget {
         // Load Widget: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidget', '@Start');
     
         let widgetWorking = new Widget();
 
-// TODO - add multiple users who likes it; or not and treat elsewhere
         if (eazlWidget.container_background_color != null) {
             widgetWorking.container.backgroundColor = eazlWidget.container_background_color;
         } else {

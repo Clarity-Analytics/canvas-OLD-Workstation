@@ -14,34 +14,59 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
  
 // Our models
+import { CanvasMessage }              from './model.canvasMessage';
+import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
+import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardGroup }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
-import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSource }                 from './model.datasource';
-import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
+import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
+import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
+import { EazlDashboard }              from './model.dashboards';
+import { EazlCanvasMessage }          from './model.canvasMessage';
+import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
+import { EazlDashboardGroup }         from './model.dashboardGroup';
+import { EazlDashboardGroupMembership }     from './model.dashboardGroupMembership';
+import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
+import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
+import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship';
+import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
+import { EazlNotification }           from './model.notification';
+import { EazlReport }                 from './model.report';
+import { EazlReportHistory }          from './model.reportHistory';
+import { EazlReportUserRelationship } from './model.reportUserRelationship';
+import { EazlReportWidgetSet }        from './model.report.widgetSets';
+import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
+import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
+import { EazlWidgetComment }          from './model.widget.comment';
+import { EazlWidgetTemplate }         from './model.widgetTemplates';
+import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
-import { CanvasMessage }              from './model.canvasMessage';
+import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
+import { Notification }               from './model.notification';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
-import { ReportWidgetSet }            from './model.report.widgetSets';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
+import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
+
 
 // Token for RESTi
 export interface Token {
@@ -5818,7 +5843,7 @@ export class EazlService implements OnInit {
                             (eazlWidget) => {
                                 for (var i = 0; i < eazlWidget.length; i++) {
 
-// TODO - fix code here
+            // TODO - fix code here
                                     // widgetsWorking.push({
                                     //     id: eazlWidget[i].id,
                                     //     name: eazlWidget[i].name,
@@ -5863,9 +5888,31 @@ console.log('widgetsWorking', )
             }
         }
 
+        // CanvasMessage
+        if (resetObject == 'all'   ||   resetObject == 'canvasmessages') {
 
+            // Reset 
+            if (resetAction == 'reset') {
 
+                // Get all the data via API
+                let canvasMessageWorking: CanvasMessage[] = [];
+                this.get<EazlCanvasMessage>('canvasmessages')
+                        .subscribe(
+                            (eazlCanvasMessage) => {
+                                for (var i = 0; i < eazlCanvasMessage.length; i++) {
+                                    let canvasMessageSingle = new CanvasMessage();
+                                    canvasMessageSingle = this.cdal.loadCanvasMessage(eazlCanvasMessage[i]);
+                                    canvasMessageWorking.push(canvasMessageSingle);                                    
 
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.canvasMessages = canvasMessageWorking;
+                            }
+                )
+            }
+        }
 
 
 
