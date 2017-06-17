@@ -6303,7 +6303,32 @@ console.log('widgetsWorking', )
                 )
             }
         }
-// loadReportUserRelationship
+
+        // ReportUserRelationship
+        if (resetObject == 'all'   ||   resetObject == 'ReportUserRelationships') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let ReportUserRelationshipWorking: ReportUserRelationship[] = [];
+                this.get<EazlReportUserRelationship>('report-user-relationships')
+                        .subscribe(
+                            (eazlReportUserRelationship) => {
+                                for (var i = 0; i < eazlReportUserRelationship.length; i++) {
+                                    let ReportUserRelationshipSingle = new ReportUserRelationship();
+                                    ReportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
+                                    ReportUserRelationshipWorking.push(ReportUserRelationshipSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.ReportUserRelationships = ReportUserRelationshipWorking;
+                            }
+                )
+            }
+        }
 // loadSystemConfiguration
 // loadUserGroupMembership
 // loadWidgetComment
