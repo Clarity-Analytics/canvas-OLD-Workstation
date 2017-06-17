@@ -5966,7 +5966,6 @@ console.log('widgetsWorking', )
             }
         }
 
-
         // DashboardGroupMembership
         if (resetObject == 'all'   ||   resetObject == 'DashboardGroupMemberships') {
 
@@ -5994,6 +5993,31 @@ console.log('widgetsWorking', )
         }
 
 
+        // DashboardGroupRelationship
+        if (resetObject == 'all'   ||   resetObject == 'DashboardGroupRelationships') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
+                this.get<EazlDashboardGroupRelationship>('dashboard-group-relationship')
+                        .subscribe(
+                            (eazlDashboardGroupRelationship) => {
+                                for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
+                                    let DashboardGroupRelationshipSingle = new DashboardGroupRelationship();
+                                    DashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
+                                    DashboardGroupRelationshipWorking.push(DashboardGroupRelationshipSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.dashboardGroupRelationships = dashboardGroupRelationshipWorking;
+                            }
+                )
+            }
+        }
 
     }
 }
