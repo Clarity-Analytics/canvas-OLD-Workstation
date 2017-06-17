@@ -6194,13 +6194,38 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.GroupDatasourceAccesss = GroupDatasourceAccessWorking;
+                            //  this.groupDatasourceAccesss = groupDatasourceAccessWorking;
                             }
                 )
             }
         }
 
-// loadNotification
+        // Notification
+        if (resetObject == 'all'   ||   resetObject == 'Notifications') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let NotificationWorking: Notification[] = [];
+                this.get<EazlNotification>('notifications')
+                        .subscribe(
+                            (eazlNotification) => {
+                                for (var i = 0; i < eazlNotification.length; i++) {
+                                    let NotificationSingle = new Notification();
+                                    NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
+                                    NotificationWorking.push(NotificationSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.notifications = notificationWorking;
+                            }
+                )
+            }
+        }
+
 // loadReport
 // loadReportWidgetSet
 // loadReportHistory
