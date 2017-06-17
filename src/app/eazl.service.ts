@@ -6038,13 +6038,38 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.Dashboards = DashboardWorking;
+                            //  this.dashboards = dashboardWorking;
                             }
                 )
             }
         }
 
-// loadDashboardsPerUser
+        // DashboardsPerUser
+        if (resetObject == 'all'   ||   resetObject == 'DashboardsPerUsers') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardsPerUserWorking: DashboardsPerUser[] = [];
+                this.get<EazlDashboardsPerUser>('dashboards-per-user')
+                        .subscribe(
+                            (eazlDashboardsPerUser) => {
+                                for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
+                                    let DashboardsPerUserSingle = new DashboardsPerUser();
+                                    DashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
+                                    DashboardsPerUserWorking.push(DashboardsPerUserSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.dashboardsPerUsers = dashboardsPerUserWorking;
+                            }
+                )
+            }
+        }
+
 // loadDashboardUserRelationship
 // loadDatasourcesPerUser
 // loadDataSourceUserAccess
