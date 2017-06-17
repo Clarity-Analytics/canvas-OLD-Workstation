@@ -6246,7 +6246,7 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.Reports = ReportWorking;
+                            //  this.reports = reportWorking;
                             }
                 )
             }
@@ -6277,7 +6277,32 @@ console.log('widgetsWorking', )
                 )
             }
         }
-// loadReportHistory
+
+        // ReportHistory
+        if (resetObject == 'all'   ||   resetObject == 'ReportHistory') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let ReportHistoryWorking: ReportHistory[] = [];
+                this.get<EazlReportHistory>('report-history')
+                        .subscribe(
+                            (eazlReportHistory) => {
+                                for (var i = 0; i < eazlReportHistory.length; i++) {
+                                    let ReportHistorySingle = new ReportHistory();
+                                    ReportHistorySingle = this.cdal.loadReportHistory(eazlReportHistory[i]);
+                                    ReportHistoryWorking.push(ReportHistorySingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.reportHistorys = reportHistoryWorking;
+                            }
+                )
+            }
+        }
 // loadReportUserRelationship
 // loadSystemConfiguration
 // loadUserGroupMembership
