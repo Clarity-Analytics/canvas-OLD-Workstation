@@ -40,6 +40,7 @@ import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
+import { UserGroupMembership }        from './model.userGroupMembership';
 import { Filter }                     from './model.filter';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
@@ -51,6 +52,7 @@ import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
+import { EazlUserGroupMembership }    from './model.userGroupMembership';
 
 // TODO - add loadDataSources
 
@@ -1369,6 +1371,51 @@ export class CDAL {
     }             
 
 
+    loadUserGroupMembership(eazlUserGroupMembership: EazlUserGroupMembership): UserGroupMembership {
+        // Load UserGroupMembership: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadUserGroupMembership', '@Start');
+    
+        let userGroupMembershipWorking = new UserGroupMembership();
+        
+        userGroupMembershipWorking.groupID = eazlUserGroupMembership.id;
+
+        if (eazlUserGroupMembership.username != null) {
+            userGroupMembershipWorking.username = eazlUserGroupMembership.username;
+        } else {
+            userGroupMembershipWorking.username = '';
+        }
+
+        if (eazlUserGroupMembership.created_on != null) {
+            userGroupMembershipWorking.userGroupMembershipCreatedDateTime = 
+                eazlUserGroupMembership.created_on;
+        } else {
+            userGroupMembershipWorking.userGroupMembershipCreatedDateTime = '';
+        }
+
+        if (eazlUserGroupMembership.created_by != null) {
+            userGroupMembershipWorking.userGroupMembershipCreatedUserID = 
+                eazlUserGroupMembership.created_by;
+        } else {
+            userGroupMembershipWorking.userGroupMembershipCreatedUserID = '';
+        }
+
+        if (eazlUserGroupMembership.updated_on != null) {
+            userGroupMembershipWorking.userGroupMembershipUpdatedDateTime = 
+                eazlUserGroupMembership.updated_on;
+        } else {
+            userGroupMembershipWorking.userGroupMembershipUpdatedDateTime = '';
+        }
+
+        if (eazlUserGroupMembership.updated_by != null) {
+            userGroupMembershipWorking.userGroupMembershipUpdatedUserID = 
+                eazlUserGroupMembership.updated_by;
+        } else {
+            userGroupMembershipWorking.userGroupMembershipUpdatedUserID = '';
+        }
+        
+        // Return the result
+        return userGroupMembershipWorking;
+    }      
 
 
 

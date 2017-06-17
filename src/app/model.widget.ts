@@ -2,6 +2,7 @@
 
 // Eazl
 export class EazlWidget {
+ 
     container_background_color: string;
     container_border: string;
     container_box_shadow: string;

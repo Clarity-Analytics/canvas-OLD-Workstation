@@ -5817,13 +5817,15 @@ export class EazlService implements OnInit {
                         .subscribe(
                             (eazlWidget) => {
                                 for (var i = 0; i < eazlWidget.length; i++) {
-                                    widgetsWorking.push({
-                                        id: eazlWidget[i].id,
-                                        name: eazlWidget[i].name,
-                                        query: eazlWidget[i].query,
-                                        widget_type: eazlWidget[i].widget_type,
-                                        specification: eazlWidget[i].specification
-                                    });
+
+// TODO - fix code here
+                                    // widgetsWorking.push({
+                                    //     id: eazlWidget[i].id,
+                                    //     name: eazlWidget[i].name,
+                                    //     query: eazlWidget[i].query,
+                                    //     widget_type: eazlWidget[i].widget_type,
+                                    //     specification: eazlWidget[i].specification
+                                    // });
                                 }
 
                             // Replace
