@@ -5992,7 +5992,6 @@ console.log('widgetsWorking', )
             }
         }
 
-
         // DashboardGroupRelationship
         if (resetObject == 'all'   ||   resetObject == 'DashboardGroupRelationships') {
 
@@ -6019,5 +6018,55 @@ console.log('widgetsWorking', )
             }
         }
 
+        // Dashboard
+        if (resetObject == 'all'   ||   resetObject == 'Dashboards') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let DashboardWorking: Dashboard[] = [];
+                this.get<EazlDashboard>('dashboards')
+                        .subscribe(
+                            (eazlDashboard) => {
+                                for (var i = 0; i < eazlDashboard.length; i++) {
+                                    let DashboardSingle = new Dashboard();
+                                    DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
+                                    DashboardWorking.push(DashboardSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.Dashboards = DashboardWorking;
+                            }
+                )
+            }
+        }
+
+// loadDashboardsPerUser
+// loadDashboardUserRelationship
+// loadDatasourcesPerUser
+// loadDataSourceUserAccess
+// loadFilter
+// loadGroupDatasourceAccess
+// loadNotification
+// loadReport
+// loadReportWidgetSet
+// loadReportHistory
+// loadReportUserRelationship
+// loadSystemConfiguration
+// loadUserGroupMembership
+// loadWidgetComment
+// loadWidgetTemplate
+// loadWidget
+
+
+
+
     }
+
+
+
+
 }
