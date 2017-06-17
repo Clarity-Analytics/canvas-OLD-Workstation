@@ -1469,6 +1469,90 @@ export class CDAL {
         return widgetCommentWorking;
     }             
 
+    loadWidgetTemplate(eazlWidgetTemplate: EazlWidgetTemplate): WidgetTemplate {
+        // Load WidgetTemplate: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetTemplate', '@Start');
+    
+        let widgetTemplateWorking = new WidgetTemplate();
+        
+        widgetTemplateWorking.widgetTemplateID = eazlWidgetTemplate.id;
+
+        if (eazlWidgetTemplate.name != null) {
+            widgetTemplateWorking.widgetTemplateName = eazlWidgetTemplate.name;
+        } else {
+            widgetTemplateWorking.widgetTemplateName = '';
+        }
+
+        if (eazlWidgetTemplate.description != null) {
+            widgetTemplateWorking.widgetTemplateDescription = eazlWidgetTemplate.description;
+        } else {
+            widgetTemplateWorking.widgetTemplateDescription = '';
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_graph_height != null) {
+            widgetTemplateWorking.vegaParameters.vegaGraphHeight = eazlWidgetTemplate.vega_parameters_vega_graph_height;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaGraphHeight = 0;
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_graph_width != null) {
+            widgetTemplateWorking.vegaParameters.vegaGraphWidth = 
+                eazlWidgetTemplate.vega_parameters_vega_graph_width;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaGraphWidth = 0;
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_graph_padding != null) {
+            widgetTemplateWorking.vegaParameters.vegaGraphPadding = 
+                eazlWidgetTemplate.vega_parameters_vega_graph_padding;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaGraphPadding = 0;
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_has_signals != null) {
+            widgetTemplateWorking.vegaParameters.vegaHasSignals = 
+                eazlWidgetTemplate.vega_parameters_vega_has_signals;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaHasSignals = false;
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_xcolumn != null) {
+            widgetTemplateWorking.vegaParameters.vegaXcolumn = 
+                eazlWidgetTemplate.vega_parameters_vega_xcolumn;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaXcolumn = '';
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_ycolumn != null) {
+            widgetTemplateWorking.vegaParameters.vegaYcolumn = 
+                eazlWidgetTemplate.vega_parameters_vega_ycolumn;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaYcolumn = '';
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_fill_color != null) {
+            widgetTemplateWorking.vegaParameters.vegaFillColor = 
+                eazlWidgetTemplate.vega_parameters_vega_fill_color;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaFillColor = '';
+        }
+
+        if (eazlWidgetTemplate.vega_parameters_vega_hover_color != null) {
+            widgetTemplateWorking.vegaParameters.vegaHoverColor = 
+                eazlWidgetTemplate.vega_parameters_vega_hover_color;
+        } else {
+            widgetTemplateWorking.vegaParameters.vegaHoverColor = '';
+        }
+
+        if (eazlWidgetTemplate.vega_spec != null) {
+            widgetTemplateWorking.vegaSpec = eazlWidgetTemplate.vega_spec;
+        } else {
+            widgetTemplateWorking.vegaSpec = '';
+        }
+    
+        // Return the result
+        return widgetTemplateWorking;
+    }             
 
 
 

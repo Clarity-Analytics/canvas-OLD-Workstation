@@ -5,16 +5,14 @@ export class EazlWidgetTemplate {
     id: number;                                 // Unique DB ID
     name: string;                               // Name
     description: string;                        // Description
-    vega_parameters: {                          // Set of parameters used in Vega spec            
-        vega_graph_height: number;              // Height of graph
-        vega_graph_width: number;               // Width of graph
-        vega_graph_padding: number;             // Padding around graph
-        vega_has_signals: boolean;              // True/False to include Signals section
-        vega_xcolumn: string;                   // Column (field) used as X
-        vega_ycolumn: string;                   // Column (field) used as Y
-        vega_fill_color: string;                // Fill color of mark (of ie bars)
-        vega_hover_color: string;               // Color of mark when hovers over it
-    } 
+    vega_parameters_vega_graph_height: number;  // Height of graph
+    vega_parameters_vega_graph_width: number;   // Width of graph
+    vega_parameters_vega_graph_padding: number; // Padding around graph
+    vega_parameters_vega_has_signals: boolean;  // True/False to include Signals section
+    vega_parameters_vega_xcolumn: string;       // Column (field) used as X
+    vega_parameters_vega_ycolumn: string;       // Column (field) used as Y
+    vega_parameters_vega_fill_color: string;    // Fill color of mark (of ie bars)
+    vega_parameters_vega_hover_color: string;   // Color of mark when hovers over it
     vega_spec: any;                             // Vega spec (layout varies)
 }
 
