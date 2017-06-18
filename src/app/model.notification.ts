@@ -2,6 +2,7 @@
 
 // Eazl
 export class EazlNotification {
+    id: number;
     author: string;
     date_send: string;
     message_type: string;
@@ -10,6 +11,7 @@ export class EazlNotification {
 
 // Canvas
 export class Notification {
+    notificationID: number;
     author: string;
     dateSend: string;
     messageType: string;

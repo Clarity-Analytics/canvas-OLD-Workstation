@@ -936,7 +936,7 @@ export class CDAL {
         let filterWorking = new Filter();
 
         filterWorking.filterID = eazlFilter.id;
-        
+
         if (eazlFilter.has_atleast_one_filter != null) {
             filterWorking.hasAtLeastOneFilter = eazlFilter.has_atleast_one_filter;
         } else {
@@ -1022,6 +1022,8 @@ export class CDAL {
     
         let notificationWorking = new Notification();
         
+        notificationWorking.notificationID = eazlNotification.id;
+    
         if (eazlNotification.author != null) {
             notificationWorking.author = eazlNotification.author;
         } else {
