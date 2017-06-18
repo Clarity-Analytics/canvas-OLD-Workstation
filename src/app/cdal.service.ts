@@ -1375,7 +1375,8 @@ export class CDAL {
         // Return the result
         return systemConfigurationWorking;
     }             
-
+    
+        
     loadUserGroupMembership(eazlUserGroupMembership: EazlUserGroupMembership): UserGroupMembership {
         // Load UserGroupMembership: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUserGroupMembership', '@Start');

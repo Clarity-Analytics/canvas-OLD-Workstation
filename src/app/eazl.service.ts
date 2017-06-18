@@ -5896,7 +5896,7 @@ console.log('widgetsWorking', )
 
                 // Get all the data via API
                 let canvasMessageWorking: CanvasMessage[] = [];
-                this.get<EazlCanvasMessage>('canvasmessages')
+                this.get<EazlCanvasMessage>('canvas-messages')
                         .subscribe(
                             (eazlCanvasMessage) => {
                                 for (var i = 0; i < eazlCanvasMessage.length; i++) {
@@ -5922,7 +5922,7 @@ console.log('widgetsWorking', )
 
                 // Get all the data via API
                 let canvasMessageRecipientWorking: CanvasMessageRecipient[] = [];
-                this.get<EazlCanvasMessageRecipient>('canvasMessageRecipients')
+                this.get<EazlCanvasMessageRecipient>('canvas-message-recipients')
                         .subscribe(
                             (eazlCanvasMessageRecipient) => {
                                 for (var i = 0; i < eazlCanvasMessageRecipient.length; i++) {
@@ -6156,7 +6156,7 @@ console.log('widgetsWorking', )
 
                 // Get all the data via API
                 let FilterWorking: Filter[] = [];
-                this.get<EazlFilter>('Filters')
+                this.get<EazlFilter>('filters')
                         .subscribe(
                             (eazlFilter) => {
                                 for (var i = 0; i < eazlFilter.length; i++) {

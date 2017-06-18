@@ -11,7 +11,7 @@ export class EazlDashboardTab {
     createdDateTime: string;
     createdUserID: string;
     updatedDateTime: string;
-    updatedUserID
+    updatedUserID: string
 }
 
 // Canvas
