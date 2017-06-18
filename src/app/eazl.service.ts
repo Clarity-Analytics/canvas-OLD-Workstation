@@ -78,6 +78,7 @@ var req = new XMLHttpRequest();
 // TODO - use RESTi
 export const SYSTEMCONFIGURATION: SystemConfiguration = 
 {
+    systemConfigurationID: 0,
     companyName: 'Clarity',
     companyLogo: '',
     backendUrl: 'localhost:8000',

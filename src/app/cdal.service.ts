@@ -1286,6 +1286,8 @@ export class CDAL {
     
         let systemConfigurationWorking = new SystemConfiguration();
 
+        systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.id;
+        
         if (eazlSystemConfiguration.company_name != null) {
             systemConfigurationWorking.companyName = eazlSystemConfiguration.company_name;
         } else {
@@ -1379,8 +1381,7 @@ export class CDAL {
         // Return the result
         return systemConfigurationWorking;
     }             
-    
-        
+            
     loadUserGroupMembership(eazlUserGroupMembership: EazlUserGroupMembership): UserGroupMembership {
         // Load UserGroupMembership: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUserGroupMembership', '@Start');
@@ -1425,7 +1426,7 @@ export class CDAL {
         
         // Return the result
         return userGroupMembershipWorking;
-    }      
+    }      systemConfigurationID
 
     loadWidgetComment(eazlWidgetComment: EazlWidgetComment): WidgetComment {
         // Load WidgetComment: move data Eazl -> Canvas

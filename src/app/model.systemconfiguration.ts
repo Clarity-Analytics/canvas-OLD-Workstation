@@ -2,6 +2,7 @@
 
 // Eazl
 export class EazlSystemConfiguration {
+    id: number;                             // Unique DB ID
     company_name: string;                   // Company Name (of user)
     company_logo: string;                   // File name of Company Logo - for later use
     backend_url: string;                    // URL for Backend (RESTi)
@@ -21,6 +22,7 @@ export class EazlSystemConfiguration {
 
 // Canvas
 export class SystemConfiguration {
+    systemConfigurationID: number;          // Unique DB ID
     companyName: string;                    // Company Name (of user)
     companyLogo: string;                    // File name of Company Logo - for later use
     backendUrl: string;                     // URL for Backend (RESTi)
