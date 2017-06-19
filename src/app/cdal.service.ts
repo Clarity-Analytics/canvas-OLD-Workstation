@@ -344,9 +344,9 @@ export class CDAL {
         }
 
         if (eazlCanvasMessageRecipient.username != null) {
-            canvasMessageRecipientWorking.username = eazlCanvasMessageRecipient.username;
+            canvasMessageRecipientWorking.userName = eazlCanvasMessageRecipient.username;
         } else {
-            canvasMessageRecipientWorking.username = '';
+            canvasMessageRecipientWorking.userName = '';
         }
 
         if (eazlCanvasMessageRecipient.recipient_status != null) {

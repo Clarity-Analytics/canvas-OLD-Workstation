@@ -13,7 +13,7 @@ export class EazlCanvasMessageRecipient {
 export class CanvasMessageRecipient {
     canvasMessageRecipientID: number;           // Unique DB id
     canvasMessageID: number;                    // FK: Canvas Message id
-    username: string;                           // FK: UserID to whom msg was sent (groups are collapsed when sent)
+    userName: string;                           // FK: UserID to whom msg was sent (groups are collapsed when sent)
     canvasMessageRecipientStatus: string;       // UnRead, Read - maybe more later
     canvasMessageReadDateTime: string;          // DateTime when msg was Read
 }
