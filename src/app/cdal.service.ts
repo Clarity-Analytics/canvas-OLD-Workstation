@@ -1251,9 +1251,9 @@ export class CDAL {
         ReportUserRelationshipWorking.reportUserRelationshipID = eazlReportUserRelationship.id;
 
         if (eazlReportUserRelationship.username != null) {
-            ReportUserRelationshipWorking.username = eazlReportUserRelationship.username;
+            ReportUserRelationshipWorking.userName = eazlReportUserRelationship.username;
         } else {
-            ReportUserRelationshipWorking.username = '';
+            ReportUserRelationshipWorking.userName = '';
         }
 
         if (eazlReportUserRelationship.report_id != null) {
@@ -1284,10 +1284,10 @@ export class CDAL {
         }
 
         if (eazlReportUserRelationship.created_by != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserID = 
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserName = 
                 eazlReportUserRelationship.created_by;
         } else {
-            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserID = '';
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserName = '';
         }
 
         if (eazlReportUserRelationship.updated_on != null) {
@@ -1298,10 +1298,10 @@ export class CDAL {
         }
 
         if (eazlReportUserRelationship.updated_by != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserID = 
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserName = 
                 eazlReportUserRelationship.updated_by;
         } else {
-            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserID = '';
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserName = '';
         }
 
         // Return the result

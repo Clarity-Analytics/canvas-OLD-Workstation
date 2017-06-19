@@ -203,25 +203,25 @@ export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
 [
     {
         reportUserRelationshipID: 0,
-        username: 'janniei',
+        userName: 'janniei',
         reportID: 1,
         reportUserRelationshipType: 'Owns',
         reportUserRelationshipRating: 0,
         reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipCreatedUserID: 'janniei',
+        reportUserRelationshipCreatedUserName: 'janniei',
         reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipUpdatedUserID: 'janniei'
+        reportUserRelationshipUpdatedUserName: 'janniei'
     },
     {
         reportUserRelationshipID: 0,
-        username: 'bradleyk',
+        userName: 'bradleyk',
         reportID: 1,
         reportUserRelationshipType: 'Owns',
         reportUserRelationshipRating: 0,
         reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipCreatedUserID: 'janniei',
+        reportUserRelationshipCreatedUserName: 'janniei',
         reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipUpdatedUserID: 'janniei'
+        reportUserRelationshipUpdatedUserName: 'janniei'
     }
 ]
 
@@ -4617,7 +4617,7 @@ export class EazlService implements OnInit {
             // Get the ReportIDs from all the Widgets for the requested Dashboard
             let userRelatedRptIDs: number[] = [];
             for (var i = 0; i < this.reportUserRelationship.length; i++) {
-                if (this.reportUserRelationship[i].username == username 
+                if (this.reportUserRelationship[i].userName == username 
                     && (relationship == '*'  || 
                         this.reportUserRelationship[i].reportUserRelationshipType == 
                             relationship)) {
