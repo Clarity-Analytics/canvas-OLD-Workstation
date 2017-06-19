@@ -1483,9 +1483,9 @@ export class CDAL {
         }
 
         if (eazlWidgetComment.created_by != null) {
-            widgetCommentWorking.widgetCommentCreatedUserID = eazlWidgetComment.created_by;
+            widgetCommentWorking.widgetCommentCreatedUserName = eazlWidgetComment.created_by;
         } else {
-            widgetCommentWorking.widgetCommentCreatedUserID = '';
+            widgetCommentWorking.widgetCommentCreatedUserName = '';
         }
 
         if (eazlWidgetComment.heading != null) {

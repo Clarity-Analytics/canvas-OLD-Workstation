@@ -3161,7 +3161,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetID: 1,
             widgetCommentThreadID: 1,
             widgetCommentCreatedDateTime: '2017/02/14 13:01',
-            widgetCommentCreatedUserID: 'JohnS',
+            widgetCommentCreatedUserName: 'JohnS',
             widgetCommentHeading: 'Data Accuracy',
             widgetCommentBody: 'Is the Nov data correct?'
         },
@@ -3170,7 +3170,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetID: 1,
             widgetCommentThreadID: 1,
             widgetCommentCreatedDateTime: '2017/02/14 13:15',
-            widgetCommentCreatedUserID: 'SandyB',
+            widgetCommentCreatedUserName: 'SandyB',
             widgetCommentHeading: 'Data Accuracy',
             widgetCommentBody: 'Yip, checked against external source'
         },
@@ -3179,7 +3179,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetID: 1,
             widgetCommentThreadID: 1,
             widgetCommentCreatedDateTime: '2017/02/14 14:03',
-            widgetCommentCreatedUserID: 'JohnS',
+            widgetCommentCreatedUserName: 'JohnS',
             widgetCommentHeading: 'Data Accuracy',
             widgetCommentBody: 'Thanx'
         },
@@ -3188,7 +3188,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetID: 1,
             widgetCommentThreadID: 2,
             widgetCommentCreatedDateTime: '2017/02/17 07:50',
-            widgetCommentCreatedUserID: 'DonnaD',
+            widgetCommentCreatedUserName: 'DonnaD',
             widgetCommentHeading: 'Congrats',
             widgetCommentBody: 'Excellent sales, keep going!'
         },
@@ -3197,7 +3197,7 @@ export const WIDGETCOMMENTS: WidgetComment[] =
             widgetID: 1,
             widgetCommentThreadID: 14,
             widgetCommentCreatedDateTime: '2017/04/14',
-            widgetCommentCreatedUserID: 'HenriD',
+            widgetCommentCreatedUserName: 'HenriD',
             widgetCommentHeading: 'More research required on incidents',
             widgetCommentBody: ''
         },
@@ -4443,7 +4443,7 @@ export class EazlService implements OnInit {
                 widgetID: inputWidgetID,
                 widgetCommentThreadID: inputWidgetCommentThreadID,
                 widgetCommentCreatedDateTime: inputWidgetCommentCreatedDateTime,
-                widgetCommentCreatedUserID: inputWidgetCommentCreatedUserID,
+                widgetCommentCreatedUserName: inputWidgetCommentCreatedUserID,
                 widgetCommentHeading: inputWidgetCommentHeading,
                 widgetCommentBody: inputWidgetCommentBody
             }
