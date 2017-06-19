@@ -14,6 +14,10 @@ export class EazlWidgetTemplate {
     vega_parameters_vega_fill_color: string;    // Fill color of mark (of ie bars)
     vega_parameters_vega_hover_color: string;   // Color of mark when hovers over it
     vega_spec: any;                             // Vega spec (layout varies)
+    created_on: string;                         // Created on
+    created_by: string;                         // Created by
+    cpdated_on: string;                         // Updated on
+    cpdated_by: string;                         // Updated by
 }
 
 // Canvas
@@ -32,4 +36,8 @@ export class WidgetTemplate {
         vegaHoverColor: string;                 // Color of mark when hovers over it
     } 
     vegaSpec: any;                              // Vega spec (layout varies)
+    widgetTemplateCreatedDateTime: string;      // Created on
+    widgetTemplateCreatedUserName: string;      // Created by
+    widgetTemplateUpdatedDateTime: string;      // Updated on
+    widgetTemplateUpdatedUserName: string;      // Updated by
 }

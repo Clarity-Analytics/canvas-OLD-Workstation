@@ -3362,7 +3362,11 @@ export const WIDGETTEMPLATES: WidgetTemplate[] =
                         }
                         }
                     ]
-                    }
+                    },
+            widgetTemplateCreatedDateTime: '2017/05/01',
+            widgetTemplateCreatedUserName: 'janniei',
+            widgetTemplateUpdatedDateTime: '2017/05/01',
+            widgetTemplateUpdatedUserName: 'janniei'
         }
     ]
 
@@ -3590,7 +3594,11 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
                     }
                     }
                 ]
-            }
+            },
+            reportWidgetSetUpdatedDateTime: '20147/05/01',
+            reportWidgetSetUpdatedUserName: 'janniei',
+            reportWidgetSetCreatedDateTime: '20147/05/01',
+            reportWidgetSetCreatedUserName: 'janniei',
         },
         {
             reportID: 1,
@@ -3689,7 +3697,12 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
                     }
                     }
                 ]
-            }
+            },
+            reportWidgetSetUpdatedDateTime: '20147/05/01',
+            reportWidgetSetUpdatedUserName: 'janniei',
+            reportWidgetSetCreatedDateTime: '20147/05/01',
+            reportWidgetSetCreatedUserName: 'janniei',
+
         },
         {
             reportID: 1,
@@ -3788,7 +3801,12 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
                     }
                     }
                 ]
-            }
+            },
+            reportWidgetSetUpdatedDateTime: '20147/05/01',
+            reportWidgetSetUpdatedUserName: 'janniei',
+            reportWidgetSetCreatedDateTime: '20147/05/01',
+            reportWidgetSetCreatedUserName: 'janniei',
+
         }
     ]
 
