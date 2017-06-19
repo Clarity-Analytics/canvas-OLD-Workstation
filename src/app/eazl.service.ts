@@ -354,9 +354,9 @@ export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
         dashboardGroupRelationshipType: 'SharedWith',
         dashboardGroupRelationshipRating: 0,
         dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardGroupRelationshipCreatedUserID: 'janniei',
+        dashboardGroupRelationshipCreatedUserName: 'janniei',
         dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardGroupRelationshipUpdatedUserID: 'janniei'
+        dashboardGroupRelationshipUpdatedUserName: 'janniei'
     }
 ]
 
@@ -5541,10 +5541,10 @@ export class EazlService implements OnInit {
                     dashboardGroupRelationshipRating: 0,
                     dashboardGroupRelationshipCreatedDateTime: 
                         this.canvasDate.now('standard'),
-                    dashboardGroupRelationshipCreatedUserID: currentUser,
+                    dashboardGroupRelationshipCreatedUserName: currentUser,
                     dashboardGroupRelationshipUpdatedDateTime: 
                         this.canvasDate.now('standard'),
-                    dashboardGroupRelationshipUpdatedUserID: currentUser
+                    dashboardGroupRelationshipUpdatedUserName: currentUser
                 });
         }
     }

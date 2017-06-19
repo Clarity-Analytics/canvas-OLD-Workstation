@@ -22,7 +22,7 @@ export class DashboardGroupRelationship {
                                                             // - SharedWith
     dashboardGroupRelationshipRating: number;               // Rating
     dashboardGroupRelationshipUpdatedDateTime: string;      // Updated on
-    dashboardGroupRelationshipUpdatedUserID: string;        // Updated by
+    dashboardGroupRelationshipUpdatedUserName: string;      // Updated by
     dashboardGroupRelationshipCreatedDateTime: string;      // Created on
-    dashboardGroupRelationshipCreatedUserID: string;        // Created by
+    dashboardGroupRelationshipCreatedUserName: string;      // Created by
 }
