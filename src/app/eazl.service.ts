@@ -684,33 +684,33 @@ export const DASHBOARDGROUPMEMBERSHIP: DashboardGroupMembership[] =
             dashboardGroupID: 0,
             dashboardID: 0,
             dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipCreatedUserName:  'JamesK',
             dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+            dashboardGroupMembershipUpdatedUserName: 'JamesK'
         },        
         {
             dashboardGroupID: 4,
             dashboardID: 0,
             dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipCreatedUserName:  'JamesK',
             dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+            dashboardGroupMembershipUpdatedUserName: 'JamesK'
         },        
         {
             dashboardGroupID: 1,
             dashboardID: 1,
             dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipCreatedUserName:  'JamesK',
             dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+            dashboardGroupMembershipUpdatedUserName: 'JamesK'
         },        
         {
             dashboardGroupID: 5,
             dashboardID: 1,
             dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipCreatedUserID:  'JamesK',
+            dashboardGroupMembershipCreatedUserName:  'JamesK',
             dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
-            dashboardGroupMembershipUpdatedUserID: 'JamesK'
+            dashboardGroupMembershipUpdatedUserName: 'JamesK'
         },        
     ]
 
@@ -5416,9 +5416,9 @@ export class EazlService implements OnInit {
                     dashboardGroupID: dashboardGroupID,
                     dashboardID: dashboardID,
                     dashboardGroupMembershipCreatedDateTime: this.canvasDate.now('standard'),
-                    dashboardGroupMembershipCreatedUserID: currentUser,
+                    dashboardGroupMembershipCreatedUserName: currentUser,
                     dashboardGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
-                    dashboardGroupMembershipUpdatedUserID: currentUser
+                    dashboardGroupMembershipUpdatedUserName: currentUser
                 }        
             )
         }

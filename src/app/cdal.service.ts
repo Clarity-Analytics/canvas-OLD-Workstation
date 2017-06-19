@@ -439,10 +439,10 @@ export class CDAL {
         }
     
         if (eazlDashboardGroupMembership.updated_by != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserID = 
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserName = 
                 eazlDashboardGroupMembership.updated_by;
         } else {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserID = '';
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserName = '';
         }
 
         if (eazlDashboardGroupMembership.created_on != null) {
@@ -453,10 +453,10 @@ export class CDAL {
         }
     
         if (eazlDashboardGroupMembership.created_by != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserID = 
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserName = 
                 eazlDashboardGroupMembership.created_by;
         } else {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserID = '';
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserName = '';
         }
 
         // Return the result
