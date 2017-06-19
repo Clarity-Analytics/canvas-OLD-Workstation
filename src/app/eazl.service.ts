@@ -3918,23 +3918,28 @@ export class EazlService implements OnInit {
 
     // Local Arrays to keep data for the rest of the Application
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages 
+    canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
+    dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group 
+    dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
+    datasourcesPerUser: DatasourcesPerUser[] = [];          // List of DatasourcesPerUser
     dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
+    filters: Filter[] [];                                   // List of Filters
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
+    notifications: Notification[] = [];                     // List of Notifications
     reports: Report[] = REPORTS;                            // List of Reports
     reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
     reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
     users: User[] = [];                                     // List of Users
-    usergroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
+    userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
@@ -4942,7 +4947,7 @@ export class EazlService implements OnInit {
 
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
-        this.usergroupMembership.forEach((usrgrp) => { 
+        this.userGroupMembership.forEach((usrgrp) => { 
             if (usrgrp.userName == username) 
                 groupIDs.push(usrgrp.groupID)  
             }
@@ -5012,7 +5017,7 @@ export class EazlService implements OnInit {
 
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
-        this.usergroupMembership.forEach((usrgrp) => { 
+        this.userGroupMembership.forEach((usrgrp) => { 
             if (usrgrp.userName == username) 
                 groupIDs.push(usrgrp.groupID)  
             }
@@ -5234,7 +5239,7 @@ export class EazlService implements OnInit {
         }
 
         // Make an array of groupIDs to which this user belongs
-        this.usergroupMembership.forEach(
+        this.userGroupMembership.forEach(
             (usrgrp) => { 
                             if (usrgrp.userName == username) 
                             resultUsergroupMembership.push(usrgrp.groupID)  
@@ -5265,7 +5270,7 @@ export class EazlService implements OnInit {
         }
 
         // Make an array of username that belongs to the Group
-        this.usergroupMembership.forEach(
+        this.userGroupMembership.forEach(
             (usrgrp) => { 
                         if (usrgrp.groupID == groupID) 
                         resultUsergroupMembership.push(usrgrp.userName)  
@@ -5287,9 +5292,9 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'addUserGroupMembership', '@Start');
 
         let found: boolean = false;
-        for (var i = 0; i < this.usergroupMembership.length; i++) {
-            if (this.usergroupMembership[i].userName == username  &&
-                this.usergroupMembership[i].groupID == groupID) {
+        for (var i = 0; i < this.userGroupMembership.length; i++) {
+            if (this.userGroupMembership[i].userName == username  &&
+                this.userGroupMembership[i].groupID == groupID) {
                     found = true;
                     break;
                 }
@@ -5300,7 +5305,7 @@ export class EazlService implements OnInit {
 
         // Only add if not already there
         if (!found) {
-            this.usergroupMembership.push(
+            this.userGroupMembership.push(
                 {
                     groupID: groupID,
                     userName: username,
@@ -5317,7 +5322,7 @@ export class EazlService implements OnInit {
         // Deletes a User - Group record to the User Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
 
-        this.usergroupMembership = this.usergroupMembership.filter(
+        this.userGroupMembership = this.userGroupMembership.filter(
             item => (!(item.userName == username  &&  item.groupID == groupID))
         );
     }
@@ -5830,6 +5835,12 @@ export class EazlService implements OnInit {
                             }
                     )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.users = [];
+            }
+        
         }
 
         // Groups
@@ -5855,38 +5866,10 @@ export class EazlService implements OnInit {
                             }
                     )
             }
-        }
 
-
-        // Widgets
-        if (resetObject == 'all'   ||   resetObject == 'Widgets') {
-
-            // Reset 
-            if (resetAction == 'reset') {
-
-                // Get all the data via API
-                let widgetsWorking: EazlWidget[] = [];
-                // this.get<EazlGroup>(`${this.route}`)
-                this.get<EazlWidget>('widgets')
-                        .subscribe(
-                            (eazlWidget) => {
-                                for (var i = 0; i < eazlWidget.length; i++) {
-
-            // TODO - fix code here
-                                    // widgetsWorking.push({
-                                    //     id: eazlWidget[i].id,
-                                    //     name: eazlWidget[i].name,
-                                    //     query: eazlWidget[i].query,
-                                    //     widget_type: eazlWidget[i].widget_type,
-                                    //     specification: eazlWidget[i].specification
-                                    // });
-                                }
-
-                            // Replace
-console.log('widgetsWorking', )                            
-                            // this.groups = widgetsWorking;
-                            }
-                    )
+            // Clear all
+            if (resetAction == 'clear') {
+                this.groups = [];
             }
         }
 
@@ -5911,9 +5894,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this... = groupsWorking;
+                            //  this.dashboardTabs = groupsWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dashboardTabs = [];
             }
         }
 
@@ -5941,6 +5929,11 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.canvasMessages = [];
+            }
         }
 
         // CanvasMessageRecipient
@@ -5966,6 +5959,11 @@ console.log('widgetsWorking', )
                             //  this.canvasMessageRecipients = canvasMessageRecipientWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.canvasMessageRecipients = [];
             }
         }
 
@@ -5993,6 +5991,11 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dashboardGroups = [];
+            }
         }
 
         // DashboardGroupMembership
@@ -6015,9 +6018,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardGroupMemberships = dashboardGroupMembershipWorking;
+                            //  this.dashboardGroupMembership = dashboardGroupMembershipWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dashboardGroupMembership = [];
             }
         }
 
@@ -6041,9 +6049,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardGroupRelationships = dashboardGroupRelationshipWorking;
+                            //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dashboardGroupRelationship = [];
             }
         }
 
@@ -6071,6 +6084,11 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dashboards = [];
+            }
         }
 
         // DashboardsPerUser
@@ -6093,9 +6111,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardsPerUsers = dashboardsPerUserWorking;
+                            //  this.dashboardsPerUser = dashboardsPerUserWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dashboardsPerUser = [];
             }
         }
 
@@ -6119,9 +6142,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardUserRelationships = dashboardUserRelationshipWorking;
+                            //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dashboardUserRelationship = [];
             }
         }
 
@@ -6145,9 +6173,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.datasourcesPerUsers = datasourcesPerUserWorking;
+                            //  this.datasourcesPerUser = datasourcesPerUserWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.datasourcesPerUser = [];
             }
         }
 
@@ -6171,9 +6204,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dataSourceUserAccesss = dataSourceUserAccessWorking;
+                            //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.dataSourceUserAccess = [];
             }
         }
 
@@ -6201,6 +6239,11 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.filters = [];
+            }
         }
 
         // GroupDatasourceAccess
@@ -6223,9 +6266,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.groupDatasourceAccesss = groupDatasourceAccessWorking;
+                            //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.groupDatasourceAccess = [];
             }
         }
 
@@ -6253,6 +6301,11 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.notifications = [];
+            }
         }
 
         // Report
@@ -6279,6 +6332,11 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.reports = [];
+            }
         }
 
         // ReportWidgetSet
@@ -6301,9 +6359,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.ReportWidgetSets = ReportWidgetSetWorking;
+                            //  this.reportWidgetSet = ReportWidgetSetWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.reportWidgetSet = [];
             }
         }
 
@@ -6327,9 +6390,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.reportHistorys = reportHistoryWorking;
+                            //  this.reportHistory = reportHistoryWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.reportHistory = [];
             }
         }
 
@@ -6353,9 +6421,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.reportUserRelationships = reportUserRelationshipWorking;
+                            //  this.reportUserRelationship = reportUserRelationshipWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.reportUserRelationship = [];
             }
         }
 
@@ -6379,9 +6452,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.systemConfigurations = systemConfigurationWorking;
+                            //  this.systemConfiguration = systemConfigurationWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.systemConfiguration = null;
             }
         }
 
@@ -6405,9 +6483,14 @@ console.log('widgetsWorking', )
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.userGroupMemberships = userGroupMembershipWorking;
+                            //  this.userGroupMembership = userGroupMembershipWorking;
                             }
                 )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.userGroupMembership = [];
             }
         }
 
@@ -6435,6 +6518,11 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.widgetComments = [];
+            }
         }
 
         // WidgetTemplate
@@ -6461,40 +6549,80 @@ console.log('widgetsWorking', )
                             }
                 )
             }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.widgetTemplates = [];
+            }
         }
 
-        // Widget
+        // Widgets
         if (resetObject == 'all'   ||   resetObject == 'Widgets') {
 
             // Reset 
             if (resetAction == 'reset') {
 
                 // Get all the data via API
-                let WidgetWorking: Widget[] = [];
+                let widgetsWorking: EazlWidget[] = [];
+                // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlWidget>('widgets')
                         .subscribe(
                             (eazlWidget) => {
                                 for (var i = 0; i < eazlWidget.length; i++) {
-                                    let WidgetSingle = new Widget();
-                                    WidgetSingle = this.cdal.loadWidget(eazlWidget[i]);
-                                    WidgetWorking.push(WidgetSingle);                                    
 
+            // TODO - fix code here
+                                    // widgetsWorking.push({
+                                    //     id: eazlWidget[i].id,
+                                    //     name: eazlWidget[i].name,
+                                    //     query: eazlWidget[i].query,
+                                    //     widget_type: eazlWidget[i].widget_type,
+                                    //     specification: eazlWidget[i].specification
+                                    // });
                                 }
 
                             // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.widgets = widgetWorking;
+console.log('widgetsWorking', )                            
+                            // this.widgets = widgetsWorking;
                             }
-                )
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.widgets = [];
             }
         }
 
+        // // Widget
+        // if (resetObject == 'all'   ||   resetObject == 'Widgets') {
 
+        //     // Reset 
+        //     if (resetAction == 'reset') {
 
+        //         // Get all the data via API
+        //         let WidgetWorking: Widget[] = [];
+        //         this.get<EazlWidget>('widgets')
+        //                 .subscribe(
+        //                     (eazlWidget) => {
+        //                         for (var i = 0; i < eazlWidget.length; i++) {
+        //                             let WidgetSingle = new Widget();
+        //                             WidgetSingle = this.cdal.loadWidget(eazlWidget[i]);
+        //                             WidgetWorking.push(WidgetSingle);                                    
+
+        //                         }
+
+        //                     // Replace
+        //                     // TODO - replace local Array after Bradley's done initial upload
+        //                     //  this.widgets = widgetWorking;
+        //                     }
+        //         )
+        //     }
+
+        //     // Clear all
+        //     if (resetAction == 'clear') {
+        //         this.widgets = [];
+        //     }
+        // }
 
     }
-
-
-
-
 }
