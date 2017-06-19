@@ -101,13 +101,13 @@ export class DashboardTabEditorComponent implements OnInit {
                 this.currentDashboardTab.dashboardTabCreatedDateTime
             );
             this.dashboardTabForm.controls['dashboardTabCreatedUserID'].setValue(
-                this.currentDashboardTab.dashboardTabCreatedUserID
+                this.currentDashboardTab.dashboardTabCreatedUserName
             );
             this.dashboardTabForm.controls['dashboardTabUpdatedDateTime'].setValue(
                 this.currentDashboardTab.dashboardTabUpdatedDateTime
             );
             this.dashboardTabForm.controls['dashboardTabUpdatedUserID'].setValue(
-                this.currentDashboardTab.dashboardTabUpdatedUserID
+                this.currentDashboardTab.dashboardTabUpdatedUserName
             );
         }
 

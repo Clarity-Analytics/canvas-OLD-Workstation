@@ -230,9 +230,9 @@ export class CDAL {
         }        
 
         if (eazlDashboardTab.createdUserID != null) {
-            dashboardTabWorking.dashboardTabCreatedUserID = eazlDashboardTab.createdUserID;
+            dashboardTabWorking.dashboardTabCreatedUserName = eazlDashboardTab.createdUserID;
         } else {
-            dashboardTabWorking.dashboardTabCreatedUserID = '';
+            dashboardTabWorking.dashboardTabCreatedUserName = '';
         }
 
         if (eazlDashboardTab.updatedDateTime != null) {
@@ -242,9 +242,9 @@ export class CDAL {
         }
 
         if (eazlDashboardTab.updatedUserID != null) {
-            dashboardTabWorking.dashboardTabUpdatedUserID = eazlDashboardTab.updatedUserID;
+            dashboardTabWorking.dashboardTabUpdatedUserName = eazlDashboardTab.updatedUserID;
         } else {
-            dashboardTabWorking.dashboardTabUpdatedUserID = '';
+            dashboardTabWorking.dashboardTabUpdatedUserName = '';
         }
         
         // Return the result

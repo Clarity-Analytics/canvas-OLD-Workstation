@@ -722,9 +722,9 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '0-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserID: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'   
         },
         {
             dashboardID: 0,
@@ -732,9 +732,9 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Volume',
             dashboardTabDescription: '0-Volume: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserID: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'   
         },        
         {
             dashboardID: 1,
@@ -742,9 +742,9 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: 'Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserID: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'   
         },
         {
             dashboardID: 1,
@@ -752,9 +752,9 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Volume',
             dashboardTabDescription: '1-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserID: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'   
         },
         {
             dashboardID: 3,
@@ -762,9 +762,9 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '3-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserID: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'   
         },
         {
             dashboardID: 4,
@@ -772,9 +772,9 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '4-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserID: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'   
         },
         {
             dashboardID: 5,
@@ -782,9 +782,9 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabName: 'Value',
             dashboardTabDescription: '5-Value: Full and detailed desription of tab - purpose',
             dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserID: 'John Doe',
+            dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserID: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'   
         },
     ];
 
