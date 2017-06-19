@@ -392,9 +392,9 @@ export class CDAL {
         }
     
         if (eazlDashboardGroup.created_by != null) {
-            dashboardGroupWorking.dashboardGroupCreatedUserID = eazlDashboardGroup.created_by;
+            dashboardGroupWorking.dashboardGroupCreatedUserName = eazlDashboardGroup.created_by;
         } else {
-            dashboardGroupWorking.dashboardGroupCreatedUserID = '';
+            dashboardGroupWorking.dashboardGroupCreatedUserName = '';
         }
     
         if (eazlDashboardGroup.updated_on != null) {
@@ -404,9 +404,9 @@ export class CDAL {
         }
     
         if (eazlDashboardGroup.updated_by != null) {
-            dashboardGroupWorking.dashboardGroupUpdatedUserID = eazlDashboardGroup.updated_by;
+            dashboardGroupWorking.dashboardGroupUpdatedUserName = eazlDashboardGroup.updated_by;
         } else {
-            dashboardGroupWorking.dashboardGroupUpdatedUserID = '';
+            dashboardGroupWorking.dashboardGroupUpdatedUserName = '';
         }
 
 

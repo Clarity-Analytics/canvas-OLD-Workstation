@@ -609,72 +609,72 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupName: 'Admin',
             dashboardGroupDescription: 'Dashboards for Admin users',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         },
         {
             dashboardGroupID: 1,
             dashboardGroupName: 'Marketing',
             dashboardGroupDescription: 'Dashboards for Marketing Team',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         },
         {
             dashboardGroupID: 2,
             dashboardGroupName: 'BI Team',
             dashboardGroupDescription: 'Dashboards for BI Team',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         },
         {
             dashboardGroupID: 3,
             dashboardGroupName: 'HR',
             dashboardGroupDescription: 'Dashboards for Human Resources Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         },
         {
             dashboardGroupID: 4,
             dashboardGroupName: 'Finance',
             dashboardGroupDescription: 'Dashboards for Finance Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         },
         {
             dashboardGroupID: 5,
             dashboardGroupName: 'Sales',
             dashboardGroupDescription: 'Dashboards for Sales Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         },
         {
             dashboardGroupID: 6,
             dashboardGroupName: 'R&D',
             dashboardGroupDescription: 'Dashboards for Research and Development Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         },
         {
             dashboardGroupID: 7,
             dashboardGroupName: 'IT',
             dashboardGroupDescription: 'Dashboards for Information Technology Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserID: 'JamesK',
+            dashboardGroupCreatedUserName: 'JamesK',
             dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserID: 'JamesK' 
+            dashboardGroupUpdatedUserName: 'JamesK' 
         }
     ]
 

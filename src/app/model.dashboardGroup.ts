@@ -17,7 +17,7 @@ export class DashboardGroup {
     dashboardGroupName: string;
     dashboardGroupDescription: string;
     dashboardGroupCreatedDateTime: string;          // Created on
-    dashboardGroupCreatedUserID: string;            // Created by
+    dashboardGroupCreatedUserName: string;          // Created by
     dashboardGroupUpdatedDateTime: string;          // Updated on
-    dashboardGroupUpdatedUserID: string;            // Updated by
+    dashboardGroupUpdatedUserName: string;          // Updated by
 }
