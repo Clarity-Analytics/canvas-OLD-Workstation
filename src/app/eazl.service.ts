@@ -241,7 +241,7 @@ export const DATASOURCES: DataSource[] =
             datasourceDataIssues: [
                 {
                     dataIssueCreatedDate: '',
-                    dataIssueCreatedUserID: '',
+                    dataIssueCreatedUserName: '',
                     dataIssueDescription: '',
                     dataIssueStatus: '',
                 }
@@ -281,9 +281,9 @@ export const DATASOURCES: DataSource[] =
             datasourceUrl: '',
             datasourceSQL: '',
             datasourceCreatedDateTime: '',
-            datasourceCreatedUserID: '',
+            datasourceCreatedUserName: '',
             datasourceUpdatedDateTime: '',
-            datasourceUpdatedUserID: ''
+            datasourceUpdatedUserName: ''
         },
         { 
             datasourceID: 1,
@@ -299,7 +299,7 @@ export const DATASOURCES: DataSource[] =
             datasourceDataIssues: [
                 {
                     dataIssueCreatedDate: '',
-                    dataIssueCreatedUserID: '',
+                    dataIssueCreatedUserName: '',
                     dataIssueDescription: '',
                     dataIssueStatus: '',
                 }
@@ -339,9 +339,9 @@ export const DATASOURCES: DataSource[] =
             datasourceUrl: '',
             datasourceSQL: '',
             datasourceCreatedDateTime: '',
-            datasourceCreatedUserID: '',
+            datasourceCreatedUserName: '',
             datasourceUpdatedDateTime: '',
-            datasourceUpdatedUserID: ''
+            datasourceUpdatedUserName: ''
         }
     ]
 

@@ -17,8 +17,8 @@ export class DataSource {
 	datasourceDataQuality: string;          // Good (no issues), Warning (qualified), Bad (definate issues)
 	datasourceDataIssues: [                 // Array of logged data issues
         {
-            dataIssueCreatedDate: string;   // UserID who created / logged issue
-            dataIssueCreatedUserID: string; // Date logged
+            dataIssueCreatedDate: string;   // UserName who created / logged issue
+            dataIssueCreatedUserName: string; // Date logged
             dataIssueDescription: string;   // Detailed description
             dataIssueStatus: string;        // Open, Resolved / Closed
         }
@@ -57,9 +57,9 @@ export class DataSource {
 	datasourceUrl: string;                  // Django datasource url ??
     datasourceSQL: string;                  // Django datasource SQL ?
 	datasourceCreatedDateTime: string;      // Created on
-	datasourceCreatedUserID: string;        // Created by
+	datasourceCreatedUserName: string;      // Created by
 	datasourceUpdatedDateTime: string;      // Updated on
-	datasourceUpdatedUserID: string;        // Updated by
+	datasourceUpdatedUserName: string;      // Updated by
     
 }
 
