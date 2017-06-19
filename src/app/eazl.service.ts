@@ -3373,72 +3373,72 @@ export const GROUPS: Group[] =
             groupName: 'Admin',
             groupDescription: 'Admin group has full rights to the whole system',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         },
         {
             groupID: 1,
             groupName: 'Guest',
             groupDescription: 'Guest group has no rights',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         },
         {
             groupID: 2,
             groupName: 'BI Team',
             groupDescription: 'BI Team',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         },
         {
             groupID: 3,
             groupName: 'HR',
             groupDescription: 'Human Resources Department',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         },
         {
             groupID: 4,
             groupName: 'Finance',
             groupDescription: 'Finance Department',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         },
         {
             groupID: 5,
             groupName: 'Sales',
             groupDescription: 'Sales Department',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         },
         {
             groupID: 6,
             groupName: 'R&D',
             groupDescription: 'Research and Development Department',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         },
         {
             groupID: 7,
             groupName: 'IT',
             groupDescription: 'Information Technology Department',
             groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserID: 'JamesK',
+            groupCreatedUserName: 'JamesK',
             groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserID: 'JamesK' 
+            groupUpdatedUserName: 'JamesK' 
         }
     ]
 
@@ -4831,9 +4831,9 @@ export class EazlService implements OnInit {
             groupName: groupName,
             groupDescription: groupDescription,
             groupCreatedDateTime: this.canvasDate.now('standard'),
-            groupCreatedUserID: currentUser,
+            groupCreatedUserName: currentUser,
             groupUpdatedDateTime:this.canvasDate.now('standard'),
-            groupUpdatedUserID: currentUser
+            groupUpdatedUserName: currentUser
         })
     }
 
@@ -4849,7 +4849,7 @@ export class EazlService implements OnInit {
                 this.groups[i].groupName = groupName;
                 this.groups[i].groupDescription = groupDescription;
                 this.groups[i].groupUpdatedDateTime = this.canvasDate.now('standard'),
-                this.groups[i].groupUpdatedUserID = currentUser
+                this.groups[i].groupUpdatedUserName = currentUser
             }
         };
     }

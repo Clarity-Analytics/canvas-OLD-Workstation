@@ -14,7 +14,7 @@ export class Group {
     groupName: string;
     groupDescription: string;
     groupCreatedDateTime: string;          // Created on
-    groupCreatedUserID: string;            // Created by
+    groupCreatedUserName: string;          // Created by
     groupUpdatedDateTime: string;          // Updated on
-    groupUpdatedUserID: string;            // Updated by
+    groupUpdatedUserName: string;          // Updated by
 }

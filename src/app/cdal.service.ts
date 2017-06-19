@@ -193,9 +193,9 @@ export class CDAL {
         }
 
         groupWorking.groupCreatedDateTime = '';
-        groupWorking.groupCreatedUserID = '';
+        groupWorking.groupCreatedUserName = '';
         groupWorking.groupUpdatedDateTime = '';
-        groupWorking.groupUpdatedUserID = '';
+        groupWorking.groupUpdatedUserName = '';
         
         // Return the result
         return groupWorking;
