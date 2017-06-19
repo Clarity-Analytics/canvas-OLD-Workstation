@@ -4,6 +4,7 @@ import { CanActivate }                from '@angular/router';
 import { OnInit }                     from '@angular/core';
 import { Injectable }                 from '@angular/core';
 import { Router }                     from '@angular/router';
+import { Routes }                     from '@angular/router';
 import { RouterStateSnapshot }        from '@angular/router';
  
 // Our Services
@@ -61,4 +62,11 @@ export class AuthGuard implements OnInit, CanActivate {
         // this.router.navigate(['pagenotfound']);
         return false;
    }
+
+  canDeactivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot, router: Router, routes: Routes) {
+        // Run deactivation in AuthGuard
+        this.globalFunctionService.printToConsole(this.constructor.name,'canDeactivate', '@Start');
+
+        return window.confirm('Demo to prevent leaving Canvas.  Do you really want to go to ' + routes['url'] + ' ?');
+  }
 }

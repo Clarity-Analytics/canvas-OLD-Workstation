@@ -33,7 +33,8 @@ export const routes: Route[] = [
   { 
     path: 'users',                    
     component: UserComponent,             
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'group',                    
