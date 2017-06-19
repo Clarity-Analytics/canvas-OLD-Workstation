@@ -98,6 +98,7 @@ export class AppComponent implements OnInit {
 
         // Temp solution to generate a Web Socket message
         this.notificationFromServer = {
+            notificationID: 0,
             author:  'James Lawrance',
             dateSend: '2017/04/01',
             messageType: 'UserMessage',
@@ -166,6 +167,7 @@ export class AppComponent implements OnInit {
                         summary:  'Login Failed', 
                         detail:   'Auto login for janniei failed'
                     });
+console.log('err', err)                    
                     }
                 ) 
         }

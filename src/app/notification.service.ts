@@ -29,6 +29,7 @@ export class NotificationService {
 console.log('not', response)                
                 let data = JSON.parse(response.data);
                 return {
+                    notificationID: 0,
                     author: data.author,
                     dateSend: data.dateSend,
                     messageType: data.messageType,

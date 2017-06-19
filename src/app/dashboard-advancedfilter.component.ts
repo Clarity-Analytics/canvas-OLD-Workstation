@@ -77,6 +77,7 @@ export class DashboardAdvFilterComponent implements OnInit {
         // Trigger event emitter 'emit' method
         this.formAdvancedFilterSubmit.emit(
             {
+                filterID: 0,
                 hasAtLeastOneFilter: hasAtLeastOneFilter,
                 owner: this.filterOwner, 
                 description: this.filterDescription

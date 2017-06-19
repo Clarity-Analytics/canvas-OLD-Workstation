@@ -4027,6 +4027,7 @@ export class EazlService implements OnInit {
         // User logs into the backend
         // - username to log into Eazl
         // - password for Eazl
+
         this.globalFunctionService.printToConsole(this.constructor.name, 'login', '@Start');
 
     		return this.post<Token>(
@@ -4042,7 +4043,17 @@ export class EazlService implements OnInit {
                 .then(
                     eazlUser => {
 
-                        // Set global Canvas user & that is authenticated on Eazl
+                        let nick_name: string = '';
+                        let cell_number: string = '';
+                        let work_number: string = '';
+                        let profile_picture: string = '';
+
+                        if (eazlUser.profile != null) {
+                            nick_name = eazlUser.profile.nick_name;
+                            cell_number = eazlUser.profile.cell_number;
+                            work_number = eazlUser.profile.work_number;
+                            profile_picture = eazlUser.profile.profile_picture;
+                        }
                         this.globalVariableService.canvasUser.next({
                             pk: eazlUser.pk,
                             username: eazlUser.username,
@@ -4057,12 +4068,11 @@ export class EazlService implements OnInit {
                             last_login: eazlUser.last_login,
                             profile: 
                                 {
-                                    nick_name:  eazlUser.profile.nick_name,
-                                    cell_number: eazlUser.profile.cell_number,
-                                    work_number: eazlUser.profile.work_number,
-                                    profile_picture: eazlUser.profile.profile_picture
+                                    nick_name:  nick_name,
+                                    cell_number: cell_number,
+                                    work_number: work_number,
+                                    profile_picture: profile_picture
                                 }
-                            
                         });
                         this.globalVariableService.isAuthenticatedOnEazl.next(true);
 
