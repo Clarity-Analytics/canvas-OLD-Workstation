@@ -149,7 +149,7 @@ export class AppComponent implements OnInit {
 
         // Fake login & preferences for testing - KEEP for next time - just set to FALSE
         this.setFakeVariablesForTesting = true;
- 
+
         if (this.setFakeVariablesForTesting) {
             // Login, get back eazlUser from RESTi and set currentUser if successful
             this.eazlService.login('janniei', 'canvas100*')
@@ -167,7 +167,10 @@ export class AppComponent implements OnInit {
                         summary:  'Login Failed', 
                         detail:   'Auto login for janniei failed'
                     });
-console.log('err', err)                    
+
+                    // Set the menu items
+                    this.menuItems = this.loadMenu()
+                    console.log('Error in app.component.ts @ fakeLogin', err)                    
                     }
                 ) 
         }
@@ -315,17 +318,22 @@ console.log('err', err)
 
         // Local variables
         let isLoggedIn: boolean = false;
-        
-        // Get the current status of user -> determines menu enable/disable
-        this.isCurrentUserAdmin = this.globalVariableService.canvasUser.getValue().is_superuser;
+        this.loginLabel = 'Login';
+        this.isCurrentUserAdmin = false;
 
-        // Set label for login / logout
-        if (this.globalVariableService.canvasUser.getValue().username == '' ) {
-            this.loginLabel = 'Login'; 
-            isLoggedIn = false;
-        } else {
-            this.loginLabel = 'Logout';
-            isLoggedIn = true;
+        // Get the current status of user -> determines menu enable/disable
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+        
+            this.isCurrentUserAdmin = this.globalVariableService.canvasUser.getValue().is_superuser;
+            
+            // Set label for login / logout
+            if (this.globalVariableService.canvasUser.getValue().username == '' ) {
+                this.loginLabel = 'Login'; 
+                isLoggedIn = false;
+            } else {
+                this.loginLabel = 'Logout';
+                isLoggedIn = true;
+            }
         }
 
         this.menuItems = [
