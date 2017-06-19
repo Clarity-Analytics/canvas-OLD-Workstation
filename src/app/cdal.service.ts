@@ -818,9 +818,9 @@ export class CDAL {
         }
  
         if (eazlDatasourcesPerUser.username != null) {
-            datasourcesPerUserWorking.username = eazlDatasourcesPerUser.username;
+            datasourcesPerUserWorking.userName = eazlDatasourcesPerUser.username;
         } else {
-            datasourcesPerUserWorking.username = '';
+            datasourcesPerUserWorking.userName = '';
         }
  
         if (eazlDatasourcesPerUser.access_via != null) {
@@ -845,10 +845,10 @@ export class CDAL {
         }
 
         if (eazlDatasourcesPerUser.created_by != null) {
-            datasourcesPerUserWorking.datasourcesPerUserCreatedUserID = 
+            datasourcesPerUserWorking.datasourcesPerUserCreatedUserName = 
                 eazlDatasourcesPerUser.created_by;
         } else {
-            datasourcesPerUserWorking.datasourcesPerUserCreatedUserID = '';
+            datasourcesPerUserWorking.datasourcesPerUserCreatedUserName = '';
         }
 
         if (eazlDatasourcesPerUser.updated_on != null) {
@@ -859,10 +859,10 @@ export class CDAL {
         }
 
         if (eazlDatasourcesPerUser.updated_by != null) {
-            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserID = 
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserName = 
                 eazlDatasourcesPerUser.updated_by;
         } else {
-            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserID = '';
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserName = '';
         }
 
         // Return the result

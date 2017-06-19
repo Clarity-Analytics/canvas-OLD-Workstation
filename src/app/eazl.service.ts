@@ -4910,14 +4910,14 @@ export class EazlService implements OnInit {
                 }
                 datasourcesPerUserWorking.push( {
                     datasourceID: du.datasourceID,
-                    username: username,
+                    userName: username,
                     datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'User: ' + username,
                     datasourcesPerUserAccessType: du.dataSourceUserAccessType,
                     datasourcesPerUserCreatedDateTime: '2017/05/01',
-                    datasourcesPerUserCreatedUserID: 'janniei',
+                    datasourcesPerUserCreatedUserName: 'janniei',
                     datasourcesPerUserUpdatedDateTime: '2017/05/01',
-                    datasourcesPerUserUpdatedUserID: 'janniei'                    
+                    datasourcesPerUserUpdatedUserName: 'janniei'                    
                 })
             }
         })
@@ -4948,14 +4948,14 @@ export class EazlService implements OnInit {
                 // TODO - make the push once - this is not DRY
                 datasourcesPerUserWorking.push( {
                     datasourceID: gd.datasourceID,
-                    username: username,
+                    userName: username,
                     datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'Group: ' + groupWorking[0].groupName,
                     datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType,
                     datasourcesPerUserCreatedDateTime: '2017/05/01',
-                    datasourcesPerUserCreatedUserID: 'janniei',
+                    datasourcesPerUserCreatedUserName: 'janniei',
                     datasourcesPerUserUpdatedDateTime: '2017/05/01',
-                    datasourcesPerUserUpdatedUserID: 'janniei'                })
+                    datasourcesPerUserUpdatedUserName: 'janniei'                })
             }        
         })        
 
