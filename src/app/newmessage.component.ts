@@ -26,8 +26,8 @@ import { GlobalVariableService }      from './global-variable.service';
 export class NewMessageComponent implements OnInit {
 
     // Event emitter sends event back to parent component once Submit button was clicked
-    @Input() availableUsers: string[];          // List of UserIDs available to share with
-    @Input() sendToTheseUsers: string[];        // List of UserIDs to whom message is sent
+    @Input() availableUsers: string[];          // List of UserNames available to share with
+    @Input() sendToTheseUsers: string[];        // List of UserNames to whom message is sent
     @Input() nrUnReadMessagesForMe:number;      // Nr of UnRead messages for me
     
     @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
@@ -56,7 +56,7 @@ export class NewMessageComponent implements OnInit {
             // 'messageMyStatus': new FormControl('')
             // 'messageConversationID': new FormControl(''),
             // 'messageID': new FormControl(''),
-            // 'messageSenderUserID': new FormControl('', Validators.required),
+            // 'messageSenderUserName': new FormControl('', Validators.required),
             // 'messageSentDateTime': new FormControl('', Validators.required),
             // 'messageIsSystemGenerated': new FormControl(''),
 

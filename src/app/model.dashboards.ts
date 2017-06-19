@@ -16,10 +16,10 @@ export class EazlDashboard {
     is_locked: boolean;                         // If true, then cannot be modified
     is_liked: boolean;                          // @RunTime: True if Dashboard is liked by me
     open_tab_nr: number;                        // Optional Tab Nr to open on (default = 0)
-    owner_userid: string;                       // UserID of owner
+    owner_userName: string;                     // UserName of owner
     password: string;                           // Optional password to open
     refresh_mode: string;                       // Manual, onOpen  
-    nrUsers_shared_with: number;                // @RunTime: @ of UserIDs shared with
+    nrUsers_shared_with: number;                // @RunTime: @ of UserNames shared with
     nr_groups_shared_with: number;              // @RunTime: @ of Groups shared with
     system_message: string;                     // Optional for Canvas to say something to user
     refreshed_on: string;                       // Data Refreshed on
@@ -49,7 +49,7 @@ export class Dashboard {
     dashboardOwnerUserName: string;             // UserName of owner
     dashboardPassword: string;                  // Optional password to open
     dashboardRefreshMode: string;               // Manual, onOpen  
-    dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserIDs shared with
+    dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserNames shared with
     dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
     dashboardRefreshedDateTime: string;         // Data Refreshed on

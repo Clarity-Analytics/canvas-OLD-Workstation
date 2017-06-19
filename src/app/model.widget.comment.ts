@@ -6,7 +6,7 @@ export class EazlWidgetComment {
     widget_id: number;                              // FK to Widget ID 
     thread_id: number;                              // Thread ID (for 1 or more comments)
     created_on: string;                             // Date time of creation
-    created_by: string;                             // UserID who created record
+    created_by: string;                             // UserName who created record
     heading: string;                                // Short message heading
     body: string;                                   // Message body
 }
@@ -17,7 +17,7 @@ export class WidgetComment {
     widgetID: number;                               // FK to Widget ID 
     widgetCommentThreadID: number;                  // Thread ID (for 1 or more comments)
     widgetCommentCreatedDateTime: string;           // Date time of creation
-    widgetCommentCreatedUserName: string;           // UserID who created record
+    widgetCommentCreatedUserName: string;           // UserName who created record
     widgetCommentHeading: string;                   // Short message heading
     widgetCommentBody: string;                      // Message body
 }

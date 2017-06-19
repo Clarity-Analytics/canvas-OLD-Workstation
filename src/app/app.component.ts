@@ -39,7 +39,7 @@ import { User } from './model.user';
 export class AppComponent implements OnInit {
 
     // Local Variables
-    availableUsers: string[] = [];                  // List of UserIDs available to share with
+    availableUsers: string[] = [];                  // List of UserNames available to share with
     displayLoginForm: boolean = false;              // True to display the Login form
     displayWhoAmIForm: boolean = false;             // True to display the WhoAmI form
     displayNewMessage: boolean = false;             // True to display new message form
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     routerLink:string = '';                         // RouterLink in Menu.Command
     setFakeVariablesForTesting: boolean = false;    // Jass for me
-    sendToTheseUsers: string[] = [];                // List of UserIDs to whom message is sent
+    sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
     private notificationFromServer: Notification;   // Websocket msg
 
     // Define Variables - define here if a global variable is used in html.

@@ -81,16 +81,16 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardDescription':             new FormControl(''),
             'dashboardIsLocked':                new FormControl(''),
             'dashboardOpenTabNr':               new FormControl(''),
-            'dashboardOwnerUserID':             new FormControl(''),
+            'dashboardOwnerUserName':           new FormControl(''),
             'dashboardPassword':                new FormControl(''),
             'dashboardRefreshMode':             new FormControl(''),
             'dashboardSystemMessage':           new FormControl(''),
             'dashboardRefreshedDateTime':       new FormControl(''),
-            'dashboardRefreshedUserID':         new FormControl(''),
+            'dashboardRefreshedUserName':       new FormControl(''),
             'dashboardUpdatedDateTime':         new FormControl(''),
-            'dashboardUpdatedUserID':           new FormControl(''),
+            'dashboardUpdatedUserName':         new FormControl(''),
             'dashboardCreatedDateTime':         new FormControl(''),
-            'dashboardCreatedUserID':           new FormControl('')
+            'dashboardCreatedUserName':         new FormControl('')
         });
 
         // Background Colors Options
@@ -128,7 +128,7 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardCreatedDateTime'].setValue(
                 this.selectedDashboard.dashboardCreatedDateTime
             );
-            this.dashboardForm.controls['dashboardCreatedUserID'].setValue(
+            this.dashboardForm.controls['dashboardCreatedUserName'].setValue(
                 this.selectedDashboard.dashboardCreatedUserName
             );
             this.dashboardForm.controls['dashboardDefaultExportFileType'].setValue(
@@ -143,7 +143,7 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardOpenTabNr'].setValue(
                 this.selectedDashboard.dashboardOpenTabNr
             );
-            this.dashboardForm.controls['dashboardOwnerUserID'].setValue(
+            this.dashboardForm.controls['dashboardOwnerUserName'].setValue(
                 this.selectedDashboard.dashboardOwnerUserName
             );
             this.dashboardForm.controls['dashboardPassword'].setValue(
@@ -161,7 +161,7 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardUpdatedDateTime'].setValue(
                 this.selectedDashboard.dashboardUpdatedDateTime
             );
-            this.dashboardForm.controls['dashboardUpdatedUserID'].setValue(
+            this.dashboardForm.controls['dashboardUpdatedUserName'].setValue(
                 this.selectedDashboard.dashboardUpdatedUserName
             );
             this.dashboardForm.controls['isContainerHeaderDark'].setValue(
@@ -200,7 +200,7 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardNrGroupsSharedWith'].setValue(
                 this.selectedDashboard.dashboardNrGroupsSharedWith
             );
-            this.dashboardForm.controls['dashboardRefreshedUserID'].setValue(
+            this.dashboardForm.controls['dashboardRefreshedUserName'].setValue(
                 this.selectedDashboard.dashboardRefreshedUserName
             );
         }
@@ -307,7 +307,7 @@ export class DashboardEditorComponent implements OnInit {
         this.dashboardToEdit.dashboardOpenTabNr = 
             this.dashboardForm.controls['dashboardOpenTabNr'].value;
         this.dashboardToEdit.dashboardOwnerUserName = 
-            this.dashboardForm.controls['dashboardOwnerUserID'].value;
+            this.dashboardForm.controls['dashboardOwnerUserName'].value;
         this.dashboardToEdit.dashboardPassword = 
             this.dashboardForm.controls['dashboardPassword'].value;
         this.dashboardToEdit.dashboardRefreshMode = 
@@ -325,13 +325,13 @@ export class DashboardEditorComponent implements OnInit {
 //             this.canvasDate.today('standard') + ' ' + 
 //             this.canvasDate.curHour(d).toString() + ':' + 
 //             this.canvasDate.curMinute(d).toString();
-//         this.widgetToEdit.properties.widgetRefreshedUserID = 
+//         this.widgetToEdit.properties.widgetRefreshedUserName = 
 //             this.canvasUser.username;
 //         this.widgetToEdit.properties.widgetUpdatedDateTime = 
 //             this.canvasDate.today('standard') + ' ' + 
 //             this.canvasDate.curHour(d).toString() + ':' + 
 //             this.canvasDate.curMinute(d).toString();
-//         this.widgetToEdit.properties.widgetUpdatedUserID = 
+//         this.widgetToEdit.properties.widgetUpdatedUserName = 
 //             this.canvasUser.username;
 console.log('@end', this.dashboardToEdit)
 

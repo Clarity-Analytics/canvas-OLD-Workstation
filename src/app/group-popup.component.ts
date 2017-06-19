@@ -79,7 +79,7 @@ export class GroupPopupComponent implements OnInit {
             // if (!this.isLoadingForm) {
             //     this.globalFunctionService.printToConsole(this.constructor.name,'subscribeToValue', '@userformID.valueChanges');
 
-            //     this.selectedGroup.userID = formContent['userID'];
+            //     this.selectedGroup.UserName = formContent['UserName'];
             //     this.selectedGroup.firstName = formContent['firstName'];
             //     this.selectedGroup.lastName = formContent['lastName'];
             //     this.selectedGroup.nickName = formContent['nickName'];
@@ -103,7 +103,7 @@ export class GroupPopupComponent implements OnInit {
             //     this.selectedGroup.activeFromDate = formContent['activeFromDate'];
             //     this.selectedGroup.inactiveDate = formContent['inactiveDate'];
             //     this.selectedGroup.dateCreated = formContent['dateCreated'];
-            //     this.selectedGroup.userIDLastUpdated = formContent['userIDLastUpdated'];
+            //     this.selectedGroup.UserNameLastUpdated = formContent['UserNameLastUpdated'];
             // }    
         });
     }

@@ -4449,7 +4449,7 @@ export class EazlService implements OnInit {
         inputWidgetID: number,
         inputWidgetCommentThreadID: number,
         inputWidgetCommentCreatedDateTime: string,
-        inputWidgetCommentCreatedUserID: string,
+        inputWidgetCommentCreatedUserName: string,
         inputWidgetCommentHeading: string,
         inputWidgetCommentBody: string
         ) {
@@ -4461,7 +4461,7 @@ export class EazlService implements OnInit {
                 widgetID: inputWidgetID,
                 widgetCommentThreadID: inputWidgetCommentThreadID,
                 widgetCommentCreatedDateTime: inputWidgetCommentCreatedDateTime,
-                widgetCommentCreatedUserName: inputWidgetCommentCreatedUserID,
+                widgetCommentCreatedUserName: inputWidgetCommentCreatedUserName,
                 widgetCommentHeading: inputWidgetCommentHeading,
                 widgetCommentBody: inputWidgetCommentBody
             }
@@ -5500,15 +5500,15 @@ export class EazlService implements OnInit {
         // - username Optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'getUsersRelatedToDashboard', '@Start');
 
-        // Get Array of UserIDs that are related to this Dashboard, or Not if include = false
-        let userIDs: string[] = [];
+        // Get Array of UserNames that are related to this Dashboard, or Not if include = false
+        let userNames: string[] = [];
         this.dashboardUserRelationship.forEach(dur => {
             if (dur.dashboardID == dashboardID 
                 &&  
                 dur.dashboardUserRelationshipType == relationshipType
                 &&
                 (username == '*'  ||  dur.userName == username ) ) {
-                    userIDs.push(dur.userName);
+                    userNames.push(dur.userName);
             }
         });
 
@@ -5516,9 +5516,9 @@ export class EazlService implements OnInit {
         // Struggle Avoidance Technique: set as [] upfront, else .IndexOf undefined fails
         return this.users.filter(
             u => {
-                    if ( (include  &&  userIDs.indexOf(u.username) >= 0 ) 
+                    if ( (include  &&  userNames.indexOf(u.username) >= 0 ) 
                         ||
-                        (!include  &&  userIDs.indexOf(u.username) < 0) ) {
+                        (!include  &&  userNames.indexOf(u.username) < 0) ) {
                         return u
                     }
             }

@@ -40,7 +40,7 @@ export class User
         activeFromDate: string;
         inactiveDate: string;
         dateCreated: string;
-        userIDLastUpdated: string;
+        userNameLastUpdated: string;
         isStaff: boolean;
         isSuperUser: boolean;
     }

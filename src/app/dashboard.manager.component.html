@@ -217,7 +217,7 @@
             >
         </p-column>
         <p-column 
-            field="dashboardOwnerUserID" 
+            field="dashboardOwnerUserName" 
             [filter]="true" 
             filterMatchMode="contains" 
             header="Owner" 
@@ -287,7 +287,7 @@
             >
         </p-column>
         <p-column 
-            field="dashboardRefreshedUserID" 
+            field="dashboardRefreshedUserName" 
             [filter]="true" 
             filterMatchMode="contains" 
             header="Refreshed by" 
@@ -307,7 +307,7 @@
             >
         </p-column>
         <p-column 
-            field="dashboardUpdatedUserID" 
+            field="dashboardUpdatedUserName" 
             [filter]="true" 
             filterMatchMode="contains" 
             header="Updated by" 
@@ -327,7 +327,7 @@
             >
         </p-column>
         <p-column 
-            field="dashboardCreatedUserID" 
+            field="dashboardCreatedUserName" 
             [filter]="true" 
             filterMatchMode="contains" 
             header="Created by" 
@@ -546,7 +546,7 @@
     <p-dataTable [value]="canvasMessages">
         <p-column field="messageConversationID" header="Convers. ID"></p-column>
         <p-column field="messageID" header="ID"></p-column>
-        <p-column field="messageSenderUserID" header="Sender"></p-column>
+        <p-column field="messageSenderUserName" header="Sender"></p-column>
         <p-column field="messageSentDateTime" header="Sent on"></p-column>
         <p-column field="messageIsSystemGenerated" header="System?"></p-column>
         <p-column field="messageDashboardID" header="DS ID"></p-column>

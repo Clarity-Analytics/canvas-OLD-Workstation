@@ -126,7 +126,7 @@ export class CDAL {
             userWorking.dateCreated = '';
         }
         
-        userWorking.userIDLastUpdated = '';
+        userWorking.userNameLastUpdated = '';
         
         if (eazlUser.is_staff != null) {
             userWorking.isStaff = eazlUser.is_staff;
@@ -229,8 +229,8 @@ export class CDAL {
             dashboardTabWorking.dashboardTabCreatedDateTime = '';
         }        
 
-        if (eazlDashboardTab.createdUserID != null) {
-            dashboardTabWorking.dashboardTabCreatedUserName = eazlDashboardTab.createdUserID;
+        if (eazlDashboardTab.createdUserName != null) {
+            dashboardTabWorking.dashboardTabCreatedUserName = eazlDashboardTab.createdUserName;
         } else {
             dashboardTabWorking.dashboardTabCreatedUserName = '';
         }
@@ -241,8 +241,8 @@ export class CDAL {
             dashboardTabWorking.dashboardTabUpdatedDateTime = '';
         }
 
-        if (eazlDashboardTab.updatedUserID != null) {
-            dashboardTabWorking.dashboardTabUpdatedUserName = eazlDashboardTab.updatedUserID;
+        if (eazlDashboardTab.updatedUserName != null) {
+            dashboardTabWorking.dashboardTabUpdatedUserName = eazlDashboardTab.updatedUserName;
         } else {
             dashboardTabWorking.dashboardTabUpdatedUserName = '';
         }
@@ -618,8 +618,8 @@ export class CDAL {
             dashboardWorking.dashboardOpenTabNr = 0;
         }
 
-        if (eazlDashboard.owner_userid != null) {
-            dashboardWorking.dashboardOwnerUserName = eazlDashboard.owner_userid;
+        if (eazlDashboard.owner_userName != null) {
+            dashboardWorking.dashboardOwnerUserName = eazlDashboard.owner_userName;
         } else {
             dashboardWorking.dashboardOwnerUserName = '';
         }

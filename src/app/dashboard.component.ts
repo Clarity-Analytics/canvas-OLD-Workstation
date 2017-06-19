@@ -824,7 +824,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Toggle IsLiked on a Widget
         // - idWidget is the clicked Widget
         // - isLikedNewState = new status to change into
-        // TODO - when to DB, update properties.widgetLiked[j].widgetLikedUserID
+        // TODO - when to DB, update properties.widgetLiked[j].widgetLikedUserName
         //        by adding user, or removing depending on likedness
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetIsLiked', '@Start');
 

@@ -62,9 +62,9 @@ export class DashboardTabEditorComponent implements OnInit {
             'dashboardTabName':                 new FormControl(''),
             'dashboardTabDescription':          new FormControl(''),
             'dashboardTabCreatedDateTime':      new FormControl(''),
-            'dashboardTabCreatedUserID':        new FormControl(''),
+            'dashboardTabCreatedUserName':      new FormControl(''),
             'dashboardTabUpdatedDateTime':      new FormControl(''),
-            'dashboardTabUpdatedUserID':        new FormControl(''),
+            'dashboardTabUpdatedUserName':      new FormControl(''),
         });
 
             this.refreshForm()
@@ -100,13 +100,13 @@ export class DashboardTabEditorComponent implements OnInit {
             this.dashboardTabForm.controls['dashboardTabCreatedDateTime'].setValue(
                 this.currentDashboardTab.dashboardTabCreatedDateTime
             );
-            this.dashboardTabForm.controls['dashboardTabCreatedUserID'].setValue(
+            this.dashboardTabForm.controls['dashboardTabCreatedUserName'].setValue(
                 this.currentDashboardTab.dashboardTabCreatedUserName
             );
             this.dashboardTabForm.controls['dashboardTabUpdatedDateTime'].setValue(
                 this.currentDashboardTab.dashboardTabUpdatedDateTime
             );
-            this.dashboardTabForm.controls['dashboardTabUpdatedUserID'].setValue(
+            this.dashboardTabForm.controls['dashboardTabUpdatedUserName'].setValue(
                 this.currentDashboardTab.dashboardTabUpdatedUserName
             );
         }

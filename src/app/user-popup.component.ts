@@ -76,7 +76,7 @@ export class UserPopupComponent implements OnInit {
             'activeFromDate':           new FormControl(''),
             'inactiveDate':             new FormControl(''),
             'dateCreated':              new FormControl(''),
-            'userIDLastUpdated':        new FormControl('')
+            'userNameLastUpdated':      new FormControl('')
         }
         );
 
@@ -109,7 +109,7 @@ export class UserPopupComponent implements OnInit {
             // if (!this.isLoadingForm) {
             //     this.globalFunctionService.printToConsole(this.constructor.name,'subscribeToValue', '@userformID.valueChanges');
 
-            //     this.selectedUser.userID = formContent['userID'];
+            //     this.selectedUser.UserName = formContent['UserName'];
             //     this.selectedUser.firstName = formContent['firstName'];
             //     this.selectedUser.lastName = formContent['lastName'];
             //     this.selectedUser.nickName = formContent['nickName'];
@@ -133,7 +133,7 @@ export class UserPopupComponent implements OnInit {
             //     this.selectedUser.activeFromDate = formContent['activeFromDate'];
             //     this.selectedUser.inactiveDate = formContent['inactiveDate'];
             //     this.selectedUser.dateCreated = formContent['dateCreated'];
-            //     this.selectedUser.userIDLastUpdated = formContent['userIDLastUpdated'];
+            //     this.selectedUser.userNameLastUpdated = formContent['userNameLastUpdated'];
             // }    
         });
     }
@@ -200,8 +200,8 @@ export class UserPopupComponent implements OnInit {
                 if (this.selectedUser.dateCreated) {
                     this.userformActivity.controls['dateCreated'].setValue(this.selectedUser.dateCreated);
                 }
-                if (this.selectedUser.userIDLastUpdated) {
-                    this.userformActivity.controls['userIDLastUpdated'].setValue(this.selectedUser.userIDLastUpdated);
+                if (this.selectedUser.userNameLastUpdated) {
+                    this.userformActivity.controls['userNameLastUpdated'].setValue(this.selectedUser.userNameLastUpdated);
                 }
                 if (this.selectedUser.isStaff) {
                     this.userformID.controls['isStaff'].setValue(this.selectedUser.isStaff);
@@ -291,7 +291,7 @@ export class UserPopupComponent implements OnInit {
                 activeFromDate:             this.userformActivity.controls['activeFromDate'].value,
                 inactiveDate:               this.userformActivity.controls['inactiveDate'].value,
                 dateCreated:                this.userformActivity.controls['dateCreated'].value,
-                userIDLastUpdated:          this.userformActivity.controls['userIDLastUpdated'].value,
+                userNameLastUpdated:        this.userformActivity.controls['userNameLastUpdated'].value,
                 isStaff:                    this.userformID.controls['isStaff'].valuel,
                 isSuperUser:                this.userformID.controls['isSuperUser'].valuel,
             });
@@ -326,7 +326,7 @@ export class UserPopupComponent implements OnInit {
                 this.selectedUser.activeFromDate = this.userformActivity.controls['activeFromDate'].value;
                 this.selectedUser.inactiveDate = this.userformActivity.controls['inactiveDate'].value;
                 this.selectedUser.dateCreated = this.userformActivity.controls['dateCreated'].value;
-                this.selectedUser.userIDLastUpdated = this.userformActivity.controls['userIDLastUpdated'].value;
+                this.selectedUser.userNameLastUpdated = this.userformActivity.controls['userNameLastUpdated'].value;
             }
 
             this.globalVariableService.growlGlobalMessage.next({
