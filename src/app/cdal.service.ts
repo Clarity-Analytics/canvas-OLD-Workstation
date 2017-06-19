@@ -1109,9 +1109,9 @@ export class CDAL {
         }
 
         if (eazlReport.created_by != null) {
-            ReportWorking.reportCreatedUserID = eazlReport.created_by;
+            ReportWorking.reportCreatedUserName = eazlReport.created_by;
         } else {
-            ReportWorking.reportCreatedUserID = '';
+            ReportWorking.reportCreatedUserName = '';
         }
         
         // Return the result

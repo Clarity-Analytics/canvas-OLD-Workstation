@@ -25,5 +25,5 @@ export class Report {
     reportFields: string[];             // Array of report fields, obtained from DB
     reportData: any[];                  // Array (json) of data rows
     reportCreatedDateTime: string;      // Date time of creation
-    reportCreatedUserID: string;        // UserID who created record
+    reportCreatedUserName: string;      // UserID who created record
 }

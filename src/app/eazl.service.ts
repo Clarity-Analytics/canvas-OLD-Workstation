@@ -3226,7 +3226,7 @@ export const REPORTS: Report[] =
                     {"category": "H0", "amount": 107}
                 ],
             reportCreatedDateTime: '2017/05/01',
-            reportCreatedUserID: 'jannie'
+            reportCreatedUserName: 'jannie'
         },
         {
             reportID: 2,
@@ -3249,7 +3249,7 @@ export const REPORTS: Report[] =
                     {"category": "H22", "amount": 177}
                 ],
             reportCreatedDateTime: '2017/05/01',
-            reportCreatedUserID: 'jannie'
+            reportCreatedUserName: 'jannie'
         }
     ]
 
