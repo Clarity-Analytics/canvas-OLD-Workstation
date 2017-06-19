@@ -21,7 +21,7 @@ export class EazlCanvasMessage {
 export class CanvasMessage {
     canvasMessageID: number;                        // Unique DB id
     canvasMessageConversationID: number;            // Conversation thread that joins msgs
-    canvasMessageSenderUserID: string;              // Created by
+    canvasMessageSenderUserName: string;            // Created by
     canvasMessageSentDateTime: string;              // Created on
     canvasMessageIsSystemGenerated: boolean;        // True if a system message, not created by User
     canvasMessageDashboardID: number;               // Optional Dashboard to which msg is linked, -1 = none
@@ -33,7 +33,7 @@ export class CanvasMessage {
     canvasMessageMyStatus: string;                  // Read, UnRead by me, calced at Runtime
     canvasMessageRecipients: [                      // Aray of users to whom msg were sent
         {
-            canvasMessageRecipientUserID: string;   // UserID to whom msg was sent (groups are collapsed)
+            canvasMessageRecipientUserName: string; // UserName to whom msg was sent (groups are collapsed)
             canvasMessageRecipientStatus: string;   // UnRead, Read - maybe more later
             canvasMessageReadDateTime: string;      // DateTime when msg was Read
         }

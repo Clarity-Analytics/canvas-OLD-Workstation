@@ -266,9 +266,9 @@ export class CDAL {
         }
 
         if (eazlCanvasMessage.sender_username != null) {
-            canvasMessageWorking.canvasMessageSenderUserID = eazlCanvasMessage.sender_username;
+            canvasMessageWorking.canvasMessageSenderUserName = eazlCanvasMessage.sender_username;
         } else {
-            canvasMessageWorking.canvasMessageSenderUserID = '';
+            canvasMessageWorking.canvasMessageSenderUserName = '';
         }
 
         if (eazlCanvasMessage.sent_datetime != null) {
