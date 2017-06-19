@@ -15,11 +15,11 @@ export class EazlDataSourceUserAccess {
 // Canvas
 export class DataSourceUserAccess {
 	datasourceID: number;                   		// Data Source ID
-	username: string;								// User who has acces
+	userName: string;								// User who has acces
 	dataSourceUserAccessType: string;       		// Type = Readonly, Update, Add, Delete, Full
 	dataSourceUserAccessScope: string;      		// Applies to: All (records), context specific .. ?
 	datasourceUserAccessCreatedDateTime: string; 	// Created on
-	datasourceUserAccessCreatedUserID: string;   	// Created by
+	datasourceUserAccessCreatedUserName: string;   	// Created by
 	datasourceUserAccessUpdatedDateTime: string; 	// Updated on
-	datasourceUserAccessUpdatedUserID: string;   	// Updated by}
+	datasourceUserAccessUpdatedUserName: string;   	// Updated by}
 }

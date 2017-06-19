@@ -878,9 +878,9 @@ export class CDAL {
         dataSourceUserAccessWorking.datasourceID = eazlDataSourceUserAccess.id;
 
         if (eazlDataSourceUserAccess.username != null) {
-            dataSourceUserAccessWorking.username = eazlDataSourceUserAccess.username;
+            dataSourceUserAccessWorking.userName = eazlDataSourceUserAccess.username;
         } else {
-            dataSourceUserAccessWorking.username = '';
+            dataSourceUserAccessWorking.userName = '';
         }
 
         if (eazlDataSourceUserAccess.type != null) {
@@ -905,10 +905,10 @@ export class CDAL {
         }
 
         if (eazlDataSourceUserAccess.created_by != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserID = 
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserName = 
                 eazlDataSourceUserAccess.created_by;
         } else {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserID = '';
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserName = '';
         }
 
         if (eazlDataSourceUserAccess.updated_on != null) {
@@ -919,10 +919,10 @@ export class CDAL {
         }
 
         if (eazlDataSourceUserAccess.updated_by != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserID = 
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserName = 
                 eazlDataSourceUserAccess.updated_by;
         } else {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserID = '';
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserName = '';
         }
         
         // Return the result

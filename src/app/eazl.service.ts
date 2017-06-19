@@ -100,43 +100,43 @@ export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
 [
     {
         datasourceID: 0,
-        username: 'janniei',
+        userName: 'janniei',
         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
         datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessCreatedUserName: 'janniei',
 	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserID: 'janniei'
+	    datasourceUserAccessUpdatedUserName: 'janniei'
     },
     {
         datasourceID: 1,
-        username: 'janniei',
+        userName: 'janniei',
         dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
         datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessCreatedUserName: 'janniei',
 	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserID: 'janniei'
+	    datasourceUserAccessUpdatedUserName: 'janniei'
     },
     {
         datasourceID: 0,
-        username: 'bradleyk',
+        userName: 'bradleyk',
         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
         datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessCreatedUserName: 'janniei',
 	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserID: 'janniei'
+	    datasourceUserAccessUpdatedUserName: 'janniei'
     },
     {
         datasourceID: 1,
-        username: 'bradleyk',
+        userName: 'bradleyk',
         dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
         datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserID: 'janniei',
+	    datasourceUserAccessCreatedUserName: 'janniei',
 	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserID: 'janniei'
+	    datasourceUserAccessUpdatedUserName: 'janniei'
     }
 ]
 
@@ -4879,7 +4879,7 @@ export class EazlService implements OnInit {
         let usernames: string[] = [];
         this.dataSourceUserAccess.forEach(du => {
             if (du.datasourceID == datasourceID) {
-                usernames.push(du.username)
+                usernames.push(du.userName)
             };
         });
 
@@ -4901,7 +4901,7 @@ export class EazlService implements OnInit {
         // Filter on users
         let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
         this.dataSourceUserAccess.forEach(du => {
-            if (du.username == username) {
+            if (du.userName == username) {
                 datasourceName = '';
                 datasourceWorking = this.datasources.filter(d =>
                     d.datasourceID == du.datasourceID);
@@ -5097,7 +5097,7 @@ export class EazlService implements OnInit {
         };
         if (username != '*') {
             dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.username == username)
+                da.userName == username)
         };
         if (accessType != '*') {
             dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
@@ -5124,7 +5124,7 @@ export class EazlService implements OnInit {
 
         // Filter as needed
         this.dataSourceUserAccess.forEach( da => {
-                if ( (username == '*'    ||   da.username == username) 
+                if ( (username == '*'    ||   da.userName == username) 
                      &&
                      (accessType == '*'  ||  da.dataSourceUserAccessType == accessType)
                    ) {
@@ -5165,7 +5165,7 @@ export class EazlService implements OnInit {
         let found: boolean = false;
         for (var i = 0; i < this.dataSourceUserAccess.length; i++) {
             if (this.dataSourceUserAccess[i].datasourceID == datasourceID  &&
-                this.dataSourceUserAccess[i].username == username) {
+                this.dataSourceUserAccess[i].userName == username) {
                     found = true;
                     break;
                 }
@@ -5179,13 +5179,13 @@ export class EazlService implements OnInit {
             this.dataSourceUserAccess.push(
                 {
                     datasourceID: datasourceID,
-	                username: username,
+	                userName: username,
                     dataSourceUserAccessType: 'Readonly',
                     dataSourceUserAccessScope: 'All',
                 datasourceUserAccessCreatedDateTime: '2017/05/01',
-                datasourceUserAccessCreatedUserID: 'janniei',
+                datasourceUserAccessCreatedUserName: 'janniei',
                 datasourceUserAccessUpdatedDateTime: '2017/05/01',
-                datasourceUserAccessUpdatedUserID: 'janniei'
+                datasourceUserAccessUpdatedUserName: 'janniei'
                 }        
             )
         }
@@ -5196,7 +5196,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDatasourceUserAccess', '@Start');
 
         this.dataSourceUserAccess = this.dataSourceUserAccess.filter(
-            item => (!(item.datasourceID == datasourceID  &&  item.username == username))
+            item => (!(item.datasourceID == datasourceID  &&  item.userName == username))
         );
     }
 
