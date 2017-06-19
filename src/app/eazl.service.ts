@@ -365,68 +365,68 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
     {
         dashboardUserRelationshipID: 0,
         dashboardID: 0,
-        username: 'janniei',
+        userName: 'janniei',
         dashboardUserRelationshipType: 'SharedWith',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipCreatedUserName: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserID: 'janniei'
+        dashboardUserRelationshipUpdatedUserName: 'janniei'
     },
     {
         dashboardUserRelationshipID: 1,
         dashboardID: 0,
-        username: 'janniei',
+        userName: 'janniei',
         dashboardUserRelationshipType: 'Likes',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipCreatedUserName: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserID: 'janniei'
+        dashboardUserRelationshipUpdatedUserName: 'janniei'
     },
     {
         dashboardUserRelationshipID: 2,
         dashboardID: 1,
-        username: 'bradleyk',
+        userName: 'bradleyk',
         dashboardUserRelationshipType: 'Likes',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipCreatedUserName: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserID: 'janniei'
+        dashboardUserRelationshipUpdatedUserName: 'janniei'
     },
     {
         dashboardUserRelationshipID: 3,
         dashboardID: 0,
-        username: 'bradleyk',
+        userName: 'bradleyk',
         dashboardUserRelationshipType: 'SharedWith',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipCreatedUserName: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserID: 'janniei'
+        dashboardUserRelationshipUpdatedUserName: 'janniei'
     },
     {
         dashboardUserRelationshipID: 4,
         dashboardID: 3,
-        username: 'bradleyk',
+        userName: 'bradleyk',
         dashboardUserRelationshipType: 'SharedWith',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipCreatedUserName: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserID: 'janniei'
+        dashboardUserRelationshipUpdatedUserName: 'janniei'
     },
     {
         dashboardUserRelationshipID: 5,
         dashboardID: 3,
-        username: 'janniei',
+        userName: 'janniei',
         dashboardUserRelationshipType: 'Owns',
         dashboardUserRelationshipRating: 0,
         dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserID: 'janniei',
+        dashboardUserRelationshipCreatedUserName: 'janniei',
         dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserID: 'janniei'
+        dashboardUserRelationshipUpdatedUserName: 'janniei'
     }
 ]
 
@@ -4288,7 +4288,7 @@ export class EazlService implements OnInit {
         if (relatedUsername != '*') {
             let dashboardIDs: number[] = [];
             for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
-                if (this.dashboardUserRelationship[i].username == relatedUsername
+                if (this.dashboardUserRelationship[i].userName == relatedUsername
                    &&
                    this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
                         relationshipType) {
@@ -4319,7 +4319,7 @@ export class EazlService implements OnInit {
                 (
                     dur.dashboardID == dw.dashboardID  
                     && 
-                    dur.username == currentUser
+                    dur.userName == currentUser
                     && 
                     dur.dashboardUserRelationshipType == 'Likes'
                 )
@@ -4974,7 +4974,7 @@ export class EazlService implements OnInit {
         // Filter on users
         let dashboardsPerUserWorking: DashboardsPerUser[] = [];
         this.dashboardUserRelationship.forEach(du => {
-            if (du.username == username) {
+            if (du.userName == username) {
 
                 dashboardName = '';
                 dashboardsWorking = this.dashboards.filter(d =>
@@ -5489,8 +5489,8 @@ export class EazlService implements OnInit {
                 &&  
                 dur.dashboardUserRelationshipType == relationshipType
                 &&
-                (username == '*'  ||  dur.username == username ) ) {
-                    userIDs.push(dur.username);
+                (username == '*'  ||  dur.userName == username ) ) {
+                    userIDs.push(dur.userName);
             }
         });
 
@@ -5584,7 +5584,7 @@ export class EazlService implements OnInit {
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
             if (this.dashboardUserRelationship[i].dashboardID == dashboardID
                && 
-               this.dashboardUserRelationship[i].username == username
+               this.dashboardUserRelationship[i].userName == username
                &&
                this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
                 relationshipType) {    
@@ -5600,15 +5600,15 @@ export class EazlService implements OnInit {
                 {
                     dashboardUserRelationshipID: 0,
                     dashboardID: dashboardID,
-                    username: username,
+                    userName: username,
                     dashboardUserRelationshipType: relationshipType,
                     dashboardUserRelationshipRating: 0,
                     dashboardUserRelationshipCreatedDateTime: 
                         this.canvasDate.now('standard'),
-                    dashboardUserRelationshipCreatedUserID: currentUser,
+                    dashboardUserRelationshipCreatedUserName: currentUser,
                     dashboardUserRelationshipUpdatedDateTime: 
                         this.canvasDate.now('standard'),
-                    dashboardUserRelationshipUpdatedUserID: currentUser
+                    dashboardUserRelationshipUpdatedUserName: currentUser
                 });
         }
     }
@@ -5625,7 +5625,7 @@ export class EazlService implements OnInit {
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
             if (this.dashboardUserRelationship[i].dashboardID == dashboardID
                && 
-               this.dashboardUserRelationship[i].username == username
+               this.dashboardUserRelationship[i].userName == username
                &&
                this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
                 relationshipType) {

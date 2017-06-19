@@ -751,10 +751,10 @@ export class CDAL {
         }
 
         if (eazlDashboardUserRelationship.username != null) {
-            dashboardUserRelationshipWorking.username = 
+            dashboardUserRelationshipWorking.userName = 
                 eazlDashboardUserRelationship.username;
         } else {
-            dashboardUserRelationshipWorking.username = '';
+            dashboardUserRelationshipWorking.userName = '';
         }
 
         if (eazlDashboardUserRelationship.type != null) {
@@ -779,10 +779,10 @@ export class CDAL {
         }
 
         if (eazlDashboardUserRelationship.created_by != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedUserID = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedUserName = 
                 eazlDashboardUserRelationship.created_by;
         } else {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedUserID = '';
+            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedUserName = '';
         }
 
         if (eazlDashboardUserRelationship.updated_on != null) {
@@ -793,10 +793,10 @@ export class CDAL {
         }
 
         if (eazlDashboardUserRelationship.updated_by != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedUserID = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedUserName = 
                 eazlDashboardUserRelationship.updated_by;
         } else {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedUserID = '';
+            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedUserName = '';
         }
         
         // Return the result
