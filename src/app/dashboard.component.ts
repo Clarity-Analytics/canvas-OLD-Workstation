@@ -2487,8 +2487,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // Filter, IF we have specified something
             recordPassesFilter = true;
             if (inputFilter != null) {
-                if (inputFilter.owner != '') {
-                    if (this.dashboards[i].dashboardOwnerUserName.toLocaleLowerCase().indexOf(inputFilter.owner.toLocaleLowerCase())
+                if (inputFilter.ownerUserName != '') {
+                    if (this.dashboards[i].dashboardOwnerUserName.toLocaleLowerCase().indexOf(inputFilter.ownerUserName.toLocaleLowerCase())
                         == -1) {
                             recordPassesFilter = false
                     }

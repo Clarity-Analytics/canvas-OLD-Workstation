@@ -944,9 +944,9 @@ export class CDAL {
         }
  
         if (eazlFilter.owner != null) {
-            filterWorking.owner = eazlFilter.owner;
+            filterWorking.ownerUserName = eazlFilter.owner;
         } else {
-            filterWorking.owner = '';
+            filterWorking.ownerUserName = '';
         }
  
         if (eazlFilter.description != null) {

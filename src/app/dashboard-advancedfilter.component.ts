@@ -79,7 +79,7 @@ export class DashboardAdvFilterComponent implements OnInit {
             {
                 filterID: 0,
                 hasAtLeastOneFilter: hasAtLeastOneFilter,
-                owner: this.filterOwner, 
+                ownerUserName: this.filterOwner, 
                 description: this.filterDescription
             }
         );

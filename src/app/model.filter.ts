@@ -11,6 +11,6 @@ export class EazlFilter {
 export class Filter {
     filterID: number;
     hasAtLeastOneFilter: boolean;
-    owner: string;
+    ownerUserName: string;
     description: string;
 }
