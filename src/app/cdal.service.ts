@@ -1149,7 +1149,35 @@ export class CDAL {
         } else {
             reportWidgetSetWorking.vegaSpec = '';
         }
-        
+
+        if (eazlReportWidgetSet.updated_on != null) {
+            reportWidgetSetWorking.reportWidgetSetUpdatedDateTime = 
+                eazlReportWidgetSet.updated_on;
+        } else {
+            reportWidgetSetWorking.reportWidgetSetUpdatedDateTime = '';
+        }
+
+        if (eazlReportWidgetSet.updated_by != null) {
+            reportWidgetSetWorking.reportWidgetSetUpdatedUserName = 
+                eazlReportWidgetSet.updated_by;
+        } else {
+            reportWidgetSetWorking.reportWidgetSetUpdatedUserName = '';
+        }
+
+        if (eazlReportWidgetSet.created_on != null) {
+            reportWidgetSetWorking.reportWidgetSetCreatedDateTime = 
+                eazlReportWidgetSet.created_on;
+        } else {
+            reportWidgetSetWorking.reportWidgetSetCreatedDateTime = '';
+        }
+
+        if (eazlReportWidgetSet.created_by != null) {
+            reportWidgetSetWorking.reportWidgetSetCreatedUserName = 
+                eazlReportWidgetSet.created_by;
+        } else {
+            reportWidgetSetWorking.reportWidgetSetCreatedUserName = '';
+        }
+
         // Return the result
         return reportWidgetSetWorking;
     }             
