@@ -497,7 +497,7 @@ export class DashboardManagerComponent implements OnInit {
             // TODO - do via Eazl into DB
             this.dashboardToEdit.dashboardID = lastDashboardID;
             this.dashboardToEdit.dashboardCreatedDateTime = this.canvasDate.now('standard')
-            this.dashboardToEdit.dashboardCreatedUserID = this.canvasUser.username;
+            this.dashboardToEdit.dashboardCreatedUserName = this.canvasUser.username;
             this.dashboards.push(this.dashboardToEdit);
 
             // Inform the user
@@ -554,8 +554,8 @@ export class DashboardManagerComponent implements OnInit {
                             this.dashboardToEdit.dashboardIsLocked;
                         this.dashboards[i].dashboardOpenTabNr = 
                             this.dashboardToEdit.dashboardOpenTabNr;
-                        this.dashboards[i].dashboardOwnerUserID = 
-                            this.dashboardToEdit.dashboardOwnerUserID;
+                        this.dashboards[i].dashboardOwnerUserName = 
+                            this.dashboardToEdit.dashboardOwnerUserName;
                         this.dashboards[i].dashboardPassword = 
                             this.dashboardToEdit.dashboardPassword;
                         this.dashboards[i].dashboardRefreshMode = 
@@ -564,7 +564,7 @@ export class DashboardManagerComponent implements OnInit {
                             this.dashboardToEdit.dashboardSystemMessage;
                         this.dashboards[i].dashboardUpdatedDateTime = 
                             this.canvasDate.now('standard');
-                        this.dashboards[i].dashboardUpdatedUserID = 
+                        this.dashboards[i].dashboardUpdatedUserName = 
                              this.canvasUser.username;
                 }
             }

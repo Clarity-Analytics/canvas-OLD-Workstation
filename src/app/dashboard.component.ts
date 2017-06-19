@@ -1538,23 +1538,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardBackgroundImageSrc: '',
                 dashboardComments: 'Comments for ' + this.numberUntitledDashboards.toString(),
                 dashboardCreatedDateTime: '2017/07/08',
-                dashboardCreatedUserID: 'BenVdMark',
+                dashboardCreatedUserName: 'BenVdMark',
                 dashboardDefaultExportFileType: 'PowerPoint',
                 dashboardDescription: 'This is a unique and special dashboard, like all others',
                 dashboardNrGroups: 0,
                 dashboardIsLocked: false,
                 dashboardIsLiked: false,
                 dashboardOpenTabNr: 1,
-                dashboardOwnerUserID: 'JohnH',
+                dashboardOwnerUserName: 'JohnH',
                 dashboardPassword: 'StudeBaker',
                 dashboardRefreshedDateTime: '',
-                dashboardRefreshedUserID: '',
+                dashboardRefreshedUserName: '',
                 dashboardRefreshMode: 'Manual',
                 dashboardNrUsersSharedWith: 0,
                 dashboardNrGroupsSharedWith: 0,
                 dashboardSystemMessage: '',
                 dashboardUpdatedDateTime: '2017/07/08',
-                dashboardUpdatedUserID: 'GordenJ'
+                dashboardUpdatedUserName: 'GordenJ'
             }
         );
 
@@ -2488,7 +2488,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             recordPassesFilter = true;
             if (inputFilter != null) {
                 if (inputFilter.owner != '') {
-                    if (this.dashboards[i].dashboardOwnerUserID.toLocaleLowerCase().indexOf(inputFilter.owner.toLocaleLowerCase())
+                    if (this.dashboards[i].dashboardOwnerUserName.toLocaleLowerCase().indexOf(inputFilter.owner.toLocaleLowerCase())
                         == -1) {
                             recordPassesFilter = false
                     }

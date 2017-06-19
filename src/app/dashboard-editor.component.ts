@@ -129,7 +129,7 @@ export class DashboardEditorComponent implements OnInit {
                 this.selectedDashboard.dashboardCreatedDateTime
             );
             this.dashboardForm.controls['dashboardCreatedUserID'].setValue(
-                this.selectedDashboard.dashboardCreatedUserID
+                this.selectedDashboard.dashboardCreatedUserName
             );
             this.dashboardForm.controls['dashboardDefaultExportFileType'].setValue(
                 this.selectedDashboard.dashboardDefaultExportFileType
@@ -144,7 +144,7 @@ export class DashboardEditorComponent implements OnInit {
                 this.selectedDashboard.dashboardOpenTabNr
             );
             this.dashboardForm.controls['dashboardOwnerUserID'].setValue(
-                this.selectedDashboard.dashboardOwnerUserID
+                this.selectedDashboard.dashboardOwnerUserName
             );
             this.dashboardForm.controls['dashboardPassword'].setValue(
                 this.selectedDashboard.dashboardPassword
@@ -162,7 +162,7 @@ export class DashboardEditorComponent implements OnInit {
                 this.selectedDashboard.dashboardUpdatedDateTime
             );
             this.dashboardForm.controls['dashboardUpdatedUserID'].setValue(
-                this.selectedDashboard.dashboardUpdatedUserID
+                this.selectedDashboard.dashboardUpdatedUserName
             );
             this.dashboardForm.controls['isContainerHeaderDark'].setValue(
                 this.selectedDashboard.isContainerHeaderDark
@@ -201,7 +201,7 @@ export class DashboardEditorComponent implements OnInit {
                 this.selectedDashboard.dashboardNrGroupsSharedWith
             );
             this.dashboardForm.controls['dashboardRefreshedUserID'].setValue(
-                this.selectedDashboard.dashboardRefreshedUserID
+                this.selectedDashboard.dashboardRefreshedUserName
             );
         }
 
@@ -306,7 +306,7 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardIsLocked'].value;
         this.dashboardToEdit.dashboardOpenTabNr = 
             this.dashboardForm.controls['dashboardOpenTabNr'].value;
-        this.dashboardToEdit.dashboardOwnerUserID = 
+        this.dashboardToEdit.dashboardOwnerUserName = 
             this.dashboardForm.controls['dashboardOwnerUserID'].value;
         this.dashboardToEdit.dashboardPassword = 
             this.dashboardForm.controls['dashboardPassword'].value;
@@ -315,7 +315,7 @@ export class DashboardEditorComponent implements OnInit {
         this.dashboardToEdit.dashboardSystemMessage = 
             this.dashboardForm.controls['dashboardSystemMessage'].value;
             this.canvasDate.now('standard');
-        this.dashboardToEdit.dashboardUpdatedUserID = 
+        this.dashboardToEdit.dashboardUpdatedUserName = 
             this.canvasUser.username;
 
 

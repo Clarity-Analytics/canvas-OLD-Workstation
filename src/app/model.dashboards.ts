@@ -46,16 +46,16 @@ export class Dashboard {
     dashboardIsLocked: boolean;                 // If true, then cannot be modified
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
     dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
-    dashboardOwnerUserID: string;               // UserID of owner
+    dashboardOwnerUserName: string;             // UserName of owner
     dashboardPassword: string;                  // Optional password to open
     dashboardRefreshMode: string;               // Manual, onOpen  
     dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserIDs shared with
     dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
     dashboardRefreshedDateTime: string;         // Data Refreshed on
-    dashboardRefreshedUserID: string;           // Data Refreshed by
+    dashboardRefreshedUserName: string;         // Data Refreshed by
     dashboardUpdatedDateTime: string;           // Updated on
-    dashboardUpdatedUserID: string;             // Updated by
+    dashboardUpdatedUserName: string;           // Updated by
     dashboardCreatedDateTime: string;           // Created on
-    dashboardCreatedUserID: string;             // Created by
+    dashboardCreatedUserName: string;           // Created by
 }
