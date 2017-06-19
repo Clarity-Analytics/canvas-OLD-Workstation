@@ -144,7 +144,7 @@ export const REPORTHISTORY: ReportHistory[] =
 [
     {
         reportHistoryID: 0,
-        username: 'janniei',
+        userName: 'janniei',
         reportID: 1,
         datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -155,7 +155,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 1,
-        username: 'janniei',
+        userName: 'janniei',
         reportID: 2,
         datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -166,7 +166,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 2,
-        username: 'janniei',
+        userName: 'janniei',
         reportID: 1,
         datasourceID: 0,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -177,7 +177,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 3,
-        username: 'janniei',
+        userName: 'janniei',
         reportID: 1,
         datasourceID: 1,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -188,7 +188,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
     {
         reportHistoryID: 4,
-        username: 'bradleyk',
+        userName: 'bradleyk',
         reportID: 1,
         datasourceID: 1,
         reportHistoryStartDateTime: '2017/05/01 08:21',
@@ -4685,7 +4685,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
                 
         return this.reportHistory.filter(rh =>
-            (username == '*'        ||   rh.username == username)
+            (username == '*'        ||   rh.userName == username)
             &&
             (reportID == -1         ||   rh.reportID == reportID)
             &&

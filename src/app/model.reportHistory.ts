@@ -16,7 +16,7 @@ export class EazlReportHistory {
 // Canvas
 export class ReportHistory {
     reportHistoryID: number;                    // Unique ID
-    username: string;                           // User who ran report
+    userName: string;                           // User who ran report
     reportID: number;                           // Report ID
     datasourceID: number;                       // Underlying Datasource for the report
     reportHistoryStartDateTime: string;         // Start DateTime

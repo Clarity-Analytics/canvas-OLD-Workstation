@@ -1191,9 +1191,9 @@ export class CDAL {
         reportHistoryWorking.reportHistoryID = eazlReportHistory.id;
 
         if (eazlReportHistory.username != null) {
-            reportHistoryWorking.username = eazlReportHistory.username;
+            reportHistoryWorking.userName = eazlReportHistory.username;
         } else {
-            reportHistoryWorking.username = '';
+            reportHistoryWorking.userName = '';
         }
 
         if (eazlReportHistory.report_id != null) {
