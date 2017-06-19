@@ -991,10 +991,10 @@ export class CDAL {
         }
 
         if (eazlGroupDatasourceAccess.created_by != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserID = 
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserName = 
                 eazlGroupDatasourceAccess.created_by;
         } else {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserID = '';
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserName = '';
         }
 
         if (eazlGroupDatasourceAccess.updated_on != null) {
@@ -1005,10 +1005,10 @@ export class CDAL {
         }
 
         if (eazlGroupDatasourceAccess.updated_by != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserID = 
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserName = 
                 eazlGroupDatasourceAccess.updated_by;
         } else {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserID = '';
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserName = '';
         }
 
         // Return the result

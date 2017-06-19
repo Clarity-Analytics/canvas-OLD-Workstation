@@ -3449,9 +3449,9 @@ export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
             datasourceID: 0,
             groupDatasourceAccessAccessType: 'Read',
             groupDatasourceAccessCreatedDateTime: '2017/05/01',
-            groupDatasourceAccessCreatedUserID: 'PatricOS',
+            groupDatasourceAccessCreatedUserName: 'PatricOS',
             groupDatasourceAccessUpdatedDateTime: '2017/05/01',
-            groupDatasourceAccessUpdatedUserID: 'PatricOS' 
+            groupDatasourceAccessUpdatedUserName: 'PatricOS' 
         }
     ]
 
@@ -5329,9 +5329,9 @@ export class EazlService implements OnInit {
                     datasourceID: datasourceID,
                     groupDatasourceAccessAccessType: 'Read',
                     groupDatasourceAccessCreatedDateTime: this.canvasDate.now('standard'),
-                    groupDatasourceAccessCreatedUserID: currentUser,
+                    groupDatasourceAccessCreatedUserName: currentUser,
                     groupDatasourceAccessUpdatedDateTime: this.canvasDate.now('standard'),
-                    groupDatasourceAccessUpdatedUserID: currentUser
+                    groupDatasourceAccessUpdatedUserName: currentUser
                 }        
             )
         }
