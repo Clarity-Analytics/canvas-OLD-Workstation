@@ -2101,10 +2101,10 @@ export class CDAL {
         }
 
         if (eazlWidget.properties_widget_refreshed_by != null) {
-            widgetWorking.properties.widgetRefreshedUserID = 
+            widgetWorking.properties.widgetRefreshedUserName = 
                 eazlWidget.properties_widget_refreshed_by;
         } else {
-            widgetWorking.properties.widgetRefreshedUserID = '';
+            widgetWorking.properties.widgetRefreshedUserName = '';
         }
 
         if (eazlWidget.properties_widget_Created_on != null) {
@@ -2115,10 +2115,10 @@ export class CDAL {
         }
 
         if (eazlWidget.properties_widget_Created_by != null) {
-            widgetWorking.properties.widgetCreatedUserID = 
+            widgetWorking.properties.widgetCreatedUserName = 
                 eazlWidget.properties_widget_Created_by;
         } else {
-            widgetWorking.properties.widgetCreatedUserID = '';
+            widgetWorking.properties.widgetCreatedUserName = '';
         }
 
         if (eazlWidget.properties_widget_updated_on != null) {
@@ -2128,9 +2128,9 @@ export class CDAL {
         }
 
         if (eazlWidget.properties_widget_updated_by != null) {
-            widgetWorking.properties.widgetUpdatedUserID = eazlWidget.properties_widget_updated_by;
+            widgetWorking.properties.widgetUpdatedUserName = eazlWidget.properties_widget_updated_by;
         } else {
-            widgetWorking.properties.widgetUpdatedUserID = '';
+            widgetWorking.properties.widgetUpdatedUserName = '';
         }
         
         // Return the result

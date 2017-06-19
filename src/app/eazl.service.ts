@@ -975,7 +975,7 @@ export const WIDGETS: Widget[] =
                 widgetName: 'Bar Chart 1',
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: 'Just a common comment',
                 widgetDefaultExportFileType: '.png',
                 widgetDescription: 'This graph showing empirical bla-bla-bla ..',
@@ -986,15 +986,15 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: 'JessyB'
+                        widgetLikedUserName: 'JessyB'
                     },
                     {
-                        widgetLikedUserID: 'JonnyC'
+                        widgetLikedUserName: 'JonnyC'
                     }
                 ],
                 widgetPassword: '***',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: 'Repeat',
                 widgetReportID: 1,
@@ -1006,7 +1006,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 1,
                 widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -1181,7 +1181,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -1192,12 +1192,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: 'janniei',
+                        widgetLikedUserName: 'janniei',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: 1,
@@ -1209,7 +1209,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 1,
                 widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -1372,7 +1372,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -1383,12 +1383,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -1400,7 +1400,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 1,
                 widgetType: 'BarChart',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -1602,7 +1602,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -1613,12 +1613,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -1630,7 +1630,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -1877,7 +1877,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: 'Just simple comments',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -1888,12 +1888,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -1905,7 +1905,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -2051,7 +2051,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -2062,12 +2062,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -2079,7 +2079,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -2247,7 +2247,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -2258,12 +2258,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -2275,7 +2275,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -2429,7 +2429,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -2440,12 +2440,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -2457,7 +2457,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             },
         },
 
@@ -2651,7 +2651,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -2662,12 +2662,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -2679,7 +2679,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -2838,7 +2838,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -2849,12 +2849,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -2866,7 +2866,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         },
 
@@ -3121,7 +3121,7 @@ export const WIDGETS: Widget[] =
 
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -3132,12 +3132,12 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: '',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
                 widgetReportID: -1,
@@ -3149,7 +3149,7 @@ export const WIDGETS: Widget[] =
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         }
     ];
@@ -4411,7 +4411,7 @@ export class EazlService implements OnInit {
             // Set properties.widgetIsLiked if there are users who liked it
             for (var j = 0, len = this.widgets[i].properties.widgetLiked.length; j < len; j++) {
 
-                if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID == username) {
+                if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserName == username) {
                     this.widgets[i].properties.widgetIsLiked = true;
                 } else {
                     this.widgets[i].properties.widgetIsLiked = false;
@@ -4548,7 +4548,7 @@ export class EazlService implements OnInit {
                 widgetName: '',
                 widgetAddRestRow: false,
                 widgetCreatedDateTime: '',
-                widgetCreatedUserID: '',
+                widgetCreatedUserName: '',
                 widgetComments: '',
                 widgetDefaultExportFileType: '',
                 widgetDescription: 'This graph showing ...',
@@ -4559,12 +4559,12 @@ export class EazlService implements OnInit {
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserID: ''
+                        widgetLikedUserName: ''
                     }
                 ],
                 widgetPassword: '',
                 widgetRefreshedDateTime: '',
-                widgetRefreshedUserID: '',
+                widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 0,
                 widgetRefreshMode: '',
                 widgetReportID: 1,
@@ -4576,7 +4576,7 @@ export class EazlService implements OnInit {
                 widgetTypeID: 0,
                 widgetType: '',
                 widgetUpdatedDateTime: '',
-                widgetUpdatedUserID: ''
+                widgetUpdatedUserName: ''
             }
         }
 
@@ -4776,7 +4776,7 @@ export class EazlService implements OnInit {
                 if (this.widgets[i].properties.widgetID == widgetID) {
                     this.widgets[i].properties.widgetIsLiked = isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
-                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID ==
+                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserName ==
                             username) { 
                                  foundUser = true;
                             }
@@ -4784,7 +4784,7 @@ export class EazlService implements OnInit {
                     if (!foundUser) {
                         this.widgets[i].properties.widgetLiked.push(
                             {
-                                widgetLikedUserID: username
+                                widgetLikedUserName: username
                             });
                     }
                 }
@@ -4794,7 +4794,7 @@ export class EazlService implements OnInit {
                 if (this.widgets[i].properties.widgetID == widgetID) {
                     this.widgets[i].properties.widgetIsLiked == isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
-                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserID ==
+                        if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserName ==
                             username) {
                                 this.widgets[i].properties.widgetLiked.splice(j);
                             }

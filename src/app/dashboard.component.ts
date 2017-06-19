@@ -457,8 +457,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                             this.widgetToEdit.properties.widgetType;
                         this.widgets[i].properties.widgetUpdatedDateTime = 
                             this.widgetToEdit.properties.widgetUpdatedDateTime;
-                        this.widgets[i].properties.widgetUpdatedUserID = 
-                            this.widgetToEdit.properties.widgetUpdatedUserID;
+                        this.widgets[i].properties.widgetUpdatedUserName = 
+                            this.widgetToEdit.properties.widgetUpdatedUserName;
                 }
             }
 

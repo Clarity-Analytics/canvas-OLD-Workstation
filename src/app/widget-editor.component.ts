@@ -377,7 +377,7 @@ export class WidgetEditorComponent implements OnInit {
                     .setValue(this.widgetToEdit.properties.widgetRefreshMode);
 
                 let LikedUsers: any = this.widgetToEdit.properties.widgetLiked.filter (
-                    user => user.widgetLikedUserID != '')
+                    user => user.widgetLikedUserName != '')
                 this.identificationForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
             
                 this.selectedItem = {
@@ -995,7 +995,7 @@ export class WidgetEditorComponent implements OnInit {
             // Defaults
             this.widgetToEdit.properties.widgetIsLocked = false;
             this.widgetToEdit.properties.widgetIsLiked = false;
-            this.widgetToEdit.properties.widgetLiked = [{widgetLikedUserID: ''}];
+            this.widgetToEdit.properties.widgetLiked = [{widgetLikedUserName: ''}];
             this.widgetToEdit.properties.widgetIndex = 0;
             this.widgetToEdit.properties.widgetSize = '';
             this.widgetToEdit.properties.widgetSystemMessage = '';
@@ -1012,7 +1012,7 @@ export class WidgetEditorComponent implements OnInit {
                 this.canvasDate.today('standard') + ' ' + 
                 this.canvasDate.curHour(d).toString() + ' ' + 
                 this.canvasDate.curMinute(d).toString();
-            this.widgetToEdit.properties.widgetCreatedUserID = 
+            this.widgetToEdit.properties.widgetCreatedUserName = 
                 this.canvasUser.username;
                 
         }
@@ -1260,11 +1260,11 @@ export class WidgetEditorComponent implements OnInit {
         // Set last updated, created and refreshed properties
         this.widgetToEdit.properties.widgetRefreshedDateTime =
             this.canvasDate.now('standard');
-        this.widgetToEdit.properties.widgetRefreshedUserID = 
+        this.widgetToEdit.properties.widgetRefreshedUserName = 
             this.canvasUser.username;
         this.widgetToEdit.properties.widgetUpdatedDateTime = 
             this.canvasDate.now('standard');
-        this.widgetToEdit.properties.widgetUpdatedUserID = 
+        this.widgetToEdit.properties.widgetUpdatedUserName = 
             this.canvasUser.username;
 console.log('@end', this.widgetToEdit)
 

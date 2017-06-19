@@ -184,9 +184,9 @@ export class Widget {
         widgetRefreshFrequency: number;         // Nr of seconds if RefreshMode = Repeatedly
         widgetPassword: string;                 // Optional password
         widgetIsLiked: boolean;                 // @RunTime: True if Widget is liked by me
-        widgetLiked: [                          // Array of UserIDs that likes this Widget
+        widgetLiked: [                          // Array of UserNames that likes this Widget
             {
-                widgetLikedUserID: string;      // UserID that likes this widget
+                widgetLikedUserName: string;    // UserName that likes this widget
             }
         ];
         widgetReportID: number;                 // FK to report (query / data).  -1: dont load any report data
@@ -202,10 +202,10 @@ export class Widget {
         widgetSystemMessage: string;            // Optional for Canvas to say something to user
         widgetTypeID: number;                   // Widget Type ID (for Bar, Pie, etc)
         widgetRefreshedDateTime: string;        // Data Refreshed on
-        widgetRefreshedUserID: string;          // Date Refreshed by
+        widgetRefreshedUserName: string;        // Date Refreshed by
         widgetCreatedDateTime: string;          // Created on
-        widgetCreatedUserID: string;            // Created by
+        widgetCreatedUserName: string;          // Created by
         widgetUpdatedDateTime: string;          // Updated on
-        widgetUpdatedUserID: string;            // Updated by
+        widgetUpdatedUserName: string;          // Updated by
     };
 }
