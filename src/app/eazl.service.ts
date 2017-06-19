@@ -3459,35 +3459,35 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
     [
         {
             groupID: 0,
-            username: 'janniei',
+            userName: 'janniei',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
-            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipCreatedUserName:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
-            userGroupMembershipUpdatedUserID: 'JamesK'
+            userGroupMembershipUpdatedUserName: 'JamesK'
         },        
         {
             groupID: 4,
-            username: 'janniei',
+            userName: 'janniei',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
-            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipCreatedUserName:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
-            userGroupMembershipUpdatedUserID: 'JamesK'
+            userGroupMembershipUpdatedUserName: 'JamesK'
         },        
         {
             groupID: 1,
-            username: 'bradleyk',
+            userName: 'bradleyk',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
-            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipCreatedUserName:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
-            userGroupMembershipUpdatedUserID: 'JamesK'
+            userGroupMembershipUpdatedUserName: 'JamesK'
         },        
         {
             groupID: 5,
-            username: 'bradleyk',
+            userName: 'bradleyk',
             userGroupMembershipCreatedDateTime: '2017/05/01', 
-            userGroupMembershipCreatedUserID:  'JamesK',
+            userGroupMembershipCreatedUserName:  'JamesK',
             userGroupMembershipUpdatedDateTime: '2017/05/01', 
-            userGroupMembershipUpdatedUserID: 'JamesK'
+            userGroupMembershipUpdatedUserName: 'JamesK'
         },        
     ]
 
@@ -4925,7 +4925,7 @@ export class EazlService implements OnInit {
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
         this.usergroupMembership.forEach((usrgrp) => { 
-            if (usrgrp.username == username) 
+            if (usrgrp.userName == username) 
                 groupIDs.push(usrgrp.groupID)  
             }
         )   
@@ -4995,7 +4995,7 @@ export class EazlService implements OnInit {
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
         this.usergroupMembership.forEach((usrgrp) => { 
-            if (usrgrp.username == username) 
+            if (usrgrp.userName == username) 
                 groupIDs.push(usrgrp.groupID)  
             }
         )   
@@ -5218,7 +5218,7 @@ export class EazlService implements OnInit {
         // Make an array of groupIDs to which this user belongs
         this.usergroupMembership.forEach(
             (usrgrp) => { 
-                            if (usrgrp.username == username) 
+                            if (usrgrp.userName == username) 
                             resultUsergroupMembership.push(usrgrp.groupID)  
                         }
         )   
@@ -5250,7 +5250,7 @@ export class EazlService implements OnInit {
         this.usergroupMembership.forEach(
             (usrgrp) => { 
                         if (usrgrp.groupID == groupID) 
-                        resultUsergroupMembership.push(usrgrp.username)  
+                        resultUsergroupMembership.push(usrgrp.userName)  
                     }
         )   
 
@@ -5270,7 +5270,7 @@ export class EazlService implements OnInit {
 
         let found: boolean = false;
         for (var i = 0; i < this.usergroupMembership.length; i++) {
-            if (this.usergroupMembership[i].username == username  &&
+            if (this.usergroupMembership[i].userName == username  &&
                 this.usergroupMembership[i].groupID == groupID) {
                     found = true;
                     break;
@@ -5285,11 +5285,11 @@ export class EazlService implements OnInit {
             this.usergroupMembership.push(
                 {
                     groupID: groupID,
-                    username: username,
+                    userName: username,
                     userGroupMembershipCreatedDateTime: this.canvasDate.now('standard'),
-                    userGroupMembershipCreatedUserID: currentUser,
+                    userGroupMembershipCreatedUserName: currentUser,
                     userGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
-                    userGroupMembershipUpdatedUserID: currentUser
+                    userGroupMembershipUpdatedUserName: currentUser
                 }        
             )
         }
@@ -5300,7 +5300,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
 
         this.usergroupMembership = this.usergroupMembership.filter(
-            item => (!(item.username == username  &&  item.groupID == groupID))
+            item => (!(item.userName == username  &&  item.groupID == groupID))
         );
     }
 

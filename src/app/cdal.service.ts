@@ -1419,9 +1419,9 @@ export class CDAL {
         userGroupMembershipWorking.groupID = eazlUserGroupMembership.id;
 
         if (eazlUserGroupMembership.username != null) {
-            userGroupMembershipWorking.username = eazlUserGroupMembership.username;
+            userGroupMembershipWorking.userName = eazlUserGroupMembership.username;
         } else {
-            userGroupMembershipWorking.username = '';
+            userGroupMembershipWorking.userName = '';
         }
 
         if (eazlUserGroupMembership.created_on != null) {
@@ -1432,10 +1432,10 @@ export class CDAL {
         }
 
         if (eazlUserGroupMembership.created_by != null) {
-            userGroupMembershipWorking.userGroupMembershipCreatedUserID = 
+            userGroupMembershipWorking.userGroupMembershipCreatedUserName = 
                 eazlUserGroupMembership.created_by;
         } else {
-            userGroupMembershipWorking.userGroupMembershipCreatedUserID = '';
+            userGroupMembershipWorking.userGroupMembershipCreatedUserName = '';
         }
 
         if (eazlUserGroupMembership.updated_on != null) {
@@ -1446,10 +1446,10 @@ export class CDAL {
         }
 
         if (eazlUserGroupMembership.updated_by != null) {
-            userGroupMembershipWorking.userGroupMembershipUpdatedUserID = 
+            userGroupMembershipWorking.userGroupMembershipUpdatedUserName = 
                 eazlUserGroupMembership.updated_by;
         } else {
-            userGroupMembershipWorking.userGroupMembershipUpdatedUserID = '';
+            userGroupMembershipWorking.userGroupMembershipUpdatedUserName = '';
         }
         
         // Return the result

@@ -13,9 +13,9 @@ export class EazlUserGroupMembership {
 // Canvas
 export class UserGroupMembership {
     groupID: number;
-    username: string;
+    userName: string;
     userGroupMembershipCreatedDateTime: string;          // Created on
-    userGroupMembershipCreatedUserID: string;            // Created by
+    userGroupMembershipCreatedUserName: string;          // Created by
     userGroupMembershipUpdatedDateTime: string;          // Updated on
-    userGroupMembershipUpdatedUserID: string;            // Updated by
+    userGroupMembershipUpdatedUserName: string;          // Updated by
 }
