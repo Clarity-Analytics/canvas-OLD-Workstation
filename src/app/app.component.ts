@@ -18,7 +18,6 @@ import { CanvasDate }                 from './date.services';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { NotificationService }        from './notification.service';
-import { WebSocketService }           from './websocket.service';
 
 // Our Models
 import { CanvasUser }                 from './model.user';
