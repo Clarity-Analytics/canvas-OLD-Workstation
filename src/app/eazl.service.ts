@@ -6308,6 +6308,44 @@ export class EazlService implements OnInit {
             }
         }
 
+
+
+
+
+        // PackageTasks
+        if (resetObject == 'all'   ||   resetObject == 'PackageTasks') {
+
+            // Reset 
+            if (resetAction == 'reset') {
+
+                // Get all the data via API
+                let NotificationWorking: Notification[] = [];
+                this.get<EazlNotification>('package-tasks')
+                        .subscribe(
+                            (eazlNotification) => {
+                                for (var i = 0; i < eazlNotification.length; i++) {
+                                    let NotificationSingle = new Notification();
+                                    NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
+                                    NotificationWorking.push(NotificationSingle);                                    
+
+                                }
+
+                            // Replace
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.notifications = notificationWorking;
+                            }
+                )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.notifications = [];
+            }
+        }
+
+
+
+
         // Report
         if (resetObject == 'all'   ||   resetObject == 'Reports') {
 
