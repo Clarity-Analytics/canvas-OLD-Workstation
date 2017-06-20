@@ -9,6 +9,7 @@ import { MenuItem }                   from 'primeng/primeng';
 import { Message }                    from 'primeng/primeng';  
 
 // Our Components
+import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our Services
 import { EazlService }                from './eazl.service';
@@ -24,6 +25,7 @@ import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { ReportHistory }              from './model.reportHistory';
+import { SocketMessage }              from './model.websocket';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 
@@ -67,7 +69,13 @@ export class UserComponent implements OnInit {
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
+        reconnectingWebSocket.messageWS.subscribe(
+        (message: SocketMessage) => { console.log(message) },
+        (error) => { console.log(JSON.parse(error)) },
+        () => { console.log('Socket complete') },
+        )    
     }
     
     ngOnInit() {
