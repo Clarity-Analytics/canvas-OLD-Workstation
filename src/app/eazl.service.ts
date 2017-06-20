@@ -41,6 +41,7 @@ import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlNotification }           from './model.notification';
+import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
@@ -56,6 +57,7 @@ import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { Notification }               from './model.notification';
+import { PackageTask }                from './model.package.task';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
@@ -3933,6 +3935,7 @@ export class EazlService implements OnInit {
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     notifications: Notification[] = [];                     // List of Notifications
+    packageTask: PackageTask[] = [];                        // List of PackageTask
     reports: Report[] = REPORTS;                            // List of Reports
     reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
     reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
@@ -6308,10 +6311,6 @@ export class EazlService implements OnInit {
             }
         }
 
-
-
-
-
         // PackageTasks
         if (resetObject == 'all'   ||   resetObject == 'PackageTasks') {
 
@@ -6319,27 +6318,27 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
 
                 // Get all the data via API
-                let NotificationWorking: Notification[] = [];
-                this.get<EazlNotification>('package-tasks')
+                let packageTaskWorking: PackageTask[] = [];
+                this.get<EazlPackageTask>('package-tasks')
                         .subscribe(
-                            (eazlNotification) => {
-                                for (var i = 0; i < eazlNotification.length; i++) {
-                                    let NotificationSingle = new Notification();
-                                    NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
-                                    NotificationWorking.push(NotificationSingle);                                    
+                            (eazlPackageTask) => {
+                                for (var i = 0; i < eazlPackageTask.length; i++) {
+                                    let packageTaskSingle = new PackageTask();
+                                    packageTaskSingle = this.cdal.loadPackageTask(eazlPackageTask[i]);
+                                    packageTaskWorking.push(packageTaskSingle);                                    
 
                                 }
 
                             // Replace
                             // TODO - replace local Array after Bradley's done initial upload
-                            //  this.notifications = notificationWorking;
+                             this.packageTask = packageTaskWorking;
                             }
                 )
             }
 
             // Clear all
             if (resetAction == 'clear') {
-                this.notifications = [];
+                this.packageTask = [];
             }
         }
 

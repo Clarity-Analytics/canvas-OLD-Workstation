@@ -34,6 +34,7 @@ import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlNotification }           from './model.notification';
+import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
@@ -49,6 +50,7 @@ import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { Notification }               from './model.notification';
+import { PackageTask }                from './model.package.task';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
@@ -1051,6 +1053,46 @@ export class CDAL {
         // Return the result
         return notificationWorking;
     }             
+
+    loadPackageTask(eazlPackageTask: EazlPackageTask): PackageTask {
+        // Load PackageTask: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadNotification', '@Start');
+    
+        let packageTaskWorking = new PackageTask();
+        
+        packageTaskWorking.packageTaskID = eazlPackageTask.id;
+    
+        if (eazlPackageTask.celery_task_id != null) {
+            packageTaskWorking.packageTaskCeleryTaskID = eazlPackageTask.celery_task_id;
+        } else {
+            packageTaskWorking.packageTaskCeleryTaskID = 0;
+        }
+
+        if (eazlPackageTask.package != null) {
+            packageTaskWorking.packageTaskPackage = eazlPackageTask.package;
+        } else {
+            packageTaskWorking.packageTaskPackage = '';
+        }
+
+        if (eazlPackageTask.user != null) {
+            packageTaskWorking.packageTaskUser = eazlPackageTask.user;
+        } else {
+            packageTaskWorking.packageTaskUser = '';
+        }
+
+        if (eazlPackageTask.date_added != null) {
+            packageTaskWorking.packageTaskCreatedDateTime = eazlPackageTask.date_added.toString();
+        } else {
+            packageTaskWorking.packageTaskCreatedDateTime = '';
+        }
+
+        // Return the result
+        return packageTaskWorking;
+    }             
+
+
+
+
 
     loadReport(eazlReport: EazlReport): Report {
         // Load Report: move data Eazl -> Canvas
