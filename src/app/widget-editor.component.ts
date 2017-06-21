@@ -76,7 +76,6 @@ export class WidgetEditorComponent implements OnInit {
     showWidgetGraph: boolean = false;           // True to show Graph in Containter
     showWidgetTable: boolean = false;           // True to show Table in Containter
     showWidgetImage: boolean = false;           // True to show Image in Containter
-    widgetToEditSpec: string;                   // Vega spect for current Widget
 
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
@@ -220,7 +219,8 @@ export class WidgetEditorComponent implements OnInit {
                 'vegaXcolumn':                  new FormControl(''),
                 'vegaYcolumn':                  new FormControl(''),
                 'vegaFillColor':                new FormControl(''),
-                'vegaHoverColor':               new FormControl('')
+                'vegaHoverColor':               new FormControl(''),
+                'vegaSpec':                     new FormControl('')
             }
         );
 
@@ -303,10 +303,6 @@ export class WidgetEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'setStartupFormValues', '@Start');
 
         // Set spec as string for ngModel in View
-        if (this.widgetToEdit != undefined) {
-            this.widgetToEditSpec = JSON.stringify(this.widgetToEdit.graph.spec);
-        }
-
         this.globalFunctionService.printToConsole(this.constructor.name, 'setStartupFormValues',
             'Mode (Add / Edit) is: ' + this.addEditMode);
         this.globalFunctionService.printToConsole(this.constructor.name, 'setStartupFormValues',
@@ -430,7 +426,9 @@ export class WidgetEditorComponent implements OnInit {
                             this.widgetToEdit.graph.vegaParameters.vegaFillColor
                         )
                     }
-                    this.identificationForm.controls['vegaFillColor'].setValue(this.selectedItemColor);
+                    this.identificationForm.controls['vegaFillColor'].setValue(
+                        this.selectedItemColor
+                    );
                     this.selectedVegaFillColor = this.selectedItemColor;
                     this.selectedItemColor = {
                         id:this.widgetToEdit.graph.vegaParameters.vegaHoverColor,             
@@ -439,8 +437,14 @@ export class WidgetEditorComponent implements OnInit {
                             this.widgetToEdit.graph.vegaParameters.vegaHoverColor
                         )
                     }
-                    this.identificationForm.controls['vegaHoverColor'].setValue(this.selectedItemColor);
+                    this.identificationForm.controls['vegaHoverColor'].setValue(
+                        this.selectedItemColor
+                    );
                     this.selectedVegaHoverColor = this.selectedItemColor;
+                    this.identificationForm.controls['vegaSpec'].setValue( 
+                        JSON.stringify(this.widgetToEdit.graph.spec)
+                    );
+
                 }
 
                 // Load fields for Text box
@@ -1168,7 +1172,7 @@ export class WidgetEditorComponent implements OnInit {
 
         if (this.identificationForm.controls['widgetType'].value != null) {
             if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
-                this.widgetToEdit.graph.spec = JSON.parse(this.widgetToEditSpec);
+                this.widgetToEdit.graph.spec = JSON.parse(this.identificationForm.controls['vegaSpec'].value);
 
                 // Then wack in the data from the Report
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
@@ -1447,15 +1451,15 @@ console.log('@end', this.widgetToEdit)
         this.renderer.setElementStyle(
             this.widgetGraph.nativeElement,'border', '1px solid darkred'
         );
-        var view = new vg.View(vg.parse( this.widgetToEditSpec));
+        var view = new vg.View(vg.parse(this.identificationForm.controls['vegaSpec'].value));
         view.renderer('svg')
             .initialize( this.widgetGraph.nativeElement)
             .hover()
             .run();
 
-console.log('spec', this.widgetToEditSpec)
+console.log('spec', this.identificationForm.controls['vegaSpec'].value)
 //         try {
-//             var view = new vg.View(vg.parse( this.widgetToEditSpec));
+//             var view = new vg.View(vg.parse(this.identificationForm.controls['vegaSpec'].value));
 //             view.renderer('svg')
 //                 .initialize( this.widgetGraph.nativeElement)
 //                 .hover()
@@ -1464,7 +1468,7 @@ console.log('spec', this.widgetToEditSpec)
 //         catch(err) {
 // console.log('in err')
 //             this.isVegaSpecBad = true;
-//             this.widgetToEditSpec = '';
+//             this.identificationForm.controls['vegaSpec'].value = '';
 //         }
 //         finally {
 // console.log('finally bad good',this.isVegaSpecBad )            
