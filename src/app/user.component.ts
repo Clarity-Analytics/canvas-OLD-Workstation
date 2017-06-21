@@ -9,7 +9,7 @@ import { MenuItem }                   from 'primeng/primeng';
 import { Message }                    from 'primeng/primeng';  
 
 // Our Components
-import { ReconnectingWebSocket }      from './websocket.service';
+// import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our Services
 import { EazlService }                from './eazl.service';
@@ -69,13 +69,13 @@ export class UserComponent implements OnInit {
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private reconnectingWebSocket: ReconnectingWebSocket,
+        // private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
-        reconnectingWebSocket.messageWS.subscribe(
-        (message: SocketMessage) => { console.log(message) },
-        (error) => { console.log(JSON.parse(error)) },
-        () => { console.log('Socket complete') },
-        )    
+        // reconnectingWebSocket.messageWS.subscribe(
+        // (message: SocketMessage) => { console.log(message) },
+        // (error) => { console.log(JSON.parse(error)) },
+        // () => { console.log('Socket complete') },
+        // )    
     }
     
     ngOnInit() {

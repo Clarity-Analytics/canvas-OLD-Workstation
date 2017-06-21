@@ -6342,9 +6342,6 @@ export class EazlService implements OnInit {
             }
         }
 
-
-
-
         // Report
         if (resetObject == 'all'   ||   resetObject == 'Reports') {
 

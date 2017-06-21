@@ -1464,107 +1464,8 @@
                     </div>      <!--END Default-->
 
                 </div>      <!--END ngSwitch-->
-            </div>     
-
-
-
-    <!--Vega Panel Header-->
-    <div
-        class="PanelSubHeading"
-        >
-        Vega
-
-        <!--Open/Close buttons-->
-        <button
-            class="panelCaretButton"
-            *ngIf="vegaPanelIsOpen"
-            pButton
-            type="button"
-            icon="fa-caret-up"
-            tooltipPosition="right" 
-            tooltipEvent="hover"
-            (click)="vegaPanelIsOpen=false"
-            >
-        </button>         
-        <button
-            class="panelCaretButton"
-            *ngIf="!vegaPanelIsOpen"
-            pButton
-            type="button"
-            icon="fa-caret-down"
-            tooltipPosition="right" 
-            tooltipEvent="hover"
-            (click)="vegaPanelIsOpen=true"
-            >
-        </button>  
-    </div>
-
-
-    <!--Vega Panel Area-->
-    <div
-        class="panelArea"
-        *ngIf="vegaPanelIsOpen"
-        >
-        <div
-            *ngIf="isVegaSpecBad"
-            >
-            Vega spec is invalid
-        </div>
-        <div
-            *ngIf="!isVegaSpecBad"
-            >
-            Vega spec is Valid
-        </div>
-
-        <!--Vega-->
-        <div
-            class="panelLine"
-            >
-            <span 
-                class="panelLineLabel"
-                >
-                Custom Vega spec:
-            </span>
-            <p>
-            <p>Copy and paste using keyboard (Ctrl-C and Ctrl-V).  Note that the
-                specification must be validated before it can be used, by clicking
-                the button below.   Also, the spec can only be editted for Custom
-                specs.  No parameters can be added, and the data from the Report 
-                will be inserted into the spec.  The spec area can be resized 
-                with the draghandle (right bottom).
-            </p>
-            <textarea 
-                pInputTextarea 
-                class="widgetGraph"
-
-                [(ngModel)]="widgetToEditSpec"
-                >
-            </textarea> 
-            <button
-                class="panelButtonWithLabel"
-                pButton
-                type="button"
-                label="Validate"
-                icon="fa-question-circle"
-                pTooltip="Click to validate the Vega Spec"
-                tooltipPosition="right" 
-                tooltipEvent="hover"
-                (click)="testVegaSpec()"
-                [disabled]="isNotCustomSpec"
-                >
-            </button> 
-        </div>
-
-        <div #widget class="widgetGraph">
-
-        </div> 
-
-
-    </div>
-
-
-
-        </div>      
+            </div>      <!--END ngIF-->
+        </div>      <!--END Data Panel-->
 
 
         <!--Table Panel Header-->
@@ -2053,5 +1954,99 @@
         {{ errorMessageOnForm }}
     </p>
 
-</div>
 
+    <!--Vega Panel Header-->
+    <div
+        class="PanelHeading"
+        >
+        Vega
+
+        <!--Open/Close buttons-->
+        <button
+            class="panelCaretButton"
+            *ngIf="vegaPanelIsOpen"
+            pButton
+            type="button"
+            icon="fa-caret-up"
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="vegaPanelIsOpen=false"
+            >
+        </button>         
+        <button
+            class="panelCaretButton"
+            *ngIf="!vegaPanelIsOpen"
+            pButton
+            type="button"
+            icon="fa-caret-down"
+            tooltipPosition="right" 
+            tooltipEvent="hover"
+            (click)="vegaPanelIsOpen=true"
+            >
+        </button>  
+    </div>
+
+
+    <!--Vega Panel Area-->
+    <div
+        class="panelArea"
+        *ngIf="vegaPanelIsOpen"
+        >
+        <div
+            *ngIf="isVegaSpecBad"
+            >
+            Vega spec is invalid
+        </div>
+        <div
+            *ngIf="!isVegaSpecBad"
+            >
+            Vega spec is Valid
+        </div>
+
+        <!--Vega-->
+        <div
+            class="panelLine"
+            >
+            <span 
+                class="panelLineLabel"
+                >
+                Custom Vega spec:
+            </span>
+            <p>
+            <p>Copy and paste using keyboard (Ctrl-C and Ctrl-V).  Note that the
+                specification must be validated before it can be used, by clicking
+                the button below.   Also, the spec can only be editted for Custom
+                specs.  No parameters can be added, and the data from the Report 
+                will be inserted into the spec.  The spec area can be resized 
+                with the draghandle (right bottom).
+            </p>
+            <textarea 
+                pInputTextarea 
+                class="widgetGraph"
+
+                [(ngModel)]="widgetToEditSpec"
+                >
+            </textarea> 
+            <button
+                class="panelButtonWithLabel"
+                pButton
+                type="button"
+                label="Validate"
+                icon="fa-question-circle"
+                pTooltip="Click to validate the Vega Spec"
+                tooltipPosition="right" 
+                tooltipEvent="hover"
+                (click)="testVegaSpec()"
+                [disabled]="isNotCustomSpec"
+                >
+            </button> 
+        </div>
+
+        <div #widget class="widgetGraph">
+
+        </div> 
+
+
+    </div>
+
+</div>
