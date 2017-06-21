@@ -898,7 +898,7 @@ export class WidgetEditorComponent implements OnInit {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
                             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                                'The Report Widget Set (Graph panel is compulsory.';
+                                'The Report Widget Set (Graph panel) is compulsory.';
                     }
                 }
             }
@@ -908,7 +908,7 @@ export class WidgetEditorComponent implements OnInit {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Report Widget Type (Graph panel is compulsory.';
+                        'The Report Widget Type (Graph panel) is compulsory.';
             } else {
 
                 if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
