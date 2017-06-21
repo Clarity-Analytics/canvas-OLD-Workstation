@@ -65,6 +65,7 @@
         margin: 2px 0 2px 0;
         padding: 8px 0 3px 0px;
     }
+    
     .panelLineLabel {
         font-weight: bold;
         margin: 8px 0 0 0;
@@ -75,6 +76,14 @@
         margin: 14px 0 4px 0;        
     }
     
+    .pcheckbox {
+        float: right;
+        margin-bottom: 3px;
+        margin-right: 5px;
+        margin-top: 1px;
+        padding: 0;
+    }
+
     .panelButtonWithLabel {
         background-color: white;
         border: 1px solid darkgray;
