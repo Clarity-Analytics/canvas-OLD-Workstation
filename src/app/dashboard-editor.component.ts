@@ -33,22 +33,23 @@ import { SelectedItemColor }          from './model.selectedItemColor';
 export class DashboardEditorComponent implements OnInit {
 
     @Input() addEditMode: string;
+    @Input() dashboardToEdit:Dashboard;             // Dashboard that is editted
     @Input() displayDashboardPopup: boolean;
     @Input() selectedDashboardID: number;
     @Input() selectedDashboard: Dashboard;          // Dashboard selected on parent form
-    @Input() dashboardToEdit:Dashboard;             // Dashboard that is editted
+    
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formDashboardSubmit: EventEmitter<string> = new EventEmitter();
     
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
+    chartColor: SelectItem[];                       // Options for Backgroun-dColor DropDown
     dashboardForm: FormGroup;                       // FormBuilder Group
     errorMessageOnForm: string = '';                // Error handling on form
     formIsValid: boolean = false;                   // Error handling on form
     numberErrors: number = 0;                       // Error handling on form
     selectedTextBackground: SelectedItemColor;      // Selected option for Text Background
     selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
-    chartColor: SelectItem[];                       // Options for Backgroun-dColor DropDown
 
     constructor(
         private canvasColors: CanvasColors,

@@ -18,37 +18,37 @@ export class GlobalVariableService {
     companyLogo = new BehaviorSubject('');                      // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation
-    systemTitle = new BehaviorSubject('Canvas');
-    frontendName = new BehaviorSubject('Canvas');
     backendName = new BehaviorSubject('Eazl');
     backendUrl = new BehaviorSubject('');                       // RESTi url, set in SystemConfig
     defaultDaysToKeepResultSet = new BehaviorSubject(1);        // Optional, set in SystemConfig    
+    frontendName = new BehaviorSubject('Canvas');
     maxRowsDataReturned = new BehaviorSubject(1000000);         // Optional, set in SystemConfig    
     maxRowsPerWidgetGraph = new BehaviorSubject(15)             // Optional, set in SystemConfig    
     keepDevLoggedIn = new BehaviorSubject(false);               // Optional, set in SystemConfig    
+    systemTitle = new BehaviorSubject('Canvas');
 
     // Current User
     canvasUser = new BehaviorSubject<CanvasUser>(null);
     isAuthenticatedOnEazl = new BehaviorSubject(false);         // True if authenticated
 
     // This session
+    growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
     sessionDateTimeLoggedin = new BehaviorSubject('');
+    sessionDashboardTabID = new BehaviorSubject(-1);            // Tab ID to load when form opens, -1 = none
     sessionDebugging = new BehaviorSubject(false);
     sessionLogging = new BehaviorSubject(false);
-    growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
     sessionLoadOnOpenDashboardID = new BehaviorSubject(-1);     // Dashboard to load when form opens, 0 = none
     sessionLoadOnOpenDashboardCode = new BehaviorSubject('');   // Dashboard to load when form opens, '' = none
     sessionLoadOnOpenDashboardName = new BehaviorSubject('');   // Dashboard to load when form opens, '' = none
-    sessionDashboardTabID = new BehaviorSubject(-1);            // Tab ID to load when form opens, -1 = none
 
     // Dirty data flags (true => will be reloaded from DB) - true @Start
     isDirtyUsers = new BehaviorSubject(true);                   // For Users
 
     // At startup
-    startupDashboardID = new BehaviorSubject(0);                // Dashboard to load @start, 0 = none
     startupDashboardCode = new BehaviorSubject('Bar charts');   // Dashboard to load @start, '' = none
+    startupDashboardID = new BehaviorSubject(0);                // Dashboard to load @start, 0 = none
     startupDashboardName = new BehaviorSubject('Collection of Bar charts');  // Dashboard to load @start, '' = none
-    startupdashboardTabID = new BehaviorSubject(0);             // Tab ID to load @start, -1 = none
+    startupDashboardTabID = new BehaviorSubject(0);             // Tab ID to load @start, -1 = none
     startupMessageToShow = new BehaviorSubject('');
 
     // Environment

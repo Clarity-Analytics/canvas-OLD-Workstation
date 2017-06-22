@@ -50,15 +50,15 @@ export class WhoAmIComponent implements OnInit {
 
         // FormBuilder
         this.userform = this.fb.group({
-            'username': new FormControl(''),
-            'first_name': new FormControl(''),
-            'last_name': new FormControl(''),
-            'email': new FormControl(''),
-            'is_superuser': new FormControl(''),
-            'is_staff': new FormControl(''),
-            'is_active': new FormControl(''),
-            'date_joined': new FormControl(''),
-            'last_login': new FormControl(''),
+            'username':         new FormControl(''),
+            'first_name':       new FormControl(''),
+            'last_name':        new FormControl(''),
+            'email':            new FormControl(''),
+            'is_superuser':     new FormControl(''),
+            'is_staff':         new FormControl(''),
+            'is_active':        new FormControl(''),
+            'date_joined':      new FormControl(''),
+            'last_login':       new FormControl(''),
         });
 
     }

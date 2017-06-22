@@ -39,11 +39,11 @@ export class DashboardManagerComponent implements OnInit {
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
     availableDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard does NOT belongs to
+    availableGroupSharedWith: Group[] = [];             // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
     belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to   
     belongstoSharedWith: string[] = [];                         // List of UserName with whom this Dashboard has been shared
     belongstoGroupsSharedWith: Group[] = [];            // List of Groups to which Dashboard has been shared
-    availableGroupSharedWith: Group[] = [];             // List of Groups groups available for sharing
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group   

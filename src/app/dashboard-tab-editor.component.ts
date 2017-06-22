@@ -38,8 +38,8 @@ export class DashboardTabEditorComponent implements OnInit {
     @Output() formDashboarTabSubmit: EventEmitter<boolean> = new EventEmitter();
     
     // Local properties
-    dashboardTabForm: FormGroup;                        // FormBuilder Group
     currentDashboardTab: DashboardTab;                  // Dashboard Tab selected on parent form
+    dashboardTabForm: FormGroup;                        // FormBuilder Group
     errorMessageOnForm: string = '';                    // Accum errors found in validation
     formIsValid: boolean = false;                       // True to be okay
     numberErrors: number = 0;                           // Nr of errors found in Validation

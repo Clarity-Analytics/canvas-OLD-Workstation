@@ -36,18 +36,18 @@ import { SystemConfiguration }        from './model.systemconfiguration';
 export class MyProfileComponent implements OnInit {
      
     // Local properties
-    configForm: FormGroup;
-    errorMessageOnForm: string = '';
-    formIsValid: boolean = false;
-    numberErrors: number = 0;
     canvasUser: CanvasUser;                             // Current user
-    groups: Group[] = [];                               // List of Groups
-    selectedGroup: Group;                               // User that was clicked on
-    datasources: DataSource[];                          // List of DataSources
-    reportHistory: ReportHistory[];                     // List of Report History (ran)
-    reports: Report[];                                  // List of Reports
+    configForm: FormGroup;
     dashboardsIown: Dashboard[];                        // List of Dashboards I own
     dashboardsSharedWithMe: Dashboard[];                // List of Dashboards
+    datasources: DataSource[];                          // List of DataSources
+    errorMessageOnForm: string = '';
+    formIsValid: boolean = false;
+    groups: Group[] = [];                               // List of Groups
+    numberErrors: number = 0;
+    reportHistory: ReportHistory[];                     // List of Report History (ran)
+    reports: Report[];                                  // List of Reports
+    selectedGroup: Group;                               // User that was clicked on
 
     constructor(
         private eazlService: EazlService,

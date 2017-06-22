@@ -50,13 +50,12 @@ let vg = require('vega/index.js');
 })
 
 export class DashboardComponent implements OnInit, AfterViewInit {
-    @ViewChildren('widgetContainter') childrenWidgetContainers: QueryList<ElementRef>;   // Attaches to # in DOM
-    @ViewChildren('widgetText') childrenWidgetText: QueryList<ElementRef>;      // Attaches to # in DOM
-    @ViewChildren('widget') childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
-    @ViewChildren('widgetTable') childrenWidgetTable: QueryList<ElementRef>;    // Attaches to # in DOM
-    @ViewChildren('widgetImage') childrenWidgetImage: QueryList<ElementRef>;    // Attaches to # in DOM
-
-    @ViewChild(DashboardEditorComponent) dashboardEditor;                       // To run methods in it
+    @ViewChildren('widgetContainter')   childrenWidgetContainers: QueryList<ElementRef>;    // Attaches to # in DOM
+    @ViewChildren('widgetText')         childrenWidgetText: QueryList<ElementRef>;          // Attaches to # in DOM
+    @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;             // Attaches to # in DOM
+    @ViewChildren('widgetTable')        childrenWidgetTable: QueryList<ElementRef>;         // Attaches to # in DOM
+    @ViewChildren('widgetImage')        childrenWidgetImage: QueryList<ElementRef>;         // Attaches to # in DOM
+    @ViewChild(DashboardEditorComponent) dashboardEditor;                                   // To run methods in it
 
     @HostListener('document:keyup', ['$event'])
     handleKeyboardEvent(event) { 
@@ -277,9 +276,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             // Use startup Dashboard Tab ID at the very beginning
             if (this.globalVariableService.sessionDashboardTabID.getValue() == -1) {
-                if (this.globalVariableService.startupdashboardTabID.getValue() != -1) {
+                if (this.globalVariableService.startupDashboardTabID.getValue() != -1) {
                     this.globalVariableService.sessionDashboardTabID.next(
-                        this.globalVariableService.startupdashboardTabID.getValue()
+                        this.globalVariableService.startupDashboardTabID.getValue()
                     )
                 }
             }

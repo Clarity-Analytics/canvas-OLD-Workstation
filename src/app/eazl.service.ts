@@ -81,20 +81,20 @@ var req = new XMLHttpRequest();
 export const SYSTEMCONFIGURATION: SystemConfiguration = 
 {
     systemConfigurationID: 0,
-    companyName: 'Clarity',
-    companyLogo: '',
-    backendUrl: 'localhost:8000',
-    defaultDaysToKeepResultSet: 1,
     averageWarningRuntime: 3,
-    maxRowsDataReturned: 1000000,
-    maxRowsPerWidgetGraph: 15,
-    keepDevLoggedIn: false,
-    frontendColorScheme: '',
+    backendUrl: 'localhost:8000',
+    companyLogo: '',
+    companyName: 'Clarity',
     defaultWidgetConfiguration: '',
+    defaultDaysToKeepResultSet: 1,
     defaultReportFilters: '',
+    frontendColorScheme: '',
     growlSticky: false,
     growlLife: 3,
     gridSize: 3,
+    keepDevLoggedIn: false,
+    maxRowsDataReturned: 1000000,
+    maxRowsPerWidgetGraph: 15,
     snapToGrid: true 
 }
 

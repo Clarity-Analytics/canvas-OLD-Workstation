@@ -42,9 +42,9 @@ export class GroupPopupComponent implements OnInit {
     // Local properties
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
+    groupForm: any;
     isLoadingForm: boolean = false;
     numberErrors: number = 0;
-    groupForm: any;
 
     constructor(
         private eazlService: EazlService,

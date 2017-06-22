@@ -45,11 +45,11 @@ let vg = require('vega/index.js');
 })
 export class WidgetEditorComponent implements OnInit {
 
+    @Input() addEditMode: string;
+    @Input() displayEditWidget: boolean;
     @Input() originalDashboardID: number;
     @Input() originalDashboardTab: SelectedItem;
     @Input() widgetToEdit: Widget;
-    @Input() addEditMode: string;
-    @Input() displayEditWidget: boolean;
     @Input() widgetIDtoEdit: number;
     @Input() widgetToEditX: number;
     @Input() widgetToEditY: number;
@@ -60,7 +60,6 @@ export class WidgetEditorComponent implements OnInit {
     @ViewChild('widget') widgetGraph: ElementRef;             // Attaches to # in DOM
 
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    submitted: boolean;                         // True if form submitted
     selectedReportID: number;                   // Selected in DropDown
     selectedReportFieldX: string;               // Selected in DropDown
     selectedReportFieldY: string;               // Selected in DropDown
@@ -71,6 +70,7 @@ export class WidgetEditorComponent implements OnInit {
     selectedVegaFillColor: SelectedItemColor;   // Selected in DropDown
     selectedVegaHoverColor: SelectedItemColor;  // Selected in DropDown
     selectedWidgetSetDescription: string;       // Description of the selected WidgetSet
+    submitted: boolean;                         // True if form submitted
 
     showWidgetText: boolean = false;            // True to show Text in containter
     showWidgetGraph: boolean = false;           // True to show Graph in Containter
@@ -79,17 +79,16 @@ export class WidgetEditorComponent implements OnInit {
 
     reports: Report[];                          // List of Reports
     reportsDropDown:  SelectItem[];             // Drop Down options
-    widgetTemplate: WidgetTemplate;             // List of Widget Templates
     reportWidgetSets: ReportWidgetSet[];        // List of Report WidgetSets
     reportFields: string[];                     // List of Report Fields
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
     reportFieldsDropDown:  SelectItem[];        // Drop Down options
     selectedItem: SelectedItem;                 // Selected Object: note ANY to cater for ID number, string
     selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
+    widgetTemplate: WidgetTemplate;             // List of Widget Templates
 
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
-    widgetCreationDropDown: SelectItem[];       // Drop Down options
     selectedWidgetCreation: SelectedItem;       // Selected option to create Widget
     selectedTextBackground: SelectedItemColor;  // Selected option for Text Background
     selectedTextBorder: SelectedItem;           // Selected option for Text Border
@@ -101,18 +100,19 @@ export class WidgetEditorComponent implements OnInit {
     selectedTextPosition: SelectedItem;         // Selected option for Text Box Position
     selectedTextAlign: SelectedItem;            // Selected option for Text Alignment in box
     selectedTableColor: SelectedItemColor;      // Selected option for Table Color
+    widgetCreationDropDown: SelectItem[];       // Drop Down options
 
-    selectedImageSrc: SelectedItem;             // Selected option for Image Src file
-    isVegaSpecBad: boolean = true;              // True if Vega spec is bad
-    isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
+    isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
+    isVegaSpecBad: boolean = true;              // True if Vega spec is bad
+    selectedImageSrc: SelectedItem;             // Selected option for Image Src file
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
 
     // Form Controls, validation and loading stuffies
-    identificationForm: FormGroup;
-    isLoadingForm: boolean = false;
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
+    identificationForm: FormGroup;
+    isLoadingForm: boolean = false;
     numberErrors: number = 0;
  
     // Variables for Startup properties of a Widget
@@ -121,11 +121,11 @@ export class WidgetEditorComponent implements OnInit {
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size of text box
     fontWeightOptions: SelectItem[];            // Options for Font Weight of text box
+    imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
     textMarginOptions: SelectItem[];            // Options for Margins around text box
     textPaddingOptions: SelectItem[];           // Options for Padding around text box
     textPositionOptions: SelectItem[];          // Options for Position of the text box (absolute or not)
     textAlignOptions: SelectItem[];             // Options for horisontal align of the text (left, center, right)
-    imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
 
     // Vars read from config, setted once changed for next time
     lastContainerFontSize: SelectedItem;
