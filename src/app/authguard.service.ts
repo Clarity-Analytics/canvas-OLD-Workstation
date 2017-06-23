@@ -63,10 +63,20 @@ export class AuthGuard implements OnInit, CanActivate {
         return false;
    }
 
-  canDeactivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot, router: Router, routes: Routes) {
+    canDeactivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot, router: Router, routes: Routes) {
         // Run deactivation in AuthGuard
         this.globalFunctionService.printToConsole(this.constructor.name,'canDeactivate', '@Start');
 
-        return window.confirm('Demo to prevent leaving Canvas.  Do you really want to go to ' + routes['url'] + ' ?');
-  }
+        let oldRouterPath: string = state.url[0]['path'];
+
+        if (oldRouterPath == 'users') {
+            return window.confirm('Demo to prevent leaving Canvas.  Do you really want to go to ' + routes['url'] + ' ?');
+        }
+        if (oldRouterPath == 'dashboard') {
+            console.log('reset bg !')
+        }
+
+        // Return
+        return true;
+    }
 }

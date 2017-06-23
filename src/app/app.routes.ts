@@ -45,7 +45,8 @@ export const routes: Route[] = [
   { 
     path: 'dashboard',                
     component: DashboardComponent,        
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'dashboardManager',         
