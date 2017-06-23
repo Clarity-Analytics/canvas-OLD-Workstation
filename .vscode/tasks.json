@@ -7,7 +7,7 @@
             "taskName": "references",    
             "command": "markdown-it",
             "isShellCommand": true,
-            "args": ["./src/documentation/references.md", "-o", "./src/documentation/reference.html"],
+            "args": ["./src/documentation/references.md", "-o", "./src/documentation/references.html"],
             "showOutput": "always"
         },
         {
