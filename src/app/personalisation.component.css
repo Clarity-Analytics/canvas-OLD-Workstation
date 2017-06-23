@@ -1,0 +1,9 @@
+.formBody {
+    background-color: white;
+}
+.iserror {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 0;
+    padding: 0;
+}

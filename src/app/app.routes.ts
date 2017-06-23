@@ -14,6 +14,7 @@ import { LoginComponent }             from './login.component';
 import { MessageManagerComponent }    from './message.manager.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
+import { PersonalisationComponent }   from './personalisation.component';
 import { ReportComponent }            from './report.component';
 import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
@@ -91,6 +92,10 @@ export const routes: Route[] = [
     component: DocTutorialsComponent, 
     canActivate: [AuthGuard]
   },
+  { 
+    path: 'personalisation',             
+    component: PersonalisationComponent
+  },  
   { 
     path: 'pagenotfound',             
     component: PageNotFoundComponent

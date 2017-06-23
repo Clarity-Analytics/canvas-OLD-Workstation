@@ -108,6 +108,7 @@ import { MessageManagerComponent }    from './message.manager.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { NewMessageComponent }        from './newmessage.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
+import { PersonalisationComponent }   from './personalisation.component';
 import { ReportComponent }            from './report.component';
 import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
@@ -156,6 +157,7 @@ import { routes }                     from './app.routes';
     MyProfileComponent,
     NewMessageComponent,
     PageNotFoundComponent,
+    PersonalisationComponent,
     ReportComponent,
     SystemConfigComponent,
     UserComponent,
