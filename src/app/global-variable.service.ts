@@ -70,7 +70,7 @@ export class GlobalVariableService {
     // as the user uses them, and used the next time (a Widget is created)
     lastContainerFontSize = new BehaviorSubject<SelectedItem>(
         {
-            id:1, 
+            id: 1, 
             name: '1'
         }
     );

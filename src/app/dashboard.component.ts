@@ -243,7 +243,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.selectedBoxShadow = this.globalVariableService.lastBoxShadow.getValue();
         this.selectedColor = this.globalVariableService.lastColor.getValue();
         this.selectedContainerFontSize = this.globalVariableService.lastContainerFontSize.getValue();
-
+console.log('this.selectedContainerFontSize', this.selectedContainerFontSize)
         // Get the list of dashboards from the DB
         this.getDashboards()
 

@@ -36,6 +36,7 @@ import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
+import { EazlPersonalisation }        from '././model.personalisation';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
@@ -51,6 +52,7 @@ import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
+import { Personalisation }            from '././model.personalisation';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
@@ -1382,12 +1384,6 @@ export class CDAL {
             systemConfigurationWorking.defaultDaysToKeepResultSet = 0;
         }
 
-        if (eazlSystemConfiguration.average_warning_runtime != null) {
-            systemConfigurationWorking.averageWarningRuntime = eazlSystemConfiguration.average_warning_runtime;
-        } else {
-            systemConfigurationWorking.averageWarningRuntime = 0;
-        }
-
         if (eazlSystemConfiguration.max_rows_data_returned != null) {
             systemConfigurationWorking.maxRowsDataReturned = eazlSystemConfiguration.max_rows_data_returned;
         } else {
@@ -1399,59 +1395,12 @@ export class CDAL {
         } else {
             systemConfigurationWorking.maxRowsPerWidgetGraph = 0;
         }
-
-        if (eazlSystemConfiguration.keep_dev_logged_in != null) {
-            systemConfigurationWorking.keepDevLoggedIn = eazlSystemConfiguration.keep_dev_logged_in;
-        } else {
-            systemConfigurationWorking.keepDevLoggedIn = false;
-        }
-
-        if (eazlSystemConfiguration.frontend_color_scheme != null) {
-            systemConfigurationWorking.frontendColorScheme = eazlSystemConfiguration.frontend_color_scheme;
-        } else {
-            systemConfigurationWorking.frontendColorScheme = '';
-        }
-
-        if (eazlSystemConfiguration.default_widget_configuration != null) {
-            systemConfigurationWorking.defaultWidgetConfiguration = eazlSystemConfiguration.default_widget_configuration;
-        } else {
-            systemConfigurationWorking.defaultWidgetConfiguration = '';
-        }
-
-        if (eazlSystemConfiguration.default_report_filters != null) {
-            systemConfigurationWorking.defaultReportFilters = eazlSystemConfiguration.default_report_filters;
-        } else {
-            systemConfigurationWorking.defaultReportFilters = '';
-        }
-
-        if (eazlSystemConfiguration.growl_sticky != null) {
-            systemConfigurationWorking.growlSticky = eazlSystemConfiguration.growl_sticky;
-        } else {
-            systemConfigurationWorking.growlSticky = false;
-        }
-
-        if (eazlSystemConfiguration.growl_life != null) {
-            systemConfigurationWorking.growlLife = eazlSystemConfiguration.growl_life;
-        } else {
-            systemConfigurationWorking.growlLife = 0;
-        }
-
-        if (eazlSystemConfiguration.grid_size != null) {
-            systemConfigurationWorking.gridSize = eazlSystemConfiguration.grid_size;
-        } else {
-            systemConfigurationWorking.gridSize = 0;
-        }
-
-        if (eazlSystemConfiguration.snap_to_grid != null) {
-            systemConfigurationWorking.snapToGrid = eazlSystemConfiguration.snap_to_grid;
-        } else {
-            systemConfigurationWorking.snapToGrid = false;
-        }
         
         // Return the result
         return systemConfigurationWorking;
     }             
-            
+
+         
     loadUserGroupMembership(eazlUserGroupMembership: EazlUserGroupMembership): UserGroupMembership {
         // Load UserGroupMembership: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUserGroupMembership', '@Start');
