@@ -51,17 +51,8 @@ export class SystemConfigComponent implements OnInit {
             'companyLogo':                  new FormControl(''),
             'backendUrl':                   new FormControl('', Validators.required),
             'defaultDaysToKeepResultSet':   new FormControl('', Validators.pattern('^[0-9]*$')),
-            'averageWarningRuntime':        new FormControl('', Validators.pattern('^[0-9]*$')),
             'maxRowsDataReturned':          new FormControl('', Validators.pattern('^[0-9]*$')),
             'maxRowsPerWidgetGraph':        new FormControl('', Validators.pattern('^[0-9]*$')),
-            'keepDevLoggedIn':              new FormControl(''),
-            'frontendColorScheme':          new FormControl(''),
-            'defaultWidgetConfiguration':   new FormControl(''),
-            'defaultReportFilters':         new FormControl(''),
-            'growlSticky':                  new FormControl(''),
-            'growlLife':                    new FormControl('', Validators.pattern('^[0-9]*$')),
-            'gridSize':                     new FormControl('', Validators.pattern('^[0-9]*$')),
-            'snapToGrid':                   new FormControl('')
         });
 
         // Get the system wide settings
@@ -76,28 +67,10 @@ export class SystemConfigComponent implements OnInit {
             this.systemConfiguration.backendUrl);
         this.configForm.controls['defaultDaysToKeepResultSet'].setValue(
             this.systemConfiguration.defaultDaysToKeepResultSet);
-        this.configForm.controls['averageWarningRuntime'].setValue(
-            this.systemConfiguration.averageWarningRuntime);
         this.configForm.controls['maxRowsDataReturned'].setValue(
             this.systemConfiguration.maxRowsDataReturned);
         this.configForm.controls['maxRowsPerWidgetGraph'].setValue(
             this.systemConfiguration.maxRowsPerWidgetGraph);
-        this.configForm.controls['keepDevLoggedIn'].setValue(
-            this.systemConfiguration.keepDevLoggedIn);
-        this.configForm.controls['frontendColorScheme'].setValue(
-            this.systemConfiguration.frontendColorScheme);
-        this.configForm.controls['defaultWidgetConfiguration'].setValue(
-            this.systemConfiguration.defaultWidgetConfiguration);
-        this.configForm.controls['defaultReportFilters'].setValue(
-            this.systemConfiguration.defaultReportFilters);
-        this.configForm.controls['growlSticky'].setValue(
-            this.systemConfiguration.growlSticky);
-        this.configForm.controls['growlLife'].setValue(
-            this.systemConfiguration.growlLife);
-        this.configForm.controls['gridSize'].setValue(
-            this.systemConfiguration.gridSize);
-        this.configForm.controls['snapToGrid'].setValue(
-            this.systemConfiguration.snapToGrid);
     }
 
     onClickCancel() {
@@ -147,21 +120,6 @@ export class SystemConfigComponent implements OnInit {
                         'The DaysToKeep (a ResultSet) must be numeric';
                 }
         }                
-        if (this.configForm.controls['averageWarningRuntime'].value == ''  || 
-            this.configForm.controls['averageWarningRuntime'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The avg warning runtime is compulsory.'
-        }
-        if (this.configForm.controls['averageWarningRuntime'].touched  && 
-            !this.configForm.controls['averageWarningRuntime'].valid) {
-                if (this.configForm.controls['averageWarningRuntime'].value != '0') {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The average Warning Runtime must be numeric';
-                }
-        }
         if (this.configForm.controls['maxRowsDataReturned'].value == ''  || 
             this.configForm.controls['maxRowsDataReturned'].value == null) {
             this.formIsValid = false;
@@ -192,42 +150,6 @@ export class SystemConfigComponent implements OnInit {
                         'The max Rows Per WidgetGraph must be numeric';
                 }
         }
-        if (this.configForm.controls['growlLife'].value == ''  || 
-            this.configForm.controls['growlLife'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Growl Life is compulsory.'
-        }
-        if (this.configForm.controls['growlLife'].touched  && 
-            !this.configForm.controls['growlLife'].valid) {
-                if (this.configForm.controls['growlLife'].value != '0') {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The growl Life must be numeric';
-                }
-        }
-        if (this.configForm.controls['gridSize'].value == ''  || 
-            this.configForm.controls['gridSize'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The GridSize is compulsory.'
-        }
-        if (this.configForm.controls['gridSize'].touched  && 
-            !this.configForm.controls['gridSize'].valid) {
-                if (this.configForm.controls['gridSize'].value != '0') {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The Grid Size must be numeric';
-                }
-        }
-        if (this.configForm.controls['snapToGrid'].value == ''  || 
-            this.configForm.controls['snapToGrid'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The SnapToGrid is compulsory.'
-        }
     
         // Error(s) encountered
         if (this.errorMessageOnForm != '') {
@@ -246,17 +168,8 @@ export class SystemConfigComponent implements OnInit {
                 companyLogo: this.configForm.controls['companyLogo'].value,
                 backendUrl: this.configForm.controls['backendUrl'].value,
                 defaultDaysToKeepResultSet: this.configForm.controls['defaultDaysToKeepResultSet'].value,
-                averageWarningRuntime: this.configForm.controls['averageWarningRuntime'].value,
                 maxRowsDataReturned: this.configForm.controls['maxRowsDataReturned'].value,
                 maxRowsPerWidgetGraph: this.configForm.controls['maxRowsPerWidgetGraph'].value,
-                keepDevLoggedIn: this.configForm.controls['keepDevLoggedIn'].value,
-                frontendColorScheme: this.configForm.controls['frontendColorScheme'].value,
-                defaultWidgetConfiguration: this.configForm.controls['defaultWidgetConfiguration'].value,
-                defaultReportFilters: this.configForm.controls['defaultReportFilters'].value,
-                growlSticky: this.configForm.controls['growlSticky'].value,
-                growlLife: this.configForm.controls['growlLife'].value,
-                gridSize: this.configForm.controls['gridSize'].value,
-                snapToGrid: this.configForm.controls['snapToGrid'].value
             }
         )
 
