@@ -1400,7 +1400,6 @@ export class CDAL {
         return systemConfigurationWorking;
     }             
 
-
     loadPersonalisation(eazlPersonalisation: EazlPersonalisation): Personalisation {
         // Load Personalisation: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadPersonalisation', '@Start');
