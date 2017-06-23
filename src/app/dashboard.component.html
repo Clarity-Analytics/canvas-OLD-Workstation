@@ -48,16 +48,7 @@
             [options]="dashboardDropDown" 
             [(ngModel)]="selectedDashboardName"
             inputId="1" 
-            [style]="{
-                        'background-color':'538cc6',
-                        'border':'1px solid #204060',
-                        'border-radius':'2px',
-                        'font-size':'0.85em',
-                        'margin-bottom':'4px',
-                        'margin-left':'4px',
-                        'padding':'0',
-                        'width':'197px'
-                    }" 
+            class="pdropdown" 
             placeholder="Dashboard to open"
             filter="true"
             (onChange)="onChangeLoadDashboardTabs($event)"
@@ -116,18 +107,7 @@
             [options]="dashboardTabsDropDown" 
             [(ngModel)]="selectedDashboardTab"
             inputId="S2" 
-            [style]="{
-                        'autofocus':'true',
-                        'background-color':'538cc6',
-                        'border':'1px solid #204060',
-                        'border-radius':'2px',
-                        'font-size':'0.85em',
-                        'margin-bottom':'4px',
-                        'margin-left':'2px',
-                        'margin-top':'2px',
-                        'padding':'0',
-                        'width':'197px'
-                    }" 
+            class="pdropdown" 
             placeholder="Tab to open"
             filter="true"
             (onChange)="loadDashboard($event)"
@@ -654,16 +634,7 @@
                 </div>
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="chartColor" 
                     [(ngModel)]="selectedBackgroundColor" 
                     placeholder=""
@@ -731,16 +702,7 @@
                 </div>
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="borderOptions" 
                     [(ngModel)]="selectedBorder" 
                     placeholder=""
@@ -797,16 +759,7 @@
                     [(ngModel)]="" -->
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="boxShadowOptions" 
                     [(ngModel)]="selectedBoxShadow" 
                     placeholder=""
@@ -861,16 +814,7 @@
                 </div>
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="chartColor" 
                     [(ngModel)]="selectedColor" 
                     placeholder=""
@@ -938,16 +882,7 @@
                 </div>
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="fontSizeOptions" 
                     [(ngModel)]="selectedContainerFontSize" 
                     placeholder=""
@@ -1002,16 +937,7 @@
                 </div>
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="gridSizeOptions" 
                     [(ngModel)]="selectedContainerGridSize" 
                     placeholder=""
@@ -1060,16 +986,7 @@
                 </div>
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="chartColor" 
                     [(ngModel)]="dashboardBackgroundColor" 
                     placeholder="Background Color"
@@ -1084,16 +1001,7 @@
                 </div>
 
                 <p-dropdown
-                    [style]="{
-                                'background-color':'538cc6',
-                                'border':'1px solid #204060',
-                                'border-radius':'2px',
-                                'font-size':'0.85em',
-                                'margin-bottom':'4px',
-                                'margin-left':'4px',
-                                'padding':'0',
-                                'width':'197px'
-                            }" 
+                    class="pdropdown" 
                     [options]="backgroundImageOptions" 
                     [(ngModel)]="dashboardBackgroundImageSrc" 
                     placeholder="Background Image"

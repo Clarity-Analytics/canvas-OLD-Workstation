@@ -13,6 +13,17 @@
         width: 210px;
     }
 
+    .pdropdown {
+        background-color:538cc6;
+        border: 1px soli 204060;
+        border-radius: 2px;
+        font-size: 085em;
+        margin-bottom: 4px;
+        margin-left: 4px;
+        padding: 0;
+        width: 197px;
+    }
+
     /*Dashboard*/
         .dashboardHeading {
             background-color: #669999;
