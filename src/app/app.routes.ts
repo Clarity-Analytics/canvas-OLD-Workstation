@@ -29,7 +29,8 @@ export const routes: Route[] = [
   { 
     path: 'startup',                  
     component: PageNotFoundComponent,     
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'users',                    
@@ -40,7 +41,8 @@ export const routes: Route[] = [
   { 
     path: 'group',                    
     component: GroupComponent,             
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },  
   { 
     path: 'dashboard',                
@@ -51,51 +53,62 @@ export const routes: Route[] = [
   { 
     path: 'dashboardManager',         
     component: DashboardManagerComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'dataSource',         
     component: DataSourceComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'report',         
     component: ReportComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'myprofile',         
     component: MyProfileComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'systemconfig',         
     component: SystemConfigComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'messageManager',         
     component: MessageManagerComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'doc-discussions',         
     component: DocDiscussionsComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'doc-reference',         
     component: DocReferenceComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'doc-tutorials',         
     component: DocTutorialsComponent, 
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },
   { 
     path: 'personalisation',             
-    component: PersonalisationComponent
+    component: PersonalisationComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
   },  
   { 
     path: 'pagenotfound',             
