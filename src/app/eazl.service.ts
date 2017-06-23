@@ -58,6 +58,7 @@ import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
+import { Personalisation }            from  './model.personalisation';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
@@ -81,21 +82,27 @@ var req = new XMLHttpRequest();
 export const SYSTEMCONFIGURATION: SystemConfiguration = 
 {
     systemConfigurationID: 0,
-    averageWarningRuntime: 3,
     backendUrl: 'localhost:8000',
     companyLogo: '',
     companyName: 'Clarity',
-    defaultWidgetConfiguration: '',
-    defaultDaysToKeepResultSet: 1,
-    defaultReportFilters: '',
-    frontendColorScheme: '',
-    growlSticky: false,
-    growlLife: 3,
-    gridSize: 3,
-    keepDevLoggedIn: false,
+    defaultDaysToKeepResultSet: 3,
     maxRowsDataReturned: 1000000,
     maxRowsPerWidgetGraph: 15,
-    snapToGrid: true 
+}
+
+export const PERSONALISATION: Personalisation = {
+    personalisationID: 0,
+    averageWarningRuntime: 3,
+    dashboardIDStartup: -1,
+    environment: 'Live',
+    frontendColorScheme: 'beige',
+    defaultReportFilters: '',
+    defaultWidgetConfiguration: '',
+    gridSize: 3,
+    growlLife: 3,
+    growlSticky: false,
+    keepDevLoggedIn: true,
+    snapToGrid: true
 }
 
 export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
@@ -3940,6 +3947,7 @@ export class EazlService implements OnInit {
     reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
     reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
+    personalisation: Personalisation = PERSONALISATION;     // Personal settings for current user
     systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
     users: User[] = [];                                     // List of Users
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
@@ -3965,11 +3973,18 @@ export class EazlService implements OnInit {
 
     }
 
-    getSystemConfiguration() {
+    getSystemConfiguration(): SystemConfiguration {
         // Returns SystemConfiguration
         this.globalFunctionService.printToConsole(this.constructor.name,'getSystemConfiguration', '@Start');
 
         return this.systemConfiguration;
+    }
+
+    getPersonalisation(): Personalisation {
+        // Returns Personalisation
+        this.globalFunctionService.printToConsole(this.constructor.name,'getPersonalisation', '@Start');
+
+        return this.personalisation;
     }
 
     updateSystemConfiguration(systemConfiguration: SystemConfiguration) {
@@ -3990,41 +4005,57 @@ export class EazlService implements OnInit {
         if (systemConfiguration.defaultDaysToKeepResultSet != this.systemConfiguration.defaultDaysToKeepResultSet) {
             this.globalVariableService.defaultDaysToKeepResultSet.next(systemConfiguration.defaultDaysToKeepResultSet);
         }
-        if (systemConfiguration.averageWarningRuntime != this.systemConfiguration.averageWarningRuntime) {
-            this.globalVariableService.averageWarningRuntime.next(systemConfiguration.averageWarningRuntime);
-        }
         if (systemConfiguration.maxRowsDataReturned != this.systemConfiguration.maxRowsDataReturned) {
             this.globalVariableService.maxRowsDataReturned.next(systemConfiguration.maxRowsDataReturned);
         }
         if (systemConfiguration.maxRowsPerWidgetGraph != this.systemConfiguration.maxRowsPerWidgetGraph) {
             this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
         }
-        if (systemConfiguration.keepDevLoggedIn != this.systemConfiguration.keepDevLoggedIn) {
-            this.globalVariableService.keepDevLoggedIn.next(systemConfiguration.keepDevLoggedIn);
-        }
-        if (systemConfiguration.frontendColorScheme != this.systemConfiguration.frontendColorScheme) {
-            this.globalVariableService.frontendColorScheme.next(systemConfiguration.frontendColorScheme);
-        }
-        if (systemConfiguration.defaultWidgetConfiguration != this.systemConfiguration.defaultWidgetConfiguration) {
-            this.globalVariableService.defaultWidgetConfiguration.next(systemConfiguration.defaultWidgetConfiguration);
-        }
-        if (systemConfiguration.defaultReportFilters != this.systemConfiguration.defaultReportFilters) {
-            this.globalVariableService.defaultReportFilters.next(systemConfiguration.defaultReportFilters);
-        }
-        if (systemConfiguration.growlSticky != this.systemConfiguration.growlSticky) {
-            this.globalVariableService.growlSticky.next(systemConfiguration.growlSticky);
-        }
-        if (systemConfiguration.growlLife != this.systemConfiguration.growlLife) {
-            this.globalVariableService.growlLife.next(systemConfiguration.growlLife);
-        }
-        if (systemConfiguration.gridSize != this.systemConfiguration.gridSize) {
-            this.globalVariableService.gridSize.next(systemConfiguration.gridSize);
-        }
-        if (systemConfiguration.snapToGrid != this.systemConfiguration.snapToGrid) {
-            this.globalVariableService.snapToGrid.next(systemConfiguration.snapToGrid);
-        }
         
         this.systemConfiguration = systemConfiguration;
+    }
+
+    updatePersonalisation(personalisation: Personalisation) {
+        // Updates Personalisation
+        // - personalisation New data
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
+
+        // Update local values that have changed
+        if (personalisation.averageWarningRuntime != this.personalisation.averageWarningRuntime) {
+            this.globalVariableService.averageWarningRuntime.next(personalisation.averageWarningRuntime);
+        }
+        if (personalisation.dashboardIDStartup != this.personalisation.dashboardIDStartup) {
+            this.globalVariableService.dashboardIDStartup.next(personalisation.dashboardIDStartup);
+        }
+        if (personalisation.environment != this.personalisation.environment) {
+            this.globalVariableService.environment.next(personalisation.environment);
+        }
+        if (personalisation.keepDevLoggedIn != this.personalisation.keepDevLoggedIn) {
+            this.globalVariableService.keepDevLoggedIn.next(personalisation.keepDevLoggedIn);
+        }
+        if (personalisation.frontendColorScheme != this.personalisation.frontendColorScheme) {
+            this.globalVariableService.frontendColorScheme.next(personalisation.frontendColorScheme);
+        }
+        if (personalisation.defaultWidgetConfiguration != this.personalisation.defaultWidgetConfiguration) {
+            this.globalVariableService.defaultWidgetConfiguration.next(personalisation.defaultWidgetConfiguration);
+        }
+        if (personalisation.defaultReportFilters != this.personalisation.defaultReportFilters) {
+            this.globalVariableService.defaultReportFilters.next(personalisation.defaultReportFilters);
+        }
+        if (personalisation.growlSticky != this.personalisation.growlSticky) {
+            this.globalVariableService.growlSticky.next(personalisation.growlSticky);
+        }
+        if (personalisation.growlLife != this.personalisation.growlLife) {
+            this.globalVariableService.growlLife.next(personalisation.growlLife);
+        }
+        if (personalisation.gridSize != this.personalisation.gridSize) {
+            this.globalVariableService.gridSize.next(personalisation.gridSize);
+        }
+        if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
+            this.globalVariableService.snapToGrid.next(personalisation.snapToGrid);
+        }
+        
+        this.personalisation = personalisation;
     }
 
     logout(username: string) {

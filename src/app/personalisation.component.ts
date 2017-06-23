@@ -18,7 +18,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { SystemConfiguration }        from './model.systemconfiguration';
+import { Personalisation }           from './model.personalisation';
 
 @Component({
     selector:    'personalisation',
@@ -32,7 +32,7 @@ export class PersonalisationComponent implements OnInit {
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
-    systemConfiguration: SystemConfiguration;       // System wide settings
+    personalisation: Personalisation;       // System wide settings
 
     constructor(
         private eazlService: EazlService,
@@ -47,57 +47,45 @@ export class PersonalisationComponent implements OnInit {
 
         // FormBuilder
         this.configForm = this.fb.group({
-            'companyName':                  new FormControl('', Validators.required),
-            'companyLogo':                  new FormControl(''),
-            'backendUrl':                   new FormControl('', Validators.required),
-            'defaultDaysToKeepResultSet':   new FormControl('', Validators.pattern('^[0-9]*$')),
             'averageWarningRuntime':        new FormControl('', Validators.pattern('^[0-9]*$')),
-            'maxRowsDataReturned':          new FormControl('', Validators.pattern('^[0-9]*$')),
-            'maxRowsPerWidgetGraph':        new FormControl('', Validators.pattern('^[0-9]*$')),
-            'keepDevLoggedIn':              new FormControl(''),
+            'dashboardIDStartup':           new FormControl('', Validators.required),
+            'environment':                  new FormControl(''),
             'frontendColorScheme':          new FormControl(''),
-            'defaultWidgetConfiguration':   new FormControl(''),
             'defaultReportFilters':         new FormControl(''),
+            'defaultWidgetConfiguration':   new FormControl(''),
+            'gridSize':                     new FormControl('', Validators.pattern('^[0-9]*$')),
             'growlSticky':                  new FormControl(''),
             'growlLife':                    new FormControl('', Validators.pattern('^[0-9]*$')),
-            'gridSize':                     new FormControl('', Validators.pattern('^[0-9]*$')),
+            'keepDevLoggedIn':              new FormControl(''),
             'snapToGrid':                   new FormControl('')
         });
 
         // Get the system wide settings
-        this.systemConfiguration = this.eazlService.getSystemConfiguration();
+        this.personalisation = this.eazlService.getPersonalisation();
 
         // Move the data into the form
-        this.configForm.controls['companyName'].setValue(
-            this.systemConfiguration.companyName);
-        this.configForm.controls['companyLogo'].setValue(
-            this.systemConfiguration.companyLogo);
-        this.configForm.controls['backendUrl'].setValue(
-            this.systemConfiguration.backendUrl);
-        this.configForm.controls['defaultDaysToKeepResultSet'].setValue(
-            this.systemConfiguration.defaultDaysToKeepResultSet);
+        this.configForm.controls['dashboardIDStartup'].setValue(
+            this.personalisation.dashboardIDStartup);
+        this.configForm.controls['environment'].setValue(
+            this.personalisation.environment);
         this.configForm.controls['averageWarningRuntime'].setValue(
-            this.systemConfiguration.averageWarningRuntime);
-        this.configForm.controls['maxRowsDataReturned'].setValue(
-            this.systemConfiguration.maxRowsDataReturned);
-        this.configForm.controls['maxRowsPerWidgetGraph'].setValue(
-            this.systemConfiguration.maxRowsPerWidgetGraph);
+            this.personalisation.averageWarningRuntime);
         this.configForm.controls['keepDevLoggedIn'].setValue(
-            this.systemConfiguration.keepDevLoggedIn);
+            this.personalisation.keepDevLoggedIn);
         this.configForm.controls['frontendColorScheme'].setValue(
-            this.systemConfiguration.frontendColorScheme);
+            this.personalisation.frontendColorScheme);
         this.configForm.controls['defaultWidgetConfiguration'].setValue(
-            this.systemConfiguration.defaultWidgetConfiguration);
+            this.personalisation.defaultWidgetConfiguration);
         this.configForm.controls['defaultReportFilters'].setValue(
-            this.systemConfiguration.defaultReportFilters);
+            this.personalisation.defaultReportFilters);
         this.configForm.controls['growlSticky'].setValue(
-            this.systemConfiguration.growlSticky);
+            this.personalisation.growlSticky);
         this.configForm.controls['growlLife'].setValue(
-            this.systemConfiguration.growlLife);
+            this.personalisation.growlLife);
         this.configForm.controls['gridSize'].setValue(
-            this.systemConfiguration.gridSize);
+            this.personalisation.gridSize);
         this.configForm.controls['snapToGrid'].setValue(
-            this.systemConfiguration.snapToGrid);
+            this.personalisation.snapToGrid);
     }
 
     onClickCancel() {
@@ -120,33 +108,15 @@ export class PersonalisationComponent implements OnInit {
         this.numberErrors = 0;
         this.errorMessageOnForm = ''; 
 
-        if (this.configForm.controls['companyName'].value == ''  || 
-            this.configForm.controls['companyName'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Company Name is compulsory.'
-        }
-        if (this.configForm.controls['backendUrl'].value == ''  || 
-            this.configForm.controls['backendUrl'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Backend Url (RESTi) is compulsory.'
-        }
-        if (this.configForm.controls['defaultDaysToKeepResultSet'].value == ''  || 
-            this.configForm.controls['defaultDaysToKeepResultSet'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The days to keep resultsets is compulsory.'
-        }
-        if (this.configForm.controls['defaultDaysToKeepResultSet'].touched  && 
-            !this.configForm.controls['defaultDaysToKeepResultSet'].valid) {
-                if (this.configForm.controls['defaultDaysToKeepResultSet'].value != '0') {
+        if (this.configForm.controls['dashboardIDStartup'].touched  && 
+            !this.configForm.controls['dashboardIDStartup'].valid) {
+                if (this.configForm.controls['dashboardIDStartup'].value != '0') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The DaysToKeep (a ResultSet) must be numeric';
+                        'The dashboardID to show at Startup must be numeric';
                 }
-        }                
+        } 
         if (this.configForm.controls['averageWarningRuntime'].value == ''  || 
             this.configForm.controls['averageWarningRuntime'].value == null) {
             this.formIsValid = false;
@@ -160,36 +130,6 @@ export class PersonalisationComponent implements OnInit {
                     this.numberErrors = this.numberErrors + 1;
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The average Warning Runtime must be numeric';
-                }
-        }
-        if (this.configForm.controls['maxRowsDataReturned'].value == ''  || 
-            this.configForm.controls['maxRowsDataReturned'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The max data rows returned is compulsory.'
-        }
-        if (this.configForm.controls['maxRowsDataReturned'].touched  && 
-            !this.configForm.controls['maxRowsDataReturned'].valid) {
-                if (this.configForm.controls['maxRowsDataReturned'].value != '0') {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The max Rows of Data to be Returned must be numeric';
-                }
-        }
-        if (this.configForm.controls['maxRowsPerWidgetGraph'].value == ''  || 
-            this.configForm.controls['maxRowsPerWidgetGraph'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Max rows per WidgetGraph is compulsory.'
-        }
-        if (this.configForm.controls['maxRowsPerWidgetGraph'].touched  && 
-            !this.configForm.controls['maxRowsPerWidgetGraph'].valid) {
-                if (this.configForm.controls['maxRowsPerWidgetGraph'].value != '0') {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The max Rows Per WidgetGraph must be numeric';
                 }
         }
         if (this.configForm.controls['growlLife'].value == ''  || 
@@ -239,23 +179,19 @@ export class PersonalisationComponent implements OnInit {
             });
             return;
         }
-        this.eazlService.updateSystemConfiguration(
+        this.eazlService.updatePersonalisation(
             {
-                systemConfigurationID: 0,
-                companyName: this.configForm.controls['companyName'].value,
-                companyLogo: this.configForm.controls['companyLogo'].value,
-                backendUrl: this.configForm.controls['backendUrl'].value,
-                defaultDaysToKeepResultSet: this.configForm.controls['defaultDaysToKeepResultSet'].value,
+                personalisationID: 0,
                 averageWarningRuntime: this.configForm.controls['averageWarningRuntime'].value,
-                maxRowsDataReturned: this.configForm.controls['maxRowsDataReturned'].value,
-                maxRowsPerWidgetGraph: this.configForm.controls['maxRowsPerWidgetGraph'].value,
-                keepDevLoggedIn: this.configForm.controls['keepDevLoggedIn'].value,
+                dashboardIDStartup: this.configForm.controls['dashboardIDStartup'].value,
+                environment: this.configForm.controls['environment'].value,
                 frontendColorScheme: this.configForm.controls['frontendColorScheme'].value,
-                defaultWidgetConfiguration: this.configForm.controls['defaultWidgetConfiguration'].value,
                 defaultReportFilters: this.configForm.controls['defaultReportFilters'].value,
+                defaultWidgetConfiguration: this.configForm.controls['defaultWidgetConfiguration'].value,
+                gridSize: this.configForm.controls['gridSize'].value,
                 growlSticky: this.configForm.controls['growlSticky'].value,
                 growlLife: this.configForm.controls['growlLife'].value,
-                gridSize: this.configForm.controls['gridSize'].value,
+                keepDevLoggedIn: this.configForm.controls['keepDevLoggedIn'].value,
                 snapToGrid: this.configForm.controls['snapToGrid'].value
             }
         )

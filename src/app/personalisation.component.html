@@ -15,56 +15,28 @@
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
-                Company Name : 
+                StartupDash : 
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
                         type="text" 
-                        formControlName="companyName" 
-                        placeholder="Required"
-                        pTooltip="Enter your Company Name"
+                        formControlName="dashboardIDStartup" 
+                        placeholder="(Optional)"
+                        pTooltip="Enter Dashboard ID to show at start"
                         tooltipPosition="top"
                         autofocus
                         />
             </div>
 
             <div class="ui-grid-col-2">
-                Company Logo: 
+                Environment: 
             </div>
             <div class="ui-grid-col-4">
                 <input pInputText 
                         type="text" 
-                        formControlName="companyLogo" 
+                        formControlName="environment" 
                         placeholder="(Optional)"
-                        pTooltip="Enter your Company Logo filename"
-                        tooltipPosition="top"
-                        />
-            </div>
-        </div>
-
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-2">
-                Backend Url:
-            </div>
-            <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="backendUrl" 
-                        placeholder="Required"
-                        pTooltip="Enter your URL for Backend Server (RESTi)"
-                        tooltipPosition="top"
-                        />
-            </div>
-
-            <div class="ui-grid-col-2">
-                Days ToKeep:
-            </div>
-            <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="defaultDaysToKeepResultSet" 
-                        placeholder="Required"
-                        pTooltip="Enter default number of days to keep ResultSets"
+                        pTooltip="Enter your environment (Life, Test-Environment-Name)"
                         tooltipPosition="top"
                         />
             </div>
@@ -80,34 +52,6 @@
                         placeholder="Required"
                         formControlName="averageWarningRuntime"
                         pTooltip="Warn user if a report is known to run longer than this averag RunTime in minutes"
-                        tooltipPosition="top"
-                        >
-            </div>
-
-            <div class="ui-grid-col-2">
-                Max RowsData:
-            </div>
-            <div class="ui-grid-col-4">
-                <input pInputText    
-                        type="text" 
-                        formControlName="maxRowsDataReturned"
-                        placeholder="Required"
-                        pTooltip="Enter maximum number of data rows to be returned from the server"
-                        tooltipPosition="top"
-                        >
-            </div>
-        </div>
-
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-2">
-                Max RowsGraph:
-            </div>
-            <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="maxRowsPerWidgetGraph"
-                        placeholder="Required"
-                        pTooltip="Enter maximum number of rows returned per WidgetGraph"
                         tooltipPosition="top"
                         >
             </div>

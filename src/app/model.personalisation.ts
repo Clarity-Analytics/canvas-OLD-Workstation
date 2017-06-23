@@ -18,7 +18,7 @@ export class EazlPersonalisation {
 
 // Canvas
 export class Personalisation {
-    systemConfigurationID: number;          // Unique DB ID
+    personalisationID: number;              // Unique DB ID
     averageWarningRuntime: number;          // Minutes: Warn user if a report is known to run longer
     dashboardIDStartup: number;             // Optional Dashboard ID to show at startup
     environment: string;                    // Live, Test-Environment-Name

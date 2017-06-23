@@ -55,10 +55,12 @@ export class GlobalVariableService {
     testEnvironmentName = new BehaviorSubject('');   // Spaces = in PROD
 
     // System & operation config
-    frontendColorScheme = new BehaviorSubject('');
-    defaultWidgetConfiguration = new BehaviorSubject('');
     averageWarningRuntime = new BehaviorSubject(0);
+    defaultWidgetConfiguration = new BehaviorSubject('');
+    dashboardIDStartup = new BehaviorSubject(-1);
     defaultReportFilters = new BehaviorSubject(''); 
+    environment = new BehaviorSubject('');
+    frontendColorScheme = new BehaviorSubject('');
     growlSticky = new BehaviorSubject(false); 
     growlLife = new BehaviorSubject(3000); 
     gridSize = new BehaviorSubject(3);
