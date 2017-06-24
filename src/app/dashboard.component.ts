@@ -2162,7 +2162,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Modify and insert text
                     textToDOM = this.widgets[i].textual.textText
-                    textToDOM = textToDOM.replace('##today##',this.canvasDate.today)
+
+                    textToDOM = textToDOM.replace('##today##', this.canvasDate.today('standard'));
                     this.childrenWidgetText.toArray()[i].nativeElement.innerHTML = textToDOM
 
                     // Styling

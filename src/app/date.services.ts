@@ -51,12 +51,19 @@ export class CanvasDate {
  	curMeridiem(date: Date) {
          return  date.getHours() > 12 ? "PM" : "AM";
      }
- 	today(format: string): string {
+ 	today(format: string = 'standard'): string {
+         // Return the current date, in selected format
+// console.log('format', format)         
          if (format == 'locale') {
             let datum = new Date();
             return datum.toLocaleDateString().toString();
          } else if (format == 'standard') {
             let datum = new Date();
+
+// console.log('datum.getMonth()', datum.getMonth())
+// console.log('datum.getMonth()', datum.getMonth())
+// console.log('datum.getDate()', datum.getDate())
+// return '123';
             return datum.getFullYear().toString() + '/' + 
                    (  (datum.getMonth() < 10) ? 
                         '0' + (datum.getMonth() + 1).toString() : 
