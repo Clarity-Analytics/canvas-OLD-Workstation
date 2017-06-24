@@ -1,12 +1,14 @@
 // Guards the routes - returns True / False if user can proceed with route
 import { ActivatedRouteSnapshot }     from '@angular/router';
 import { CanActivate }                from '@angular/router';
-import { OnInit }                     from '@angular/core';
+import { DOCUMENT }                   from '@angular/platform-browser';
+import { Inject }                     from "@angular/core";
 import { Injectable }                 from '@angular/core';
+import { OnInit }                     from '@angular/core';
 import { Router }                     from '@angular/router';
 import { Routes }                     from '@angular/router';
 import { RouterStateSnapshot }        from '@angular/router';
- 
+
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
@@ -20,6 +22,7 @@ export class AuthGuard implements OnInit, CanActivate {
         private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService,
         private router: Router,  
+        @Inject(DOCUMENT) private document: Document,
 
         ) { }
 
@@ -73,7 +76,11 @@ export class AuthGuard implements OnInit, CanActivate {
             return window.confirm('Demo to prevent leaving Canvas.  Do you really want to go to ' + routes['url'] + ' ?');
         }
         if (oldRouterPath == 'dashboard') {
-            console.log('reset bg !')
+
+            // Set the document / body background color
+            let frontendColorScheme = this.globalVariableService.frontendColorScheme.getValue();
+            this.document.body.style.backgroundColor =  frontendColorScheme;
+            this.document.body.style.backgroundImage = '';
         }
 
         // Return

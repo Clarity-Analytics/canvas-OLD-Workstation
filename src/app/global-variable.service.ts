@@ -60,7 +60,7 @@ export class GlobalVariableService {
     dashboardIDStartup = new BehaviorSubject(-1);
     defaultReportFilters = new BehaviorSubject(''); 
     environment = new BehaviorSubject('');
-    frontendColorScheme = new BehaviorSubject('');
+    frontendColorScheme = new BehaviorSubject('lightgray');
     growlSticky = new BehaviorSubject(false); 
     growlLife = new BehaviorSubject(3000); 
     gridSize = new BehaviorSubject(3);
