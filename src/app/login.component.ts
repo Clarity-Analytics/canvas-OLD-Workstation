@@ -7,10 +7,6 @@ import { FormGroup }                  from '@angular/forms';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
-// PrimeNG
-import { Message }                    from 'primeng/primeng';  
-import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
 import { EazlService }                from './eazl.service';
