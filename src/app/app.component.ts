@@ -4,14 +4,15 @@
 import { ActivatedRoute }             from '@angular/router';
 import { Component }                  from '@angular/core';
 import { OnInit }                     from '@angular/core';
+import { isDevMode }                  from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewEncapsulation }          from '@angular/core';
- 
+
 // PrimeNG
-import { ConfirmationService }        from 'primeng/primeng';  
+import { ConfirmationService }        from 'primeng/primeng';
 import { MenubarModule }              from 'primeng/primeng';
-import { MenuItem }                   from 'primeng/primeng';  
-import { Message }                    from 'primeng/primeng';  
+import { MenuItem }                   from 'primeng/primeng';
+import { Message }                    from 'primeng/primeng';
 
 // Our Services
 import { CanvasDate }                 from './date.services';
@@ -50,7 +51,7 @@ export class AppComponent implements OnInit {
     menuItems: MenuItem[];                          // Array of menu items
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     routerLink:string = '';                         // RouterLink in Menu.Command
-    setFakeVariablesForTesting: boolean = false;    // Jass for me
+    // setFakeVariablesForTesting: boolean = false;    // Jass for me  KEEP for maybe later
     sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
     private notificationFromServer: Notification;   // Websocket msg
 
@@ -71,18 +72,18 @@ export class AppComponent implements OnInit {
         private notificationService: NotificationService,
         private route: ActivatedRoute,
         private router: Router,
-        ) { 
+        ) {
             // Subscribe to Web Socket
-            notificationService.messages.subscribe(msg => {			
-                
+            notificationService.messages.subscribe(msg => {
+
                 if (msg.messageType != '' ) {
                     this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'info', 
-                        summary:  'Nofication from ' + msg.author, 
+                        severity: 'info',
+                        summary:  'Nofication from ' + msg.author,
                         detail:   msg.dateSend + ' :' + msg.message
                     });
                 }
-            });            
+            });
 
             // Default stuffies, for now ...
             this.globalVariableService.sessionDebugging.next(true);
@@ -122,7 +123,7 @@ export class AppComponent implements OnInit {
         // console.log(this.canvasDate.today('locale'));
         // console.log(this.canvasDate.today('standard'));
     }
- 
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -136,20 +137,20 @@ export class AppComponent implements OnInit {
                     this.growlMsgs = [];
                 }
 
-                if (newgrowlmsg.detail != '') {    
+                if (newgrowlmsg.detail != '') {
                     this.growlMsgs.push({
-                        severity: newgrowlmsg.severity, 
-                        summary:  newgrowlmsg.summary, 
-                        detail:   newgrowlmsg.detail 
-                    });                
+                        severity: newgrowlmsg.severity,
+                        summary:  newgrowlmsg.summary,
+                        detail:   newgrowlmsg.detail
+                    });
                 }
             }
         );
 
         // Fake login & preferences for testing - KEEP for next time - just set to FALSE
-        this.setFakeVariablesForTesting = true;
+        // this.setFakeVariablesForTesting = true;
 
-        if (this.setFakeVariablesForTesting) {
+        if (isDevMode()) {
             // Login, get back eazlUser from RESTi and set currentUser if successful
             this.eazlService.login('janniei', 'canvas100*')
                 .then(eazlUser => {
@@ -162,16 +163,16 @@ export class AppComponent implements OnInit {
                 .catch(err => {
                     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Auto login failed!!');
                     this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'warn', 
-                        summary:  'Login Failed', 
+                        severity: 'warn',
+                        summary:  'Login Failed',
                         detail:   'Auto login for janniei failed'
                     });
 
                     // Set the menu items
                     this.menuItems = this.loadMenu()
-                    console.log('Error in app.component.ts @ fakeLogin', err)                    
+                    console.log('Error in app.component.ts @ fakeLogin', err)
                     }
-                ) 
+                )
         }
     }
 
@@ -198,8 +199,8 @@ export class AppComponent implements OnInit {
     menuActionWhoAmI (){
         // Pops up form for WhoAmI
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionWhoAmI', '@Start');
-        
-        this.displayWhoAmIForm = true; 
+
+        this.displayWhoAmIForm = true;
     }
 
     menuActionLoginLogout() {
@@ -212,42 +213,42 @@ export class AppComponent implements OnInit {
                 message: 'Are you sure that you want to logout?',
                 reject: () => { return},
                 accept: () => {
-                
+
                     this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'warn', 
-                        summary:  'Logged out', 
-                        detail:   'Goodbye ' + this.globalVariableService.canvasUser.getValue().username + 
+                        severity: 'warn',
+                        summary:  'Logged out',
+                        detail:   'Goodbye ' + this.globalVariableService.canvasUser.getValue().username +
                                   ', thank you for using ' + this.frontendName
                     });
-                    
+
                     // Logged out!
                     this.eazlService.logout(
                         this.globalVariableService.canvasUser.getValue().username
                     );
-                    
+
                     // Amend the menu
                     this.menuItems = this.loadMenu();
 
                     // Show the relevant page
-                    this.displayLoginForm = true;        
-                    this.router.navigate(['pagenotfound']);     
-                    
+                    this.displayLoginForm = true;
+                    this.router.navigate(['pagenotfound']);
+
                 }
             });
         }
 
         if (this.lastSelectedMenuItemLabel == 'Login') {
             // Show the login form
-            this.displayLoginForm = true;        
+            this.displayLoginForm = true;
         }
     }
-    
+
     userMenuResetPassword() {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuResetPassword', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'User Password Reset', 
+            severity: 'info',
+            summary:  'User Password Reset',
             detail:   'Resetted user password'
         });
     }
@@ -261,9 +262,9 @@ export class AppComponent implements OnInit {
         if (event == 'Submit') {
             this.sendNotificationToServer();
         }
-        
+
         // Rip away popup
-        this.displayNewMessage = false;        
+        this.displayNewMessage = false;
     }
 
     public handleWhoAmISubmit(submit: boolean): void {
@@ -271,7 +272,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleWhoAmISubmit', '@Start');
 
         // Rip away popup
-        this.displayWhoAmIForm = false;        
+        this.displayWhoAmIForm = false;
     }
 
     public handleFormSubmit(submit: boolean): void {
@@ -283,20 +284,20 @@ export class AppComponent implements OnInit {
 
         // Navigate further
         if (!this.globalVariableService.isAuthenticatedOnEazl) {
-            this.router.navigate(['pagenotfound']);     
-        } 
+            this.router.navigate(['pagenotfound']);
+        }
         else {
 
             if (this.globalVariableService.startupDashboardID.getValue() != 0) {
-                this.router.navigate(['pagenotfound']);     
+                this.router.navigate(['pagenotfound']);
             }
             else {
-                this.router.navigate(['startup']);                
+                this.router.navigate(['startup']);
             }
         }
 
         // Rip away popup
-        this.displayLoginForm = false;        
+        this.displayLoginForm = false;
     }
 
     loadMenu(): MenuItem[] {
@@ -310,12 +311,12 @@ export class AppComponent implements OnInit {
 
         // Get the current status of user -> determines menu enable/disable
         if (this.globalVariableService.canvasUser.getValue() != null) {
-        
+
             this.isCurrentUserAdmin = this.globalVariableService.canvasUser.getValue().is_superuser;
-            
+
             // Set label for login / logout
             if (this.globalVariableService.canvasUser.getValue().username == '' ) {
-                this.loginLabel = 'Login'; 
+                this.loginLabel = 'Login';
                 isLoggedIn = false;
             } else {
                 this.loginLabel = 'Logout';
@@ -330,7 +331,7 @@ export class AppComponent implements OnInit {
                 disabled: false,
                 command: (event) => {
                     this.lastSelectedMenuItemLabel = event.item.label;
-            }    
+            }
             },
             {
                 label: 'Visualise',
@@ -338,13 +339,13 @@ export class AppComponent implements OnInit {
                 disabled: !isLoggedIn,
                 items: [
                     {
-                        label: 'Dashboard Editor', 
+                        label: 'Dashboard Editor',
                         icon:  'fa-table',
                         routerLink: ['dashboard'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                 ]
             },
@@ -354,22 +355,22 @@ export class AppComponent implements OnInit {
                 disabled: !isLoggedIn,
                 items: [
                     {
-                        label: 'New Message', 
+                        label: 'New Message',
                         icon:  'fa-comment-o',
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                             this.menuActionNewMessage();
-                        }    
+                        }
                     },
                     {
-                        label: 'Show Messages', 
+                        label: 'Show Messages',
                         icon:  'fa-comments',
                         routerLink: ['messageManager'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                 ]
             },
@@ -377,61 +378,61 @@ export class AppComponent implements OnInit {
                 label: 'Manage',
                 icon:  'fa-street-view',
                 disabled: !(this.isCurrentUserAdmin && isLoggedIn),
-                
+
                 items: [
                     {
-                        label: 'Users', 
+                        label: 'Users',
                         icon:  'fa-user',
                         routerLink: ['users'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
                         label: 'Groups',
-                        icon:  'fa-group', 
+                        icon:  'fa-group',
                         routerLink: ['group'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
-                        label: 'Data Sources', 
+                        label: 'Data Sources',
                         icon:  'fa-database',
                         routerLink: ['dataSource'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
-                        label: 'Reports', 
+                        label: 'Reports',
                         icon:  'fa-list-alt',
                         routerLink: ['report'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
                         label: 'Dashboards',
-                        icon:  'fa-dashboard', 
+                        icon:  'fa-dashboard',
                         routerLink: ['dashboardManager'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
-                        label: 'System Configuration', 
+                        label: 'System Configuration',
                         icon:  'fa-wrench',
                         routerLink: ['systemconfig'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                 ]
             },
@@ -441,99 +442,99 @@ export class AppComponent implements OnInit {
                 disabled: false,
                 items: [
                     {
-                        label: 'Who Am I', 
+                        label: 'Who Am I',
                         icon:  'fa-male',
                         disabled: !isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                             this.menuActionWhoAmI();
-                        }    
+                        }
                     },
                     {
-                        label: this.loginLabel, 
+                        label: this.loginLabel,
                         icon:  'fa-refresh',
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
                             this.menuActionLoginLogout();
-                        }    
+                        }
                     },
                     {
-                        label: 'My Profile', 
+                        label: 'My Profile',
                         icon:  'fa-cog',
                         routerLink: ['myprofile'],
                         disabled: !isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
-                        label: 'Personalisation', 
+                        label: 'Personalisation',
                         icon:  'fa-cogs',
                         disabled: !isLoggedIn,
                         routerLink: ['personalisation'],
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                 ]
             },
             {
-                label: 'Help', 
+                label: 'Help',
                 icon:  'fa-question',
                 disabled: false,
                 items: [
                     {
-                        label: 'System Info', 
+                        label: 'System Info',
                         icon:  'fa-info',
                         routerLink: ['startup'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
-                        label: 'Feedback', 
+                        label: 'Feedback',
                         icon:  'fa-envelope',
                         routerLink: ['startup'],
                         disabled: !isLoggedIn,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
-                        label: 'Tutorials', 
+                        label: 'Tutorials',
                         icon:  'fa-tags',
                         routerLink: ['doc-tutorials'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
                         label: 'Reference guide',
-                        icon:  'fa-file-text-o', 
+                        icon:  'fa-file-text-o',
                         routerLink: ['doc-reference'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                     {
-                        label: 'Discussions', 
+                        label: 'Discussions',
                         icon:  'fa-file-text',
                         routerLink: ['doc-discussions'],
                         disabled: false,
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
-                        }    
+                        }
                     },
                 ]
             }
         ];
 
         // Return stuff
-        return this.menuItems;       
+        return this.menuItems;
     }
 
 
@@ -546,7 +547,7 @@ let eksit: boolean = false;
 eksit = true;
 if (eksit) {return}
 
-console.log('COMBINELATEST')    
+console.log('COMBINELATEST')
     /* Have staggering intervals */
 var source11 = Observable.interval(100)
   .map(function (i) { return 'First: ' + i; });

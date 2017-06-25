@@ -266,7 +266,7 @@
 </p-dialog>
 
 
-<!--Report History-->
+<!--Popup for Report History-->
 <p-dialog 
     [(visible)]="displayReportHistory"
     header="Report History"
@@ -285,4 +285,21 @@
         <p-column field="reportHistoryNrRowsReturned" header="Nr Rows"></p-column>
         <p-column field="reportHistoryComments" header="Comments"></p-column>
     </p-dataTable>
+</p-dialog>
+
+
+<!--Popup for New Widget-->
+<p-dialog header="New Widget" 
+    [(visible)]="displayNewWidgetForm" 
+    modal="modal" 
+    width="450" 
+    responsive="true"
+    >
+
+    <widget-new 
+        (formSubmit)="handleNewWidgetFormSubmit($event)" 
+        >
+        Loading New Widget form ...
+    </widget-new>
+
 </p-dialog>

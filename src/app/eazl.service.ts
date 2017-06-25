@@ -3949,14 +3949,13 @@ export class EazlService implements OnInit {
     reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     personalisation: Personalisation = PERSONALISATION;     // Personal settings for current user
+    storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
     users: User[] = [];                                     // List of Users
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
-
-storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
 
     constructor(
         private canvasDate: CanvasDate,

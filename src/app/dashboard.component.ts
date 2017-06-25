@@ -16,7 +16,7 @@ import { DOCUMENT }                   from '@angular/platform-browser';
 
 //  PrimeNG stuffies
 import { ConfirmationService }        from 'primeng/primeng';
-import { MenuItem }                   from 'primeng/primeng';  
+import { MenuItem }                   from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Components
@@ -27,7 +27,7 @@ import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
- 
+
 // Our models
 import { CanvasColors }               from './chartcolors.data';
 import { Dashboard }                  from './model.dashboards';
@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChild(DashboardEditorComponent) dashboardEditor;                                   // To run methods in it
 
     @HostListener('document:keyup', ['$event'])
-    handleKeyboardEvent(event) { 
+    handleKeyboardEvent(event) {
         // Determines raw (x,y) change, and calls routine that does movement
 
         if (event.code == 'ArrowUp') {
@@ -137,7 +137,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     widgetEndDragY: number;                     // End coordinates during dragging
     widgetStartDragX: number;                   // Start coordinates during dragging
     widgetStartDragY: number;                   // Start coordinates during dragging
- 
+
     // Variables for Startup properties of a Widget
     borderOptions: SelectItem[];                // Options for Border DropDown
     boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
@@ -162,14 +162,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     widgetToEdit: Widget;                       // Widget to edit
     widgetToEditX: number;                      // X coordinate where new widget belongs
     widgetToEditY: number;                      // Y coordinate where new widget belongs
-    
+
     // Expansion Areas when Widget buttons are clicked
-    displayExpandBackgroundArea: boolean = false; 
-    displayExpandBorder: boolean = false; 
-    displayExpandBoxShadow: boolean = false; 
-    displayExpandColor: boolean = false; 
-    displayExpandFontSize: boolean = false; 
-    displayExpandGridSize: boolean = false; 
+    displayExpandBackgroundArea: boolean = false;
+    displayExpandBorder: boolean = false;
+    displayExpandBoxShadow: boolean = false;
+    displayExpandColor: boolean = false;
+    displayExpandFontSize: boolean = false;
+    displayExpandGridSize: boolean = false;
     displayExpandDashboardSettings: boolean = false;
 
     constructor(
@@ -217,7 +217,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.fontSizeOptions.push({label:'2em',   value:{id:1, name: '2'}});
 
         // Grid Size Options - the name must be a NUMBER, in px
-        this.gridSizeOptions = [];       
+        this.gridSizeOptions = [];
         this.gridSizeOptions.push({label:'1px',   value:{id:1, name: '1'}});
         this.gridSizeOptions.push({label:'2px',   value:{id:2, name: '2'}});
         this.gridSizeOptions.push({label:'3px',   value:{id:3, name: '3'}});
@@ -227,7 +227,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.gridSizeOptions.push({label:'30px',  value:{id:7, name: '30'}});
 
         // Background Images
-        this.backgroundImageOptions = [];       
+        this.backgroundImageOptions = [];
         this.backgroundImageOptions.push({label:'None',            value:{id:1, name: ""}});
         this.backgroundImageOptions.push({label:'Dolphin',         value:{id:1, name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"}});
         this.backgroundImageOptions.push({label:'River Sunset',    value:{id:1, name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"}});
@@ -255,16 +255,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 )
                 this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
                     this.globalVariableService.startupDashboardCode.getValue()
-                ) 
+                )
                 this.globalVariableService.sessionLoadOnOpenDashboardName.next(
                     this.globalVariableService.startupDashboardName.getValue()
-                )                       
+                )
             }
         }
 
         // Call if anyone is eligible
         if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() != -1) {
-            this.selectedDashboardName = 
+            this.selectedDashboardName =
                 {
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
                     code: this.globalVariableService.sessionLoadOnOpenDashboardCode.getValue(),
@@ -285,18 +285,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             // Load the session's Dashboard Tab
             if (this.globalVariableService.sessionDashboardTabID.getValue() != -1) {
-                    
+
                 // Get the Dashboard Tab Name, used by drop down (value = id, name)
                 let sessionDashboardTabName: string = ''
                 if (this.globalVariableService.sessionDashboardTabID.getValue() != -1) {
                     let workingDashboardTab: DashboardTab[] = this.eazlService.getDashboardTabs(
-                        this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(), 
+                        this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
                         this.globalVariableService.sessionDashboardTabID.getValue());
                     if (workingDashboardTab.length != 0) {
                         sessionDashboardTabName = workingDashboardTab[0].dashboardTabName;
                     }
-                }                
-                
+                }
+
                 this.selectedDashboardTab = {
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
                     name: sessionDashboardTabName
@@ -312,9 +312,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Respond after Angular initializes the component's views and child views.
         // Called once after the first ngAfterContentChecked().
         // The DOM is now initialised, so the ViewChildren are available
-   
+
         // This thing is called many, many times !!!  Basically whenever the mouse moves, etc
-        // So, I dont think we should log it.  
+        // So, I dont think we should log it.
         // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
         // TODO - delete this makker as its empty ?
     }
@@ -384,11 +384,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.addEditModeWidgetEditor == "Add") {
 
             // Add the new guy to the Array, if it belongs to current Dashboar
-            if (this.widgetToEdit.properties.dashboardTabName == 
+            if (this.widgetToEdit.properties.dashboardTabName ==
                 this.selectedDashboardTab.name) {
 
                 // TODO - this is crude & error prone: eventually autoIndex in DB
-                let lastWidgetID = 
+                let lastWidgetID =
                     this.widgets[this.widgets.length - 1].properties.widgetID;
 
                 // Set the Widget ID & Add to Array
@@ -399,7 +399,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 // Refresh the Dashboard
                 this.refreshDashboard = true;
             }
-        
+
             // Inform the user
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
@@ -417,46 +417,46 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // Loop on the Array, find the editted one and update
             for (var i = 0; i < this.widgets.length; i++) {
 
-                if (this.widgets[i].properties.widgetID === 
+                if (this.widgets[i].properties.widgetID ===
                     this.widgetToEdit.properties.widgetID) {
 
                         // Update individual fields: if you replace the whole Array
                         // entry, everything dies.  Including position, svg rendered, etc
-                        this.widgets[i].container.widgetTitle = 
+                        this.widgets[i].container.widgetTitle =
                             this.widgetToEdit.container.widgetTitle;
-                        this.widgets[i].properties.dashboardTabName = 
+                        this.widgets[i].properties.dashboardTabName =
                             this.widgetToEdit.properties.dashboardTabName;
-                        this.widgets[i].properties.widgetCode = 
+                        this.widgets[i].properties.widgetCode =
                             this.widgetToEdit.properties.widgetCode;
-                        this.widgets[i].properties.widgetName = 
+                        this.widgets[i].properties.widgetName =
                             this.widgetToEdit.properties.widgetName;
-                        this.widgets[i].properties.widgetDescription = 
+                        this.widgets[i].properties.widgetDescription =
                             this.widgetToEdit.properties.widgetDescription;
-                        this.widgets[i].properties.widgetHyperLinkTabNr = 
+                        this.widgets[i].properties.widgetHyperLinkTabNr =
                             this.widgetToEdit.properties.widgetHyperLinkTabNr;
-                        this.widgets[i].properties.widgetHyperLinkWidgetID = 
+                        this.widgets[i].properties.widgetHyperLinkWidgetID =
                             this.widgetToEdit.properties.widgetHyperLinkWidgetID;
-                        this.widgets[i].properties.widgetRefreshMode = 
+                        this.widgets[i].properties.widgetRefreshMode =
                             this.widgetToEdit.properties.widgetRefreshMode;
-                        this.widgets[i].properties.widgetRefreshFrequency = 
+                        this.widgets[i].properties.widgetRefreshFrequency =
                             this.widgetToEdit.properties.widgetRefreshFrequency;
-                        this.widgets[i].properties.widgetDefaultExportFileType = 
+                        this.widgets[i].properties.widgetDefaultExportFileType =
                             this.widgetToEdit.properties.widgetDefaultExportFileType;
-                        this.widgets[i].properties.widgetPassword = 
+                        this.widgets[i].properties.widgetPassword =
                             this.widgetToEdit.properties.widgetPassword;
-                        this.widgets[i].properties.widgetReportName = 
+                        this.widgets[i].properties.widgetReportName =
                             this.widgetToEdit.properties.widgetReportName;
-                        this.widgets[i].properties.widgetReportParameters = 
+                        this.widgets[i].properties.widgetReportParameters =
                             this.widgetToEdit.properties.widgetReportParameters;
-                        this.widgets[i].properties.widgetShowLimitedRows = 
+                        this.widgets[i].properties.widgetShowLimitedRows =
                             this.widgetToEdit.properties.widgetShowLimitedRows;
-                        this.widgets[i].properties.widgetAddRestRow = 
+                        this.widgets[i].properties.widgetAddRestRow =
                             this.widgetToEdit.properties.widgetAddRestRow;
-                        this.widgets[i].properties.widgetType = 
+                        this.widgets[i].properties.widgetType =
                             this.widgetToEdit.properties.widgetType;
-                        this.widgets[i].properties.widgetUpdatedDateTime = 
+                        this.widgets[i].properties.widgetUpdatedDateTime =
                             this.widgetToEdit.properties.widgetUpdatedDateTime;
-                        this.widgets[i].properties.widgetUpdatedUserName = 
+                        this.widgets[i].properties.widgetUpdatedUserName =
                             this.widgetToEdit.properties.widgetUpdatedUserName;
                 }
             }
@@ -482,15 +482,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Set the document / body background color
         if (this.dashboardBackgroundColor) {
-            this.document.body.style.backgroundColor =  
+            this.document.body.style.backgroundColor =
                 this.dashboardBackgroundColor['name'];
         }
 
         if (this.dashboardBackgroundImageSrc) {
-            this.document.body.style.backgroundImage = 
+            this.document.body.style.backgroundImage =
                 this.dashboardBackgroundImageSrc['name'];
         }
-    }            
+    }
 
     clickContainerApply(){
         // Apply the new values on the Palette -> Container tab to the selected Widget
@@ -506,7 +506,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             // Remember for next time, permanently
             this.globalVariableService.gridSize.next(this.gridSize);
-            
+
             return;
         }
         // Dashboard wide settings
@@ -515,11 +515,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // Apply the Dashboard Settings
             this.applyDashboardSettings();
 
-            // Store Dashboard Settings info 
+            // Store Dashboard Settings info
             this.dashboards.filter(
                 dash => dash.dashboardID == this.selectedDashboardID
             )[0].dashboardBackgroundColor = this.dashboardBackgroundColor.name;
-            this.eazlService.updateDashboardBackgroundColor( 
+            this.eazlService.updateDashboardBackgroundColor(
                 this.selectedDashboardID,
                 this.dashboardBackgroundColor.name
             );
@@ -527,21 +527,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.dashboards.filter(
                 dash => dash.dashboardID == this.selectedDashboardID
             )[0].dashboardBackgroundImageSrc = this.dashboardBackgroundImageSrc.name;
-            this.eazlService.updateDashboardBackgroundImageSrc( 
+            this.eazlService.updateDashboardBackgroundImageSrc(
                 this.selectedDashboardID,
                 this.dashboardBackgroundImageSrc.name
             );
 
             return;
         }
-        
+
 
         // Loop on the Array of selected IDs, and do things to it
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
 
             // Loop on the ViewChildren, and act for the Selected One
             let selectedElement = this.childrenWidgetContainers.filter(
-                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0] 
+                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0]
 
             if (selectedElement != undefined) {
 
@@ -553,9 +553,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Update the data
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             this.selectedWidgetIDs[i])[0].
-                                    container.backgroundColor = 
+                                    container.backgroundColor =
                                 this.selectedBackgroundColor['name'];
 
                     // Remember for next time, permanently
@@ -570,9 +570,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Update the data
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             this.selectedWidgetIDs[i])[0].
-                                    container.border = 
+                                    container.border =
                                 this.selectedBorder['name'];
 
                     // Remember for next time, permanently
@@ -587,9 +587,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Update the data
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             this.selectedWidgetIDs[i])[0].
-                                    container.boxShadow = 
+                                    container.boxShadow =
                                 this.selectedBoxShadow['name'];
 
                     // Remember for next time, permanently
@@ -604,9 +604,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Update the data
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             this.selectedWidgetIDs[i])[0].
-                                    container.color = 
+                                    container.color =
                                 this.selectedColor['name'];
 
                     // Remember for next time, permanently
@@ -621,9 +621,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Update the data
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             this.selectedWidgetIDs[i])[0].
-                                    container.fontSize = 
+                                    container.fontSize =
                                 +this.selectedContainerFontSize['name'];
 
                     // Remember for next time, permanently
@@ -702,19 +702,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Nothing to do
         if (this.selectedWidgetIDs.length == 0){
-            return            
+            return
         }
 
-        // Cannot delete multiple: for example, some may be locked, some may be off the 
+        // Cannot delete multiple: for example, some may be locked, some may be off the
         // screen (thus deleting stuff you are not aware of)
-        
+
         if (this.selectedWidgetIDs.length != 1){
             this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn', 
-                summary:  'Locked', 
+                severity: 'warn',
+                summary:  'Locked',
                 detail:   'Cannot delete when multiple widgets are selected (only a single one)'
             });
-            return            
+            return
         }
 
         // Loop on this one and delete - they say for is fasta than .filter
@@ -729,7 +729,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Respect the Lock
         let selectedWidget: Widget = this.widgets.filter(
-            widget => widget.properties.widgetID === 
+            widget => widget.properties.widgetID ===
                 idWidget)[0];
         if (selectedWidget == undefined) {
             return
@@ -737,8 +737,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         if (selectedWidget.properties.widgetIsLocked) {
                 this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'info', 
-                    summary:  'Locked', 
+                    severity: 'info',
+                    summary:  'Locked',
                     detail:   'First unlock the Widget by clicking on lock, then delete'
                 });
                 return;
@@ -767,7 +767,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Bring back the value field of the selected item.
         // Note: deleteMode is important to switch the loop off since we are in an *ngFor
-        //       So, switch on when Delete Button is clicked, and switch off after 
+        //       So, switch on when Delete Button is clicked, and switch off after
         //       delete routine is invoked.  Also, the popup is *ngIf-ed to it
         if (this.deleteMode) {
             for (var i = 0; i < this.widgets.length; i++ ) {
@@ -787,11 +787,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Respect the Lock
         if (this.widgets.filter(
-            widget => widget.properties.widgetID === 
+            widget => widget.properties.widgetID ===
                 idWidget)[0].properties.widgetIsLocked) {
                 this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'info', 
-                    summary:  'Locked', 
+                    severity: 'info',
+                    summary:  'Locked',
                     detail:   'First unlock the Widget by clicking on lock, then edit'
                 });
                 return;
@@ -813,7 +813,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         for (var i = 0, len = this.widgets.length; i < len; i++) {
             if (this.widgets[i].properties.widgetID == idWidget) {
-                this.widgets[i].properties.widgetIsLocked = 
+                this.widgets[i].properties.widgetIsLocked =
                     !this.widgets[i].properties.widgetIsLocked;
             }
         }
@@ -830,10 +830,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Update DB
         let username: string = this.globalVariableService.canvasUser.getValue().username;
         this.eazlService.updateWidgetIsLiked(
-                idWidget, 
-                username, 
+                idWidget,
+                username,
                 isLikedNewState)
-        
+
         // Update local
         for (var i = 0, len = this.widgets.length; i < len; i++) {
             if (this.widgets[i].properties.widgetID == idWidget) {
@@ -867,21 +867,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             property == 'horisontalIncreaseDistance') {
 
             let selectedWidgetIDsWithLeft: {
-                widgetID: number; 
+                widgetID: number;
                 widgetLeft: number;
             } [];
 
             // We use an Array sorted on .left, so that things move in one direction
             selectedWidgetIDsWithLeft = [];
             for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
-                
+
                 let thisWidget: Widget = this.widgets.filter(
                     widget => widget.properties.widgetID === this.selectedWidgetIDs[i]
                 )[0]
 
-                selectedWidgetIDsWithLeft.push( 
+                selectedWidgetIDsWithLeft.push(
                     {
-                        widgetID: thisWidget.properties.widgetID, 
+                        widgetID: thisWidget.properties.widgetID,
                         widgetLeft: thisWidget.container.left
                     }
                 );
@@ -909,7 +909,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 (lastWidget.container.width / 2);
 
             if (property == 'horisontalEquiDistant') {
-            
+
                 // Adjust centers of middle lot, not first or last ones
                 for (var i = 1; i < numberDistances; i++) {
 
@@ -923,11 +923,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     )[0].container.width;
 
                     // T = Total distance between first and last Centers
-                    // S = Single distance between 2 centers = T / numberDistances 
+                    // S = Single distance between 2 centers = T / numberDistances
                     // C = new Center of internal Widget (first and last stays static)
                     //   = firstCenter + (i * S)
                     // L = new Left = C - ( currentWidth / 2)
-                    let newLeft = firstCenter + 
+                    let newLeft = firstCenter +
                         i * ( (lastCenter - firstCenter) / numberDistances ) -
                         (currentWidth / 2);
 
@@ -945,10 +945,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         }
                     });
                 }
-            } 
-     
+            }
+
             if (property == 'horisontalDecreaseDistance') {
-            
+
                 // Subtract 3px to all lefts, except the first one
                 for (var i = 1; i < (numberDistances + 1); i++) {
 
@@ -977,7 +977,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
 
             if (property == 'horisontalIncreaseDistance') {
-            
+
                 // Add 3px to all lefts, except the first one
                 for (var i = 1; i < (numberDistances + 1); i++) {
 
@@ -1006,25 +1006,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             }
         }
 
-        if (property == 'verticalEquiDistant'           || 
-           property == 'verticalIncreaseDistance'       ||   
+        if (property == 'verticalEquiDistant'           ||
+           property == 'verticalIncreaseDistance'       ||
            property == 'verticalDecreaseDistance') {
             let selectedWidgetIDsWithTop: {
-                widgetID: number; 
+                widgetID: number;
                 widgetTop: number;
             } [];
 
             // We use an Array sorted on .top, so that things move in one direction
             selectedWidgetIDsWithTop = [];
             for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
-                
+
                 let thisWidget: Widget = this.widgets.filter(
                     widget => widget.properties.widgetID === this.selectedWidgetIDs[i]
                 )[0]
 
-                selectedWidgetIDsWithTop.push( 
+                selectedWidgetIDsWithTop.push(
                     {
-                        widgetID: thisWidget.properties.widgetID, 
+                        widgetID: thisWidget.properties.widgetID,
                         widgetTop: thisWidget.container.top
                     }
                 );
@@ -1051,8 +1051,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             let lastMiddle: number =  lastWidget.container.top +
                 (lastWidget.container.height / 2)
 
-            if (property == 'verticalEquiDistant') { 
-            
+            if (property == 'verticalEquiDistant') {
+
                 // Adjust middles of middle lot, not first or last ones
                 for (var i = 1; i < numberDistances; i++) {
 
@@ -1066,11 +1066,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     )[0].container.height;
 
                     // T = Total distance between first and last Middles
-                    // S = Single distance between 2 Middles = T / numberDistances 
+                    // S = Single distance between 2 Middles = T / numberDistances
                     // C = new Middle of internal Widget (first and last stays static)
                     //   = firstMiddle + (i * S)
                     // L = new Top = C - ( currentHeight / 2)
-                    let newTop = firstMiddle + 
+                    let newTop = firstMiddle +
                         i * ( (lastMiddle - firstMiddle) / numberDistances ) -
                         (currentHeight / 2);
 
@@ -1148,7 +1148,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             }
         }
-    } 
+    }
 
     onWidgetAlign(property: string) {
         // Aligns the shift-selected widgets to the left, according to the last one
@@ -1162,19 +1162,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Get the 'property' of the last one
         let newValue: number = 0;
         let lastLeft: number = this.widgets.filter(
-                widget => widget.properties.widgetID === 
+                widget => widget.properties.widgetID ===
                 this.selectedWidgetIDs[this.selectedWidgetIDs.length - 1])[0].
                 container.left;
         let lastWidth: number = this.widgets.filter(
-            widget => widget.properties.widgetID === 
+            widget => widget.properties.widgetID ===
             this.selectedWidgetIDs[this.selectedWidgetIDs.length - 1])[0].
             container.width;
         let lastTop: number = this.widgets.filter(
-            widget => widget.properties.widgetID === 
+            widget => widget.properties.widgetID ===
             this.selectedWidgetIDs[this.selectedWidgetIDs.length - 1])[0].
             container.top;
         let lastHeight: number = this.widgets.filter(
-            widget => widget.properties.widgetID === 
+            widget => widget.properties.widgetID ===
             this.selectedWidgetIDs[this.selectedWidgetIDs.length - 1])[0].
             container.height;
 
@@ -1185,67 +1185,67 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                 // Get the properties of the current one, to do calcs
                 let currentLeft: number = this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             +child.nativeElement.id)[0].container.left;
                 let currentWidth: number = this.widgets.filter(
-                    widget => widget.properties.widgetID === 
+                    widget => widget.properties.widgetID ===
                         +child.nativeElement.id)[0].container.width;
                 let currentTop: number = this.widgets.filter(
-                    widget => widget.properties.widgetID === 
+                    widget => widget.properties.widgetID ===
                         +child.nativeElement.id)[0].container.top;
                 let currentHeight: number = this.widgets.filter(
-                    widget => widget.properties.widgetID === 
+                    widget => widget.properties.widgetID ===
                         +child.nativeElement.id)[0].container.height;
 
                 let attributeToChange: string = 'left';
-                if (property == 'left') { 
+                if (property == 'left') {
                     attributeToChange = 'left';
                     newValue = lastLeft;
                 };
-                if (property == 'center') { 
+                if (property == 'center') {
                     attributeToChange = 'left';
                     newValue = lastLeft + (lastWidth / 2) - (currentWidth / 2);
                 };
-                if (property == 'right') { 
+                if (property == 'right') {
                     attributeToChange = 'left';
                     newValue = lastLeft + lastWidth - currentWidth;
                 };
-                if (property == 'top') { 
+                if (property == 'top') {
                     attributeToChange = 'top';
                     newValue = lastTop ;
                 };
-                if (property == 'middle') { 
+                if (property == 'middle') {
                     attributeToChange = 'top';
                     newValue = lastTop + (lastHeight / 2) - (currentHeight / 2);
                 };
-                if (property == 'bottom') { 
+                if (property == 'bottom') {
                     attributeToChange = 'top';
                     newValue = lastTop + lastHeight - currentHeight;
                 };
-                
-                if (property == 'sameWidth') { 
+
+                if (property == 'sameWidth') {
                     attributeToChange = 'width';
                     newValue = lastWidth;
                 };
-                if (property == 'incrementWidth') { 
+                if (property == 'incrementWidth') {
                     attributeToChange = 'width';
                     newValue = currentWidth + this.gridSize;
                 };
-                if (property == 'decrementWidth') { 
+                if (property == 'decrementWidth') {
                     if (currentWidth > this.gridSize) {
                         attributeToChange = 'width';
                         newValue = currentWidth - this.gridSize;
                     }
                 };
-                if (property == 'sameHeight') { 
+                if (property == 'sameHeight') {
                     attributeToChange = 'height';
                     newValue = lastHeight;
                 };
-                if (property == 'incrementHeight') { 
+                if (property == 'incrementHeight') {
                     attributeToChange = 'height';
                     newValue = currentHeight + this.gridSize;
                 };
-                if (property == 'decrementHeight') { 
+                if (property == 'decrementHeight') {
                     if (currentHeight > this.gridSize) {
                         attributeToChange = 'height';
                         newValue = currentHeight - this.gridSize;
@@ -1255,30 +1255,30 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 // Update widget - we only set left or top
                 if (attributeToChange == 'left') {
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             +child.nativeElement.id)[0].container.left = newValue;
                     }
                 if (attributeToChange == 'top') {
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             +child.nativeElement.id)[0].container.top = newValue;
                     }
 
                 if (attributeToChange == 'width') {
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             +child.nativeElement.id)[0].container.width = newValue;
                     }
                 if (attributeToChange == 'height') {
                     this.widgets.filter(
-                        widget => widget.properties.widgetID === 
+                        widget => widget.properties.widgetID ===
                             +child.nativeElement.id)[0].container.height = newValue;
                     }
 
                 // Change DOM
                 this.changeElementRefProperty(
-                    child, 
-                    attributeToChange, 
+                    child,
+                    attributeToChange,
                     newValue.toString()
                 );
 
@@ -1319,20 +1319,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.selectedWidgetIDs.indexOf(idWidget) >= 0) {
             // This guys was only one selected -> now nothing
             this.selectedWidgetIDs = [];
-        } else { 
+        } else {
             // Only he is selected now
             this.selectedWidgetIDs = [];
             this.selectedWidgetIDs.push(idWidget);
         }
     }
- 
+
     onWidgetKeyUp(event: MouseEvent,idWidget: number) {
-        // TODO - the idea is to move the Widgets with the keyboard.  But I dont know 
+        // TODO - the idea is to move the Widgets with the keyboard.  But I dont know
         // how to catch it on a Widget as it does not have focus ...
         // Works if click delete, and then move arrows (its above a widget then methinks)
         // KeyboardEvent {isTrusted: true, key: "ArrowRight", code: "ArrowRight", location: 0, ctrlKey: false, …}
         console.log(event)
-        
+
     }
 
     addNewTab() {
@@ -1343,8 +1343,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Bail if nothing selected
         if (this.selectedDashboardName == undefined) {
             this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn', 
-                summary:  'No Dashboard selected', 
+                severity: 'warn',
+                summary:  'No Dashboard selected',
                 detail:   'First select a Dashboard'
             });
 
@@ -1382,9 +1382,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Tell the user
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Tab added', 
-            detail:   'A new, empty Tab has been added: ' + 'Untitled - ' + 
+            severity: 'info',
+            summary:  'Tab added',
+            detail:   'A new, empty Tab has been added: ' + 'Untitled - ' +
                 this.numberUntitledDashboards.toLocaleString()
         });
     }
@@ -1397,7 +1397,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteTab', '@Start');
 
         this.deleteMode = true;
-        
+
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this Tab?',
             accept: () => {
@@ -1418,12 +1418,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.selectedDashboardTab != undefined) {
 
             // Can only delete Widgetless Tabs
-            if (this.widgets.filter( w => w.properties.dashboardTabID == 
+            if (this.widgets.filter( w => w.properties.dashboardTabID ==
                 this.selectedDashboardTab.id).length >0) {
                     this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'warn', 
-                        summary:  'Tab NOT empty', 
-                        detail:   'A Tab can only be deleted if it has no Widgets: ' + 
+                        severity: 'warn',
+                        summary:  'Tab NOT empty',
+                        detail:   'A Tab can only be deleted if it has no Widgets: ' +
                                   this.selectedDashboardTab.name
                     });
 
@@ -1434,15 +1434,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // Travers
             for (var i = 0; i < this.dashboardTabs.length; i++ ) {
                 if (this.dashboardTabs[i].dashboardTabID == this.selectedDashboardTab.id) {
-                    this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', 
+                    this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt',
                         'Deleting ' + this.selectedDashboardTab.name + ' ...');
                     this.dashboardTabs.splice(i, 1);
 
                     // Tell the user
                     this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'info', 
-                        summary:  'Tab deleted', 
-                        detail:   'The Tab has been deleted: ' + 
+                        severity: 'info',
+                        summary:  'Tab deleted',
+                        detail:   'The Tab has been deleted: ' +
                                   this.selectedDashboardTab.name
                     });
 
@@ -1461,7 +1461,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Reset Delete Mode
         this.deleteMode = false;
-        
+
     }
 
     detailTab() {
@@ -1472,11 +1472,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.displayTabDetails = true;
         } else {
             this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn', 
-                summary:  'No Tab', 
+                severity: 'warn',
+                summary:  'No Tab',
                 detail:   'Please select a Tab from the dropdown, then click to see its detail'
             });
-            
+
         }
     }
 
@@ -1497,8 +1497,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Tell the user
                     this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'info', 
-                        summary:  'Dashboard deleted', 
+                        severity: 'info',
+                        summary:  'Dashboard deleted',
                         detail:   'The Dashboard has been deleted: ' + this.selectedDashboardName.name
                     });
 
@@ -1509,7 +1509,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Reset Delete Mode
         this.deleteMode = false;
-       
+
     }
 
     onDashboardAdd() {
@@ -1565,9 +1565,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Tell the user
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Dashboard added', 
-            detail:   'A new, empty Dashboard has been added: ' + 'Untitled - ' + 
+            severity: 'info',
+            summary:  'Dashboard added',
+            detail:   'A new, empty Dashboard has been added: ' + 'Untitled - ' +
                 this.numberUntitledDashboards.toLocaleString()
         });
     }
@@ -1604,11 +1604,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         this.selectedWidget = this.widgets.filter(
             widget => widget.properties.widgetID === idWidget)[0] ;
-        
+
         if (this.containerStartX != event.x  ||  this.containerStartY != event.y) {
-            let endWith: number = this.selectedWidget.container.width + event.x - 
+            let endWith: number = this.selectedWidget.container.width + event.x -
                 this.containerStartX;
-            let endHeight: number = this.selectedWidget.container.height + event.y - 
+            let endHeight: number = this.selectedWidget.container.height + event.y -
                 this.containerStartY;
 
             // Left if bad stuff
@@ -1631,7 +1631,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // render the Widget to the new dimensions
             this.widgets.filter(
                 widget => widget.properties.widgetID === idWidget)[0].
-                container.width = realWidth;        
+                container.width = realWidth;
             this.widgets.filter(
                 widget => widget.properties.widgetID === idWidget)[0].
                 container.height = realHeight;
@@ -1726,7 +1726,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedWidget = this.widgets.filter(
                 widget => widget.properties.widgetID === this.selectedWidgetIDs[i])[0] ;
             let selectedElement = this.childrenWidgetContainers.filter(
-                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0] 
+                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0]
 
             // Loop on the ViewChildren, and act for the Selected One
             if (selectedElement != undefined) {
@@ -1738,14 +1738,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 newLeft = this.globalFunctionService.alignToGripPoint(newLeft);
                 newTop = this.globalFunctionService.alignToGripPoint(newTop);
 
-                // Move Widget Left 
+                // Move Widget Left
                 this.renderer.setElementStyle(selectedElement.nativeElement,
                     'left', newLeft.toString() + "px"
                 );
 
                 // Update the Left data
                 this.widgets.filter(
-                    widget => widget.properties.widgetID === 
+                    widget => widget.properties.widgetID ===
                         this.selectedWidgetIDs[i])[0].
                             container.left = newLeft;
 
@@ -1757,7 +1757,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                 // Update the Top data
                 this.widgets.filter(
-                    widget => widget.properties.widgetID === 
+                    widget => widget.properties.widgetID ===
                         this.selectedWidgetIDs[i])[0].
                             container.top = newTop;
             }
@@ -1767,7 +1767,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetDraggingEnabled = false;
 
     }
-    
+
     bringWidgetToFront()  {
         // Bring the selected Widgets to the front via z-index
         this.globalFunctionService.printToConsole(this.constructor.name, 'bringWidgetToFront', '@Start');
@@ -1784,7 +1784,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             // Loop on the ViewChildren, and act for the Selected One
             let selectedElement = this.childrenWidgetContainers.filter(
-                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0] 
+                child  => child.nativeElement.id ==  this.selectedWidgetIDs[i].toString())[0]
 
             if (selectedElement != undefined) {
                 this.renderer.setElementStyle(selectedElement.nativeElement,
@@ -1793,8 +1793,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                 // Update the data
                 this.widgets.filter(
-                    widget => widget.properties.widgetID === 
-                        this.selectedWidgetIDs[i])[0].properties.widgetIndex = maxZindex; 
+                    widget => widget.properties.widgetID ===
+                        this.selectedWidgetIDs[i])[0].properties.widgetIndex = maxZindex;
             }
 
             // Refresh the Dashboard
@@ -1810,7 +1810,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.selectedWidgetIDs.length == 0) {
             return
         }
-        
+
         // Loop on selected ones
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
 
@@ -1820,17 +1820,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             let widgetToCopy: Widget = JSON.parse(JSON.stringify(widgetOriginal[0]));
 
             // Minor adjustments
-            widgetToCopy.properties.widgetName = 
+            widgetToCopy.properties.widgetName =
                 widgetToCopy.properties.widgetName + ' (Copy)'
-            widgetToCopy.container.widgetTitle = 
+            widgetToCopy.container.widgetTitle =
                 widgetToCopy.container.widgetTitle + ' (Copy)'
-            widgetToCopy.container.left = 
+            widgetToCopy.container.left =
                 widgetToCopy.container.left + (this.gridSize * 2);
-            widgetToCopy.container.top = 
+            widgetToCopy.container.top =
                 widgetToCopy.container.top + (this.gridSize * 2);
 
             // TODO - this is crude & error prone: do it properly in DB
-            let lastWidgetID = 
+            let lastWidgetID =
                 this.widgets[this.widgets.length - 1].properties.widgetID;
 
             // Set the Widget ID & Add to Array
@@ -1859,7 +1859,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.selectedColor != undefined   &&  colorToChange == 'selectedColor') {
             this.sampleColorWidgetBackgroundColor = this.selectedColor.name;
         }
-       
+
     }
 
     onClickExpandArea(areaToExpand: string) {
@@ -1867,11 +1867,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickExpandArea', '@Start');
 
         // Reset all
-        this.displayExpandBackgroundArea = false; 
-        this.displayExpandBorder = false; 
-        this.displayExpandBoxShadow = false; 
-        this.displayExpandColor = false; 
-        this.displayExpandFontSize = false; 
+        this.displayExpandBackgroundArea = false;
+        this.displayExpandBorder = false;
+        this.displayExpandBoxShadow = false;
+        this.displayExpandColor = false;
+        this.displayExpandFontSize = false;
         this.displayExpandGridSize = false;
         this.displayExpandDashboardSettings = false;
 
@@ -1880,29 +1880,29 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
         if (areaToExpand == 'displayExpandBorder') {
             this.displayExpandBorder = true;
-        }        
+        }
         if (areaToExpand == 'displayExpandBoxShadow') {
             this.displayExpandBoxShadow = true;
-        }        
+        }
         if (areaToExpand == 'displayExpandColor') {
             this.displayExpandColor = true;
-        }        
+        }
         if (areaToExpand == 'displayExpandFontSize') {
             this.displayExpandFontSize = true;
-        }     
+        }
         if (areaToExpand == 'displayExpandGridSize') {
             this.displayExpandGridSize = true;
-        }     
+        }
         if (areaToExpand == 'displayExpandDashboardSettings') {
             this.displayExpandDashboardSettings = true;
-        }     
+        }
 
     }
 
     onWidgetSelectAll() {
         // Select all the widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'onWidgetSelectAll', '@Start');
-        
+
         // Kill and rebuild.  This destroys select-order, but for now I think it is okay ...
         this.selectedWidgetIDs = [];
 
@@ -1923,12 +1923,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalVariableService.sessionLoadOnOpenDashboardID.next(
             this.selectedDashboardID);
         this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
-            this.dashboards.filter(dash => 
-                dash.dashboardID == this.selectedDashboardID)[0].dashboardCode 
+            this.dashboards.filter(dash =>
+                dash.dashboardID == this.selectedDashboardID)[0].dashboardCode
         )
         this.globalVariableService.sessionLoadOnOpenDashboardName.next(
-            this.dashboards.filter(dash => 
-                dash.dashboardID == this.selectedDashboardID)[0].dashboardName 
+            this.dashboards.filter(dash =>
+                dash.dashboardID == this.selectedDashboardID)[0].dashboardName
         )
 
         // Load the Tabs for this Dashboard
@@ -1973,8 +1973,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         )[0].dashboardBackgroundColor;
         if (currentDashboardBackgroundColor != undefined) {
             this.selectedItemColor = {
-                id: currentDashboardBackgroundColor,             
-                name: currentDashboardBackgroundColor,             
+                id: currentDashboardBackgroundColor,
+                name: currentDashboardBackgroundColor,
                 code: this.canvasColors.hexCodeOfColor(
                     currentDashboardBackgroundColor
                 )
@@ -1989,7 +1989,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         )[0].dashboardBackgroundImageSrc;
         if (currentdashboardBackgroundImageSrc != undefined) {
             this.selectedItem = {
-                id: 1,             
+                id: 1,
                 name: currentdashboardBackgroundImageSrc
             }
             this.dashboardBackgroundImageSrc = this.selectedItem;
@@ -1999,30 +1999,30 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.applyDashboardSettings();
     }
 
-    onclickContainerHeaderDark(){        
+    onclickContainerHeaderDark(){
         // Toggles the container buttons dark / light.  Then update array and DB
         this.isContainerHeaderDark = !this.isContainerHeaderDark;
         this.dashboards.filter(
             dash => dash.dashboardID == this.selectedDashboardID
         )[0].isContainerHeaderDark = this.isContainerHeaderDark;
-        this.eazlService.updateDashboardContainerHeader( 
+        this.eazlService.updateDashboardContainerHeader(
             this.selectedDashboardID,
             this.isContainerHeaderDark
         );
     }
 
-    onclickShowContainerHeader(){        
+    onclickShowContainerHeader(){
         // Toggles the container header on / off.  Then update array and DB
         this.showContainerHeader = !this.showContainerHeader;
         this.dashboards.filter(
             dash => dash.dashboardID == this.selectedDashboardID
         )[0].showContainerHeader = this.showContainerHeader;
-        this.eazlService.updateDashboardshowContainerHeader( 
+        this.eazlService.updateDashboardshowContainerHeader(
             this.selectedDashboardID,
             this.showContainerHeader
         );
     }
- 
+
     loadDashboard(event) {
         // Call the loadDashboardBody method for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
@@ -2045,8 +2045,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.selectedWidgetIDs = [];
 
         // Get its Widgets
-        this.widgets = this.eazlService.getWidgetsForDashboard( 
-            this.selectedDashboardID, 
+        this.widgets = this.eazlService.getWidgetsForDashboard(
+            this.selectedDashboardID,
             this.selectedDashboardTab.name
         );
 
@@ -2065,7 +2065,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         for (var i = 0; i < this.widgets.length; i++) {
 
             let foundReport: boolean = false;
-            if (this.widgets[i].areas.showWidgetGraph  ||  
+            if (this.widgets[i].areas.showWidgetGraph  ||
                 this.widgets[i].areas.showWidgetTable)    {
                     for (var j = 0; j < this.reports.length; j++) {
                         if (this.widgets[i].properties.widgetReportID ==
@@ -2152,7 +2152,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                 // Style attributes IF it has text (else *ngIf is buggered)
                 if (this.widgets[i].areas.showWidgetText) {
-                    
+
                     // Other Attributes, like ID
                     this.renderer.setElementAttribute(
                         this.childrenWidgetText.toArray()[i].nativeElement,
@@ -2234,7 +2234,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].areas.showWidgetGraph) {
-                    
+
                     // Other Attributes, like ID
                     this.renderer.setElementAttribute(
                         this.childrenWidgets.toArray()[i].nativeElement,
@@ -2249,13 +2249,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     );
 
                     // Replace the data, if reportID != -1
-                    if (this.widgets[i].properties.widgetReportID != -1) { 
+                    if (this.widgets[i].properties.widgetReportID != -1) {
 
                         // 1. Obtain the data for the report linked to this Widget
                         let reportFields: string[] = ["Error", "reportID"];
                         let reportData: any[] = [
                             {
-                                "Error": "No data found", 
+                                "Error": "No data found",
                                 "reportID": this.widgets[i].properties.widgetReportID}
                         ];
 
@@ -2266,7 +2266,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                     reportData = this.reports[j].reportData;
                             }
                         }
-                        
+
                         // 2. Replace the data
                         this.widgets[i].graph.spec.data[0].values = reportData;
                     }
@@ -2285,7 +2285,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.childrenWidgetTable.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].areas.showWidgetTable) {
-         
+
                     // Other Attributes, like ID
                     this.renderer.setElementAttribute(
                         this.childrenWidgetTable.toArray()[i].nativeElement,
@@ -2297,7 +2297,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     let reportFields: string[] = ["Error", "reportID"];
                     let reportData: any[] = [
                         {
-                            "Error": "No data found", 
+                            "Error": "No data found",
                             "reportID": this.widgets[i].properties.widgetReportID}
                     ];
 
@@ -2311,7 +2311,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Convert data to HTML table, and insert into DOM
                     textToDOM = this.convertArrayToTable(
-                        reportFields, 
+                        reportFields,
                         reportData,
                         this.widgets[i].table.tableColor,
                         this.widgets[i].table.tableCols,
@@ -2356,7 +2356,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     );
 
                     // Styling
-                    // NOTE: img tag height, src & width are set in html.  
+                    // NOTE: img tag height, src & width are set in html.
                     // I cant get it right here ...
                     this.renderer.setElementStyle(
                         this.childrenWidgetImage.toArray()[i].nativeElement,
@@ -2376,16 +2376,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     convertArrayToTable(
-        reportFields: string[], 
+        reportFields: string[],
         reportData: any[],
-        tableColor: string = '',                     
-        tableCols: number = 0,                     
-        tableHeight: number = 0,                    
+        tableColor: string = '',
+        tableCols: number = 0,
+        tableHeight: number = 0,
         tableHideHeader: boolean = true,
-        tableLeft: number = 0,                      
-        tableRows: number = 0,                      
-        tableTop: number = 0,                      
-        tableWidth: number = 0                    
+        tableLeft: number = 0,
+        tableRows: number = 0,
+        tableTop: number = 0,
+        tableWidth: number = 0
         ): string {
         // Converts an input array to a HTML string, which is a formatted table
         this.globalFunctionService.printToConsole(this.constructor.name,'convertArrayToTable', '@Start');
@@ -2395,37 +2395,37 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Add optional properties
         if (tableColor != '') {
-            tableHTML = tableHTML + 'color: ' + tableColor + '; '; 
+            tableHTML = tableHTML + 'color: ' + tableColor + '; ';
         }
         if (tableHeight != 0) {
-            tableHTML = tableHTML + 'height: ' + tableHeight + 'px; '; 
+            tableHTML = tableHTML + 'height: ' + tableHeight + 'px; ';
             tableHTML = tableHTML + 'overflow: hidden; ';
         }
         if (tableLeft != 0) {
-            tableHTML = tableHTML + 'left: ' + tableLeft + 'px; '; 
+            tableHTML = tableHTML + 'left: ' + tableLeft + 'px; ';
         }
         if (tableTop != 0) {
-            tableHTML = tableHTML + 'top: ' + tableTop + 'px; '; 
+            tableHTML = tableHTML + 'top: ' + tableTop + 'px; ';
         }
         if (tableWidth != 0) {
-            tableHTML = tableHTML + 'width: ' + tableWidth + 'px; '; 
+            tableHTML = tableHTML + 'width: ' + tableWidth + 'px; ';
             tableHTML = tableHTML + 'overflow: hidden; ';
         }
 
         // background-color:black;"> ';
-        tableHTML = tableHTML + '"> '; 
-        tableHTML = tableHTML + "<table> " 
+        tableHTML = tableHTML + '"> ';
+        tableHTML = tableHTML + "<table> "
 
         // Headers
         if (tableHideHeader) {
             let w: number = 0;
-            tableHTML = tableHTML + "<tr> " 
+            tableHTML = tableHTML + "<tr> "
             for (var x in reportFields) {
                 if (w >= tableCols  &&  tableCols > 0) {break;}
                 w++
-                tableHTML = tableHTML + "<th> " + reportFields[x] + "</th> "  
+                tableHTML = tableHTML + "<th> " + reportFields[x] + "</th> "
             }
-            tableHTML = tableHTML + "</tr> " 
+            tableHTML = tableHTML + "</tr> "
         }
 
         // Rows
@@ -2435,7 +2435,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // Only do the nr of rows specified; 0 means all
             if (z >= tableRows  &&  tableRows > 0) {break;}
             z++;
-            tableHTML = tableHTML + "<tr> "; 
+            tableHTML = tableHTML + "<tr> ";
 
             // The reportData object returns more fields, so we need to restrict them
             // to the number of fields.  These values are given first in the for loop
@@ -2445,18 +2445,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
                     // Only do the nr of cols specified; 0 means all
                     if (y >= tableCols  &&  tableCols > 0) {break;}
-                    y++ 
+                    y++
 
-                    tableHTML = tableHTML + "<td> " 
+                    tableHTML = tableHTML + "<td> "
                     tableHTML = tableHTML + reportData[i][j]
-                    tableHTML = tableHTML + "</td> " 
+                    tableHTML = tableHTML + "</td> "
                 }
             }
-            tableHTML = tableHTML + "</tr> " 
+            tableHTML = tableHTML + "</tr> "
         }
 
         // Ending
-        tableHTML = tableHTML + "</table>  </div>" 
+        tableHTML = tableHTML + "</table>  </div>"
 
         // Return
          return tableHTML;
@@ -2500,7 +2500,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     }
                 }
             }
- 
+
             // Fill the select items if it qualifies
             if (recordPassesFilter) {
                 this.dashboardDropDown.push({
@@ -2542,4 +2542,4 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 //                 say n=15, C = 4.  Then k = 4, r = 0,1,2,3
 //                 First rows: [ (0 * 4) * 0] + 0 = 0,   [(0 * 4) * 0] + 1 = 1, etc
 //             left = L * i (adjust horisontally in equal increments )
-//             top = T * i  (all the same) 
+//             top = T * i  (all the same)

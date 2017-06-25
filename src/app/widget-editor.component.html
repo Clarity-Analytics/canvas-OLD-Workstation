@@ -10,8 +10,8 @@
         Widget Editor
     </div>
 
-    <form 
-        [formGroup]="identificationForm" 
+    <form
+        [formGroup]="identificationForm"
         >
 
         <!--Content Panel Header-->
@@ -27,24 +27,24 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="contentPanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!contentPanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="contentPanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
- 
+
         <!--Content Panel Area-->
         <div
             class="panelArea"
@@ -52,76 +52,76 @@
             >
 
             <!--showText-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Show Text:
                 </span>
-                <p-checkbox 
+                <p-checkbox
                     class="pcheckbox"
                     pTooltip="Check to show Text in the container"
-                    formControlName="showWidgetText" 
-                    [(ngModel)]="showWidgetText" 
+                    formControlName="showWidgetText"
+                    [(ngModel)]="showWidgetText"
                     binary="true"
                     >
                 </p-checkbox>
             </div>
 
             <!--showGraph-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Show Graph:
                 </span>
-                <p-checkbox 
+                <p-checkbox
                     class="pcheckbox"
                     pTooltip="Check to show Text in the container"
-                    formControlName="showWidgetGraph" 
-                    [(ngModel)]="showWidgetGraph" 
+                    formControlName="showWidgetGraph"
+                    [(ngModel)]="showWidgetGraph"
                     binary="true"
                     >
                 </p-checkbox>
             </div>
 
             <!--showTable-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Show Table:
                 </span>
-                <p-checkbox 
+                <p-checkbox
                     class="pcheckbox"
                     pTooltip="Check to show Text in the container"
-                    formControlName="showWidgetTable" 
-                    [(ngModel)]="showWidgetTable" 
+                    formControlName="showWidgetTable"
+                    [(ngModel)]="showWidgetTable"
                     binary="true"
                     >
                 </p-checkbox>
             </div>
 
             <!--showImage-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Show Image:
                 </span>
-                <p-checkbox 
+                <p-checkbox
                     class="pcheckbox"
                     pTooltip="Check to show Text in the container"
-                    formControlName="showWidgetImage" 
-                    [(ngModel)]="showWidgetImage" 
+                    formControlName="showWidgetImage"
+                    [(ngModel)]="showWidgetImage"
                     binary="true"
                     >
                 </p-checkbox>
@@ -143,22 +143,22 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="idPanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!idPanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="idPanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
 
         <!--Id Panel Area-->
@@ -168,16 +168,16 @@
             >
 
             <!--Tab Name-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     TabName :
                 </span>
-                <p-dropdown 
-                    [options]="dashboardTabsDropDown" 
+                <p-dropdown
+                    [options]="dashboardTabsDropDown"
                     [(ngModel)]="selectedDashboardTab"
                     [style]="{
                             'autofocus':'true',
@@ -189,9 +189,9 @@
                             'margin':'-2px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                            }" 
+                            }"
                     placeholder="Required"
-                    formControlName="dashboardTabName" 
+                    formControlName="dashboardTabName"
                     [pTooltip]="dashboardsTabsTooltip"
                     filter="true"
                     >
@@ -202,13 +202,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Title :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -216,9 +216,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetTitle" 
+                          "
+                    type="text"
+                    formControlName="widgetTitle"
                     placeholder="Required"
                     pTooltip="Short Title to be displayed at the top of the container"
                     />
@@ -228,12 +228,12 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Code :
                 </span>
-                <input pInputText 
+                <input pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -241,9 +241,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetCode" 
+                          "
+                    type="text"
+                    formControlName="widgetCode"
                     placeholder="Required"
                     pTooltip="Short Widget Code"
                     />
@@ -253,12 +253,12 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Name :
                 </span>
-                <input pInputText 
+                <input pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -266,9 +266,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetName" 
+                          "
+                    type="text"
+                    formControlName="widgetName"
                     placeholder="Required"
                     pTooltip="Descriptive Name of the Widget"
                     />
@@ -278,12 +278,12 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Description :
                 </span>
-                <input pInputText 
+                <input pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -291,9 +291,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetDescription" 
+                          "
+                    type="text"
+                    formControlName="widgetDescription"
                     placeholder="Required"
                     pTooltip="Detailed description of the Widget"
                     />
@@ -314,22 +314,22 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="behaviourPanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!behaviourPanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="behaviourPanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
 
         <!--Behaviour Panel Area-->
@@ -342,13 +342,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Export F-Type:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -356,9 +356,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetDefaultExportFileType" 
+                          "
+                    type="text"
+                    formControlName="widgetDefaultExportFileType"
                     placeholder="(Optional)"
                     pTooltip="Default File Type on Export"
                     />
@@ -368,13 +368,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Hyper-TabNr:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -382,9 +382,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetHyperLinkTabNr" 
+                          "
+                    type="text"
+                    formControlName="widgetHyperLinkTabNr"
                     placeholder="(Optional)"
                     pTooltip="Tab Nr to which this Widget hyperlinks"
                     />
@@ -394,13 +394,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Hyper-Widget:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -408,9 +408,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetHyperLinkWidgetID" 
+                          "
+                    type="text"
+                    formControlName="widgetHyperLinkWidgetID"
                     placeholder="(Optional)"
                     pTooltip="Widget ID to which this Widget hyperlinks"
                     />
@@ -420,13 +420,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Refresh Mode:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -434,9 +434,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetRefreshMode" 
+                          "
+                    type="text"
+                    formControlName="widgetRefreshMode"
                     placeholder="(Optional)"
                     pTooltip="Refresh Mode of Widget: Manual, OnOpen, Repeatedly"
                     />
@@ -446,13 +446,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Refresh Freq:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -460,9 +460,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetRefreshFrequency" 
+                          "
+                    type="text"
+                    formControlName="widgetRefreshFrequency"
                     placeholder="(Optional)"
                     pTooltip="Refresh Frequency (if Refresh Mode is Repeatedly)"
                     />
@@ -472,13 +472,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Password:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -486,9 +486,9 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="widgetPassword" 
+                          "
+                    type="text"
+                    formControlName="widgetPassword"
                     placeholder="(Optional)"
                     pTooltip="Password to show Widget content"
                     />
@@ -498,13 +498,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Nr Liked:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                              float: right;
                              margin-bottom: 3px;
@@ -512,10 +512,10 @@
                              margin-top: 0px;
                              padding: 0;
                              width: 200px;
-                          " 
-                    type="text" 
+                          "
+                    type="text"
                     readonly
-                    formControlName="NrwidgetLiked" 
+                    formControlName="NrwidgetLiked"
                     pTooltip="Nr of users that Liked this Widget (info)"
                     />
             </div>
@@ -536,22 +536,22 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="textPanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!textPanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="textPanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
 
         <!--Text Panel Area-->
@@ -561,16 +561,16 @@
             >
 
             <!--textText-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -578,9 +578,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="textText" 
+                          "
+                    type="text"
+                    formControlName="textText"
                     placeholder="Required"
                     pTooltip="Text to show in the container (may contain HTML and ##today##)"
                     />
@@ -590,7 +590,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Background:
@@ -607,8 +607,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="chartColor" 
+                        }"
+                    [options]="chartColor"
                     formControlName="textBackgroundColor"
                     placeholder="(Optional)"
                     filter="true"
@@ -620,7 +620,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Border:
@@ -637,8 +637,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="borderOptions" 
+                        }"
+                    [options]="borderOptions"
                     formControlName="textBorder"
                     placeholder="(Optional)"
                     filter="true"
@@ -650,7 +650,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Color:
@@ -667,8 +667,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="chartColor" 
+                        }"
+                    [options]="chartColor"
                     formControlName="textColor"
                     placeholder="(Optional)"
                     filter="true"
@@ -680,7 +680,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Font Size:
@@ -697,8 +697,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="fontSizeOptions" 
+                        }"
+                    [options]="fontSizeOptions"
                     formControlName="textFontSize"
                     placeholder="(Optional)"
                     filter="true"
@@ -710,7 +710,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Font Weight:
@@ -727,8 +727,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="fontWeightOptions" 
+                        }"
+                    [options]="fontWeightOptions"
                     formControlName="textFontWeight"
                     placeholder="(Optional)"
                     filter="true"
@@ -737,16 +737,16 @@
             </div>
 
             <!--textHeight-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Height :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -754,25 +754,25 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="textHeight" 
+                          "
+                    type="text"
+                    formControlName="textHeight"
                     placeholder="Required"
                     pTooltip="Height of text to be shown in px (16px = 1em = 1 line)"
                     />
             </div>
 
             <!--textLeft-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Left :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -780,9 +780,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="textLeft" 
+                          "
+                    type="text"
+                    formControlName="textLeft"
                     placeholder="Required"
                     pTooltip="Left of text box in px"
                     />
@@ -792,7 +792,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Margin:
@@ -809,8 +809,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="textMarginOptions" 
+                        }"
+                    [options]="textMarginOptions"
                     formControlName="textMargin"
                     placeholder="(Optional)"
                     filter="true"
@@ -822,7 +822,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Padding:
@@ -839,8 +839,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="textPaddingOptions" 
+                        }"
+                    [options]="textPaddingOptions"
                     formControlName="textPadding"
                     placeholder="(Optional)"
                     filter="true"
@@ -852,7 +852,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Position:
@@ -869,8 +869,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="textPositionOptions" 
+                        }"
+                    [options]="textPositionOptions"
                     formControlName="textPosition"
                     placeholder="(Optional)"
                     filter="true"
@@ -882,7 +882,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Align:
@@ -899,8 +899,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="textAlignOptions" 
+                        }"
+                    [options]="textAlignOptions"
                     formControlName="textTextAlign"
                     placeholder="(Optional)"
                     filter="true"
@@ -912,13 +912,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Top :
                 </span>
-                 <input 
-                    pInputText 
+                 <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -926,9 +926,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="textTop" 
+                          "
+                    type="text"
+                    formControlName="textTop"
                     placeholder="Required"
                     pTooltip="Top of text to be shown in px (16px = 1em = 1 line)"
                     />
@@ -938,13 +938,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Width :
                 </span>
-                 <input 
-                    pInputText 
+                 <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -952,9 +952,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="textWidth" 
+                          "
+                    type="text"
+                    formControlName="textWidth"
                     placeholder="Required"
                     pTooltip="Width of text to be shown in px (16px = 1em = 1 line)"
                     />
@@ -976,22 +976,22 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="dataPanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!dataPanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="dataPanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
 
         <!--Data Panel Area-->
@@ -1001,16 +1001,16 @@
             >
 
             <!--Report selection-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     ReportName :
                 </span>
-                <p-dropdown 
-                    [options]="reportsDropDown" 
+                <p-dropdown
+                    [options]="reportsDropDown"
                     [(ngModel)]="selectedReport"
                     [style]="{
                             'background-color':'538cc6',
@@ -1021,9 +1021,9 @@
                             'margin':'-4px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                             }" 
+                             }"
                     placeholder="Required"
-                    formControlName="widgetReportName" 
+                    formControlName="widgetReportName"
                     [pTooltip]="reportsDropDownTooltip"
                     filter="true"
                     (onChange)="onChangeLoadReportRelatedInfo($event)"
@@ -1032,16 +1032,16 @@
             </div>      <!--END Report selection-->
 
             <!--Report Paramters (optional)-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Rpt Params:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                                 float: right;
                                 margin-bottom: 3px;
@@ -1049,24 +1049,24 @@
                                 margin-top: 0px;
                                 padding: 0;
                                 width: 200px;
-                             " 
-                    type="text" 
-                    formControlName="widgetReportParameters" 
+                             "
+                    type="text"
+                    formControlName="widgetReportParameters"
                     placeholder="(Optional)"
                     pTooltip="Optional Report Parameters"
                     />
             </div>      <!--END Report Paramters (optional)-->
 
             <!--Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Limit Rows:
                 </span>
-                <input pInputText 
+                <input pInputText
                     style="
                                 float: right;
                                 margin-bottom: 3px;
@@ -1074,24 +1074,24 @@
                                 margin-top: 0px;
                                 padding: 0;
                                 width: 200px;
-                             " 
-                type="text" 
-                formControlName="widgetShowLimitedRows" 
+                             "
+                type="text"
+                formControlName="widgetShowLimitedRows"
                 placeholder="(Optional)"
                 pTooltip="Indicate the (limited) number of rows to show from the data"
                 />
             </div>      <!--END Indicated number of rows to extract (LIMIT = n, or TOP = n in SQL)-->
 
             <!--Indicate if extra row must be added with aggregate of the Rest -->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Rest Row:
                 </span>
-                <input pInputText 
+                <input pInputText
                     style="
                                 float: right;
                                 margin-bottom: 3px;
@@ -1099,9 +1099,9 @@
                                 margin-top: 0px;
                                 padding: 0;
                                 width: 200px;
-                             " 
-                type="text" 
-                formControlName="widgetAddRestRow" 
+                             "
+                type="text"
+                formControlName="widgetAddRestRow"
                 placeholder="(Optional)"
                 pTooltip="Check to add a Rest Row (aggregate of the rows above the Limited Rows)"
                 />
@@ -1123,22 +1123,22 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="widgetTypePanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!widgetTypePanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="widgetTypePanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
 
         <!--Graph Panel Area-->
@@ -1148,17 +1148,17 @@
             >
 
             <!--Report selection-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Widget Type :
                 </span>
-                            
-                <p-dropdown 
-                    [options]="widgetCreationDropDown" 
+
+                <p-dropdown
+                    [options]="widgetCreationDropDown"
                     [(ngModel)]="selectedWidgetCreation"
                     [style]="{
                             'background-color':'538cc6',
@@ -1169,9 +1169,9 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                             }" 
+                             }"
                     placeholder="Required"
-                    formControlName="widgetType" 
+                    formControlName="widgetType"
                     pTooltip=""
                     inputId="label"
                     dataKey="BarChart"
@@ -1188,17 +1188,17 @@
 
                     <!--WidgetSets-->
                     <div *ngSwitchCase="'WidgetSet'">
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 Widget Sets:
                             </span>
                             <p-dropdown
-                                [options]="reportWidgetSetsDropDown" 
-                                inputId="S2" 
+                                [options]="reportWidgetSetsDropDown"
+                                inputId="S2"
                                 [style]="{
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
@@ -1208,28 +1208,28 @@
                                             'margin':'-6px 5px 0 0',
                                             'padding':'0',
                                             'width':'200px'
-                                        }" 
+                                        }"
                                 [pTooltip]="reportWidgetSetDropToolTip"
                                 filter="true"
-                                formControlName="widgetReportWidgetSet" 
+                                formControlName="widgetReportWidgetSet"
                                 (onChange)="changeWidgetSet($event)"
                                 >
                             </p-dropdown>
-                        </div>  
+                        </div>
                     </div>        <!--END WidgetSets-->
 
                     <!--BarChar fields-->
                     <div *ngSwitchCase="'BarChart'" >
 
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 Height :
                             </span>
-                            <input pInputText 
+                            <input pInputText
                                 style="
                                             float: right;
                                             margin-bottom: 3px;
@@ -1237,23 +1237,23 @@
                                             margin-top: 0px;
                                             padding: 0;
                                             width: 200px;
-                                        " 
-                                type="text" 
-                                formControlName="vegaGraphHeight" 
+                                        "
+                                type="text"
+                                formControlName="vegaGraphHeight"
                                 placeholder="Required"
                                 pTooltip="Height of the graph, inside the container"
                                 />
                         </div>
 
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 Width :
                             </span>
-                            <input pInputText 
+                            <input pInputText
                                 style="
                                             float: right;
                                             margin-bottom: 3px;
@@ -1261,23 +1261,23 @@
                                             margin-top: 0px;
                                             padding: 0;
                                             width: 200px;
-                                        " 
-                                type="text" 
-                                formControlName="vegaGraphWidth" 
+                                        "
+                                type="text"
+                                formControlName="vegaGraphWidth"
                                 placeholder="Required"
                                 pTooltip="Width of the graph, inside the container"
                                 />
                         </div>
 
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 Padding :
                             </span>
-                            <input pInputText 
+                            <input pInputText
                                 style="
                                             float: right;
                                             margin-bottom: 3px;
@@ -1285,26 +1285,26 @@
                                             margin-top: 0px;
                                             padding: 0;
                                             width: 200px;
-                                        " 
-                                type="text" 
-                                formControlName="vegaGraphPadding" 
+                                        "
+                                type="text"
+                                formControlName="vegaGraphPadding"
                                 placeholder="Required"
                                 pTooltip="Padding of the graph, inside the container"
                                 />
                         </div>
 
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 X Axis :
                             </span>
-                            <p-dropdown 
-                                [options]="reportFieldsDropDown" 
+                            <p-dropdown
+                                [options]="reportFieldsDropDown"
                                 [(ngModel)]="selectedVegaXcolumn"
-                                inputId="S2" 
+                                inputId="S2"
                                 [style]="{
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
@@ -1314,27 +1314,27 @@
                                             'margin':'-2px 5px 0 0',
                                             'padding':'0',
                                             'width':'200px'
-                                        }" 
+                                        }"
                                 [pTooltip]="reportWidgetSetDropToolTip"
                                 filter="true"
-                                formControlName="vegaXcolumn" 
+                                formControlName="vegaXcolumn"
                                 placeholder="Required"
                                 >
                             </p-dropdown>
-                        </div>  
+                        </div>
 
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 Y Axis :
                             </span>
-                            <p-dropdown 
-                                [options]="reportFieldsDropDown" 
+                            <p-dropdown
+                                [options]="reportFieldsDropDown"
                                 [(ngModel)]="selectedVegaYcolumn"
-                                inputId="S2" 
+                                inputId="S2"
                                 [style]="{
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
@@ -1344,27 +1344,27 @@
                                             'margin':'-2px 5px 0 0',
                                             'padding':'0',
                                             'width':'200px'
-                                        }" 
+                                        }"
                                 [pTooltip]="reportWidgetSetDropToolTip"
                                 filter="true"
                                 placeholder="Required"
-                                formControlName="vegaYcolumn" 
+                                formControlName="vegaYcolumn"
                                 >
                             </p-dropdown>
-                        </div>  
+                        </div>
 
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 Fill Color:
                             </span>
-                            <p-dropdown 
-                                [options]="chartColor" 
+                            <p-dropdown
+                                [options]="chartColor"
                                 [(ngModel)]="selectedVegaFillColor"
-                                inputId="S2" 
+                                inputId="S2"
                                 [style]="{
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
@@ -1374,27 +1374,27 @@
                                             'margin':'-2px 5px 0 0',
                                             'padding':'0',
                                             'width':'200px'
-                                        }" 
+                                        }"
                                 [pTooltip]=""
                                 filter="true"
-                                formControlName="vegaFillColor" 
+                                formControlName="vegaFillColor"
                                 placeholder="(Optional)"
                                 >
                             </p-dropdown>
-                        </div>  
+                        </div>
 
-                        <div 
+                        <div
                             class="panelLine"
                             >
-                            <span 
+                            <span
                                 class="panelLineLabel"
                                 >
                                 Hover Color:
                             </span>
-                            <p-dropdown 
-                                [options]="chartColor" 
+                            <p-dropdown
+                                [options]="chartColor"
                                 [(ngModel)]="selectedVegaHoverColor"
-                                inputId="S2" 
+                                inputId="S2"
                                 [style]="{
                                             'background-color':'538cc6',
                                             'border':'1px solid lightgray',
@@ -1404,14 +1404,14 @@
                                             'margin':'-2px 5px 0 0',
                                             'padding':'0',
                                             'width':'200px'
-                                        }" 
+                                        }"
                                 [pTooltip]="reportWidgetSetDropToolTip"
                                 filter="true"
-                                formControlName="vegaHoverColor" 
+                                formControlName="vegaHoverColor"
                                 placeholder="(Optional)"
                                 >
                             </p-dropdown>
-                        </div>  
+                        </div>
 
                     </div>       <!--END BarChar fields-->
 
@@ -1436,7 +1436,7 @@
                     </div>      <!--END Default-->
 
                 </div>      <!--END ngSwitch-->
-            </div>     
+            </div>
 
 
             <!--Vega Panel Header-->
@@ -1452,22 +1452,22 @@
                     pButton
                     type="button"
                     icon="fa-caret-up"
-                    tooltipPosition="right" 
+                    tooltipPosition="right"
                     tooltipEvent="hover"
                     (click)="vegaPanelIsOpen=false"
                     >
-                </button>         
+                </button>
                 <button
                     class="panelCaretButton"
                     *ngIf="!vegaPanelIsOpen"
                     pButton
                     type="button"
                     icon="fa-caret-down"
-                    tooltipPosition="right" 
+                    tooltipPosition="right"
                     tooltipEvent="hover"
                     (click)="vegaPanelIsOpen=true"
                     >
-                </button>  
+                </button>
             </div>
 
             <!--Vega Panel Area-->
@@ -1490,7 +1490,7 @@
                 <div
                     class="panelLine"
                     >
-                    <span 
+                    <span
                         class="panelLineLabel"
                         >
                         Custom Vega spec:
@@ -1499,16 +1499,16 @@
                     <p>Copy and paste using keyboard (Ctrl-C and Ctrl-V).  Note that the
                         specification must be validated before it can be used, by clicking
                         the button below.   Also, the spec can only be editted for Custom
-                        specs.  No parameters can be added, and the data from the Report 
-                        will be inserted into the spec.  The spec area can be resized 
+                        specs.  No parameters can be added, and the data from the Report
+                        will be inserted into the spec.  The spec area can be resized
                         with the draghandle (right bottom).
                     </p>
-                    <textarea 
-                        pInputTextarea 
+                    <textarea
+                        pInputTextarea
                         class="widgetGraph"
                         formControlName="vegaSpec"
                         >
-                    </textarea> 
+                    </textarea>
                     <button
                         class="panelButtonWithLabel"
                         pButton
@@ -1516,21 +1516,21 @@
                         label="Validate"
                         icon="fa-question-circle"
                         pTooltip="Click to validate the Vega Spec"
-                        tooltipPosition="right" 
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="testVegaSpec()"
                         [disabled]="isNotCustomSpec"
                         >
-                    </button> 
+                    </button>
                 </div>
 
                 <div #widget class="widgetGraph">
-                </div> 
+                </div>
 
 
             </div>
 
-        </div>      
+        </div>
 
 
         <!--Table Panel Header-->
@@ -1547,22 +1547,22 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="tablePanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!tablePanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="tablePanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
 
         <!--Table Panel Area-->
@@ -1572,16 +1572,16 @@
             >
 
             <!--textText-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     HideHeader :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1589,9 +1589,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="tableHideHeader" 
+                          "
+                    type="text"
+                    formControlName="tableHideHeader"
                     placeholder="Required"
                     pTooltip="True to include table headers (else false)"
                     />
@@ -1601,7 +1601,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Text Color:
@@ -1618,8 +1618,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="chartColor" 
+                        }"
+                    [options]="chartColor"
                     formControlName="tableColor"
                     placeholder="(Optional)"
                     filter="true"
@@ -1628,16 +1628,16 @@
             </div>
 
             <!--tableCols-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Nr Cols :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1645,25 +1645,25 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="tableCols" 
+                          "
+                    type="text"
+                    formControlName="tableCols"
                     placeholder="Required"
                     pTooltip="Number of columns to show in the table"
                     />
             </div>
 
             <!--tableRows-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Nr Rows :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1671,25 +1671,25 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="tableRows" 
+                          "
+                    type="text"
+                    formControlName="tableRows"
                     placeholder="Required"
                     pTooltip="Number of rows to show in the table"
                     />
             </div>
 
             <!--tableHeight-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Height :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1697,25 +1697,25 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="tableHeight" 
+                          "
+                    type="text"
+                    formControlName="tableHeight"
                     placeholder="Required"
                     pTooltip="Height of the full table in px (0 means no fixed height)"
                     />
             </div>
 
             <!--tableWidth-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Width :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1723,25 +1723,25 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="tableWidth" 
+                          "
+                    type="text"
+                    formControlName="tableWidth"
                     placeholder="Required"
                     pTooltip="Width of the full table in px (0 means no fixed wdith)"
                     />
             </div>
 
             <!--tableLeft-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Left :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1749,25 +1749,25 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="tableLeft" 
+                          "
+                    type="text"
+                    formControlName="tableLeft"
                     placeholder="Required"
                     pTooltip="Left of the table in px (0 means ignore)"
                     />
             </div>
 
             <!--tableTop-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Top :
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1775,9 +1775,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="tableTop" 
+                          "
+                    type="text"
+                    formControlName="tableTop"
                     placeholder="Required"
                     pTooltip="Top of the table in px (0 means ignore)"
                     />
@@ -1799,22 +1799,22 @@
                 pButton
                 type="button"
                 icon="fa-caret-up"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="imagePanelIsOpen=false"
                 >
-            </button>         
+            </button>
             <button
                 class="panelCaretButton"
                 *ngIf="!imagePanelIsOpen"
                 pButton
                 type="button"
                 icon="fa-caret-down"
-                tooltipPosition="right" 
+                tooltipPosition="right"
                 tooltipEvent="hover"
                 (click)="imagePanelIsOpen=true"
                 >
-            </button>  
+            </button>
         </div>
 
         <!--Image Panel Area-->
@@ -1824,16 +1824,16 @@
             >
 
             <!--imageAlt-->
-            <div 
+            <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Alt:
                 </span>
-                <input 
-                    pInputText 
+                <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1841,9 +1841,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="imageAlt" 
+                          "
+                    type="text"
+                    formControlName="imageAlt"
                     placeholder="(Optional)"
                     pTooltip="Alt text to show if Image is not available"
                     />
@@ -1853,13 +1853,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Height :
                 </span>
-                 <input 
-                    pInputText 
+                 <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1867,9 +1867,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="imageHeigt" 
+                          "
+                    type="text"
+                    formControlName="imageHeigt"
                     placeholder="Required"
                     pTooltip="Height of Image in px (16px = 1em = 1 line)"
                     />
@@ -1879,13 +1879,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Left :
                 </span>
-                 <input 
-                    pInputText 
+                 <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1893,9 +1893,9 @@
                             margin-top: 0;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="imageLeft" 
+                          "
+                    type="text"
+                    formControlName="imageLeft"
                     placeholder="Required"
                     pTooltip="Left of Image in px (16px = 1em = 1 line)"
                     />
@@ -1905,7 +1905,7 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Source :
@@ -1922,8 +1922,8 @@
                             'margin':'-12px 5px 0 0',
                             'padding':'0',
                             'width':'200px'
-                        }" 
-                    [options]="imageSourceOptions" 
+                        }"
+                    [options]="imageSourceOptions"
                     formControlName="imageSource"
                     placeholder="Required"
                     filter="true"
@@ -1935,13 +1935,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Top :
                 </span>
-                 <input 
-                    pInputText 
+                 <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1949,9 +1949,9 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="imageTop" 
+                          "
+                    type="text"
+                    formControlName="imageTop"
                     placeholder="Required"
                     pTooltip="Top of Image to be shown in px (16px = 1em = 1 line)"
                     />
@@ -1961,13 +1961,13 @@
             <div
                 class="panelLine"
                 >
-                <span 
+                <span
                     class="panelLineLabel"
                     >
                     Width :
                 </span>
-                 <input 
-                    pInputText 
+                 <input
+                    pInputText
                     style="
                             float: right;
                             margin-bottom: 3px;
@@ -1975,14 +1975,14 @@
                             margin-top: 0px;
                             padding: 0;
                             width: 200px;
-                          " 
-                    type="text" 
-                    formControlName="imageWidth" 
+                          "
+                    type="text"
+                    formControlName="imageWidth"
                     placeholder="Required"
                     pTooltip="Width of Image to be shown in px (16px = 1em = 1 line)"
                     />
             </div>
-            
+
         </div>
 
     </form>     <!--END Form in this Panel-->
@@ -1991,21 +1991,21 @@
     <!--Buttun Area contains Cancel / Submit-->
     <div
         class="panelButtonArea"
-        > 
-        <button 
+        >
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickCancel()"
             >
         </button>
-        <button 
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="submit" 
-            label="Submit" 
+            pButton
+            type="submit"
+            label="Submit"
             icon="fa-refresh"
             (click)="onClickSubmit()"
             >
@@ -2013,9 +2013,9 @@
     </div>
 
     <!--Errors-->
-    <p 
-        class="iserror" 
-        *ngIf="formIsValid"> 
+    <p
+        class="iserror"
+        *ngIf="formIsValid">
         {{ errorMessageOnForm }}
     </p>
 
