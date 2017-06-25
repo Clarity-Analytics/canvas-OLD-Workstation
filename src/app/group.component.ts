@@ -122,6 +122,7 @@ export class GroupComponent implements OnInit {
 
     groupMenuDelete(group: Group) {
         // Delete the selected group, but first confirm
+        // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuDelete', '@Start');
 
         this.confirmationService.confirm({
@@ -143,7 +144,7 @@ export class GroupComponent implements OnInit {
     }
 
     onClickGroupTable() {
-        // group clicked on a row
+        // User clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupTable', '@Start');
 
         // Update the group group membership if it is open

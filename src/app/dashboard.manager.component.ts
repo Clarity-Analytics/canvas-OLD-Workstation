@@ -180,6 +180,7 @@ export class DashboardManagerComponent implements OnInit {
 
     dashboardMenuDelete(dashboard: Dashboard) {
         // Delete the selected Dashboard, but first confirm
+        // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuDelete', '@Start');
 
         this.deleteMode = true;
@@ -212,7 +213,7 @@ export class DashboardManagerComponent implements OnInit {
     }
 
     onClickDashboardTable() {
-        // Dashboard clicked on a row
+        // User clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardTable', '@Start');
 
         // Update the Dashboard group membership if it is open

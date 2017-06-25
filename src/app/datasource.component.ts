@@ -204,7 +204,7 @@ export class DataSourceComponent implements OnInit {
 
     datasourceMenuUserMembership(selectedDatasource: DataSource) {
         // Manage group membership for the selected user
-        // - User: currently selected row
+        // - selectedDatasource: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserMembership', '@Start');
 
         // Get the current and available users

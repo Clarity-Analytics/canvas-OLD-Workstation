@@ -143,7 +143,7 @@ export class ReportComponent implements OnInit {
     reportMenuCreateWidget(selectedReport: Report) {
         // Show popup to create a widget, with basic info
         // - selectedReport: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuReportHistory', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuCreateWidget', '@Start');
 console.log('hier'    )    
     }
 }

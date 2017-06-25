@@ -151,7 +151,7 @@ export class UserComponent implements OnInit {
 
     userMenuAdd(user: User) {
         // Popup form to add a new user
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAdd', '@Start');
         this.addEditMode = 'Add';
         this.displayUserPopup = true;
@@ -159,7 +159,7 @@ export class UserComponent implements OnInit {
     
     userMenuEdit(user: User) {
         // Edit selected user on a popup form
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuEdit', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
@@ -174,6 +174,7 @@ export class UserComponent implements OnInit {
 
     userMenuDelete(user: User) {
         // Delete the selected user, but first confirm
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuDelete', '@Start');
 
         this.deleteMode = true;
@@ -221,7 +222,7 @@ export class UserComponent implements OnInit {
 
     userMenuGroupMembership(user: User) {
         // Manage group membership for the selected user
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
         // Get the current and available groups
@@ -284,7 +285,7 @@ export class UserComponent implements OnInit {
 
     userMenuAccessToDatasources(user: User) {
         // Access to Data Sources for the selected user
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccessToDatasources', '@Start');
 
         // Get the current and available users
@@ -339,7 +340,7 @@ export class UserComponent implements OnInit {
 
     userMenuShowDatasources(user: User) {
         // Show all the Datasources that the user has access to, and via username or groups
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
 
         this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.username); 
@@ -350,7 +351,7 @@ export class UserComponent implements OnInit {
 
     userMenuRelatedDashboards(user: User) {
         // Manage related Data Sources (owned, given rights and received rights)
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
 
         this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user.username);
@@ -361,7 +362,7 @@ export class UserComponent implements OnInit {
 
     userMenuMessageHistory(user: User) {
         // Show history of messages for the selected user
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
 
         // TODO -decide whether to show all, sent by me, received by me, unread, top 10, etc
@@ -373,7 +374,7 @@ export class UserComponent implements OnInit {
 
     userMenuReportHistory(user: User) {
         // Show history of reports ran for the selected user
-        // - User: currently selected row
+        // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuReportHistory', '@Start');
 
         this.reportHistory = this.eazlService.getReportHistory(user.username)
