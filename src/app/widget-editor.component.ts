@@ -1012,7 +1012,7 @@ export class WidgetEditorComponent implements OnInit {
 
             // Add creation info
             this.widgetToEdit.properties.widgetCreatedDateTime = 
-                this.canvasDate.now();
+                this.canvasDate.now('standard');
             this.widgetToEdit.properties.widgetCreatedUserName = 
                 this.canvasUser.username;
                 
@@ -1435,6 +1435,8 @@ console.log('@end', this.widgetToEdit)
             });
         }
     }
+
+
 
     testVegaSpec() {
         // Test the Vega spec, and returns Good / Bad

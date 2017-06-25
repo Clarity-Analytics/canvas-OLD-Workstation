@@ -8,12 +8,15 @@ import { OnInit }                     from '@angular/core';
 import { Response }                   from '@angular/http';
 import { RequestOptions }             from '@angular/http';
 
+//  PrimeNG stuffies
+import { SelectItem }                 from 'primeng/primeng';
+
 // Our Services
 import { CanvasDate }                 from './date.services';
 import { CDAL }                       from './cdal.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
- 
+
 // Our models
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
@@ -80,7 +83,7 @@ export interface Token {
 var req = new XMLHttpRequest();
 
 // TODO - use RESTi
-export const SYSTEMCONFIGURATION: SystemConfiguration = 
+export const SYSTEMCONFIGURATION: SystemConfiguration =
 {
     systemConfigurationID: 0,
     backendUrl: 'localhost:8000',
@@ -150,7 +153,7 @@ export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     }
 ]
 
-export const REPORTHISTORY: ReportHistory[] = 
+export const REPORTHISTORY: ReportHistory[] =
 [
     {
         reportHistoryID: 0,
@@ -209,7 +212,7 @@ export const REPORTHISTORY: ReportHistory[] =
     },
 ]
 
-export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] = 
+export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
 [
     {
         reportUserRelationshipID: 0,
@@ -235,9 +238,9 @@ export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
     }
 ]
 
-export const DATASOURCES: DataSource[] = 
+export const DATASOURCES: DataSource[] =
     [
-        { 
+        {
             datasourceID: 0,
             datasourceName: 'Overlay Packages',
             datasourceDescription: 'Complete list of packages on Overlay',
@@ -263,7 +266,7 @@ export const DATASOURCES: DataSource[] =
             packageName: '',
             packageRepository: '',
             packageCompiled: false,
-            datasourceParameters: 
+            datasourceParameters:
             [
                 {
                     name: '',
@@ -295,7 +298,7 @@ export const DATASOURCES: DataSource[] =
             datasourceUpdatedDateTime: '',
             datasourceUpdatedUserName: ''
         },
-        { 
+        {
             datasourceID: 1,
             datasourceName: 'Overlay Reports',
             datasourceDescription: 'Complete list of reports on Overlay',
@@ -321,7 +324,7 @@ export const DATASOURCES: DataSource[] =
             packageName: '',
             packageRepository: '',
             packageCompiled: false,
-            datasourceParameters: 
+            datasourceParameters:
             [
                 {
                     name: '',
@@ -355,7 +358,7 @@ export const DATASOURCES: DataSource[] =
         }
     ]
 
-export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] = 
+export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
 [
     {
         dashboardGroupRelationshipID: 0,
@@ -370,7 +373,7 @@ export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
     }
 ]
 
-export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  = 
+export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
 [
     {
         dashboardUserRelationshipID: 0,
@@ -612,7 +615,7 @@ export const DASHBOARDS: Dashboard[] =
         }
     ];
 
-export const DASHBOARDGROUPS: DashboardGroup[] = 
+export const DASHBOARDGROUPS: DashboardGroup[] =
     [
         {
             dashboardGroupID: 0,
@@ -620,8 +623,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for Admin users',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         },
         {
             dashboardGroupID: 1,
@@ -629,8 +632,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for Marketing Team',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         },
         {
             dashboardGroupID: 2,
@@ -638,8 +641,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for BI Team',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         },
         {
             dashboardGroupID: 3,
@@ -647,8 +650,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for Human Resources Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         },
         {
             dashboardGroupID: 4,
@@ -656,8 +659,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for Finance Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         },
         {
             dashboardGroupID: 5,
@@ -665,8 +668,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for Sales Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         },
         {
             dashboardGroupID: 6,
@@ -674,8 +677,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for Research and Development Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         },
         {
             dashboardGroupID: 7,
@@ -683,8 +686,8 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupDescription: 'Dashboards for Information Technology Department',
             dashboardGroupCreatedDateTime: '2017/05/01',
             dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01', 
-            dashboardGroupUpdatedUserName: 'JamesK' 
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
         }
     ]
 
@@ -693,35 +696,35 @@ export const DASHBOARDGROUPMEMBERSHIP: DashboardGroupMembership[] =
         {
             dashboardGroupID: 0,
             dashboardID: 0,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
             dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
             dashboardGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
         {
             dashboardGroupID: 4,
             dashboardID: 0,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
             dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
             dashboardGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
         {
             dashboardGroupID: 1,
             dashboardID: 1,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
             dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
             dashboardGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
         {
             dashboardGroupID: 5,
             dashboardID: 1,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
             dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01', 
+            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
             dashboardGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
     ]
 
 export const DASHBOARDTABS: DashboardTab[] =
@@ -734,7 +737,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabCreatedDateTime: '2017/05/01',
             dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
         {
             dashboardID: 0,
@@ -744,8 +747,8 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabCreatedDateTime: '2017/05/01',
             dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'   
-        },        
+            dashboardTabUpdatedUserName: 'Leonard Cohen'
+        },
         {
             dashboardID: 1,
             dashboardTabID: 2,
@@ -754,7 +757,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabCreatedDateTime: '2017/05/01',
             dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
         {
             dashboardID: 1,
@@ -764,7 +767,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabCreatedDateTime: '2017/05/01',
             dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
         {
             dashboardID: 3,
@@ -774,7 +777,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabCreatedDateTime: '2017/05/01',
             dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
         {
             dashboardID: 4,
@@ -784,7 +787,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabCreatedDateTime: '2017/05/01',
             dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
         {
             dashboardID: 5,
@@ -794,7 +797,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabCreatedDateTime: '2017/05/01',
             dashboardTabCreatedUserName: 'John Doe',
             dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'   
+            dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
     ];
 
@@ -3380,7 +3383,7 @@ export const WIDGETTEMPLATES: WidgetTemplate[] =
         }
     ]
 
-export const GROUPS: Group[] = 
+export const GROUPS: Group[] =
     [
         {
             groupID: 0,
@@ -3388,8 +3391,8 @@ export const GROUPS: Group[] =
             groupDescription: 'Admin group has full rights to the whole system',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         },
         {
             groupID: 1,
@@ -3397,8 +3400,8 @@ export const GROUPS: Group[] =
             groupDescription: 'Guest group has no rights',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         },
         {
             groupID: 2,
@@ -3406,8 +3409,8 @@ export const GROUPS: Group[] =
             groupDescription: 'BI Team',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         },
         {
             groupID: 3,
@@ -3415,8 +3418,8 @@ export const GROUPS: Group[] =
             groupDescription: 'Human Resources Department',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         },
         {
             groupID: 4,
@@ -3424,8 +3427,8 @@ export const GROUPS: Group[] =
             groupDescription: 'Finance Department',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         },
         {
             groupID: 5,
@@ -3433,8 +3436,8 @@ export const GROUPS: Group[] =
             groupDescription: 'Sales Department',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         },
         {
             groupID: 6,
@@ -3442,8 +3445,8 @@ export const GROUPS: Group[] =
             groupDescription: 'Research and Development Department',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         },
         {
             groupID: 7,
@@ -3451,8 +3454,8 @@ export const GROUPS: Group[] =
             groupDescription: 'Information Technology Department',
             groupCreatedDateTime: '2017/05/01',
             groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01', 
-            groupUpdatedUserName: 'JamesK' 
+            groupUpdatedDateTime: '2017/05/01',
+            groupUpdatedUserName: 'JamesK'
         }
     ]
 
@@ -3465,7 +3468,7 @@ export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
             groupDatasourceAccessCreatedDateTime: '2017/05/01',
             groupDatasourceAccessCreatedUserName: 'PatricOS',
             groupDatasourceAccessUpdatedDateTime: '2017/05/01',
-            groupDatasourceAccessUpdatedUserName: 'PatricOS' 
+            groupDatasourceAccessUpdatedUserName: 'PatricOS'
         }
     ]
 
@@ -3474,35 +3477,35 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
         {
             groupID: 0,
             userName: 'janniei',
-            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedDateTime: '2017/05/01',
             userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedDateTime: '2017/05/01',
             userGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
         {
             groupID: 4,
             userName: 'janniei',
-            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedDateTime: '2017/05/01',
             userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedDateTime: '2017/05/01',
             userGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
         {
             groupID: 1,
             userName: 'bradleyk',
-            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedDateTime: '2017/05/01',
             userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedDateTime: '2017/05/01',
             userGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
         {
             groupID: 5,
             userName: 'bradleyk',
-            userGroupMembershipCreatedDateTime: '2017/05/01', 
+            userGroupMembershipCreatedDateTime: '2017/05/01',
             userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01', 
+            userGroupMembershipUpdatedDateTime: '2017/05/01',
             userGroupMembershipUpdatedUserName: 'JamesK'
-        },        
+        },
     ]
 
 export const REPORTWIDGETSET: ReportWidgetSet[] =
@@ -3820,7 +3823,7 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
         }
     ]
 
-export const CANVASMESSAGES: CanvasMessage[] = 
+export const CANVASMESSAGES: CanvasMessage[] =
     [
         {
             canvasMessageConversationID: 0,
@@ -3927,13 +3930,13 @@ export class EazlService implements OnInit {
     route: string = 'users';                                // Route to RESTi - users/authen...
 
     // Local Arrays to keep data for the rest of the Application
-    canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages 
+    canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group 
+    dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
@@ -4013,7 +4016,7 @@ export class EazlService implements OnInit {
         if (systemConfiguration.maxRowsPerWidgetGraph != this.systemConfiguration.maxRowsPerWidgetGraph) {
             this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
         }
-        
+
         this.systemConfiguration = systemConfiguration;
     }
 
@@ -4056,7 +4059,7 @@ export class EazlService implements OnInit {
         if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
             this.globalVariableService.snapToGrid.next(personalisation.snapToGrid);
         }
-        
+
         this.personalisation = personalisation;
     }
 
@@ -4126,7 +4129,7 @@ export class EazlService implements OnInit {
                             is_active: eazlUser.is_active,
                             date_joined: eazlUser.date_joined,
                             last_login: eazlUser.last_login,
-                            profile: 
+                            profile:
                                 {
                                     nick_name:  nick_name,
                                     cell_number: cell_number,
@@ -4176,7 +4179,7 @@ export class EazlService implements OnInit {
         // Change the password for a user
         // Return '' if good, else return error message
         this.globalFunctionService.printToConsole(this.constructor.name,'changePassword', '@Start');
-        
+
         // TODO - this must be done in DB
         return '';
     }
@@ -4219,7 +4222,7 @@ export class EazlService implements OnInit {
             .map(this.parseResponse)
             .catch(this.handleError);
     }
- 
+
     post<T>(route: string, data: Object): Observable<any> {
         // Post to http
         this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
@@ -4245,7 +4248,7 @@ export class EazlService implements OnInit {
             is_staff: user.isStaff, //ro
             is_active: true,
             last_login: null,
-            profile: 
+            profile:
                 {
                     nick_name: user.nickName,
                     cell_number: user.cellNumber,
@@ -4256,7 +4259,7 @@ export class EazlService implements OnInit {
 
         return this.post<EazlUser>('users',workingUser)
                 .toPromise()
-                .then( eazlUser => {    
+                .then( eazlUser => {
                     // Update local store
                     this.users.push(user);
 
@@ -4325,8 +4328,8 @@ export class EazlService implements OnInit {
     }
 
     getDashboards(
-        dashboardID: number = -1, 
-        relatedUsername: string = '*', 
+        dashboardID: number = -1,
+        relatedUsername: string = '*',
         relationshipType: string = '') {
         // Return a list of Dashboards, with optional filters
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
@@ -4354,7 +4357,7 @@ export class EazlService implements OnInit {
                         relationshipType) {
                         dashboardIDs.push(this.dashboardUserRelationship[i].dashboardID)
                 }
-            } 
+            }
             dashboardsWorking = dashboardsWorking.filter( dw =>
                 (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
@@ -4364,7 +4367,7 @@ export class EazlService implements OnInit {
 
         // Add NrGroups calculated field
         dashboardsWorking.forEach( dw => {
-            dw.dashboardNrGroups = 0;          
+            dw.dashboardNrGroups = 0;
             dw.dashboardNrGroups = this.dashboardGroupMembership.filter( dg => {
                 if (dg.dashboardID == dw.dashboardID) {
                     return dg;
@@ -4374,13 +4377,13 @@ export class EazlService implements OnInit {
 
         // Add dashboardIsLiked calculated field
         dashboardsWorking.forEach( dw => {
-            dw.dashboardIsLiked = false;   
-            if (this.dashboardUserRelationship.filter(dur =>  
+            dw.dashboardIsLiked = false;
+            if (this.dashboardUserRelationship.filter(dur =>
                 (
-                    dur.dashboardID == dw.dashboardID  
-                    && 
+                    dur.dashboardID == dw.dashboardID
+                    &&
                     dur.userName == currentUser
-                    && 
+                    &&
                     dur.dashboardUserRelationshipType == 'Likes'
                 )
             ).length > 0) {
@@ -4390,26 +4393,26 @@ export class EazlService implements OnInit {
 
         // Add TOTAL dashboardNrUsersSharedWith calculated field
         dashboardsWorking.forEach( dw => {
-            dw.dashboardNrUsersSharedWith = 0;   
-            dw.dashboardNrUsersSharedWith = this.dashboardUserRelationship.filter(dur =>  
+            dw.dashboardNrUsersSharedWith = 0;
+            dw.dashboardNrUsersSharedWith = this.dashboardUserRelationship.filter(dur =>
                 (
-                    dur.dashboardID == dw.dashboardID  
-                    && 
+                    dur.dashboardID == dw.dashboardID
+                    &&
                     dur.dashboardUserRelationshipType == 'SharedWith'
                 )
-            ).length 
+            ).length
         });
 
         // Add TOTAL dashboardNrGroupsSharedWith calculated field
         dashboardsWorking.forEach( dw => {
-            dw.dashboardNrGroupsSharedWith = 0;   
-            dw.dashboardNrGroupsSharedWith = this.dashboardGroupRelationship.filter(dgr =>  
+            dw.dashboardNrGroupsSharedWith = 0;
+            dw.dashboardNrGroupsSharedWith = this.dashboardGroupRelationship.filter(dgr =>
                 (
-                    dgr.dashboardID == dw.dashboardID  
-                    && 
+                    dgr.dashboardID == dw.dashboardID
+                    &&
                     dgr.dashboardGroupRelationshipType == 'SharedWith'
                 )
-            ).length; 
+            ).length;
         });
 
         // Return the filtered result
@@ -4430,13 +4433,41 @@ export class EazlService implements OnInit {
         if (selectedDashboardTabID != undefined) {
             workingDashboardTabs = workingDashboardTabs.filter(
                 tab => tab.dashboardTabID == selectedDashboardTabID
-            );     
+            );
         }
         return workingDashboardTabs;
     }
 
-    updateDashboardTab(dashboardID: number, 
-        dashboardTabID: number, 
+
+    getDashboardTabsSelectItem(selectedDashboardID: number): SelectItem[] {
+        // Return a list of Dashboard Tabs for a given DashboardID as SelectionItem Array
+        // - selectedDashboardID = filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabsSelectItem', '@Start');
+
+        let workingDashboardTabs: DashboardTab[] = [];
+        let dashboardTabsDropDownWorking: SelectItem[] = [];
+
+        workingDashboardTabs = this.dashboardTabs.filter(
+            tab => tab.dashboardID == selectedDashboardID
+        );
+
+        // Fill the dropdown on the form
+        for (var i = 0; i < workingDashboardTabs.length; i++) {
+            dashboardTabsDropDownWorking.push({
+                label: workingDashboardTabs[i].dashboardTabName,
+                value: {
+                    id: workingDashboardTabs[i].dashboardTabID,
+                    name: workingDashboardTabs[i].dashboardTabName
+                }
+            });
+        }
+        return dashboardTabsDropDownWorking;
+    }
+
+
+
+    updateDashboardTab(dashboardID: number,
+        dashboardTabID: number,
         dashboardTabDescription: string
         ): boolean {
         // Update the details (like description) for a Dashboard Tab)
@@ -4461,13 +4492,13 @@ export class EazlService implements OnInit {
 
         // Calc WIDGET certain fields, as it is easy to use in *ngIf or *ngFor
         // TODO - this is impure - do better
-        let username: string = ''; 
+        let username: string = '';
         if (this.globalVariableService.canvasUser.getValue() != null) {
             username = this.globalVariableService.canvasUser.getValue().username;
         }
 
         for (var i = 0, len = this.widgets.length; i < len; i++) {
- 
+
             // Set properties.widgetIsLiked if there are users who liked it
             for (var j = 0, len = this.widgets[i].properties.widgetLiked.length; j < len; j++) {
 
@@ -4644,8 +4675,8 @@ export class EazlService implements OnInit {
     }
 
     getReports(
-        dashboardID: number = -1, 
-        username: string = '*', 
+        dashboardID: number = -1,
+        username: string = '*',
         relationship: string = '*',
         dataSourceID: number = -1
         ): Report[] {
@@ -4667,8 +4698,8 @@ export class EazlService implements OnInit {
                         widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
                     }
             }
-            
-            reportsWorking = reportsWorking.filter(rpt => 
+
+            reportsWorking = reportsWorking.filter(rpt =>
              (widgetReportIDs.indexOf(rpt.reportID) >= 0) )
         }
 
@@ -4677,20 +4708,20 @@ export class EazlService implements OnInit {
             // Get the ReportIDs from all the Widgets for the requested Dashboard
             let userRelatedRptIDs: number[] = [];
             for (var i = 0; i < this.reportUserRelationship.length; i++) {
-                if (this.reportUserRelationship[i].userName == username 
-                    && (relationship == '*'  || 
-                        this.reportUserRelationship[i].reportUserRelationshipType == 
+                if (this.reportUserRelationship[i].userName == username
+                    && (relationship == '*'  ||
+                        this.reportUserRelationship[i].reportUserRelationshipType ==
                             relationship)) {
                         userRelatedRptIDs.push(this.reportUserRelationship[i].reportID);
                 }
             }
-            
-            reportsWorking = reportsWorking.filter(rpt => 
+
+            reportsWorking = reportsWorking.filter(rpt =>
                 (userRelatedRptIDs.indexOf(rpt.reportID) >= 0) )
         }
 
         if (dataSourceID != -1) {
-            reportsWorking = reportsWorking.filter(rpt => 
+            reportsWorking = reportsWorking.filter(rpt =>
                 (rpt.dataSourceID == dataSourceID) )
         }
         // Return the (filtered) Reports
@@ -4743,7 +4774,7 @@ export class EazlService implements OnInit {
             datasourceID: number = -1) {
         // Return history of reports run, optionally filtered
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
-                
+
         return this.reportHistory.filter(rh =>
             (username == '*'        ||   rh.userName == username)
             &&
@@ -4751,7 +4782,7 @@ export class EazlService implements OnInit {
             &&
             (datasourceID == -1     ||   rh.datasourceID == datasourceID)
         )
-        
+
     }
 
     getWidgetTemplates(widgetTemplateName: string): WidgetTemplate {
@@ -4837,7 +4868,7 @@ export class EazlService implements OnInit {
                     this.widgets[i].properties.widgetIsLiked = isLikedNewState;
                     for (var j = 0; j < this.widgets[i].properties.widgetLiked.length; j++) {
                         if (this.widgets[i].properties.widgetLiked[j].widgetLikedUserName ==
-                            username) { 
+                            username) {
                                  foundUser = true;
                             }
                     }
@@ -4933,7 +4964,7 @@ export class EazlService implements OnInit {
         // - username filter
         // - include: True = those who can access, False = CANNOT access
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersWhoCanAccessDatasource', '@Start');
-        
+
         // Get list of usernames with access
         // TODO - when from DB, add access type as I think this will be useful
         let usernames: string[] = [];
@@ -4944,10 +4975,10 @@ export class EazlService implements OnInit {
         });
 
         return this.users.filter(
-            u => (include   &&  usernames.indexOf(u.username) >= 0) 
+            u => (include   &&  usernames.indexOf(u.username) >= 0)
                   ||
-                 (!include  &&  usernames.indexOf(u.username) < 0) 
-            );   
+                 (!include  &&  usernames.indexOf(u.username) < 0)
+            );
     }
 
     getDatasourcesPerUser(username: string): DatasourcesPerUser[] {
@@ -4977,18 +5008,18 @@ export class EazlService implements OnInit {
                     datasourcesPerUserCreatedDateTime: '2017/05/01',
                     datasourcesPerUserCreatedUserName: 'janniei',
                     datasourcesPerUserUpdatedDateTime: '2017/05/01',
-                    datasourcesPerUserUpdatedUserName: 'janniei'                    
+                    datasourcesPerUserUpdatedUserName: 'janniei'
                 })
             }
         })
 
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
-        this.userGroupMembership.forEach((usrgrp) => { 
-            if (usrgrp.userName == username) 
-                groupIDs.push(usrgrp.groupID)  
+        this.userGroupMembership.forEach((usrgrp) => {
+            if (usrgrp.userName == username)
+                groupIDs.push(usrgrp.groupID)
             }
-        )   
+        )
 
         // Add the DS that those groups have access to
         // TODO - eliminate duplicates (already in User above)
@@ -4996,7 +5027,7 @@ export class EazlService implements OnInit {
         this.groupDatasourceAccess.forEach(gd => {
             if (groupIDs.indexOf(gd.groupID) >= 0) {
                 groupWorking = this.groups.filter(g =>
-                    (g.groupID == gd.groupID) 
+                    (g.groupID == gd.groupID)
                 )
                 datasourceName = '';
                 datasourceWorking = this.datasources.filter(d =>
@@ -5016,8 +5047,8 @@ export class EazlService implements OnInit {
                     datasourcesPerUserCreatedUserName: 'janniei',
                     datasourcesPerUserUpdatedDateTime: '2017/05/01',
                     datasourcesPerUserUpdatedUserName: 'janniei'                })
-            }        
-        })        
+            }
+        })
 
         // Return the result
         return datasourcesPerUserWorking;
@@ -5054,11 +5085,11 @@ export class EazlService implements OnInit {
 
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
-        this.userGroupMembership.forEach((usrgrp) => { 
-            if (usrgrp.userName == username) 
-                groupIDs.push(usrgrp.groupID)  
+        this.userGroupMembership.forEach((usrgrp) => {
+            if (usrgrp.userName == username)
+                groupIDs.push(usrgrp.groupID)
             }
-        )   
+        )
 
         // Add the DS that those groups have access to
         // TODO - eliminate duplicates (already in User above)
@@ -5066,7 +5097,7 @@ export class EazlService implements OnInit {
         this.dashboardGroupRelationship.forEach(dg => {
             if (groupIDs.indexOf(dg.groupID) >= 0) {
                 groupWorking = this.groups.filter(g =>
-                    (g.groupID == dg.groupID) 
+                    (g.groupID == dg.groupID)
                 )
                 dashboardName = '';
                 dashboardsWorking = this.dashboards.filter(d =>
@@ -5081,8 +5112,8 @@ export class EazlService implements OnInit {
                     dashboardsPerUserAccessVia: 'Group ' + groupWorking[0].groupName,
                     dashboardsPerUserAccessType: dg.dashboardGroupRelationshipType
                 })
-            }        
-        })        
+            }
+        })
 
         // Return the result
         return dashboardsPerUserWorking;
@@ -5093,23 +5124,23 @@ export class EazlService implements OnInit {
         // - groupID filter
         // - include: True means that has access, False means has NO access
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerGroup', '@Start');
-        
+
         // TODO - from DB
         // Get Array of all Groups IDs
         let resultDS: number[] = [];
 
         this.groupDatasourceAccess.forEach(
-            (gDS) => { 
-                        if (gDS.groupID == groupID) 
-                        resultDS.push(gDS.datasourceID)  
+            (gDS) => {
+                        if (gDS.groupID == groupID)
+                        resultDS.push(gDS.datasourceID)
                         }
-        );   
+        );
 
         // Return necesary Datasources, selectively depending on in/exclude
         return this.datasources.filter(
-            ds => (include  &&  resultDS.indexOf(ds.datasourceID) >= 0) 
+            ds => (include  &&  resultDS.indexOf(ds.datasourceID) >= 0)
                    ||
-                  (!include && resultDS.indexOf(ds.datasourceID) < 0) 
+                  (!include && resultDS.indexOf(ds.datasourceID) < 0)
         )
     }
 
@@ -5118,32 +5149,32 @@ export class EazlService implements OnInit {
         // - datasourceID filter
         // - include: True means that has access, False means has NO access
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerDatasource', '@Start');
-        
+
         // TODO - from DB
         // Get Array of all Groups IDs
         let resultGroup: number[] = [];
 
         this.groupDatasourceAccess.forEach(
-            (gDS) => { 
-                        if (gDS.datasourceID == datasourceID) 
-                        resultGroup.push(gDS.groupID)  
+            (gDS) => {
+                        if (gDS.datasourceID == datasourceID)
+                        resultGroup.push(gDS.groupID)
                      }
-        );   
+        );
 
         // Return necesary Datasources, selectively depending on in/exclude
         return this.groups.filter(
-            ds => (include  &&  resultGroup.indexOf(ds.groupID) >= 0) 
+            ds => (include  &&  resultGroup.indexOf(ds.groupID) >= 0)
                     ||
-                  (!include && resultGroup.indexOf(ds.groupID) < 0) 
+                  (!include && resultGroup.indexOf(ds.groupID) < 0)
         )
     }
 
     getDatasourceUserAccess(
-            datasourceID: number = -1, 
+            datasourceID: number = -1,
             username: string = '*',
             accessType: string = '*') {
         // Return a list of Datasource-User and their access
-        // - datasourceID Optional filter, 
+        // - datasourceID Optional filter,
         // - username Optional filter
         // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
@@ -5184,7 +5215,7 @@ export class EazlService implements OnInit {
 
         // Filter as needed
         this.dataSourceUserAccess.forEach( da => {
-                if ( (username == '*'    ||   da.userName == username) 
+                if ( (username == '*'    ||   da.userName == username)
                      &&
                      (accessType == '*'  ||  da.dataSourceUserAccessType == accessType)
                    ) {
@@ -5194,7 +5225,7 @@ export class EazlService implements OnInit {
 
         // Return
         return this.datasources.filter(ds => {
-            if ( 
+            if (
                  (include   &&   dataSourceIDs.indexOf(ds.datasourceID) >= 0)
                  ||
                  (!include  &&   dataSourceIDs.indexOf(ds.datasourceID) < 0)
@@ -5246,7 +5277,7 @@ export class EazlService implements OnInit {
                 datasourceUserAccessCreatedUserName: 'janniei',
                 datasourceUserAccessUpdatedDateTime: '2017/05/01',
                 datasourceUserAccessUpdatedUserName: 'janniei'
-                }        
+                }
             )
         }
     }
@@ -5277,17 +5308,17 @@ export class EazlService implements OnInit {
 
         // Make an array of groupIDs to which this user belongs
         this.userGroupMembership.forEach(
-            (usrgrp) => { 
-                            if (usrgrp.userName == username) 
-                            resultUsergroupMembership.push(usrgrp.groupID)  
+            (usrgrp) => {
+                            if (usrgrp.userName == username)
+                            resultUsergroupMembership.push(usrgrp.groupID)
                         }
-        )   
+        )
 
         // Return necesary groups, selectively depending on in/exclude
         return this.groups.filter(
-            grp => (include  &&  resultUsergroupMembership.indexOf(grp.groupID) >= 0) 
+            grp => (include  &&  resultUsergroupMembership.indexOf(grp.groupID) >= 0)
                     ||
-                    (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0) 
+                    (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0)
         )
     }
 
@@ -5308,19 +5339,19 @@ export class EazlService implements OnInit {
 
         // Make an array of username that belongs to the Group
         this.userGroupMembership.forEach(
-            (usrgrp) => { 
-                        if (usrgrp.groupID == groupID) 
-                        resultUsergroupMembership.push(usrgrp.userName)  
+            (usrgrp) => {
+                        if (usrgrp.groupID == groupID)
+                        resultUsergroupMembership.push(usrgrp.userName)
                     }
-        )   
+        )
 
         // Return necesary groups, selectively depending on in/exclude
 
         return this.users.filter(
-            u => (include  &&  resultUsergroupMembership.indexOf(u.username) >= 0) 
+            u => (include  &&  resultUsergroupMembership.indexOf(u.username) >= 0)
                   ||
-                 (!include &&  resultUsergroupMembership.indexOf(u.username) < 0) 
-        );   
+                 (!include &&  resultUsergroupMembership.indexOf(u.username) < 0)
+        );
     }
 
     addUserGroupMembership(username: string, groupID: number) {
@@ -5350,7 +5381,7 @@ export class EazlService implements OnInit {
                     userGroupMembershipCreatedUserName: currentUser,
                     userGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
                     userGroupMembershipUpdatedUserName: currentUser
-                }        
+                }
             )
         }
     }
@@ -5392,7 +5423,7 @@ export class EazlService implements OnInit {
                     groupDatasourceAccessCreatedUserName: currentUser,
                     groupDatasourceAccessUpdatedDateTime: this.canvasDate.now('standard'),
                     groupDatasourceAccessUpdatedUserName: currentUser
-                }        
+                }
             )
         }
     }
@@ -5407,12 +5438,12 @@ export class EazlService implements OnInit {
     }
 
     getDashboardGroupMembership(
-            dashboardID:number = -1, 
+            dashboardID:number = -1,
             include:boolean = true
         ): DashboardGroup[] {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
-        // - include Optional parameter, true = include all for one, else 
+        // - include Optional parameter, true = include all for one, else
         //   group NOT for dashboardID
 
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardGroupMembership', '@Start');
@@ -5428,26 +5459,26 @@ export class EazlService implements OnInit {
 
         // Make an array of groupIDs to which this user belongs
         this.dashboardGroupMembership.forEach(
-            (dashgrp) => { 
-                if (dashgrp.dashboardID == dashboardID) 
+            (dashgrp) => {
+                if (dashgrp.dashboardID == dashboardID)
                     resultDashboardGroupMembership.push(
                         dashgrp.dashboardGroupID
-                )  
+                )
             }
-        );   
+        );
 
         // Return necesary groups, selectively depending on in/exclude
         return this.dashboardGroups.filter(
             dashgrp => (
-                    include  &&  
+                    include  &&
                         resultDashboardGroupMembership.indexOf(
                             dashgrp.dashboardGroupID) >= 0
-                    ) 
+                    )
                     ||
-                    (!include && 
+                    (!include &&
                         resultDashboardGroupMembership.indexOf(
                             dashgrp.dashboardGroupID) < 0
-                    ) 
+                    )
         )
     }
 
@@ -5479,7 +5510,7 @@ export class EazlService implements OnInit {
                     dashboardGroupMembershipCreatedUserName: currentUser,
                     dashboardGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
                     dashboardGroupMembershipUpdatedUserName: currentUser
-                }        
+                }
             )
         }
     }
@@ -5489,16 +5520,16 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupMembership', '@Start');
 
         this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
-            item => (!(item.dashboardID == dashboardID  &&  
+            item => (!(item.dashboardID == dashboardID  &&
                        item.dashboardGroupID == dashboardGroupID))
         );
     }
 
     getGroupsRelatedToDashboard(
-            dashboardID: number, 
+            dashboardID: number,
             relationshipType: string,
             include: boolean = true,
-            groupID: number = -1): Group[] { 
+            groupID: number = -1): Group[] {
         // Return Groups with a given relationship to any Dashboard
         // - dashboardID: string
         // - relationshipType: string
@@ -5508,8 +5539,8 @@ export class EazlService implements OnInit {
 
         let groupIDs: number[] = [];
         this.dashboardGroupRelationship.forEach(gd => {
-            if (gd.dashboardID == dashboardID 
-             &&  
+            if (gd.dashboardID == dashboardID
+             &&
              gd.dashboardGroupRelationshipType == relationshipType
              &&
              (groupID == -1  ||  gd.groupID == groupID) ) {
@@ -5521,20 +5552,20 @@ export class EazlService implements OnInit {
         let resultGroups: User[];
 
         return this.groups.filter( g => {
-            if ( (include   &&   groupIDs.indexOf(g.groupID) >= 0) 
+            if ( (include   &&   groupIDs.indexOf(g.groupID) >= 0)
                  ||
                  (!include  &&   groupIDs.indexOf(g.groupID) < 0) ) {
                 return g;
             }
-        });   
-    } 
+        });
+    }
 
     getUsersRelatedToDashboard(
-            dashboardID: number, 
+            dashboardID: number,
             relationshipType: string,
             include: boolean = true,
             username: string = '*'
-        ): User[] { 
+        ): User[] {
         // Return users with a given relationship to any Dashboard
         // - dashboardID for this Dashboard
         // - relationshipType for this Relationship
@@ -5545,8 +5576,8 @@ export class EazlService implements OnInit {
         // Get Array of UserNames that are related to this Dashboard, or Not if include = false
         let userNames: string[] = [];
         this.dashboardUserRelationship.forEach(dur => {
-            if (dur.dashboardID == dashboardID 
-                &&  
+            if (dur.dashboardID == dashboardID
+                &&
                 dur.dashboardUserRelationshipType == relationshipType
                 &&
                 (username == '*'  ||  dur.userName == username ) ) {
@@ -5558,18 +5589,18 @@ export class EazlService implements OnInit {
         // Struggle Avoidance Technique: set as [] upfront, else .IndexOf undefined fails
         return this.users.filter(
             u => {
-                    if ( (include  &&  userNames.indexOf(u.username) >= 0 ) 
+                    if ( (include  &&  userNames.indexOf(u.username) >= 0 )
                         ||
                         (!include  &&  userNames.indexOf(u.username) < 0) ) {
                         return u
                     }
             }
-        );   
+        );
     }
 
     addDashboardGroupRelationship(
-        dashboardID: number, 
-        groupID: number, 
+        dashboardID: number,
+        groupID: number,
         relationshipType: string) {
         // Removes user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupRelationship', '@Start');
@@ -5579,11 +5610,11 @@ export class EazlService implements OnInit {
         let found: boolean = false;
         for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
             if (this.dashboardGroupRelationship[i].dashboardID == dashboardID
-               && 
+               &&
                this.dashboardGroupRelationship[i].groupID == groupID
                &&
-               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType == 
-                relationshipType) {    
+               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType ==
+                relationshipType) {
                     found = true;
                     break;
                 }
@@ -5599,10 +5630,10 @@ export class EazlService implements OnInit {
                     groupID: groupID,
                     dashboardGroupRelationshipType: relationshipType,
                     dashboardGroupRelationshipRating: 0,
-                    dashboardGroupRelationshipCreatedDateTime: 
+                    dashboardGroupRelationshipCreatedDateTime:
                         this.canvasDate.now('standard'),
                     dashboardGroupRelationshipCreatedUserName: currentUser,
-                    dashboardGroupRelationshipUpdatedDateTime: 
+                    dashboardGroupRelationshipUpdatedDateTime:
                         this.canvasDate.now('standard'),
                     dashboardGroupRelationshipUpdatedUserName: currentUser
                 });
@@ -5610,8 +5641,8 @@ export class EazlService implements OnInit {
     }
 
     deleteDashboardGroupRelationship(
-        dashboardID: number, 
-        groupID: number, 
+        dashboardID: number,
+        groupID: number,
         relationshipType: string) {
         // Removes Group from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupRelationship', '@Start');
@@ -5620,20 +5651,20 @@ export class EazlService implements OnInit {
 
         for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
             if (this.dashboardGroupRelationship[i].dashboardID == dashboardID
-               && 
+               &&
                this.dashboardGroupRelationship[i].groupID == groupID
                &&
-               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType == 
+               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType ==
                 relationshipType) {
-                this.dashboardGroupRelationship = 
+                this.dashboardGroupRelationship =
                     this.dashboardGroupRelationship.splice(i, 1);
                 }
         }
     }
 
     addDashboardUserRelationship(
-        dashboardID: number, 
-        username: string, 
+        dashboardID: number,
+        username: string,
         relationshipType: string) {
         // Add user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardUserRelationship', '@Start');
@@ -5643,11 +5674,11 @@ export class EazlService implements OnInit {
         let found: boolean = false;
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
             if (this.dashboardUserRelationship[i].dashboardID == dashboardID
-               && 
+               &&
                this.dashboardUserRelationship[i].userName == username
                &&
-               this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
-                relationshipType) {    
+               this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
+                relationshipType) {
                     found = true;
                     break;
                 }
@@ -5663,10 +5694,10 @@ export class EazlService implements OnInit {
                     userName: username,
                     dashboardUserRelationshipType: relationshipType,
                     dashboardUserRelationshipRating: 0,
-                    dashboardUserRelationshipCreatedDateTime: 
+                    dashboardUserRelationshipCreatedDateTime:
                         this.canvasDate.now('standard'),
                     dashboardUserRelationshipCreatedUserName: currentUser,
-                    dashboardUserRelationshipUpdatedDateTime: 
+                    dashboardUserRelationshipUpdatedDateTime:
                         this.canvasDate.now('standard'),
                     dashboardUserRelationshipUpdatedUserName: currentUser
                 });
@@ -5674,8 +5705,8 @@ export class EazlService implements OnInit {
     }
 
     deleteDashboardUserRelationship(
-        dashboardID: number, 
-        username: string, 
+        dashboardID: number,
+        username: string,
         relationshipType: string) {
         // Removes user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardUserRelationship', '@Start');
@@ -5684,12 +5715,12 @@ export class EazlService implements OnInit {
 
         for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
             if (this.dashboardUserRelationship[i].dashboardID == dashboardID
-               && 
+               &&
                this.dashboardUserRelationship[i].userName == username
                &&
-               this.dashboardUserRelationship[i].dashboardUserRelationshipType == 
+               this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
                 relationshipType) {
-                this.dashboardUserRelationship = 
+                this.dashboardUserRelationship =
                     this.dashboardUserRelationship.splice(i, 1);
                 }
         }
@@ -5762,13 +5793,13 @@ export class EazlService implements OnInit {
         // Return the necessary
         let found: boolean = false;
         let myStatus: string = '';
-        let username: string = ''; 
+        let username: string = '';
         if (this.globalVariableService.canvasUser.getValue() != null) {
             username = this.globalVariableService.canvasUser.getValue().username;
         }
         return this.canvasMessages.filter(cm => {
             if (
-                (dashboardID == -1  || cm.canvasMessageDashboardID == dashboardID)  
+                (dashboardID == -1  || cm.canvasMessageDashboardID == dashboardID)
                 &&
                 (reportID == -1     || cm.canvasMessageReportID == reportID)
                 &&
@@ -5781,7 +5812,7 @@ export class EazlService implements OnInit {
 
                     for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
 
-                        if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserName == 
+                        if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserName ==
                             username) {
                                 found = true;
                                 myStatus = this.canvasMessages[i].canvasMessageRecipients[j].
@@ -5808,14 +5839,14 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'canvasMessageToggleRead', '@Start');
 
         // Return the necessary
-        let username: string = ''; 
+        let username: string = '';
         if (this.globalVariableService.canvasUser.getValue() != null) {
             username = this.globalVariableService.canvasUser.getValue().username;
         }
         for (var i = 0; i < this.canvasMessages.length; i++) {
             if (this.canvasMessages[i].canvasMessageID == messageID) {
                 for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
-                    if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserName == 
+                    if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserName ==
                             username) {
                                 if (this.canvasMessages[i].canvasMessageRecipients[j].
                                     canvasMessageRecipientStatus == 'Read') {
@@ -5833,7 +5864,7 @@ export class EazlService implements OnInit {
     }
 
     cacheCanvasData(
-            resetObject: string = 'all',  
+            resetObject: string = 'all',
             resetAction: string = 'reset',
             resetID: number = -1
     ) {
@@ -5846,7 +5877,7 @@ export class EazlService implements OnInit {
         // Users
         if (resetObject == 'all'   ||   resetObject == 'Users') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -5877,13 +5908,13 @@ export class EazlService implements OnInit {
             if (resetAction == 'clear') {
                 this.users = [];
             }
-        
+
         }
 
         // Groups
         if (resetObject == 'all'   ||   resetObject == 'groups') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -5913,7 +5944,7 @@ export class EazlService implements OnInit {
         // DasboardTabs
         if (resetObject == 'all'   ||   resetObject == 'DashboardTabs') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -5925,7 +5956,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDasboardTab.length; i++) {
                                     let dashboardTabSingle = new DashboardTab();
                                     dashboardTabSingle = this.cdal.loadDashboardTab(eazlDasboardTab[i]);
-                                    dashboardTabWorking.push(dashboardTabSingle);                                    
+                                    dashboardTabWorking.push(dashboardTabSingle);
 
                                 }
 
@@ -5945,7 +5976,7 @@ export class EazlService implements OnInit {
         // CanvasMessage
         if (resetObject == 'all'   ||   resetObject == 'CanvasMessages') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -5956,7 +5987,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlCanvasMessage.length; i++) {
                                     let canvasMessageSingle = new CanvasMessage();
                                     canvasMessageSingle = this.cdal.loadCanvasMessage(eazlCanvasMessage[i]);
-                                    canvasMessageWorking.push(canvasMessageSingle);                                    
+                                    canvasMessageWorking.push(canvasMessageSingle);
 
                                 }
 
@@ -5976,7 +6007,7 @@ export class EazlService implements OnInit {
         // CanvasMessageRecipient
         if (resetObject == 'all'   ||   resetObject == 'CanvasMessageRecipients') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -5987,7 +6018,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlCanvasMessageRecipient.length; i++) {
                                     let canvasMessageRecipientSingle = new CanvasMessageRecipient();
                                     canvasMessageRecipientSingle = this.cdal.loadCanvasMessageRecipient(eazlCanvasMessageRecipient[i]);
-                                    canvasMessageRecipientWorking.push(canvasMessageRecipientSingle);                                    
+                                    canvasMessageRecipientWorking.push(canvasMessageRecipientSingle);
 
                                 }
 
@@ -6007,7 +6038,7 @@ export class EazlService implements OnInit {
         // DashboardGroup
         if (resetObject == 'all'   ||   resetObject == 'DashboardGroups') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6018,7 +6049,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDashboardGroup.length; i++) {
                                     let DashboardGroupSingle = new DashboardGroup();
                                     DashboardGroupSingle = this.cdal.loadDashboardGroup(eazlDashboardGroup[i]);
-                                    DashboardGroupWorking.push(DashboardGroupSingle);                                    
+                                    DashboardGroupWorking.push(DashboardGroupSingle);
 
                                 }
 
@@ -6038,7 +6069,7 @@ export class EazlService implements OnInit {
         // DashboardGroupMembership
         if (resetObject == 'all'   ||   resetObject == 'DashboardGroupMemberships') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6049,7 +6080,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDashboardGroupMembership.length; i++) {
                                     let DashboardGroupMembershipSingle = new DashboardGroupMembership();
                                     DashboardGroupMembershipSingle = this.cdal.loadDashboardGroupMembership(eazlDashboardGroupMembership[i]);
-                                    DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);                                    
+                                    DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);
 
                                 }
 
@@ -6069,7 +6100,7 @@ export class EazlService implements OnInit {
         // DashboardGroupRelationship
         if (resetObject == 'all'   ||   resetObject == 'DashboardGroupRelationships') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6080,7 +6111,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
                                     let DashboardGroupRelationshipSingle = new DashboardGroupRelationship();
                                     DashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
-                                    DashboardGroupRelationshipWorking.push(DashboardGroupRelationshipSingle);                                    
+                                    DashboardGroupRelationshipWorking.push(DashboardGroupRelationshipSingle);
 
                                 }
 
@@ -6100,7 +6131,7 @@ export class EazlService implements OnInit {
         // Dashboard
         if (resetObject == 'all'   ||   resetObject == 'Dashboards') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6111,7 +6142,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDashboard.length; i++) {
                                     let DashboardSingle = new Dashboard();
                                     DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
-                                    DashboardWorking.push(DashboardSingle);                                    
+                                    DashboardWorking.push(DashboardSingle);
 
                                 }
 
@@ -6131,7 +6162,7 @@ export class EazlService implements OnInit {
         // DashboardsPerUser
         if (resetObject == 'all'   ||   resetObject == 'DashboardsPerUsers') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6142,7 +6173,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
                                     let DashboardsPerUserSingle = new DashboardsPerUser();
                                     DashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
-                                    DashboardsPerUserWorking.push(DashboardsPerUserSingle);                                    
+                                    DashboardsPerUserWorking.push(DashboardsPerUserSingle);
 
                                 }
 
@@ -6162,7 +6193,7 @@ export class EazlService implements OnInit {
         // DashboardUserRelationship
         if (resetObject == 'all'   ||   resetObject == 'DashboardUserRelationships') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6173,7 +6204,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
                                     let DashboardUserRelationshipSingle = new DashboardUserRelationship();
                                     DashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
-                                    DashboardUserRelationshipWorking.push(DashboardUserRelationshipSingle);                                    
+                                    DashboardUserRelationshipWorking.push(DashboardUserRelationshipSingle);
 
                                 }
 
@@ -6193,7 +6224,7 @@ export class EazlService implements OnInit {
         // DatasourcesPerUser
         if (resetObject == 'all'   ||   resetObject == 'DatasourcesPerUsers') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6204,7 +6235,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
                                     let DatasourcesPerUserSingle = new DatasourcesPerUser();
                                     DatasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
-                                    DatasourcesPerUserWorking.push(DatasourcesPerUserSingle);                                    
+                                    DatasourcesPerUserWorking.push(DatasourcesPerUserSingle);
 
                                 }
 
@@ -6224,7 +6255,7 @@ export class EazlService implements OnInit {
         // DataSourceUserAccess
         if (resetObject == 'all'   ||   resetObject == 'DataSourceUserAccesss') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6235,7 +6266,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
                                     let DataSourceUserAccessSingle = new DataSourceUserAccess();
                                     DataSourceUserAccessSingle = this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
-                                    DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);                                    
+                                    DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);
 
                                 }
 
@@ -6255,7 +6286,7 @@ export class EazlService implements OnInit {
         // Filter
         if (resetObject == 'all'   ||   resetObject == 'filters') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6266,7 +6297,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlFilter.length; i++) {
                                     let FilterSingle = new Filter();
                                     FilterSingle = this.cdal.loadFilter(eazlFilter[i]);
-                                    FilterWorking.push(FilterSingle);                                    
+                                    FilterWorking.push(FilterSingle);
 
                                 }
 
@@ -6286,7 +6317,7 @@ export class EazlService implements OnInit {
         // GroupDatasourceAccess
         if (resetObject == 'all'   ||   resetObject == 'GroupDatasourceAccesss') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6297,7 +6328,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
                                     let GroupDatasourceAccessSingle = new GroupDatasourceAccess();
                                     GroupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
-                                    GroupDatasourceAccessWorking.push(GroupDatasourceAccessSingle);                                    
+                                    GroupDatasourceAccessWorking.push(GroupDatasourceAccessSingle);
 
                                 }
 
@@ -6317,7 +6348,7 @@ export class EazlService implements OnInit {
         // Notification
         if (resetObject == 'all'   ||   resetObject == 'Notifications') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6328,7 +6359,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlNotification.length; i++) {
                                     let NotificationSingle = new Notification();
                                     NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
-                                    NotificationWorking.push(NotificationSingle);                                    
+                                    NotificationWorking.push(NotificationSingle);
 
                                 }
 
@@ -6348,7 +6379,7 @@ export class EazlService implements OnInit {
         // PackageTasks
         if (resetObject == 'all'   ||   resetObject == 'PackageTasks') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6359,7 +6390,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlPackageTask.length; i++) {
                                     let packageTaskSingle = new PackageTask();
                                     packageTaskSingle = this.cdal.loadPackageTask(eazlPackageTask[i]);
-                                    packageTaskWorking.push(packageTaskSingle);                                    
+                                    packageTaskWorking.push(packageTaskSingle);
 
                                 }
 
@@ -6379,7 +6410,7 @@ export class EazlService implements OnInit {
         // Report
         if (resetObject == 'all'   ||   resetObject == 'Reports') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6390,7 +6421,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlReport.length; i++) {
                                     let ReportSingle = new Report();
                                     ReportSingle = this.cdal.loadReport(eazlReport[i]);
-                                    ReportWorking.push(ReportSingle);                                    
+                                    ReportWorking.push(ReportSingle);
 
                                 }
 
@@ -6410,7 +6441,7 @@ export class EazlService implements OnInit {
         // ReportWidgetSet
         if (resetObject == 'all'   ||   resetObject == 'ReportWidgetSets') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6421,7 +6452,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlReportWidgetSet.length; i++) {
                                     let ReportWidgetSetSingle = new ReportWidgetSet();
                                     ReportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
-                                    ReportWidgetSetWorking.push(ReportWidgetSetSingle);                                    
+                                    ReportWidgetSetWorking.push(ReportWidgetSetSingle);
 
                                 }
 
@@ -6441,7 +6472,7 @@ export class EazlService implements OnInit {
         // ReportHistory
         if (resetObject == 'all'   ||   resetObject == 'ReportHistory') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6452,7 +6483,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlReportHistory.length; i++) {
                                     let ReportHistorySingle = new ReportHistory();
                                     ReportHistorySingle = this.cdal.loadReportHistory(eazlReportHistory[i]);
-                                    ReportHistoryWorking.push(ReportHistorySingle);                                    
+                                    ReportHistoryWorking.push(ReportHistorySingle);
 
                                 }
 
@@ -6472,7 +6503,7 @@ export class EazlService implements OnInit {
         // ReportUserRelationship
         if (resetObject == 'all'   ||   resetObject == 'ReportUserRelationships') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6483,7 +6514,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlReportUserRelationship.length; i++) {
                                     let ReportUserRelationshipSingle = new ReportUserRelationship();
                                     ReportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
-                                    ReportUserRelationshipWorking.push(ReportUserRelationshipSingle);                                    
+                                    ReportUserRelationshipWorking.push(ReportUserRelationshipSingle);
 
                                 }
 
@@ -6503,7 +6534,7 @@ export class EazlService implements OnInit {
         // SystemConfiguration
         if (resetObject == 'all'   ||   resetObject == 'SystemConfigurations') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6514,7 +6545,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlSystemConfiguration.length; i++) {
                                     let SystemConfigurationSingle = new SystemConfiguration();
                                     SystemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
-                                    SystemConfigurationWorking.push(SystemConfigurationSingle);                                    
+                                    SystemConfigurationWorking.push(SystemConfigurationSingle);
 
                                 }
 
@@ -6534,7 +6565,7 @@ export class EazlService implements OnInit {
         // UserGroupMembership
         if (resetObject == 'all'   ||   resetObject == 'UserGroupMemberships') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6545,7 +6576,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlUserGroupMembership.length; i++) {
                                     let UserGroupMembershipSingle = new UserGroupMembership();
                                     UserGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
-                                    UserGroupMembershipWorking.push(UserGroupMembershipSingle);                                    
+                                    UserGroupMembershipWorking.push(UserGroupMembershipSingle);
 
                                 }
 
@@ -6565,7 +6596,7 @@ export class EazlService implements OnInit {
         // WidgetComment
         if (resetObject == 'all'   ||   resetObject == 'WidgetComments') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6576,7 +6607,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlWidgetComment.length; i++) {
                                     let WidgetCommentSingle = new WidgetComment();
                                     WidgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
-                                    WidgetCommentWorking.push(WidgetCommentSingle);                                    
+                                    WidgetCommentWorking.push(WidgetCommentSingle);
 
                                 }
 
@@ -6596,7 +6627,7 @@ export class EazlService implements OnInit {
         // WidgetTemplate
         if (resetObject == 'all'   ||   resetObject == 'WidgetTemplates') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6607,7 +6638,7 @@ export class EazlService implements OnInit {
                                 for (var i = 0; i < eazlWidgetTemplate.length; i++) {
                                     let WidgetTemplateSingle = new WidgetTemplate();
                                     WidgetTemplateSingle = this.cdal.loadWidgetTemplate(eazlWidgetTemplate[i]);
-                                    WidgetTemplateWorking.push(WidgetTemplateSingle);                                    
+                                    WidgetTemplateWorking.push(WidgetTemplateSingle);
 
                                 }
 
@@ -6627,7 +6658,7 @@ export class EazlService implements OnInit {
         // Widgets
         if (resetObject == 'all'   ||   resetObject == 'Widgets') {
 
-            // Reset 
+            // Reset
             if (resetAction == 'reset') {
 
                 // Get all the data via API
@@ -6649,7 +6680,7 @@ export class EazlService implements OnInit {
                                 }
 
                             // Replace
-console.log('widgetsWorking', )                            
+console.log('widgetsWorking', )
                             // this.widgets = widgetsWorking;
                             }
                     )
@@ -6664,7 +6695,7 @@ console.log('widgetsWorking', )
         // // Widget
         // if (resetObject == 'all'   ||   resetObject == 'Widgets') {
 
-        //     // Reset 
+        //     // Reset
         //     if (resetAction == 'reset') {
 
         //         // Get all the data via API
@@ -6675,7 +6706,7 @@ console.log('widgetsWorking', )
         //                         for (var i = 0; i < eazlWidget.length; i++) {
         //                             let WidgetSingle = new Widget();
         //                             WidgetSingle = this.cdal.loadWidget(eazlWidget[i]);
-        //                             WidgetWorking.push(WidgetSingle);                                    
+        //                             WidgetWorking.push(WidgetSingle);
 
         //                         }
 

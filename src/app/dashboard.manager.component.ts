@@ -497,7 +497,7 @@ export class DashboardManagerComponent implements OnInit {
             // Set the Widget ID & Add to Array
             // TODO - do via Eazl into DB
             this.dashboardToEdit.dashboardID = lastDashboardID;
-            this.dashboardToEdit.dashboardCreatedDateTime = this.canvasDate.now('standard')
+            this.dashboardToEdit.dashboardCreatedDateTime = this.canvasDate.now('standard');
             this.dashboardToEdit.dashboardCreatedUserName = this.canvasUser.username;
             this.dashboards.push(this.dashboardToEdit);
 
