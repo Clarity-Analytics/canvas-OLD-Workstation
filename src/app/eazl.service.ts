@@ -2,6 +2,7 @@
 import { Injectable }                 from '@angular/core';
 import { Headers }                    from '@angular/http';
 import { Http }                       from '@angular/http';
+import { isDevMode }                  from '@angular/core';
 import { Observable }                 from 'rxjs/Observable';
 import { OnInit }                     from '@angular/core';
 import { Response }                   from '@angular/http';
@@ -3955,6 +3956,8 @@ export class EazlService implements OnInit {
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
 
+storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
+
     constructor(
         private canvasDate: CanvasDate,
         private cdal: CDAL,
@@ -4064,7 +4067,7 @@ export class EazlService implements OnInit {
 
         this.globalVariableService.canvasUser.next(new CanvasUser);
         this.globalVariableService.isAuthenticatedOnEazl.next(false);
-        window.sessionStorage.removeItem('canvas-token');
+        this.storage.removeItem('canvas-token');
 
         // Clear local data
         this.globalFunctionService.printToConsole(
@@ -4093,7 +4096,8 @@ export class EazlService implements OnInit {
                 )
             .toPromise()
             .then(authToken => {
-		        window.sessionStorage.setItem('canvas-token', authToken.token);
+
+		        this.storage.setItem('canvas-token', authToken.token);
                 this.httpHeaders.set('Authorization', `token ${authToken.token}`);
                 return this.get<EazlUser>(`${this.route}/authenticated-user/`)
                 .toPromise()
@@ -4159,7 +4163,7 @@ export class EazlService implements OnInit {
 
         this.globalFunctionService.printToConsole(this.constructor.name,'loginError', '@Start');
 
-		window.sessionStorage.removeItem('canvas-token');
+		this.storage.removeItem('canvas-token');
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
             summary:  'Login Failed',
