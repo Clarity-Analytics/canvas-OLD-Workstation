@@ -75,6 +75,11 @@ export class ReportComponent implements OnInit {
                 icon: 'fa-table', 
                 command: (event) => this.reportMenuReportHistory(this.selectedReport)
             },
+            {
+                label: 'Create Widget', 
+                icon: 'fa-bar-chart-o', 
+                command: (event) => this.reportMenuCreateWidget(this.selectedReport)
+            },
         ];
     }
 
@@ -87,7 +92,7 @@ export class ReportComponent implements OnInit {
 
     reportMenuUserAccess(selectedReport: Report) {
         // Show all the Users with Access to the selected Datasource
-        // - User: currently selected row
+        // - selectedReport: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuUserAccess', '@Start');
 
         this.users = this.eazlService.getUsersWhoCanAccessDatasource(
@@ -100,7 +105,7 @@ export class ReportComponent implements OnInit {
 
     reportMenuGroupAccess(selectedReport: Report) {
         // Show all the Groups with access to the selected Datasource
-        // - User: currently selected row
+        // - selectedReport: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuGroupAccess', '@Start');
 
         this.groups = this.eazlService.getGroupsPerDatasource(
@@ -121,7 +126,7 @@ export class ReportComponent implements OnInit {
 
     reportMenuReportHistory(selectedReport: Report) {
         // Show history of reports ran for the selected Dashboard
-        // - dashboard: currently selected row
+        // - selectedReport: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuReportHistory', '@Start');
 
         // Report History for me
@@ -134,7 +139,13 @@ export class ReportComponent implements OnInit {
         // Show the popup
         this.displayReportHistory = true;
     }
-    
+
+    reportMenuCreateWidget(selectedReport: Report) {
+        // Show popup to create a widget, with basic info
+        // - selectedReport: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuReportHistory', '@Start');
+console.log('hier'    )    
+    }
 }
 
 // Notes for newbees:
