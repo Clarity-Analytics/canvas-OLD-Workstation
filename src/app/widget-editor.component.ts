@@ -1011,11 +1011,8 @@ export class WidgetEditorComponent implements OnInit {
                 this.widgetToEditY);
 
             // Add creation info
-            let d = new Date();
             this.widgetToEdit.properties.widgetCreatedDateTime = 
-                this.canvasDate.today('standard') + ' ' + 
-                this.canvasDate.curHour(d).toString() + ' ' + 
-                this.canvasDate.curMinute(d).toString();
+                this.canvasDate.now();
             this.widgetToEdit.properties.widgetCreatedUserName = 
                 this.canvasUser.username;
                 
