@@ -88,7 +88,7 @@ export class ReportComponent implements OnInit {
         // Dashboard clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickReportTable', '@Start');
 
-        // For later ...
+console.log(this.selectedReport)        
     }
 
     reportMenuUserAccess(selectedReport: Report) {
