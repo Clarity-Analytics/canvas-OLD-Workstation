@@ -35,11 +35,12 @@ export class WidgetNewComponent implements OnInit {
     @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
     
     // Local properties
-    dashboardDropDown: SelectItem[] = [];     // Dashboards in DropDown
-    dashboardTabsDropDown: SelectItem[] = []; // DashboardTab in DropDown
+    dashboardDropDown: SelectItem[] = [];       // Dashboards in DropDown
+    dashboardTabsDropDown: SelectItem[] = [];   // DashboardTab in DropDown
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     isLoadingForm: boolean = false;
+    reportFieldsDropDown:  SelectItem[];        // Drop Down options
     numberErrors: number = 0;
     userform: FormGroup;
     
@@ -68,6 +69,11 @@ export class WidgetNewComponent implements OnInit {
     onChangeLoadDashboardTabDrowdown(event) {
         // User changed Dashboard dropdown, so now populate array of tabs
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeLoadDashboardTabDrowdown', '@Start');
+        
+        // this.reportFieldsDropDown = this.eazlService.getReportFields(this.selectedReport.reportID))
+// reportFieldsDropDown
+
+        // Load its tabs
         this.dashboardTabsDropDown = 
             this.eazlService.getDashboardTabsSelectItems(+event.value.id);
     }

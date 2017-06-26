@@ -4780,13 +4780,35 @@ export class EazlService implements OnInit {
 
     getReportFields(reportID: number): string[] {
         // Return a list of Reports
-        this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldss', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getReportFields', '@Start');
 
         for (var i = 0; i < this.reports.length; i++) {
             if (this.reports[i].reportID == reportID) {
                 return this.reports[i].reportFields;
             }
         }
+    }
+
+    getReportFieldSelectedItems(reportID: number): SelectItem[] {
+        // Return a list of Report Fields in SelectItem format
+        this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldSelectedItems', '@Start');
+
+        let reportsWorking: Report[] = this.getReports(reportID);
+
+        // Fill the dropdown format
+        let reportsSelectItemsWorking: SelectItem[] = [];
+        for (var i = 0; i < reportsWorking.length; i++) {
+            reportsSelectItemsWorking.push({
+                label: reportsWorking[i].reportName,
+                value: {
+                    id: reportsWorking[i].reportID,
+                    name: reportsWorking[i].reportName
+                }
+            });
+        }
+
+        // Return
+        return reportsSelectItemsWorking;
     }
 
     getReportData(reportID: number): string[] {
