@@ -58,7 +58,8 @@ export class WidgetNewComponent implements OnInit {
         // FormBuilder
         this.userform = this.fb.group({
             'dashboardName':    new FormControl('', Validators.required),
-            'dashboardTabName': new FormControl('', Validators.required)
+            'dashboardTabName': new FormControl('', Validators.required),
+            'reportFieldsX':    new FormControl('', Validators.required)
         });
 
         // Fill the DropDowns
@@ -66,16 +67,15 @@ export class WidgetNewComponent implements OnInit {
         
     }
     
-    onChangeLoadDashboardTabDrowdown(event) {
+    onChangeDashboardDrowdown(event) {
         // User changed Dashboard dropdown, so now populate array of tabs
-        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeLoadDashboardTabDrowdown', '@Start');
-        
-        // this.reportFieldsDropDown = this.eazlService.getReportFields(this.selectedReport.reportID))
-// reportFieldsDropDown
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDashboardDrowdown', '@Start');
 
-        // Load its tabs
+        // Load its tabs, etc
         this.dashboardTabsDropDown = 
             this.eazlService.getDashboardTabsSelectItems(+event.value.id);
+        this.reportFieldsDropDown = 
+            this.eazlService.getReportFieldSelectedItems(this.selectedReport.reportID);
     }
 
     onSubmit(value: string) {

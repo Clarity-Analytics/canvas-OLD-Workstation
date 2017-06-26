@@ -4793,22 +4793,22 @@ export class EazlService implements OnInit {
         // Return a list of Report Fields in SelectItem format
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldSelectedItems', '@Start');
 
-        let reportsWorking: Report[] = this.getReports(reportID);
+        let reportWorking: Report = this.getReport(reportID);
 
         // Fill the dropdown format
-        let reportsSelectItemsWorking: SelectItem[] = [];
-        for (var i = 0; i < reportsWorking.length; i++) {
-            reportsSelectItemsWorking.push({
-                label: reportsWorking[i].reportName,
+        let reportFieldsSelectItemsWorking: SelectItem[] = [];
+        for (var i = 0; i < reportWorking.reportFields.length; i++) {
+            reportFieldsSelectItemsWorking.push({
+                label: reportWorking.reportFields[i],
                 value: {
-                    id: reportsWorking[i].reportID,
-                    name: reportsWorking[i].reportName
+                    id: i,
+                    name: reportWorking.reportFields[i]
                 }
             });
         }
 
         // Return
-        return reportsSelectItemsWorking;
+        return reportFieldsSelectItemsWorking;
     }
 
     getReportData(reportID: number): string[] {
