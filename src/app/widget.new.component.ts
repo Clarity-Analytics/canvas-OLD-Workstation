@@ -10,6 +10,7 @@ import { Validators }                 from '@angular/forms';
  
 // PrimeNG
 import { Message }                    from 'primeng/primeng';  
+import { SelectItem }                 from 'primeng/primeng';
 
 // Our Models
 import { SelectedItem }               from './model.selectedItem';
@@ -31,17 +32,15 @@ export class WidgetNewComponent implements OnInit {
     @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
     
     // Local properties
-    userform: FormGroup;
+    dashboardDropDown: SelectItem[] = [];     // Dashboards in DropDown
+    dashboardTabsDropDown: SelectItem[] = []; // DashboardTab in DropDown
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     isLoadingForm: boolean = false;
     numberErrors: number = 0;
-
-    dashboardDropDown: SelectedItem;         // Selected in DropDown
-    selectedDashboard: SelectedItem;         // Selected in DropDown
-    
-    dashboardTabsDropDown
+    selectedDashboard: SelectedItem;            // Selected in DropDown
     selectedDashboardTab: SelectedItem;         // Selected in DropDown
+    userform: FormGroup;
     
     constructor(
         private eazlService: EazlService,
@@ -59,13 +58,22 @@ export class WidgetNewComponent implements OnInit {
             'dashboardName':    new FormControl('', Validators.required),
             'dashboardTabName': new FormControl('', Validators.required)
         });
+
+        // Fill the DropDowns
+        this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
+        
+    }
+    
+    onChangeLoadDashboardTabDrowdown(event) {
+        // User changed Dashboard dropdown, so now populate array of tabs
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeLoadDashboardTabDrowdown', '@Start');
+        this.dashboardTabsDropDown = 
+            this.eazlService.getDashboardTabsSelectItems(+event.value.id);
     }
     
     onSubmit(value: string) {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
-  
-
 
         if (this.userform.controls['dashboardName'].value == ''  || 
             this.userform.controls['dashboardName'].value == null) {

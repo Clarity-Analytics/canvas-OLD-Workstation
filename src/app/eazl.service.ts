@@ -67,6 +67,7 @@ import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
+import { SelectedItem }               from './model.selectedItem';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
@@ -4420,7 +4421,7 @@ export class EazlService implements OnInit {
         dashboardID: number = -1,
         relatedUsername: string = '*',
         relationshipType: string = ''): SelectItem[] {
-        // Return a list of Dashboards, with optional filters in SelectionItem format
+        // Return a list of Dashboards, with optional filters in SelectItem format
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
         // - relatedUsername Optional username
         // - relationshipType Optional type, ie SharedWith
@@ -4469,7 +4470,7 @@ export class EazlService implements OnInit {
 
 
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
-        // Return a list of Dashboard Tabs for a given DashboardID as SelectionItem Array
+        // Return a list of Dashboard Tabs for a given DashboardID as SelectItem Array
         // - selectedDashboardID = filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabsSelectItem', '@Start');
 
