@@ -4437,7 +4437,7 @@ export class EazlService implements OnInit {
             relationshipType
         );
 
-        // Fill the dropdown on the form
+        // Fill the dropdown format
         let dashboardsSelectItemsWorking: SelectItem[] = [];
         for (var i = 0; i < dashboardsWorking.length; i++) {
             dashboardsSelectItemsWorking.push({
@@ -4480,11 +4480,10 @@ export class EazlService implements OnInit {
         let workingDashboardTabs: DashboardTab[] = [];
         let dashboardTabsDropDownWorking: SelectItem[] = [];
 
-        workingDashboardTabs = this.dashboardTabs.filter(
-            tab => tab.dashboardID == selectedDashboardID
-        );
+        // Get all the Tabs for the given Dashboard
+        workingDashboardTabs = this.getDashboardTabs(selectedDashboardID);
 
-        // Fill the dropdown on the form
+        // Fill the dropdown format
         for (var i = 0; i < workingDashboardTabs.length; i++) {
             dashboardTabsDropDownWorking.push({
                 label: workingDashboardTabs[i].dashboardTabName,
