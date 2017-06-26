@@ -1421,22 +1421,10 @@ console.log('@end', this.widgetToEdit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardTabs', '@Start');
 
         // Get its Tabs in this Dashboard
-        this.dashboardTabsDropDown = [];
-        this.dashboardTabs = this.eazlService.getDashboardTabs(this.originalDashboardID);
-
-        // Fill the dropdown on the form
-        for (var i = 0; i < this.dashboardTabs.length; i++) {
-            this.dashboardTabsDropDown.push({
-                label: this.dashboardTabs[i].dashboardTabName,
-                value: {
-                    id: this.dashboardTabs[i].dashboardTabID,
-                    name: this.dashboardTabs[i].dashboardTabName
-                }
-            });
-        }
+        this.dashboardTabsDropDown = this.eazlService.getDashboardTabsSelectItems(
+            this.originalDashboardID
+        );
     }
-
-
 
     testVegaSpec() {
         // Test the Vega spec, and returns Good / Bad

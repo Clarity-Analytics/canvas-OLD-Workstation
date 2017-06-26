@@ -4420,6 +4420,39 @@ export class EazlService implements OnInit {
             (dashboardID == -1  ||  d.dashboardID == dashboardID));
     }
 
+    getDashboardSelectionItems(
+        dashboardID: number = -1,
+        relatedUsername: string = '*',
+        relationshipType: string = ''): SelectItem[] {
+        // Return a list of Dashboards, with optional filters in SelectionItem format
+        // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
+        // - relatedUsername Optional username
+        // - relationshipType Optional type, ie SharedWith
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardSelectionItems', '@Start');
+
+        // Get a list of Dashboards
+        let dashboardsWorking: Dashboard[] = this.getDashboards(
+            dashboardID,
+            relatedUsername,
+            relationshipType
+        );
+
+        // Fill the dropdown on the form
+        let dashboardsSelectItemsWorking: SelectItem[] = [];
+        for (var i = 0; i < dashboardsWorking.length; i++) {
+            dashboardsSelectItemsWorking.push({
+                label: dashboardsWorking[i].dashboardName,
+                value: {
+                    id: dashboardsWorking[i].dashboardID,
+                    name: dashboardsWorking[i].dashboardName
+                }
+            });
+        }
+        return dashboardsSelectItemsWorking;
+        
+    }
+
+
     getDashboardTabs(selectedDashboardID: number, selectedDashboardTabID?: number): DashboardTab[] {
         // Return a list of Dashboard Tabs for a given DashboardID,
         //   and Optionally if a DashboardTabID was given
@@ -4439,7 +4472,7 @@ export class EazlService implements OnInit {
     }
 
 
-    getDashboardTabsSelectItem(selectedDashboardID: number): SelectItem[] {
+    getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
         // Return a list of Dashboard Tabs for a given DashboardID as SelectionItem Array
         // - selectedDashboardID = filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabsSelectItem', '@Start');
