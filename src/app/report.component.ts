@@ -145,7 +145,7 @@ export class ReportComponent implements OnInit {
         // Show popup to create a widget, with basic info
         // - selectedReport: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuCreateWidget', '@Start');
-console.log('hier'    )
+
         this.displayNewWidgetForm = true;
     }
 }
