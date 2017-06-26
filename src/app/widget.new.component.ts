@@ -59,7 +59,8 @@ export class WidgetNewComponent implements OnInit {
         this.userform = this.fb.group({
             'dashboardName':    new FormControl('', Validators.required),
             'dashboardTabName': new FormControl('', Validators.required),
-            'reportFieldsX':    new FormControl('', Validators.required)
+            'reportFieldsX':    new FormControl('', Validators.required),
+            'reportFieldsY':    new FormControl('', Validators.required)
         });
 
         // Fill the DropDowns
@@ -100,7 +101,21 @@ export class WidgetNewComponent implements OnInit {
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Dashboard Tab Name is compulsory.';
         }    
-
+        if (this.userform.controls['reportFieldsX'].value.name == ''  || 
+            this.userform.controls['reportFieldsX'].value.name == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The X Axis is compulsory.';
+        }        
+        if (this.userform.controls['reportFieldsY'].value.name == ''  || 
+            this.userform.controls['reportFieldsY'].value.name == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Y Axis is compulsory.';
+        }
+        
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
             this.formIsValid = true;

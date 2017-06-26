@@ -560,7 +560,7 @@ export const DASHBOARDS: Dashboard[] =
         {
             dashboardID: 5,
             dashboardCode: 'Jobs timeseries',
-            dashboardName: 'Stacked grap with jobs timeseries',
+            dashboardName: 'Stacked graph with jobs timeseries',
             isContainerHeaderDark: false,
             showContainerHeader: true,
             dashboardBackgroundColor: '',

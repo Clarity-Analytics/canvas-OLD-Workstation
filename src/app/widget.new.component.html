@@ -67,7 +67,7 @@
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-4">
-                Report Fields :
+                X-Axis :
             </div>
             <div class="ui-grid-col-8">
                 <p-dropdown
@@ -85,6 +85,32 @@
                             }"
                     placeholder="Required"
                     formControlName="reportFieldsX"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                Y-Axis :
+            </div>
+            <div class="ui-grid-col-8">
+                <p-dropdown
+                    [options]="reportFieldsDropDown"
+                    [style]="{
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid lightgray',
+                            'border-radius':'2px',
+                            'float':'right',
+                            'font-size':'0.85em',
+                            'margin':'-2px 5px 0 0',
+                            'padding':'0',
+                            'width':'200px'
+                            }"
+                    placeholder="Required"
+                    formControlName="reportFieldsY"
                     filter="true"
                     >
                 </p-dropdown>
