@@ -1426,12 +1426,6 @@ export class CDAL {
             personalisationWorking.averageWarningRuntime = 0;
         }
 
-        if (eazlPersonalisation.keep_dev_logged_in != null) {
-            personalisationWorking.keepDevLoggedIn = eazlPersonalisation.keep_dev_logged_in;
-        } else {
-            personalisationWorking.keepDevLoggedIn = false;
-        }
-
         if (eazlPersonalisation.frontend_color_scheme != null) {
             personalisationWorking.frontendColorScheme = eazlPersonalisation.frontend_color_scheme;
         } else {

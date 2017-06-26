@@ -56,7 +56,6 @@ export class PersonalisationComponent implements OnInit {
             'gridSize':                     new FormControl('', Validators.pattern('^[0-9]*$')),
             'growlSticky':                  new FormControl(''),
             'growlLife':                    new FormControl('', Validators.pattern('^[0-9]*$')),
-            'keepDevLoggedIn':              new FormControl(''),
             'snapToGrid':                   new FormControl('')
         });
 
@@ -70,8 +69,6 @@ export class PersonalisationComponent implements OnInit {
             this.personalisation.environment);
         this.configForm.controls['averageWarningRuntime'].setValue(
             this.personalisation.averageWarningRuntime);
-        this.configForm.controls['keepDevLoggedIn'].setValue(
-            this.personalisation.keepDevLoggedIn);
         this.configForm.controls['frontendColorScheme'].setValue(
             this.personalisation.frontendColorScheme);
         this.configForm.controls['defaultWidgetConfiguration'].setValue(
@@ -191,7 +188,6 @@ export class PersonalisationComponent implements OnInit {
                 gridSize: this.configForm.controls['gridSize'].value,
                 growlSticky: this.configForm.controls['growlSticky'].value,
                 growlLife: this.configForm.controls['growlLife'].value,
-                keepDevLoggedIn: this.configForm.controls['keepDevLoggedIn'].value,
                 snapToGrid: this.configForm.controls['snapToGrid'].value
             }
         )

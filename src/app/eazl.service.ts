@@ -105,7 +105,6 @@ export const PERSONALISATION: Personalisation = {
     gridSize: 3,
     growlLife: 3,
     growlSticky: false,
-    keepDevLoggedIn: true,
     snapToGrid: true
 }
 
@@ -4034,9 +4033,6 @@ export class EazlService implements OnInit {
         }
         if (personalisation.environment != this.personalisation.environment) {
             this.globalVariableService.environment.next(personalisation.environment);
-        }
-        if (personalisation.keepDevLoggedIn != this.personalisation.keepDevLoggedIn) {
-            this.globalVariableService.keepDevLoggedIn.next(personalisation.keepDevLoggedIn);
         }
         if (personalisation.frontendColorScheme != this.personalisation.frontendColorScheme) {
             this.globalVariableService.frontendColorScheme.next(personalisation.frontendColorScheme);

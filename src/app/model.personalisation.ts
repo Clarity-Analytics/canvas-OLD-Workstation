@@ -28,6 +28,5 @@ export class Personalisation {
     gridSize: number;                       // Size of Grid on Dashboard in px
     growlLife: number;                      // Life is seconds of Growls
     growlSticky: boolean;                   // True: Growls are sticky
-    keepDevLoggedIn: boolean;               // True: keep Dev logged in Dev Environment - for later use
     snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
 }
