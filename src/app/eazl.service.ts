@@ -4517,9 +4517,9 @@ export class EazlService implements OnInit {
     getWidgetLastWidgetID(): number {
         // Return the last (biggest) WidgetID
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
-                
-        let lastWidgetID =
-            this.widgets[this.widgets.length - 1].properties.widgetID;
+
+        // TODO - do via Eazl into DB
+        let lastWidgetID = this.widgets[this.widgets.length - 1].properties.widgetID;
 
         // Return
         return lastWidgetID + 1;

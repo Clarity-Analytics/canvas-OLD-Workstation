@@ -105,112 +105,221 @@ export class WidgetNewComponent implements OnInit {
         
         // Adding new Widget
         let widgetNew = new Widget;
-console.log('3', widgetNew)
+console.log('3', this.eazlService.widgets)
         
-        widgetNew.container.backgroundColor = '';
-        widgetNew.container.border = '';
-        widgetNew.container.boxShadow = '';
-        widgetNew.container.color = '';
-        widgetNew.container.fontSize = 0;
-        widgetNew.container.height = 0;
-        widgetNew.container.left = 0;
-        widgetNew.container.widgetTitle = '';
-        widgetNew.container.top = 0;
-        widgetNew.container.width = 0;
-console.log('4')
-    
-        widgetNew.areas.showWidgetText = false;
-        widgetNew.areas.showWidgetGraph = true;
-        widgetNew.areas.showWidgetTable = false;
-        widgetNew.areas.showWidgetImage = false;
-    
-        widgetNew.textual.textText = '';
-        widgetNew.textual.textBackgroundColor = '';
-        widgetNew.textual.textBorder = '';
-        widgetNew.textual.textColor = '';
-        widgetNew.textual.textFontSize = 0;
-        widgetNew.textual.textFontWeight = '';
-        widgetNew.textual.textHeight = 0;
-        widgetNew.textual.textLeft = 0;
-        widgetNew.textual.textMargin = '';
-        widgetNew.textual.textPadding = '';
-        widgetNew.textual.textPosition = '';
-        widgetNew.textual.textTextAlign = '';
-        widgetNew.textual.textTop = 0;
-        widgetNew.textual.textWidth = 0;
-    
-        widgetNew.graph.graphID = 0;
-        widgetNew.graph.graphLeft = 0;
-        widgetNew.graph.graphTop = 0;
-        widgetNew.graph.vegaParameters.vegaGraphHeight = 0;
-        widgetNew.graph.vegaParameters.vegaGraphWidth = 0;
-        widgetNew.graph.vegaParameters.vegaGraphPadding = 0;
-        widgetNew.graph.vegaParameters.vegaHasSignals = false;
-        widgetNew.graph.vegaParameters.vegaXcolumn = '';
-        widgetNew.graph.vegaParameters.vegaYcolumn = '';
-        widgetNew.graph.vegaParameters.vegaFillColor = '';
-        widgetNew.graph.vegaParameters.vegaHoverColor = '';
-        widgetNew.graph.spec = '';
 
-        widgetNew.table.tableColor = '';
-        widgetNew.table.tableCols = 0;
-        widgetNew.table.tableHeight = 0;
-        widgetNew.table.tableHideHeader = false;
-        widgetNew.table.tableLeft = 0;
-        widgetNew.table.tableRows = 0;
-        widgetNew.table.tableTop = 0;
-        widgetNew.table.tableWidth = 0;
-    
-        widgetNew.image.imageAlt = '';
-        widgetNew.image.imageHeigt = 0;
-        widgetNew.image.imageLeft = 0;
-        widgetNew.image.imageSource = '';
-        widgetNew.image.imageTop = 0;
-        widgetNew.image.imageWidth = 0;
-    
-        widgetNew.properties.widgetID = 0;
-        widgetNew.properties.dashboardID = 0;
-        widgetNew.properties.dashboardTabID = 0;
-        widgetNew.properties.dashboardTabName = '';
-        widgetNew.properties.widgetCode = '';
-        widgetNew.properties.widgetName = '';
-        widgetNew.properties.widgetDescription = '';
-        widgetNew.properties.widgetDefaultExportFileType = '';
-        widgetNew.properties.widgetHyperLinkTabNr = '';
-        widgetNew.properties.widgetHyperLinkWidgetID = '';
-        widgetNew.properties.widgetRefreshMode = '';
-        widgetNew.properties.widgetRefreshFrequency = 0;
-        widgetNew.properties.widgetPassword = '';
-        widgetNew.properties.widgetIsLiked = false;
-        widgetNew.properties.widgetLiked = null;
+        this.eazlService.addWidget( 
+            {
+                container: {
+                backgroundColor: '',
+                border: '',
+                boxShadow: '',
+                color: '',
+                fontSize: 0,
+                height: 0,
+                left: 0,
+                widgetTitle: '',
+                top: 0,
+                width: 0,
+                },
+        areas: 
+            {
+                showWidgetText: false,
+                showWidgetGraph: true,
+                showWidgetTable: false,
+                showWidgetImage: false,
+            },
+        textual: 
+            {
+                textText: '',
+                textBackgroundColor: '',
+                textBorder: '',
+                textColor: '',
+                textFontSize: 0,
+                textFontWeight: '',
+                textHeight: 0,
+                textLeft: 0,
+                textMargin: '',
+                textPadding: '',
+                textPosition: '',
+                textTextAlign: '',
+                textTop: 0,
+                textWidth: 0,
+        },
+        graph: 
+            {
+                graphID: 0,
+                graphLeft: 0,
+                graphTop: 0,
+                vegaParameters: 
+                    {
+                        vegaGraphHeight: 0,
+                        vegaGraphWidth: 0,
+                        vegaGraphPadding: 0,
+                        vegaHasSignals: false,
+                        vegaXcolumn: '',
+                        vegaYcolumn: '',
+                        vegaFillColor: '',
+                        vegaHoverColor: '',
+                    },
+                spec: '',
+            },
+        table: 
+            {
+                tableColor: '',
+                tableCols: 0,
+                tableHeight: 0,
+                tableHideHeader: false,
+                tableLeft: 0,
+                tableRows: 0,
+                tableTop: 0,
+                tableWidth: 0,
+            },
+        image: 
+            {
+                imageAlt: '',
+                imageHeigt: 0,
+                imageLeft: 0,
+                imageSource: '',
+                imageTop: 0,
+                imageWidth: 0,
+            },
+        properties: 
+            {
+                widgetID: this.eazlService.getWidgetLastWidgetID(),
+                dashboardID: 0,
+                dashboardTabID: 0,
+                dashboardTabName: '',
+                widgetCode: '',
+                widgetName: '',
+                widgetDescription: '',
+                widgetDefaultExportFileType: '',
+                widgetHyperLinkTabNr: '',
+                widgetHyperLinkWidgetID: '',
+                widgetRefreshMode: '',
+                widgetRefreshFrequency: 0,
+                widgetPassword: '',
+                widgetIsLiked: false,
+                widgetLiked: null,
         
-        widgetNew.properties.widgetReportID = 0;
-        widgetNew.properties.widgetReportName = '';
-        widgetNew.properties.widgetReportParameters = '';
-        widgetNew.properties.widgetShowLimitedRows = 0;
-        widgetNew.properties.widgetAddRestRow = false;
-        widgetNew.properties.widgetType = '';
-        widgetNew.properties.widgetComments = '';
-        widgetNew.properties.widgetIndex = 0;
-        widgetNew.properties.widgetIsLocked = false;
-        widgetNew.properties.widgetSize = '';
-        widgetNew.properties.widgetSystemMessage = '';
-        widgetNew.properties.widgetTypeID = 0;
-        widgetNew.properties.widgetRefreshedDateTime = '';
-        widgetNew.properties.widgetRefreshedUserName = '';
-        widgetNew.properties.widgetCreatedDateTime = '';
-        widgetNew.properties.widgetCreatedUserName = '';
-        widgetNew.properties.widgetUpdatedDateTime = '';
-        widgetNew.properties.widgetUpdatedUserName = '';
+                widgetReportID: 0,
+                widgetReportName: '',
+                widgetReportParameters: '',
+                widgetShowLimitedRows: 0,
+                widgetAddRestRow: false,
+                widgetType: '',
+                widgetComments: '',
+                widgetIndex: 0,
+                widgetIsLocked: false,
+                widgetSize: '',
+                widgetSystemMessage: '',
+                widgetTypeID: 0,
+                widgetRefreshedDateTime: '',
+                widgetRefreshedUserName: '',
+                widgetCreatedDateTime: '',
+                widgetCreatedUserName: '',
+                widgetUpdatedDateTime: '',
+                widgetUpdatedUserName: '',
+            }
+        });
+console.log('4',this.eazlService.widgets)
 
-        // TODO - this is crude & error prone: eventually autoIndex in DB
-        // let lastWidgetID =
-        //     this.widgets[this.widgets.length - 1].properties.widgetID;
+//         widgetNew.container.backgroundColor = '';
+//         widgetNew.container.border = '';
+//         widgetNew.container.boxShadow = '';
+//         widgetNew.container.color = '';
+//         widgetNew.container.fontSize = 0;
+//         widgetNew.container.height = 0;
+//         widgetNew.container.left = 0;
+//         widgetNew.container.widgetTitle = '';
+//         widgetNew.container.top = 0;
+//         widgetNew.container.width = 0;
+// console.log('4')
+    
+//         widgetNew.areas.showWidgetText = false;
+//         widgetNew.areas.showWidgetGraph = true;
+//         widgetNew.areas.showWidgetTable = false;
+//         widgetNew.areas.showWidgetImage = false;
+    
+//         widgetNew.textual.textText = '';
+//         widgetNew.textual.textBackgroundColor = '';
+//         widgetNew.textual.textBorder = '';
+//         widgetNew.textual.textColor = '';
+//         widgetNew.textual.textFontSize = 0;
+//         widgetNew.textual.textFontWeight = '';
+//         widgetNew.textual.textHeight = 0;
+//         widgetNew.textual.textLeft = 0;
+//         widgetNew.textual.textMargin = '';
+//         widgetNew.textual.textPadding = '';
+//         widgetNew.textual.textPosition = '';
+//         widgetNew.textual.textTextAlign = '';
+//         widgetNew.textual.textTop = 0;
+//         widgetNew.textual.textWidth = 0;
+    
+//         widgetNew.graph.graphID = 0;
+//         widgetNew.graph.graphLeft = 0;
+//         widgetNew.graph.graphTop = 0;
+//         widgetNew.graph.vegaParameters.vegaGraphHeight = 0;
+//         widgetNew.graph.vegaParameters.vegaGraphWidth = 0;
+//         widgetNew.graph.vegaParameters.vegaGraphPadding = 0;
+//         widgetNew.graph.vegaParameters.vegaHasSignals = false;
+//         widgetNew.graph.vegaParameters.vegaXcolumn = '';
+//         widgetNew.graph.vegaParameters.vegaYcolumn = '';
+//         widgetNew.graph.vegaParameters.vegaFillColor = '';
+//         widgetNew.graph.vegaParameters.vegaHoverColor = '';
+//         widgetNew.graph.spec = '';
 
-        // // Set the Widget ID & Add to Array
-        // // TODO - do via Eazl into DB
-        // this.widgetToEdit.properties.widgetID = lastWidgetID + 1;
-        // this.widgets.push(this.widgetToEdit);
+//         widgetNew.table.tableColor = '';
+//         widgetNew.table.tableCols = 0;
+//         widgetNew.table.tableHeight = 0;
+//         widgetNew.table.tableHideHeader = false;
+//         widgetNew.table.tableLeft = 0;
+//         widgetNew.table.tableRows = 0;
+//         widgetNew.table.tableTop = 0;
+//         widgetNew.table.tableWidth = 0;
+    
+//         widgetNew.image.imageAlt = '';
+//         widgetNew.image.imageHeigt = 0;
+//         widgetNew.image.imageLeft = 0;
+//         widgetNew.image.imageSource = '';
+//         widgetNew.image.imageTop = 0;
+//         widgetNew.image.imageWidth = 0;
+    
+//         widgetNew.properties.widgetID = this.eazlService.getWidgetLastWidgetID();
+//         widgetNew.properties.dashboardID = 0;
+//         widgetNew.properties.dashboardTabID = 0;
+//         widgetNew.properties.dashboardTabName = '';
+//         widgetNew.properties.widgetCode = '';
+//         widgetNew.properties.widgetName = '';
+//         widgetNew.properties.widgetDescription = '';
+//         widgetNew.properties.widgetDefaultExportFileType = '';
+//         widgetNew.properties.widgetHyperLinkTabNr = '';
+//         widgetNew.properties.widgetHyperLinkWidgetID = '';
+//         widgetNew.properties.widgetRefreshMode = '';
+//         widgetNew.properties.widgetRefreshFrequency = 0;
+//         widgetNew.properties.widgetPassword = '';
+//         widgetNew.properties.widgetIsLiked = false;
+//         widgetNew.properties.widgetLiked = null;
+        
+//         widgetNew.properties.widgetReportID = 0;
+//         widgetNew.properties.widgetReportName = '';
+//         widgetNew.properties.widgetReportParameters = '';
+//         widgetNew.properties.widgetShowLimitedRows = 0;
+//         widgetNew.properties.widgetAddRestRow = false;
+//         widgetNew.properties.widgetType = '';
+//         widgetNew.properties.widgetComments = '';
+//         widgetNew.properties.widgetIndex = 0;
+//         widgetNew.properties.widgetIsLocked = false;
+//         widgetNew.properties.widgetSize = '';
+//         widgetNew.properties.widgetSystemMessage = '';
+//         widgetNew.properties.widgetTypeID = 0;
+//         widgetNew.properties.widgetRefreshedDateTime = '';
+//         widgetNew.properties.widgetRefreshedUserName = '';
+//         widgetNew.properties.widgetCreatedDateTime = '';
+//         widgetNew.properties.widgetCreatedUserName = '';
+//         widgetNew.properties.widgetUpdatedDateTime = '';
+//         widgetNew.properties.widgetUpdatedUserName = '';
+
 
 
 

@@ -388,7 +388,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.selectedDashboardTab.name) {
 
                 // Set the Widget ID & Add to Array
-                // TODO - do via Eazl into DB
                 this.widgetToEdit.properties.widgetID = 
                     this.eazlService.getWidgetLastWidgetID();
                 this.widgets.push(this.widgetToEdit);
