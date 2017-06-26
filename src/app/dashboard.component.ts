@@ -387,13 +387,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             if (this.widgetToEdit.properties.dashboardTabName ==
                 this.selectedDashboardTab.name) {
 
-                // TODO - this is crude & error prone: eventually autoIndex in DB
-                let lastWidgetID =
-                    this.widgets[this.widgets.length - 1].properties.widgetID;
-
                 // Set the Widget ID & Add to Array
                 // TODO - do via Eazl into DB
-                this.widgetToEdit.properties.widgetID = lastWidgetID + 1;
+                this.widgetToEdit.properties.widgetID = 
+                    this.eazlService.getWidgetLastWidgetID();
                 this.widgets.push(this.widgetToEdit);
 
                 // Refresh the Dashboard
