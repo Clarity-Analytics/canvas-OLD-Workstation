@@ -38,8 +38,6 @@ export class WidgetNewComponent implements OnInit {
     formIsValid: boolean = false;
     isLoadingForm: boolean = false;
     numberErrors: number = 0;
-    selectedDashboard: SelectedItem;            // Selected in DropDown
-    selectedDashboardTab: SelectedItem;         // Selected in DropDown
     userform: FormGroup;
     
     constructor(
@@ -70,20 +68,24 @@ export class WidgetNewComponent implements OnInit {
         this.dashboardTabsDropDown = 
             this.eazlService.getDashboardTabsSelectItems(+event.value.id);
     }
-    
+
     onSubmit(value: string) {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
-        if (this.userform.controls['dashboardName'].value == ''  || 
-            this.userform.controls['dashboardName'].value == null) {
+        this.formIsValid = false;
+        this.errorMessageOnForm = '';
+        this.numberErrors = 0;
+
+        if (this.userform.controls['dashboardName'].value.name == ''  || 
+            this.userform.controls['dashboardName'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Dashboard Name is compulsory.';
         }
-        if (this.userform.controls['widgetCode'].value == ''  || 
-            this.userform.controls['widgetCode'].value == null) {
+        if (this.userform.controls['dashboardTabName'].value.name == ''  || 
+            this.userform.controls['dashboardTabName'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
@@ -103,10 +105,117 @@ export class WidgetNewComponent implements OnInit {
         
         // Adding new Widget
         let widgetNew = new Widget;
-        widgetNew.properties.dashboardID = 0;
-        widgetNew.properties.widgetID = 0; // Set in DB
+console.log('3', widgetNew)
+        
+        widgetNew.container.backgroundColor = '';
+        widgetNew.container.border = '';
+        widgetNew.container.boxShadow = '';
+        widgetNew.container.color = '';
+        widgetNew.container.fontSize = 0;
+        widgetNew.container.height = 0;
+        widgetNew.container.left = 0;
+        widgetNew.container.widgetTitle = '';
+        widgetNew.container.top = 0;
+        widgetNew.container.width = 0;
+console.log('4')
+    
+        widgetNew.areas.showWidgetText = false;
+        widgetNew.areas.showWidgetGraph = true;
+        widgetNew.areas.showWidgetTable = false;
+        widgetNew.areas.showWidgetImage = false;
+    
+        widgetNew.textual.textText = '';
+        widgetNew.textual.textBackgroundColor = '';
+        widgetNew.textual.textBorder = '';
+        widgetNew.textual.textColor = '';
+        widgetNew.textual.textFontSize = 0;
+        widgetNew.textual.textFontWeight = '';
+        widgetNew.textual.textHeight = 0;
+        widgetNew.textual.textLeft = 0;
+        widgetNew.textual.textMargin = '';
+        widgetNew.textual.textPadding = '';
+        widgetNew.textual.textPosition = '';
+        widgetNew.textual.textTextAlign = '';
+        widgetNew.textual.textTop = 0;
+        widgetNew.textual.textWidth = 0;
+    
+        widgetNew.graph.graphID = 0;
+        widgetNew.graph.graphLeft = 0;
+        widgetNew.graph.graphTop = 0;
+        widgetNew.graph.vegaParameters.vegaGraphHeight = 0;
+        widgetNew.graph.vegaParameters.vegaGraphWidth = 0;
+        widgetNew.graph.vegaParameters.vegaGraphPadding = 0;
+        widgetNew.graph.vegaParameters.vegaHasSignals = false;
+        widgetNew.graph.vegaParameters.vegaXcolumn = '';
+        widgetNew.graph.vegaParameters.vegaYcolumn = '';
+        widgetNew.graph.vegaParameters.vegaFillColor = '';
+        widgetNew.graph.vegaParameters.vegaHoverColor = '';
+        widgetNew.graph.spec = '';
 
-console.log('call this.Eazl. AddWidget')        
+        widgetNew.table.tableColor = '';
+        widgetNew.table.tableCols = 0;
+        widgetNew.table.tableHeight = 0;
+        widgetNew.table.tableHideHeader = false;
+        widgetNew.table.tableLeft = 0;
+        widgetNew.table.tableRows = 0;
+        widgetNew.table.tableTop = 0;
+        widgetNew.table.tableWidth = 0;
+    
+        widgetNew.image.imageAlt = '';
+        widgetNew.image.imageHeigt = 0;
+        widgetNew.image.imageLeft = 0;
+        widgetNew.image.imageSource = '';
+        widgetNew.image.imageTop = 0;
+        widgetNew.image.imageWidth = 0;
+    
+        widgetNew.properties.widgetID = 0;
+        widgetNew.properties.dashboardID = 0;
+        widgetNew.properties.dashboardTabID = 0;
+        widgetNew.properties.dashboardTabName = '';
+        widgetNew.properties.widgetCode = '';
+        widgetNew.properties.widgetName = '';
+        widgetNew.properties.widgetDescription = '';
+        widgetNew.properties.widgetDefaultExportFileType = '';
+        widgetNew.properties.widgetHyperLinkTabNr = '';
+        widgetNew.properties.widgetHyperLinkWidgetID = '';
+        widgetNew.properties.widgetRefreshMode = '';
+        widgetNew.properties.widgetRefreshFrequency = 0;
+        widgetNew.properties.widgetPassword = '';
+        widgetNew.properties.widgetIsLiked = false;
+        widgetNew.properties.widgetLiked = null;
+        
+        widgetNew.properties.widgetReportID = 0;
+        widgetNew.properties.widgetReportName = '';
+        widgetNew.properties.widgetReportParameters = '';
+        widgetNew.properties.widgetShowLimitedRows = 0;
+        widgetNew.properties.widgetAddRestRow = false;
+        widgetNew.properties.widgetType = '';
+        widgetNew.properties.widgetComments = '';
+        widgetNew.properties.widgetIndex = 0;
+        widgetNew.properties.widgetIsLocked = false;
+        widgetNew.properties.widgetSize = '';
+        widgetNew.properties.widgetSystemMessage = '';
+        widgetNew.properties.widgetTypeID = 0;
+        widgetNew.properties.widgetRefreshedDateTime = '';
+        widgetNew.properties.widgetRefreshedUserName = '';
+        widgetNew.properties.widgetCreatedDateTime = '';
+        widgetNew.properties.widgetCreatedUserName = '';
+        widgetNew.properties.widgetUpdatedDateTime = '';
+        widgetNew.properties.widgetUpdatedUserName = '';
+
+        // TODO - this is crude & error prone: eventually autoIndex in DB
+        // let lastWidgetID =
+        //     this.widgets[this.widgets.length - 1].properties.widgetID;
+
+        // // Set the Widget ID & Add to Array
+        // // TODO - do via Eazl into DB
+        // this.widgetToEdit.properties.widgetID = lastWidgetID + 1;
+        // this.widgets.push(this.widgetToEdit);
+
+
+
+
+console.log('call this.Eazl. AddWidget', widgetNew)        
 
     }
 } 

@@ -4468,7 +4468,6 @@ export class EazlService implements OnInit {
         return workingDashboardTabs;
     }
 
-
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
         // Return a list of Dashboard Tabs for a given DashboardID as SelectItem Array
         // - selectedDashboardID = filter
@@ -4513,6 +4512,17 @@ export class EazlService implements OnInit {
         } else {
             return false;
         }
+    }
+
+    getWidgetLastWidgetID(): number {
+        // Return the last (biggest) WidgetID
+        this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
+                
+        let lastWidgetID =
+            this.widgets[this.widgets.length - 1].properties.widgetID;
+
+        // Return
+        return lastWidgetID + 1;
     }
 
     getWidgetsForDashboard(selectedDashboardID: number, selectedDashboarTabName: string) {
