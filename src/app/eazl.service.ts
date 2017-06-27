@@ -30,8 +30,8 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
-import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
@@ -43,6 +43,7 @@ import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
 import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
+import { EazlGraphType }              from './model.graph.type';
 import { EazlGroup }                  from './model.group';
 import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
@@ -57,6 +58,7 @@ import { EazlWidget }                 from './model.widget';
 import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { Filter }                     from './model.filter';
+import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
@@ -95,44 +97,44 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
     maxRowsPerWidgetGraph: 15,
 }
 
-// export const GRAPHTYPES: SelectItem[] = {
-//                     this.widgetCreationDropDown.push({
-//             label: 'WidgetSet',
-//             value: {
-//                 id: 0,
-//                 name: 'WidgetSet'
-//             }
-//         });
-//         this.widgetCreationDropDown.push({
-//             label: 'BarChart',
-//             value: {
-//                 id: 1,
-//                 name: 'BarChart'
-//             }
-//         });
-//         this.widgetCreationDropDown.push({
-//             label: 'PieChart',
-//             value: {
-//                 id: 2,
-//                 name: 'PieChart'
-//             }
-//         });
-//         this.widgetCreationDropDown.push({
-//             label: 'LineChart',
-//             value: {
-//                 id: 3,
-//                 name: 'LineChart'
-//             }
-//         }); 
-//         this.widgetCreationDropDown.push({
-//             label: 'Custom',
-//             value: {
-//                 id: 4,
-//                 name: 'Custom'
-//             }
-//         });
+export const GRAPHTYPES: GraphType[] = [
+    {
+        label: 'WidgetSet',
+        value: {
+            id: 0,
+            name: 'WidgetSet'
+        }
+    },
+    {
+        label: 'BarChart',
+        value: {
+            id: 1,
+            name: 'BarChart'
+        }
+    },
+    {
+        label: 'PieChart',
+        value: {
+            id: 2,
+            name: 'PieChart'
+        }
+    },
+    {
+        label: 'LineChart',
+        value: {
+            id: 3,
+            name: 'LineChart'
+        }
+    },
+    {
+        label: 'Custom',
+        value: {
+            id: 4,
+            name: 'Custom'
+        }
+    }
 
-// }
+}
 
 export const PERSONALISATION: Personalisation = {
     personalisationID: 0,
@@ -3982,6 +3984,7 @@ export class EazlService implements OnInit {
     datasourcesPerUser: DatasourcesPerUser[] = [];          // List of DatasourcesPerUser
     dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
     filters: Filter[] [];                                   // List of Filters
+    graphTypes: GraphType[] = GRAPHTYPES;                   // List of Graph Types
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     notifications: Notification[] = [];                     // List of Notifications
@@ -5963,9 +5966,12 @@ export class EazlService implements OnInit {
         }
     }
 
-    // getGraphTypes(): SelectItem[] {
+    getGraphTypes(): SelectItem[] {
+        // Return list of Grapy Types
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
 
-    // }
+        return this.graphTypes;
+    }
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',
