@@ -95,6 +95,45 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
     maxRowsPerWidgetGraph: 15,
 }
 
+// export const GRAPHTYPES: SelectItem[] = {
+//                     this.widgetCreationDropDown.push({
+//             label: 'WidgetSet',
+//             value: {
+//                 id: 0,
+//                 name: 'WidgetSet'
+//             }
+//         });
+//         this.widgetCreationDropDown.push({
+//             label: 'BarChart',
+//             value: {
+//                 id: 1,
+//                 name: 'BarChart'
+//             }
+//         });
+//         this.widgetCreationDropDown.push({
+//             label: 'PieChart',
+//             value: {
+//                 id: 2,
+//                 name: 'PieChart'
+//             }
+//         });
+//         this.widgetCreationDropDown.push({
+//             label: 'LineChart',
+//             value: {
+//                 id: 3,
+//                 name: 'LineChart'
+//             }
+//         }); 
+//         this.widgetCreationDropDown.push({
+//             label: 'Custom',
+//             value: {
+//                 id: 4,
+//                 name: 'Custom'
+//             }
+//         });
+
+// }
+
 export const PERSONALISATION: Personalisation = {
     personalisationID: 0,
     averageWarningRuntime: 3,
@@ -5924,6 +5963,9 @@ export class EazlService implements OnInit {
         }
     }
 
+    // getGraphTypes(): SelectItem[] {
+
+    // }
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',

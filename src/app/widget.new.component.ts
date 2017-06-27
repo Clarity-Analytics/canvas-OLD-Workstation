@@ -207,11 +207,11 @@ export class WidgetNewComponent implements OnInit {
                 properties: 
                     {
                         widgetID: this.eazlService.getWidgetLastWidgetID(),
-                        dashboardID: 0,
-                        dashboardTabID: 0,
-                        dashboardTabName: '',
+                        dashboardID: this.userform.controls['dashboardName'].value.id,
+                        dashboardTabID: this.userform.controls['dashboardTabName'].value.id,
+                        dashboardTabName: this.userform.controls['dashboardTabName'].value.name,
                         widgetCode: '',
-                        widgetName: '',
+                        widgetName: '',  //this.selectedReport.reportName,
                         widgetDescription: '',
                         widgetDefaultExportFileType: '',
                         widgetHyperLinkTabNr: '',

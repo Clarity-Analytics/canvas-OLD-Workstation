@@ -1341,6 +1341,8 @@ console.log('@end', this.widgetToEdit)
 
         // Fill the options on how to create Widgets
         this.widgetCreationDropDown = [];
+
+        
         this.widgetCreationDropDown.push({
             label: 'WidgetSet',
             value: {
