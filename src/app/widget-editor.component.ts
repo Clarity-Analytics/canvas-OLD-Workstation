@@ -1341,43 +1341,45 @@ console.log('@end', this.widgetToEdit)
 
         // Fill the options on how to create Widgets
         this.widgetCreationDropDown = [];
-
+        this.widgetCreationDropDown = this.eazlService.getGraphTypes();
+console.log('widgetCreationDropDown', this.widgetCreationDropDown)        
         
-        this.widgetCreationDropDown.push({
-            label: 'WidgetSet',
-            value: {
-                id: 0,
-                name: 'WidgetSet'
-            }
-        });
-        this.widgetCreationDropDown.push({
-            label: 'BarChart',
-            value: {
-                id: 1,
-                name: 'BarChart'
-            }
-        });
-        this.widgetCreationDropDown.push({
-            label: 'PieChart',
-            value: {
-                id: 2,
-                name: 'PieChart'
-            }
-        });
-        this.widgetCreationDropDown.push({
-            label: 'LineChart',
-            value: {
-                id: 3,
-                name: 'LineChart'
-            }
-        }); 
-        this.widgetCreationDropDown.push({
-            label: 'Custom',
-            value: {
-                id: 4,
-                name: 'Custom'
-            }
-        });
+        // this.widgetCreationDropDown.push({
+        //     label: 'WidgetSet',
+        //     value: {
+        //         id: 0,
+        //         name: 'WidgetSet'
+        //     }
+        // });
+        // this.widgetCreationDropDown.push({
+        //     label: 'BarChart',
+        //     value: {
+        //         id: 1,
+        //         name: 'BarChart'
+        //     }
+        // });
+        // this.widgetCreationDropDown.push({
+        //     label: 'PieChart',
+        //     value: {
+        //         id: 2,
+        //         name: 'PieChart'
+        //     }
+        // });
+        // this.widgetCreationDropDown.push({
+        //     label: 'LineChart',
+        //     value: {
+        //         id: 3,
+        //         name: 'LineChart'
+        //     }
+        // }); 
+        // this.widgetCreationDropDown.push({
+        //     label: 'Custom',
+        //     value: {
+        //         id: 4,
+        //         name: 'Custom'
+        //     }
+        // });
+
     }
 
     changeWidgetSet(event) {

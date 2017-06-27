@@ -133,9 +133,8 @@ export const GRAPHTYPES: GraphType[] = [
             name: 'Custom'
         }
     }
-
-}
-
+];
+    
 export const PERSONALISATION: Personalisation = {
     personalisationID: 0,
     averageWarningRuntime: 3,
