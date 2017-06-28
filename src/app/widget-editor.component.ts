@@ -23,7 +23,6 @@ import { GlobalVariableService }      from './global-variable.service';
  
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
-import { GraphType }                  from './model.graph.type';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
@@ -31,6 +30,7 @@ import { SelectedItemColor }          from './model.selectedItemColor';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
+import { WidgetType }                 from './model.widget.type';
 
 // Our Models
 import { CanvasColors }               from './chartcolors.data';
@@ -84,7 +84,7 @@ export class WidgetEditorComponent implements OnInit {
     reportFields: string[];                     // List of Report Fields
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
     reportFieldsDropDown:  SelectItem[];        // Drop Down options
-    selectedGraphType: GraphType;               // Selected graph type
+    selectedWidgetType: WidgetType;             // Selected graph type
     selectedItem: SelectedItem;                 // Selected Object: note ANY to cater for ID number, string
     selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
     widgetTemplate: WidgetTemplate;             // List of Widget Templates
@@ -102,7 +102,7 @@ export class WidgetEditorComponent implements OnInit {
     selectedTextPosition: SelectedItem;         // Selected option for Text Box Position
     selectedTextAlign: SelectedItem;            // Selected option for Text Alignment in box
     selectedTableColor: SelectedItemColor;      // Selected option for Table Color
-    widgetCreationDropDown: GraphType[];        // Drop Down options
+    widgetCreationDropDown: WidgetType[];       // Drop Down options
 
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
@@ -393,7 +393,7 @@ export class WidgetEditorComponent implements OnInit {
                     .setValue(this.widgetToEdit.properties.widgetShowLimitedRows);
                 this.identificationForm.controls['widgetAddRestRow']
                     .setValue(this.widgetToEdit.properties.widgetAddRestRow);
-                this.selectedGraphType = 
+                this.selectedWidgetType = 
                     {
                         label: this.widgetToEdit.properties.widgetType,
                         value: {
@@ -401,7 +401,7 @@ export class WidgetEditorComponent implements OnInit {
                             name: this.widgetToEdit.properties.widgetType
                         }
                     };
-                this.identificationForm.controls['widgetType'].setValue(this.selectedGraphType);
+                this.identificationForm.controls['widgetType'].setValue(this.selectedWidgetType);
 
                 this.selectedWidgetCreation = this.selectedItem;
 
@@ -1344,7 +1344,7 @@ console.log('@end', this.widgetToEdit)
 
         // Fill the options on how to create Widgets
         this.widgetCreationDropDown = [];
-        this.widgetCreationDropDown = this.eazlService.getGraphTypes();
+        this.widgetCreationDropDown = this.eazlService.getWidgetTypes();
     }
 
     changeWidgetSet(event) {

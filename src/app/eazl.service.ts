@@ -5965,12 +5965,20 @@ export class EazlService implements OnInit {
         }
     }
 
+    getWidgetTypes(): GraphType[] {
+        // Return list of Grapy Types
+        this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTypes', '@Start');
+
+        return this.graphTypes;
+    }
+    
     getGraphTypes(): GraphType[] {
         // Return list of Grapy Types
         this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
 
         return this.graphTypes;
     }
+
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',
