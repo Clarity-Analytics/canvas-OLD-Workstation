@@ -29,7 +29,6 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
-import { BorderDropdown }             from './model.borderDropdown';
 import { CanvasColors }               from './chartcolors.data';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
