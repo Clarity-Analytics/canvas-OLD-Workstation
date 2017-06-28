@@ -143,7 +143,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeDropdowns: SelectItem[];            // Options for Font Size
-    gridSizeOptions: SelectItem[];              // Options for Grid Size
+    gridSizeDropdowns: SelectItem[];            // Options for Grid Size
     isContainerHeaderDark: boolean = false;     // Widget Header icons black if true
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
@@ -212,14 +212,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // this.fontSizeDropdowns.push({label:'2em',   value:{id:1, name: '2'}});
 
         // Grid Size Options - the name must be a NUMBER, in px
-        this.gridSizeOptions = [];
-        this.gridSizeOptions.push({label:'1px',   value:{id:1, name: '1'}});
-        this.gridSizeOptions.push({label:'2px',   value:{id:2, name: '2'}});
-        this.gridSizeOptions.push({label:'3px',   value:{id:3, name: '3'}});
-        this.gridSizeOptions.push({label:'6px',   value:{id:4, name: '6'}});
-        this.gridSizeOptions.push({label:'9px',   value:{id:5, name: '9'}});
-        this.gridSizeOptions.push({label:'12px',  value:{id:6, name: '12'}});
-        this.gridSizeOptions.push({label:'30px',  value:{id:7, name: '30'}});
+        this.gridSizeDropdowns = [];
+        this.gridSizeDropdowns = this.eazlService.getGridSizeDropdowns();
 
         // Background Images
         this.backgroundImageOptions = [];
@@ -490,6 +484,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // First, global stuffies like grid size
         // Grid Size
         if (this.displayExpandGridSize) {
+
             // Update the data (for next time only, not moving anything now)
             this.globalVariableService.gridSize.next(
                 +this.selectedContainerGridSize['name']
