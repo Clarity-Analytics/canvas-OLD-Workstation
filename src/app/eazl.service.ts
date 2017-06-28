@@ -197,19 +197,43 @@ export const FONTSIZEDROPDOWNS: SelectItem[] =
                 }
         },
         {
+            label: '0.75em',
+            value:
+                {
+                    id: 1,
+                    name: '0.75'
+                }
+        },
+        {
             label: '1em',
             value:
                 {
-                    id: 0,
+                    id: 2,
                     name: '1'
+                }
+        },
+        {
+            label: '1.25em',
+            value:
+                {
+                    id: 3,
+                    name: '1.25'
                 }
         },
         {
             label: '1.5em',
             value:
                 {
-                    id: 1,
+                    id: 4,
                     name: '1.5'
+                }
+        },
+        {
+            label: '2em',
+            value:
+                {
+                    id: 5,
+                    name: '2'
                 }
         },
     ]
