@@ -18,6 +18,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { BorderDropdown }             from './model.borderDropdown';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { CanvasUser }                 from './model.user';
@@ -31,6 +32,7 @@ import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { EazlBorderDropdown }         from './model.borderDropdown';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
@@ -97,6 +99,24 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
     maxRowsDataReturned: 1000000,
     maxRowsPerWidgetGraph: 15,
 }
+
+// export const BORDERDROPDOWNS: BorderDropdown[] =
+// [
+//     {
+//         borderDropdownLabel: '',
+//         borderDropdownValue
+//             {
+//                 id: 0,
+//                 name: ''
+//             };
+//     }
+// ]
+
+        // this.borderOptions.push({label:'None',          value:{id:1, name: 'transparent'}});
+        // this.borderOptions.push({label:'Thick Black',   value:{id:1, name: '3px solid black'}});
+        // this.borderOptions.push({label:'Thin Black',    value:{id:1, name: '1px solid black'}});
+        // this.borderOptions.push({label:'Thin White',    value:{id:1, name: '1px solid white'}});
+
 
 export const GRAPHTYPES: GraphType[] = [
     {
