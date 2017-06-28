@@ -71,7 +71,6 @@ export class WidgetNewComponent implements OnInit {
 
         // Fill the DropDowns
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
-        
         this.graphTypeDropDown = this.eazlService.getGraphTypes();
     }
     
@@ -159,7 +158,13 @@ export class WidgetNewComponent implements OnInit {
             this.userform.controls['reportFieldsY'].value.name;
         this.widgetTemplate.vegaSpec.marks[1].encode.update.y.signal =
             'tooltip.' + this.userform.controls['reportFieldsY'].value.name;
-console.log('this.widgetTemplate', this.widgetTemplate)        
+
+        // Get Max z-Index
+        let maxZindex: number = 0;
+        maxZindex = this.eazlService.maxZindex(this.userform.controls['dashboardName'].value.id);
+
+        // Increment Max z-Index
+        maxZindex = maxZindex + 1;
 
                 // // Estimate height and width for NEW container, based on graph dimensions
                 // if (this.addEditMode == 'Add') {
@@ -272,7 +277,7 @@ console.log('this.widgetTemplate', this.widgetTemplate)
                         widgetAddRestRow: false,
                         widgetType: this.userform.controls['graphType'].value.name,
                         widgetComments: '',
-                        widgetIndex: 0,
+                        widgetIndex: maxZindex,
                         widgetIsLocked: false,
                         widgetSize: '',
                         widgetSystemMessage: '',
