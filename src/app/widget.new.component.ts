@@ -213,8 +213,8 @@ console.log('this.widgetTemplate', this.widgetTemplate)
                 graph: 
                     {
                         graphID: 0,
-                        graphLeft: 0,
-                        graphTop: 0,
+                        graphLeft: 5,
+                        graphTop: 25,   // NB 0 meanse the top buttons are dead (unclickable)
                         vegaParameters: 
                             {
                                 vegaGraphHeight: 200,
