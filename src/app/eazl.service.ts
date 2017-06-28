@@ -186,6 +186,27 @@ export const BOXSHADOWDROPDOWNS: SelectItem[] =
         },
     ]
 
+
+export const FONTSIZEDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: '1em',
+            value:
+                {
+                    id: 0,
+                    name: '1'
+                }
+        },
+        {
+            label: '2em',
+            value:
+                {
+                    id: 1,
+                    name: '2'
+                }
+        },
+    ]
+
 export const GRAPHTYPES: GraphType[] = 
     [
         {
@@ -4089,6 +4110,7 @@ export class EazlService implements OnInit {
     // Local Arrays to keep data for the rest of the Application
     borderDropdowns: SelectItem[] = BORDERDROPDOWNS;        // List of Border dropdown options
     boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
+    fontSizeDropdowns: SelectItem[] = FONTSIZEDROPDOWNS;    // List of FontSize dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
@@ -6125,6 +6147,13 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getBoxShadowDropdowns', '@Start');
 
         return this.boxShadowDropdowns;
+    }
+
+    getFontSizeDropdowns() {
+        // Return list of dropdown options for Font Size
+        this.globalFunctionService.printToConsole(this.constructor.name,'getFontSizeDropdowns', '@Start');
+
+        return this.fontSizeDropdowns;
     }
 
     cacheCanvasData(
