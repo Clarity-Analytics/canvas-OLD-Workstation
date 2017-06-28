@@ -5965,7 +5965,7 @@ export class EazlService implements OnInit {
         }
     }
 
-    getGraphTypes(): SelectItem[] {
+    getGraphTypes(): GraphType[] {
         // Return list of Grapy Types
         this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
 

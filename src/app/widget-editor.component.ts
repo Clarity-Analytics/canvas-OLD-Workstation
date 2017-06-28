@@ -23,6 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
  
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
+import { GraphType }                  from './model.graph.type';
 import { Report }                     from './model.report';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
@@ -83,6 +84,7 @@ export class WidgetEditorComponent implements OnInit {
     reportFields: string[];                     // List of Report Fields
     reportWidgetSetsDropDown:  SelectItem[];    // Drop Down options
     reportFieldsDropDown:  SelectItem[];        // Drop Down options
+    selectedGraphType: GraphType;               // Selected graph type
     selectedItem: SelectedItem;                 // Selected Object: note ANY to cater for ID number, string
     selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
     widgetTemplate: WidgetTemplate;             // List of Widget Templates
@@ -100,7 +102,7 @@ export class WidgetEditorComponent implements OnInit {
     selectedTextPosition: SelectedItem;         // Selected option for Text Box Position
     selectedTextAlign: SelectedItem;            // Selected option for Text Alignment in box
     selectedTableColor: SelectedItemColor;      // Selected option for Table Color
-    widgetCreationDropDown: SelectItem[];       // Drop Down options
+    widgetCreationDropDown: GraphType[];        // Drop Down options
 
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
     isNotCustomSpec: boolean = true;            // True if NOT a Custom widget
@@ -391,11 +393,16 @@ export class WidgetEditorComponent implements OnInit {
                     .setValue(this.widgetToEdit.properties.widgetShowLimitedRows);
                 this.identificationForm.controls['widgetAddRestRow']
                     .setValue(this.widgetToEdit.properties.widgetAddRestRow);
-                this.selectedItem = {
-                    id: this.widgetToEdit.properties.widgetTypeID, 
-                    name: this.widgetToEdit.properties.widgetType}
-                ;
-                this.identificationForm.controls['widgetType'].setValue(this.selectedItem);
+                this.selectedGraphType = 
+                    {
+                        label: this.widgetToEdit.properties.widgetType,
+                        value: {
+                            id: this.widgetToEdit.properties.widgetTypeID,
+                            name: this.widgetToEdit.properties.widgetType
+                        }
+                    };
+                this.identificationForm.controls['widgetType'].setValue(this.selectedGraphType);
+
                 this.selectedWidgetCreation = this.selectedItem;
 
                 // TODO - get IDs for X & Y columns correctly and from the actual data
@@ -882,20 +889,19 @@ export class WidgetEditorComponent implements OnInit {
 
             // Widget Set field validation
             if (this.identificationForm.controls['widgetType'].value == null) {
-                            this.formIsValid = false;
-                            this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                                'The Widget Type (Graph panel) is compulsory.';
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Widget Type (Graph panel) is compulsory.';
             } else {
-                if (this.identificationForm.controls['widgetType'].value == ''  || 
-                    this.identificationForm.controls['widgetType'].value == null) {
-                        this.formIsValid = false;
-                        this.numberErrors = this.numberErrors + 1;
-                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                            'The Widget Type (Graph Panel) is compulsory.';
+                if (this.identificationForm.controls['widgetType'].value == '') {
+                    this.formIsValid = false;
+                    this.numberErrors = this.numberErrors + 1;
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        'The Widget Type (Graph Panel) is compulsory.';
                 }
 
-                if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
+                if (this.identificationForm.controls['widgetType'].value.name == 'WidgetSet') {
 
                     if (this.identificationForm.controls['widgetReportWidgetSet'].value == ''  || 
                         this.identificationForm.controls['widgetReportWidgetSet'].value == null) {
@@ -915,7 +921,7 @@ export class WidgetEditorComponent implements OnInit {
                         'The Report Widget Type (Graph panel) is compulsory.';
             } else {
 
-                if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
+                if (this.identificationForm.controls['widgetType'].value.name == 'BarChart') {
                     if (this.identificationForm.controls['widgetShowLimitedRows'].touched  && 
                         !this.identificationForm.controls['widgetShowLimitedRows'].valid) {
                             this.formIsValid = false;
@@ -1063,13 +1069,14 @@ export class WidgetEditorComponent implements OnInit {
             this.identificationForm.controls['widgetReportParameters'].value;
         this.widgetToEdit.properties.widgetShowLimitedRows = 
             this.identificationForm.controls['widgetShowLimitedRows'].value;
-        this.widgetToEdit.properties.widgetTypeID = 0;
+        this.widgetToEdit.properties.widgetTypeID = 
+            this.identificationForm.controls['widgetType'].value.id;
         this.widgetToEdit.properties.widgetType = 
-            this.identificationForm.controls['widgetType'].value;
+            this.identificationForm.controls['widgetType'].value.name;
 
         // Amend the specs IF given, according to the Widget Sets
         if (this.identificationForm.controls['widgetType'].value != null) {
-            if (this.identificationForm.controls['widgetType'].value['name'] == 'WidgetSet') {
+            if (this.identificationForm.controls['widgetType'].value.name == 'WidgetSet') {
                 for (var i = 0; i < this.reportWidgetSets.length; i++) {
                     if (this.reportWidgetSets[i].widgetSetID == 
                         this.identificationForm.controls['widgetReportWidgetSet'].value.id) {
@@ -1092,7 +1099,7 @@ export class WidgetEditorComponent implements OnInit {
         }
 
         if (this.identificationForm.controls['widgetType'].value != null) {
-            if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
+            if (this.identificationForm.controls['widgetType'].value.name == 'BarChart') {
 
                 // Get the corresponding widget template
                 this.loadWidgetTemplateFields();
@@ -1163,9 +1170,8 @@ export class WidgetEditorComponent implements OnInit {
 
             }
         }
-
         if (this.identificationForm.controls['widgetType'].value != null) {
-            if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
+            if (this.identificationForm.controls['widgetType'].value.name == 'Custom') {
                 this.widgetToEdit.graph.spec = JSON.parse(this.identificationForm.controls['vegaSpec'].value);
 
                 // Then wack in the data from the Report
@@ -1358,20 +1364,19 @@ console.log('@end', this.widgetToEdit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadWidgetTemplateFields', '@Start');
 
         // Only get this for non-WidgetSets, ie WidgetTemplates
-        // if (this.identificationForm.controls['widgetType'].value['name'] != 'WidgetSet') {
         this.widgetTemplate = null;
 
         // This is null for New Widgets
         if (this.identificationForm.controls['widgetType'].value != null) {
-            if (this.identificationForm.controls['widgetType'].value['name'] != 'WidgetSet') {
+            if (this.identificationForm.controls['widgetType'].value.name != 'WidgetSet') {
                 // Get the corresponding widget template
                 this.widgetTemplate = this.eazlService.getWidgetTemplates (
-                    this.identificationForm.controls['widgetType'].value['name']
+                    this.identificationForm.controls['widgetType'].value.name
                 );
             }
 
             // Only Custom specs can be editted
-            if (this.identificationForm.controls['widgetType'].value['name'] == 'Custom') {
+            if (this.identificationForm.controls['widgetType'].value.name == 'Custom') {
                 this.isNotCustomSpec = false;
             } else {
                 this.isNotCustomSpec = true;
