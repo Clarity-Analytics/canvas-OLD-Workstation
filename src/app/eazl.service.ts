@@ -112,7 +112,7 @@ export const BORDERDROPDOWNS: SelectItem[] =
             label: 'Thick Black',
             value:
                 {
-                    id: 0,
+                    id: 1,
                     name: '3px solid black'
                 }
         },
@@ -120,7 +120,7 @@ export const BORDERDROPDOWNS: SelectItem[] =
             label: 'Thin Black',
             value:
                 {
-                    id: 0,
+                    id: 2,
                     name: '1px solid black'
                 }
         },
@@ -128,7 +128,7 @@ export const BORDERDROPDOWNS: SelectItem[] =
             label: 'Thin White',
             value:
                 {
-                    id: 0,
+                    id: 3,
                     name: '1px solid white'
                 }
         },
@@ -136,7 +136,7 @@ export const BORDERDROPDOWNS: SelectItem[] =
             label: 'Thin Red',
             value:
                 {
-                    id: 0,
+                    id: 4,
                     name: '1px solid red'
                 }
         },
@@ -144,10 +144,46 @@ export const BORDERDROPDOWNS: SelectItem[] =
             label: 'Thin Gray',
             value:
                 {
-                    id: 0,
+                    id: 5,
                     name: '1px solid gray'
                 }
         }
+    ]
+
+export const BOXSHADOWDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: 'None',
+            value:
+                {
+                    id: 0,
+                    name: ''
+                }
+        },
+        {
+            label: 'Black',
+            value:
+                {
+                    id: 1,
+                    name: '2px 2px 12px black'
+                }
+        },
+        {
+            label: 'Gray',
+            value:
+                {
+                    id: 2,
+                    name: '2px 2px 12px gray'
+                }
+        },
+        {
+            label: 'White',
+            value:
+                {
+                    id: 3,
+                    name: '2px 2px 12px white'
+                }
+        },
     ]
 
 export const GRAPHTYPES: GraphType[] = 
@@ -4051,7 +4087,8 @@ export class EazlService implements OnInit {
     route: string = 'users';                                // Route to RESTi - users/authen...
 
     // Local Arrays to keep data for the rest of the Application
-    borderDropdowns: SelectItem[] = BORDERDROPDOWNS;   // List of Border drop down options
+    borderDropdowns: SelectItem[] = BORDERDROPDOWNS;        // List of Border dropdown options
+    boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
@@ -6081,6 +6118,13 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getBorderDropdowns', '@Start');
 
         return this.borderDropdowns;
+    }
+
+    getBoxShadowDropdowns() {
+        // Return list of dropdown options for Box Shadows
+        this.globalFunctionService.printToConsole(this.constructor.name,'getBoxShadowDropdowns', '@Start');
+
+        return this.boxShadowDropdowns;
     }
 
     cacheCanvasData(

@@ -139,8 +139,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     widgetStartDragY: number;                   // Start coordinates during dragging
 
     // Variables for Startup properties of a Widget
-    borderDropdowns: SelectItem[];          // Options for Border DropDown
-    boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
+    borderDropdowns: SelectItem[];              // Options for Border DropDown
+    boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size
     gridSizeOptions: SelectItem[];              // Options for Grid Size
@@ -202,11 +202,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.borderDropdowns = this.eazlService.getBorderDropdowns();
 
         // BoxShadow Options
-        this.boxShadowOptions = [];
-        this.boxShadowOptions.push({label:'None',       value:{id:1, name: '',                      code: ''}});
-        this.boxShadowOptions.push({label:'Black',      value:{id:1, name: '2px 2px 12px black',    code: '2px 2px 12px black'}});
-        this.boxShadowOptions.push({label:'Gray',       value:{id:1, name: '2px 2px 12px gray',     code: '2px 2px 12px gray'}});
-        this.boxShadowOptions.push({label:'White',      value:{id:1, name: '2px 2px 12px white',    code: '2px 2px 12px white'}});
+        this.boxShadowDropdowns = [];
+        this.boxShadowDropdowns = this.eazlService.getBoxShadowDropdowns();
+        // this.boxShadowDropdowns.push({label:'None',       value:{id:1, name: '',                      code: ''}});
+        // this.boxShadowDropdowns.push({label:'Black',      value:{id:1, name: '2px 2px 12px black',    code: '2px 2px 12px black'}});
+        // this.boxShadowDropdowns.push({label:'Gray',       value:{id:1, name: '2px 2px 12px gray',     code: '2px 2px 12px gray'}});
+        // this.boxShadowDropdowns.push({label:'White',      value:{id:1, name: '2px 2px 12px white',    code: '2px 2px 12px white'}});
 
         // Font Size Options
         this.fontSizeOptions = [];

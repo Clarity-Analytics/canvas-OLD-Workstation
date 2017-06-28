@@ -118,7 +118,7 @@ export class WidgetEditorComponent implements OnInit {
     numberErrors: number = 0;
  
     // Variables for Startup properties of a Widget
-    borderOptions: SelectItem[];                // Options for Border DropDown
+    borderDropdown: SelectItem[];               // Options for Border DropDown
     boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size of text box
@@ -231,11 +231,8 @@ export class WidgetEditorComponent implements OnInit {
         this.chartColor = this.canvasColors.getColors();
 
         // Border Options
-        this.borderOptions = [];
-        this.borderOptions.push({label:'None',          value:{id:1, name: 'transparent'}});
-        this.borderOptions.push({label:'Thick Black',   value:{id:1, name: '3px solid black'}});
-        this.borderOptions.push({label:'Thin Black',    value:{id:1, name: '1px solid black'}});
-        this.borderOptions.push({label:'Thin White',    value:{id:1, name: '1px solid white'}});
+        this.borderDropdown = [];
+        this.borderDropdown = this.eazlService.getBorderDropdowns();
 
         // BoxShadow Options
         this.boxShadowOptions = [];
