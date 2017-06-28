@@ -215,10 +215,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Background Images
         this.backgroundImageOptions = [];
-        this.backgroundImageOptions.push({label:'None',            value:{id:1, name: ""}});
-        this.backgroundImageOptions.push({label:'Dolphin',         value:{id:1, name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"}});
-        this.backgroundImageOptions.push({label:'River Sunset',    value:{id:1, name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"}});
-        this.backgroundImageOptions.push({label:'Snow Landscape',  value:{id:1, name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"}});
+        this.backgroundImageOptions = this.eazlService.getBackgroundImageDropdowns();
 
         // Set startup stuffies
         // TODO - make sure global vars obtained @startup / login
