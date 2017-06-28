@@ -89,7 +89,7 @@ export class GlobalVariableService {
     lastBorder = new BehaviorSubject<SelectedItem>(
         {
             id:1, 
-            name: 'transparent'
+            name: '1px solid black'
         }
     );
     lastBackgroundColor = new BehaviorSubject<SelectedItemColor>(

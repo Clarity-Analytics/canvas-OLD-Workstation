@@ -199,10 +199,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Border Options
         this.borderOptions = [];
-        this.borderOptions.push({label:'None',          value:{id:1, name: 'transparent',           code: ''}});
-        this.borderOptions.push({label:'Thick Black',   value:{id:1, name: '3px solid black',       code: '3px solid black'}});
-        this.borderOptions.push({label:'Thin Black',    value:{id:1, name: '1px solid black',       code: '1px solid black'}});
-        this.borderOptions.push({label:'Thin White',    value:{id:1, name: '1px solid white',       code: '1px solid white'}});
+        this.borderOptions.push({label:'None',          value:{id:1, name: 'transparent'}});
+        this.borderOptions.push({label:'Thick Black',   value:{id:1, name: '3px solid black'}});
+        this.borderOptions.push({label:'Thin Black',    value:{id:1, name: '1px solid black'}});
+        this.borderOptions.push({label:'Thin White',    value:{id:1, name: '1px solid white'}});
 
         // BoxShadow Options
         this.boxShadowOptions = [];

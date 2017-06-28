@@ -176,7 +176,7 @@ console.log('this.widgetTemplate', this.widgetTemplate)
             {
                 container: {
                     backgroundColor: this.globalVariableService.lastBackgroundColor.getValue().name,
-                    border: '', //this.globalVariableService.lastBorder.getValue().name,
+                    border: this.globalVariableService.lastBorder.getValue().name,
                     boxShadow: this.globalVariableService.lastBoxShadow.getValue().name,
                     color: this.globalVariableService.lastColor.getValue().name,
                     fontSize: +this.globalVariableService.lastContainerFontSize.getValue().name,
