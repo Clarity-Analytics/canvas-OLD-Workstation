@@ -238,16 +238,97 @@ export const FONTSIZEDROPDOWNS: SelectItem[] =
         },
     ]
 
-// export const FONTSIZEDROPDOWNS: SelectItem[] =
-//     [
-//         {
-//             label: '0.5em',
-//             value:
-//                 {
-//                     id: 0,
-//                     name: '0.5'
-//                 }
-//         },
+export const GRIDSIZEDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: '1px',
+            value:
+                {
+                    id: 1,
+                    name: '1'
+                }
+        },
+        {
+            label: '2px',
+            value:
+                {
+                    id: 2,
+                    name: '2'
+                }
+        },
+        {
+            label: '3px',
+            value:
+                {
+                    id: 3,
+                    name: '3'
+                }
+        },
+        {
+            label: '4px',
+            value:
+                {
+                    id: 4,
+                    name: '4'
+                }
+        },
+        {
+            label: '5px',
+            value:
+                {
+                    id: 5,
+                    name: '5'
+                }
+        },
+        {
+            label: '6px',
+            value:
+                {
+                    id: 6,
+                    name: '6'
+                }
+        },
+        {
+            label: '9px',
+            value:
+                {
+                    id: 9,
+                    name: '9'
+                }
+        },
+        {
+            label: '12px',
+            value:
+                {
+                    id: 12,
+                    name: '12'
+                }
+        },
+        {
+            label: '18px',
+            value:
+                {
+                    id: 18,
+                    name: '18'
+                }
+        },
+        {
+            label: '24px',
+            value:
+                {
+                    id: 24,
+                    name: '24'
+                }
+        },
+        {
+            label: '30px',
+            value:
+                {
+                    id: 30,
+                    name: '30'
+                }
+        },
+    ]
 
 export const GRAPHTYPES: GraphType[] = 
     [
@@ -4153,6 +4234,7 @@ export class EazlService implements OnInit {
     borderDropdowns: SelectItem[] = BORDERDROPDOWNS;        // List of Border dropdown options
     boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
     fontSizeDropdowns: SelectItem[] = FONTSIZEDROPDOWNS;    // List of FontSize dropdown options
+    gridSizeDropdowns: SelectItem[] = GRIDSIZEDROPDOWNS;    // List of Grid Size dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
@@ -6196,6 +6278,13 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getFontSizeDropdowns', '@Start');
 
         return this.fontSizeDropdowns;
+    }
+
+    getGridSizeDropdowns() {
+        // Return list of dropdown options for Grid Sizes
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGridSizeDropdowns', '@Start');
+
+        return this.gridSizeDropdowns;
     }
 
     cacheCanvasData(
