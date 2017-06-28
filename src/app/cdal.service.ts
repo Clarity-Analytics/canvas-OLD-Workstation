@@ -32,6 +32,7 @@ import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }            from './model.dashboardsPerUser';
 import { EazlDashboardUserRelationship }    from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
+import { EazlGraphType }              from './model.graph.type';
 import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { EazlNotification }           from './model.notification';
@@ -47,7 +48,9 @@ import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
+import { EazlWidgetType }             from './model.widget.type';
 import { Filter }                     from './model.filter';
+import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { Notification }               from './model.notification';
@@ -63,6 +66,7 @@ import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
+import { WidgetType }                 from './model.widget.type';
 
 // TODO - add loadDataSources
 
@@ -1091,10 +1095,6 @@ export class CDAL {
         // Return the result
         return packageTaskWorking;
     }             
-
-
-
-
 
     loadReport(eazlReport: EazlReport): Report {
         // Load Report: move data Eazl -> Canvas
@@ -2198,6 +2198,111 @@ export class CDAL {
         // Return the result
         return widgetWorking;
     }             
+
+    loadWidgetTypes(eazlWidgetTypes: EazlWidgetType): WidgetType {
+        // Load WidgetTypes: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetTypes', '@Start');
+        
+        let WidgetTypesWorking = new WidgetType();
+
+        if (eazlWidgetTypes.label != null) {
+            WidgetTypesWorking.label = eazlWidgetTypes.label;
+        } else {
+            WidgetTypesWorking.label = '';
+        }
+
+        if (eazlWidgetTypes.value_id != null) {
+            WidgetTypesWorking.value.id = eazlWidgetTypes.value_id;
+        } else {
+            WidgetTypesWorking.value.id = 0;
+        }
+
+        if (eazlWidgetTypes.value_name != null) {
+            WidgetTypesWorking.value.name = eazlWidgetTypes.value_name;
+        } else {
+            WidgetTypesWorking.value.name = '';
+        }
+
+        // Return the result
+        return WidgetTypesWorking;
+    } 
+
+
+
+    // getGraphTypes(): GraphType[] {
+    //     // Return list of Grapy Types
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
+
+    //     return this.graphTypes;
+    // }
+
+    // maxZindex(dashboardID: number): number {
+    //     // Return the Max z-Index for a given dashboard
+    //     // - dashboardID to filter on
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
+
+    //     let maxZindex: number = 0;
+    //     for (var i = 0; i < this.widgets.length; i++) {
+    //         if (this.widgets[i].properties.dashboardID == dashboardID) {
+    //             maxZindex = Math.max(maxZindex, this.widgets[i].properties.widgetIndex);
+    //         }
+    //     }
+    //     return maxZindex;
+    // }
+
+    // getBorderDropdowns() {
+    //     // Return list of dropdown options for Borders
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getBorderDropdowns', '@Start');
+
+    //     return this.borderDropdowns;
+    // }
+
+    // getBoxShadowDropdowns() {
+    //     // Return list of dropdown options for Box Shadows
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getBoxShadowDropdowns', '@Start');
+
+    //     return this.boxShadowDropdowns;
+    // }
+
+    // getFontSizeDropdowns() {
+    //     // Return list of dropdown options for Font Size
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getFontSizeDropdowns', '@Start');
+
+    //     return this.fontSizeDropdowns;
+    // }
+
+    // getGridSizeDropdowns() {
+    //     // Return list of dropdown options for Grid Sizes
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getGridSizeDropdowns', '@Start');
+
+    //     return this.gridSizeDropdowns;
+    // }
+
+    // getBackgroundImageDropdowns() {
+    //     // Return list of dropdown options for Background Images
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getBackgroundImageDropdowns', '@Start');
+
+    //     return this.backgroundImageDropdowns;
+    // }
+
+    // loadCanvasMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
+    //     // Load MessageRecipient: move data Eazl -> Canvas
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessageRecipient', '@Start');
+        
+    //     let canvasMessageRecipientWorking = new CanvasMessageRecipient();
+        
+    //     canvasMessageRecipientWorking.canvasMessageRecipientID = eazlCanvasMessageRecipient.id;
+
+    //     if (eazlCanvasMessageRecipient.message_id != null) {
+    //         canvasMessageRecipientWorking.canvasMessageID = eazlCanvasMessageRecipient.message_id;
+    //     } else {
+    //         canvasMessageRecipientWorking.canvasMessageID = 0;
+    //     }
+
+    //     // Return the result
+    //     return canvasMessageRecipientWorking;
+    // } 
+
 
 }
 
