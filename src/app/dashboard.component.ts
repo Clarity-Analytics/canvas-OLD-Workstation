@@ -2172,7 +2172,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     );
                     this.renderer.setElementStyle(
                         this.childrenWidgetText.toArray()[i].nativeElement,
-                        'font-size', this.widgets[i].textual.textFontSize.toString() + 'px'
+                        'font-size', this.widgets[i].textual.textFontSize.toString() + 'em'
                     );
                     this.renderer.setElementStyle(
                         this.childrenWidgetText.toArray()[i].nativeElement,

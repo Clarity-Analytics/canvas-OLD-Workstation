@@ -186,7 +186,6 @@ export const BOXSHADOWDROPDOWNS: SelectItem[] =
         },
     ]
 
-
 export const FONTSIZEDROPDOWNS: SelectItem[] =
     [
         {
@@ -214,6 +213,17 @@ export const FONTSIZEDROPDOWNS: SelectItem[] =
                 }
         },
     ]
+
+// export const FONTSIZEDROPDOWNS: SelectItem[] =
+//     [
+//         {
+//             label: '0.5em',
+//             value:
+//                 {
+//                     id: 0,
+//                     name: '0.5'
+//                 }
+//         },
 
 export const GRAPHTYPES: GraphType[] = 
     [

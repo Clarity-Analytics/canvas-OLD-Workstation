@@ -121,7 +121,7 @@ export class WidgetEditorComponent implements OnInit {
     borderDropdown: SelectItem[];               // Options for Border DropDown
     boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
-    fontSizeOptions: SelectItem[];              // Options for Font Size of text box
+    fontSizeDropdowns: SelectItem[];              // Options for Font Size of text box
     fontWeightOptions: SelectItem[];            // Options for Font Weight of text box
     imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
     textMarginOptions: SelectItem[];            // Options for Margins around text box
@@ -239,13 +239,14 @@ export class WidgetEditorComponent implements OnInit {
         this.boxShadowDropdowns = this.eazlService.getBoxShadowDropdowns();
 
         // Font Size Options
-        this.fontSizeOptions = [];
-        this.fontSizeOptions.push({label:'16',   value:{id:1, name: '16'}});
-        this.fontSizeOptions.push({label:'32',   value:{id:1, name: '32'}});
-        this.fontSizeOptions.push({label:'48',   value:{id:1, name: '48'}});
-        this.fontSizeOptions.push({label:'60',   value:{id:1, name: '60'}});
-        this.fontSizeOptions.push({label:'72',   value:{id:1, name: '72'}});
-        this.fontSizeOptions.push({label:'84',   value:{id:1, name: '84'}});
+        this.fontSizeDropdowns = [];
+        this.fontSizeDropdowns = this.eazlService.getFontSizeDropdowns();
+        // this.fontSizeDropdowns.push({label:'16',   value:{id:1, name: '16'}});
+        // this.fontSizeDropdowns.push({label:'32',   value:{id:1, name: '32'}});
+        // this.fontSizeDropdowns.push({label:'48',   value:{id:1, name: '48'}});
+        // this.fontSizeDropdowns.push({label:'60',   value:{id:1, name: '60'}});
+        // this.fontSizeDropdowns.push({label:'72',   value:{id:1, name: '72'}});
+        // this.fontSizeDropdowns.push({label:'84',   value:{id:1, name: '84'}});
 
         // Font Weight Options
         this.fontWeightOptions = [];

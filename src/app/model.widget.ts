@@ -124,7 +124,7 @@ export class Widget {
         textBackgroundColor: string; 
         textBorder: string;          
         textColor: string;          
-        textFontSize: number;                   // in px
+        textFontSize: number;                   // in em (NB)
         textFontWeight: string;      
         textHeight: number;                     // in px
         textLeft: number;                       // in px
