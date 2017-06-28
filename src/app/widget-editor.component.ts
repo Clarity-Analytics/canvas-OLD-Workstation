@@ -1093,12 +1093,9 @@ export class WidgetEditorComponent implements OnInit {
 
         if (this.identificationForm.controls['widgetType'].value != null) {
             if (this.identificationForm.controls['widgetType'].value['name'] == 'BarChart') {
+
                 // Get the corresponding widget template
                 this.loadWidgetTemplateFields();
-                
-                // this.widgetTemplates = this.eazlService.getWidgetTemplates (
-                //     this.identificationForm.controls['widgetType'].value['name']
-                // );
 
                 // Wack the whole Template spec into our working Widget
                 this.widgetToEdit.graph.spec = this.widgetTemplate.vegaSpec;
@@ -1342,44 +1339,6 @@ console.log('@end', this.widgetToEdit)
         // Fill the options on how to create Widgets
         this.widgetCreationDropDown = [];
         this.widgetCreationDropDown = this.eazlService.getGraphTypes();
-console.log('widgetCreationDropDown', this.widgetCreationDropDown)        
-        
-        // this.widgetCreationDropDown.push({
-        //     label: 'WidgetSet',
-        //     value: {
-        //         id: 0,
-        //         name: 'WidgetSet'
-        //     }
-        // });
-        // this.widgetCreationDropDown.push({
-        //     label: 'BarChart',
-        //     value: {
-        //         id: 1,
-        //         name: 'BarChart'
-        //     }
-        // });
-        // this.widgetCreationDropDown.push({
-        //     label: 'PieChart',
-        //     value: {
-        //         id: 2,
-        //         name: 'PieChart'
-        //     }
-        // });
-        // this.widgetCreationDropDown.push({
-        //     label: 'LineChart',
-        //     value: {
-        //         id: 3,
-        //         name: 'LineChart'
-        //     }
-        // }); 
-        // this.widgetCreationDropDown.push({
-        //     label: 'Custom',
-        //     value: {
-        //         id: 4,
-        //         name: 'Custom'
-        //     }
-        // });
-
     }
 
     changeWidgetSet(event) {
