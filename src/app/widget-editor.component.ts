@@ -119,7 +119,7 @@ export class WidgetEditorComponent implements OnInit {
  
     // Variables for Startup properties of a Widget
     borderDropdown: SelectItem[];               // Options for Border DropDown
-    boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
+    boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size of text box
     fontWeightOptions: SelectItem[];            // Options for Font Weight of text box
@@ -235,11 +235,8 @@ export class WidgetEditorComponent implements OnInit {
         this.borderDropdown = this.eazlService.getBorderDropdowns();
 
         // BoxShadow Options
-        this.boxShadowOptions = [];
-        this.boxShadowOptions.push({label:'None',       value:{id:1, name: '',                      code: ''}});
-        this.boxShadowOptions.push({label:'Black',      value:{id:1, name: '2px 2px 12px black',    code: '2px 2px 12px black'}});
-        this.boxShadowOptions.push({label:'Gray',       value:{id:1, name: '2px 2px 12px gray',     code: '2px 2px 12px gray'}});
-        this.boxShadowOptions.push({label:'White',      value:{id:1, name: '2px 2px 12px white',    code: '2px 2px 12px white'}});
+        this.boxShadowDropdowns = [];
+        this.boxShadowDropdowns = this.eazlService.getBoxShadowDropdowns();
 
         // Font Size Options
         this.fontSizeOptions = [];

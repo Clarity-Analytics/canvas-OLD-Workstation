@@ -204,10 +204,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // BoxShadow Options
         this.boxShadowDropdowns = [];
         this.boxShadowDropdowns = this.eazlService.getBoxShadowDropdowns();
-        // this.boxShadowDropdowns.push({label:'None',       value:{id:1, name: '',                      code: ''}});
-        // this.boxShadowDropdowns.push({label:'Black',      value:{id:1, name: '2px 2px 12px black',    code: '2px 2px 12px black'}});
-        // this.boxShadowDropdowns.push({label:'Gray',       value:{id:1, name: '2px 2px 12px gray',     code: '2px 2px 12px gray'}});
-        // this.boxShadowDropdowns.push({label:'White',      value:{id:1, name: '2px 2px 12px white',    code: '2px 2px 12px white'}});
 
         // Font Size Options
         this.fontSizeOptions = [];
