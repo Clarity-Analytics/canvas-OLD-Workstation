@@ -76,6 +76,7 @@ import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
+import { WidgetType }                 from './model.widget.type';
 
 
 // Token for RESTi
@@ -98,6 +99,30 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
 }
 
 export const GRAPHTYPES: GraphType[] = [
+    {
+        label: 'BarChart',
+        value: {
+            id: 0,
+            name: 'BarChart'
+        }
+    },
+    {
+        label: 'PieChart',
+        value: {
+            id: 2,
+            name: 'PieChart'
+        }
+    },
+    {
+        label: 'LineChart',
+        value: {
+            id: 3,
+            name: 'LineChart'
+        }
+    },
+];
+
+export const WIDGETTYPES: WidgetType[] = [
     {
         label: 'WidgetSet',
         value: {
@@ -134,7 +159,7 @@ export const GRAPHTYPES: GraphType[] = [
         }
     }
 ];
-    
+       
 export const PERSONALISATION: Personalisation = {
     personalisationID: 0,
     averageWarningRuntime: 3,
@@ -3998,8 +4023,9 @@ export class EazlService implements OnInit {
     users: User[] = [];                                     // List of Users
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
-    widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
+    widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
+    widgetTypes: WidgetType[] = WIDGETTYPES;                 // List of Widget types
 
     constructor(
         private canvasDate: CanvasDate,
@@ -5969,7 +5995,7 @@ export class EazlService implements OnInit {
         // Return list of Grapy Types
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTypes', '@Start');
 
-        return this.graphTypes;
+        return this.widgetTypes;
     }
     
     getGraphTypes(): GraphType[] {
