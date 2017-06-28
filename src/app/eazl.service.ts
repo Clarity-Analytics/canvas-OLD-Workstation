@@ -100,85 +100,121 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
     maxRowsPerWidgetGraph: 15,
 }
 
-// export const BORDERDROPDOWNS: BorderDropdown[] =
-// [
-//     {
-//         borderDropdownLabel: '',
-//         borderDropdownValue
-//             {
-//                 id: 0,
-//                 name: ''
-//             };
-//     }
-// ]
+export const BORDERDROPDOWNS: BorderDropdown[] =
+    [
+        {
+            borderDropdownLabel: 'None',
+            borderDropdownValue:
+                {
+                    id: 0,
+                    name: 'transparent'
+                }
+        },
+        {
+            borderDropdownLabel: 'Thick Black',
+            borderDropdownValue:
+                {
+                    id: 0,
+                    name: '3px solid black'
+                }
+        },
+        {
+            borderDropdownLabel: 'Thin Black',
+            borderDropdownValue:
+                {
+                    id: 0,
+                    name: '1px solid black'
+                }
+        },
+        {
+            borderDropdownLabel: 'Thin White',
+            borderDropdownValue:
+                {
+                    id: 0,
+                    name: '1px solid white'
+                }
+        },
+        {
+            borderDropdownLabel: 'Thin Red',
+            borderDropdownValue:
+                {
+                    id: 0,
+                    name: '1px solid red'
+                }
+        },
+        {
+            borderDropdownLabel: 'Thin Gray',
+            borderDropdownValue:
+                {
+                    id: 0,
+                    name: '1px solid gray'
+                }
+        }
+    ]
 
-        // this.borderOptions.push({label:'None',          value:{id:1, name: 'transparent'}});
-        // this.borderOptions.push({label:'Thick Black',   value:{id:1, name: '3px solid black'}});
-        // this.borderOptions.push({label:'Thin Black',    value:{id:1, name: '1px solid black'}});
-        // this.borderOptions.push({label:'Thin White',    value:{id:1, name: '1px solid white'}});
+export const GRAPHTYPES: GraphType[] = 
+    [
+        {
+            label: 'BarChart',
+            value: {
+                id: 0,
+                name: 'BarChart'
+            }
+        },
+        {
+            label: 'PieChart',
+            value: {
+                id: 2,
+                name: 'PieChart'
+            }
+        },
+        {
+            label: 'LineChart',
+            value: {
+                id: 3,
+                name: 'LineChart'
+            }
+        },
+    ];
 
-
-export const GRAPHTYPES: GraphType[] = [
-    {
-        label: 'BarChart',
-        value: {
-            id: 0,
-            name: 'BarChart'
+export const WIDGETTYPES: WidgetType[] = 
+    [
+        {
+            label: 'WidgetSet',
+            value: {
+                id: 0,
+                name: 'WidgetSet'
+            }
+        },
+        {
+            label: 'BarChart',
+            value: {
+                id: 1,
+                name: 'BarChart'
+            }
+        },
+        {
+            label: 'PieChart',
+            value: {
+                id: 2,
+                name: 'PieChart'
+            }
+        },
+        {
+            label: 'LineChart',
+            value: {
+                id: 3,
+                name: 'LineChart'
+            }
+        },
+        {
+            label: 'Custom',
+            value: {
+                id: 4,
+                name: 'Custom'
+            }
         }
-    },
-    {
-        label: 'PieChart',
-        value: {
-            id: 2,
-            name: 'PieChart'
-        }
-    },
-    {
-        label: 'LineChart',
-        value: {
-            id: 3,
-            name: 'LineChart'
-        }
-    },
-];
-
-export const WIDGETTYPES: WidgetType[] = [
-    {
-        label: 'WidgetSet',
-        value: {
-            id: 0,
-            name: 'WidgetSet'
-        }
-    },
-    {
-        label: 'BarChart',
-        value: {
-            id: 1,
-            name: 'BarChart'
-        }
-    },
-    {
-        label: 'PieChart',
-        value: {
-            id: 2,
-            name: 'PieChart'
-        }
-    },
-    {
-        label: 'LineChart',
-        value: {
-            id: 3,
-            name: 'LineChart'
-        }
-    },
-    {
-        label: 'Custom',
-        value: {
-            id: 4,
-            name: 'Custom'
-        }
-    }
-];
+    ];
        
 export const PERSONALISATION: Personalisation = {
     personalisationID: 0,
@@ -195,133 +231,133 @@ export const PERSONALISATION: Personalisation = {
 }
 
 export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
-[
-    {
-        datasourceID: 0,
-        userName: 'janniei',
-        dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-        datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserName: 'janniei',
-	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserName: 'janniei'
-    },
-    {
-        datasourceID: 1,
-        userName: 'janniei',
-        dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-        datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserName: 'janniei',
-	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserName: 'janniei'
-    },
-    {
-        datasourceID: 0,
-        userName: 'bradleyk',
-        dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-        datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserName: 'janniei',
-	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserName: 'janniei'
-    },
-    {
-        datasourceID: 1,
-        userName: 'bradleyk',
-        dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
-        dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-        datasourceUserAccessCreatedDateTime: '2017/05/01',
-	    datasourceUserAccessCreatedUserName: 'janniei',
-	    datasourceUserAccessUpdatedDateTime: '2017/05/01',
-	    datasourceUserAccessUpdatedUserName: 'janniei'
-    }
-]
+    [
+        {
+            datasourceID: 0,
+            userName: 'janniei',
+            dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+            datasourceUserAccessCreatedDateTime: '2017/05/01',
+            datasourceUserAccessCreatedUserName: 'janniei',
+            datasourceUserAccessUpdatedDateTime: '2017/05/01',
+            datasourceUserAccessUpdatedUserName: 'janniei'
+        },
+        {
+            datasourceID: 1,
+            userName: 'janniei',
+            dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
+            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+            datasourceUserAccessCreatedDateTime: '2017/05/01',
+            datasourceUserAccessCreatedUserName: 'janniei',
+            datasourceUserAccessUpdatedDateTime: '2017/05/01',
+            datasourceUserAccessUpdatedUserName: 'janniei'
+        },
+        {
+            datasourceID: 0,
+            userName: 'bradleyk',
+            dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+            datasourceUserAccessCreatedDateTime: '2017/05/01',
+            datasourceUserAccessCreatedUserName: 'janniei',
+            datasourceUserAccessUpdatedDateTime: '2017/05/01',
+            datasourceUserAccessUpdatedUserName: 'janniei'
+        },
+        {
+            datasourceID: 1,
+            userName: 'bradleyk',
+            dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
+            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+            datasourceUserAccessCreatedDateTime: '2017/05/01',
+            datasourceUserAccessCreatedUserName: 'janniei',
+            datasourceUserAccessUpdatedDateTime: '2017/05/01',
+            datasourceUserAccessUpdatedUserName: 'janniei'
+        }
+    ]
 
 export const REPORTHISTORY: ReportHistory[] =
-[
-    {
-        reportHistoryID: 0,
-        userName: 'janniei',
-        reportID: 1,
-        datasourceID: 0,
-        reportHistoryStartDateTime: '2017/05/01 08:21',
-        reportHistoryEndDateTime: '2017/05/01 08:24',
-        reportHistoryStatus: 'Succes',
-        reportHistoryNrRowsReturned: 12,
-        reportHistoryComments: ''
-    },
-    {
-        reportHistoryID: 1,
-        userName: 'janniei',
-        reportID: 2,
-        datasourceID: 0,
-        reportHistoryStartDateTime: '2017/05/01 08:21',
-        reportHistoryEndDateTime: '2017/05/01 08:24',
-        reportHistoryStatus: 'Succes',
-        reportHistoryNrRowsReturned: 12,
-        reportHistoryComments: ''
-    },
-    {
-        reportHistoryID: 2,
-        userName: 'janniei',
-        reportID: 1,
-        datasourceID: 0,
-        reportHistoryStartDateTime: '2017/05/01 08:21',
-        reportHistoryEndDateTime: '2017/05/01 08:24',
-        reportHistoryStatus: 'Failed',
-        reportHistoryNrRowsReturned: 12,
-        reportHistoryComments: ''
-    },
-    {
-        reportHistoryID: 3,
-        userName: 'janniei',
-        reportID: 1,
-        datasourceID: 1,
-        reportHistoryStartDateTime: '2017/05/01 08:21',
-        reportHistoryEndDateTime: '2017/05/01 08:24',
-        reportHistoryStatus: 'Succes',
-        reportHistoryNrRowsReturned: 12,
-        reportHistoryComments: 'At last'
-    },
-    {
-        reportHistoryID: 4,
-        userName: 'bradleyk',
-        reportID: 1,
-        datasourceID: 1,
-        reportHistoryStartDateTime: '2017/05/01 08:21',
-        reportHistoryEndDateTime: '2017/05/01 08:24',
-        reportHistoryStatus: 'Succes',
-        reportHistoryNrRowsReturned: 12,
-        reportHistoryComments: ''
-    },
-]
+    [
+        {
+            reportHistoryID: 0,
+            userName: 'janniei',
+            reportID: 1,
+            datasourceID: 0,
+            reportHistoryStartDateTime: '2017/05/01 08:21',
+            reportHistoryEndDateTime: '2017/05/01 08:24',
+            reportHistoryStatus: 'Succes',
+            reportHistoryNrRowsReturned: 12,
+            reportHistoryComments: ''
+        },
+        {
+            reportHistoryID: 1,
+            userName: 'janniei',
+            reportID: 2,
+            datasourceID: 0,
+            reportHistoryStartDateTime: '2017/05/01 08:21',
+            reportHistoryEndDateTime: '2017/05/01 08:24',
+            reportHistoryStatus: 'Succes',
+            reportHistoryNrRowsReturned: 12,
+            reportHistoryComments: ''
+        },
+        {
+            reportHistoryID: 2,
+            userName: 'janniei',
+            reportID: 1,
+            datasourceID: 0,
+            reportHistoryStartDateTime: '2017/05/01 08:21',
+            reportHistoryEndDateTime: '2017/05/01 08:24',
+            reportHistoryStatus: 'Failed',
+            reportHistoryNrRowsReturned: 12,
+            reportHistoryComments: ''
+        },
+        {
+            reportHistoryID: 3,
+            userName: 'janniei',
+            reportID: 1,
+            datasourceID: 1,
+            reportHistoryStartDateTime: '2017/05/01 08:21',
+            reportHistoryEndDateTime: '2017/05/01 08:24',
+            reportHistoryStatus: 'Succes',
+            reportHistoryNrRowsReturned: 12,
+            reportHistoryComments: 'At last'
+        },
+        {
+            reportHistoryID: 4,
+            userName: 'bradleyk',
+            reportID: 1,
+            datasourceID: 1,
+            reportHistoryStartDateTime: '2017/05/01 08:21',
+            reportHistoryEndDateTime: '2017/05/01 08:24',
+            reportHistoryStatus: 'Succes',
+            reportHistoryNrRowsReturned: 12,
+            reportHistoryComments: ''
+        },
+    ]
 
 export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
-[
-    {
-        reportUserRelationshipID: 0,
-        userName: 'janniei',
-        reportID: 1,
-        reportUserRelationshipType: 'Owns',
-        reportUserRelationshipRating: 0,
-        reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipCreatedUserName: 'janniei',
-        reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipUpdatedUserName: 'janniei'
-    },
-    {
-        reportUserRelationshipID: 0,
-        userName: 'bradleyk',
-        reportID: 1,
-        reportUserRelationshipType: 'Owns',
-        reportUserRelationshipRating: 0,
-        reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipCreatedUserName: 'janniei',
-        reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-        reportUserRelationshipUpdatedUserName: 'janniei'
-    }
-]
+    [
+        {
+            reportUserRelationshipID: 0,
+            userName: 'janniei',
+            reportID: 1,
+            reportUserRelationshipType: 'Owns',
+            reportUserRelationshipRating: 0,
+            reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+            reportUserRelationshipCreatedUserName: 'janniei',
+            reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+            reportUserRelationshipUpdatedUserName: 'janniei'
+        },
+        {
+            reportUserRelationshipID: 0,
+            userName: 'bradleyk',
+            reportID: 1,
+            reportUserRelationshipType: 'Owns',
+            reportUserRelationshipRating: 0,
+            reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+            reportUserRelationshipCreatedUserName: 'janniei',
+            reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+            reportUserRelationshipUpdatedUserName: 'janniei'
+        }
+    ]
 
 export const DATASOURCES: DataSource[] =
     [
@@ -444,89 +480,89 @@ export const DATASOURCES: DataSource[] =
     ]
 
 export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
-[
-    {
-        dashboardGroupRelationshipID: 0,
-        dashboardID: 1,
-        groupID: 0,
-        dashboardGroupRelationshipType: 'SharedWith',
-        dashboardGroupRelationshipRating: 0,
-        dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardGroupRelationshipCreatedUserName: 'janniei',
-        dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardGroupRelationshipUpdatedUserName: 'janniei'
-    }
-]
+    [
+        {
+            dashboardGroupRelationshipID: 0,
+            dashboardID: 1,
+            groupID: 0,
+            dashboardGroupRelationshipType: 'SharedWith',
+            dashboardGroupRelationshipRating: 0,
+            dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
+            dashboardGroupRelationshipCreatedUserName: 'janniei',
+            dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
+            dashboardGroupRelationshipUpdatedUserName: 'janniei'
+        }
+    ]
 
-export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[]  =
-[
-    {
-        dashboardUserRelationshipID: 0,
-        dashboardID: 0,
-        userName: 'janniei',
-        dashboardUserRelationshipType: 'SharedWith',
-        dashboardUserRelationshipRating: 0,
-        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserName: 'janniei',
-        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserName: 'janniei'
-    },
-    {
-        dashboardUserRelationshipID: 1,
-        dashboardID: 0,
-        userName: 'janniei',
-        dashboardUserRelationshipType: 'Likes',
-        dashboardUserRelationshipRating: 0,
-        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserName: 'janniei',
-        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserName: 'janniei'
-    },
-    {
-        dashboardUserRelationshipID: 2,
-        dashboardID: 1,
-        userName: 'bradleyk',
-        dashboardUserRelationshipType: 'Likes',
-        dashboardUserRelationshipRating: 0,
-        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserName: 'janniei',
-        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserName: 'janniei'
-    },
-    {
-        dashboardUserRelationshipID: 3,
-        dashboardID: 0,
-        userName: 'bradleyk',
-        dashboardUserRelationshipType: 'SharedWith',
-        dashboardUserRelationshipRating: 0,
-        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserName: 'janniei',
-        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserName: 'janniei'
-    },
-    {
-        dashboardUserRelationshipID: 4,
-        dashboardID: 3,
-        userName: 'bradleyk',
-        dashboardUserRelationshipType: 'SharedWith',
-        dashboardUserRelationshipRating: 0,
-        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserName: 'janniei',
-        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserName: 'janniei'
-    },
-    {
-        dashboardUserRelationshipID: 5,
-        dashboardID: 3,
-        userName: 'janniei',
-        dashboardUserRelationshipType: 'Owns',
-        dashboardUserRelationshipRating: 0,
-        dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipCreatedUserName: 'janniei',
-        dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-        dashboardUserRelationshipUpdatedUserName: 'janniei'
-    }
-]
+export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
+    [
+        {
+            dashboardUserRelationshipID: 0,
+            dashboardID: 0,
+            userName: 'janniei',
+            dashboardUserRelationshipType: 'SharedWith',
+            dashboardUserRelationshipRating: 0,
+            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipCreatedUserName: 'janniei',
+            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipUpdatedUserName: 'janniei'
+        },
+        {
+            dashboardUserRelationshipID: 1,
+            dashboardID: 0,
+            userName: 'janniei',
+            dashboardUserRelationshipType: 'Likes',
+            dashboardUserRelationshipRating: 0,
+            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipCreatedUserName: 'janniei',
+            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipUpdatedUserName: 'janniei'
+        },
+        {
+            dashboardUserRelationshipID: 2,
+            dashboardID: 1,
+            userName: 'bradleyk',
+            dashboardUserRelationshipType: 'Likes',
+            dashboardUserRelationshipRating: 0,
+            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipCreatedUserName: 'janniei',
+            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipUpdatedUserName: 'janniei'
+        },
+        {
+            dashboardUserRelationshipID: 3,
+            dashboardID: 0,
+            userName: 'bradleyk',
+            dashboardUserRelationshipType: 'SharedWith',
+            dashboardUserRelationshipRating: 0,
+            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipCreatedUserName: 'janniei',
+            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipUpdatedUserName: 'janniei'
+        },
+        {
+            dashboardUserRelationshipID: 4,
+            dashboardID: 3,
+            userName: 'bradleyk',
+            dashboardUserRelationshipType: 'SharedWith',
+            dashboardUserRelationshipRating: 0,
+            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipCreatedUserName: 'janniei',
+            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipUpdatedUserName: 'janniei'
+        },
+        {
+            dashboardUserRelationshipID: 5,
+            dashboardID: 3,
+            userName: 'janniei',
+            dashboardUserRelationshipType: 'Owns',
+            dashboardUserRelationshipRating: 0,
+            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipCreatedUserName: 'janniei',
+            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+            dashboardUserRelationshipUpdatedUserName: 'janniei'
+        }
+    ]
 
 export const DASHBOARDS: Dashboard[] =
     [
@@ -4017,6 +4053,7 @@ export class EazlService implements OnInit {
     route: string = 'users';                                // Route to RESTi - users/authen...
 
     // Local Arrays to keep data for the rest of the Application
+    borderDropdowns: BorderDropdown[] = BORDERDROPDOWNS;   // List of Border drop down options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
@@ -6039,6 +6076,13 @@ export class EazlService implements OnInit {
             }
         }
         return maxZindex;
+    }
+
+    getBorderDropdowns() {
+        // Return list of dropdown options for Borders
+        this.globalFunctionService.printToConsole(this.constructor.name,'getBorderDropdowns', '@Start');
+
+        return this.borderDropdowns;
     }
 
     cacheCanvasData(
