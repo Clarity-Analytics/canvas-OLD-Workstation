@@ -29,6 +29,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { BorderDropdown }             from './model.borderDropdown';
 import { CanvasColors }               from './chartcolors.data';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTab }               from './model.dashboardTabs';
@@ -139,7 +140,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     widgetStartDragY: number;                   // Start coordinates during dragging
 
     // Variables for Startup properties of a Widget
-    borderOptions: SelectItem[];                // Options for Border DropDown
+    borderDropdowns: SelectItem[];          // Options for Border DropDown
     boxShadowOptions: SelectItem[];             // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     fontSizeOptions: SelectItem[];              // Options for Font Size
@@ -198,11 +199,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.chartColor = this.canvasColors.getColors();
 
         // Border Options
-        this.borderOptions = [];
-        this.borderOptions.push({label:'None',          value:{id:1, name: 'transparent'}});
-        this.borderOptions.push({label:'Thick Black',   value:{id:1, name: '3px solid black'}});
-        this.borderOptions.push({label:'Thin Black',    value:{id:1, name: '1px solid black'}});
-        this.borderOptions.push({label:'Thin White',    value:{id:1, name: '1px solid white'}});
+        this.borderDropdowns = [];
+        this.borderDropdowns = this.eazlService.getBorderDropdowns();
 
         // BoxShadow Options
         this.boxShadowOptions = [];

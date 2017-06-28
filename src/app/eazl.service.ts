@@ -100,51 +100,51 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
     maxRowsPerWidgetGraph: 15,
 }
 
-export const BORDERDROPDOWNS: BorderDropdown[] =
+export const BORDERDROPDOWNS: SelectItem[] =
     [
         {
-            borderDropdownLabel: 'None',
-            borderDropdownValue:
+            label: 'None',
+            value:
                 {
                     id: 0,
                     name: 'transparent'
                 }
         },
         {
-            borderDropdownLabel: 'Thick Black',
-            borderDropdownValue:
+            label: 'Thick Black',
+            value:
                 {
                     id: 0,
                     name: '3px solid black'
                 }
         },
         {
-            borderDropdownLabel: 'Thin Black',
-            borderDropdownValue:
+            label: 'Thin Black',
+            value:
                 {
                     id: 0,
                     name: '1px solid black'
                 }
         },
         {
-            borderDropdownLabel: 'Thin White',
-            borderDropdownValue:
+            label: 'Thin White',
+            value:
                 {
                     id: 0,
                     name: '1px solid white'
                 }
         },
         {
-            borderDropdownLabel: 'Thin Red',
-            borderDropdownValue:
+            label: 'Thin Red',
+            value:
                 {
                     id: 0,
                     name: '1px solid red'
                 }
         },
         {
-            borderDropdownLabel: 'Thin Gray',
-            borderDropdownValue:
+            label: 'Thin Gray',
+            value:
                 {
                     id: 0,
                     name: '1px solid gray'
@@ -4053,7 +4053,7 @@ export class EazlService implements OnInit {
     route: string = 'users';                                // Route to RESTi - users/authen...
 
     // Local Arrays to keep data for the rest of the Application
-    borderDropdowns: BorderDropdown[] = BORDERDROPDOWNS;   // List of Border drop down options
+    borderDropdowns: SelectItem[] = BORDERDROPDOWNS;   // List of Border drop down options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
