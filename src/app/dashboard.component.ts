@@ -1282,7 +1282,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         });
     }
 
-    onWidgetMouseDown(event: MouseEvent,idWidget: number) {
+    onWidgetMouseDown(event: MouseEvent, idWidget: number) {
         // When mouse (with or without shift) is pressed on a Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'onWidgetMouseDown', '@Start');
 
@@ -1770,13 +1770,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Get Max z-Index
         let maxZindex: number = 0;
-        for (var i = 0; i < this.widgets.length; i++) {
-            maxZindex = Math.max(maxZindex, this.widgets[i].properties.widgetIndex);
-        }
-        maxZindex = maxZindex + 1;
+        maxZindex = this.eazlService.maxZindex(this.selectedDashboardID);
 
         // Loop on selected ones
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
+
+            // Increment Max z-Index
+            maxZindex = maxZindex + 1;
 
             // Loop on the ViewChildren, and act for the Selected One
             let selectedElement = this.childrenWidgetContainers.filter(

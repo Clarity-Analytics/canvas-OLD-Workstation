@@ -6007,6 +6007,20 @@ export class EazlService implements OnInit {
         return this.graphTypes;
     }
 
+    maxZindex(dashboardID: number): number {
+        // Return the Max z-Index for a given dashboard
+        // - dashboardID to filter on
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
+
+        let maxZindex: number = 0;
+        for (var i = 0; i < this.widgets.length; i++) {
+            if (this.widgets[i].properties.dashboardID == dashboardID) {
+                maxZindex = Math.max(maxZindex, this.widgets[i].properties.widgetIndex);
+            }
+        }
+        return maxZindex;
+    }
+
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',
