@@ -2203,30 +2203,57 @@ export class CDAL {
         // Load WidgetTypes: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetTypes', '@Start');
         
-        let WidgetTypesWorking = new WidgetType();
+        let widgetTypesWorking = new WidgetType();
 
         if (eazlWidgetTypes.label != null) {
-            WidgetTypesWorking.label = eazlWidgetTypes.label;
+            widgetTypesWorking.label = eazlWidgetTypes.label;
         } else {
-            WidgetTypesWorking.label = '';
+            widgetTypesWorking.label = '';
         }
 
         if (eazlWidgetTypes.value_id != null) {
-            WidgetTypesWorking.value.id = eazlWidgetTypes.value_id;
+            widgetTypesWorking.value.id = eazlWidgetTypes.value_id;
         } else {
-            WidgetTypesWorking.value.id = 0;
+            widgetTypesWorking.value.id = 0;
         }
 
         if (eazlWidgetTypes.value_name != null) {
-            WidgetTypesWorking.value.name = eazlWidgetTypes.value_name;
+            widgetTypesWorking.value.name = eazlWidgetTypes.value_name;
         } else {
-            WidgetTypesWorking.value.name = '';
+            widgetTypesWorking.value.name = '';
         }
 
         // Return the result
-        return WidgetTypesWorking;
+        return widgetTypesWorking;
     } 
 
+    loadGraphTypes(eazlGraphTypes: EazlGraphType): GraphType {
+        // Load GraphTypes: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadGraphTypes', '@Start');
+        
+        let graphTypesWorking = new GraphType();
+
+        if (eazlGraphTypes.label != null) {
+            graphTypesWorking.label = eazlGraphTypes.label;
+        } else {
+            graphTypesWorking.label = '';
+        }
+
+        if (eazlGraphTypes.value_id != null) {
+            graphTypesWorking.value.id = eazlGraphTypes.value_id;
+        } else {
+            graphTypesWorking.value.id = 0;
+        }
+
+        if (eazlGraphTypes.value_name != null) {
+            graphTypesWorking.value.name = eazlGraphTypes.value_name;
+        } else {
+            graphTypesWorking.value.name = '';
+        }
+
+        // Return the result
+        return graphTypesWorking;
+    } 
 
 
     // getGraphTypes(): GraphType[] {
