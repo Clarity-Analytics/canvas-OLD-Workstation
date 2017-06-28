@@ -208,8 +208,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Font Size Options
         this.fontSizeDropdowns = [];
         this.fontSizeDropdowns = this.eazlService.getFontSizeDropdowns();
-        // this.fontSizeDropdowns.push({label:'1em',   value:{id:1, name: '1'}});
-        // this.fontSizeDropdowns.push({label:'2em',   value:{id:1, name: '2'}});
 
         // Grid Size Options - the name must be a NUMBER, in px
         this.gridSizeDropdowns = [];

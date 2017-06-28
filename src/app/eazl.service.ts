@@ -330,6 +330,42 @@ export const GRIDSIZEDROPDOWNS: SelectItem[] =
         },
     ]
 
+export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: 'None',
+            value:
+                {
+                    id: 1,
+                    name: ''
+                }
+        },
+        {
+            label: 'Dolphin',
+            value:
+                {
+                    id: 1,
+                    name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"
+                }
+        },
+        {
+            label: 'River Sunset',
+            value:
+                {
+                    id: 1,
+                    name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"
+                }
+        },
+        {
+            label: 'Snow Landscape',
+            value:
+                {
+                    id: 1,
+                    name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"
+                }
+        },
+    ]
+
 export const GRAPHTYPES: GraphType[] = 
     [
         {
@@ -4235,6 +4271,7 @@ export class EazlService implements OnInit {
     boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
     fontSizeDropdowns: SelectItem[] = FONTSIZEDROPDOWNS;    // List of FontSize dropdown options
     gridSizeDropdowns: SelectItem[] = GRIDSIZEDROPDOWNS;    // List of Grid Size dropdown options
+    backgroundImageDropdowns: SelectItem[] = BACKGROUNDIMAGEDROPDOWNS;  // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
@@ -6285,6 +6322,13 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGridSizeDropdowns', '@Start');
 
         return this.gridSizeDropdowns;
+    }
+
+    getBackgroundImageDropdowns() {
+        // Return list of dropdown options for Background Images
+        this.globalFunctionService.printToConsole(this.constructor.name,'getBackgroundImageDropdowns', '@Start');
+
+        return this.backgroundImageDropdowns;
     }
 
     cacheCanvasData(
