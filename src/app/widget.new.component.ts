@@ -69,15 +69,7 @@ export class WidgetNewComponent implements OnInit {
         // Fill the DropDowns
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
         
-        this.graphTypeDropDown.push(
-            {
-                label: 'BarChart',
-                value: {
-                    id: 1,
-                    name: 'BarChart'
-                }
-            },
-        );
+        this.graphTypeDropDown = this.eazlService.getGraphTypes();
     }
     
     onChangeDashboardDrowdown(event) {
