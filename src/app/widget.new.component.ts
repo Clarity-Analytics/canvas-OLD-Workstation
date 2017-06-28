@@ -20,6 +20,7 @@ import { Widget }                     from './model.widget';
 import { WidgetTemplate }             from './model.widgetTemplates';
 
 // Our Services
+import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -48,6 +49,7 @@ export class WidgetNewComponent implements OnInit {
     widgetTemplate: WidgetTemplate              // Template for type of graph
 
     constructor(
+        private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
@@ -140,6 +142,7 @@ export class WidgetNewComponent implements OnInit {
         }
 
         // Prep: get template for this graph type, then insert the report data, then axes
+        let currentUser: string = this.globalFunctionService.currentUser();
         this.widgetTemplate = this.eazlService.getWidgetTemplates (
             this.userform.controls['graphType'].value.name
         );
@@ -239,11 +242,11 @@ console.log('this.widgetTemplate', this.widgetTemplate)
                 image: 
                     {
                         imageAlt: '',
-                        imageHeigt: 0,
+                        imageHeigt: 10,
                         imageLeft: 0,
                         imageSource: '',
                         imageTop: 0,
-                        imageWidth: 0,
+                        imageWidth: 10,
                     },
                 properties: 
                     {
@@ -251,9 +254,9 @@ console.log('this.widgetTemplate', this.widgetTemplate)
                         dashboardID: this.userform.controls['dashboardName'].value.id,
                         dashboardTabID: this.userform.controls['dashboardTabName'].value.id,
                         dashboardTabName: this.userform.controls['dashboardTabName'].value.name,
-                        widgetCode: '',
+                        widgetCode: this.selectedReport.reportCode,
                         widgetName: this.selectedReport.reportName,
-                        widgetDescription: '',
+                        widgetDescription: 'Added for report ' + this.selectedReport.reportName,
                         widgetDefaultExportFileType: '',
                         widgetHyperLinkTabNr: '',
                         widgetHyperLinkWidgetID: '',
@@ -262,23 +265,22 @@ console.log('this.widgetTemplate', this.widgetTemplate)
                         widgetPassword: '',
                         widgetIsLiked: false,
                         widgetLiked: null,
-                
-                        widgetReportID: 0,
-                        widgetReportName: '',
+                        widgetReportID: this.selectedReport.reportID,
+                        widgetReportName: this.selectedReport.reportName,
                         widgetReportParameters: '',
                         widgetShowLimitedRows: 0,
                         widgetAddRestRow: false,
-                        widgetType: '',
+                        widgetType: this.userform.controls['graphType'].value.name,
                         widgetComments: '',
                         widgetIndex: 0,
                         widgetIsLocked: false,
                         widgetSize: '',
                         widgetSystemMessage: '',
-                        widgetTypeID: 0,
+                        widgetTypeID: this.userform.controls['graphType'].value.id,
                         widgetRefreshedDateTime: '',
                         widgetRefreshedUserName: '',
-                        widgetCreatedDateTime: '',
-                        widgetCreatedUserName: '',
+                        widgetCreatedDateTime: this.canvasDate.now('standard'),
+                        widgetCreatedUserName: currentUser,
                         widgetUpdatedDateTime: '',
                         widgetUpdatedUserName: '',
                     }
