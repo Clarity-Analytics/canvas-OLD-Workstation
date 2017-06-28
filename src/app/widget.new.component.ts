@@ -39,6 +39,7 @@ export class WidgetNewComponent implements OnInit {
     dashboardTabsDropDown: SelectItem[] = [];   // DashboardTab in DropDown
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
+    graphTypeDropDown: SelectItem[] = [];       // Types of Graphs in DropDown
     isLoadingForm: boolean = false;
     reportFieldsDropDown:  SelectItem[];        // Drop Down options
     numberErrors: number = 0;
@@ -57,15 +58,26 @@ export class WidgetNewComponent implements OnInit {
 
         // FormBuilder
         this.userform = this.fb.group({
-            'dashboardName':    new FormControl('', Validators.required),
-            'dashboardTabName': new FormControl('', Validators.required),
-            'reportFieldsX':    new FormControl('', Validators.required),
-            'reportFieldsY':    new FormControl('', Validators.required)
+            'dashboardName':        new FormControl('', Validators.required),
+            'dashboardTabName':     new FormControl('', Validators.required),
+            'reportFieldsX':        new FormControl('', Validators.required),
+            'reportFieldsY':        new FormControl('', Validators.required),
+            'graphTypeDropDown':    new FormControl('', Validators.required),
+            'graphType':            new FormControl('', Validators.required)
         });
 
         // Fill the DropDowns
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
         
+        this.graphTypeDropDown.push(
+            {
+                label: 'BarChart',
+                value: {
+                    id: 1,
+                    name: 'BarChart'
+                }
+            },
+        );
     }
     
     onChangeDashboardDrowdown(event) {
@@ -127,6 +139,11 @@ export class WidgetNewComponent implements OnInit {
             return;
         }
 
+        // // Forework
+        //  this.widgetTemplate = this.eazlService.getWidgetTemplates (
+        //             this.identificationForm.controls['widgetType'].value['name']
+console.log('graphType', this.userform.controls['graphType'])
+// 1. spec   2. data this.widgetToEdit.graph.spec.data[0].values = this.reports[i].reportData;
         // Adding new Widget, using defaults all the way
         this.eazlService.addWidget( 
             {
