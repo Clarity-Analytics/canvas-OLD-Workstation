@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     borderDropdowns: SelectItem[];              // Options for Border DropDown
     boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
-    fontSizeOptions: SelectItem[];              // Options for Font Size
+    fontSizeDropdowns: SelectItem[];            // Options for Font Size
     gridSizeOptions: SelectItem[];              // Options for Grid Size
     isContainerHeaderDark: boolean = false;     // Widget Header icons black if true
     gridSize: number;                           // Size of grid blocks, ie 3px x 3px
@@ -206,9 +206,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.boxShadowDropdowns = this.eazlService.getBoxShadowDropdowns();
 
         // Font Size Options
-        this.fontSizeOptions = [];
-        this.fontSizeOptions.push({label:'1em',   value:{id:1, name: '1'}});
-        this.fontSizeOptions.push({label:'2em',   value:{id:1, name: '2'}});
+        this.fontSizeDropdowns = [];
+        this.fontSizeDropdowns = this.eazlService.getFontSizeDropdowns();
+        // this.fontSizeDropdowns.push({label:'1em',   value:{id:1, name: '1'}});
+        // this.fontSizeDropdowns.push({label:'2em',   value:{id:1, name: '2'}});
 
         // Grid Size Options - the name must be a NUMBER, in px
         this.gridSizeOptions = [];

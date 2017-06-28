@@ -190,6 +190,14 @@ export const BOXSHADOWDROPDOWNS: SelectItem[] =
 export const FONTSIZEDROPDOWNS: SelectItem[] =
     [
         {
+            label: '0.5em',
+            value:
+                {
+                    id: 0,
+                    name: '0.5'
+                }
+        },
+        {
             label: '1em',
             value:
                 {
@@ -198,11 +206,11 @@ export const FONTSIZEDROPDOWNS: SelectItem[] =
                 }
         },
         {
-            label: '2em',
+            label: '1.5em',
             value:
                 {
                     id: 1,
-                    name: '2'
+                    name: '1.5'
                 }
         },
     ]
