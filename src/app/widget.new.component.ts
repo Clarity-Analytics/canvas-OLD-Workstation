@@ -17,6 +17,7 @@ import { SelectItem }                 from 'primeng/primeng';
 import { Report }                     from './model.report';
 import { SelectedItem }               from './model.selectedItem';
 import { Widget }                     from './model.widget';
+import { WidgetTemplate }             from './model.widgetTemplates';
 
 // Our Services
 import { EazlService }                from './eazl.service';
@@ -44,7 +45,8 @@ export class WidgetNewComponent implements OnInit {
     reportFieldsDropDown:  SelectItem[];        // Drop Down options
     numberErrors: number = 0;
     userform: FormGroup;
-    
+    widgetTemplate: WidgetTemplate              // Template for type of graph
+
     constructor(
         private eazlService: EazlService,
         private fb: FormBuilder,
@@ -62,7 +64,6 @@ export class WidgetNewComponent implements OnInit {
             'dashboardTabName':     new FormControl('', Validators.required),
             'reportFieldsX':        new FormControl('', Validators.required),
             'reportFieldsY':        new FormControl('', Validators.required),
-            'graphTypeDropDown':    new FormControl('', Validators.required),
             'graphType':            new FormControl('', Validators.required)
         });
 
@@ -119,7 +120,14 @@ export class WidgetNewComponent implements OnInit {
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                     'The Y Axis is compulsory.';
         }
-        
+        if (this.userform.controls['graphType'].value.name == ''  || 
+            this.userform.controls['graphType'].value.name == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Graph Type is compulsory.';
+        }
+
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
             this.formIsValid = true;
@@ -131,22 +139,46 @@ export class WidgetNewComponent implements OnInit {
             return;
         }
 
-        // // Forework
-        //  this.widgetTemplate = this.eazlService.getWidgetTemplates (
-        //             this.identificationForm.controls['widgetType'].value['name']
-console.log('graphType', this.userform.controls['graphType'])
-// 1. spec   2. data this.widgetToEdit.graph.spec.data[0].values = this.reports[i].reportData;
-        // Adding new Widget, using defaults all the way
+        // Prep: get template for this graph type, then insert the report data, then axes
+        this.widgetTemplate = this.eazlService.getWidgetTemplates (
+            this.userform.controls['graphType'].value.name
+        );
+        this.widgetTemplate.vegaSpec.data[0].values = this.selectedReport.reportData;
+        this.widgetTemplate.vegaSpec.scales[0].domain.field =  
+            this.userform.controls['reportFieldsX'].value.name;
+        this.widgetTemplate.vegaSpec.marks[0].encode.enter.x.field =
+            this.userform.controls['reportFieldsX'].value.name;
+        this.widgetTemplate.vegaSpec.marks[1].encode.update.x.signal =
+            'tooltip.' + this.userform.controls['reportFieldsX'].value.name;
+        this.widgetTemplate.vegaSpec.scales[1].domain.field =  
+            this.userform.controls['reportFieldsY'].value.name;
+        this.widgetTemplate.vegaSpec.marks[0].encode.enter.y.field =
+            this.userform.controls['reportFieldsY'].value.name;
+        this.widgetTemplate.vegaSpec.marks[1].encode.update.y.signal =
+            'tooltip.' + this.userform.controls['reportFieldsY'].value.name;
+console.log('this.widgetTemplate', this.widgetTemplate)        
+
+                // // Estimate height and width for NEW container, based on graph dimensions
+                // if (this.addEditMode == 'Add') {
+                //     this.widgetToEdit.container.height = this.globalFunctionService.alignToGripPoint(
+                //         +this.widgetToEdit.graph.spec.height + 
+                //             (+this.widgetToEdit.graph.spec.padding * 2) + 40);
+                //     this.widgetToEdit.container.width = this.globalFunctionService.alignToGripPoint(
+                //         +this.widgetToEdit.graph.spec.width + 
+                //             (+this.widgetToEdit.graph.spec.padding * 2) + 40);
+                // }
+
+        // Adding new Widget, using defaults as far as possible
         this.eazlService.addWidget( 
             {
                 container: {
                     backgroundColor: this.globalVariableService.lastBackgroundColor.getValue().name,
-                    border: this.globalVariableService.lastBorder.getValue().name,
+                    border: '', //this.globalVariableService.lastBorder.getValue().name,
                     boxShadow: this.globalVariableService.lastBoxShadow.getValue().name,
                     color: this.globalVariableService.lastColor.getValue().name,
                     fontSize: +this.globalVariableService.lastContainerFontSize.getValue().name,
                     height: this.globalVariableService.lastWidgetHeight.getValue(),
-                    left: 80,
+                    left: 240,
                     widgetTitle: this.selectedReport.reportName,
                     top: 80,
                     width: this.globalVariableService.lastWidgetWidth.getValue(),
@@ -182,16 +214,16 @@ console.log('graphType', this.userform.controls['graphType'])
                         graphTop: 0,
                         vegaParameters: 
                             {
-                                vegaGraphHeight: 0,
-                                vegaGraphWidth: 0,
+                                vegaGraphHeight: 200,
+                                vegaGraphWidth: 200,
                                 vegaGraphPadding: 0,
                                 vegaHasSignals: false,
-                                vegaXcolumn: '',
-                                vegaYcolumn: '',
-                                vegaFillColor: '',
-                                vegaHoverColor: '',
+                                vegaXcolumn: this.userform.controls['reportFieldsX'].value.name,
+                                vegaYcolumn: this.userform.controls['reportFieldsY'].value.name,
+                                vegaFillColor: 'black',
+                                vegaHoverColor: 'pink',
                             },
-                        spec: '',
+                        spec: this.widgetTemplate.vegaSpec,
                     },
                 table: 
                     {
@@ -220,7 +252,7 @@ console.log('graphType', this.userform.controls['graphType'])
                         dashboardTabID: this.userform.controls['dashboardTabName'].value.id,
                         dashboardTabName: this.userform.controls['dashboardTabName'].value.name,
                         widgetCode: '',
-                        widgetName: '',  //this.selectedReport.reportName,
+                        widgetName: this.selectedReport.reportName,
                         widgetDescription: '',
                         widgetDefaultExportFileType: '',
                         widgetHyperLinkTabNr: '',

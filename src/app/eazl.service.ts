@@ -3285,6 +3285,7 @@ export const REPORTS: Report[] =
     [
         {
             reportID: 1,
+            reportCode: 'EDM Val',
             reportName: 'EDM weekly Values',
             description: 'Description ...  etc',
             reportParameters: '',
@@ -3308,6 +3309,7 @@ export const REPORTS: Report[] =
         },
         {
             reportID: 2,
+            reportCode: 'Bond Val',
             reportName: 'Bond monthly Values',
             description: 'Description ...  etc',
             reportParameters: '',

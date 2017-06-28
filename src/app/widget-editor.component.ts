@@ -1133,8 +1133,8 @@ export class WidgetEditorComponent implements OnInit {
                             this.identificationForm.controls['vegaYcolumn'].value.name;
                         this.widgetToEdit.graph.spec.marks[0].encode.enter.y.field =
                             this.identificationForm.controls['vegaYcolumn'].value.name;
-                            this.widgetToEdit.graph.spec.marks[1].encode.update.y.signal =
-                                'tooltip.' + this.identificationForm.controls['vegaYcolumn'].value.name;
+                        this.widgetToEdit.graph.spec.marks[1].encode.update.y.signal =
+                            'tooltip.' + this.identificationForm.controls['vegaYcolumn'].value.name;
                 }
 
                 if (this.identificationForm.controls['vegaFillColor'].value != undefined) {

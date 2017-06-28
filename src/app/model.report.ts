@@ -3,6 +3,7 @@
 // Eazl
 export class EazlReport {
     id: number;                         // Unique DB ID
+    code: string;                       // Code
     name: string;                       // Name
     description: string;                // Description
     parameters: string;                 // Parameters (optional)
@@ -17,6 +18,7 @@ export class EazlReport {
 // Canvas
 export class Report {
     reportID: number;                   // Unique DB ID
+    reportCode: string;                 // Code
     reportName: string;                 // Name
     description: string;                // Description
     reportParameters: string;           // Parameters (optional)
