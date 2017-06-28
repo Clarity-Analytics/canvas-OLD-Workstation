@@ -1778,7 +1778,7 @@ export const WIDGETS: Widget[] =
                     "data": [
                         {
                         "name": "population",
-                        "url": "../assets/vega/vega-datasets/data/population.json"
+                        "url": "../assets/vega/vega-datasets/population.json"
                         },
                         {
                         "name": "popYear",
@@ -2415,12 +2415,12 @@ export const WIDGETS: Widget[] =
                     "data": [
                         {
                         "name": "unemp",
-                        "url": "../assets/vega/vega-datasets/data/unemployment.tsv",
+                        "url": "../assets/vega/vega-datasets/unemployment.tsv",
                         "format": {"type": "tsv", "parse": "auto"}
                         },
                         {
                         "name": "counties",
-                        "url": "../assets/vega/vega-datasets/data/us-10m.json",
+                        "url": "../assets/vega/vega-datasets/us-10m.json",
                         "format": {"type": "topojson", "feature": "counties"},
                         "transform": [
                             { "type": "lookup", "from": "unemp", "key": "id", "fields": ["id"], "as": ["unemp"] },
@@ -2615,7 +2615,7 @@ export const WIDGETS: Widget[] =
                     "data": [
                         {
                         "name": "tree",
-                        "url": "../assets/vega/vega-datasets/data/flare.json",
+                        "url": "../assets/vega/vega-datasets/flare.json",
                         "transform": [
                             {
                             "type": "stratify",
@@ -3021,7 +3021,7 @@ export const WIDGETS: Widget[] =
                     "data": [
                         {
                         "name": "jobs",
-                        "url": "../assets/vega/vega-datasets/data/jobs.json",
+                        "url": "../assets/vega/vega-datasets/jobs.json",
                         "transform": [
                             {
                             "type": "filter",
