@@ -166,16 +166,6 @@ export class WidgetNewComponent implements OnInit {
         // Increment Max z-Index
         maxZindex = maxZindex + 1;
 
-                // // Estimate height and width for NEW container, based on graph dimensions
-                // if (this.addEditMode == 'Add') {
-                //     this.widgetToEdit.container.height = this.globalFunctionService.alignToGripPoint(
-                //         +this.widgetToEdit.graph.spec.height + 
-                //             (+this.widgetToEdit.graph.spec.padding * 2) + 40);
-                //     this.widgetToEdit.container.width = this.globalFunctionService.alignToGripPoint(
-                //         +this.widgetToEdit.graph.spec.width + 
-                //             (+this.widgetToEdit.graph.spec.padding * 2) + 40);
-                // }
-
         // Adding new Widget, using defaults as far as possible
         this.eazlService.addWidget( 
             {
@@ -225,7 +215,7 @@ export class WidgetNewComponent implements OnInit {
                                 vegaGraphHeight: 200,
                                 vegaGraphWidth: 200,
                                 vegaGraphPadding: 0,
-                                vegaHasSignals: false,
+                                vegaHasSignals: true,
                                 vegaXcolumn: this.userform.controls['reportFieldsX'].value.name,
                                 vegaYcolumn: this.userform.controls['reportFieldsY'].value.name,
                                 vegaFillColor: 'black',
@@ -262,14 +252,18 @@ export class WidgetNewComponent implements OnInit {
                         widgetCode: this.selectedReport.reportCode,
                         widgetName: this.selectedReport.reportName,
                         widgetDescription: 'Added for report ' + this.selectedReport.reportName,
-                        widgetDefaultExportFileType: '',
+                        widgetDefaultExportFileType: '.png',
                         widgetHyperLinkTabNr: '',
                         widgetHyperLinkWidgetID: '',
                         widgetRefreshMode: '',
                         widgetRefreshFrequency: 0,
                         widgetPassword: '',
                         widgetIsLiked: false,
-                        widgetLiked: null,
+                        widgetLiked: [
+                            {
+                                widgetLikedUserName: ''
+                            }
+                        ],
                         widgetReportID: this.selectedReport.reportID,
                         widgetReportName: this.selectedReport.reportName,
                         widgetReportParameters: '',
@@ -291,8 +285,6 @@ export class WidgetNewComponent implements OnInit {
                     }
             }
         );
-console.log('4',this.eazlService.widgets)
-
 
     }
 } 

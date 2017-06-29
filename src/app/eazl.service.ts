@@ -1977,7 +1977,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             }
@@ -2252,7 +2252,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             }
@@ -2426,7 +2426,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             }
@@ -2622,7 +2622,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             }
@@ -2804,7 +2804,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             },
@@ -3026,7 +3026,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             }
@@ -3213,7 +3213,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             }
@@ -3496,7 +3496,7 @@ export const WIDGETS: Widget[] =
                 widgetSize: '',
                 widgetSystemMessage: '',
                 widgetTypeID: 0,
-                widgetType: '',
+                widgetType: 'WidgetSet',
                 widgetUpdatedDateTime: '',
                 widgetUpdatedUserName: ''
             }
@@ -7161,7 +7161,6 @@ console.log('error')
                                 }
 
                             // Replace
-console.log('widgetsWorking', )
                             // this.widgets = widgetsWorking;
                             }
                     )
