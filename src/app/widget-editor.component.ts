@@ -64,6 +64,7 @@ export class WidgetEditorComponent implements OnInit {
     selectedReportID: number;                   // Selected in DropDown
     selectedReportFieldX: string;               // Selected in DropDown
     selectedReportFieldY: string;               // Selected in DropDown
+    selectedDashboard: SelectedItem;            // Selected in DropDown
     selectedDashboardTab: SelectedItem;         // Selected in DropDown
     selectedReport: SelectedItem;               // Selected in Report DropDown
     selectedVegaXcolumn: SelectedItem;          // Selected in DropDown
@@ -90,6 +91,7 @@ export class WidgetEditorComponent implements OnInit {
     widgetTemplate: WidgetTemplate;             // List of Widget Templates
 
     dashboardTabs: DashboardTab[];              // List of Dashboard Tabs
+    dashboardDropDown: SelectItem[];            // Drop Down options
     dashboardTabsDropDown: SelectItem[];        // Drop Down options
     selectedWidgetCreation: SelectedItem;       // Selected option to create Widget
     selectedTextBackground: SelectedItemColor;  // Selected option for Text Background
@@ -140,12 +142,6 @@ export class WidgetEditorComponent implements OnInit {
     lastWidgetLeft: number;
     lastWidgetTop: number;
 
-    // ToolTippies stays after popup form closes, so setting in vars works for now ...
-    // TODO - find BUG, our side or PrimeNG side
-    dashboardsTabsTooltip: string = ""          // 'Selected Tab where Widget will live';
-    reportsDropDownTooltip: string = "";        // 'Selected Report (query) with data';
-    reportWidgetSetDropToolTip: string = ""     // 'Widget Set for the selected Report';
-
     constructor(
         private canvasColors: CanvasColors,
         private canvasDate: CanvasDate,
@@ -164,6 +160,7 @@ export class WidgetEditorComponent implements OnInit {
         // Define form group for first tab
         this.identificationForm = this.fb.group(
             {
+                'dashboardName':                new FormControl(''),
                 'dashboardTabName':             new FormControl(''),
                 'showWidgetText':               new FormControl(''),
                 'showWidgetGraph':              new FormControl(''),
@@ -226,6 +223,9 @@ export class WidgetEditorComponent implements OnInit {
             }
         );
 
+        // Dashboards
+        this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
+console.log('this.dashboardDropDown', this.dashboardDropDown)        
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();
@@ -342,12 +342,21 @@ export class WidgetEditorComponent implements OnInit {
                     this.widgetToEdit.areas.showWidgetImage
                 );
                 this.showWidgetImage = this.widgetToEdit.areas.showWidgetImage;
+
+                this.selectedItem = {
+                    id: this.widgetToEdit.properties.dashboardID,
+                    name: this.widgetToEdit.properties.dashboardName
+                };
+                this.identificationForm.controls['dashboardName'].setValue(this.selectedItem);
+                this.selectedDashboard = this.selectedItem;
+
                 this.selectedItem = {
                     id: this.widgetToEdit.properties.dashboardTabID,
                     name: this.widgetToEdit.properties.dashboardTabName
                 };
                 this.identificationForm.controls['dashboardTabName'].setValue(this.selectedItem);
                 this.selectedDashboardTab = this.selectedItem;
+
                 this.identificationForm.controls['widgetTitle']
                     .setValue(this.widgetToEdit.container.widgetTitle);
                 this.identificationForm.controls['widgetCode']
@@ -609,12 +618,19 @@ export class WidgetEditorComponent implements OnInit {
         this.numberErrors = 0;
 
         // Validation
+        if (this.identificationForm.controls['dashboardName'].value == ''  ||
+            this.identificationForm.controls['dashboardName'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
+                    'The Dashboard Name (Identification Panel) is compulsory.';
+        }
         if (this.identificationForm.controls['dashboardTabName'].value == ''  ||
             this.identificationForm.controls['dashboardTabName'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
-                    'The Widget Tab Name (Identification Panel) is compulsory.';
+                    'The Dashboard Tab Name (Identification Panel) is compulsory.';
         }
         if (this.identificationForm.controls['widgetTitle'].value == ''  ||
             this.identificationForm.controls['widgetTitle'].value == null) {
@@ -1032,6 +1048,11 @@ export class WidgetEditorComponent implements OnInit {
         this.widgetToEdit.areas.showWidgetImage = this.showWidgetImage;
         this.widgetToEdit.areas.showWidgetTable = this.showWidgetTable;
         this.widgetToEdit.areas.showWidgetText = this.showWidgetText;
+
+        this.widgetToEdit.properties.dashboardID =
+            this.selectedDashboard.id;
+        this.widgetToEdit.properties.dashboardName =
+            this.selectedDashboard.name;
         this.widgetToEdit.properties.dashboardTabID =
             this.selectedDashboardTab.id;
         this.widgetToEdit.properties.dashboardTabName =

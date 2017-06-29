@@ -4803,7 +4803,6 @@ console.log('error')
             });
         }
         return dashboardsSelectItemsWorking;
-        
     }
 
 
