@@ -16,6 +16,7 @@ import { CanvasDate }                 from './date.services';
 import { CDAL }                       from './cdal.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
+import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our models
 import { CanvasMessage }              from './model.canvasMessage';
@@ -4310,9 +4311,15 @@ export class EazlService implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private http: Http,
+        private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
             this.httpBaseUri = `${window.location.protocol}//${window.location.hostname}:8000/api/`
-            this.httpHeaders = new Headers({'Content-Type': 'application/json'});
+            this.httpHeaders = new Headers(
+                {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            );
             this.httpOptions = new RequestOptions({headers: this.httpHeaders});
     }
 
@@ -4492,6 +4499,9 @@ export class EazlService implements OnInit {
                             this.constructor.name,'login', '  refresh the Cache');
                         this.cacheCanvasData('all', 'reset');
 
+                        // Log into web socket service
+                        this.reconnectingWebSocket.connect(authToken)
+
                         // Return the user object from the RESTi
                         return eazlUser;
                     }
@@ -4542,13 +4552,16 @@ export class EazlService implements OnInit {
 
     handleError(response: Response | any): Observable<Response> {
         // Error for observable
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleError', '@Start');
-
+        // this.globalFunctionService.printToConsole(this.constructor.name,'handleError', '@Start');
+console.log('error')
         var error: string = '';
          // Do some logging one day
         if (response instanceof Response) {
-            var payload = response.json() || '';
-             error = payload.body || JSON.stringify(payload);
+            // TODO - this must be sorted IF return is html - since it errors (in the error)
+            // var payload = response.json() || '';
+            //  error = payload.body || JSON.stringify(payload);
+            console.log('response', response);
+            error = response.toString();
         } else {
             error = response.message ? response.message : response.toString();
         }

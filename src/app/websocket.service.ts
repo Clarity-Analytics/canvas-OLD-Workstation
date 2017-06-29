@@ -46,6 +46,7 @@ export class WebSocketService {
     }
 }
 
+@Injectable()
 export class ReconnectingWebSocket {
 	baseUri: string = `${window.location.protocol === 'http:' ? 'ws:': 'wss:'}//${window.location.hostname}:8000/sockets/`;
 	messageWS: ReplaySubject<SocketMessage> = new ReplaySubject(1);

@@ -19,6 +19,7 @@ import { CanvasDate }                 from './date.services';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { NotificationService }        from './notification.service';
+import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our Models
 import { CanvasUser }                 from './model.user';
@@ -51,7 +52,6 @@ export class AppComponent implements OnInit {
     menuItems: MenuItem[];                          // Array of menu items
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     routerLink:string = '';                         // RouterLink in Menu.Command
-    // setFakeVariablesForTesting: boolean = false;    // Jass for me  KEEP for maybe later
     sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
     private notificationFromServer: Notification;   // Websocket msg
 
@@ -72,18 +72,21 @@ export class AppComponent implements OnInit {
         private notificationService: NotificationService,
         private route: ActivatedRoute,
         private router: Router,
+        private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
             // Subscribe to Web Socket
-            notificationService.messages.subscribe(msg => {
+this.reconnectingWebSocket.messageWS.subscribe(
+    msg => console.log('msg', msg))            
+            // notificationService.messages.subscribe(msg => {
 
-                if (msg.messageType != '' ) {
-                    this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'info',
-                        summary:  'Nofication from ' + msg.author,
-                        detail:   msg.dateSend + ' :' + msg.message
-                    });
-                }
-            });
+            //     if (msg.messageType != '' ) {
+            //         this.globalVariableService.growlGlobalMessage.next({
+            //             severity: 'info',
+            //             summary:  'Nofication from ' + msg.author,
+            //             detail:   msg.dateSend + ' :' + msg.message
+            //         });
+            //     }
+            // });
 
             // Default stuffies, for now ...
             this.globalVariableService.sessionDebugging.next(true);
