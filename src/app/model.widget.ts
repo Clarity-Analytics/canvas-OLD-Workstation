@@ -2,7 +2,7 @@
 
 // Eazl
 export class EazlWidget {
- 
+
     container_background_color: string;
     container_border: string;
     container_box_shadow: string;
@@ -20,17 +20,17 @@ export class EazlWidget {
     areas_show_widget_image: boolean;
 
     textual_text_text: string;                      // with HTML & keywords (##today##)
-    textual_text_backgroundColor: string; 
-    textual_text_border: string;          
-    textual_text_color: string;          
+    textual_text_backgroundColor: string;
+    textual_text_border: string;
+    textual_text_color: string;
     textual_text_fontSize: number;                  // in px
-    textual_text_fontWeight: string;      
+    textual_text_fontWeight: string;
     textual_text_height: number;                    // in px
     textual_text_left: number;                      // in px
-    textual_text_margin: string;               
-    textual_text_padding: string;                 
-    textual_text_position: string;        
-    textual_text_textAlign: string;       
+    textual_text_margin: string;
+    textual_text_padding: string;
+    textual_text_position: string;
+    textual_text_textAlign: string;
     textual_text_top: number;                       // in px
     textual_text_width: number;                     // in px: 0 means it adapts to container
 
@@ -45,7 +45,7 @@ export class EazlWidget {
     graph_vega_parameters_vega_ycolumn: string;
     graph_vega_parameters_vega_fillColor: string;
     graph_vega_parameters_vega_hoverColor: string;
-    graph_spec: any; 
+    graph_spec: any;
 
     table_color: string;                    // Text color
     table_cols: number;                     // Nr of cols, 0 means all
@@ -121,25 +121,25 @@ export class Widget {
     };
     textual: {
         textText: string;                       // with HTML & keywords (##today##)
-        textBackgroundColor: string; 
-        textBorder: string;          
-        textColor: string;          
+        textBackgroundColor: string;
+        textBorder: string;
+        textColor: string;
         textFontSize: number;                   // in em (NB)
-        textFontWeight: string;      
+        textFontWeight: string;
         textHeight: number;                     // in px
         textLeft: number;                       // in px
-        textMargin: string,               
-        textPadding: string;                 
-        textPosition: string;        
-        textTextAlign: string;       
+        textMargin: string,
+        textPadding: string;
+        textPosition: string;
+        textTextAlign: string;
         textTop: number;                        // in px
         textWidth: number;                      // in px: 0 means it adapts to container
-    }; 
+    };
     graph: {
         graphID: number;
         graphLeft: number;                      // in px
         graphTop: number;                       // in px
-        vegaParameters: {                           
+        vegaParameters: {
             vegaGraphHeight: number;
             vegaGraphWidth: number;
             vegaGraphPadding: number;
@@ -149,8 +149,8 @@ export class Widget {
             vegaFillColor: string;
             vegaHoverColor: string;
         },
-        spec: any; 
-    }; 
+        spec: any;
+    };
     table:{
         tableColor: string;                     // Text color
         tableCols: number;                      // Nr of cols, 0 means all
@@ -172,6 +172,7 @@ export class Widget {
     properties: {
         widgetID: number;                       // Unique ID from DB
         dashboardID: number;                    // FK to DashboardID to which widget belongs
+        dashboardName: string;                  // FK to Dashboard Name where widget lives
         dashboardTabID: number;                 // FK to Tab where the widget lives
         dashboardTabName: string;               // FK to Tab Name where widget lives
         widgetCode: string;                     // Short Code ~ ShortName

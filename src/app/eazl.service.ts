@@ -89,15 +89,15 @@ var req = new XMLHttpRequest();
 
 // TODO - use RESTi
 export const SYSTEMCONFIGURATION: SystemConfiguration =
-{
-    systemConfigurationID: 0,
-    backendUrl: 'localhost:8000',
-    companyLogo: '',
-    companyName: 'Clarity',
-    defaultDaysToKeepResultSet: 3,
-    maxRowsDataReturned: 1000000,
-    maxRowsPerWidgetGraph: 15,
-}
+    {
+        systemConfigurationID: 0,
+        backendUrl: 'localhost:8000',
+        companyLogo: '',
+        companyName: 'Clarity',
+        defaultDaysToKeepResultSet: 3,
+        maxRowsDataReturned: 1000000,
+        maxRowsPerWidgetGraph: 15,
+    }
 
 export const BORDERDROPDOWNS: SelectItem[] =
     [
@@ -149,7 +149,7 @@ export const BORDERDROPDOWNS: SelectItem[] =
                     name: '1px solid gray'
                 }
         }
-    ]
+    ];
 
 export const BOXSHADOWDROPDOWNS: SelectItem[] =
     [
@@ -185,7 +185,7 @@ export const BOXSHADOWDROPDOWNS: SelectItem[] =
                     name: '2px 2px 12px white'
                 }
         },
-    ]
+    ];
 
 export const FONTSIZEDROPDOWNS: SelectItem[] =
     [
@@ -237,7 +237,7 @@ export const FONTSIZEDROPDOWNS: SelectItem[] =
                     name: '2'
                 }
         },
-    ]
+    ];
 
 export const GRIDSIZEDROPDOWNS: SelectItem[] =
     [
@@ -329,7 +329,7 @@ export const GRIDSIZEDROPDOWNS: SelectItem[] =
                     name: '30'
                 }
         },
-    ]
+    ];
 
 export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
     [
@@ -365,7 +365,7 @@ export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
                     name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"
                 }
         },
-    ]
+    ];
 
 export const GRAPHTYPES: GraphType[] = 
     [
@@ -431,19 +431,20 @@ export const WIDGETTYPES: WidgetType[] =
         }
     ];
        
-export const PERSONALISATION: Personalisation = {
-    personalisationID: 0,
-    averageWarningRuntime: 3,
-    dashboardIDStartup: -1,
-    environment: 'Live',
-    frontendColorScheme: 'beige',
-    defaultReportFilters: '',
-    defaultWidgetConfiguration: '',
-    gridSize: 3,
-    growlLife: 3,
-    growlSticky: false,
-    snapToGrid: true
-}
+export const PERSONALISATION: Personalisation = 
+    {
+        personalisationID: 0,
+        averageWarningRuntime: 3,
+        dashboardIDStartup: -1,
+        environment: 'Live',
+        frontendColorScheme: 'beige',
+        defaultReportFilters: '',
+        defaultWidgetConfiguration: '',
+        gridSize: 3,
+        growlLife: 3,
+        growlSticky: false,
+        snapToGrid: true
+    };
 
 export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
@@ -487,7 +488,7 @@ export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
             datasourceUserAccessUpdatedDateTime: '2017/05/01',
             datasourceUserAccessUpdatedUserName: 'janniei'
         }
-    ]
+    ];
 
 export const REPORTHISTORY: ReportHistory[] =
     [
@@ -546,7 +547,7 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryNrRowsReturned: 12,
             reportHistoryComments: ''
         },
-    ]
+    ];
 
 export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
     [
@@ -572,7 +573,7 @@ export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
             reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
             reportUserRelationshipUpdatedUserName: 'janniei'
         }
-    ]
+    ];
 
 export const DATASOURCES: DataSource[] =
     [
@@ -692,7 +693,7 @@ export const DATASOURCES: DataSource[] =
             datasourceUpdatedDateTime: '',
             datasourceUpdatedUserName: ''
         }
-    ]
+    ];
 
 export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
     [
@@ -707,7 +708,7 @@ export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
             dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
             dashboardGroupRelationshipUpdatedUserName: 'janniei'
         }
-    ]
+    ];
 
 export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
     [
@@ -777,7 +778,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
             dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
             dashboardUserRelationshipUpdatedUserName: 'janniei'
         }
-    ]
+    ];
 
 export const DASHBOARDS: Dashboard[] =
     [
@@ -924,7 +925,7 @@ export const DASHBOARDS: Dashboard[] =
         {
             dashboardID: 6,
             dashboardCode: 'Another Dash',
-            dashboardName: '',
+            dashboardName: 'Another Dashboard',
             isContainerHeaderDark: true,
             showContainerHeader: true,
             dashboardBackgroundColor: '',
@@ -1025,7 +1026,7 @@ export const DASHBOARDGROUPS: DashboardGroup[] =
             dashboardGroupUpdatedDateTime: '2017/05/01',
             dashboardGroupUpdatedUserName: 'JamesK'
         }
-    ]
+    ];
 
 export const DASHBOARDGROUPMEMBERSHIP: DashboardGroupMembership[] =
     [
@@ -1061,7 +1062,7 @@ export const DASHBOARDGROUPMEMBERSHIP: DashboardGroupMembership[] =
             dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
             dashboardGroupMembershipUpdatedUserName: 'JamesK'
         },
-    ]
+    ];
 
 export const DASHBOARDTABS: DashboardTab[] =
     [
@@ -1318,6 +1319,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 1,
                 dashboardID: 0,
+                dashboardName: 'Collection of Bar charts',
                 dashboardTabID: 0,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstBar',
@@ -1523,11 +1525,11 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 2,
                 dashboardID: 0,
+                dashboardName: 'Collection of Bar charts',
                 dashboardTabID: 0,
                 dashboardTabName: "Value",
                 widgetCode: 'SecondBar',
                 widgetName: 'Bar Chart 2',
-
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserName: '',
@@ -1561,7 +1563,6 @@ export const WIDGETS: Widget[] =
                 widgetUpdatedUserName: ''
             }
         },
-
         {
             container: {
                 backgroundColor: 'transparent',
@@ -1714,11 +1715,11 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 3,
                 dashboardID: 0,
+                dashboardName: 'Collection of Bar charts',
                 dashboardTabID: 0,
                 dashboardTabName: "Value",
                 widgetCode: 'ThirdBar',
                 widgetName: 'Bar Chart 3',
-
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserName: '',
@@ -1752,7 +1753,6 @@ export const WIDGETS: Widget[] =
                 widgetUpdatedUserName: ''
             }
         },
-
         {
             container: {
                 backgroundColor: 'black',
@@ -1944,11 +1944,11 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 4,
                 dashboardID: 0,
+                dashboardName: 'Collection of Bar charts',
                 dashboardTabID: 1,
                 dashboardTabName: "Volume",
                 widgetCode: 'FourthBar',
                 widgetName: 'Bar Chart 4',
-
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserName: '',
@@ -1982,7 +1982,6 @@ export const WIDGETS: Widget[] =
                 widgetUpdatedUserName: ''
             }
         },
-
         {
             container: {
                 backgroundColor: 'slategray',
@@ -2219,11 +2218,11 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 5,
                 dashboardID: 0,
+                dashboardName: 'Collection of Bar charts',
                 dashboardTabID: 1,
                 dashboardTabName: "Volume",
                 widgetCode: 'FifthBar',
                 widgetName: 'Bar Chart 5',
-
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserName: '',
@@ -2257,7 +2256,6 @@ export const WIDGETS: Widget[] =
                 widgetUpdatedUserName: ''
             }
         },
-
         {
             container: {
                 backgroundColor: 'white',
@@ -2393,11 +2391,11 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 11,
                 dashboardID: 1,
+                dashboardName: 'Collection of Pie charts',
                 dashboardTabID: 2,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
-
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserName: '',
@@ -2431,7 +2429,6 @@ export const WIDGETS: Widget[] =
                 widgetUpdatedUserName: ''
             }
         },
-
         {
             container: {
                 backgroundColor: 'white',
@@ -2589,11 +2586,11 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 12,
                 dashboardID: 1,
+                dashboardName: 'Collection of Pie charts',
                 dashboardTabID: 3,
                 dashboardTabName: "Volume",
                 widgetCode: 'SecondBar',
                 widgetName: 'Line Volume 1',
-
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserName: '',
@@ -2771,11 +2768,11 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 21,
                 dashboardID: 3,
+                dashboardName: 'Tree map ...',
                 dashboardTabID: 4,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
-
                 widgetAddRestRow: true,
                 widgetCreatedDateTime: '',
                 widgetCreatedUserName: '',
@@ -2993,6 +2990,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 6,
                 dashboardID: 3,
+                dashboardName: 'Tree map ...',
                 dashboardTabID: 4,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
@@ -3180,6 +3178,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 41,
                 dashboardID: 4,
+                dashboardName: 'Word Cloud of random text',
                 dashboardTabID: 5,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
@@ -3463,6 +3462,7 @@ export const WIDGETS: Widget[] =
             properties: {
                 widgetID: 51,
                 dashboardID: 5,
+                dashboardName: 'Stacked graph with jobs timeseries',
                 dashboardTabID: 6,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
@@ -3602,7 +3602,7 @@ export const REPORTS: Report[] =
             reportCreatedDateTime: '2017/05/01',
             reportCreatedUserName: 'jannie'
         }
-    ]
+    ];
 
 export const WIDGETTEMPLATES: WidgetTemplate[] =
     [
@@ -3719,7 +3719,7 @@ export const WIDGETTEMPLATES: WidgetTemplate[] =
             widgetTemplateUpdatedDateTime: '2017/05/01',
             widgetTemplateUpdatedUserName: 'janniei'
         }
-    ]
+    ];
 
 export const GROUPS: Group[] =
     [
@@ -3795,7 +3795,7 @@ export const GROUPS: Group[] =
             groupUpdatedDateTime: '2017/05/01',
             groupUpdatedUserName: 'JamesK'
         }
-    ]
+    ];
 
 export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
     [
@@ -3808,7 +3808,7 @@ export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
             groupDatasourceAccessUpdatedDateTime: '2017/05/01',
             groupDatasourceAccessUpdatedUserName: 'PatricOS'
         }
-    ]
+    ];
 
 export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
     [
@@ -3844,7 +3844,7 @@ export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
             userGroupMembershipUpdatedDateTime: '2017/05/01',
             userGroupMembershipUpdatedUserName: 'JamesK'
         },
-    ]
+    ];
 
 export const REPORTWIDGETSET: ReportWidgetSet[] =
     [
@@ -4159,7 +4159,7 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
             reportWidgetSetCreatedUserName: 'janniei',
 
         }
-    ]
+    ];
 
 export const CANVASMESSAGES: CanvasMessage[] =
     [
@@ -4257,7 +4257,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 }
             ]
         }
-    ]
+    ];
 
 
 @Injectable()
@@ -5029,6 +5029,7 @@ console.log('error')
             properties: {
                 widgetID: 1,
                 dashboardID: 0,
+                dashboardName: 'Collection of Bar charts',
                 dashboardTabID: 0,
                 dashboardTabName: '',
                 widgetCode: '',

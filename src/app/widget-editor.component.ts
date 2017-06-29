@@ -20,7 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
- 
+
 // Our models
 import { DashboardTab }               from './model.dashboardTabs';
 import { Report }                     from './model.report';
@@ -116,7 +116,7 @@ export class WidgetEditorComponent implements OnInit {
     identificationForm: FormGroup;
     isLoadingForm: boolean = false;
     numberErrors: number = 0;
- 
+
     // Variables for Startup properties of a Widget
     borderDropdown: SelectItem[];               // Options for Border DropDown
     boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
@@ -145,7 +145,7 @@ export class WidgetEditorComponent implements OnInit {
     dashboardsTabsTooltip: string = ""          // 'Selected Tab where Widget will live';
     reportsDropDownTooltip: string = "";        // 'Selected Report (query) with data';
     reportWidgetSetDropToolTip: string = ""     // 'Widget Set for the selected Report';
-            
+
     constructor(
         private canvasColors: CanvasColors,
         private canvasDate: CanvasDate,
@@ -154,9 +154,9 @@ export class WidgetEditorComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private renderer : Renderer,
-    ) { 
+    ) {
     }
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
@@ -278,7 +278,7 @@ export class WidgetEditorComponent implements OnInit {
         this.textAlignOptions.push({label:'Center',   value:{id:1, name: 'center'}});
         this.textAlignOptions.push({label:'Right',    value:{id:1, name: 'right'}});
 
-        // Text Margin Options 
+        // Text Margin Options
         // TODO - make id = 1 for now, find a better solution for later
         this.imageSourceOptions = [];
         this.imageSourceOptions.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});
@@ -343,7 +343,7 @@ export class WidgetEditorComponent implements OnInit {
                 );
                 this.showWidgetImage = this.widgetToEdit.areas.showWidgetImage;
                 this.selectedItem = {
-                    id: this.widgetToEdit.properties.dashboardTabID, 
+                    id: this.widgetToEdit.properties.dashboardTabID,
                     name: this.widgetToEdit.properties.dashboardTabName
                 };
                 this.identificationForm.controls['dashboardTabName'].setValue(this.selectedItem);
@@ -372,9 +372,9 @@ export class WidgetEditorComponent implements OnInit {
                 let LikedUsers: any = this.widgetToEdit.properties.widgetLiked.filter (
                     user => user.widgetLikedUserName != '')
                 this.identificationForm.controls['NrwidgetLiked'].setValue(LikedUsers.length);
-            
+
                 this.selectedItem = {
-                    id: this.widgetToEdit.properties.widgetReportID, 
+                    id: this.widgetToEdit.properties.widgetReportID,
                     name: this.widgetToEdit.properties.widgetReportName
                 };
                 this.identificationForm.controls['widgetReportName'].setValue(this.selectedItem);
@@ -388,7 +388,7 @@ export class WidgetEditorComponent implements OnInit {
                     .setValue(this.widgetToEdit.properties.widgetShowLimitedRows);
                 this.identificationForm.controls['widgetAddRestRow']
                     .setValue(this.widgetToEdit.properties.widgetAddRestRow);
-                this.selectedWidgetType = 
+                this.selectedWidgetType =
                     {
                         label: this.widgetToEdit.properties.widgetType,
                         value: {
@@ -410,20 +410,20 @@ export class WidgetEditorComponent implements OnInit {
                     this.identificationForm.controls['vegaGraphPadding']
                         .setValue(this.widgetToEdit.graph.vegaParameters.vegaGraphPadding);
                     this.selectedItem = {
-                        id: this.widgetToEdit.graph.vegaParameters.vegaXcolumn, 
+                        id: this.widgetToEdit.graph.vegaParameters.vegaXcolumn,
                         name: this.widgetToEdit.graph.vegaParameters.vegaXcolumn
                     };
                     this.identificationForm.controls['vegaXcolumn'].setValue(this.selectedItem);
                     this.selectedVegaXcolumn = this.selectedItem;
                     this.selectedItem = {
-                        id: this.widgetToEdit.graph.vegaParameters.vegaYcolumn, 
+                        id: this.widgetToEdit.graph.vegaParameters.vegaYcolumn,
                         name: this.widgetToEdit.graph.vegaParameters.vegaYcolumn
                     };
                     this.identificationForm.controls['vegaYcolumn'].setValue(this.selectedItem);
                     this.selectedVegaYcolumn = this.selectedItem;
                     this.selectedItemColor = {
-                        id:this.widgetToEdit.graph.vegaParameters.vegaFillColor,             
-                        name: this.widgetToEdit.graph.vegaParameters.vegaFillColor,             
+                        id:this.widgetToEdit.graph.vegaParameters.vegaFillColor,
+                        name: this.widgetToEdit.graph.vegaParameters.vegaFillColor,
                         code: this.canvasColors.hexCodeOfColor(
                             this.widgetToEdit.graph.vegaParameters.vegaFillColor
                         )
@@ -433,8 +433,8 @@ export class WidgetEditorComponent implements OnInit {
                     );
                     this.selectedVegaFillColor = this.selectedItemColor;
                     this.selectedItemColor = {
-                        id:this.widgetToEdit.graph.vegaParameters.vegaHoverColor,             
-                        name: this.widgetToEdit.graph.vegaParameters.vegaHoverColor,             
+                        id:this.widgetToEdit.graph.vegaParameters.vegaHoverColor,
+                        name: this.widgetToEdit.graph.vegaParameters.vegaHoverColor,
                         code: this.canvasColors.hexCodeOfColor(
                             this.widgetToEdit.graph.vegaParameters.vegaHoverColor
                         )
@@ -443,7 +443,7 @@ export class WidgetEditorComponent implements OnInit {
                         this.selectedItemColor
                     );
                     this.selectedVegaHoverColor = this.selectedItemColor;
-                    this.identificationForm.controls['vegaSpec'].setValue( 
+                    this.identificationForm.controls['vegaSpec'].setValue(
                         JSON.stringify(this.widgetToEdit.graph.spec)
                     );
 
@@ -452,10 +452,10 @@ export class WidgetEditorComponent implements OnInit {
                 // Load fields for Text box
                 this.identificationForm.controls['textText']
                     .setValue(this.widgetToEdit.textual.textText);
-                    
+
                 this.selectedItemColor = {
-                    id:this.widgetToEdit.textual.textBackgroundColor,             
-                    name: this.widgetToEdit.textual.textBackgroundColor,             
+                    id:this.widgetToEdit.textual.textBackgroundColor,
+                    name: this.widgetToEdit.textual.textBackgroundColor,
                     code: this.canvasColors.hexCodeOfColor(
                         this.widgetToEdit.textual.textBackgroundColor
                     )
@@ -466,15 +466,15 @@ export class WidgetEditorComponent implements OnInit {
                 this.selectedTextBackground = this.selectedItemColor;
 
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.textual.textBorder
                 };
                 this.identificationForm.controls['textBorder'].setValue(this.selectedItem);
                 this.selectedTextBorder = this.selectedItem;
 
                 this.selectedItemColor = {
-                    id:this.widgetToEdit.textual.textColor,             
-                    name: this.widgetToEdit.textual.textColor,             
+                    id:this.widgetToEdit.textual.textColor,
+                    name: this.widgetToEdit.textual.textColor,
                     code: this.canvasColors.hexCodeOfColor(
                         this.widgetToEdit.textual.textColor
                     )
@@ -485,13 +485,13 @@ export class WidgetEditorComponent implements OnInit {
                 this.selectedTextColor = this.selectedItemColor;
 
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.textual.textFontSize.toString()
                 };
                 this.identificationForm.controls['textFontSize'].setValue(this.selectedItem);
                 this.selectedTextFontSize = this.selectedItem;
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.textual.textFontWeight
                 };
                 this.identificationForm.controls['textFontWeight'].setValue(this.selectedItem);
@@ -501,25 +501,25 @@ export class WidgetEditorComponent implements OnInit {
                 this.identificationForm.controls['textLeft']
                     .setValue(this.widgetToEdit.textual.textLeft);
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.textual.textMargin
                 };
                 this.identificationForm.controls['textMargin'].setValue(this.selectedItem);
                 this.selectedTextMargin = this.selectedItem;
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.textual.textPadding
                 };
                 this.identificationForm.controls['textPadding'].setValue(this.selectedItem);
                 this.selectedTextPadding = this.selectedItem;
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.textual.textPosition
                 };
                 this.identificationForm.controls['textPosition'].setValue(this.selectedItem);
                 this.selectedTextPosition = this.selectedItem;
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.textual.textTextAlign
                 };
                 this.identificationForm.controls['textTextAlign'].setValue(this.selectedItem);
@@ -533,8 +533,8 @@ export class WidgetEditorComponent implements OnInit {
                 this.identificationForm.controls['tableHideHeader']
                     .setValue(this.widgetToEdit.table.tableHideHeader.toString());
                 this.selectedItemColor = {
-                    id:this.widgetToEdit.table.tableColor,             
-                    name: this.widgetToEdit.table.tableColor,             
+                    id:this.widgetToEdit.table.tableColor,
+                    name: this.widgetToEdit.table.tableColor,
                     code: this.canvasColors.hexCodeOfColor(
                         this.widgetToEdit.table.tableColor
                     )
@@ -562,7 +562,7 @@ export class WidgetEditorComponent implements OnInit {
                 this.identificationForm.controls['imageLeft']
                     .setValue(this.widgetToEdit.image.imageLeft);
                 this.selectedItem = {
-                    id: 1, 
+                    id: 1,
                     name: this.widgetToEdit.image.imageSource
                 };
                 this.identificationForm.controls['imageSource'].setValue(this.selectedItem);
@@ -590,15 +590,15 @@ export class WidgetEditorComponent implements OnInit {
             summary:  'Cancel',
             detail:   'No changes as requested'
         });
-        
+
         this.formSubmit.emit('Cancel');
     }
 
     onClickSubmit() {
         // User clicked submit button.
-        // Note: it is assumed that 
+        // Note: it is assumed that
         // - all the fields are tested to be valid and proper in the validation.
-        //   If not, return right after validation.  
+        //   If not, return right after validation.
         // - all fields are loaded in widgetToEdit which is shared with the calling routine
         //   It is assumes is that widgetToEdit is 100% complete and accurate before return
         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickSubmit', '@Start');
@@ -609,64 +609,64 @@ export class WidgetEditorComponent implements OnInit {
         this.numberErrors = 0;
 
         // Validation
-        if (this.identificationForm.controls['dashboardTabName'].value == ''  || 
+        if (this.identificationForm.controls['dashboardTabName'].value == ''  ||
             this.identificationForm.controls['dashboardTabName'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Widget Tab Name (Identification Panel) is compulsory.';
         }
-        if (this.identificationForm.controls['widgetTitle'].value == ''  || 
+        if (this.identificationForm.controls['widgetTitle'].value == ''  ||
             this.identificationForm.controls['widgetTitle'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Widget Title (Identification Panel) is compulsory.';
         }
-        if (this.identificationForm.controls['widgetCode'].value == ''  || 
+        if (this.identificationForm.controls['widgetCode'].value == ''  ||
             this.identificationForm.controls['widgetCode'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Widget Code (Identification Panel) is compulsory.';
         }
-        if (this.identificationForm.controls['widgetName'].value == ''  || 
+        if (this.identificationForm.controls['widgetName'].value == ''  ||
             this.identificationForm.controls['widgetName'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Widget Name (Identification Panel) is compulsory.';
         }
-        if (this.identificationForm.controls['widgetDescription'].value == ''  || 
+        if (this.identificationForm.controls['widgetDescription'].value == ''  ||
             this.identificationForm.controls['widgetDescription'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Widget Description (Identification Panel) is compulsory.';
         }
-        if (this.identificationForm.controls['widgetHyperLinkWidgetID'].touched  && 
+        if (this.identificationForm.controls['widgetHyperLinkWidgetID'].touched  &&
             !this.identificationForm.controls['widgetHyperLinkWidgetID'].valid) {
                 if (this.identificationForm.controls['widgetHyperLinkWidgetID'].value != '0') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Hyperlinked Widget ID (Behaviour Panel) must be numeric';
                 }
         }
-        if (this.identificationForm.controls['widgetRefreshFrequency'].touched  && 
+        if (this.identificationForm.controls['widgetRefreshFrequency'].touched  &&
             !this.identificationForm.controls['widgetRefreshFrequency'].valid) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Refresh Frequency (Behaviour Panel) must be numeric and >0';
         }
         if (this.showWidgetGraph  ||  this.showWidgetTable) {
-            if (this.identificationForm.controls['widgetReportName'].value == ''  || 
+            if (this.identificationForm.controls['widgetReportName'].value == ''  ||
                 this.identificationForm.controls['widgetReportName'].value == null) {
                     if (this.addEditMode == 'Add') {
                         this.formIsValid = false;
                         this.numberErrors = this.numberErrors + 1;
-                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                             'The Widget Report Name (Data Panel) is compulsory when Adding.';
                     }
             }
@@ -674,136 +674,136 @@ export class WidgetEditorComponent implements OnInit {
 
         // Validate the Text fields, IF active
         if (this.showWidgetText) {
-                
-            if (this.identificationForm.controls['textText'].value == ''  || 
+
+            if (this.identificationForm.controls['textText'].value == ''  ||
                 this.identificationForm.controls['textText'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Text (Text panel) is compulsory.';
-            }                
-            if (this.identificationForm.controls['textHeight'].value == ''  || 
+            }
+            if (this.identificationForm.controls['textHeight'].value == ''  ||
                 this.identificationForm.controls['textHeight'].value == null) {
                     if (this.identificationForm.controls['textHeight'].value != '0') {
                         this.formIsValid = false;
                         this.numberErrors = this.numberErrors + 1;
-                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                             'The Height (Text panel) is compulsory.';
                     }
-            }                
-            if (this.identificationForm.controls['textHeight'].touched  && 
+            }
+            if (this.identificationForm.controls['textHeight'].touched  &&
                 !this.identificationForm.controls['textHeight'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Height (Text panel) must be numeric and >0';
             }
-            if (this.identificationForm.controls['textLeft'].value == ''  || 
+            if (this.identificationForm.controls['textLeft'].value == ''  ||
                 this.identificationForm.controls['textLeft'].value == null) {
                     if (this.identificationForm.controls['textLeft'].value != '0') {
                         this.formIsValid = false;
                         this.numberErrors = this.numberErrors + 1;
-                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                             'The Left (Text panel) is compulsory.';
                     }
-            }                
-            if (this.identificationForm.controls['textLeft'].touched  && 
+            }
+            if (this.identificationForm.controls['textLeft'].touched  &&
                 !this.identificationForm.controls['textLeft'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Left (Text panel) must be numeric';
             }
-            if (this.identificationForm.controls['textTop'].value == ''  || 
+            if (this.identificationForm.controls['textTop'].value == ''  ||
                 this.identificationForm.controls['textTop'].value == null) {
                     if (this.identificationForm.controls['textTop'].value != '0') {
                         this.formIsValid = false;
                         this.numberErrors = this.numberErrors + 1;
-                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                             'The Top (Text panel) is compulsory.';
                     }
-            }                
-            if (this.identificationForm.controls['textTop'].touched  && 
+            }
+            if (this.identificationForm.controls['textTop'].touched  &&
                 !this.identificationForm.controls['textTop'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Top (Text panel) must be numeric';
             }
-            if (this.identificationForm.controls['textWidth'].value == ''  || 
+            if (this.identificationForm.controls['textWidth'].value == ''  ||
                 this.identificationForm.controls['textWidth'].value == null) {
                     if (this.identificationForm.controls['textWidth'].value != '0') {
                         this.formIsValid = false;
                         this.numberErrors = this.numberErrors + 1;
-                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                        this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                             'The Width (Text panel) is compulsory.';
                     }
-            }                
-            if (this.identificationForm.controls['textWidth'].touched  && 
+            }
+            if (this.identificationForm.controls['textWidth'].touched  &&
                 !this.identificationForm.controls['textWidth'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Width (Text panel) must be numeric';
             }
         }
 
         // Validate Table fields, IF active
         if (this.showWidgetTable) {
-            if (this.identificationForm.controls['tableHideHeader'].value == ''  || 
+            if (this.identificationForm.controls['tableHideHeader'].value == ''  ||
                 this.identificationForm.controls['tableHideHeader'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The HideHeader (Table panel) is compulsory.';
             }
             if (this.identificationForm.controls['tableHideHeader'].value != 'true'  &&
                 this.identificationForm.controls['tableHideHeader'].value != 'false') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The HideHeader (Table panel) must be true or false (all lower case)';
                 }
-            if (this.identificationForm.controls['tableCols'].touched  && 
+            if (this.identificationForm.controls['tableCols'].touched  &&
                 !this.identificationForm.controls['tableCols'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Nr Cols (Table panel) must be numeric';
             }
-            if (this.identificationForm.controls['tableRows'].touched  && 
+            if (this.identificationForm.controls['tableRows'].touched  &&
                 !this.identificationForm.controls['tableRows'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Nr Rows (Table panel) must be numeric';
             }
-            if (this.identificationForm.controls['tableHeight'].touched  && 
+            if (this.identificationForm.controls['tableHeight'].touched  &&
                 !this.identificationForm.controls['tableHeight'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Height (Table panel) must be numeric';
             }
-            if (this.identificationForm.controls['tableWidth'].touched  && 
+            if (this.identificationForm.controls['tableWidth'].touched  &&
                 !this.identificationForm.controls['tableWidth'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Width (Table panel) must be numeric';
             }
-            if (this.identificationForm.controls['tableLeft'].touched  && 
+            if (this.identificationForm.controls['tableLeft'].touched  &&
                 !this.identificationForm.controls['tableLeft'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Left (Table panel) must be numeric';
             }
-            if (this.identificationForm.controls['tableTop'].touched  && 
+            if (this.identificationForm.controls['tableTop'].touched  &&
                 !this.identificationForm.controls['tableTop'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Top (Table panel) must be numeric';
             }
         }
@@ -811,72 +811,72 @@ export class WidgetEditorComponent implements OnInit {
         // validate Image fields, IF active
         if (this.showWidgetImage) {
 
-            if (this.identificationForm.controls['imageHeigt'].value == ''  || 
+            if (this.identificationForm.controls['imageHeigt'].value == ''  ||
                 this.identificationForm.controls['imageHeigt'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Height (Image panel) is compulsory.';
-            } 
-            if (this.identificationForm.controls['imageHeigt'].touched  && 
+            }
+            if (this.identificationForm.controls['imageHeigt'].touched  &&
                 !this.identificationForm.controls['imageHeigt'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Height (Image panel) must be numeric';
             }
-            if (this.identificationForm.controls['imageLeft'].value == ''  || 
+            if (this.identificationForm.controls['imageLeft'].value == ''  ||
                 this.identificationForm.controls['imageLeft'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Left (Image panel) is compulsory.';
-            } 
-            if (this.identificationForm.controls['imageLeft'].touched  && 
+            }
+            if (this.identificationForm.controls['imageLeft'].touched  &&
                 !this.identificationForm.controls['imageLeft'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Left (Image panel) must be numeric';
             }
-            if (this.identificationForm.controls['imageSource'].value == ''  || 
+            if (this.identificationForm.controls['imageSource'].value == ''  ||
                 this.identificationForm.controls['imageSource'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Source (Image panel) is compulsory.';
-            } 
-            if (this.identificationForm.controls['imageTop'].value == ''  || 
+            }
+            if (this.identificationForm.controls['imageTop'].value == ''  ||
                 this.identificationForm.controls['imageTop'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Top (Image panel) is compulsory.';
-            } 
-            if (this.identificationForm.controls['imageTop'].touched  && 
+            }
+            if (this.identificationForm.controls['imageTop'].touched  &&
                 !this.identificationForm.controls['imageTop'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Top (Image panel) must be numeric';
             }
-            if (this.identificationForm.controls['imageWidth'].value == ''  || 
+            if (this.identificationForm.controls['imageWidth'].value == ''  ||
                 this.identificationForm.controls['imageWidth'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Width (Image panel) is compulsory.';
-            } 
-            if (this.identificationForm.controls['imageWidth'].touched  && 
+            }
+            if (this.identificationForm.controls['imageWidth'].touched  &&
                 !this.identificationForm.controls['imageWidth'].valid) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Width (Image panel) must be numeric';
             }
         }
 
-        // Tricksy bit: validate per Widget Type.  I know its a lot of work, but 
+        // Tricksy bit: validate per Widget Type.  I know its a lot of work, but
         // its the only solution for now
 
         // Graph validation
@@ -886,23 +886,23 @@ export class WidgetEditorComponent implements OnInit {
             if (this.identificationForm.controls['widgetType'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Widget Type (Graph panel) is compulsory.';
             } else {
                 if (this.identificationForm.controls['widgetType'].value == '') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Widget Type (Graph Panel) is compulsory.';
                 }
 
                 if (this.identificationForm.controls['widgetType'].value.name == 'WidgetSet') {
 
-                    if (this.identificationForm.controls['widgetReportWidgetSet'].value == ''  || 
+                    if (this.identificationForm.controls['widgetReportWidgetSet'].value == ''  ||
                         this.identificationForm.controls['widgetReportWidgetSet'].value == null) {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                                 'The Report Widget Set (Graph panel) is compulsory.';
                     }
                 }
@@ -912,52 +912,52 @@ export class WidgetEditorComponent implements OnInit {
             if (this.identificationForm.controls['widgetType'].value == null) {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Report Widget Type (Graph panel) is compulsory.';
             } else {
 
                 if (this.identificationForm.controls['widgetType'].value.name == 'BarChart') {
-                    if (this.identificationForm.controls['widgetShowLimitedRows'].touched  && 
+                    if (this.identificationForm.controls['widgetShowLimitedRows'].touched  &&
                         !this.identificationForm.controls['widgetShowLimitedRows'].valid) {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                                 'The number of limited rows (Data panel) to show must be numeric';
-                    }        
+                    }
                     if (this.identificationForm.controls['vegaGraphHeight'].value == ''  ||
                         !this.identificationForm.controls['vegaGraphHeight'].value == null) {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                                 'The Height (Graph panel) must be numeric';
                     }
                     if (this.identificationForm.controls['vegaGraphWidth'].value == ''  ||
                         !this.identificationForm.controls['vegaGraphWidth'].value == null) {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                                 'The Width (Graph panel) must be numeric';
                     }
-                    if (this.identificationForm.controls['vegaGraphPadding'].value == ''  || 
+                    if (this.identificationForm.controls['vegaGraphPadding'].value == ''  ||
                         !this.identificationForm.controls['vegaGraphPadding'].value == null) {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                                 'The Padding (Graph panel) must be numeric';
                     }
 
-                    if (this.identificationForm.controls['vegaXcolumn'].value == ''  || 
+                    if (this.identificationForm.controls['vegaXcolumn'].value == ''  ||
                         this.identificationForm.controls['vegaXcolumn'].value == null) {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                                 'The X axis field (Graph panel) is compulsory.';
                     }
-                    if (this.identificationForm.controls['vegaYcolumn'].value == ''  || 
+                    if (this.identificationForm.controls['vegaYcolumn'].value == ''  ||
                         this.identificationForm.controls['vegaYcolumn'].value == null) {
                             this.formIsValid = false;
                             this.numberErrors = this.numberErrors + 1;
-                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                            this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                                 'The Y axis field (Graph panel) is compulsory.';
                     }
 
@@ -975,26 +975,26 @@ export class WidgetEditorComponent implements OnInit {
             });
             return;
         }
-        
+
         // Adding new Widget
         if (this.addEditMode == 'Add' && this.displayEditWidget) {
             this.widgetToEdit.properties.dashboardID = this.originalDashboardID;
             this.widgetToEdit.properties.widgetID = 0; // Set in DB
 
             // Load container fields from previously used values
-            this.widgetToEdit.container.backgroundColor = 
+            this.widgetToEdit.container.backgroundColor =
                 this.globalVariableService.lastBackgroundColor.getValue().name;
-            this.widgetToEdit.container.border = 
+            this.widgetToEdit.container.border =
                 this.globalVariableService.lastBorder.getValue().name;
-            this.widgetToEdit.container.boxShadow = 
+            this.widgetToEdit.container.boxShadow =
                 this.globalVariableService.lastBoxShadow.getValue().name;
-            this.widgetToEdit.container.color = 
+            this.widgetToEdit.container.color =
                 this.globalVariableService.lastColor.getValue().name;
-            this.widgetToEdit.container.fontSize =  
+            this.widgetToEdit.container.fontSize =
                 +this.globalVariableService.lastContainerFontSize.getValue().name;
-            this.widgetToEdit.container.height = 
+            this.widgetToEdit.container.height =
                 this.globalVariableService.lastWidgetHeight.getValue();
-            this.widgetToEdit.container.width = 
+            this.widgetToEdit.container.width =
                 this.globalVariableService.lastWidgetWidth.getValue();
 
             // Defaults
@@ -1004,7 +1004,7 @@ export class WidgetEditorComponent implements OnInit {
             this.widgetToEdit.properties.widgetIndex = 0;
             this.widgetToEdit.properties.widgetSize = '';
             this.widgetToEdit.properties.widgetSystemMessage = '';
-            
+
             // Add x,y from where Icon was dropped
             this.widgetToEdit.container.left = this.globalFunctionService.alignToGripPoint(
                 this.widgetToEditX);
@@ -1012,11 +1012,11 @@ export class WidgetEditorComponent implements OnInit {
                 this.widgetToEditY);
 
             // Add creation info
-            this.widgetToEdit.properties.widgetCreatedDateTime = 
+            this.widgetToEdit.properties.widgetCreatedDateTime =
                 this.canvasDate.now('standard');
-            this.widgetToEdit.properties.widgetCreatedUserName = 
+            this.widgetToEdit.properties.widgetCreatedUserName =
                 this.canvasUser.username;
-                
+
         }
 
         // Editing existing Widget
@@ -1032,60 +1032,60 @@ export class WidgetEditorComponent implements OnInit {
         this.widgetToEdit.areas.showWidgetImage = this.showWidgetImage;
         this.widgetToEdit.areas.showWidgetTable = this.showWidgetTable;
         this.widgetToEdit.areas.showWidgetText = this.showWidgetText;
-        this.widgetToEdit.properties.dashboardTabID = 
+        this.widgetToEdit.properties.dashboardTabID =
             this.selectedDashboardTab.id;
-        this.widgetToEdit.properties.dashboardTabName = 
+        this.widgetToEdit.properties.dashboardTabName =
             this.selectedDashboardTab.name;
-        this.widgetToEdit.container.widgetTitle = 
+        this.widgetToEdit.container.widgetTitle =
             this.identificationForm.controls['widgetTitle'].value;
-        this.widgetToEdit.properties.widgetCode = 
+        this.widgetToEdit.properties.widgetCode =
             this.identificationForm.controls['widgetCode'].value;
-        this.widgetToEdit.properties.widgetName = 
+        this.widgetToEdit.properties.widgetName =
             this.identificationForm.controls['widgetName'].value;
-        this.widgetToEdit.properties.widgetAddRestRow = 
+        this.widgetToEdit.properties.widgetAddRestRow =
             this.identificationForm.controls['widgetAddRestRow'].value;
-        this.widgetToEdit.properties.widgetDefaultExportFileType = 
+        this.widgetToEdit.properties.widgetDefaultExportFileType =
             this.identificationForm.controls['widgetDefaultExportFileType'].value;
-        this.widgetToEdit.properties.widgetDescription = 
+        this.widgetToEdit.properties.widgetDescription =
             this.identificationForm.controls['widgetDescription'].value;
-        this.widgetToEdit.properties.widgetHyperLinkTabNr = 
+        this.widgetToEdit.properties.widgetHyperLinkTabNr =
             this.identificationForm.controls['widgetHyperLinkTabNr'].value;
-        this.widgetToEdit.properties.widgetHyperLinkWidgetID = 
+        this.widgetToEdit.properties.widgetHyperLinkWidgetID =
             this.identificationForm.controls['widgetHyperLinkWidgetID'].value;
-        this.widgetToEdit.properties.widgetPassword = 
+        this.widgetToEdit.properties.widgetPassword =
             this.identificationForm.controls['widgetPassword'].value;
-        this.widgetToEdit.properties.widgetRefreshFrequency = 
+        this.widgetToEdit.properties.widgetRefreshFrequency =
             this.identificationForm.controls['widgetRefreshFrequency'].value;
-        this.widgetToEdit.properties.widgetRefreshMode = 
+        this.widgetToEdit.properties.widgetRefreshMode =
             this.identificationForm.controls['widgetRefreshMode'].value;
-        this.widgetToEdit.properties.widgetReportName = 
+        this.widgetToEdit.properties.widgetReportName =
             this.identificationForm.controls['widgetReportName'].value;
-        this.widgetToEdit.properties.widgetReportParameters = 
+        this.widgetToEdit.properties.widgetReportParameters =
             this.identificationForm.controls['widgetReportParameters'].value;
-        this.widgetToEdit.properties.widgetShowLimitedRows = 
+        this.widgetToEdit.properties.widgetShowLimitedRows =
             this.identificationForm.controls['widgetShowLimitedRows'].value;
-        this.widgetToEdit.properties.widgetTypeID = 
+        this.widgetToEdit.properties.widgetTypeID =
             this.identificationForm.controls['widgetType'].value.id;
-        this.widgetToEdit.properties.widgetType = 
+        this.widgetToEdit.properties.widgetType =
             this.identificationForm.controls['widgetType'].value.name;
 
         // Amend the specs IF given, according to the Widget Sets
         if (this.identificationForm.controls['widgetType'].value != null) {
             if (this.identificationForm.controls['widgetType'].value.name == 'WidgetSet') {
                 for (var i = 0; i < this.reportWidgetSets.length; i++) {
-                    if (this.reportWidgetSets[i].widgetSetID == 
+                    if (this.reportWidgetSets[i].widgetSetID ==
                         this.identificationForm.controls['widgetReportWidgetSet'].value.id) {
                             this.widgetToEdit.graph.spec = this.reportWidgetSets[i].vegaSpec;
                     }
                 }
-    
+
                 // Then wack in the data from the Report
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
                     this.identificationForm.controls['widgetReportName'].value != undefined) {
                     for (var i = 0; i < this.reports.length; i++) {
-                        if (this.reports[i].reportID == 
+                        if (this.reports[i].reportID ==
                             this.identificationForm.controls['widgetReportName'].value.id) {
-                                this.widgetToEdit.graph.spec.data[0].values = 
+                                this.widgetToEdit.graph.spec.data[0].values =
                                     this.reports[i].reportData;
                         }
                     }
@@ -1101,18 +1101,18 @@ export class WidgetEditorComponent implements OnInit {
 
                 // Wack the whole Template spec into our working Widget
                 this.widgetToEdit.graph.spec = this.widgetTemplate.vegaSpec;
-    
+
                 // Now tweak according to the form
-                this.widgetToEdit.graph.spec.height = 
+                this.widgetToEdit.graph.spec.height =
                     this.identificationForm.controls['vegaGraphHeight'].value;
-                this.widgetToEdit.graph.spec.width = 
+                this.widgetToEdit.graph.spec.width =
                     this.identificationForm.controls['vegaGraphWidth'].value;
 
-                this.widgetToEdit.graph.spec.padding = 
-                    this.identificationForm.controls['vegaGraphPadding'].value;                                        
+                this.widgetToEdit.graph.spec.padding =
+                    this.identificationForm.controls['vegaGraphPadding'].value;
                 if (this.identificationForm.controls['vegaXcolumn'].value.name != '' &&
                     this.identificationForm.controls['vegaXcolumn'].value.name != undefined) {
-                        this.widgetToEdit.graph.spec.scales[0].domain.field =  
+                        this.widgetToEdit.graph.spec.scales[0].domain.field =
                             this.identificationForm.controls['vegaXcolumn'].value.name;
 
                         this.widgetToEdit.graph.spec.marks[0].encode.enter.x.field =
@@ -1124,7 +1124,7 @@ export class WidgetEditorComponent implements OnInit {
 
                 if (this.identificationForm.controls['vegaYcolumn'].value.name != '' &&
                     this.identificationForm.controls['vegaYcolumn'].value.name != undefined) {
-                        this.widgetToEdit.graph.spec.scales[1].domain.field =  
+                        this.widgetToEdit.graph.spec.scales[1].domain.field =
                             this.identificationForm.controls['vegaYcolumn'].value.name;
                         this.widgetToEdit.graph.spec.marks[0].encode.enter.y.field =
                             this.identificationForm.controls['vegaYcolumn'].value.name;
@@ -1145,9 +1145,9 @@ export class WidgetEditorComponent implements OnInit {
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
                     this.identificationForm.controls['widgetReportName'].value != undefined) {
                         for (var i = 0; i < this.reports.length; i++) {
-                            if (this.reports[i].reportID == 
+                            if (this.reports[i].reportID ==
                                 this.identificationForm.controls['widgetReportName'].value.id) {
-                                    this.widgetToEdit.graph.spec.data[0].values = 
+                                    this.widgetToEdit.graph.spec.data[0].values =
                                         this.reports[i].reportData;
                             }
                         }
@@ -1156,10 +1156,10 @@ export class WidgetEditorComponent implements OnInit {
                 // Estimate height and width for NEW container, based on graph dimensions
                 if (this.addEditMode == 'Add') {
                     this.widgetToEdit.container.height = this.globalFunctionService.alignToGripPoint(
-                        +this.widgetToEdit.graph.spec.height + 
+                        +this.widgetToEdit.graph.spec.height +
                             (+this.widgetToEdit.graph.spec.padding * 2) + 40);
                     this.widgetToEdit.container.width = this.globalFunctionService.alignToGripPoint(
-                        +this.widgetToEdit.graph.spec.width + 
+                        +this.widgetToEdit.graph.spec.width +
                             (+this.widgetToEdit.graph.spec.padding * 2) + 40);
                 }
 
@@ -1173,46 +1173,46 @@ export class WidgetEditorComponent implements OnInit {
                 if (this.identificationForm.controls['widgetReportName'].value != '' &&
                     this.identificationForm.controls['widgetReportName'].value != undefined) {
                         for (var i = 0; i < this.reports.length; i++) {
-                            if (this.reports[i].reportID == 
+                            if (this.reports[i].reportID ==
                                 this.identificationForm.controls['widgetReportName'].value.id) {
 
-                                    this.widgetToEdit.graph.spec.data[0].values = 
+                                    this.widgetToEdit.graph.spec.data[0].values =
                                         this.reports[i].reportData;
                             }
                         }
                 }
             }
-        } 
- 
+        }
+
         // Load Text fields
         if (this.showWidgetText) {
-            this.widgetToEdit.textual.textText = 
+            this.widgetToEdit.textual.textText =
                 this.identificationForm.controls['textText'].value;
-            this.widgetToEdit.textual.textBackgroundColor = 
+            this.widgetToEdit.textual.textBackgroundColor =
                 this.selectedTextBackground.name;
-            this.widgetToEdit.textual.textBorder = 
+            this.widgetToEdit.textual.textBorder =
                 this.selectedTextBorder.name;
-            this.widgetToEdit.textual.textColor = 
+            this.widgetToEdit.textual.textColor =
                 this.selectedTextColor.name;
-            this.widgetToEdit.textual.textFontSize = 
+            this.widgetToEdit.textual.textFontSize =
                 +this.selectedTextFontSize.name;
-            this.widgetToEdit.textual.textFontWeight = 
+            this.widgetToEdit.textual.textFontWeight =
                 this.selectedTextFontWeight.name;
-            this.widgetToEdit.textual.textHeight = 
+            this.widgetToEdit.textual.textHeight =
                 this.identificationForm.controls['textHeight'].value;
-            this.widgetToEdit.textual.textLeft = 
+            this.widgetToEdit.textual.textLeft =
                 this.identificationForm.controls['textLeft'].value;
-            this.widgetToEdit.textual.textMargin = 
+            this.widgetToEdit.textual.textMargin =
                 this.selectedTextMargin.name;
-            this.widgetToEdit.textual.textPadding = 
+            this.widgetToEdit.textual.textPadding =
                 this.selectedTextPadding.name;
-            this.widgetToEdit.textual.textPosition = 
+            this.widgetToEdit.textual.textPosition =
                 this.selectedTextPosition.name;
-            this.widgetToEdit.textual.textTextAlign = 
+            this.widgetToEdit.textual.textTextAlign =
                 this.selectedTextAlign.name;
-            this.widgetToEdit.textual.textTop = 
+            this.widgetToEdit.textual.textTop =
                 this.identificationForm.controls['textTop'].value;
-            this.widgetToEdit.textual.textWidth = 
+            this.widgetToEdit.textual.textWidth =
                 this.identificationForm.controls['textWidth'].value;
         }
 
@@ -1224,46 +1224,46 @@ export class WidgetEditorComponent implements OnInit {
                 this.widgetToEdit.table.tableHideHeader = false;
             }
                 this.identificationForm.controls['tableHideHeader'].value;
-            this.widgetToEdit.table.tableColor = 
+            this.widgetToEdit.table.tableColor =
                 this.selectedTableColor.name;
-            this.widgetToEdit.table.tableCols = 
+            this.widgetToEdit.table.tableCols =
                 this.identificationForm.controls['tableCols'].value;
-            this.widgetToEdit.table.tableRows = 
+            this.widgetToEdit.table.tableRows =
                 this.identificationForm.controls['tableRows'].value;
-            this.widgetToEdit.table.tableHeight = 
+            this.widgetToEdit.table.tableHeight =
                 this.identificationForm.controls['tableHeight'].value;
-            this.widgetToEdit.table.tableWidth = 
+            this.widgetToEdit.table.tableWidth =
                 this.identificationForm.controls['tableWidth'].value;
-            this.widgetToEdit.table.tableLeft = 
+            this.widgetToEdit.table.tableLeft =
                 this.identificationForm.controls['tableLeft'].value;
-            this.widgetToEdit.table.tableTop = 
+            this.widgetToEdit.table.tableTop =
                 this.identificationForm.controls['tableTop'].value;
         }
 
         // Load Image fields
         if (this.showWidgetImage) {
-            this.widgetToEdit.image.imageAlt = 
+            this.widgetToEdit.image.imageAlt =
                 this.identificationForm.controls['imageAlt'].value;
-            this.widgetToEdit.image.imageHeigt = 
+            this.widgetToEdit.image.imageHeigt =
                 this.identificationForm.controls['imageHeigt'].value;
-            this.widgetToEdit.image.imageLeft = 
+            this.widgetToEdit.image.imageLeft =
                 this.identificationForm.controls['imageLeft'].value;
-            this.widgetToEdit.image.imageSource = 
+            this.widgetToEdit.image.imageSource =
                 this.selectedImageSrc.name;
-            this.widgetToEdit.image.imageTop = 
+            this.widgetToEdit.image.imageTop =
                 this.identificationForm.controls['imageTop'].value;
-            this.widgetToEdit.image.imageWidth = 
+            this.widgetToEdit.image.imageWidth =
                 this.identificationForm.controls['imageWidth'].value;
         }
 
         // Set last updated, created and refreshed properties
         this.widgetToEdit.properties.widgetRefreshedDateTime =
             this.canvasDate.now('standard');
-        this.widgetToEdit.properties.widgetRefreshedUserName = 
+        this.widgetToEdit.properties.widgetRefreshedUserName =
             this.canvasUser.username;
-        this.widgetToEdit.properties.widgetUpdatedDateTime = 
+        this.widgetToEdit.properties.widgetUpdatedDateTime =
             this.canvasDate.now('standard');
-        this.widgetToEdit.properties.widgetUpdatedUserName = 
+        this.widgetToEdit.properties.widgetUpdatedUserName =
             this.canvasUser.username;
 console.log('@end', this.widgetToEdit)
 
@@ -1324,7 +1324,7 @@ console.log('@end', this.widgetToEdit)
 
         // Load the Report, etc DropDowns
         this.reports = this.eazlService.getReports();
-        
+
         // Fill its dropdown
         this.reportsDropDown = [];
         for (var i = 0; i < this.reports.length; i++) {
@@ -1347,7 +1347,7 @@ console.log('@end', this.widgetToEdit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'changeWidgetSet', '@Start');
 
         if (this.reportWidgetSets.length > 0) {
-            this.selectedWidgetSetDescription = this.reportWidgetSets.filter( 
+            this.selectedWidgetSetDescription = this.reportWidgetSets.filter(
                 w => w.widgetSetID == event.value.id)[0].widgetSetDescription;
         } else {
             this.selectedWidgetSetDescription = '';
@@ -1421,7 +1421,7 @@ console.log('spec', this.identificationForm.controls['vegaSpec'].value)
 //             this.identificationForm.controls['vegaSpec'].value = '';
 //         }
 //         finally {
-// console.log('finally bad good',this.isVegaSpecBad )            
-//         }        
+// console.log('finally bad good',this.isVegaSpecBad )
+//         }
     }
 }
