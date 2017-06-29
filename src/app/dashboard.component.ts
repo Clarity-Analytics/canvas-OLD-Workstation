@@ -386,9 +386,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 summary:  'Success',
                 detail:   'Widget added'
             });
-
-            // // Close the popup form for the Widget Builder
-            // this.displayEditWidget = false;
         }
 
         // Save the editted Widget back to the Array
@@ -449,6 +446,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             // Refresh the Dashboard
             this.refreshDashboard = true;
+        }
+
+        // Remove a Widget now allocated to another tab
+        if (this.widgetToEdit.properties.dashboardTabName != this.selectedDashboardTab.name) {
+            console.log('this.widgetToEdit.properties.widgetID', this.widgetToEdit.properties.widgetID)
+            let widgetIndex: number = 0;
+            for (var i = 0; i < this.widgets.length; i++) {
+                if (this.widgets[i].properties.widgetID == 
+                    this.widgetToEdit.properties.widgetID) {
+                        widgetIndex = i;
+                        break;
+                }
+            };
+            this.widgets.splice(i, 1)
         }
 
         // Close the popup form for the Widget Builder
@@ -2038,7 +2049,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     dashboardRefresh() {
         // Render the widgets according to their properties
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardRefresh', '@Start');
-
 
         // Loop on the Widgets, and get the data if it has a Graph or Table
         // Else, we assume no data has to be used for rendering
