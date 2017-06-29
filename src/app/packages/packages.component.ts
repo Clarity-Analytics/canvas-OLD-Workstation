@@ -64,7 +64,7 @@ export class PackagesComponent implements OnInit {
 		
 		this.packageService.execute(url)
 		    .subscribe(
-		    	(packageTask) => { console.log(packageTask) }
+		    	(packageTask) => { console.log('Should see a websocket message after this console log if you are logged in.') }
 		    )
 	}
 
@@ -77,22 +77,6 @@ export class PackagesComponent implements OnInit {
 
 			this.packageList.push(componentPackage);
 		});
-
-		// this.packageService.packages.subscribe(
-		// 	(packages) => {
-		// 		packages.forEach( (item: Package, index: number) => {
-		// 			let componentPackage = ComponentPackage.fromPackage(item, index===0)
-		// 			if (index === 0) {
-		// 				this.selectedPackage = componentPackage;
-		// 			}
-
-		// 			this.packageList.push(componentPackage);
-		// 		});
-		// 	}, 
-		// 	error => {
-		// 		console.log(JSON.parse(error));
-		// 	}
-		// );
 	}
 
 }
