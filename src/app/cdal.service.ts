@@ -2287,5 +2287,34 @@ export class CDAL {
         return borderDropdownsWorking;
     } 
 
+    loadBoxShadowDropdowns(eazlBoxShadowDropdowns: SelectItem): SelectItem {
+        // Load BoxShadowDropdowns: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadBoxShadowDropdowns', '@Start');
+        
+        let boxShadowDropdownsWorking: SelectItem;
+
+        if (eazlBoxShadowDropdowns.label != null) {
+            boxShadowDropdownsWorking.label = eazlBoxShadowDropdowns.label;
+        } else {
+            boxShadowDropdownsWorking.label = '';
+        }
+
+        if (eazlBoxShadowDropdowns.value.id != null) {
+            boxShadowDropdownsWorking.value.id = eazlBoxShadowDropdowns.value.id;
+        } else {
+            boxShadowDropdownsWorking.value.id = 0;
+        }
+
+        if (eazlBoxShadowDropdowns.value.name != null) {
+            boxShadowDropdownsWorking.value.name = eazlBoxShadowDropdowns.value.name;
+        } else {
+            boxShadowDropdownsWorking.value.name = '';
+        }
+
+        // Return the result
+        return boxShadowDropdownsWorking;
+    } 
+
+
 }
 
