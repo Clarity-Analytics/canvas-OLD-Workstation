@@ -2343,6 +2343,33 @@ export class CDAL {
         return fontSizeDropdownsWorking;
     } 
 
+    loadGridSizeDropdowns(eazlGridSizeDropdowns: SelectItem): SelectItem {
+        // Load GridSizeDropdowns: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadGridSizeDropdowns', '@Start');
+        
+        let gridSizeDropdownsWorking: SelectItem;
+
+        if (eazlGridSizeDropdowns.label != null) {
+            gridSizeDropdownsWorking.label = eazlGridSizeDropdowns.label;
+        } else {
+            gridSizeDropdownsWorking.label = '';
+        }
+
+        if (eazlGridSizeDropdowns.value.id != null) {
+            gridSizeDropdownsWorking.value.id = eazlGridSizeDropdowns.value.id;
+        } else {
+            gridSizeDropdownsWorking.value.id = 0;
+        }
+
+        if (eazlGridSizeDropdowns.value.name != null) {
+            gridSizeDropdownsWorking.value.name = eazlGridSizeDropdowns.value.name;
+        } else {
+            gridSizeDropdownsWorking.value.name = '';
+        }
+
+        // Return the result
+        return gridSizeDropdownsWorking;
+    } 
 
 }
 
