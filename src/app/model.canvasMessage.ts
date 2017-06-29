@@ -1,4 +1,4 @@
-// Schema for the CanvasMessage class
+// Schema for the CanvasMessage class, used in collaboration
 
 // Eazl
 export class EazlCanvasMessage {
@@ -39,3 +39,4 @@ export class CanvasMessage {
         }
     ];
 }
+
