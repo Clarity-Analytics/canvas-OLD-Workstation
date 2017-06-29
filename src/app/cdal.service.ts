@@ -2371,5 +2371,33 @@ export class CDAL {
         return gridSizeDropdownsWorking;
     } 
 
+    loadBackgroundImageDropdowns(eazlBackgroundImageDropdowns: SelectItem): SelectItem {
+        // Load BackgroundImageDropdowns: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadBackgroundImageDropdowns', '@Start');
+        
+        let backgroundImageDropdownsWorking: SelectItem;
+
+        if (eazlBackgroundImageDropdowns.label != null) {
+            backgroundImageDropdownsWorking.label = eazlBackgroundImageDropdowns.label;
+        } else {
+            backgroundImageDropdownsWorking.label = '';
+        }
+
+        if (eazlBackgroundImageDropdowns.value.id != null) {
+            backgroundImageDropdownsWorking.value.id = eazlBackgroundImageDropdowns.value.id;
+        } else {
+            backgroundImageDropdownsWorking.value.id = 0;
+        }
+
+        if (eazlBackgroundImageDropdowns.value.name != null) {
+            backgroundImageDropdownsWorking.value.name = eazlBackgroundImageDropdowns.value.name;
+        } else {
+            backgroundImageDropdownsWorking.value.name = '';
+        }
+
+        // Return the result
+        return backgroundImageDropdownsWorking;
+    } 
+
 }
 
