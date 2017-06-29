@@ -39,6 +39,7 @@ export class ReportComponent implements OnInit {
     displayReportHistory: boolean;                      // True to display Report History
     groups: Group[];                                    // List of Groups
     displayNewWidgetForm: boolean = false;              // True to show popup for New Widget
+    displayReportBuilderForm: boolean = false;          // True to show popup for Report Builder
     popuMenuItems: MenuItem[];                          // Items in popup
     reportHistory: ReportHistory[];                     // List of Report History (ran)
     reports: Report[];                                  // List of Reports
@@ -81,6 +82,12 @@ export class ReportComponent implements OnInit {
                 icon: 'fa-bar-chart-o',
                 command: (event) => this.reportMenuCreateWidget(this.selectedReport)
             },
+            {
+                label: 'Report Builder',
+                icon: 'fa-cubes',
+                command: (event) => this.reportMenuReportBuilder(this.selectedReport)
+            },
+
         ];
     }
 
@@ -148,8 +155,15 @@ export class ReportComponent implements OnInit {
 
         this.displayNewWidgetForm = true;
     }
-}
+ 
+    reportMenuReportBuilder(selectedReport: Report) {
+        // Show popup to build a report = query
+        // - selectedReport: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuReportBuilder', '@Start');
 
+        this.displayReportBuilderForm = true;
+    }
+}
 // Notes for newbees:
 //  Filtering is enabled by setting the filter property as true in column object.
 //  Default match mode is "startsWith" and this can be configured

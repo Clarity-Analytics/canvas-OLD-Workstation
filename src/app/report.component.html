@@ -306,3 +306,22 @@
     </widget-new>
 
 </p-dialog>
+
+
+<!--Popup for Report Builder-->
+<p-dialog header="New Widget" 
+    [(visible)]="displayReportBuilderForm" 
+    modal="modal" 
+    height="450"
+    width="600" 
+    responsive="true"
+    >
+
+    <report-builder 
+        [selectedReport]="selectedReport"
+        (formSubmit)="handleReportBuilderFormSubmit($event)" 
+        >
+        Loading Report Builder form ...
+    </report-builder>
+
+</p-dialog>

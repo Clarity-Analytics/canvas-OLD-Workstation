@@ -110,6 +110,7 @@ import { NewMessageComponent }        from './newmessage.component';
 import { PageNotFoundComponent }      from './pagenotfound.component';
 import { PersonalisationComponent }   from './personalisation.component';
 import { ReportComponent }            from './report.component';
+import { ReportBuilderComponent }     from './report.builder.component';
 import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
 import { UserPopupComponent }         from './user-popup.component';
@@ -161,6 +162,7 @@ import { routes }                     from './app.routes';
     PageNotFoundComponent,
     PersonalisationComponent,
     ReportComponent,
+    ReportBuilderComponent,
     SystemConfigComponent,
     UserComponent,
     UserPopupComponent,
