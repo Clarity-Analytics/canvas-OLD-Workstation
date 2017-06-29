@@ -4,6 +4,9 @@
 
 import { Injectable }                 from '@angular/core';
 
+//  PrimeNG stuffies
+import { SelectItem }                 from 'primeng/primeng';
+
 // Our Services
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -2255,81 +2258,34 @@ export class CDAL {
         return graphTypesWorking;
     } 
 
-
-    // getGraphTypes(): GraphType[] {
-    //     // Return list of Grapy Types
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
-
-    //     return this.graphTypes;
-    // }
-
-    // maxZindex(dashboardID: number): number {
-    //     // Return the Max z-Index for a given dashboard
-    //     // - dashboardID to filter on
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
-
-    //     let maxZindex: number = 0;
-    //     for (var i = 0; i < this.widgets.length; i++) {
-    //         if (this.widgets[i].properties.dashboardID == dashboardID) {
-    //             maxZindex = Math.max(maxZindex, this.widgets[i].properties.widgetIndex);
-    //         }
-    //     }
-    //     return maxZindex;
-    // }
-
-    // getBorderDropdowns() {
-    //     // Return list of dropdown options for Borders
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getBorderDropdowns', '@Start');
-
-    //     return this.borderDropdowns;
-    // }
-
-    // getBoxShadowDropdowns() {
-    //     // Return list of dropdown options for Box Shadows
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getBoxShadowDropdowns', '@Start');
-
-    //     return this.boxShadowDropdowns;
-    // }
-
-    // getFontSizeDropdowns() {
-    //     // Return list of dropdown options for Font Size
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getFontSizeDropdowns', '@Start');
-
-    //     return this.fontSizeDropdowns;
-    // }
-
-    // getGridSizeDropdowns() {
-    //     // Return list of dropdown options for Grid Sizes
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getGridSizeDropdowns', '@Start');
-
-    //     return this.gridSizeDropdowns;
-    // }
-
-    // getBackgroundImageDropdowns() {
-    //     // Return list of dropdown options for Background Images
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getBackgroundImageDropdowns', '@Start');
-
-    //     return this.backgroundImageDropdowns;
-    // }
-
-    // loadCanvasMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
-    //     // Load MessageRecipient: move data Eazl -> Canvas
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessageRecipient', '@Start');
+// TODO Add LOOP to all !!!
+    loadBorderDropdowns(eazlBorderDropdowns: SelectItem): SelectItem {
+        // Load BorderDropdowns: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadBorderDropdowns', '@Start');
         
-    //     let canvasMessageRecipientWorking = new CanvasMessageRecipient();
-        
-    //     canvasMessageRecipientWorking.canvasMessageRecipientID = eazlCanvasMessageRecipient.id;
+        let borderDropdownsWorking: SelectItem;
 
-    //     if (eazlCanvasMessageRecipient.message_id != null) {
-    //         canvasMessageRecipientWorking.canvasMessageID = eazlCanvasMessageRecipient.message_id;
-    //     } else {
-    //         canvasMessageRecipientWorking.canvasMessageID = 0;
-    //     }
+        if (eazlBorderDropdowns.label != null) {
+            borderDropdownsWorking.label = eazlBorderDropdowns.label;
+        } else {
+            borderDropdownsWorking.label = '';
+        }
 
-    //     // Return the result
-    //     return canvasMessageRecipientWorking;
-    // } 
+        if (eazlBorderDropdowns.value.id != null) {
+            borderDropdownsWorking.value.id = eazlBorderDropdowns.value.id;
+        } else {
+            borderDropdownsWorking.value.id = 0;
+        }
 
+        if (eazlBorderDropdowns.value.name != null) {
+            borderDropdownsWorking.value.name = eazlBorderDropdowns.value.name;
+        } else {
+            borderDropdownsWorking.value.name = '';
+        }
+
+        // Return the result
+        return borderDropdownsWorking;
+    } 
 
 }
 
