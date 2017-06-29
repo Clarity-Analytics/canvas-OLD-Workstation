@@ -2361,6 +2361,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         this.childrenWidgetImage.toArray()[i].nativeElement,
                         'top', this.widgets[i].image.imageTop.toString() + 'px'
                     );
+                    this.renderer.setElementStyle(
+                        this.childrenWidgetImage.toArray()[i].nativeElement,
+                        'z-index', '0'
+                    );
                 }
             }
         }
