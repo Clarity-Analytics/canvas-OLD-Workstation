@@ -2315,6 +2315,34 @@ export class CDAL {
         return boxShadowDropdownsWorking;
     } 
 
+    loadFontSizeDropdowns(eazlFontSizeDropdowns: SelectItem): SelectItem {
+        // Load FontSizeDropdowns: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadFontSizeDropdowns', '@Start');
+        
+        let fontSizeDropdownsWorking: SelectItem;
+
+        if (eazlFontSizeDropdowns.label != null) {
+            fontSizeDropdownsWorking.label = eazlFontSizeDropdowns.label;
+        } else {
+            fontSizeDropdownsWorking.label = '';
+        }
+
+        if (eazlFontSizeDropdowns.value.id != null) {
+            fontSizeDropdownsWorking.value.id = eazlFontSizeDropdowns.value.id;
+        } else {
+            fontSizeDropdownsWorking.value.id = 0;
+        }
+
+        if (eazlFontSizeDropdowns.value.name != null) {
+            fontSizeDropdownsWorking.value.name = eazlFontSizeDropdowns.value.name;
+        } else {
+            fontSizeDropdownsWorking.value.name = '';
+        }
+
+        // Return the result
+        return fontSizeDropdownsWorking;
+    } 
+
 
 }
 
