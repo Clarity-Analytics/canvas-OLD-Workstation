@@ -251,9 +251,9 @@ export class WidgetEditorComponent implements OnInit {
         this.textPaddingOptions = this.eazlService.getTextPaddingDropdowns();
 
         // Text Position Options
-        this.textPositionOptions = [];
-        this.textPositionOptions.push({label:'Relative',  value:{id:1, name: 'relative'}});
-        this.textPositionOptions.push({label:'Absolute',  value:{id:1, name: 'absolute'}});
+        this.textPositionOptions = this.eazlService.getTextPositionDropdowns();
+        // this.textPositionOptions.push({label:'Relative',  value:{id:1, name: 'relative'}});
+        // this.textPositionOptions.push({label:'Absolute',  value:{id:1, name: 'absolute'}});
 
         // Text Margin Options
         this.textAlignOptions = [];
