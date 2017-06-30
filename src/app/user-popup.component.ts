@@ -42,7 +42,7 @@ export class UserPopupComponent implements OnInit {
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     isLoadingForm: boolean = false;
-    isStaffOptions: SelectItem[];
+    isStaffDropdown: SelectItem[];
     isSuperuserOptions: SelectItem[];
     numberErrors: number = 0;
     userformID: any;
@@ -87,7 +87,7 @@ export class UserPopupComponent implements OnInit {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
-        this.isStaffOptions = this.eazlService.getIsStaffDropdowns();
+        this.isStaffDropdown = this.eazlService.getIsStaffDropdowns();
         // this.isStaffOptions.push({ label: 'Select option', value: '' });
         // this.isStaffOptions.push({ label: 'Is Staff Member', value: 'True' });
         // this.isStaffOptions.push({ label: 'Non-staff', value: 'False' });
