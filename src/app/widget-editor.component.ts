@@ -124,7 +124,7 @@ export class WidgetEditorComponent implements OnInit {
     boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
     chartColor: SelectItem[];                   // Options for Background-Color DropDown
     fontSizeDropdowns: SelectItem[];              // Options for Font Size of text box
-    fontWeightOptions: SelectItem[];            // Options for Font Weight of text box
+    fontWeightDropdowns: SelectItem[];            // Options for Font Weight of text box
     imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
     textMarginOptions: SelectItem[];            // Options for Margins around text box
     textPaddingOptions: SelectItem[];           // Options for Padding around text box
@@ -242,7 +242,7 @@ export class WidgetEditorComponent implements OnInit {
         this.fontSizeDropdowns = this.eazlService.getFontSizeDropdowns();
 
         // Font Weight Options
-        this.fontWeightOptions = this.eazlService.getFontWeightDropdown();
+        this.fontWeightDropdowns = this.eazlService.getFontWeightDropdown();
 
         // Text Margin Options
         this.textMarginOptions = this.eazlService.getTextMarginDropdowns();
@@ -255,11 +255,8 @@ export class WidgetEditorComponent implements OnInit {
 
         // Text Margin Options
         this.textAlignOptions = this.eazlService.getTextAlignDropdowns();
-        // this.textAlignOptions.push({label:'Left',     value:{id:1, name: 'left'}});
-        // this.textAlignOptions.push({label:'Center',   value:{id:1, name: 'center'}});
-        // this.textAlignOptions.push({label:'Right',    value:{id:1, name: 'right'}});
 
-        // Text Margin Options
+        // Image Source Options
         // TODO - make id = 1 for now, find a better solution for later
         this.imageSourceOptions = [];
         this.imageSourceOptions.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});

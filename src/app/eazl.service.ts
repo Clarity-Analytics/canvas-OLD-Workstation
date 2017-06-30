@@ -298,7 +298,7 @@ export const TEXTMARGINDROPDOWNS: SelectItem[] =
             label: 'None',   
             value:
                 {
-                    id: 1, 
+                    id: 0, 
                     name: '0'
                 }
         },
@@ -314,7 +314,7 @@ export const TEXTMARGINDROPDOWNS: SelectItem[] =
             label: 'Medium', 
             value:
                 {
-                    id: 1, 
+                    id: 2, 
                     name: '20px 20px 20px 20px'
                 }
         },
@@ -322,7 +322,7 @@ export const TEXTMARGINDROPDOWNS: SelectItem[] =
             label: 'Large',  
             value:
                 {
-                    id: 1, 
+                    id: 3, 
                     name: '50px 50px 50px 50px'
                 }
         }
@@ -334,7 +334,7 @@ export const TEXTPADDINGDROPDOWNS: SelectItem[] =
             label: 'None',   
             value: 
                 {
-                    id: 1, 
+                    id: 0, 
                     name: '0'
                 }
         },
@@ -350,7 +350,7 @@ export const TEXTPADDINGDROPDOWNS: SelectItem[] =
             label: 'Medium', 
             value: 
                 {
-                    id: 1, 
+                    id: 2, 
                     name: '20px 20px 20px 20px'
                 }
         },
@@ -358,7 +358,7 @@ export const TEXTPADDINGDROPDOWNS: SelectItem[] =
             label: 'Large',  
             value: 
                 {
-                    id: 1, 
+                    id: 3, 
                     name: '50px 50px 50px 50px'
                 }
         }
@@ -370,7 +370,7 @@ export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
             label: 'Relative',  
             value:
                 {
-                    id: 1, 
+                    id: 0, 
                     name: 'relative'
                 }
         },
@@ -390,7 +390,7 @@ export const TEXTALIGNDROPDOWNS: SelectItem[] =
             label: 'Left',     
             value:
                 {
-                    id: 1, 
+                    id: 0, 
                     name: 'left'
                 }
         },
@@ -406,11 +406,13 @@ export const TEXTALIGNDROPDOWNS: SelectItem[] =
             label: 'Right',    
             value:
                 {
-                    id: 1, 
+                    id: 2, 
                     name: 'right'
                 }
         }
     ]
+
+
 
 export const GRIDSIZEDROPDOWNS: SelectItem[] =
     [
