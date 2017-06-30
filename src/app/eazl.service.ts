@@ -115,6 +115,22 @@ export const ISSTAFFDROPDOWN: SelectItem[] =
         },
     ]
 
+export const ISSUPERUSERDROPDOWN: SelectItem[] =
+    [
+        { 
+            label: 'Select option', 
+            value: '' 
+        },
+        { 
+            label: 'Is Superuser', 
+            value: 'True' 
+        },
+        { 
+            label: 'Normal staff', 
+            value: 'False' 
+        }
+    ]
+
 export const BORDERDROPDOWNS: SelectItem[] =
     [
         {
@@ -4305,7 +4321,7 @@ export class EazlService implements OnInit {
     graphTypes: GraphType[] = GRAPHTYPES;                   // List of Graph Types
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
-    isStaffOptions: SelectItem[] = ISSTAFFDROPDOWN;keyof    // List of IsStaff dropdown options
+    isStaffDropdown: SelectItem[] = ISSTAFFDROPDOWN;        // List of IsStaff dropdown options
     notifications: Notification[] = [];                     // List of Notifications
     packageTask: PackageTask[] = [];                        // List of PackageTask
     reports: Report[] = REPORTS;                            // List of Reports
@@ -4314,6 +4330,7 @@ export class EazlService implements OnInit {
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     personalisation: Personalisation = PERSONALISATION;     // Personal settings for current user
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
+    isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
     systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
     users: User[] = [];                                     // List of Users
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
@@ -6376,11 +6393,18 @@ console.log('error')
         return dashboardNameWorking;
     }
 
-    getIsStaffDropdowns() {
+    getIsStaffDropdowns(): SelectItem[] {
         // Returns list of IsStaff dropdown options
-        
         this.globalFunctionService.printToConsole(this.constructor.name,'getIsStaffDropdowns', '@Start');
-        return this.isStaffOptions;
+
+        return this.isStaffDropdown;
+    }
+
+    getIsSuperuserDropdown(): SelectItem[] {
+        // Returns list of IsSuperuser dropdown options
+        this.globalFunctionService.printToConsole(this.constructor.name,'getIsSuperuserDropdown', '@Start');
+
+        return this.isSuperuserDropdown;
     }
 
     cacheCanvasData(
