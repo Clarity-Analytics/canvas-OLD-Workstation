@@ -172,7 +172,16 @@ this.reconnectingWebSocket.messageWS.subscribe(
                 )
         }
 
-        // Get the 
+        // Get the SystemConfiguration, and refesh global variables
+        this.eazlService.globalVariablesSystemConfiguration(
+            this.eazlService.getSystemConfiguration()
+        )
+
+        // Get the Personalisation, and refesh global variables
+        this.eazlService.globalVariablesPersonalisation(
+            this.eazlService.getPersonalisation()
+        );
+        
     }
 
     menuActionNewMessage() {
