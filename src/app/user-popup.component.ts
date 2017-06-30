@@ -52,7 +52,7 @@ export class UserPopupComponent implements OnInit {
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalVariableService: GlobalVariableService,
-        private globalFunctionService: GlobalFunctionService, 
+        private globalFunctionService: GlobalFunctionService,
         ) {
 
         // FormBuilder - must be before subscribeToValue ...
@@ -134,7 +134,7 @@ export class UserPopupComponent implements OnInit {
             //     this.selectedUser.inactiveDate = formContent['inactiveDate'];
             //     this.selectedUser.dateCreated = formContent['dateCreated'];
             //     this.selectedUser.userNameLastUpdated = formContent['userNameLastUpdated'];
-            // }    
+            // }
         });
     }
 
@@ -227,7 +227,7 @@ export class UserPopupComponent implements OnInit {
             summary:  'Cancel',
             detail:   'No changes as requested'
         });
-        
+
         this.userPopupFormClosed.emit('Cancel');
     }
 
@@ -239,7 +239,7 @@ export class UserPopupComponent implements OnInit {
         this.formIsValid = false;
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
-        if (this.userformID.controls['username'].value == ''  || 
+        if (this.userformID.controls['username'].value == ''  ||
             this.userformID.controls['username'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
@@ -274,7 +274,7 @@ export class UserPopupComponent implements OnInit {
             });
             return;
         }
- 
+
         // Adding new user
         if (this.addEditMode == 'Add' && this.displayUserPopup) {
             this.eazlService.addUser({

@@ -99,6 +99,22 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
         maxRowsPerWidgetGraph: 15,
     }
 
+export const ISSTAFFDROPDOWN: SelectItem[] = 
+    [
+        { 
+            label: 'Select option', 
+            value: '' 
+        },
+        { 
+            label: 'Is Staff Member', 
+            value: 'True' 
+        },
+        { 
+            label: 'Non-staff', 
+            value: 'False' 
+        },
+    ]
+
 export const BORDERDROPDOWNS: SelectItem[] =
     [
         {
@@ -4289,6 +4305,7 @@ export class EazlService implements OnInit {
     graphTypes: GraphType[] = GRAPHTYPES;                   // List of Graph Types
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
+    isStaffOptions: SelectItem[] = ISSTAFFDROPDOWN;keyof    // List of IsStaff dropdown options
     notifications: Notification[] = [];                     // List of Notifications
     packageTask: PackageTask[] = [];                        // List of PackageTask
     reports: Report[] = REPORTS;                            // List of Reports
@@ -6357,6 +6374,13 @@ console.log('error')
 
         // Return
         return dashboardNameWorking;
+    }
+
+    getIsStaffOptionDropdowns() {
+        // Returns list of IsStaff dropdown options
+        
+        this.globalFunctionService.printToConsole(this.constructor.name,'getIsStaffOptionDropdowns', '@Start');
+        return this.isStaffOptions;
     }
 
     cacheCanvasData(
