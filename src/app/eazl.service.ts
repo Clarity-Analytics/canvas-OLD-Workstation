@@ -292,6 +292,42 @@ export const FONTWEIGHTDROPDOWNS: SelectItem[] =
         }
     ]
 
+export const TEXTMARGINDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: 'None',   
+            value:
+                {
+                    id: 1, 
+                    name: '0'
+                }
+        },
+        {
+            label: 'Small',  
+            value:
+                {
+                    id: 1, 
+                    name: '5px 5px 5px 5px'
+                }
+        },
+        {
+            label: 'Medium', 
+            value:
+                {
+                    id: 1, 
+                    name: '20px 20px 20px 20px'
+                }
+        },
+        {
+            label: 'Large',  
+            value:
+                {
+                    id: 1, 
+                    name: '50px 50px 50px 50px'
+                }
+        }
+    ]
+    
 export const GRIDSIZEDROPDOWNS: SelectItem[] =
     [
         {
@@ -4326,6 +4362,7 @@ export class EazlService implements OnInit {
     fontSizeDropdowns: SelectItem[] = FONTSIZEDROPDOWNS;    // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[] = FONTWEIGHTDROPDOWNS; // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[] = GRIDSIZEDROPDOWNS;    // List of Grid Size dropdown options
+    textMarginDropdowns: SelectItem[] = TEXTMARGINDROPDOWNS;    // List of Margins for text box dropdown options
     backgroundImageDropdowns: SelectItem[] = BACKGROUNDIMAGEDROPDOWNS;  // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
@@ -6435,7 +6472,16 @@ console.log('error')
 
         return this.fontWeightDropdown;
     }
-    
+
+
+    getTextMarginDropdowns() {
+        // Returns list of Text Margin dropdown options
+        this.globalFunctionService.printToConsole(this.constructor.name,'getTextMarginDropdowns', '@Start');
+
+        return this.textMarginDropdowns;
+    }
+
+
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',
