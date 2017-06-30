@@ -6348,13 +6348,17 @@ console.log('error')
         // Returns Name of a given dashboardID
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardName', '@Start');
 
+        let dashboardNameWorking: string = null;
         for (var i = 0; i < this.dashboards.length; i++) {
             if (this.dashboards[i].dashboardID == dashboardID) {
-                return this.dashboards[i].dashboardName
+                dashboardNameWorking = this.dashboards[i].dashboardName;
             }
         }
+
+        // Return
+        return dashboardNameWorking;
     }
-    
+
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',

@@ -18,7 +18,8 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { Personalisation }           from './model.personalisation';
+import { Personalisation }            from './model.personalisation';
+import { SelectedItem }               from './model.selectedItem';
 
 @Component({
     selector:    'personalisation',
@@ -34,8 +35,8 @@ export class PersonalisationComponent implements OnInit {
     formIsValid: boolean = false;
     numberErrors: number = 0;
     personalisation: Personalisation;       // System wide settings
-    selectedDashboard: SelectItem;          // Selected in DropDown
-    selectedItem: SelectItem;               // Temp storage to load form
+    selectedDashboard: SelectedItem;        // Selected in DropDown
+    selectedItem: SelectedItem;             // Temp storage to load form
 
     constructor(
         private eazlService: EazlService,
@@ -51,7 +52,7 @@ export class PersonalisationComponent implements OnInit {
         // FormBuilder
         this.configForm = this.fb.group({
             'averageWarningRuntime':        new FormControl('', Validators.pattern('^[0-9]*$')),
-            'dashboardIDStartup':           new FormControl('', Validators.required),
+            'dashboardStartupName':         new FormControl(''),
             'environment':                  new FormControl(''),
             'frontendColorScheme':          new FormControl(''),
             'defaultReportFilters':         new FormControl(''),
@@ -69,19 +70,20 @@ export class PersonalisationComponent implements OnInit {
         this.personalisation = this.eazlService.getPersonalisation();
 
         // Move the data into the form
-        let dashboardName: string = '';
-        this.selectedItem = {
-            label: dashboardName,
-            value: {
-                id: this.personalisation.dashboardIDStartup,
-                name: dashboardName
-            }
-        };
-        this.configForm.controls['dashboardName'].setValue(this.selectedItem);
-        this.selectedDashboard = this.selectedItem;
+        if (this.personalisation.dashboardIDStartup != -1) {
+            let dashboardName: string = '';
+            dashboardName = this.eazlService.getdashboardName(this.personalisation.dashboardIDStartup);
 
-        this.configForm.controls['dashboardIDStartup'].setValue(
-            this.personalisation.dashboardIDStartup);
+            if (dashboardName != null) {     
+                this.selectedItem = {
+                    id: this.personalisation.dashboardIDStartup,
+                    name: dashboardName
+                };
+
+                this.selectedDashboard = this.selectedItem;
+            }
+        }
+
         this.configForm.controls['environment'].setValue(
             this.personalisation.environment);
         this.configForm.controls['averageWarningRuntime'].setValue(
@@ -122,15 +124,7 @@ export class PersonalisationComponent implements OnInit {
         this.numberErrors = 0;
         this.errorMessageOnForm = ''; 
 
-        if (this.configForm.controls['dashboardIDStartup'].touched  && 
-            !this.configForm.controls['dashboardIDStartup'].valid) {
-                if (this.configForm.controls['dashboardIDStartup'].value != '0') {
-                    this.formIsValid = false;
-                    this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-                        'The dashboardID to show at Startup must be numeric';
-                }
-        } 
+console.log('name', this.configForm.controls['dashboardStartupName'])
         if (this.configForm.controls['averageWarningRuntime'].value == ''  || 
             this.configForm.controls['averageWarningRuntime'].value == null) {
             this.formIsValid = false;
@@ -193,11 +187,16 @@ export class PersonalisationComponent implements OnInit {
             });
             return;
         }
+        let dashboardIDWorking: number = -1;
+        if (this.configForm.controls['dashboardStartupName'] != null) {
+            dashboardIDWorking = this.configForm.controls['dashboardStartupName'].value.id;
+        }
+
         this.eazlService.updatePersonalisation(
             {
                 personalisationID: 0,
                 averageWarningRuntime: this.configForm.controls['averageWarningRuntime'].value,
-                dashboardIDStartup: this.configForm.controls['dashboardIDStartup'].value,
+                dashboardIDStartup: dashboardIDWorking,
                 environment: this.configForm.controls['environment'].value,
                 frontendColorScheme: this.configForm.controls['frontendColorScheme'].value,
                 defaultReportFilters: this.configForm.controls['defaultReportFilters'].value,
