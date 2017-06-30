@@ -384,6 +384,34 @@ export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
         }
     ]
 
+export const TEXTALIGNDROPDOWNS: SelectItem[] = 
+    [
+        {
+            label: 'Left',     
+            value:
+                {
+                    id: 1, 
+                    name: 'left'
+                }
+        },
+        {
+            label: 'Center',   
+            value:
+                {
+                    id: 1, 
+                    name: 'center'
+                }
+        },
+        {
+            label: 'Right',    
+            value:
+                {
+                    id: 1, 
+                    name: 'right'
+                }
+        }
+    ]
+
 export const GRIDSIZEDROPDOWNS: SelectItem[] =
     [
         {
@@ -4421,6 +4449,7 @@ export class EazlService implements OnInit {
     textMarginDropdowns: SelectItem[] = TEXTMARGINDROPDOWNS;        // List of Margins for text box dropdown options
     textPaddingDropdowns: SelectItem[] = TEXTPADDINGDROPDOWNS;      // List of Text Padding dropdown options
     textPositionDropdowns: SelectItem[] = TEXTPOSITIONDROPDOWNS;    // List of Text Position dropdown options
+    textAlignDropdowns: SelectItem[] = TEXTALIGNDROPDOWNS;          // List of Text alignment options
     backgroundImageDropdowns: SelectItem[] = BACKGROUNDIMAGEDROPDOWNS;  // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
@@ -6551,6 +6580,14 @@ console.log('error')
 
         return this.textPositionDropdowns;
     }
+
+    getTextAlignDropdowns() {
+        // Returns list of Text Alignment dropdown options
+        this.globalFunctionService.printToConsole(this.constructor.name,'getTextAlignDropdowns', '@Start');
+
+        return this.textAlignDropdowns;
+    }
+
 
 
     cacheCanvasData(
