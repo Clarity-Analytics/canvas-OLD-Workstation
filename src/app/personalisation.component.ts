@@ -18,7 +18,9 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { CanvasColors }               from './chartcolors.data';
 import { Personalisation }            from './model.personalisation';
+import { SelectedItemColor }          from './model.selectedItemColor';
 import { SelectedItem }               from './model.selectedItem';
 
 @Component({
@@ -29,16 +31,20 @@ import { SelectedItem }               from './model.selectedItem';
 export class PersonalisationComponent implements OnInit {
     
     // Local properties
+    chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     configForm: FormGroup;
-    dashboardDropDown: SelectItem[];        // Drop Down options
+    dashboardDropDown: SelectItem[];            // Drop Down options
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
-    personalisation: Personalisation;       // System wide settings
-    selectedDashboard: SelectedItem;        // Selected in DropDown
-    selectedItem: SelectedItem;             // Temp storage to load form
+    personalisation: Personalisation;           // System wide settings
+    selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
+    selectedFrontendColorScheme: SelectedItem;  // Selected option for Text Color
+    selectedDashboard: SelectedItem;            // Selected in DropDown
+    selectedItem: SelectedItem;                 // Temp storage to load form
 
     constructor(
+        private canvasColors: CanvasColors,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
@@ -63,8 +69,12 @@ export class PersonalisationComponent implements OnInit {
             'snapToGrid':                   new FormControl('')
         });
 
-        // Fill combo
+        // Fill combos
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
+        
+        // Background Colors Options
+        this.chartColor = [];
+        this.chartColor = this.canvasColors.getColors();
 
         // Get the system wide settings
         this.personalisation = this.eazlService.getPersonalisation();
@@ -90,6 +100,19 @@ export class PersonalisationComponent implements OnInit {
             this.personalisation.averageWarningRuntime);
         this.configForm.controls['frontendColorScheme'].setValue(
             this.personalisation.frontendColorScheme);
+
+        this.selectedItemColor = {
+            id: this.personalisation.frontendColorScheme,
+            name: this.personalisation.frontendColorScheme,
+            code: this.canvasColors.hexCodeOfColor(
+                this.personalisation.frontendColorScheme
+            )
+        }
+        this.configForm.controls['frontendColorScheme'].setValue(
+            this.selectedItemColor
+        );
+        this.selectedFrontendColorScheme = this.selectedItemColor;
+
         this.configForm.controls['defaultWidgetConfiguration'].setValue(
             this.personalisation.defaultWidgetConfiguration);
         this.configForm.controls['defaultReportFilters'].setValue(
@@ -124,7 +147,6 @@ export class PersonalisationComponent implements OnInit {
         this.numberErrors = 0;
         this.errorMessageOnForm = ''; 
 
-console.log('name', this.configForm.controls['dashboardStartupName'])
         if (this.configForm.controls['averageWarningRuntime'].value == ''  || 
             this.configForm.controls['averageWarningRuntime'].value == null) {
             this.formIsValid = false;
@@ -187,9 +209,16 @@ console.log('name', this.configForm.controls['dashboardStartupName'])
             });
             return;
         }
+
         let dashboardIDWorking: number = -1;
-        if (this.configForm.controls['dashboardStartupName'] != null) {
+        if (this.configForm.controls['dashboardStartupName'].value != undefined) {
             dashboardIDWorking = this.configForm.controls['dashboardStartupName'].value.id;
+        }
+
+        // Only the name is stored in the DB
+        let textColorWorking: string = '';
+        if (this.selectedFrontendColorScheme != undefined) {
+            textColorWorking = this.selectedFrontendColorScheme.name;
         }
 
         this.eazlService.updatePersonalisation(
@@ -198,7 +227,7 @@ console.log('name', this.configForm.controls['dashboardStartupName'])
                 averageWarningRuntime: this.configForm.controls['averageWarningRuntime'].value,
                 dashboardIDStartup: dashboardIDWorking,
                 environment: this.configForm.controls['environment'].value,
-                frontendColorScheme: this.configForm.controls['frontendColorScheme'].value,
+                frontendColorScheme: textColorWorking,
                 defaultReportFilters: this.configForm.controls['defaultReportFilters'].value,
                 defaultWidgetConfiguration: this.configForm.controls['defaultWidgetConfiguration'].value,
                 gridSize: this.configForm.controls['gridSize'].value,

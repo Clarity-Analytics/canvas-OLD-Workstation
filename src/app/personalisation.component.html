@@ -70,14 +70,27 @@
                 ColorScheme :
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="frontendColorScheme"
-                        placeholder="(Optional)"
-                        pTooltip="Select a Color Scheme for Canvas"
-                        tooltipPosition="top"
+                <p-dropdown
+                    [options]="chartColor"
+                    [(ngModel)]="selectedFrontendColorScheme"
+                    [style]="{
+                            'autofocus':'true',
+                            'border':'1px solid lightgray',
+                            'border-radius':'2px',
+                            'margin':'-2px 5px 0 0',
+                            'padding':'0',
+                            'width':'300px'
+                            }"
+                    placeholder="Required"
+                    formControlName="frontendColorScheme"
+                    filter="true"
                     >
+                </p-dropdown>
             </div>
+
+
+
+
         </div>
         
         <div class="ui-grid-row">

@@ -122,7 +122,7 @@ export class WidgetEditorComponent implements OnInit {
     // Variables for Startup properties of a Widget
     borderDropdown: SelectItem[];               // Options for Border DropDown
     boxShadowDropdowns: SelectItem[];           // Options for Box-Shadow DropDown
-    chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
+    chartColor: SelectItem[];                   // Options for Background-Color DropDown
     fontSizeDropdowns: SelectItem[];              // Options for Font Size of text box
     fontWeightOptions: SelectItem[];            // Options for Font Weight of text box
     imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
