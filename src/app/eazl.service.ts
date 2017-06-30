@@ -412,7 +412,17 @@ export const TEXTALIGNDROPDOWNS: SelectItem[] =
         }
     ]
 
-
+export const IMAGESOURCEDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: 'Coffee', 
+            value:
+                {
+                    id: 1, 
+                    name: '../assets/coffee.jpg'
+                }
+        }
+    ]
 
 export const GRIDSIZEDROPDOWNS: SelectItem[] =
     [
@@ -4452,6 +4462,7 @@ export class EazlService implements OnInit {
     textPaddingDropdowns: SelectItem[] = TEXTPADDINGDROPDOWNS;      // List of Text Padding dropdown options
     textPositionDropdowns: SelectItem[] = TEXTPOSITIONDROPDOWNS;    // List of Text Position dropdown options
     textAlignDropdowns: SelectItem[] = TEXTALIGNDROPDOWNS;          // List of Text alignment options
+    imageSourceDropdowns: SelectItem[] = IMAGESOURCEDROPDOWNS;       // List of Image Source file dropdown options
     backgroundImageDropdowns: SelectItem[] = BACKGROUNDIMAGEDROPDOWNS;  // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
@@ -6590,7 +6601,12 @@ console.log('error')
         return this.textAlignDropdowns;
     }
 
+    getImageSourceDropdowns() {
+        // Returns list of Image Source file dropdown options
+        this.globalFunctionService.printToConsole(this.constructor.name,'getImageSourceDropdowns', '@Start');
 
+        return this.imageSourceDropdowns;
+    }
 
     cacheCanvasData(
             resetObject: string = 'all',
