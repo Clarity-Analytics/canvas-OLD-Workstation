@@ -4561,6 +4561,10 @@ export class EazlService implements OnInit {
             this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
         }
 
+        // Store in DB
+        this.cdal.saveSystemConfiguration(systemConfiguration);
+
+        // Update local array
         this.systemConfiguration = systemConfiguration;
     }
 
@@ -4601,6 +4605,9 @@ export class EazlService implements OnInit {
             this.globalVariableService.snapToGrid.next(personalisation.snapToGrid);
         }
 
+        // Store in DB
+        this.cdal.savePersonalisation(personalisation);
+        
         this.personalisation = personalisation;
     }
 
