@@ -6517,7 +6517,6 @@ console.log('error')
         return this.textMarginDropdowns;
     }
 
-
     getTextPaddingDropdowns() {
         // Returns list of Text Margin dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextPaddingDropdowns', '@Start');
