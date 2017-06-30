@@ -125,7 +125,7 @@ export class WidgetEditorComponent implements OnInit {
     chartColor: SelectItem[];                   // Options for Background-Color DropDown
     fontSizeDropdowns: SelectItem[];              // Options for Font Size of text box
     fontWeightDropdowns: SelectItem[];            // Options for Font Weight of text box
-    imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
+    imageSourceDropdowns: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
     textMarginDropdowns: SelectItem[];            // Options for Margins around text box
     textPaddingDropdowns: SelectItem[];           // Options for Padding around text box
     textPositionDropdowns: SelectItem[];          // Options for Position of the text box (absolute or not)
@@ -258,8 +258,8 @@ export class WidgetEditorComponent implements OnInit {
 
         // Image Source Options
         // TODO - make id = 1 for now, find a better solution for later
-        this.imageSourceOptions = [];
-        this.imageSourceOptions.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});
+        this.imageSourceDropdowns = [];
+        this.imageSourceDropdowns.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});
 
         // Load the startup form info
         this.setStartupFormValues();
