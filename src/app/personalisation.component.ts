@@ -36,6 +36,7 @@ export class PersonalisationComponent implements OnInit {
     dashboardDropDown: SelectItem[];            // Drop Down options
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
+    growlSticky: boolean = false;               // True if the Growl must be sticky
     numberErrors: number = 0;
     personalisation: Personalisation;           // System wide settings
     selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
@@ -119,6 +120,8 @@ export class PersonalisationComponent implements OnInit {
             this.personalisation.defaultReportFilters);
         this.configForm.controls['growlSticky'].setValue(
             this.personalisation.growlSticky);
+        
+        this.growlSticky = this.personalisation.growlSticky
         this.configForm.controls['growlLife'].setValue(
             this.personalisation.growlLife);
         this.configForm.controls['gridSize'].setValue(
