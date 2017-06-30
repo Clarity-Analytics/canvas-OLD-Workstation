@@ -243,9 +243,7 @@ export class WidgetEditorComponent implements OnInit {
         this.fontSizeDropdowns = this.eazlService.getFontSizeDropdowns();
 
         // Font Weight Options
-        this.fontWeightOptions = [];
-        this.fontWeightOptions.push({label:'Normal', value:{id:1, name: 'normal'}});
-        this.fontWeightOptions.push({label:'Bold',   value:{id:1, name: 'bold'}});
+        this.fontWeightOptions = this.eazlService.getFontWeightDropdown();
 
         // Text Margin Options
         this.textMarginOptions = [];
