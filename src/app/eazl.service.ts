@@ -4543,27 +4543,21 @@ export class EazlService implements OnInit {
 
         // Update local values that have changed
         if (systemConfiguration.companyName != this.systemConfiguration.companyName) {
-            this.systemConfiguration.companyName = systemConfiguration.companyName; 
             this.globalVariableService.companyName.next(systemConfiguration.companyName);
         }
         if (systemConfiguration.companyLogo != this.systemConfiguration.companyLogo) {
-            this.systemConfiguration.companyLogo = systemConfiguration.companyLogo;
             this.globalVariableService.companyLogo.next(systemConfiguration.companyLogo);
         }
         if (systemConfiguration.backendUrl != this.systemConfiguration.backendUrl) {
-            this.systemConfiguration.backendUrl = systemConfiguration.backendUrl;
             this.globalVariableService.backendUrl.next(systemConfiguration.backendUrl);
         }
         if (systemConfiguration.defaultDaysToKeepResultSet != this.systemConfiguration.defaultDaysToKeepResultSet) {
-            this.systemConfiguration.defaultDaysToKeepResultSet = systemConfiguration.defaultDaysToKeepResultSet;
             this.globalVariableService.defaultDaysToKeepResultSet.next(systemConfiguration.defaultDaysToKeepResultSet);
         }
         if (systemConfiguration.maxRowsDataReturned != this.systemConfiguration.maxRowsDataReturned) {
-            this.systemConfiguration.maxRowsDataReturned = systemConfiguration.maxRowsDataReturned;
             this.globalVariableService.maxRowsDataReturned.next(systemConfiguration.maxRowsDataReturned);
         }
         if (systemConfiguration.maxRowsPerWidgetGraph != this.systemConfiguration.maxRowsPerWidgetGraph) {
-            this.systemConfiguration.maxRowsPerWidgetGraph = systemConfiguration.maxRowsPerWidgetGraph;
             this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
         }
 
