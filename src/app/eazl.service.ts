@@ -271,6 +271,27 @@ export const FONTSIZEDROPDOWNS: SelectItem[] =
         },
     ];
 
+
+export const FONTWEIGHTDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: 'Normal', 
+            value: 
+                {
+                    id: 0, 
+                    name: 'normal'
+                }
+        },
+        {
+            label: 'Bold',   
+            value:
+                {
+                    id: 1, 
+                    name: 'bold'
+                }
+        }
+    ]
+
 export const GRIDSIZEDROPDOWNS: SelectItem[] =
     [
         {
@@ -4303,6 +4324,7 @@ export class EazlService implements OnInit {
     borderDropdowns: SelectItem[] = BORDERDROPDOWNS;        // List of Border dropdown options
     boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
     fontSizeDropdowns: SelectItem[] = FONTSIZEDROPDOWNS;    // List of FontSize dropdown options
+    fontWeightDropdown: SelectItem[] = FONTWEIGHTDROPDOWNS; // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[] = GRIDSIZEDROPDOWNS;    // List of Grid Size dropdown options
     backgroundImageDropdowns: SelectItem[] = BACKGROUNDIMAGEDROPDOWNS;  // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
@@ -6407,6 +6429,13 @@ console.log('error')
         return this.isSuperuserDropdown;
     }
 
+    getFontWeightDropdown() {
+        // Returns list of IsSuperuser dropdown options
+        this.globalFunctionService.printToConsole(this.constructor.name,'getFontWeightDropdown', '@Start');
+
+        return this.fontWeightDropdown;
+    }
+    
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',

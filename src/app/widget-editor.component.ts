@@ -241,12 +241,6 @@ export class WidgetEditorComponent implements OnInit {
         // Font Size Options
         this.fontSizeDropdowns = [];
         this.fontSizeDropdowns = this.eazlService.getFontSizeDropdowns();
-        // this.fontSizeDropdowns.push({label:'16',   value:{id:1, name: '16'}});
-        // this.fontSizeDropdowns.push({label:'32',   value:{id:1, name: '32'}});
-        // this.fontSizeDropdowns.push({label:'48',   value:{id:1, name: '48'}});
-        // this.fontSizeDropdowns.push({label:'60',   value:{id:1, name: '60'}});
-        // this.fontSizeDropdowns.push({label:'72',   value:{id:1, name: '72'}});
-        // this.fontSizeDropdowns.push({label:'84',   value:{id:1, name: '84'}});
 
         // Font Weight Options
         this.fontWeightOptions = [];

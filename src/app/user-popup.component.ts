@@ -89,16 +89,9 @@ export class UserPopupComponent implements OnInit {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
+        // Fill Combos
         this.isStaffDropdown = this.eazlService.getIsStaffDropdowns();
-        // this.isStaffOptions.push({ label: 'Select option', value: '' });
-        // this.isStaffOptions.push({ label: 'Is Staff Member', value: 'True' });
-        // this.isStaffOptions.push({ label: 'Non-staff', value: 'False' });
-
         this.isSuperuserOptions = this.eazlService.getIsSuperuserDropdown();
-        // this.isSuperuserOptions.push({ label: 'Select option', value: '' });
-        // this.isSuperuserOptions.push({ label: 'Is Superuser', value: 'True' });
-        // this.isSuperuserOptions.push({ label: 'Normal staff', value: 'False' });
-
     }
 
     subscribeToValue() {
