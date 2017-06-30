@@ -6376,10 +6376,10 @@ console.log('error')
         return dashboardNameWorking;
     }
 
-    getIsStaffOptionDropdowns() {
+    getIsStaffDropdowns() {
         // Returns list of IsStaff dropdown options
         
-        this.globalFunctionService.printToConsole(this.constructor.name,'getIsStaffOptionDropdowns', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getIsStaffDropdowns', '@Start');
         return this.isStaffOptions;
     }
 

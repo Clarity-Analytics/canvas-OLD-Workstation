@@ -87,10 +87,10 @@ export class UserPopupComponent implements OnInit {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnInit', '@Start');
 
-        this.isStaffOptions = [];
-        this.isStaffOptions.push({ label: 'Select option', value: '' });
-        this.isStaffOptions.push({ label: 'Is Staff Member', value: 'True' });
-        this.isStaffOptions.push({ label: 'Non-staff', value: 'False' });
+        this.isStaffOptions = this.eazlService.getIsStaffDropdowns();
+        // this.isStaffOptions.push({ label: 'Select option', value: '' });
+        // this.isStaffOptions.push({ label: 'Is Staff Member', value: 'True' });
+        // this.isStaffOptions.push({ label: 'Non-staff', value: 'False' });
 
         this.isSuperuserOptions = [];
         this.isSuperuserOptions.push({ label: 'Select option', value: '' });
@@ -239,6 +239,7 @@ export class UserPopupComponent implements OnInit {
         this.formIsValid = false;
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
+
         if (this.userformID.controls['username'].value == ''  ||
             this.userformID.controls['username'].value == null) {
             this.formIsValid = false;
