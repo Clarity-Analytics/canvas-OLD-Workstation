@@ -129,7 +129,7 @@ export class WidgetEditorComponent implements OnInit {
     textMarginDropdowns: SelectItem[];            // Options for Margins around text box
     textPaddingDropdowns: SelectItem[];           // Options for Padding around text box
     textPositionDropdowns: SelectItem[];          // Options for Position of the text box (absolute or not)
-    textAlignOptions: SelectItem[];             // Options for horisontal align of the text (left, center, right)
+    textAlignDropdowns: SelectItem[];             // Options for horisontal align of the text (left, center, right)
 
     // Vars read from config, setted once changed for next time
     lastContainerFontSize: SelectedItem;
@@ -254,7 +254,7 @@ export class WidgetEditorComponent implements OnInit {
         this.textPositionDropdowns = this.eazlService.getTextPositionDropdowns();
 
         // Text Margin Options
-        this.textAlignOptions = this.eazlService.getTextAlignDropdowns();
+        this.textAlignDropdowns = this.eazlService.getTextAlignDropdowns();
 
         // Image Source Options
         // TODO - make id = 1 for now, find a better solution for later
