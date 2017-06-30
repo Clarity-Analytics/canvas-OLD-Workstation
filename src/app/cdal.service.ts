@@ -1403,6 +1403,54 @@ export class CDAL {
         return systemConfigurationWorking;
     }             
 
+    saveSystemConfiguration(systemConfiguration: SystemConfiguration): EazlSystemConfiguration {
+        // Save SystemConfiguration: move data Canvas -> Eazl
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveSystemConfiguration', '@Start');
+    
+        let eazlSystemConfigurationWorking = new EazlSystemConfiguration();
+
+        eazlSystemConfigurationWorking.id = systemConfiguration.systemConfigurationID;
+        
+        if (systemConfiguration.companyName != null) {
+            eazlSystemConfigurationWorking.company_name = systemConfiguration.companyName;
+        } else {
+            eazlSystemConfigurationWorking.company_name = '';
+        }
+
+        if (systemConfiguration.companyLogo != null) {
+            eazlSystemConfigurationWorking.company_logo = systemConfiguration.companyLogo;
+        } else {
+            eazlSystemConfigurationWorking.company_logo = '';
+        }
+
+        if (systemConfiguration.backendUrl != null) {
+            eazlSystemConfigurationWorking.backend_url = systemConfiguration.backendUrl;
+        } else {
+            eazlSystemConfigurationWorking.backend_url = '';
+        }
+
+        if (systemConfiguration.defaultDaysToKeepResultSet != null) {
+            eazlSystemConfigurationWorking.default_days_to_keep_resultset = systemConfiguration.defaultDaysToKeepResultSet;
+        } else {
+            eazlSystemConfigurationWorking.default_days_to_keep_resultset = 0;
+        }
+
+        if (systemConfiguration.maxRowsDataReturned != null) {
+            eazlSystemConfigurationWorking.max_rows_data_returned = systemConfiguration.maxRowsDataReturned;
+        } else {
+            eazlSystemConfigurationWorking.max_rows_data_returned = 0;
+        }
+
+        if (systemConfiguration.maxRowsPerWidgetGraph != null) {
+            eazlSystemConfigurationWorking.max_rows_per_widget_graph = systemConfiguration.maxRowsPerWidgetGraph;
+        } else {
+            eazlSystemConfigurationWorking.max_rows_per_widget_graph = 0;
+        }
+        
+        // Return the result
+        return eazlSystemConfigurationWorking;
+    }    
+
     loadPersonalisation(eazlPersonalisation: EazlPersonalisation): Personalisation {
         // Load Personalisation: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadPersonalisation', '@Start');
