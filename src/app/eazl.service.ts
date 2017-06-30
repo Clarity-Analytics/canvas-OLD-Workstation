@@ -4579,9 +4579,24 @@ export class EazlService implements OnInit {
     }
 
     updatePersonalisation(personalisation: Personalisation) {
-        // Updates Personalisation, and also refresh (.next) local variables
+        // Updates Personalisation, and also refresh (.next) global variables
         // - personalisation New data
         this.globalFunctionService.printToConsole(this.constructor.name,'updatePersonalisation', '@Start');
+
+        // Refresh globals variables that may have changed
+        this.globalVariablesPersonalisation(personalisation);
+
+        // Store in DB
+        this.cdal.savePersonalisation(personalisation);
+        
+        // Update local array
+        this.personalisation = personalisation;
+    }
+
+    globalVariablesPersonalisation(personalisation: Personalisation) {
+        // Refresh (.next) global variables
+        // - personalisation New data
+        this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesPersonalisation', '@Start');
 
         // Update local values that have changed
         if (personalisation.averageWarningRuntime != this.personalisation.averageWarningRuntime) {
@@ -4614,16 +4629,7 @@ export class EazlService implements OnInit {
         if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
             this.globalVariableService.snapToGrid.next(personalisation.snapToGrid);
         }
-
-        // Store in DB
-        this.cdal.savePersonalisation(personalisation);
-        
-        this.personalisation = personalisation;
     }
-
-
-
-
 
     logout(username: string) {
         // Logout user from backend
