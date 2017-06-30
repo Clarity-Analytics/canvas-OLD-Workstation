@@ -6344,11 +6344,22 @@ console.log('error')
         return this.backgroundImageDropdowns;
     }
 
+    getdashboardName(dashboardID: number): string {
+        // Returns Name of a given dashboardID
+        this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardName', '@Start');
+
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboardID) {
+                return this.dashboards[i].dashboardName
+            }
+        }
+    }
+    
     cacheCanvasData(
             resetObject: string = 'all',
             resetAction: string = 'reset',
             resetID: number = -1
-    ) {
+        ) {
         // Make a local cache of Canvas Data
         // - resetObject: all to reset all, else type like users
         // - resetAction: reset, add, delete, update

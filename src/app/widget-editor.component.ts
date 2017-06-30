@@ -225,7 +225,7 @@ export class WidgetEditorComponent implements OnInit {
 
         // Dashboards
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
-console.log('this.dashboardDropDown', this.dashboardDropDown)        
+
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();

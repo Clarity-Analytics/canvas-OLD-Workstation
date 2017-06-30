@@ -13,6 +13,37 @@
         class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
         style="margin: 10px 0px">
 
+
+            <!--Dashboard Name-->
+            <div
+                class="panelLine"
+                >
+                <span
+                    class="panelLineLabel"
+                    >
+                    Dashboard :
+                </span>
+                <p-dropdown
+                    [options]="dashboardDropDown"
+                    [(ngModel)]="selectedDashboard"
+                    [style]="{
+                            'autofocus':'true',
+                            'background-color':'538cc6',
+                            'border':'1px solid lightgray',
+                            'border-radius':'2px',
+                            'float':'right',
+                            'font-size':'0.85em',
+                            'margin':'-2px 5px 0 0',
+                            'padding':'0',
+                            'width':'200px'
+                            }"
+                    placeholder="Required"
+                    formControlName="dashboardName"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 StartupDash : 

@@ -29,10 +29,13 @@ export class PersonalisationComponent implements OnInit {
     
     // Local properties
     configForm: FormGroup;
+    dashboardDropDown: SelectItem[];        // Drop Down options
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
     personalisation: Personalisation;       // System wide settings
+    selectedDashboard: SelectItem;          // Selected in DropDown
+    selectedItem: SelectItem;               // Temp storage to load form
 
     constructor(
         private eazlService: EazlService,
@@ -59,10 +62,24 @@ export class PersonalisationComponent implements OnInit {
             'snapToGrid':                   new FormControl('')
         });
 
+        // Fill combo
+        this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
+
         // Get the system wide settings
         this.personalisation = this.eazlService.getPersonalisation();
 
         // Move the data into the form
+        let dashboardName: string = '';
+        this.selectedItem = {
+            label: dashboardName,
+            value: {
+                id: this.personalisation.dashboardIDStartup,
+                name: dashboardName
+            }
+        };
+        this.configForm.controls['dashboardName'].setValue(this.selectedItem);
+        this.selectedDashboard = this.selectedItem;
+
         this.configForm.controls['dashboardIDStartup'].setValue(
             this.personalisation.dashboardIDStartup);
         this.configForm.controls['environment'].setValue(
