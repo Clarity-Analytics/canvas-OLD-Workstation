@@ -246,17 +246,9 @@ export class WidgetEditorComponent implements OnInit {
 
         // Text Margin Options
         this.textMarginOptions = this.eazlService.getTextMarginDropdowns();
-        // this.textMarginOptions.push({label:'None',   value:{id:1, name: '0'}});
-        // this.textMarginOptions.push({label:'Small',  value:{id:1, name: '5px 5px 5px 5px'}});
-        // this.textMarginOptions.push({label:'Medium', value:{id:1, name: '20px 20px 20px 20px'}});
-        // this.textMarginOptions.push({label:'Large',  value:{id:1, name: '50px 50px 50px 50px'}});
 
         // Text Padding Options
         this.textPaddingOptions = this.eazlService.getTextPaddingDropdowns();
-        // this.textPaddingOptions.push({label:'None',   value:{id:1, name: '0'}});
-        // this.textPaddingOptions.push({label:'Small',  value:{id:1, name: '5px 5px 5px 5px'}});
-        // this.textPaddingOptions.push({label:'Medium', value:{id:1, name: '20px 20px 20px 20px'}});
-        // this.textPaddingOptions.push({label:'Large',  value:{id:1, name: '50px 50px 50px 50px'}});
 
         // Text Position Options
         this.textPositionOptions = [];
