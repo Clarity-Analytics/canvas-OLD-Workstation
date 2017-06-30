@@ -126,7 +126,7 @@ export class WidgetEditorComponent implements OnInit {
     fontSizeDropdowns: SelectItem[];              // Options for Font Size of text box
     fontWeightDropdowns: SelectItem[];            // Options for Font Weight of text box
     imageSourceOptions: SelectItem[];           // Options for image src (path + file in png, jpg or gif)
-    textMarginOptions: SelectItem[];            // Options for Margins around text box
+    textMarginDropdowns: SelectItem[];            // Options for Margins around text box
     textPaddingOptions: SelectItem[];           // Options for Padding around text box
     textPositionOptions: SelectItem[];          // Options for Position of the text box (absolute or not)
     textAlignOptions: SelectItem[];             // Options for horisontal align of the text (left, center, right)
@@ -245,7 +245,7 @@ export class WidgetEditorComponent implements OnInit {
         this.fontWeightDropdowns = this.eazlService.getFontWeightDropdown();
 
         // Text Margin Options
-        this.textMarginOptions = this.eazlService.getTextMarginDropdowns();
+        this.textMarginDropdowns = this.eazlService.getTextMarginDropdowns();
 
         // Text Padding Options
         this.textPaddingOptions = this.eazlService.getTextPaddingDropdowns();
