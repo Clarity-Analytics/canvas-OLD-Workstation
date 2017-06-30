@@ -258,8 +258,7 @@ export class WidgetEditorComponent implements OnInit {
 
         // Image Source Options
         // TODO - make id = 1 for now, find a better solution for later
-        this.imageSourceDropdowns = [];
-        this.imageSourceDropdowns.push({label:'Coffee', value:{id:1, name: '../assets/coffee.jpg'}});
+        this.imageSourceDropdowns = this.eazlService.getImageSourceDropdowns();
 
         // Load the startup form info
         this.setStartupFormValues();
