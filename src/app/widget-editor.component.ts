@@ -254,10 +254,10 @@ export class WidgetEditorComponent implements OnInit {
         this.textPositionOptions = this.eazlService.getTextPositionDropdowns();
 
         // Text Margin Options
-        this.textAlignOptions = [];
-        this.textAlignOptions.push({label:'Left',     value:{id:1, name: 'left'}});
-        this.textAlignOptions.push({label:'Center',   value:{id:1, name: 'center'}});
-        this.textAlignOptions.push({label:'Right',    value:{id:1, name: 'right'}});
+        this.textAlignOptions = this.eazlService.getTextAlignDropdowns();
+        // this.textAlignOptions.push({label:'Left',     value:{id:1, name: 'left'}});
+        // this.textAlignOptions.push({label:'Center',   value:{id:1, name: 'center'}});
+        // this.textAlignOptions.push({label:'Right',    value:{id:1, name: 'right'}});
 
         // Text Margin Options
         // TODO - make id = 1 for now, find a better solution for later
