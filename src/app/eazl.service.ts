@@ -6473,7 +6473,6 @@ console.log('error')
         return this.fontWeightDropdown;
     }
 
-
     getTextMarginDropdowns() {
         // Returns list of Text Margin dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextMarginDropdowns', '@Start');
