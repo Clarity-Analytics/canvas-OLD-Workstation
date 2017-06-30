@@ -51,15 +51,6 @@ export class NewMessageComponent implements OnInit {
 
         // FormBuilder
         this.userform = this.fb.group({
-            
-            // 'messageSentToMe': new FormControl(''),
-            // 'messageMyStatus': new FormControl('')
-            // 'messageConversationID': new FormControl(''),
-            // 'messageID': new FormControl(''),
-            // 'messageSenderUserName': new FormControl('', Validators.required),
-            // 'messageSentDateTime': new FormControl('', Validators.required),
-            // 'messageIsSystemGenerated': new FormControl(''),
-
             'messageDashboardID': new FormControl(''),
             'messageReportID': new FormControl(''),
             'messageWidgetID': new FormControl(''),

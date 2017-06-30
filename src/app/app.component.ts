@@ -146,9 +146,7 @@ this.reconnectingWebSocket.messageWS.subscribe(
             }
         );
 
-        // Fake login & preferences for testing - KEEP for next time - just set to FALSE
-        // this.setFakeVariablesForTesting = true;
-
+        // Dev mode stuffies
         if (isDevMode()) {
             // Login, get back eazlUser from RESTi and set currentUser if successful
             this.eazlService.login('janniei', 'canvas100*')
@@ -173,6 +171,8 @@ this.reconnectingWebSocket.messageWS.subscribe(
                     }
                 )
         }
+
+        // Get the 
     }
 
     menuActionNewMessage() {
