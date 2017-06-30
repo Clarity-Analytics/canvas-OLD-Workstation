@@ -4537,9 +4537,24 @@ export class EazlService implements OnInit {
     }
 
     updateSystemConfiguration(systemConfiguration: SystemConfiguration) {
-        // Updates SystemConfiguration, and also refresh (.next) local variables
+        // Updates SystemConfiguration, and also refresh (.next) global variables
         // - systemConfiguration New data
         this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
+
+        // Update Global Variables
+        this.globalVariablesSystemConfiguration(systemConfiguration);
+
+        // Store in DB
+        this.cdal.saveSystemConfiguration(systemConfiguration);
+
+        // Update local array
+        this.systemConfiguration = systemConfiguration;
+    }
+
+    globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
+        //  Refresh (.next) global variables 
+        // - systemConfiguration New data
+        this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesSystemConfiguration', '@Start');
 
         // Update local values that have changed
         if (systemConfiguration.companyName != this.systemConfiguration.companyName) {
@@ -4561,11 +4576,6 @@ export class EazlService implements OnInit {
             this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
         }
 
-        // Store in DB
-        this.cdal.saveSystemConfiguration(systemConfiguration);
-
-        // Update local array
-        this.systemConfiguration = systemConfiguration;
     }
 
     updatePersonalisation(personalisation: Personalisation) {
@@ -4610,6 +4620,10 @@ export class EazlService implements OnInit {
         
         this.personalisation = personalisation;
     }
+
+
+
+
 
     logout(username: string) {
         // Logout user from backend
