@@ -43,6 +43,7 @@ export class PersonalisationComponent implements OnInit {
     selectedFrontendColorScheme: SelectedItem;  // Selected option for Text Color
     selectedDashboard: SelectedItem;            // Selected in DropDown
     selectedItem: SelectedItem;                 // Temp storage to load form
+    snapToGrid: boolean = false;                // True if widgets must snap to the grid
 
     constructor(
         private canvasColors: CanvasColors,
@@ -113,19 +114,18 @@ export class PersonalisationComponent implements OnInit {
             this.selectedItemColor
         );
         this.selectedFrontendColorScheme = this.selectedItemColor;
-
         this.configForm.controls['defaultWidgetConfiguration'].setValue(
             this.personalisation.defaultWidgetConfiguration);
         this.configForm.controls['defaultReportFilters'].setValue(
             this.personalisation.defaultReportFilters);
         this.configForm.controls['growlSticky'].setValue(
             this.personalisation.growlSticky);
-        
-        this.growlSticky = this.personalisation.growlSticky
+        this.growlSticky = this.personalisation.growlSticky;
         this.configForm.controls['growlLife'].setValue(
             this.personalisation.growlLife);
         this.configForm.controls['gridSize'].setValue(
             this.personalisation.gridSize);
+        this.snapToGrid = this.personalisation.snapToGrid;
         this.configForm.controls['snapToGrid'].setValue(
             this.personalisation.snapToGrid);
     }
@@ -194,12 +194,6 @@ export class PersonalisationComponent implements OnInit {
                     this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
                         'The Grid Size must be numeric';
                 }
-        }
-        if (this.configForm.controls['snapToGrid'].value == ''  || 
-            this.configForm.controls['snapToGrid'].value == null) {
-            this.formIsValid = false;
-            this.numberErrors = this.numberErrors + 1;
-            this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The SnapToGrid is compulsory.'
         }
     
         // Error(s) encountered
