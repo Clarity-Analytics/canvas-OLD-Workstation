@@ -144,6 +144,10 @@ export class UserPopupComponent implements OnInit {
         // Reacts to changes in selectedUser
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
+        // Clear previous error messages
+        this.formIsValid = false;
+        this.errorMessageOnForm = '';
+        this.numberErrors = 0;
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
             'Mode (Add / Edit) is: ' + this.addEditMode);
