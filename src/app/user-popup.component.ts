@@ -44,6 +44,8 @@ export class UserPopupComponent implements OnInit {
     isLoadingForm: boolean = false;
     isStaffDropdown: SelectItem[];
     isSuperuserOptions: SelectItem[];
+    selectedIsStaffDropdown: boolean;
+    selectedIsSuperUser: boolean;
     numberErrors: number = 0;
     userformID: any;
     userformActivity: FormGroup;
@@ -92,10 +94,10 @@ export class UserPopupComponent implements OnInit {
         // this.isStaffOptions.push({ label: 'Is Staff Member', value: 'True' });
         // this.isStaffOptions.push({ label: 'Non-staff', value: 'False' });
 
-        this.isSuperuserOptions = [];
-        this.isSuperuserOptions.push({ label: 'Select option', value: '' });
-        this.isSuperuserOptions.push({ label: 'Is Superuser', value: 'True' });
-        this.isSuperuserOptions.push({ label: 'Normal staff', value: 'False' });
+        this.isSuperuserOptions = this.eazlService.getIsSuperuserDropdown();
+        // this.isSuperuserOptions.push({ label: 'Select option', value: '' });
+        // this.isSuperuserOptions.push({ label: 'Is Superuser', value: 'True' });
+        // this.isSuperuserOptions.push({ label: 'Normal staff', value: 'False' });
 
     }
 
@@ -141,6 +143,7 @@ export class UserPopupComponent implements OnInit {
     ngOnChanges() {
         // Reacts to changes in selectedUser
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
+
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges',
             'Mode (Add / Edit) is: ' + this.addEditMode);
@@ -203,9 +206,11 @@ export class UserPopupComponent implements OnInit {
                 if (this.selectedUser.userNameLastUpdated) {
                     this.userformActivity.controls['userNameLastUpdated'].setValue(this.selectedUser.userNameLastUpdated);
                 }
+                this.selectedIsStaffDropdown = this.selectedUser.isStaff;
                 if (this.selectedUser.isStaff) {
                     this.userformID.controls['isStaff'].setValue(this.selectedUser.isStaff);
                 }
+                this.selectedIsSuperUser = this.selectedUser.isSuperUser;
                 if (this.selectedUser.isSuperUser) {
                     this.userformID.controls['isSuperUser'].setValue(this.selectedUser.isSuperUser);
                 }
