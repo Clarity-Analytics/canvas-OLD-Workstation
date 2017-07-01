@@ -236,9 +236,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.globalVariableService.sessionLoadOnOpenDashboardID.next(
                     this.globalVariableService.startupDashboardID.getValue()
                 )
-                this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
-                    this.globalVariableService.startupDashboardCode.getValue()
-                )
                 this.globalVariableService.sessionLoadOnOpenDashboardName.next(
                     this.globalVariableService.startupDashboardName.getValue()
                 )
@@ -1874,10 +1871,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Remember this for next time
         this.globalVariableService.sessionLoadOnOpenDashboardID.next(
             this.selectedDashboard.id);
-        this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
-            this.dashboards.filter(dash =>
-                dash.dashboardID == this.selectedDashboard.id)[0].dashboardCode
-        )
         this.globalVariableService.sessionLoadOnOpenDashboardName.next(
             this.dashboards.filter(dash =>
                 dash.dashboardID == this.selectedDashboard.id)[0].dashboardName
