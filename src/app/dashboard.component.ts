@@ -1872,8 +1872,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
 
         // Remember this for next time
-        this.globalVariableService.sessionDashboardTabID.next(
-            this.selectedDashboardTab.id);
         this.globalVariableService.sessionLoadOnOpenDashboardID.next(
             this.selectedDashboard.id);
         this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
@@ -2003,9 +2001,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // - get Widgets for this Dashboard from DB
         // - show all the Widgets as per their properties
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
-console.log('this.selectedDashboard.id', this.selectedDashboard.id)
-        // Remember this for next time
-        this.globalVariableService.sessionDashboardTabID.next(this.selectedDashboard.id);
+
+        // // Remember this for next time
+        this.globalVariableService.sessionDashboardTabID.next(
+            this.selectedDashboardTab.id);
 
         // Reset the list of selected Widgets
         this.selectedWidgetIDs = [];
