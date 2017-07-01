@@ -99,8 +99,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     numberUntitledDashboards: number = 0;           // Suffix in naming new dashboards, Untitled + n
     numberUntitledTabs: number = 0;                 // Suffix in naming new tabs, Untitled + n
     selectedCommentWidgetID: number;                // Current WidgetID for Comment
-    selectedDashboardID: number;                    // Current Dashboard
-    selectedDashboard: SelectItem;                  // Selected Dashboard
+    selectedDashboard: SelectedItem;                 // Selected Dashboard
     selectedDashboardTab: SelectedItem;             // Current DashboardTab
     selectedWidget: Widget = null;                  // Selected widget during dragging
     selectedWidgetIDs: number[] = [];               // Array of WidgetIDs selected with mouse
@@ -245,19 +244,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 )
             }
         }
-
+console.log('this.globalVariableService.sessionLoadOnOpenDashboardID.getValue()', this.globalVariableService.sessionLoadOnOpenDashboardID.getValue())
         // Call if anyone is eligible
         if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() != -1) {
             this.selectedDashboard =
                 {
-                    label: this.globalVariableService.sessionLoadOnOpenDashboardCode.getValue(),
-                    value:
-                        {
-                            id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
-                            name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
-                        }
+                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                    name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
                 }
-
+console.log('ngOnInit: this.selectedDashboard', this.selectedDashboard)
             // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
 
@@ -453,7 +448,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Remove a Widget now allocated to another tab
         if (this.widgetToEdit.properties.dashboardTabName != this.selectedDashboardTab.name) {
-            console.log('this.widgetToEdit.properties.widgetID', this.widgetToEdit.properties.widgetID)
             let widgetIndex: number = 0;
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].properties.widgetID ==
@@ -510,20 +504,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             // Apply the Dashboard Settings
             this.applyDashboardSettings();
 
-            // Store Dashboard Settings info
             this.dashboards.filter(
-                dash => dash.dashboardID == this.selectedDashboardID
+                dash => dash.dashboardID == this.selectedDashboard.id
             )[0].dashboardBackgroundColor = this.dashboardBackgroundColor.name;
             this.eazlService.updateDashboardBackgroundColor(
-                this.selectedDashboardID,
+                this.selectedDashboard.id,
                 this.dashboardBackgroundColor.name
             );
 
             this.dashboards.filter(
-                dash => dash.dashboardID == this.selectedDashboardID
+                dash => dash.dashboardID == this.selectedDashboard.id
             )[0].dashboardBackgroundImageSrc = this.dashboardBackgroundImageSrc.name;
             this.eazlService.updateDashboardBackgroundImageSrc(
-                this.selectedDashboardID,
+                this.selectedDashboard.id,
                 this.dashboardBackgroundImageSrc.name
             );
 
@@ -1355,7 +1348,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // TODO - do ID properly
         this.dashboardTabs.push (
             {
-                dashboardID: this.selectedDashboard.value.id,
+                dashboardID: this.selectedDashboard.id,
                 dashboardTabID: maxID,
                 dashboardTabName: newdashboardTabName,
                 dashboardTabDescription: '',
@@ -1370,7 +1363,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.dashboardTabsDropDown.push({
             label: newdashboardTabName,
             value: {
-                id: this.selectedDashboard.value.id,
+                id: this.selectedDashboard.id,
                 name: newdashboardTabName
             }
         });
@@ -1737,7 +1730,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Get Max z-Index
         let maxZindex: number = 0;
-        maxZindex = this.eazlService.maxZindex(this.selectedDashboardID);
+        maxZindex = this.eazlService.maxZindex(this.selectedDashboard.id);
 
         // Loop on selected ones
         for (var i = 0; i < this.selectedWidgetIDs.length; i++) {
@@ -1879,25 +1872,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Called from HTML with ID to load
         this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
 
-        // Get its Tabs in this Dashboard
-        this.selectedDashboardID = event.value.id;
-console.log('this.selectedDashboardID', this.selectedDashboardID)
-console.log('this.selectedDashboardTab', this.selectedDashboardTab)
-
         // Remember this for next time
         this.globalVariableService.sessionLoadOnOpenDashboardID.next(
-            this.selectedDashboardID);
+            this.selectedDashboard.id);
         this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
             this.dashboards.filter(dash =>
-                dash.dashboardID == this.selectedDashboardID)[0].dashboardCode
+                dash.dashboardID == this.selectedDashboard.id)[0].dashboardCode
         )
         this.globalVariableService.sessionLoadOnOpenDashboardName.next(
             this.dashboards.filter(dash =>
-                dash.dashboardID == this.selectedDashboardID)[0].dashboardName
+                dash.dashboardID == this.selectedDashboard.id)[0].dashboardName
         )
 
         // Load the Tabs for this Dashboard
-        this.loadDashboardTabsBody(this.selectedDashboardID);
+        this.loadDashboardTabsBody(this.selectedDashboard.id);
 
     }
 
@@ -1907,10 +1895,7 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Get its Tabs in this Dashboard
         this.dashboardTabsDropDown = [];
-        this.selectedDashboardID = selectedDashboardID;
-        this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
-console.log('this.selectedDashboardID', this.selectedDashboardID)
-console.log('this.selectedDashboardTab', this.selectedDashboardTab)
+        this.dashboardTabs = this.eazlService.getDashboardTabs(selectedDashboardID);
 
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {
@@ -1929,14 +1914,14 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
         this.refreshDashboard = true;
 
         this.isContainerHeaderDark = this.dashboards.filter(
-            dash => dash.dashboardID == this.selectedDashboardID
+            dash => dash.dashboardID == selectedDashboardID
         )[0].isContainerHeaderDark;
         this.showContainerHeader = this.dashboards.filter(
-            dash => dash.dashboardID == this.selectedDashboardID
+            dash => dash.dashboardID == selectedDashboardID
         )[0].showContainerHeader;
 
         let currentDashboardBackgroundColor: string = this.dashboards.filter(
-            dash => dash.dashboardID == this.selectedDashboardID
+            dash => dash.dashboardID == selectedDashboardID
         )[0].dashboardBackgroundColor;
         if (currentDashboardBackgroundColor != undefined) {
             this.selectedItemColor = {
@@ -1950,9 +1935,8 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
         }
 
         // TODO - for now, many id = 1 records.  Either this does not matter at all,
-        //        or must be changed.
         let currentdashboardBackgroundImageSrc: string = this.dashboards.filter(
-            dash => dash.dashboardID == this.selectedDashboardID
+            dash => dash.dashboardID == selectedDashboardID
         )[0].dashboardBackgroundImageSrc;
         if (currentdashboardBackgroundImageSrc != undefined) {
             this.selectedItem = {
@@ -1968,24 +1952,27 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
     onclickContainerHeaderDark(){
         // Toggles the container buttons dark / light.  Then update array and DB
-        this.isContainerHeaderDark = !this.isContainerHeaderDark;
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onclickContainerHeaderDark', '@Start');
+
         this.dashboards.filter(
-            dash => dash.dashboardID == this.selectedDashboardID
+            dash => dash.dashboardID == this.selectedDashboard.id
         )[0].isContainerHeaderDark = this.isContainerHeaderDark;
         this.eazlService.updateDashboardContainerHeader(
-            this.selectedDashboardID,
+            this.selectedDashboard.id,
             this.isContainerHeaderDark
         );
     }
 
     onclickShowContainerHeader(){
         // Toggles the container header on / off.  Then update array and DB
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onclickShowContainerHeader', '@Start');
+
         this.showContainerHeader = !this.showContainerHeader;
         this.dashboards.filter(
-            dash => dash.dashboardID == this.selectedDashboardID
+            dash => dash.dashboardID == this.selectedDashboard.id
         )[0].showContainerHeader = this.showContainerHeader;
         this.eazlService.updateDashboardshowContainerHeader(
-            this.selectedDashboardID,
+            this.selectedDashboard.id,
             this.showContainerHeader
         );
     }
@@ -1993,8 +1980,6 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
     loadDashboard(event) {
         // Call the loadDashboardBody method for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
-console.log('this.selectedDashboardID', this.selectedDashboardID)
-console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Remember this for next time
         this.globalVariableService.sessionDashboardTabID.next(event.value.name);
@@ -2015,7 +2000,7 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Get its Widgets
         this.widgets = this.eazlService.getWidgetsForDashboard(
-            this.selectedDashboardID,
+            this.selectedDashboard.id,
             this.selectedDashboardTab.name
         );
 
@@ -2479,7 +2464,6 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
                     label: this.dashboards[i].dashboardCode,
                     value: {
                         id: this.dashboards[i].dashboardID,
-                        code: this.dashboards[i].dashboardCode,
                         name: this.dashboards[i].dashboardName
                     }
                 });
