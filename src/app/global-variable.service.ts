@@ -43,7 +43,6 @@ export class GlobalVariableService {
     isDirtyUsers = new BehaviorSubject(true);                   // For Users
 
     // At startup
-    startupDashboardCode = new BehaviorSubject('Bar charts');   // Dashboard to load @start, '' = none
     startupDashboardID = new BehaviorSubject(0);                // Dashboard to load @start, 0 = none
     startupDashboardName = new BehaviorSubject('Collection of Bar charts');  // Dashboard to load @start, '' = none
     startupDashboardTabID = new BehaviorSubject(0);             // Tab ID to load @start, -1 = none
