@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     numberUntitledDashboards: number = 0;           // Suffix in naming new dashboards, Untitled + n
     numberUntitledTabs: number = 0;                 // Suffix in naming new tabs, Untitled + n
     selectedCommentWidgetID: number;                // Current WidgetID for Comment
-    selectedDashboardID: number;                    // Currely Dashboard
+    selectedDashboardID: number;                    // Current Dashboard
     selectedDashboardName: any;                     // Select Dashboard name in DropDown
     selectedDashboardTab: SelectedItem;             // Current DashboardTab
     selectedWidget: Widget = null;                  // Selected widget during dragging
@@ -372,7 +372,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.selectedDashboardTab.name) {
 
                 // Set the Widget ID & Add to Array
-                this.widgetToEdit.properties.widgetID = 
+                this.widgetToEdit.properties.widgetID =
                     this.eazlService.getWidgetLastWidgetID();
                 this.widgets.push(this.widgetToEdit);
 
@@ -453,7 +453,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             console.log('this.widgetToEdit.properties.widgetID', this.widgetToEdit.properties.widgetID)
             let widgetIndex: number = 0;
             for (var i = 0; i < this.widgets.length; i++) {
-                if (this.widgets[i].properties.widgetID == 
+                if (this.widgets[i].properties.widgetID ==
                     this.widgetToEdit.properties.widgetID) {
                         widgetIndex = i;
                         break;
@@ -1472,38 +1472,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     }
 
-    DashboardDeleteIt() {
-        // Delete Dashboard button
-        this.globalFunctionService.printToConsole(this.constructor.name,'DashboardDeleteIt', '@Start');
-
-        // If something was selected, loop and find the right one
-        if (this.selectedDashboardName != undefined) {
-
-            // Travers
-            for (var i = 0; i < this.dashboards.length; i++ ) {
-                if (this.dashboards[i].dashboardID == this.selectedDashboardName.id) {
-                    this.globalFunctionService.printToConsole(this.constructor.name,
-                            'DashboardDeleteIt', 'Deleting ' + this.selectedDashboardName.name + ' ...');
-                    this.dashboards.splice(i, 1);
-                    this.resetDashboardDropDowns(this.currentFilter);
-
-                    // Tell the user
-                    this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'info',
-                        summary:  'Dashboard deleted',
-                        detail:   'The Dashboard has been deleted: ' + this.selectedDashboardName.name
-                    });
-
-                    break;
-                }
-            }
-        }
-
-        // Reset Delete Mode
-        this.deleteMode = false;
-
-    }
-
     onDashboardAdd() {
         // Add Dashboard button
         // TODO - set IDs properly when going to DB - this is error prone
@@ -1910,6 +1878,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Get its Tabs in this Dashboard
         this.selectedDashboardID = event.value.id;
+console.log('this.selectedDashboardID', this.selectedDashboardID)        
+console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Remember this for next time
         this.globalVariableService.sessionLoadOnOpenDashboardID.next(
@@ -1936,6 +1906,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.dashboardTabsDropDown = [];
         this.selectedDashboardID = selectedDashboardID;
         this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
+console.log('this.selectedDashboardID', this.selectedDashboardID)        
+console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {
@@ -2018,6 +1990,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     loadDashboard(event) {
         // Call the loadDashboardBody method for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
+console.log('this.selectedDashboardID', this.selectedDashboardID)        
+console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Remember this for next time
         this.globalVariableService.sessionDashboardTabID.next(event.value.name);

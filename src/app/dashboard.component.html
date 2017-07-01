@@ -2,16 +2,16 @@
 <div
     *ngIf="displayTabDetails"
     >
-    <p-dialog 
-        header="Tab Editor" 
-        [(visible)]="displayTabDetails" 
-        modal="modal" 
+    <p-dialog
+        header="Tab Editor"
+        [(visible)]="displayTabDetails"
+        modal="modal"
         resizable="true"
         height="100vw"
         responsive="true"
         >
         <dashboard-tab-editor
-            [selectedDashboardID]="selectedDashboardID" 
+            [selectedDashboardID]="selectedDashboardID"
             [selectedDashboardTab]="selectedDashboardTab"
             (formDashboarTabSubmit)="handleformDashboarTabSubmit($event)"
             >
@@ -22,10 +22,10 @@
 
 
 <!--Palette Container-->
-<div 
+<div
     class="paletteContainer"
     >
-    
+
     <!--Dashboard Heading-->
     <div
         class="dashboardHeading"
@@ -38,15 +38,15 @@
             {{ dashboardDropDown.length }} / {{ dashboards.length }}
         </span>
     </div>         <!--END Dashboard Heading-->
- 
+
     <!--Dashboard Filters and Buttons-->
     <div
         class="dashboardFilter"
         >
-        <p-dropdown  
-            [options]="dashboardDropDown" 
+        <p-dropdown
+            [options]="dashboardDropDown"
             [(ngModel)]="selectedDashboardName"
-            inputId="1" 
+            inputId="1"
             [style]="{
                         'background-color':'538cc6',
                         'border':'1px solid #204060',
@@ -56,40 +56,40 @@
                         'margin-left':'4px',
                         'padding':'0',
                         'width':'197px'
-                    }" 
+                    }"
             placeholder="Dashboard to open"
             filter="true"
             (onChange)="onChangeLoadDashboardTabs($event)"
             >
         </p-dropdown>
-        
+
         <span
             class="actionLabel"
             >
             Actions:
         </span>
-        
+
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-filter"
-            pTooltip="Advanced filter to select Dashboards from" 
-            tooltipPosition="right" 
+            pTooltip="Advanced filter to select Dashboards from"
+            tooltipPosition="right"
             tooltipEvent="hover"
             [style.background-color] = "hasAdvancedFilter ? 'orange' : 'white'"
             (click)="dashboardAdvanceFilter()"
             >
         </button>
-      
 
-        <button 
+
+        <button
             class="paletteButton"
-            pButton 
-            type="submit" 
+            pButton
+            type="submit"
             icon="fa-plus"
-            pTooltip="Add a new Dashboard" 
-            tooltipPosition="right" 
+            pTooltip="Add a new Dashboard"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onDashboardAdd()"
             >
@@ -100,10 +100,10 @@
 
     <!--Tab DropDown-->
     <div class="tabDiv">
-        <p-dropdown 
-            [options]="dashboardTabsDropDown" 
+        <p-dropdown
+            [options]="dashboardTabsDropDown"
             [(ngModel)]="selectedDashboardTab"
-            inputId="S2" 
+            inputId="S2"
             [style]="{
                         'autofocus':'true',
                         'background-color':'538cc6',
@@ -115,13 +115,13 @@
                         'margin-top':'2px',
                         'padding':'0',
                         'width':'197px'
-                    }" 
+                    }"
             placeholder="Tab to open"
             filter="true"
             (onChange)="loadDashboard($event)"
             >
-        </p-dropdown>  
-        
+        </p-dropdown>
+
         <span
             class="actionLabel"
             >
@@ -134,12 +134,12 @@
             pButton
             type="button"
             icon="fa-edit"
-            pTooltip="Edit properties for the selected Tab" 
-            tooltipPosition="right" 
+            pTooltip="Edit properties for the selected Tab"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="detailTab()"
             >
-        </button> 
+        </button>
 
         <!--Add Tab button-->
         <button
@@ -147,25 +147,25 @@
             pButton
             type="button"
             icon="fa-plus-square-o"
-            pTooltip="Add a new Tab to this Dashboard" 
-            tooltipPosition="right" 
+            pTooltip="Add a new Tab to this Dashboard"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="addNewTab()"
             >
-        </button> 
-        
+        </button>
+
         <!--Delete Tab button-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-minus-square-o"
-            pTooltip="Delete a Tab from this Dashboard" 
-            tooltipPosition="right" 
+            pTooltip="Delete a Tab from this Dashboard"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="deleteTab()"
             >
-        </button> 
+        </button>
 
     </div>          <!-- END Tab DropDown-->
 
@@ -181,57 +181,57 @@
     <div>
 
         <!--Add a new Widget-->
-        <button 
+        <button
             class="widgetAddNewWidgetButton"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             icon="fa-bar-chart"
             pTooltip="Drag onto the open canvas to create a new Widget"
-            tooltipPosition="right" 
+            tooltipPosition="right"
             tooltipEvent="hover"
             pDraggable="barChart"
             (onDragEnd)="onDragEndNewWidget($event)"
             >
-        </button>        
-        
+        </button>
+
         <!--Align Widgets to left-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-align-left"
-            pTooltip="Left align selected widgets (shift-click) to the last one" 
-            tooltipPosition="right" 
+            pTooltip="Left align selected widgets (shift-click) to the last one"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('left')"
             >
-        </button> 
-        
+        </button>
+
         <!--Align Widgets to center (horisontally)-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-align-center"
-            pTooltip="Center align selected widgets (shift-click) to the last one" 
-            tooltipPosition="right" 
+            pTooltip="Center align selected widgets (shift-click) to the last one"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('center')"
             >
-        </button> 
-        
+        </button>
+
         <!--Align Widgets to right-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-align-right"
-            pTooltip="Right align selected widgets (shift-click) to the last one" 
-            tooltipPosition="right" 
+            pTooltip="Right align selected widgets (shift-click) to the last one"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('right')"
             >
-        </button> 
+        </button>
 
         <!--Equal horisontal distance between Widgets-->
         <button
@@ -239,194 +239,194 @@
             pButton
             type="button"
             icon="fa-arrows-h"
-            pTooltip="Set horisontal equal distance between centers of the selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Set horisontal equal distance between centers of the selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetDistanceChange('horisontalEquiDistant')"
             >
-        </button> 
-        
+        </button>
+
         <!--Increase horisontal distance between Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-long-arrow-right"
-            pTooltip="Increase horisontal distance between selected widgets (shift-click) by 3px" 
-            tooltipPosition="right" 
+            pTooltip="Increase horisontal distance between selected widgets (shift-click) by 3px"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetDistanceChange('horisontalIncreaseDistance')"
             >
-        </button> 
-        
+        </button>
+
         <!--Decrease horisontal distance between Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-long-arrow-left"
-            pTooltip="Decrease horisontal distance between selected widgets (shift-click) by 3px" 
-            tooltipPosition="right" 
+            pTooltip="Decrease horisontal distance between selected widgets (shift-click) by 3px"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetDistanceChange('horisontalDecreaseDistance')"
             >
-        </button> 
-       
+        </button>
+
         <!--Align Widgets to top-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-chevron-up"
-            pTooltip="Top align selected widgets (shift-click) to the last one" 
-            tooltipPosition="right" 
+            pTooltip="Top align selected widgets (shift-click) to the last one"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('top')"
             >
-        </button> 
-        
+        </button>
+
         <!--Align Widgets to middle (vertically)-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-crosshairs"
-            pTooltip="Middle (horisontally) align selected widgets (shift-click) to the last one" 
-            tooltipPosition="right" 
+            pTooltip="Middle (horisontally) align selected widgets (shift-click) to the last one"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('middle')"
             >
-        </button> 
-        
+        </button>
+
         <!--Align Widgets to bottom-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-chevron-down"
-            pTooltip="Bottom align selected widgets (shift-click) to the last one" 
-            tooltipPosition="right" 
+            pTooltip="Bottom align selected widgets (shift-click) to the last one"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('bottom')"
             >
-        </button> 
-        
+        </button>
+
         <!--Equal vertical distance between Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-arrows-v"
-            pTooltip="Set vertical equal distance between middles of selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Set vertical equal distance between middles of selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetDistanceChange('verticalEquiDistant')"
             >
-        </button> 
-        
+        </button>
+
         <!--Increase vertical distance between Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-long-arrow-up"
-            pTooltip="Increase vertical distance between selected widgets (shift-click) by 3px" 
-            tooltipPosition="right" 
+            pTooltip="Increase vertical distance between selected widgets (shift-click) by 3px"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetDistanceChange('verticalIncreaseDistance')"
             >
-        </button> 
-        
+        </button>
+
         <!--Decrease vertical distance between Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-long-arrow-down"
-            pTooltip="Decrease vertical distance between selected widgets (shift-click) by 3px" 
-            tooltipPosition="right" 
+            pTooltip="Decrease vertical distance between selected widgets (shift-click) by 3px"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetDistanceChange('verticalDecreaseDistance')"
             >
-        </button> 
-        
+        </button>
+
         <!--Same width for selected Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-exchange"
-            pTooltip="Set the same width for selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Set the same width for selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('sameWidth')"
             >
-        </button> 
-        
+        </button>
+
         <!--Increment width for selected Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-arrow-right"
-            pTooltip="Increment width for selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Increment width for selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('incrementWidth')"
             >
-        </button> 
-        
+        </button>
+
         <!--Decrement width for selected Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-arrow-left"
-            pTooltip="Decrement width for selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Decrement width for selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('decrementWidth')"
             >
-        </button> 
-        
+        </button>
+
         <!--Same height for selected Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-expand"
-            pTooltip="Same height for selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Same height for selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('sameHeight')"
             >
-        </button> 
-        
+        </button>
+
         <!--Increment height for selected Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-arrow-up"
-            pTooltip="Increment height for selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Increment height for selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('incrementHeight')"
             >
-        </button> 
-        
+        </button>
+
         <!--Decrement height for selected Widgets-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-arrow-down"
-            pTooltip="Decrement height for selected widgets (shift-click)" 
-            tooltipPosition="right" 
+            pTooltip="Decrement height for selected widgets (shift-click)"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetAlign('decrementHeight')"
             >
-        </button> 
+        </button>
 
         <!--Toggle to select all the Widgets-->
         <button
@@ -434,64 +434,64 @@
             pButton
             type="button"
             icon="fa-check-square-o"
-            pTooltip="Select all Widgets" 
-            tooltipPosition="right" 
+            pTooltip="Select all Widgets"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onWidgetSelectAll()"
             >
-        </button> 
-        
+        </button>
+
         <!--Toggle Widget color in headers to dark or not-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-sun-o"
-            pTooltip="Toggle Widget header buttons between dark and light" 
-            tooltipPosition="right" 
+            pTooltip="Toggle Widget header buttons between dark and light"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onclickContainerHeaderDark()"
             >
-        </button> 
-        
+        </button>
+
         <!--Copy Widget-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-copy"
-            pTooltip="Copy selected Widgets" 
-            tooltipPosition="right" 
+            pTooltip="Copy selected Widgets"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="copyWidget()"
             >
-        </button> 
-        
+        </button>
+
         <!--Bring Widget to Front-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-paper-plane-o"
-            pTooltip="Bring selected Widgets to front" 
-            tooltipPosition="right" 
+            pTooltip="Bring selected Widgets to front"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="bringWidgetToFront()"
             >
-        </button> 
-        
+        </button>
+
         <!--Show Dashboard Settings form-->
         <button
             class="paletteButton"
             pButton
             type="button"
             icon="fa-gear"
-            pTooltip="Expand the Dashboard Settings info" 
-            tooltipPosition="right" 
+            pTooltip="Expand the Dashboard Settings info"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickExpandArea('displayExpandDashboardSettings')"
             >
-        </button> 
+        </button>
 
         <!--Buttons to toggle Snap to Grid-->
         <button
@@ -500,12 +500,12 @@
             pButton
             type="button"
             icon="fa-minus"
-            pTooltip="Click to remove Snap to grid" 
-            tooltipPosition="right" 
+            pTooltip="Click to remove Snap to grid"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickSnapToGrid()"
             >
-        </button> 
+        </button>
         <button
             class="paletteButton"
             *ngIf="!snapToGrid"
@@ -513,11 +513,11 @@
             type="button"
             icon="fa-th"
             pTooltip="Click to Snap to grid"
-            tooltipPosition="right" 
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickSnapToGrid()"
             >
-        </button>         
+        </button>
 
         <!--Button to toggle Show Widget Headers-->
         <button
@@ -526,12 +526,12 @@
             pButton
             type="button"
             icon="fa-minus"
-            pTooltip="Click to hide Widget Headers" 
-            tooltipPosition="right" 
+            pTooltip="Click to hide Widget Headers"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onclickShowContainerHeader()"
             >
-        </button> 
+        </button>
         <button
             class="paletteButton"
             *ngIf="!showContainerHeader"
@@ -539,11 +539,11 @@
             type="button"
             icon="fa-header"
             pTooltip="Click to show Widget headers"
-            tooltipPosition="right" 
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onclickShowContainerHeader()"
             >
-        </button>     
+        </button>
 
         <!--Button to Expand Background Color Area-->
         <button
@@ -551,12 +551,12 @@
             pButton
             type="button"
             icon="fa-square"
-            pTooltip="Expand the background color info" 
-            tooltipPosition="right" 
+            pTooltip="Expand the background color info"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickExpandArea('displayExpandBackgroundArea')"
             >
-        </button> 
+        </button>
 
         <!--Button to Expand Border Area-->
         <button
@@ -564,12 +564,12 @@
             pButton
             type="button"
             icon="fa-square-o"
-            pTooltip="Expand the area for border info" 
-            tooltipPosition="right" 
+            pTooltip="Expand the area for border info"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickExpandArea('displayExpandBorder')"
             >
-        </button> 
+        </button>
 
         <!--Button to Expand Box Shadow Area-->
         <button
@@ -577,12 +577,12 @@
             pButton
             type="button"
             icon="fa-laptop"
-            pTooltip="Expand the box shadow info" 
-            tooltipPosition="right" 
+            pTooltip="Expand the box shadow info"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickExpandArea('displayExpandBoxShadow')"
             >
-        </button> 
+        </button>
 
         <!--Button to Expand Text Color Area-->
         <button
@@ -590,12 +590,12 @@
             pButton
             type="button"
             icon="fa-tumblr-square"
-            pTooltip="Expand the text color info" 
-            tooltipPosition="right" 
+            pTooltip="Expand the text color info"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickExpandArea('displayExpandColor')"
             >
-        </button> 
+        </button>
 
         <!--Button to Expand Font Size Area-->
         <button
@@ -603,12 +603,12 @@
             pButton
             type="button"
             icon="fa-text-height"
-            pTooltip="Expand the font size info" 
-            tooltipPosition="right" 
+            pTooltip="Expand the font size info"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickExpandArea('displayExpandFontSize')"
             >
-        </button> 
+        </button>
 
         <!--Button to Expand Grid Size Area-->
         <button
@@ -616,12 +616,12 @@
             pButton
             type="button"
             icon="fa-flash"
-            pTooltip="Expand the grid size info" 
-            tooltipPosition="right" 
+            pTooltip="Expand the grid size info"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="onClickExpandArea('displayExpandGridSize')"
             >
-        </button> 
+        </button>
 
 
         <!--Expand Background Info-->
@@ -651,53 +651,53 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="chartColor" 
-                    [(ngModel)]="selectedBackgroundColor" 
+                            }"
+                    [options]="chartColor"
+                    [(ngModel)]="selectedBackgroundColor"
                     placeholder=""
                     filter="true"
                     (onChange)="onSelectBackgroundColor('selectedBackgroundColor')"
                     >
                 </p-dropdown>
                 <div>
-        
-                    <button 
+
+                    <button
                         class="paletteButtonWithLabel"
                         [style.background-color]="sampleColorWidgetBackgroundColor"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         label="Sample"
-                        pTooltip="Sample of color selected" 
-                        tooltipPosition="right" 
+                        pTooltip="Sample of color selected"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-cube"
-                        pTooltip="Apply the styling to the selected Containters" 
-                        tooltipPosition="right" 
+                        pTooltip="Apply the styling to the selected Containters"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="clickContainerApply()"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-close"
-                        pTooltip="Close area for background info" 
-                        tooltipPosition="right" 
+                        pTooltip="Close area for background info"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="displayExpandBackgroundArea=false"
-                        > 
+                        >
                     </button>
                 </div>
-                
+
             </div>
         <!--END Expand Background Info-->
 
@@ -728,40 +728,40 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="borderDropdowns" 
-                    [(ngModel)]="selectedBorder" 
+                            }"
+                    [options]="borderDropdowns"
+                    [(ngModel)]="selectedBorder"
                     placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
                 <div>
-        
-                    <button 
+
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-cube"
-                        pTooltip="Apply the styling to the selected Containters" 
-                        tooltipPosition="right" 
+                        pTooltip="Apply the styling to the selected Containters"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="clickContainerApply()"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-close"
-                        pTooltip="Close area for border info" 
-                        tooltipPosition="right" 
+                        pTooltip="Close area for border info"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="displayExpandBorder=false"
-                        > 
+                        >
                     </button>
                 </div>
-                
+
             </div>
         <!--END Expand Border Info-->
 
@@ -781,7 +781,7 @@
                     >
                     Box Shadow
                 </div>
-                    <!--[options]="" 
+                    <!--[options]=""
                     [(ngModel)]="" -->
 
                 <p-dropdown
@@ -794,40 +794,40 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="boxShadowDropdowns" 
-                    [(ngModel)]="selectedBoxShadow" 
+                            }"
+                    [options]="boxShadowDropdowns"
+                    [(ngModel)]="selectedBoxShadow"
                     placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
                 <div>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-cube"
-                        pTooltip="Apply the styling to the selected Containters" 
-                        tooltipPosition="right" 
+                        pTooltip="Apply the styling to the selected Containters"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="clickContainerApply()"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-close"
-                        pTooltip="Close area for box shadow info" 
-                        tooltipPosition="right" 
+                        pTooltip="Close area for box shadow info"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="displayExpandBoxShadow=false"
-                        > 
+                        >
                     </button>
                 </div>
-                
+
             </div>
         <!--END Expand BoxShadow Info-->
 
@@ -858,53 +858,53 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="chartColor" 
-                    [(ngModel)]="selectedColor" 
+                            }"
+                    [options]="chartColor"
+                    [(ngModel)]="selectedColor"
                     placeholder=""
                     filter="true"
                     (onChange)="onSelectBackgroundColor('selectedColor')"
                     >
                 </p-dropdown>
                 <div>
-        
-                    <button 
+
+                    <button
                         class="paletteButtonWithLabel"
                         [style.background-color]="sampleColorWidgetBackgroundColor"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         label="Sample"
-                        pTooltip="Sample of color selected" 
-                        tooltipPosition="right" 
+                        pTooltip="Sample of color selected"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-cube"
-                        pTooltip="Apply the styling to the selected Containters" 
-                        tooltipPosition="right" 
+                        pTooltip="Apply the styling to the selected Containters"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="clickContainerApply()"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-close"
-                        pTooltip="Close area for text color info" 
-                        tooltipPosition="right" 
+                        pTooltip="Close area for text color info"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="displayExpandColor=false"
-                        > 
+                        >
                     </button>
                 </div>
-                
+
             </div>
         <!--END Expand Color Info-->
 
@@ -935,40 +935,40 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="fontSizeDropdowns" 
-                    [(ngModel)]="selectedContainerFontSize" 
+                            }"
+                    [options]="fontSizeDropdowns"
+                    [(ngModel)]="selectedContainerFontSize"
                     placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
                 <div>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-cube"
-                        pTooltip="Apply the styling to the selected Containters" 
-                        tooltipPosition="right" 
+                        pTooltip="Apply the styling to the selected Containters"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="clickContainerApply()"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-close"
-                        pTooltip="Close area for font size info" 
-                        tooltipPosition="right" 
+                        pTooltip="Close area for font size info"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="displayExpandFontSize=false"
-                        > 
+                        >
                     </button>
                 </div>
-                
+
             </div>
         <!--END Expand FontSize Info-->
 
@@ -999,40 +999,40 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="gridSizeDropdowns" 
-                    [(ngModel)]="selectedContainerGridSize" 
+                            }"
+                    [options]="gridSizeDropdowns"
+                    [(ngModel)]="selectedContainerGridSize"
                     placeholder=""
                     filter="true"
                     >
                 </p-dropdown>
                 <div>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-cube"
-                        pTooltip="Apply the styling to the selected Containters" 
-                        tooltipPosition="right" 
+                        pTooltip="Apply the styling to the selected Containters"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="clickContainerApply()"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-close"
-                        pTooltip="Close area for grid size info" 
-                        tooltipPosition="right" 
+                        pTooltip="Close area for grid size info"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="displayExpandGridSize=false"
-                        > 
+                        >
                     </button>
                 </div>
-                
+
             </div>
         <!--END Expand Grid Size Info-->
 
@@ -1057,9 +1057,9 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="chartColor" 
-                    [(ngModel)]="dashboardBackgroundColor" 
+                            }"
+                    [options]="chartColor"
+                    [(ngModel)]="dashboardBackgroundColor"
                     placeholder="Background Color"
                     filter="true"
                     >
@@ -1081,41 +1081,41 @@
                                 'margin-left':'4px',
                                 'padding':'0',
                                 'width':'197px'
-                            }" 
-                    [options]="backgroundImageOptions" 
-                    [(ngModel)]="dashboardBackgroundImageSrc" 
+                            }"
+                    [options]="backgroundImageOptions"
+                    [(ngModel)]="dashboardBackgroundImageSrc"
                     placeholder="Background Image"
                     filter="true"
                     >
                 </p-dropdown>
 
                 <div>
-        
-                    <button 
+
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-cube"
-                        pTooltip="Apply the styling to the whole Dashboard" 
-                        tooltipPosition="right" 
+                        pTooltip="Apply the styling to the whole Dashboard"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="clickContainerApply()"
-                        > 
+                        >
                     </button>
 
-                    <button 
+                    <button
                         class="paletteButton"
-                        pButton 
-                        type="button" 
+                        pButton
+                        type="button"
                         icon="fa-close"
-                        pTooltip="Close area for Dashboard settings info" 
-                        tooltipPosition="right" 
+                        pTooltip="Close area for Dashboard settings info"
+                        tooltipPosition="right"
                         tooltipEvent="hover"
                         (click)="displayExpandDashboardSettings=false"
-                        > 
+                        >
                     </button>
                 </div>
-                
+
             </div>
         <!--END Expand Background Info-->
 
@@ -1129,13 +1129,13 @@
     class="widgetEditor"
     *ngIf="displayEditWidget"
     >
-    <widget-editor 
-        [originalDashboardID]="selectedDashboardID" 
+    <widget-editor
+        [originalDashboardID]="selectedDashboardID"
         [originalDashboardTab]="selectedDashboardTab"
         [widgetToEditX]="widgetToEditX"
         [widgetToEditY]="widgetToEditY"
         [widgetToEdit]="widgetToEdit"
-        (formSubmit)="handleWidgetBuilderFormSubmit($event)" 
+        (formSubmit)="handleWidgetBuilderFormSubmit($event)"
         [addEditMode]="addEditModeWidgetEditor"
         [widgetIDtoEdit]="widgetIDtoEdit"
         [displayEditWidget]="displayEditWidget"
@@ -1146,7 +1146,7 @@
 
 
 <!--Widgets on the Canvas-->
-<div 
+<div
     class="widgetContainer"
     *ngFor="let w of widgets; let i = index"
     #widgetContainter
@@ -1158,7 +1158,7 @@
     (keydown)="onWidgetKeyUp($event, w.properties.widgetID)"
     (click)="onWidgetMouseDown($event, w.properties.widgetID)"
     >
- 
+
     <!--Container Header boxie-->
     <div
         class=widgetContainerHeader
@@ -1174,13 +1174,13 @@
             pButton
             type="button"
             icon="fa-arrows"
-            pTooltip="Click and drag widget" 
-            tooltipPosition="right" 
+            pTooltip="Click and drag widget"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (mousedown)="onWidgetDragHandleMouseDown(w.properties.widgetID)"
             (mouseup)="onWidgetDragHandleMouseUp()"
             >
-        </button> 
+        </button>
 
         <!--Widget Edit button-->
         <button
@@ -1190,12 +1190,12 @@
             pButton
             type="button"
             icon="fa-edit"
-            pTooltip="Click to edit widget" 
-            tooltipPosition="right" 
+            pTooltip="Click to edit widget"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="editWidget(w.properties.widgetID)"
             >
-        </button> 
+        </button>
 
         <!--Delete Widget-->
         <button
@@ -1205,12 +1205,12 @@
             pButton
             type="button"
             icon="fa-minus-square"
-            pTooltip="Click to DELETE the widget" 
-            tooltipPosition="right" 
+            pTooltip="Click to DELETE the widget"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="clickDeleteWidget(w.properties.widgetID)"
             >
-        </button> 
+        </button>
 
         <!--Widget liked -->
         <button
@@ -1220,12 +1220,12 @@
             pButton
             type="button"
             icon="fa-heart"
-            pTooltip="Click to toggle between Liked and UnLiked" 
-            tooltipPosition="right" 
+            pTooltip="Click to toggle between Liked and UnLiked"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="clickWidgetIsLiked(w.properties.widgetID, false)"
             >
-        </button>         
+        </button>
         <button
             class="widgetIsLiked"
             *ngIf="!w.properties.widgetIsLiked  &&  showContainerHeader"
@@ -1233,12 +1233,12 @@
             pButton
             type="button"
             icon="fa-heart-o"
-            pTooltip="Click to toggle between Liked and UnLiked" 
-            tooltipPosition="right" 
+            pTooltip="Click to toggle between Liked and UnLiked"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="clickWidgetIsLiked(w.properties.widgetID, true)"
             >
-        </button>         
+        </button>
 
         <!--Widget Locked -->
         <button
@@ -1248,12 +1248,12 @@
             pButton
             type="button"
             icon="fa-lock"
-            pTooltip="Click to UNlock.  Cannot edit when locked" 
-            tooltipPosition="right" 
+            pTooltip="Click to UNlock.  Cannot edit when locked"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="clickWidgetLockToggle(w.properties.widgetID)"
             >
-        </button> 
+        </button>
 
         <!--Widget UNLocked -->
         <button
@@ -1263,12 +1263,12 @@
             pButton
             type="button"
             icon="fa-unlock"
-            pTooltip="Click to lock.  Cannot edit when locked" 
-            tooltipPosition="right" 
+            pTooltip="Click to lock.  Cannot edit when locked"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="clickWidgetLockToggle(w.properties.widgetID)"
             >
-        </button>         
+        </button>
 
         <!--Widget Title-->
         <span
@@ -1286,11 +1286,11 @@
             pButton
             type="button"
             icon="fa-check-square-o"
-            pTooltip="This widget has been selected with shift-click  &&  showContainerHeader" 
-            tooltipPosition="right" 
+            pTooltip="This widget has been selected with shift-click  &&  showContainerHeader"
+            tooltipPosition="right"
             tooltipEvent="hover"
             >
-        </button> 
+        </button>
 
         <!--Widget Comment button-->
         <button
@@ -1300,12 +1300,12 @@
             pButton
             type="button"
             icon="fa-comment"
-            pTooltip="This widget has a comment" 
-            tooltipPosition="right" 
+            pTooltip="This widget has a comment"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="showWidgetComment(w.properties.widgetID)"
             >
-        </button>     
+        </button>
         <button
             *ngIf="!w.properties.widgetComments  &&  showContainerHeader"
             [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
@@ -1313,40 +1313,40 @@
             pButton
             type="button"
             icon="fa-comment-o"
-            pTooltip="This widget has a comment" 
-            tooltipPosition="right" 
+            pTooltip="This widget has a comment"
+            tooltipPosition="right"
             tooltipEvent="hover"
             (click)="showWidgetComment(w.properties.widgetID)"
             >
-        </button> 
+        </button>
     <div>          <!--Container Header boxie-->
 
 
     <!--Text Area (at top)-->
-    <div 
+    <div
         class="widgetContainerTextArea"
-        
+
         #widgetText
         >
         <!--Note: put #variable and *ngIf in separate divs - so we always have elementRefs-->
-        <div 
+        <div
             *ngIf="w.areas.showWidgetText"
             >
-            {{ w.textual.textText}} 
+            {{ w.textual.textText}}
         </div>
     </div>
 
     <!--Graph content -->
-    <div 
+    <div
         class="widgetGraph"
         #widget
         >
     </div>         <!--END Graph content ends-->
 
     <!--Table Area (at bottom)-->
-    <div 
+    <div
         class="widgetContainerTableArea"
-        #widgetTable    
+        #widgetTable
         >
         <div *ngIf="w.areas.showWidgetTable">
             TABLE to follow later
@@ -1355,19 +1355,19 @@
 
 
     <!--Image Area-->
-    <div 
+    <div
         class="widgetContainerImageArea"
-        
+
         #widgetImage
         >
-        <div 
+        <div
             *ngIf="w.areas.showWidgetImage"
             >
-            <img 
-                alt="image ..." 
+            <img
+                alt="image ..."
                 [style.height.px]="w.image.imageHeigt"
                 [style.width.px]="w.image.imageWidth"
-                [src]="w.image.imageSource" 
+                [src]="w.image.imageSource"
                 >
         </div>
     </div>
@@ -1381,15 +1381,15 @@
 
 <!--Section for popup forms and dialogues-->
     <!--Popup Advanced Dashboard Filter-->
-    <p-dialog header="Advanced Dashboard Filter" 
-        [(visible)]="displayAdvancedDashboardFilter" 
-        modal="modal" 
-        width="450" 
+    <p-dialog header="Advanced Dashboard Filter"
+        [(visible)]="displayAdvancedDashboardFilter"
+        modal="modal"
+        width="450"
         responsive="true"
         >
 
-        <dashboardadvancedfilter 
-            (formAdvancedFilterSubmit)="handleFormSubmit($event)" 
+        <dashboardadvancedfilter
+            (formAdvancedFilterSubmit)="handleFormSubmit($event)"
             >
         </dashboardadvancedfilter>
 
@@ -1397,11 +1397,11 @@
 
 
     <!--Confirmation Dialogue Box-->
-    <p-confirmDialog 
+    <p-confirmDialog
         *ngIf="deleteMode"
-        header="Confirmation" 
-        icon="fa fa-question-circle" 
-        width="425" 
+        header="Confirmation"
+        icon="fa fa-question-circle"
+        width="425"
         #cd
         >
         <p-footer>
@@ -1409,15 +1409,15 @@
             <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
         </p-footer>
     </p-confirmDialog>
-    
+
 
     <!--Form to show / add Widget Comments-->
     <div *ngIf="displayCommentsPopup">
-        <p-dialog 
-            header="Comments" 
-            [(visible)]="displayCommentsPopup" 
-            modal="modal" 
-            width="450" 
+        <p-dialog
+            header="Comments"
+            [(visible)]="displayCommentsPopup"
+            modal="modal"
+            width="450"
             responsive="true"
             >
             <widget-comment
@@ -1428,5 +1428,5 @@
         </p-dialog>
     </div>
 
-        
+
 <!--END Section for popup forms and dialogues-->

@@ -4,9 +4,9 @@ import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
-import { ConfirmationService }        from 'primeng/primeng';  
-import { MenuItem }                   from 'primeng/primeng';  
-import { Message }                    from 'primeng/primeng';  
+import { ConfirmationService }        from 'primeng/primeng';
+import { MenuItem }                   from 'primeng/primeng';
+import { Message }                    from 'primeng/primeng';
 
 // Our Components
 
@@ -35,18 +35,18 @@ import { User }                       from './model.user';
     encapsulation: ViewEncapsulation.None
 })
 export class DashboardManagerComponent implements OnInit {
-    
+
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
     availableDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard does NOT belongs to
     availableGroupSharedWith: Group[] = [];             // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
-    belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to   
+    belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to
     belongstoSharedWith: string[] = [];                         // List of UserName with whom this Dashboard has been shared
     belongstoGroupsSharedWith: Group[] = [];            // List of Groups to which Dashboard has been shared
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group   
+    dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources
@@ -72,7 +72,7 @@ export class DashboardManagerComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
         ) {
     }
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -81,66 +81,66 @@ export class DashboardManagerComponent implements OnInit {
 
         this.popuMenuItems = [
             {
-                label: 'Add', 
-                icon: 'fa-plus', 
+                label: 'Add',
+                icon: 'fa-plus',
                 command: (event) => this.dashboardMenuAdd(this.selectedDashboard)
             },
             {
-                label: '______________________________', 
+                label: '______________________________',
                 icon: '',
-                disabled: true 
+                disabled: true
             },
             {
-                label: 'Edit', 
-                icon: 'fa-pencil', 
+                label: 'Edit',
+                icon: 'fa-pencil',
                 command: (event) => this.dashboardMenuEdit(this.selectedDashboard)
             },
             {
-                label: 'Delete', 
-                icon: 'fa-minus', 
+                label: 'Delete',
+                icon: 'fa-minus',
                 command: (event) => this.dashboardMenuDelete(this.selectedDashboard)
             },
             {
-                label: 'Group Membership', 
-                icon: 'fa-users', 
+                label: 'Group Membership',
+                icon: 'fa-users',
                 command: (event) => this.dashboardMenuGroupMembership(this.selectedDashboard)
             },
             {
-                label: 'Shared Users', 
-                icon: 'fa-database', 
+                label: 'Shared Users',
+                icon: 'fa-database',
                 command: (event) => this.dashboardMenuUsersSharedWith(this.selectedDashboard)
             },
             {
-                label: 'Shared Groups', 
-                icon: 'fa-database', 
+                label: 'Shared Groups',
+                icon: 'fa-database',
                 command: (event) => this.dashboardMenuGroupsSharedWith(this.selectedDashboard)
             },
             {
-                label: 'Related Data Sources', 
-                icon: 'fa-list', 
+                label: 'Related Data Sources',
+                icon: 'fa-list',
                 command: (event) => this.dashboardMenuRelatedDataSources(this.selectedDashboard)
             },
             {
-                label: 'Message History', 
-                icon: 'fa-comments', 
+                label: 'Message History',
+                icon: 'fa-comments',
                 command: (event) => this.dashboardMenuMessageHistory(this.selectedDashboard)
             },
             {
-                label: 'Related Reports', 
-                icon: 'fa-table', 
+                label: 'Related Reports',
+                icon: 'fa-table',
                 command: (event) => this.dashboardMenuReportHistory(this.selectedDashboard)
             },
             {
-                label: 'Like', 
-                icon: 'fa-heart', 
+                label: 'Like',
+                icon: 'fa-heart',
                 command: (event) => this.dashboardMenuToggleLike(this.selectedDashboard)
             },
             {
-                label: 'Lock', 
-                icon: 'fa-lock', 
+                label: 'Lock',
+                icon: 'fa-lock',
                 command: (event) => this.dashboardMenuResetLock(this.selectedDashboard)
             },
-            
+
         ];
 
     }
@@ -153,7 +153,7 @@ export class DashboardManagerComponent implements OnInit {
         this.dashboardToEdit = new Dashboard;
         this.displayDashboardPopup = true;
     }
-    
+
     dashboardMenuEdit(dashboard: Dashboard) {
         // Edit selected Dashboard on a popup form
         // - dashboard: currently selected row
@@ -166,16 +166,16 @@ export class DashboardManagerComponent implements OnInit {
             // this.dashboardEditor.refreshForm();
         } else {
             this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn', 
-                summary:  'No Dashboard', 
+                severity: 'warn',
+                summary:  'No Dashboard',
                 detail:   'Please select a Dashboard in the table and try again'
             });
-            
+
         }
 
         this.addEditMode = 'Edit';
         this.dashboardToEdit = this.selectedDashboard;
-        this.displayDashboardPopup = true;    
+        this.displayDashboardPopup = true;
     }
 
     dashboardMenuDelete(dashboard: Dashboard) {
@@ -186,7 +186,7 @@ export class DashboardManagerComponent implements OnInit {
         this.deleteMode = true;
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this record?',
-            reject: () => { 
+            reject: () => {
                 this.deleteMode = false;
                 return;
             },
@@ -204,8 +204,8 @@ export class DashboardManagerComponent implements OnInit {
                 this.deleteMode = false;
 
                 this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'info', 
-                    summary:  'Dashboard deleted', 
+                    severity: 'info',
+                    summary:  'Dashboard deleted',
                     detail:   dashboard.dashboardName
                 });
             }
@@ -218,17 +218,17 @@ export class DashboardManagerComponent implements OnInit {
 
         // Update the Dashboard group membership if it is open
         if (this.displayGroupMembership) {
-            this.dashboardMenuGroupMembership(this.selectedDashboard) 
+            this.dashboardMenuGroupMembership(this.selectedDashboard)
         }
 
         // Update the Dashboard Shared With if it is open
         if (this.displaySharedWith) {
-            this.dashboardMenuUsersSharedWith(this.selectedDashboard) 
+            this.dashboardMenuUsersSharedWith(this.selectedDashboard)
         }
         if (this.displayGroupsSharedWith) {
-            this.dashboardMenuGroupsSharedWith(this.selectedDashboard) 
+            this.dashboardMenuGroupsSharedWith(this.selectedDashboard)
         }
-        
+
     }
 
     dashboardMenuGroupMembership(dashboard: Dashboard) {
@@ -238,16 +238,16 @@ export class DashboardManagerComponent implements OnInit {
 
         // Get the current and available groups
         this.belongstoDashboardGroup = this.eazlService.getDashboardGroupMembership(
-            this.selectedDashboard.dashboardID, 
+            this.selectedDashboard.dashboardID,
             true
         );
         this.availableDashboardGroup = this.eazlService.getDashboardGroupMembership(
-                    this.selectedDashboard.dashboardID, 
+                    this.selectedDashboard.dashboardID,
                     false
         );
 
-        // Show popup 
-        this.displayGroupMembership = true; 
+        // Show popup
+        this.displayGroupMembership = true;
     }
 
     onClickGroupMembershipCancel() {
@@ -255,7 +255,7 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
 
         // Close popup
-        this.displayGroupMembership = false;        
+        this.displayGroupMembership = false;
     }
 
     onMoveToTargetDashboardGroupMembership(event) {
@@ -265,12 +265,12 @@ export class DashboardManagerComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addDashboardGroupMembership(
-                this.selectedDashboard.dashboardID, 
+                this.selectedDashboard.dashboardID,
                 event.items[i].dashboardGroupID
             );
         }
     }
-    
+
     onMoveToSourceDashboardGroupMembership(event) {
         // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupMembership', '@Start');
@@ -278,7 +278,7 @@ export class DashboardManagerComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteDashboardGroupMembership(
-                this.selectedDashboard.dashboardID, 
+                this.selectedDashboard.dashboardID,
                 event.items[i].dashboardGroupID
             );
         }
@@ -323,7 +323,7 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupsSharedWithCancel', '@Start');
 
         // Close popup
-        this.displayGroupsSharedWith = false;        
+        this.displayGroupsSharedWith = false;
     }
 
     onMoveToTargetDashboardGroupSharedWith(event) {
@@ -333,13 +333,13 @@ export class DashboardManagerComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addDashboardGroupRelationship(
-                this.selectedDashboard.dashboardID, 
+                this.selectedDashboard.dashboardID,
                 event.items[i].groupID,
                 'SharedWith'
             );
         }
     }
-    
+
     onMoveToSourceDashboardGroupSharedWith(event) {
         // User clicked onMoveToSource - remove from SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupSharedWith', '@Start');
@@ -347,7 +347,7 @@ export class DashboardManagerComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteDashboardGroupRelationship(
-                this.selectedDashboard.dashboardID, 
+                this.selectedDashboard.dashboardID,
                 event.items[i].groupID,
                 'SharedWith'
             );
@@ -368,7 +368,7 @@ export class DashboardManagerComponent implements OnInit {
             (this.selectedDashboard.dashboardID,
              'SharedWith'
              ).forEach(sglusr => {
-                this.belongstoSharedWith.push(sglusr.username); 
+                this.belongstoSharedWith.push(sglusr.username);
             }
         )
 
@@ -383,7 +383,7 @@ export class DashboardManagerComponent implements OnInit {
         )
 
         // Show popup
-        this.displaySharedWith = true;               
+        this.displaySharedWith = true;
     }
 
     onClickUsersSharedWithCancel() {
@@ -391,7 +391,7 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUsersSharedWithCancel', '@Start');
 
         // Close popup
-        this.displaySharedWith = false;        
+        this.displaySharedWith = false;
     }
 
     onMoveToTargetDashboardSharedWith(event) {
@@ -401,13 +401,13 @@ export class DashboardManagerComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addDashboardUserRelationship(
-                this.selectedDashboard.dashboardID, 
+                this.selectedDashboard.dashboardID,
                 event.items[i],
                 'SharedWith'
             );
         }
     }
-    
+
     onMoveToSourceDashboardSharedWith(event) {
         // User clicked onMoveToSource - remove from SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardSharedWith', '@Start');
@@ -415,7 +415,7 @@ export class DashboardManagerComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteDashboardUserRelationship(
-                this.selectedDashboard.dashboardID, 
+                this.selectedDashboard.dashboardID,
                 event.items[i],
                 'SharedWith'
             );
@@ -450,13 +450,13 @@ export class DashboardManagerComponent implements OnInit {
         this.displayReports = true;
 
     }
-    
+
     dashboardMenuToggleLike(dashboard: Dashboard) {
         // Click Like popup menu option: toggle liked/not for current user on this Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuToggleLike', '@Start');
 
         this.eazlService.toggleDashboardIsLiked(
-            dashboard.dashboardID, 
+            dashboard.dashboardID,
             this.canvasUser.username,
             !dashboard.dashboardIsLiked
         );
@@ -491,7 +491,7 @@ export class DashboardManagerComponent implements OnInit {
 
             // Add the new guy to the Array, if it belongs to current Dashboar
             // TODO - this is crude & error prone: eventually autoIndex in DB
-            let lastDashboardID = 
+            let lastDashboardID =
                 this.dashboards.length;
 
             // Set the Widget ID & Add to Array
@@ -518,54 +518,54 @@ export class DashboardManagerComponent implements OnInit {
             // Loop on the Array, find the editted one and update
             for (var i = 0; i < this.dashboards.length; i++) {
 
-                if (this.dashboards[i].dashboardID === 
+                if (this.dashboards[i].dashboardID ===
                     this.dashboardToEdit.dashboardID) {
 
                         // Update individual fields: if you replace the whole Array
                         // entry, everything dies.  Including position, svg rendered, etc
-                        this.dashboards[i].dashboardID = 
+                        this.dashboards[i].dashboardID =
                             this.dashboardToEdit.dashboardID;
-                        this.dashboards[i].dashboardCode = 
+                        this.dashboards[i].dashboardCode =
                             this.dashboardToEdit.dashboardCode;
-                        this.dashboards[i].dashboardName = 
+                        this.dashboards[i].dashboardName =
                             this.dashboardToEdit.dashboardName;
-                        this.dashboards[i].dashboardBackgroundImageSrc = 
+                        this.dashboards[i].dashboardBackgroundImageSrc =
                             this.dashboardToEdit.dashboardBackgroundImageSrc;
-                        this.dashboards[i].dashboardComments = 
+                        this.dashboards[i].dashboardComments =
                             this.dashboardToEdit.dashboardComments;
-                        this.dashboards[i].isContainerHeaderDark = 
+                        this.dashboards[i].isContainerHeaderDark =
                             this.dashboardToEdit.isContainerHeaderDark;
-                        this.dashboards[i].showContainerHeader = 
+                        this.dashboards[i].showContainerHeader =
                             this.dashboardToEdit.showContainerHeader;
-                        this.dashboards[i].dashboardBackgroundColor = 
+                        this.dashboards[i].dashboardBackgroundColor =
                             this.dashboardToEdit.dashboardBackgroundColor;
-                        this.dashboards[i].dashboardNrGroups = 
+                        this.dashboards[i].dashboardNrGroups =
                             this.dashboardToEdit.dashboardNrGroups;
-                        this.dashboards[i].dashboardIsLiked = 
+                        this.dashboards[i].dashboardIsLiked =
                             this.dashboardToEdit.dashboardIsLiked;
-                        this.dashboards[i].dashboardNrUsersSharedWith = 
+                        this.dashboards[i].dashboardNrUsersSharedWith =
                             this.dashboardToEdit.dashboardNrUsersSharedWith;
-                        this.dashboards[i].dashboardNrGroupsSharedWith = 
+                        this.dashboards[i].dashboardNrGroupsSharedWith =
                             this.dashboardToEdit.dashboardNrGroupsSharedWith;
-                        this.dashboards[i].dashboardDefaultExportFileType = 
+                        this.dashboards[i].dashboardDefaultExportFileType =
                             this.dashboardToEdit.dashboardDefaultExportFileType;
-                        this.dashboards[i].dashboardDescription = 
+                        this.dashboards[i].dashboardDescription =
                             this.dashboardToEdit.dashboardDescription;
-                        this.dashboards[i].dashboardIsLocked = 
+                        this.dashboards[i].dashboardIsLocked =
                             this.dashboardToEdit.dashboardIsLocked;
-                        this.dashboards[i].dashboardOpenTabNr = 
+                        this.dashboards[i].dashboardOpenTabNr =
                             this.dashboardToEdit.dashboardOpenTabNr;
-                        this.dashboards[i].dashboardOwnerUserName = 
+                        this.dashboards[i].dashboardOwnerUserName =
                             this.dashboardToEdit.dashboardOwnerUserName;
-                        this.dashboards[i].dashboardPassword = 
+                        this.dashboards[i].dashboardPassword =
                             this.dashboardToEdit.dashboardPassword;
-                        this.dashboards[i].dashboardRefreshMode = 
+                        this.dashboards[i].dashboardRefreshMode =
                             this.dashboardToEdit.dashboardRefreshMode;
-                        this.dashboards[i].dashboardSystemMessage = 
+                        this.dashboards[i].dashboardSystemMessage =
                             this.dashboardToEdit.dashboardSystemMessage;
-                        this.dashboards[i].dashboardUpdatedDateTime = 
+                        this.dashboards[i].dashboardUpdatedDateTime =
                             this.canvasDate.now('standard');
-                        this.dashboards[i].dashboardUpdatedUserName = 
+                        this.dashboards[i].dashboardUpdatedUserName =
                              this.canvasUser.username;
                 }
             }
@@ -577,15 +577,15 @@ export class DashboardManagerComponent implements OnInit {
             });
         }
 
-        // Close the popup form 
+        // Close the popup form
         this.displayDashboardPopup = false;
   }
 }
 
 // Notes for newbees:
-//  Filtering is enabled by setting the filter property as true in column object. 
+//  Filtering is enabled by setting the filter property as true in column object.
 //  Default match mode is "startsWith" and this can be configured
-//  using filterMatchMode property of column object that also accepts "contains", "endsWith", 
+//  using filterMatchMode property of column object that also accepts "contains", "endsWith",
 //  "equals" and "in". An optional global filter feature is available to search all fields with a keyword.
-//  By default input fields are generated as filter elements and using templating any component 
+//  By default input fields are generated as filter elements and using templating any component
 //  can be used as a filter.

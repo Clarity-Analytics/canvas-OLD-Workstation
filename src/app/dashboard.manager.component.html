@@ -1,15 +1,15 @@
 <!--Confirmation dialogue box-->
-<p-confirmDialog 
+<p-confirmDialog
     *ngIf="deleteMode"
-    header="Confirmation" 
-    icon="fa fa-question-circle" 
+    header="Confirmation"
+    icon="fa fa-question-circle"
     width="425"
     >
 </p-confirmDialog>
 
 
 <!--Popup form for a single Dashboard (Add or Edit)-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayDashboardPopup"
     [header]="popupHeader"
     [closeOnEscape]=false
@@ -19,7 +19,7 @@
     >
     <!--Single Dashboard to work with ...-->
     <dashboard-editor
-        [selectedDashboardID]="selectedDashboardID" 
+        [selectedDashboardID]="selectedDashboardID"
         [selectedDashboard]="selectedDashboard"
         [displayDashboardPopup]="displayDashboardPopup"
         [addEditMode]="addEditMode"
@@ -41,18 +41,18 @@
         columnResizeMode="expand"
         exportFilename="dashboards"
         [contextMenu]="cm"
-        [paginator]="true" 
-        [pageLinks]="3" 
+        [paginator]="true"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedDashboard"
-        selectionMode="single" 
-        [scrollable]="false"  
+        selectionMode="single"
+        [scrollable]="false"
         [sortMode]="multiple"
-        [value]="dashboards"  
+        [value]="dashboards"
         (click)="onClickDashboardTable()"
         >
         <p-header
@@ -63,276 +63,276 @@
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
+                <button
+                    type="button"
+                    pButton
+                    icon="fa-file-o"
+                    iconPos="left"
+                    label="CSV"
+                    (click)="dt.exportCSV()"
                     >
                 </button>
             </span>
-            
+
         </p-header>
 
-        <p-column 
-            field="dashboardID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="ID" 
+        <p-column
+            field="dashboardID"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardCode" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Code" 
+        <p-column
+            field="dashboardCode"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Code"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Name" 
+        <p-column
+            field="dashboardName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Name"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="isContainerHeaderDark" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Dark Hdr?" 
+        <p-column
+            field="isContainerHeaderDark"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Dark Hdr?"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="showContainerHeader" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Show Hdr" 
+        <p-column
+            field="showContainerHeader"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Show Hdr"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardBackgroundColor" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Bg Color" 
+        <p-column
+            field="dashboardBackgroundColor"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Bg Color"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardBackgroundImageSrc" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Bg Image" 
+        <p-column
+            field="dashboardBackgroundImageSrc"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Bg Image"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardComments" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Comments" 
+        <p-column
+            field="dashboardComments"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Comments"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardDefaultExportFileType" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Export FType" 
+        <p-column
+            field="dashboardDefaultExportFileType"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Export FType"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardDescription" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Description" 
+        <p-column
+            field="dashboardDescription"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Description"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardNrGroups" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Nr Groups" 
+        <p-column
+            field="dashboardNrGroups"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Nr Groups"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardIsLocked" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Locked?" 
+        <p-column
+            field="dashboardIsLocked"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Locked?"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardIsLiked" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Liked?" 
+        <p-column
+            field="dashboardIsLiked"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Liked?"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardOpenTabNr" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Open TabNr" 
+        <p-column
+            field="dashboardOpenTabNr"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Open TabNr"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardOwnerUserName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Owner" 
+        <p-column
+            field="dashboardOwnerUserName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Owner"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardPassword" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Password" 
+        <p-column
+            field="dashboardPassword"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Password"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardRefreshMode" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="RefreshMode" 
+        <p-column
+            field="dashboardRefreshMode"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="RefreshMode"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardNrUsersSharedWith" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="#Usr SharedWith" 
+        <p-column
+            field="dashboardNrUsersSharedWith"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="#Usr SharedWith"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardNrGroupsSharedWith" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="#Grp SharedWith" 
+        <p-column
+            field="dashboardNrGroupsSharedWith"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="#Grp SharedWith"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardSystemMessage" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="SystemMessage" 
+        <p-column
+            field="dashboardSystemMessage"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="SystemMessage"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardRefreshedDateTime" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Refreshed on" 
+        <p-column
+            field="dashboardRefreshedDateTime"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Refreshed on"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardRefreshedUserName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Refreshed by" 
+        <p-column
+            field="dashboardRefreshedUserName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Refreshed by"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardUpdatedDateTime" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Updated on" 
+        <p-column
+            field="dashboardUpdatedDateTime"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Updated on"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardUpdatedUserName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Updated by" 
+        <p-column
+            field="dashboardUpdatedUserName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Updated by"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardCreatedDateTime" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Created on" 
+        <p-column
+            field="dashboardCreatedDateTime"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Created on"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dashboardCreatedUserName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Created by" 
+        <p-column
+            field="dashboardCreatedUserName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Created by"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
@@ -350,25 +350,25 @@
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedDashboard.dashboardName }} 
-        <button 
+        Group Membership for {{ selectedDashboard.dashboardName }}
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickGroupMembershipCancel()"
             >
         </button>
     </div>
-    
+
     <!--Content-->
     <form>
 
         <div
             >
-            <p-pickList 
-                [source]="availableDashboardGroup" 
+            <p-pickList
+                [source]="availableDashboardGroup"
                 [target]="belongstoDashboardGroup"
                 sourceHeader="Available Groups"
                 targetHeader="Belongs to these Groups"
@@ -379,7 +379,7 @@
                 >
                 <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
-                        <div 
+                        <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
                             {{ grp.dashboardGroupName }}
@@ -404,24 +404,24 @@
         class="groupMembershipHeading"
         >
         Users this Dashboard is Shared with
-        <button 
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickUsersSharedWithCancel()"
             >
         </button>
     </div>
-    
+
     <!--Content-->
     <form>
 
         <div
             >
-            <p-pickList 
-                [source]="availableSharedWith" 
+            <p-pickList
+                [source]="availableSharedWith"
                 [target]="belongstoSharedWith"
                 sourceHeader="Available Users"
                 targetHeader="Shared with these Users"
@@ -430,7 +430,7 @@
                 >
                 <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
-                        <div 
+                        <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
                             {{ grp }}
@@ -455,24 +455,24 @@
         class="groupMembershipHeading"
         >
         Groups this Dashboard is Shared with
-        <button 
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickGroupsSharedWithCancel()"
             >
         </button>
     </div>
-    
+
     <!--Content-->
     <form>
 
         <div
             >
-            <p-pickList 
-                [source]="availableGroupSharedWith" 
+            <p-pickList
+                [source]="availableGroupSharedWith"
                 [target]="belongstoGroupsSharedWith"
                 sourceHeader="Available Groups"
                 targetHeader="Shared with these Groups"
@@ -481,7 +481,7 @@
                 >
                 <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
-                        <div 
+                        <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
                             {{ grp.groupName }}
@@ -497,7 +497,7 @@
 
 
 <!--Popup form for Data Source table-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayDataSource"
     header="Data Sources"
     [closeOnEscape]=false
@@ -514,7 +514,7 @@
 
 
 <!--Popup form for Reports table-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayReports"
     header="Reports"
     [closeOnEscape]=false
@@ -535,7 +535,7 @@
 
 
 <!--Popup form for Messages table-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayMessages"
     header="Messages"
     [closeOnEscape]=false
@@ -556,8 +556,7 @@
         <p-column field="messageBody" header="Body"></p-column>
         <p-column field="messageSentToMe" header="To me?"></p-column>
         <p-column field="messageMyStatus" header="My Status"></p-column>
-        
+
     </p-dataTable>
 </p-dialog>
 
-    
