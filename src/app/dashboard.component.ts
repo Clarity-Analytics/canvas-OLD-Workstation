@@ -244,7 +244,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 )
             }
         }
-console.log('this.globalVariableService.sessionLoadOnOpenDashboardID.getValue()', this.globalVariableService.sessionLoadOnOpenDashboardID.getValue())
+
         // Call if anyone is eligible
         if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() != -1) {
             this.selectedDashboard =
@@ -252,7 +252,6 @@ console.log('this.globalVariableService.sessionLoadOnOpenDashboardID.getValue()'
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
                     name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
                 }
-console.log('ngOnInit: this.selectedDashboard', this.selectedDashboard)
             // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
 
@@ -1873,6 +1872,8 @@ console.log('ngOnInit: this.selectedDashboard', this.selectedDashboard)
         this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
 
         // Remember this for next time
+        this.globalVariableService.sessionDashboardTabID.next(
+            this.selectedDashboardTab.id);
         this.globalVariableService.sessionLoadOnOpenDashboardID.next(
             this.selectedDashboard.id);
         this.globalVariableService.sessionLoadOnOpenDashboardCode.next(
@@ -1908,17 +1909,6 @@ console.log('ngOnInit: this.selectedDashboard', this.selectedDashboard)
             });
         }
 
-// If a single tab, auto select it
-if (this.dashboardTabsDropDown.length == 1) {
-    this.selectedDashboardTab = 
-        {
-            id: this.dashboardTabsDropDown[0].value.id,
-            name: this.dashboardTabsDropDown[0].value.name
-        }
-console.log('this.selectedDashboardTab', this.selectedDashboardTab) 
-    // Fill the Dashboard
-    this.loadDashboard()       
-}
         // Reset the list of selected Widgets, Widgets and refresh Dashboard area
         this.selectedWidgetIDs = [];
         this.widgets= [];
@@ -1959,6 +1949,25 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Apply the Dashboard Settings
         this.applyDashboardSettings();
+
+        // If a single tab, auto select it AFTER all other settings and work has been done
+        if (this.dashboardTabsDropDown.length == 1) {
+            this.selectedDashboardTab = 
+                {
+                    id: this.dashboardTabsDropDown[0].value.id,
+                    name: this.dashboardTabsDropDown[0].value.name
+                }
+
+            // Fill the Dashboard
+            this.loadDashboard()       
+        } else {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Selection',
+                detail:   'Select a tab from the Widget Editor to show'
+            });
+            
+        }
     }
 
     onclickContainerHeaderDark(){
@@ -1994,13 +2003,9 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
         // - get Widgets for this Dashboard from DB
         // - show all the Widgets as per their properties
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
-
+console.log('this.selectedDashboard.id', this.selectedDashboard.id)
         // Remember this for next time
-        // this.globalVariableService.sessionDashboardTabID.next(event.value.name);
-console.log('loadDashboard')
-// console.log('event.value.name', event.value.name)
-console.log('this.selectedDashboardTab.id', this.selectedDashboardTab.name) 
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardBody', '@Start');
+        this.globalVariableService.sessionDashboardTabID.next(this.selectedDashboard.id);
 
         // Reset the list of selected Widgets
         this.selectedWidgetIDs = [];
