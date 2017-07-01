@@ -284,7 +284,7 @@ console.log('ngOnInit: this.selectedDashboard', this.selectedDashboard)
                     name: sessionDashboardTabName
                 }
 
-                this.loadDashboardBody();
+                this.loadDashboard();
             }
         }
     }
@@ -1908,6 +1908,17 @@ console.log('ngOnInit: this.selectedDashboard', this.selectedDashboard)
             });
         }
 
+// If a single tab, auto select it
+if (this.dashboardTabsDropDown.length == 1) {
+    this.selectedDashboardTab = 
+        {
+            id: this.dashboardTabsDropDown[0].value.id,
+            name: this.dashboardTabsDropDown[0].value.name
+        }
+console.log('this.selectedDashboardTab', this.selectedDashboardTab) 
+    // Fill the Dashboard
+    this.loadDashboard()       
+}
         // Reset the list of selected Widgets, Widgets and refresh Dashboard area
         this.selectedWidgetIDs = [];
         this.widgets= [];
@@ -1977,22 +1988,18 @@ console.log('ngOnInit: this.selectedDashboard', this.selectedDashboard)
         );
     }
 
-    loadDashboard(event) {
-        // Call the loadDashboardBody method for the selected Tab
-        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
-
-        // Remember this for next time
-        this.globalVariableService.sessionDashboardTabID.next(event.value.name);
-
-        // Set the Selected One
-        this.loadDashboardBody();
-    }
-
-    loadDashboardBody() {
-        // Load the selected Dashboard detail for a given DashboardID & TabName
+    loadDashboard() {
+        // Load the Widgets for the current DashboardID & TabName
         // - get Dashboard info from DB
         // - get Widgets for this Dashboard from DB
         // - show all the Widgets as per their properties
+        this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
+
+        // Remember this for next time
+        // this.globalVariableService.sessionDashboardTabID.next(event.value.name);
+console.log('loadDashboard')
+// console.log('event.value.name', event.value.name)
+console.log('this.selectedDashboardTab.id', this.selectedDashboardTab.name) 
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboardBody', '@Start');
 
         // Reset the list of selected Widgets
