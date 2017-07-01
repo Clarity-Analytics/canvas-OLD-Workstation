@@ -100,7 +100,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     numberUntitledTabs: number = 0;                 // Suffix in naming new tabs, Untitled + n
     selectedCommentWidgetID: number;                // Current WidgetID for Comment
     selectedDashboardID: number;                    // Current Dashboard
-    selectedDashboardName: any;                     // Select Dashboard name in DropDown
+    selectedDashboard: SelectItem;                  // Selected Dashboard
     selectedDashboardTab: SelectedItem;             // Current DashboardTab
     selectedWidget: Widget = null;                  // Selected widget during dragging
     selectedWidgetIDs: number[] = [];               // Array of WidgetIDs selected with mouse
@@ -248,12 +248,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Call if anyone is eligible
         if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() != -1) {
-            this.selectedDashboardName =
+            this.selectedDashboard =
                 {
-                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
-                    code: this.globalVariableService.sessionLoadOnOpenDashboardCode.getValue(),
-                    name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
-                };
+                    label: this.globalVariableService.sessionLoadOnOpenDashboardCode.getValue(),
+                    value:
+                        {
+                            id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                            name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
+                        }
+                }
 
             // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
@@ -1333,7 +1336,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'addNewTab', '@Start');
 
         // Bail if nothing selected
-        if (this.selectedDashboardName == undefined) {
+        if (this.selectedDashboard == undefined) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No Dashboard selected',
@@ -1352,7 +1355,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // TODO - do ID properly
         this.dashboardTabs.push (
             {
-                dashboardID: this.selectedDashboardName.id,
+                dashboardID: this.selectedDashboard.value.id,
                 dashboardTabID: maxID,
                 dashboardTabName: newdashboardTabName,
                 dashboardTabDescription: '',
@@ -1367,7 +1370,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.dashboardTabsDropDown.push({
             label: newdashboardTabName,
             value: {
-                id: this.selectedDashboardName.id,
+                id: this.selectedDashboard.value.id,
                 name: newdashboardTabName
             }
         });
@@ -1878,7 +1881,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
         // Get its Tabs in this Dashboard
         this.selectedDashboardID = event.value.id;
-console.log('this.selectedDashboardID', this.selectedDashboardID)        
+console.log('this.selectedDashboardID', this.selectedDashboardID)
 console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Remember this for next time
@@ -1906,7 +1909,7 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
         this.dashboardTabsDropDown = [];
         this.selectedDashboardID = selectedDashboardID;
         this.dashboardTabs = this.eazlService.getDashboardTabs(this.selectedDashboardID);
-console.log('this.selectedDashboardID', this.selectedDashboardID)        
+console.log('this.selectedDashboardID', this.selectedDashboardID)
 console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Fill the dropdown on the form
@@ -1990,7 +1993,7 @@ console.log('this.selectedDashboardTab', this.selectedDashboardTab)
     loadDashboard(event) {
         // Call the loadDashboardBody method for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
-console.log('this.selectedDashboardID', this.selectedDashboardID)        
+console.log('this.selectedDashboardID', this.selectedDashboardID)
 console.log('this.selectedDashboardTab', this.selectedDashboardTab)
 
         // Remember this for next time
