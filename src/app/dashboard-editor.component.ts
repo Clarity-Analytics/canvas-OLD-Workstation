@@ -35,7 +35,6 @@ export class DashboardEditorComponent implements OnInit {
     @Input() addEditMode: string;
     @Input() dashboardToEdit:Dashboard;             // Dashboard that is editted
     @Input() displayDashboardPopup: boolean;
-    @Input() selectedDashboardID: number;
     @Input() selectedDashboard: Dashboard;          // Dashboard selected on parent form
     
     // Event emitter sends event back to parent component once Submit button was clicked
