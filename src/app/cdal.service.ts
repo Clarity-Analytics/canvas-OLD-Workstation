@@ -84,9 +84,9 @@ export class CDAL {
     loadUser(eazlUser: EazlUser): User {
         // Load User: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUser', '@Start');
-        
+
         let userWorking = new User();
-        
+
         if (eazlUser.username != null) {
             userWorking.username = eazlUser.username;
         } else {
@@ -112,39 +112,39 @@ export class CDAL {
         }
 
         userWorking.lastDatetimeReportWasRun = '';
-        
+
         if (eazlUser.email != null) {
             userWorking.emailAddress = eazlUser.email;
         } else {
             userWorking.emailAddress = '';
         }
-        
+
         if (eazlUser.date_joined != null) {
             userWorking.activeFromDate = eazlUser.date_joined.toString();
         } else {
             userWorking.activeFromDate = '';
         }
-        
+
         if (eazlUser.is_active != null) {
             userWorking.inactiveDate = eazlUser.is_active? '2017/05/01' : '';
         } else {
             userWorking.inactiveDate  = '';
         }
-        
+
         if (eazlUser.date_joined != null) {
             userWorking.dateCreated = eazlUser.date_joined.toString();
         } else {
             userWorking.dateCreated = '';
         }
-        
+
         userWorking.userNameLastUpdated = '';
-        
+
         if (eazlUser.is_staff != null) {
             userWorking.isStaff = eazlUser.is_staff;
         } else {
             userWorking.isStaff = false;
         }
-        
+
         if (eazlUser.is_superuser != null) {
             userWorking.isSuperUser = eazlUser.is_superuser;
         } else {
@@ -152,32 +152,32 @@ export class CDAL {
         }
 
         if (eazlUser.profile != null) {
-        
+
             if (eazlUser.profile.profile_picture != null) {
                 userWorking.photoPath = eazlUser.profile.profile_picture;
             } else {
                 userWorking.photoPath = '';
             }
-        
+
             if (eazlUser.profile.nick_name != null) {
                 userWorking.nickName = eazlUser.profile.nick_name;
             } else {
                 userWorking.nickName = '';
             }
-        
+
             if (eazlUser.profile.work_number != null) {
                 userWorking.workTelephoneNumber = eazlUser.profile.work_number;
             } else {
                 userWorking.workTelephoneNumber = '';
             }
-        
+
             if (eazlUser.profile.cell_number != null) {
                 userWorking.cellNumber = eazlUser.profile.cell_number;
             } else {
                 userWorking.cellNumber = '';
             }
         }
-        
+
         // Return the User
         return userWorking;
     }
@@ -186,9 +186,9 @@ export class CDAL {
         // Load Group: move data Eazl -> Canvas
         // TODO - add more fields in time
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
-        
+
         let groupWorking = new Group();
-        
+
         groupWorking.groupID = eazlGroup.id;
 
         if (eazlGroup.name != null) {
@@ -207,17 +207,17 @@ export class CDAL {
         groupWorking.groupCreatedUserName = '';
         groupWorking.groupUpdatedDateTime = '';
         groupWorking.groupUpdatedUserName = '';
-        
+
         // Return the result
         return groupWorking;
-    }             
+    }
 
     loadDashboardTab(eazlDashboardTab: EazlDashboardTab): DashboardTab {
         // Load DashboardTab: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardTab', '@Start');
-        
+
         let dashboardTabWorking = new DashboardTab();
-        
+
         dashboardTabWorking.dashboardID = eazlDashboardTab.id;
         // TODO - replace with correct IDs
         dashboardTabWorking.dashboardTabID = 0;
@@ -238,7 +238,7 @@ export class CDAL {
             dashboardTabWorking.dashboardTabCreatedDateTime = eazlDashboardTab.createdDateTime;
         } else {
             dashboardTabWorking.dashboardTabCreatedDateTime = '';
-        }        
+        }
 
         if (eazlDashboardTab.createdUserName != null) {
             dashboardTabWorking.dashboardTabCreatedUserName = eazlDashboardTab.createdUserName;
@@ -257,17 +257,17 @@ export class CDAL {
         } else {
             dashboardTabWorking.dashboardTabUpdatedUserName = '';
         }
-        
+
         // Return the result
         return dashboardTabWorking;
-    }            
+    }
 
     loadCanvasMessage(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
         // Load Group: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessage', '@Start');
-        
+
         let canvasMessageWorking = new CanvasMessage();
-        
+
         canvasMessageWorking.canvasMessageID = eazlCanvasMessage.id;
 
         if (eazlCanvasMessage.conversation_id != null) {
@@ -335,17 +335,17 @@ export class CDAL {
         } else {
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
-        
+
         // Return the result
         return canvasMessageWorking;
-    }             
+    }
 
     loadCanvasMessageRecipient(eazlCanvasMessageRecipient: EazlCanvasMessageRecipient): CanvasMessageRecipient {
         // Load MessageRecipient: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessageRecipient', '@Start');
-        
+
         let canvasMessageRecipientWorking = new CanvasMessageRecipient();
-        
+
         canvasMessageRecipientWorking.canvasMessageRecipientID = eazlCanvasMessageRecipient.id;
 
         if (eazlCanvasMessageRecipient.message_id != null) {
@@ -374,14 +374,14 @@ export class CDAL {
 
         // Return the result
         return canvasMessageRecipientWorking;
-    } 
+    }
 
     loadDashboardGroup(eazlDashboardGroup: EazlDashboardGroup): DashboardGroup {
         // Load DashboardGroup: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroup', '@Start');
 
         let dashboardGroupWorking = new DashboardGroup();
-        
+
         dashboardGroupWorking.dashboardGroupID = eazlDashboardGroup.id;
 
         if (eazlDashboardGroup.name != null) {
@@ -389,31 +389,31 @@ export class CDAL {
         } else {
             dashboardGroupWorking.dashboardGroupName = '';
         }
-    
+
         if (eazlDashboardGroup.description != null) {
             dashboardGroupWorking.dashboardGroupDescription = eazlDashboardGroup.description;
         } else {
             dashboardGroupWorking.dashboardGroupDescription = '';
         }
-    
+
         if (eazlDashboardGroup.created_on != null) {
             dashboardGroupWorking.dashboardGroupCreatedDateTime = eazlDashboardGroup.created_on;
         } else {
             dashboardGroupWorking.dashboardGroupCreatedDateTime = '';
         }
-    
+
         if (eazlDashboardGroup.created_by != null) {
             dashboardGroupWorking.dashboardGroupCreatedUserName = eazlDashboardGroup.created_by;
         } else {
             dashboardGroupWorking.dashboardGroupCreatedUserName = '';
         }
-    
+
         if (eazlDashboardGroup.updated_on != null) {
             dashboardGroupWorking.dashboardGroupUpdatedDateTime = eazlDashboardGroup.updated_on;
         } else {
             dashboardGroupWorking.dashboardGroupUpdatedDateTime = '';
         }
-    
+
         if (eazlDashboardGroup.updated_by != null) {
             dashboardGroupWorking.dashboardGroupUpdatedUserName = eazlDashboardGroup.updated_by;
         } else {
@@ -423,48 +423,48 @@ export class CDAL {
 
         // Return the result
         return dashboardGroupWorking;
-    } 
+    }
 
     loadDashboardGroupMembership(
         eazlDashboardGroupMembership: EazlDashboardGroupMembership
         ): DashboardGroupMembership {
         // Load DashboardGroupMembership: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupMembership', '@Start');
-        
+
         let dashboardGroupMembershipWorking = new DashboardGroupMembership();
-        
+
         dashboardGroupMembershipWorking.dashboardGroupID = eazlDashboardGroupMembership.id;
 
         if (eazlDashboardGroupMembership.dashboard_id != null) {
-            dashboardGroupMembershipWorking.dashboardID = 
+            dashboardGroupMembershipWorking.dashboardID =
                 eazlDashboardGroupMembership.dashboard_id;
         } else {
             dashboardGroupMembershipWorking.dashboardID = 0;
         }
-    
+
         if (eazlDashboardGroupMembership.updated_on != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedDateTime = 
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedDateTime =
                 eazlDashboardGroupMembership.updated_on;
         } else {
             dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedDateTime = '';
         }
-    
+
         if (eazlDashboardGroupMembership.updated_by != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserName = 
+            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserName =
                 eazlDashboardGroupMembership.updated_by;
         } else {
             dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserName = '';
         }
 
         if (eazlDashboardGroupMembership.created_on != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedDateTime = 
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedDateTime =
                 eazlDashboardGroupMembership.created_on;
         } else {
             dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedDateTime = '';
         }
-    
+
         if (eazlDashboardGroupMembership.created_by != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserName = 
+            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserName =
                 eazlDashboardGroupMembership.created_by;
         } else {
             dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserName = '';
@@ -472,83 +472,83 @@ export class CDAL {
 
         // Return the result
         return dashboardGroupMembershipWorking;
-    }             
+    }
 
     loadDashboardGroupRelationship(eazlDashboardGroupRelationship: EazlDashboardGroupRelationship): DashboardGroupRelationship {
         // Load DashboardGroupRelationship: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupRelationship', '@Start');
 
         let DashboardGroupRelationshipWorking = new DashboardGroupRelationship();
-        
-        DashboardGroupRelationshipWorking.dashboardGroupRelationshipID = 
+
+        DashboardGroupRelationshipWorking.dashboardGroupRelationshipID =
             eazlDashboardGroupRelationship.id;
 
         if (eazlDashboardGroupRelationship.dashboard_id != null) {
-            DashboardGroupRelationshipWorking.dashboardID = 
+            DashboardGroupRelationshipWorking.dashboardID =
                 eazlDashboardGroupRelationship.dashboard_id;
         } else {
             DashboardGroupRelationshipWorking.dashboardID = 0;
         }
 
         if (eazlDashboardGroupRelationship.group_id != null) {
-            DashboardGroupRelationshipWorking.groupID = 
+            DashboardGroupRelationshipWorking.groupID =
                 eazlDashboardGroupRelationship.group_id;
         } else {
             DashboardGroupRelationshipWorking.groupID = 0;
         }
 
         if (eazlDashboardGroupRelationship.type != null) {
-            DashboardGroupRelationshipWorking.dashboardGroupRelationshipType = 
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipType =
                 eazlDashboardGroupRelationship.type;
         } else {
             DashboardGroupRelationshipWorking.dashboardGroupRelationshipType = '';
         }
 
         if (eazlDashboardGroupRelationship.rating != null) {
-            DashboardGroupRelationshipWorking.dashboardGroupRelationshipRating = 
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipRating =
                 eazlDashboardGroupRelationship.rating;
         } else {
             DashboardGroupRelationshipWorking.dashboardGroupRelationshipRating = 0;
         }
 
         if (eazlDashboardGroupRelationship.updated_on != null) {
-            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedDateTime = 
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedDateTime =
                 eazlDashboardGroupRelationship.updated_on;
         } else {
             DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedDateTime = '';
         }
 
         if (eazlDashboardGroupRelationship.updated_by != null) {
-            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedUserName = 
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedUserName =
                 eazlDashboardGroupRelationship.updated_by;
         } else {
             DashboardGroupRelationshipWorking.dashboardGroupRelationshipUpdatedUserName = '';
         }
 
         if (eazlDashboardGroupRelationship.created_on != null) {
-            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedDateTime = 
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedDateTime =
                 eazlDashboardGroupRelationship.created_on;
         } else {
             DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedDateTime = '';
         }
 
         if (eazlDashboardGroupRelationship.created_by != null) {
-            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedUserName = 
+            DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedUserName =
                 eazlDashboardGroupRelationship.created_by;
         } else {
             DashboardGroupRelationshipWorking.dashboardGroupRelationshipCreatedUserName = '';
         }
-        
+
         // Return the result
         return DashboardGroupRelationshipWorking;
-    }             
+    }
 
     loadDashboard(eazlDashboard: EazlDashboard): Dashboard {
         // Load dDashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboard', '@Start');
-        
+
         let dashboardWorking = new Dashboard();
-        
+
         dashboardWorking.dashboardID = eazlDashboard.id;
 
         if (eazlDashboard.code != null) {
@@ -703,37 +703,37 @@ export class CDAL {
 
         // Return the result
         return dashboardWorking;
-    }             
+    }
 
     loadDashboardsPerUser(eazlDashboardsPerUser: EazlDashboardsPerUser): DashboardsPerUser {
         // Load DashboardsPerUser: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardsPerUser', '@Start');
-        
+
         let dashboardsPerUserWorking = new DashboardsPerUser();
-        
+
         dashboardsPerUserWorking.dashboardID = eazlDashboardsPerUser.dashboard_id;
-    
+
         if (eazlDashboardsPerUser.name != null) {
             dashboardsPerUserWorking.dashboardName = eazlDashboardsPerUser.name;
         } else {
             dashboardsPerUserWorking.dashboardName = '';
         }
-    
+
         if (eazlDashboardsPerUser.username != null) {
             dashboardsPerUserWorking.username = eazlDashboardsPerUser.username;
         } else {
             dashboardsPerUserWorking.username = '';
         }
-    
+
         if (eazlDashboardsPerUser.accessVia != null) {
-            dashboardsPerUserWorking.dashboardsPerUserAccessVia = 
+            dashboardsPerUserWorking.dashboardsPerUserAccessVia =
                 eazlDashboardsPerUser.accessVia;
         } else {
             dashboardsPerUserWorking.dashboardsPerUserAccessVia = '';
         }
-    
+
         if (eazlDashboardsPerUser.accessType != null) {
-            dashboardsPerUserWorking.dashboardsPerUserAccessType = 
+            dashboardsPerUserWorking.dashboardsPerUserAccessType =
                 eazlDashboardsPerUser.accessType;
         } else {
             dashboardsPerUserWorking.dashboardsPerUserAccessType = '';
@@ -741,85 +741,85 @@ export class CDAL {
 
         // Return the result
         return dashboardsPerUserWorking;
-    }  
+    }
 
     loadDashboardUserRelationship(
         eazlDashboardUserRelationship: EazlDashboardUserRelationship
         ): DashboardUserRelationship {
         // Load DashboardUserRelationship: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserRelationship', '@Start');
-        
+
         let dashboardUserRelationshipWorking = new DashboardUserRelationship();
-        
-        dashboardUserRelationshipWorking.dashboardUserRelationshipID = 
+
+        dashboardUserRelationshipWorking.dashboardUserRelationshipID =
             eazlDashboardUserRelationship.id;
 
         if (eazlDashboardUserRelationship.dashboard_id != null) {
-            dashboardUserRelationshipWorking.dashboardID = 
+            dashboardUserRelationshipWorking.dashboardID =
                 eazlDashboardUserRelationship.dashboard_id;
         } else {
             dashboardUserRelationshipWorking.dashboardID = 0;
         }
 
         if (eazlDashboardUserRelationship.username != null) {
-            dashboardUserRelationshipWorking.userName = 
+            dashboardUserRelationshipWorking.userName =
                 eazlDashboardUserRelationship.username;
         } else {
             dashboardUserRelationshipWorking.userName = '';
         }
 
         if (eazlDashboardUserRelationship.type != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipType = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipType =
                 eazlDashboardUserRelationship.type;
         } else {
             dashboardUserRelationshipWorking.dashboardUserRelationshipType = '';
         }
 
         if (eazlDashboardUserRelationship.rating != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipRating = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipRating =
                 eazlDashboardUserRelationship.rating;
         } else {
             dashboardUserRelationshipWorking.dashboardUserRelationshipRating = 0;
         }
 
         if (eazlDashboardUserRelationship.created_on != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedDateTime = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedDateTime =
                 eazlDashboardUserRelationship.created_on;
         } else {
             dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedDateTime = '';
         }
 
         if (eazlDashboardUserRelationship.created_by != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedUserName = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedUserName =
                 eazlDashboardUserRelationship.created_by;
         } else {
             dashboardUserRelationshipWorking.dashboardUserRelationshipCreatedUserName = '';
         }
 
         if (eazlDashboardUserRelationship.updated_on != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedDateTime = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedDateTime =
                 eazlDashboardUserRelationship.updated_on;
         } else {
             dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedDateTime = '';
         }
 
         if (eazlDashboardUserRelationship.updated_by != null) {
-            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedUserName = 
+            dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedUserName =
                 eazlDashboardUserRelationship.updated_by;
         } else {
             dashboardUserRelationshipWorking.dashboardUserRelationshipUpdatedUserName = '';
         }
-        
+
         // Return the result
         return dashboardUserRelationshipWorking;
-    }  
+    }
 
     loadDatasourcesPerUser(eazlDatasourcesPerUser: EazlDatasourcesPerUser): DatasourcesPerUser {
         // Load DatasourcesPerUser: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDatasourcesPerUser', '@Start');
-    
+
         let datasourcesPerUserWorking = new DatasourcesPerUser();
-        
+
         datasourcesPerUserWorking.datasourceID = eazlDatasourcesPerUser.id;
 
         if (eazlDatasourcesPerUser.name != null) {
@@ -827,50 +827,50 @@ export class CDAL {
         } else {
             datasourcesPerUserWorking.datasourceName = '';
         }
- 
+
         if (eazlDatasourcesPerUser.username != null) {
             datasourcesPerUserWorking.userName = eazlDatasourcesPerUser.username;
         } else {
             datasourcesPerUserWorking.userName = '';
         }
- 
+
         if (eazlDatasourcesPerUser.access_via != null) {
-            datasourcesPerUserWorking.datasourcesPerUserAccessVia = 
+            datasourcesPerUserWorking.datasourcesPerUserAccessVia =
                 eazlDatasourcesPerUser.access_via;
         } else {
             datasourcesPerUserWorking.datasourcesPerUserAccessVia = '';
         }
- 
+
         if (eazlDatasourcesPerUser.access_type != null) {
-            datasourcesPerUserWorking.datasourcesPerUserAccessType = 
+            datasourcesPerUserWorking.datasourcesPerUserAccessType =
                 eazlDatasourcesPerUser.access_type;
         } else {
             datasourcesPerUserWorking.datasourcesPerUserAccessType = '';
         }
 
         if (eazlDatasourcesPerUser.created_on != null) {
-            datasourcesPerUserWorking.datasourcesPerUserCreatedDateTime = 
+            datasourcesPerUserWorking.datasourcesPerUserCreatedDateTime =
                 eazlDatasourcesPerUser.created_on;
         } else {
             datasourcesPerUserWorking.datasourcesPerUserCreatedDateTime = '';
         }
 
         if (eazlDatasourcesPerUser.created_by != null) {
-            datasourcesPerUserWorking.datasourcesPerUserCreatedUserName = 
+            datasourcesPerUserWorking.datasourcesPerUserCreatedUserName =
                 eazlDatasourcesPerUser.created_by;
         } else {
             datasourcesPerUserWorking.datasourcesPerUserCreatedUserName = '';
         }
 
         if (eazlDatasourcesPerUser.updated_on != null) {
-            datasourcesPerUserWorking.datasourcesPerUserUpdatedDateTime = 
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedDateTime =
                 eazlDatasourcesPerUser.updated_on;
         } else {
             datasourcesPerUserWorking.datasourcesPerUserUpdatedDateTime = '';
         }
 
         if (eazlDatasourcesPerUser.updated_by != null) {
-            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserName = 
+            datasourcesPerUserWorking.datasourcesPerUserUpdatedUserName =
                 eazlDatasourcesPerUser.updated_by;
         } else {
             datasourcesPerUserWorking.datasourcesPerUserUpdatedUserName = '';
@@ -878,14 +878,14 @@ export class CDAL {
 
         // Return the result
         return datasourcesPerUserWorking;
-    }             
+    }
 
     loadDataSourceUserAccess(eazlDataSourceUserAccess: EazlDataSourceUserAccess): DataSourceUserAccess {
         // Load DataSourceUserAccess: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDataSourceUserAccess', '@Start');
-    
+
         let dataSourceUserAccessWorking = new DataSourceUserAccess();
-        
+
         dataSourceUserAccessWorking.datasourceID = eazlDataSourceUserAccess.id;
 
         if (eazlDataSourceUserAccess.username != null) {
@@ -895,55 +895,55 @@ export class CDAL {
         }
 
         if (eazlDataSourceUserAccess.type != null) {
-            dataSourceUserAccessWorking.dataSourceUserAccessType = 
+            dataSourceUserAccessWorking.dataSourceUserAccessType =
                 eazlDataSourceUserAccess.type;
         } else {
             dataSourceUserAccessWorking.dataSourceUserAccessType = '';
         }
 
         if (eazlDataSourceUserAccess.scope != null) {
-            dataSourceUserAccessWorking.dataSourceUserAccessScope = 
+            dataSourceUserAccessWorking.dataSourceUserAccessScope =
                 eazlDataSourceUserAccess.scope;
         } else {
             dataSourceUserAccessWorking.dataSourceUserAccessScope = '';
         }
 
         if (eazlDataSourceUserAccess.created_on != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedDateTime = 
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedDateTime =
                 eazlDataSourceUserAccess.created_on;
         } else {
             dataSourceUserAccessWorking.datasourceUserAccessCreatedDateTime = '';
         }
 
         if (eazlDataSourceUserAccess.created_by != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserName = 
+            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserName =
                 eazlDataSourceUserAccess.created_by;
         } else {
             dataSourceUserAccessWorking.datasourceUserAccessCreatedUserName = '';
         }
 
         if (eazlDataSourceUserAccess.updated_on != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedDateTime = 
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedDateTime =
                 eazlDataSourceUserAccess.updated_on;
         } else {
             dataSourceUserAccessWorking.datasourceUserAccessUpdatedDateTime = '';
         }
 
         if (eazlDataSourceUserAccess.updated_by != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserName = 
+            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserName =
                 eazlDataSourceUserAccess.updated_by;
         } else {
             dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserName = '';
         }
-        
+
         // Return the result
         return dataSourceUserAccessWorking;
-    }             
+    }
 
     loadFilter(eazlFilter: EazlFilter): Filter {
         // Load Filter: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFilter', '@Start');
-    
+
         let filterWorking = new Filter();
 
         filterWorking.filterID = eazlFilter.id;
@@ -953,70 +953,70 @@ export class CDAL {
         } else {
             filterWorking.hasAtLeastOneFilter = false;
         }
- 
+
         if (eazlFilter.owner != null) {
             filterWorking.ownerUserName = eazlFilter.owner;
         } else {
             filterWorking.ownerUserName = '';
         }
- 
+
         if (eazlFilter.description != null) {
             filterWorking.description = eazlFilter.description;
         } else {
             filterWorking.description = '';
         }
-        
+
         // Return the result
         return filterWorking;
-    }             
+    }
 
     loadGroupDatasourceAccess(
         eazlGroupDatasourceAccess: EazlGroupDatasourceAccess
         ): GroupDatasourceAccess {
         // Load GroupDatasourceAccess: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGroupDatasourceAccess', '@Start');
-    
+
         let groupDatasourceAccessWorking = new GroupDatasourceAccess();
-        
+
         groupDatasourceAccessWorking.groupID = eazlGroupDatasourceAccess.id;
 
         if (eazlGroupDatasourceAccess.datasource_id != null) {
-            groupDatasourceAccessWorking.datasourceID = 
+            groupDatasourceAccessWorking.datasourceID =
                 eazlGroupDatasourceAccess.datasource_id;
         } else {
             groupDatasourceAccessWorking.datasourceID = 0;
         }
 
         if (eazlGroupDatasourceAccess.access_type != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessAccessType = 
+            groupDatasourceAccessWorking.groupDatasourceAccessAccessType =
                 eazlGroupDatasourceAccess.access_type;
         } else {
             groupDatasourceAccessWorking.groupDatasourceAccessAccessType = '';
         }
 
         if (eazlGroupDatasourceAccess.created_on != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedDateTime = 
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedDateTime =
                 eazlGroupDatasourceAccess.created_on;
         } else {
             groupDatasourceAccessWorking.groupDatasourceAccessCreatedDateTime = '';
         }
 
         if (eazlGroupDatasourceAccess.created_by != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserName = 
+            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserName =
                 eazlGroupDatasourceAccess.created_by;
         } else {
             groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserName = '';
         }
 
         if (eazlGroupDatasourceAccess.updated_on != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedDateTime = 
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedDateTime =
                 eazlGroupDatasourceAccess.updated_on;
         } else {
             groupDatasourceAccessWorking.groupDatasourceAccessUpdatedDateTime = '';
         }
 
         if (eazlGroupDatasourceAccess.updated_by != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserName = 
+            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserName =
                 eazlGroupDatasourceAccess.updated_by;
         } else {
             groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserName = '';
@@ -1024,17 +1024,17 @@ export class CDAL {
 
         // Return the result
         return groupDatasourceAccessWorking;
-    }             
+    }
 
     loadNotification(eazlNotification: EazlNotification): Notification {
         // Load Notification: move data Eazl -> Canvas
         // TODO - do we really need this guy (see CanvasMessage), else add fields like id
         this.globalFunctionService.printToConsole(this.constructor.name,'loadNotification', '@Start');
-    
+
         let notificationWorking = new Notification();
-        
+
         notificationWorking.notificationID = eazlNotification.id;
-    
+
         if (eazlNotification.author != null) {
             notificationWorking.author = eazlNotification.author;
         } else {
@@ -1061,16 +1061,16 @@ export class CDAL {
 
         // Return the result
         return notificationWorking;
-    }             
+    }
 
     loadPackageTask(eazlPackageTask: EazlPackageTask): PackageTask {
         // Load PackageTask: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadNotification', '@Start');
-    
+
         let packageTaskWorking = new PackageTask();
-        
+
         packageTaskWorking.packageTaskID = eazlPackageTask.id;
-    
+
         if (eazlPackageTask.celery_task_id != null) {
             packageTaskWorking.packageTaskCeleryTaskID = eazlPackageTask.celery_task_id;
         } else {
@@ -1097,14 +1097,14 @@ export class CDAL {
 
         // Return the result
         return packageTaskWorking;
-    }             
+    }
 
     loadReport(eazlReport: EazlReport): Report {
         // Load Report: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadReport', '@Start');
-    
+
         let ReportWorking = new Report();
-        
+
         ReportWorking.reportID = eazlReport.id;
 
         if (eazlReport.name != null) {
@@ -1160,17 +1160,17 @@ export class CDAL {
         } else {
             ReportWorking.reportCreatedUserName = '';
         }
-        
+
         // Return the result
         return ReportWorking;
-    }             
+    }
 
     loadReportWidgetSet(eazlReportWidgetSet: EazlReportWidgetSet): ReportWidgetSet {
         // Load ReportWidgetSet: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadReportWidgetSet', '@Start');
-    
+
         let reportWidgetSetWorking = new ReportWidgetSet();
-        
+
         reportWidgetSetWorking.widgetSetID = eazlReportWidgetSet.id;
 
         if (eazlReportWidgetSet.report_id != null) {
@@ -1198,28 +1198,28 @@ export class CDAL {
         }
 
         if (eazlReportWidgetSet.updated_on != null) {
-            reportWidgetSetWorking.reportWidgetSetUpdatedDateTime = 
+            reportWidgetSetWorking.reportWidgetSetUpdatedDateTime =
                 eazlReportWidgetSet.updated_on;
         } else {
             reportWidgetSetWorking.reportWidgetSetUpdatedDateTime = '';
         }
 
         if (eazlReportWidgetSet.updated_by != null) {
-            reportWidgetSetWorking.reportWidgetSetUpdatedUserName = 
+            reportWidgetSetWorking.reportWidgetSetUpdatedUserName =
                 eazlReportWidgetSet.updated_by;
         } else {
             reportWidgetSetWorking.reportWidgetSetUpdatedUserName = '';
         }
 
         if (eazlReportWidgetSet.created_on != null) {
-            reportWidgetSetWorking.reportWidgetSetCreatedDateTime = 
+            reportWidgetSetWorking.reportWidgetSetCreatedDateTime =
                 eazlReportWidgetSet.created_on;
         } else {
             reportWidgetSetWorking.reportWidgetSetCreatedDateTime = '';
         }
 
         if (eazlReportWidgetSet.created_by != null) {
-            reportWidgetSetWorking.reportWidgetSetCreatedUserName = 
+            reportWidgetSetWorking.reportWidgetSetCreatedUserName =
                 eazlReportWidgetSet.created_by;
         } else {
             reportWidgetSetWorking.reportWidgetSetCreatedUserName = '';
@@ -1227,14 +1227,14 @@ export class CDAL {
 
         // Return the result
         return reportWidgetSetWorking;
-    }             
+    }
 
     loadReportHistory(eazlReportHistory: EazlReportHistory): ReportHistory {
         // Load ReportHistory: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadReportHistory', '@Start');
-    
+
         let reportHistoryWorking = new ReportHistory();
-        
+
         reportHistoryWorking.reportHistoryID = eazlReportHistory.id;
 
         if (eazlReportHistory.username != null) {
@@ -1284,17 +1284,17 @@ export class CDAL {
         } else {
             reportHistoryWorking.reportHistoryComments = '';
         }
-        
+
         // Return the result
         return reportHistoryWorking;
-    }             
+    }
 
     loadReportUserRelationship(eazlReportUserRelationship: EazlReportUserRelationship): ReportUserRelationship {
         // Load ReportUserRelationship: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadReportUserRelationship', '@Start');
-    
+
         let ReportUserRelationshipWorking = new ReportUserRelationship();
-        
+
         ReportUserRelationshipWorking.reportUserRelationshipID = eazlReportUserRelationship.id;
 
         if (eazlReportUserRelationship.username != null) {
@@ -1310,42 +1310,42 @@ export class CDAL {
         }
 
         if (eazlReportUserRelationship.type != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipType = 
+            ReportUserRelationshipWorking.reportUserRelationshipType =
                 eazlReportUserRelationship.type;
         } else {
             ReportUserRelationshipWorking.reportUserRelationshipType = '';
         }
 
         if (eazlReportUserRelationship.rating != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipRating = 
+            ReportUserRelationshipWorking.reportUserRelationshipRating =
                 eazlReportUserRelationship.rating;
         } else {
             ReportUserRelationshipWorking.reportUserRelationshipRating = 0;
         }
 
         if (eazlReportUserRelationship.created_on != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipCreatedDateTime = 
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedDateTime =
                 eazlReportUserRelationship.created_on;
         } else {
             ReportUserRelationshipWorking.reportUserRelationshipCreatedDateTime = '';
         }
 
         if (eazlReportUserRelationship.created_by != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserName = 
+            ReportUserRelationshipWorking.reportUserRelationshipCreatedUserName =
                 eazlReportUserRelationship.created_by;
         } else {
             ReportUserRelationshipWorking.reportUserRelationshipCreatedUserName = '';
         }
 
         if (eazlReportUserRelationship.updated_on != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipUpdatedDateTime = 
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedDateTime =
                 eazlReportUserRelationship.updated_on;
         } else {
             ReportUserRelationshipWorking.reportUserRelationshipUpdatedDateTime = '';
         }
 
         if (eazlReportUserRelationship.updated_by != null) {
-            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserName = 
+            ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserName =
                 eazlReportUserRelationship.updated_by;
         } else {
             ReportUserRelationshipWorking.reportUserRelationshipUpdatedUserName = '';
@@ -1353,16 +1353,16 @@ export class CDAL {
 
         // Return the result
         return ReportUserRelationshipWorking;
-    }             
+    }
 
     loadSystemConfiguration(eazlSystemConfiguration: EazlSystemConfiguration): SystemConfiguration {
         // Load SystemConfiguration: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadSystemConfiguration', '@Start');
-    
+
         let systemConfigurationWorking = new SystemConfiguration();
 
         systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.id;
-        
+
         if (eazlSystemConfiguration.company_name != null) {
             systemConfigurationWorking.companyName = eazlSystemConfiguration.company_name;
         } else {
@@ -1398,19 +1398,19 @@ export class CDAL {
         } else {
             systemConfigurationWorking.maxRowsPerWidgetGraph = 0;
         }
-        
+
         // Return the result
         return systemConfigurationWorking;
-    }             
+    }
 
     saveSystemConfiguration(systemConfiguration: SystemConfiguration): EazlSystemConfiguration {
         // Save SystemConfiguration: move data Canvas -> Eazl
         this.globalFunctionService.printToConsole(this.constructor.name,'saveSystemConfiguration', '@Start');
-    
+
         let eazlSystemConfigurationWorking = new EazlSystemConfiguration();
 
         eazlSystemConfigurationWorking.id = systemConfiguration.systemConfigurationID;
-        
+
         if (systemConfiguration.companyName != null) {
             eazlSystemConfigurationWorking.company_name = systemConfiguration.companyName;
         } else {
@@ -1446,21 +1446,21 @@ export class CDAL {
         } else {
             eazlSystemConfigurationWorking.max_rows_per_widget_graph = 0;
         }
-        
+
         // TODO - update DB here with POST ...
-        
+
         // Return the result
         return eazlSystemConfigurationWorking;
-    }    
+    }
 
     loadPersonalisation(eazlPersonalisation: EazlPersonalisation): Personalisation {
         // Load Personalisation: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadPersonalisation', '@Start');
-    
+
         let personalisationWorking = new Personalisation();
 
         personalisationWorking.personalisationID = eazlPersonalisation.id;
-        
+
         if (eazlPersonalisation.dashboard_id_at_startup != null) {
             personalisationWorking.dashboardIDStartup = eazlPersonalisation.dashboard_id_at_startup;
         } else {
@@ -1520,19 +1520,19 @@ export class CDAL {
         } else {
             personalisationWorking.snapToGrid = false;
         }
-        
+
         // Return the result
         return personalisationWorking;
-    }             
+    }
 
     savePersonalisation(personalisation: Personalisation): EazlPersonalisation {
         // Load Personalisation: move data Canvas -> Eazl
         this.globalFunctionService.printToConsole(this.constructor.name,'savePersonalisation', '@Start');
-    
+
         let eazlPersonalisationWorking = new EazlPersonalisation();
 
         eazlPersonalisationWorking.id = personalisation.personalisationID;
-        
+
         if (personalisation.dashboardIDStartup != null) {
             eazlPersonalisationWorking.dashboard_id_at_startup = personalisation.dashboardIDStartup;
         } else {
@@ -1592,19 +1592,19 @@ export class CDAL {
         } else {
             eazlPersonalisationWorking.snap_to_grid = false;
         }
-        
+
         // TODO - update DB here with POST ...
 
         // Return the result
         return eazlPersonalisationWorking;
-    }  
+    }
 
     loadUserGroupMembership(eazlUserGroupMembership: EazlUserGroupMembership): UserGroupMembership {
         // Load UserGroupMembership: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUserGroupMembership', '@Start');
-    
+
         let userGroupMembershipWorking = new UserGroupMembership();
-        
+
         userGroupMembershipWorking.groupID = eazlUserGroupMembership.id;
 
         if (eazlUserGroupMembership.username != null) {
@@ -1614,33 +1614,33 @@ export class CDAL {
         }
 
         if (eazlUserGroupMembership.created_on != null) {
-            userGroupMembershipWorking.userGroupMembershipCreatedDateTime = 
+            userGroupMembershipWorking.userGroupMembershipCreatedDateTime =
                 eazlUserGroupMembership.created_on;
         } else {
             userGroupMembershipWorking.userGroupMembershipCreatedDateTime = '';
         }
 
         if (eazlUserGroupMembership.created_by != null) {
-            userGroupMembershipWorking.userGroupMembershipCreatedUserName = 
+            userGroupMembershipWorking.userGroupMembershipCreatedUserName =
                 eazlUserGroupMembership.created_by;
         } else {
             userGroupMembershipWorking.userGroupMembershipCreatedUserName = '';
         }
 
         if (eazlUserGroupMembership.updated_on != null) {
-            userGroupMembershipWorking.userGroupMembershipUpdatedDateTime = 
+            userGroupMembershipWorking.userGroupMembershipUpdatedDateTime =
                 eazlUserGroupMembership.updated_on;
         } else {
             userGroupMembershipWorking.userGroupMembershipUpdatedDateTime = '';
         }
 
         if (eazlUserGroupMembership.updated_by != null) {
-            userGroupMembershipWorking.userGroupMembershipUpdatedUserName = 
+            userGroupMembershipWorking.userGroupMembershipUpdatedUserName =
                 eazlUserGroupMembership.updated_by;
         } else {
             userGroupMembershipWorking.userGroupMembershipUpdatedUserName = '';
         }
-        
+
         // Return the result
         return userGroupMembershipWorking;
     }      systemConfigurationID
@@ -1648,9 +1648,9 @@ export class CDAL {
     loadWidgetComment(eazlWidgetComment: EazlWidgetComment): WidgetComment {
         // Load WidgetComment: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetComment', '@Start');
-    
+
         let widgetCommentWorking = new WidgetComment();
-        
+
         widgetCommentWorking.widgetCommentID = eazlWidgetComment.id;
 
         if (eazlWidgetComment.widget_id != null) {
@@ -1688,17 +1688,17 @@ export class CDAL {
         } else {
             widgetCommentWorking.widgetCommentBody = '';
         }
-        
+
         // Return the result
         return widgetCommentWorking;
-    }             
+    }
 
     loadWidgetTemplate(eazlWidgetTemplate: EazlWidgetTemplate): WidgetTemplate {
         // Load WidgetTemplate: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetTemplate', '@Start');
-    
+
         let widgetTemplateWorking = new WidgetTemplate();
-        
+
         widgetTemplateWorking.widgetTemplateID = eazlWidgetTemplate.id;
 
         if (eazlWidgetTemplate.name != null) {
@@ -1720,49 +1720,49 @@ export class CDAL {
         }
 
         if (eazlWidgetTemplate.vega_parameters_vega_graph_width != null) {
-            widgetTemplateWorking.vegaParameters.vegaGraphWidth = 
+            widgetTemplateWorking.vegaParameters.vegaGraphWidth =
                 eazlWidgetTemplate.vega_parameters_vega_graph_width;
         } else {
             widgetTemplateWorking.vegaParameters.vegaGraphWidth = 0;
         }
 
         if (eazlWidgetTemplate.vega_parameters_vega_graph_padding != null) {
-            widgetTemplateWorking.vegaParameters.vegaGraphPadding = 
+            widgetTemplateWorking.vegaParameters.vegaGraphPadding =
                 eazlWidgetTemplate.vega_parameters_vega_graph_padding;
         } else {
             widgetTemplateWorking.vegaParameters.vegaGraphPadding = 0;
         }
 
         if (eazlWidgetTemplate.vega_parameters_vega_has_signals != null) {
-            widgetTemplateWorking.vegaParameters.vegaHasSignals = 
+            widgetTemplateWorking.vegaParameters.vegaHasSignals =
                 eazlWidgetTemplate.vega_parameters_vega_has_signals;
         } else {
             widgetTemplateWorking.vegaParameters.vegaHasSignals = false;
         }
 
         if (eazlWidgetTemplate.vega_parameters_vega_xcolumn != null) {
-            widgetTemplateWorking.vegaParameters.vegaXcolumn = 
+            widgetTemplateWorking.vegaParameters.vegaXcolumn =
                 eazlWidgetTemplate.vega_parameters_vega_xcolumn;
         } else {
             widgetTemplateWorking.vegaParameters.vegaXcolumn = '';
         }
 
         if (eazlWidgetTemplate.vega_parameters_vega_ycolumn != null) {
-            widgetTemplateWorking.vegaParameters.vegaYcolumn = 
+            widgetTemplateWorking.vegaParameters.vegaYcolumn =
                 eazlWidgetTemplate.vega_parameters_vega_ycolumn;
         } else {
             widgetTemplateWorking.vegaParameters.vegaYcolumn = '';
         }
 
         if (eazlWidgetTemplate.vega_parameters_vega_fill_color != null) {
-            widgetTemplateWorking.vegaParameters.vegaFillColor = 
+            widgetTemplateWorking.vegaParameters.vegaFillColor =
                 eazlWidgetTemplate.vega_parameters_vega_fill_color;
         } else {
             widgetTemplateWorking.vegaParameters.vegaFillColor = '';
         }
 
         if (eazlWidgetTemplate.vega_parameters_vega_hover_color != null) {
-            widgetTemplateWorking.vegaParameters.vegaHoverColor = 
+            widgetTemplateWorking.vegaParameters.vegaHoverColor =
                 eazlWidgetTemplate.vega_parameters_vega_hover_color;
         } else {
             widgetTemplateWorking.vegaParameters.vegaHoverColor = '';
@@ -1773,16 +1773,16 @@ export class CDAL {
         } else {
             widgetTemplateWorking.vegaSpec = '';
         }
-    
+
         // Return the result
         return widgetTemplateWorking;
-    }             
+    }
 
 // TODO - add multiple users who likes it; or not and treat elsewhere
     loadWidget(eazlWidget: EazlWidget): Widget {
         // Load Widget: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidget', '@Start');
-    
+
         let widgetWorking = new Widget();
 
         if (eazlWidget.container_background_color != null) {
@@ -1972,56 +1972,56 @@ export class CDAL {
         }
 
         if (eazlWidget.graph_vega_parameters_vega_graphHeight != null) {
-            widgetWorking.graph.vegaParameters.vegaGraphHeight = 
+            widgetWorking.graph.vegaParameters.vegaGraphHeight =
                 eazlWidget.graph_vega_parameters_vega_graphHeight;
         } else {
             widgetWorking.graph.vegaParameters.vegaGraphHeight = 0;
         }
 
         if (eazlWidget.graph_vega_parameters_vega_graphWidth != null) {
-            widgetWorking.graph.vegaParameters.vegaGraphWidth = 
+            widgetWorking.graph.vegaParameters.vegaGraphWidth =
                 eazlWidget.graph_vega_parameters_vega_graphWidth;
         } else {
             widgetWorking.graph.vegaParameters.vegaGraphWidth = 0;
         }
 
         if (eazlWidget.graph_vega_parameters_vega_graphPadding != null) {
-            widgetWorking.graph.vegaParameters.vegaGraphPadding = 
+            widgetWorking.graph.vegaParameters.vegaGraphPadding =
                 eazlWidget.graph_vega_parameters_vega_graphPadding;
         } else {
             widgetWorking.graph.vegaParameters.vegaGraphPadding = 0;
         }
 
         if (eazlWidget.graph_vega_parameters_vega_hasSignals != null) {
-            widgetWorking.graph.vegaParameters.vegaHasSignals = 
+            widgetWorking.graph.vegaParameters.vegaHasSignals =
                 eazlWidget.graph_vega_parameters_vega_hasSignals;
         } else {
             widgetWorking.graph.vegaParameters.vegaHasSignals = false;
         }
 
         if (eazlWidget.graph_vega_parameters_vega_xcolumn != null) {
-            widgetWorking.graph.vegaParameters.vegaXcolumn = 
+            widgetWorking.graph.vegaParameters.vegaXcolumn =
                 eazlWidget.graph_vega_parameters_vega_xcolumn;
         } else {
             widgetWorking.graph.vegaParameters.vegaXcolumn = '';
         }
 
         if (eazlWidget.graph_vega_parameters_vega_ycolumn != null) {
-            widgetWorking.graph.vegaParameters.vegaYcolumn = 
+            widgetWorking.graph.vegaParameters.vegaYcolumn =
                 eazlWidget.graph_vega_parameters_vega_ycolumn;
         } else {
             widgetWorking.graph.vegaParameters.vegaYcolumn = '';
         }
 
         if (eazlWidget.graph_vega_parameters_vega_fillColor != null) {
-            widgetWorking.graph.vegaParameters.vegaFillColor = 
+            widgetWorking.graph.vegaParameters.vegaFillColor =
                 eazlWidget.graph_vega_parameters_vega_fillColor;
         } else {
             widgetWorking.graph.vegaParameters.vegaFillColor = '';
         }
 
         if (eazlWidget.graph_vega_parameters_vega_hoverColor != null) {
-            widgetWorking.graph.vegaParameters.vegaHoverColor = 
+            widgetWorking.graph.vegaParameters.vegaHoverColor =
                 eazlWidget.graph_vega_parameters_vega_hoverColor;
         } else {
             widgetWorking.graph.vegaParameters.vegaHoverColor = '';
@@ -2136,7 +2136,7 @@ export class CDAL {
         }
 
         if (eazlWidget.properties_dashboard_tab_name != null) {
-            widgetWorking.properties.dashboardTabName = 
+            widgetWorking.properties.dashboardTabName =
                 eazlWidget.properties_dashboard_tab_name;
         } else {
             widgetWorking.properties.dashboardTabName = '';
@@ -2155,42 +2155,42 @@ export class CDAL {
         }
 
         if (eazlWidget.properties_widget_description != null) {
-            widgetWorking.properties.widgetDescription = 
+            widgetWorking.properties.widgetDescription =
                 eazlWidget.properties_widget_description;
         } else {
             widgetWorking.properties.widgetDescription = '';
         }
 
         if (eazlWidget.properties_widget_default_export_filetype != null) {
-            widgetWorking.properties.widgetDefaultExportFileType = 
+            widgetWorking.properties.widgetDefaultExportFileType =
                 eazlWidget.properties_widget_default_export_filetype;
         } else {
             widgetWorking.properties.widgetDefaultExportFileType = '';
         }
 
         if (eazlWidget.properties_widget_hyperlink_tab_nr != null) {
-            widgetWorking.properties.widgetHyperLinkTabNr = 
+            widgetWorking.properties.widgetHyperLinkTabNr =
                 eazlWidget.properties_widget_hyperlink_tab_nr;
         } else {
             widgetWorking.properties.widgetHyperLinkTabNr = '';
         }
 
         if (eazlWidget.properties_widget_hyperlinkWidget_id != null) {
-            widgetWorking.properties.widgetHyperLinkWidgetID = 
+            widgetWorking.properties.widgetHyperLinkWidgetID =
                 eazlWidget.properties_widget_hyperlinkWidget_id;
         } else {
             widgetWorking.properties.widgetHyperLinkWidgetID = '';
         }
 
         if (eazlWidget.properties_widget_refresh_mode != null) {
-            widgetWorking.properties.widgetRefreshMode = 
+            widgetWorking.properties.widgetRefreshMode =
                 eazlWidget.properties_widget_refresh_mode;
         } else {
             widgetWorking.properties.widgetRefreshMode = '';
         }
 
         if (eazlWidget.properties_widget_refresh_frequency != null) {
-            widgetWorking.properties.widgetRefreshFrequency = 
+            widgetWorking.properties.widgetRefreshFrequency =
                 eazlWidget.properties_widget_refresh_frequency;
         } else {
             widgetWorking.properties.widgetRefreshFrequency = 0;
@@ -2215,21 +2215,21 @@ export class CDAL {
         }
 
         if (eazlWidget.properties_widget_report_name != null) {
-            widgetWorking.properties.widgetReportName = 
+            widgetWorking.properties.widgetReportName =
                 eazlWidget.properties_widget_report_name;
         } else {
             widgetWorking.properties.widgetReportName = '';
         }
 
         if (eazlWidget.properties_widget_report_parameters != null) {
-            widgetWorking.properties.widgetReportParameters = 
+            widgetWorking.properties.widgetReportParameters =
                 eazlWidget.properties_widget_report_parameters;
         } else {
             widgetWorking.properties.widgetReportParameters = '';
         }
 
         if (eazlWidget.properties_widget_show_limited_rows != null) {
-            widgetWorking.properties.widgetShowLimitedRows = 
+            widgetWorking.properties.widgetShowLimitedRows =
                 eazlWidget.properties_widget_show_limited_rows;
         } else {
             widgetWorking.properties.widgetShowLimitedRows = 0;
@@ -2290,21 +2290,21 @@ export class CDAL {
         }
 
         if (eazlWidget.properties_widget_refreshed_by != null) {
-            widgetWorking.properties.widgetRefreshedUserName = 
+            widgetWorking.properties.widgetRefreshedUserName =
                 eazlWidget.properties_widget_refreshed_by;
         } else {
             widgetWorking.properties.widgetRefreshedUserName = '';
         }
 
         if (eazlWidget.properties_widget_Created_on != null) {
-            widgetWorking.properties.widgetCreatedDateTime = 
+            widgetWorking.properties.widgetCreatedDateTime =
                 eazlWidget.properties_widget_Created_on;
         } else {
             widgetWorking.properties.widgetCreatedDateTime = '';
         }
 
         if (eazlWidget.properties_widget_Created_by != null) {
-            widgetWorking.properties.widgetCreatedUserName = 
+            widgetWorking.properties.widgetCreatedUserName =
                 eazlWidget.properties_widget_Created_by;
         } else {
             widgetWorking.properties.widgetCreatedUserName = '';
@@ -2321,15 +2321,15 @@ export class CDAL {
         } else {
             widgetWorking.properties.widgetUpdatedUserName = '';
         }
-        
+
         // Return the result
         return widgetWorking;
-    }             
+    }
 
     loadWidgetTypes(eazlWidgetTypes: EazlWidgetType): WidgetType {
         // Load WidgetTypes: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetTypes', '@Start');
-        
+
         let widgetTypesWorking = new WidgetType();
 
         if (eazlWidgetTypes.label != null) {
@@ -2352,12 +2352,12 @@ export class CDAL {
 
         // Return the result
         return widgetTypesWorking;
-    } 
+    }
 
     loadGraphTypes(eazlGraphTypes: EazlGraphType): GraphType {
         // Load GraphTypes: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGraphTypes', '@Start');
-        
+
         let graphTypesWorking = new GraphType();
 
         if (eazlGraphTypes.label != null) {
@@ -2380,13 +2380,13 @@ export class CDAL {
 
         // Return the result
         return graphTypesWorking;
-    } 
+    }
 
 // TODO Add LOOP to all !!!
     loadBorderDropdowns(eazlBorderDropdowns: SelectItem): SelectItem {
         // Load BorderDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBorderDropdowns', '@Start');
-        
+
         let borderDropdownsWorking: SelectItem;
 
         if (eazlBorderDropdowns.label != null) {
@@ -2409,12 +2409,12 @@ export class CDAL {
 
         // Return the result
         return borderDropdownsWorking;
-    } 
+    }
 
     loadBoxShadowDropdowns(eazlBoxShadowDropdowns: SelectItem): SelectItem {
         // Load BoxShadowDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBoxShadowDropdowns', '@Start');
-        
+
         let boxShadowDropdownsWorking: SelectItem;
 
         if (eazlBoxShadowDropdowns.label != null) {
@@ -2437,12 +2437,12 @@ export class CDAL {
 
         // Return the result
         return boxShadowDropdownsWorking;
-    } 
+    }
 
     loadFontSizeDropdowns(eazlFontSizeDropdowns: SelectItem): SelectItem {
         // Load FontSizeDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFontSizeDropdowns', '@Start');
-        
+
         let fontSizeDropdownsWorking: SelectItem;
 
         if (eazlFontSizeDropdowns.label != null) {
@@ -2465,12 +2465,12 @@ export class CDAL {
 
         // Return the result
         return fontSizeDropdownsWorking;
-    } 
+    }
 
     loadGridSizeDropdowns(eazlGridSizeDropdowns: SelectItem): SelectItem {
         // Load GridSizeDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGridSizeDropdowns', '@Start');
-        
+
         let gridSizeDropdownsWorking: SelectItem;
 
         if (eazlGridSizeDropdowns.label != null) {
@@ -2493,12 +2493,12 @@ export class CDAL {
 
         // Return the result
         return gridSizeDropdownsWorking;
-    } 
+    }
 
     loadBackgroundImageDropdowns(eazlBackgroundImageDropdowns: SelectItem): SelectItem {
         // Load BackgroundImageDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBackgroundImageDropdowns', '@Start');
-        
+
         let backgroundImageDropdownsWorking: SelectItem;
 
         if (eazlBackgroundImageDropdowns.label != null) {
@@ -2521,7 +2521,7 @@ export class CDAL {
 
         // Return the result
         return backgroundImageDropdownsWorking;
-    } 
+    }
 
 }
 
