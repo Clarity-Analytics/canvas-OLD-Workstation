@@ -4776,7 +4776,6 @@ export class EazlService implements OnInit {
 
     loginError(error: any): Promise<any> {
         // Error handling when login failed, & returns Promise with error
-
         this.globalFunctionService.printToConsole(this.constructor.name,'loginError', '@Start');
 
 		this.storage.removeItem('canvas-token');
@@ -4815,8 +4814,9 @@ export class EazlService implements OnInit {
 
     handleError(response: Response | any): Observable<Response> {
         // Error for observable
+        // TODO - figure out why this guy errors when there is an http-error
         // this.globalFunctionService.printToConsole(this.constructor.name,'handleError', '@Start');
-console.log('error')
+
         var error: string = '';
          // Do some logging one day
         if (response instanceof Response) {
@@ -6689,11 +6689,12 @@ console.log('error')
         // - resetID: id of single object if not all
         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '@Start');
 
-        // Users
-        if (resetObject == 'all'   ||   resetObject == 'Users') {
+        // User
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'User') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset User');
 
                 // Get all the data via API
                 let usersWorking: User[] = [];
@@ -6720,17 +6721,19 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear User');
                 this.users = [];
             }
 
         }
 
-        // Groups
-        if (resetObject == 'all'   ||   resetObject == 'groups') {
+        // Group
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Group') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Group');
 
                 // Get all the data via API
                 let groupsWorking: Group[] = [];
@@ -6741,7 +6744,7 @@ console.log('error')
                                 for (var i = 0; i < eazlGroup.length; i++) {
                                     let groupSingle = new Group();
                                     groupSingle = this.cdal.loadGroup(eazlGroup[i]);
-                                    groupsWorking.push(groupSingle);                                    groupsWorking.push
+                                    groupsWorking.push(groupSingle);                                    
                                 }
 
                             // Replace
@@ -6752,15 +6755,17 @@ console.log('error')
 
             // Clear all
             if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Group');
                 this.groups = [];
             }
         }
 
-        // DasboardTabs
-        if (resetObject == 'all'   ||   resetObject == 'DashboardTabs') {
+        // DashboardTab
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTab') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTab');
 
                 // Get all the data via API
                 let dashboardTabWorking: DashboardTab[] = [];
@@ -6783,16 +6788,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTab');
                 this.dashboardTabs = [];
             }
         }
 
         // CanvasMessage
-        if (resetObject == 'all'   ||   resetObject == 'CanvasMessages') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'CanvasMessage') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset CanvasMessage');
 
                 // Get all the data via API
                 let canvasMessageWorking: CanvasMessage[] = [];
@@ -6814,16 +6821,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear CanvasMessage');
                 this.canvasMessages = [];
             }
         }
 
         // CanvasMessageRecipient
-        if (resetObject == 'all'   ||   resetObject == 'CanvasMessageRecipients') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'CanvasMessageRecipient') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset CanvasMessageRecipient');
 
                 // Get all the data via API
                 let canvasMessageRecipientWorking: CanvasMessageRecipient[] = [];
@@ -6845,16 +6854,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear CanvasMessageRecipient');
                 this.canvasMessageRecipients = [];
             }
         }
 
         // DashboardGroup
-        if (resetObject == 'all'   ||   resetObject == 'DashboardGroups') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroup') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroup');
 
                 // Get all the data via API
                 let DashboardGroupWorking: DashboardGroup[] = [];
@@ -6876,16 +6887,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroup');
                 this.dashboardGroups = [];
             }
         }
 
         // DashboardGroupMembership
-        if (resetObject == 'all'   ||   resetObject == 'DashboardGroupMemberships') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroupMembership') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupMembership');
 
                 // Get all the data via API
                 let DashboardGroupMembershipWorking: DashboardGroupMembership[] = [];
@@ -6907,16 +6920,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupMembership');
                 this.dashboardGroupMembership = [];
             }
         }
 
         // DashboardGroupRelationship
-        if (resetObject == 'all'   ||   resetObject == 'DashboardGroupRelationships') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroupRelationship') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupRelationship');
 
                 // Get all the data via API
                 let DashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
@@ -6938,16 +6953,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupRelationship');
                 this.dashboardGroupRelationship = [];
             }
         }
 
         // Dashboard
-        if (resetObject == 'all'   ||   resetObject == 'Dashboards') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Dashboard') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Dashboard');
 
                 // Get all the data via API
                 let DashboardWorking: Dashboard[] = [];
@@ -6969,16 +6986,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Dashboard');
                 this.dashboards = [];
             }
         }
 
         // DashboardsPerUser
-        if (resetObject == 'all'   ||   resetObject == 'DashboardsPerUsers') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardsPerUser') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardsPerUser');
 
                 // Get all the data via API
                 let DashboardsPerUserWorking: DashboardsPerUser[] = [];
@@ -7000,16 +7019,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardsPerUser');
                 this.dashboardsPerUser = [];
             }
         }
 
         // DashboardUserRelationship
-        if (resetObject == 'all'   ||   resetObject == 'DashboardUserRelationships') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardUserRelationship') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardUserRelationship');
 
                 // Get all the data via API
                 let DashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
@@ -7031,16 +7052,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardUserRelationship');
                 this.dashboardUserRelationship = [];
             }
         }
 
         // DatasourcesPerUser
-        if (resetObject == 'all'   ||   resetObject == 'DatasourcesPerUsers') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DatasourcesPerUser') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DatasourcesPerUser');
 
                 // Get all the data via API
                 let DatasourcesPerUserWorking: DatasourcesPerUser[] = [];
@@ -7062,16 +7085,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DatasourcesPerUser');
                 this.datasourcesPerUser = [];
             }
         }
 
         // DataSourceUserAccess
-        if (resetObject == 'all'   ||   resetObject == 'DataSourceUserAccesss') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DataSourceUserAccess') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DataSourceUserAccess');
 
                 // Get all the data via API
                 let DataSourceUserAccessWorking: DataSourceUserAccess[] = [];
@@ -7080,7 +7105,8 @@ console.log('error')
                             (eazlDataSourceUserAccess) => {
                                 for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
                                     let DataSourceUserAccessSingle = new DataSourceUserAccess();
-                                    DataSourceUserAccessSingle = this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
+                                    DataSourceUserAccessSingle = 
+                                        this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
                                     DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);
 
                                 }
@@ -7093,16 +7119,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DataSourceUserAccess');
                 this.dataSourceUserAccess = [];
             }
         }
 
         // Filter
-        if (resetObject == 'all'   ||   resetObject == 'filters') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Filter') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Filter');
 
                 // Get all the data via API
                 let FilterWorking: Filter[] = [];
@@ -7124,16 +7152,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Filter');
                 this.filters = [];
             }
         }
 
         // GroupDatasourceAccess
-        if (resetObject == 'all'   ||   resetObject == 'GroupDatasourceAccesss') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GroupDatasourceAccess') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GroupDatasourceAccess');
 
                 // Get all the data via API
                 let GroupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
@@ -7155,16 +7185,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear GroupDatasourceAccess');
                 this.groupDatasourceAccess = [];
             }
         }
 
         // Notification
-        if (resetObject == 'all'   ||   resetObject == 'Notifications') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Notification') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Notification');
 
                 // Get all the data via API
                 let NotificationWorking: Notification[] = [];
@@ -7186,16 +7218,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Notification');
                 this.notifications = [];
             }
         }
 
-        // PackageTasks
-        if (resetObject == 'all'   ||   resetObject == 'PackageTasks') {
+        // PackageTask
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'PackageTask') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset PackageTask');
 
                 // Get all the data via API
                 let packageTaskWorking: PackageTask[] = [];
@@ -7217,16 +7251,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear PackageTask');
                 this.packageTask = [];
             }
         }
 
         // Report
-        if (resetObject == 'all'   ||   resetObject == 'Reports') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Report') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Report');
 
                 // Get all the data via API
                 let ReportWorking: Report[] = [];
@@ -7248,16 +7284,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Report');
                 this.reports = [];
             }
         }
 
         // ReportWidgetSet
-        if (resetObject == 'all'   ||   resetObject == 'ReportWidgetSets') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportWidgetSet') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportWidgetSet');
 
                 // Get all the data via API
                 let ReportWidgetSetWorking: ReportWidgetSet[] = [];
@@ -7279,16 +7317,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportWidgetSet');
                 this.reportWidgetSet = [];
             }
         }
 
         // ReportHistory
-        if (resetObject == 'all'   ||   resetObject == 'ReportHistory') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportHistory') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportHistory');
 
                 // Get all the data via API
                 let ReportHistoryWorking: ReportHistory[] = [];
@@ -7310,16 +7350,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportHistory');
                 this.reportHistory = [];
             }
         }
 
         // ReportUserRelationship
-        if (resetObject == 'all'   ||   resetObject == 'ReportUserRelationships') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportUserRelationship') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportUserRelationship');
 
                 // Get all the data via API
                 let ReportUserRelationshipWorking: ReportUserRelationship[] = [];
@@ -7341,16 +7383,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportUserRelationship');
                 this.reportUserRelationship = [];
             }
         }
 
         // SystemConfiguration
-        if (resetObject == 'all'   ||   resetObject == 'SystemConfigurations') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'SystemConfiguration') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset SystemConfiguration');
 
                 // Get all the data via API
                 let SystemConfigurationWorking: SystemConfiguration[] = [];
@@ -7372,16 +7416,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear SystemConfiguration');
                 this.systemConfiguration = null;
             }
         }
 
         // UserGroupMembership
-        if (resetObject == 'all'   ||   resetObject == 'UserGroupMemberships') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'UserGroupMembership') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset UserGroupMembership');
 
                 // Get all the data via API
                 let UserGroupMembershipWorking: UserGroupMembership[] = [];
@@ -7403,16 +7449,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear UserGroupMembership');
                 this.userGroupMembership = [];
             }
         }
 
         // WidgetComment
-        if (resetObject == 'all'   ||   resetObject == 'WidgetComments') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetComment') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetComment');
 
                 // Get all the data via API
                 let WidgetCommentWorking: WidgetComment[] = [];
@@ -7434,16 +7482,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetComment');
                 this.widgetComments = [];
             }
         }
 
         // WidgetTemplate
-        if (resetObject == 'all'   ||   resetObject == 'WidgetTemplates') {
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetTemplate') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetTemplate');
 
                 // Get all the data via API
                 let WidgetTemplateWorking: WidgetTemplate[] = [];
@@ -7465,16 +7515,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetTemplate');
                 this.widgetTemplates = [];
             }
         }
 
-        // Widgets
-        if (resetObject == 'all'   ||   resetObject == 'Widgets') {
+        // Widget
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Widget') {
 
             // Reset
             if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Widget');
 
                 // Get all the data via API
                 let widgetsWorking: EazlWidget[] = [];
@@ -7501,16 +7553,18 @@ console.log('error')
             }
 
             // Clear all
-            if (resetAction == 'clear') {
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Widget');
                 this.widgets = [];
             }
         }
 
         // // Widget
-        // if (resetObject == 'all'   ||   resetObject == 'Widgets') {
+        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Widget') {
 
         //     // Reset
         //     if (resetAction == 'reset') {
+                // this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Widget');
 
         //         // Get all the data via API
         //         let WidgetWorking: Widget[] = [];
@@ -7532,7 +7586,8 @@ console.log('error')
         //     }
 
         //     // Clear all
-        //     if (resetAction == 'clear') {
+        //     if (resetAction.toLowerCase() == 'clear') {
+                // this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Widget');
         //         this.widgets = [];
         //     }
         // }
