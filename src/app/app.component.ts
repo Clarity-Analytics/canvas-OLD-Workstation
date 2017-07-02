@@ -104,7 +104,16 @@ this.reconnectingWebSocket.messageWS.subscribe(
             message: 'Your Magnum PI report has completed'
         }
 
-
+export class WebSocketBasicMessage {
+	webSocketDatetime: Date;			// DateTime when the WS server sent the message
+	webSocketSenderUsername: string;	// Sender / originator of the message
+	webSocketMessageType: string;		// Type that determines the body content:
+										// - WebSocketCanvasMessage
+										// - WebSocketSystemMessage
+										// - WebSocketCeleryMessage
+										// - WebSocketRefDataMessage
+	webSocketMessageBody: any;			// Detail, as per message type
+}
 
 		this.notificationService.messages.next(this.notificationFromServer);
 		this.notificationFromServer.message = '';
@@ -551,5 +560,4 @@ testFn() {
 // TODO - remove once done
 this.sendNotificationToServer()
 }
-
 }

@@ -4,9 +4,9 @@ import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
-import { ConfirmationService }        from 'primeng/primeng';  
-import { MenuItem }                   from 'primeng/primeng';  
-import { Message }                    from 'primeng/primeng';  
+import { ConfirmationService }        from 'primeng/primeng';
+import { MenuItem }                   from 'primeng/primeng';
+import { Message }                    from 'primeng/primeng';
 
 // Our Components
 // import { ReconnectingWebSocket }      from './websocket.service';
@@ -25,7 +25,6 @@ import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { ReportHistory }              from './model.reportHistory';
-import { SocketMessage }              from './model.websocket';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 
@@ -36,11 +35,11 @@ import { UserGroupMembership }        from './model.userGroupMembership';
     encapsulation: ViewEncapsulation.None
 })
 export class UserComponent implements OnInit {
-    
+
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
     availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
-    belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to   
+    belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to
     availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
     canvasUser: CanvasUser;                             // Current user
@@ -62,89 +61,83 @@ export class UserComponent implements OnInit {
     reportHistory: ReportHistory[];                     // List of Report History (ran)
     selectedUser: User;                                 // User that was clicked on
     users: User[];
-    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
+    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group
 
     constructor(
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        // private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
-        // reconnectingWebSocket.messageWS.subscribe(
-        // (message: SocketMessage) => { console.log(message) },
-        // (error) => { console.log(JSON.parse(error)) },
-        // () => { console.log('Socket complete') },
-        // )    
     }
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Current User
         this.canvasUser = this.globalVariableService.canvasUser.getValue();
- 
+
         // Initialise variables
         this.users = this.eazlService.getUsers();
 
         this.popuMenuItems = [
             {
-                label: 'Add', 
-                icon: 'fa-plus', 
+                label: 'Add',
+                icon: 'fa-plus',
                 command: (event) => this.userMenuAdd(this.selectedUser)
             },
             {
-                label: '______________________________', 
+                label: '______________________________',
                 icon: '',
-                disabled: true 
+                disabled: true
             },
             {
-                label: 'Edit', 
-                icon: 'fa-pencil', 
+                label: 'Edit',
+                icon: 'fa-pencil',
                 command: (event) => this.userMenuEdit(this.selectedUser)
             },
             {
-                label: 'Delete', 
-                icon: 'fa-minus', 
+                label: 'Delete',
+                icon: 'fa-minus',
                 command: (event) => this.userMenuDelete(this.selectedUser)
             },
             {
-                label: 'Group Membership', 
-                icon: 'fa-users', 
+                label: 'Group Membership',
+                icon: 'fa-users',
                 command: (event) => this.userMenuGroupMembership(this.selectedUser)
             },
             {
-                label: 'Datasources', 
-                icon: 'fa-database', 
+                label: 'Datasources',
+                icon: 'fa-database',
                 command: (event) => this.userMenuAccessToDatasources(this.selectedUser)
             },
             {
-                label: 'Show Datasources', 
-                icon: 'fa-database', 
+                label: 'Show Datasources',
+                icon: 'fa-database',
                 command: (event) => this.userMenuShowDatasources(this.selectedUser)
             },
             {
-                label: 'Related Dashboards', 
-                icon: 'fa-list', 
+                label: 'Related Dashboards',
+                icon: 'fa-list',
                 command: (event) => this.userMenuRelatedDashboards(this.selectedUser)
             },
             {
-                label: 'Message History', 
-                icon: 'fa-comments', 
+                label: 'Message History',
+                icon: 'fa-comments',
                 command: (event) => this.userMenuMessageHistory(this.selectedUser)
             },
             {
-                label: 'Report History', 
-                icon: 'fa-table', 
+                label: 'Report History',
+                icon: 'fa-table',
                 command: (event) => this.userMenuReportHistory(this.selectedUser)
             },
             {
-                label: 'Reset Password', 
-                icon: 'fa-unlock', 
+                label: 'Reset Password',
+                icon: 'fa-unlock',
                 command: (event) => this.userMenuResetPassword(this.selectedUser)
             },
-            
+
         ];
 
     }
@@ -156,20 +149,20 @@ export class UserComponent implements OnInit {
         this.addEditMode = 'Add';
         this.displayUserPopup = true;
     }
-    
+
     userMenuEdit(user: User) {
         // Edit selected user on a popup form
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuEdit', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Selected user', 
+            severity: 'info',
+            summary:  'Selected user',
             detail:   user.firstName + ' - ' + user.lastName
         });
 
         this.addEditMode = 'Edit';
-        this.displayUserPopup = true;    
+        this.displayUserPopup = true;
     }
 
     userMenuDelete(user: User) {
@@ -180,7 +173,7 @@ export class UserComponent implements OnInit {
         this.deleteMode = true;
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this record?',
-            reject: () => { 
+            reject: () => {
                 this.deleteMode = false;
                 return;
             },
@@ -198,8 +191,8 @@ export class UserComponent implements OnInit {
                 this.deleteMode = false;
 
                 this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'info', 
-                    summary:  'User deleted', 
+                    severity: 'info',
+                    summary:  'User deleted',
                     detail:   user.firstName + ' - ' + user.lastName
                 });
             }
@@ -212,10 +205,10 @@ export class UserComponent implements OnInit {
 
         // Update the user group membership if it is open
         if (this.displayGroupMembership) {
-            this.userMenuGroupMembership(this.selectedUser) 
+            this.userMenuGroupMembership(this.selectedUser)
         }
         if (this.displayUserDatasource) {
-            this.userMenuAccessToDatasources(this.selectedUser) 
+            this.userMenuAccessToDatasources(this.selectedUser)
         }
 
     }
@@ -227,11 +220,11 @@ export class UserComponent implements OnInit {
 
         // Get the current and available groups
         this.belongstoUserGroupMembership = this.eazlService.getGroupsPerUser(
-            this.selectedUser.username, 
+            this.selectedUser.username,
             true
         );
         this.availableUserGroupMembership = this.eazlService.getGroupsPerUser(
-            this.selectedUser.username, 
+            this.selectedUser.username,
             false
         );
 
@@ -244,7 +237,7 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
 
         // Close popup
-        this.displayGroupMembership = false;        
+        this.displayGroupMembership = false;
     }
 
     onMoveToTargetUserGroupMembership(event) {
@@ -254,12 +247,12 @@ export class UserComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(
-                this.selectedUser.username, 
+                this.selectedUser.username,
                 event.items[i].groupID
             );
         }
     }
-    
+
     onMoveToSourceUserGroupMembership(event) {
         // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
@@ -267,7 +260,7 @@ export class UserComponent implements OnInit {
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteUserGroupMembership(
-                this.selectedUser.username, 
+                this.selectedUser.username,
                 event.items[i].groupID
             );
         }
@@ -309,7 +302,7 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserDatasourceCancel', '@Start');
 
         // Close popup
-        this.displayUserDatasource = false;        
+        this.displayUserDatasource = false;
     }
 
     onMoveToTargetUserDatasource(event) {
@@ -324,7 +317,7 @@ export class UserComponent implements OnInit {
             );
         }
     }
-    
+
     onMoveToSourceUserDatasource(event) {
         // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
@@ -343,7 +336,7 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
 
-        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.username); 
+        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.username);
 
         // Show the popup
         this.displayUserDatasources = true;
@@ -382,7 +375,7 @@ export class UserComponent implements OnInit {
         // Show popup
         this.displayReports = true;
     }
-    
+
     userMenuResetPassword(user: User) {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuResetPassword', '@Start');
 
@@ -396,7 +389,7 @@ export class UserComponent implements OnInit {
 
         this.displayResetPassword = false;
     }
-    
+
     handleUserPopupFormClosed(howClosed: string) {
         // Handle the event: howClosed = Cancel / Submit
         this.globalFunctionService.printToConsole(this.constructor.name,'handleUserPopupFormClosed', '@Start');
@@ -406,9 +399,9 @@ export class UserComponent implements OnInit {
 }
 
 // Notes for newbees:
-//  Filtering is enabled by setting the filter property as true in column object. 
+//  Filtering is enabled by setting the filter property as true in column object.
 //  Default match mode is "startsWith" and this can be configured
-//  using filterMatchMode property of column object that also accepts "contains", "endsWith", 
+//  using filterMatchMode property of column object that also accepts "contains", "endsWith",
 //  "equals" and "in". An optional global filter feature is available to search all fields with a keyword.
-//  By default input fields are generated as filter elements and using templating any component 
+//  By default input fields are generated as filter elements and using templating any component
 //  can be used as a filter.
