@@ -1,4 +1,47 @@
-// Service that provides all data (from the DB)
+// Service that manages all Canvas data (to and from the DB)
+
+// There are two types of data:
+// a. system related data (users, groups, etc).  These are read async at login.
+// b. application / user data, stored in a DB.  These are only read on request, where
+//    small sets are read and stored as local Arrays, and large sets can point to a url
+//    that keeps the json file.  Application data is reuested async, and notification
+//    about the completion (fail or pass) is done via the WebSocket.
+
+// Process for reading system data:
+// 1. At start (before login) all system resources are marked as dirty.
+// 2. At login, Canvas issues async requests for all system data.
+// 3. This component will issue an http-get request, and transform the result 
+//    (Eazl -> Canvas format).  This method currently lives in CDAL, but will probably move.
+// 4. The Canvas formatted data is stored in local Arrays.
+// 5. All DSs are now marked as clean.
+// 6. When a Canvas module needs data, it issues a get-DS (DS = DataSource) request to 
+//    this module.
+// 7. It simply returns the local Array (with filtering and additional calculated 
+//    data where necessary).
+// Note:  it does not check if there is data in the Array, or if the data is clean.
+//        It knows when a DS is dirty, so in time we may issue a warning to the user.
+
+// Keeping system data in sync (up to date):
+// 1. At login, a single WebSocket is opened to the API that listens permanently.
+// 2. When system data is changed on the server, the API sends a message to all active
+//    users (logged in at that point in time).
+// 3. On receipt of a message, Canvas marks that data-source as dirty.
+// 4. This component will issue an http-get request to get the latest copy of the data, 
+//    and transform the result (Eazl -> Canvas format).  This method currently lives 
+//    in CDAL, but will probably move.
+// 5. The Canvas formatted data is stored in a local Array.
+// 6. It will mark the DS as clean.
+// 7. These updates happens in the background, and no feedback is given to users about it.
+
+// Process for changes to system data:
+// 1. This component is the only place where data is read or updated.
+// 2. The Canvas component issues data-related requests to this component as 
+//    add-, delete-, update-DS requests.
+// 3. This component will transform the data (Canvas -> Eazl or API format).
+// 4. It will issue a http-put or -post request.
+// 5. It will update the local Array to make sure it is in sync.
+// 6. It will inform the calling component if the request was sucessful.
+
 import { Injectable }                 from '@angular/core';
 import { Headers }                    from '@angular/http';
 import { Http }                       from '@angular/http';

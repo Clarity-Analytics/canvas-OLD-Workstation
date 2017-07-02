@@ -1,6 +1,8 @@
 // Canvas Data Access Layer
-// - load: converts API data to Canvas data format
-// - set: reverse of load
+// It should only be called from Eazl.
+// Only have these two functions; it does not update global variables, etc.
+// - load: converts API data to Canvas data format.  It does CALCULATE extra data needed.
+// - save: reverse of load.  It does ADD data useful to DB.
 
 import { Injectable }                 from '@angular/core';
 
