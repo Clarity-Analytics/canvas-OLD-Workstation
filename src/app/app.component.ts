@@ -104,6 +104,8 @@ this.reconnectingWebSocket.messageWS.subscribe(
             message: 'Your Magnum PI report has completed'
         }
 
+
+
 		this.notificationService.messages.next(this.notificationFromServer);
 		this.notificationFromServer.message = '';
         // let d = new Date();
@@ -544,5 +546,10 @@ this.reconnectingWebSocket.messageWS.subscribe(
         // Return stuff
         return this.menuItems;
     }
+
+testFn() {
+// TODO - remove once done
+this.sendNotificationToServer()
+}
 
 }

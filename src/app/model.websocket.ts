@@ -50,7 +50,7 @@ export class WebSocketCanvasMessage {
 	webSocketDatetime: Date;				// DateTime when the WS server sent the message
 	webSocketSenderUsername: string;		// Sender / originator of the message
 	webSocketMessageType: string;			// = WebSocketCanvasMessage
-	webSocketMessageBody: 
+	webSocketMessageBody:
 		{
 			webSocketRecipients: string;	// CSV list of recipients
 			webSocketDashboardID: number;	// Optional Dashboard that was referenced

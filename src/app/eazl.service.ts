@@ -7423,6 +7423,10 @@ console.log("TODO - restore! this.cacheCanvasData('all', 'reset'   ");
             // Clear all
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear SystemConfiguration');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataSystemConfiguration.next(true);
+
                 this.systemConfiguration = null;
             }
         }
@@ -7541,7 +7545,7 @@ console.log("TODO - restore! this.cacheCanvasData('all', 'reset'   ");
                         (eazlWidget) => {
                             for (var i = 0; i < eazlWidget.length; i++) {
 
-        // TODO - fix code here
+            // TODO - fix code here
                                 // widgetsWorking.push({
                                 //     id: eazlWidget[i].id,
                                 //     name: eazlWidget[i].name,
