@@ -6703,20 +6703,20 @@ export class EazlService implements OnInit {
                 let workTelephoneNumberWorking: string;
                 let photoPathWorking: string;
                 this.get<EazlUser>(`${this.route}`)
-                        .subscribe(
-                            (eazlUser) => {
+                    .subscribe(
+                        (eazlUser) => {
 
-                                // Loop on Array returned, convert to Canvas format into local Array
-                                for (var i = 0; i < eazlUser.length; i++) {
-                                    let userSingle = new User;
-                                    userSingle = this.cdal.loadUser(eazlUser[i]);
-                                    usersWorking.push(userSingle);
+                            // Loop on Array returned, convert to Canvas format into local Array
+                            for (var i = 0; i < eazlUser.length; i++) {
+                                let userSingle = new User;
+                                userSingle = this.cdal.loadUser(eazlUser[i]);
+                                usersWorking.push(userSingle);
 
-                                }
-
-                            // Replace
-                            this.users = usersWorking;
                             }
+
+                        // Replace
+                        this.users = usersWorking;
+                        }
                     )
             }
 
@@ -6739,17 +6739,17 @@ export class EazlService implements OnInit {
                 let groupsWorking: Group[] = [];
                 // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlGroup>('groups')
-                        .subscribe(
-                            (eazlGroup) => {
-                                for (var i = 0; i < eazlGroup.length; i++) {
-                                    let groupSingle = new Group();
-                                    groupSingle = this.cdal.loadGroup(eazlGroup[i]);
-                                    groupsWorking.push(groupSingle);                                    
-                                }
-
-                            // Replace
-                            this.groups = groupsWorking;
+                    .subscribe(
+                        (eazlGroup) => {
+                            for (var i = 0; i < eazlGroup.length; i++) {
+                                let groupSingle = new Group();
+                                groupSingle = this.cdal.loadGroup(eazlGroup[i]);
+                                groupsWorking.push(groupSingle);                                    
                             }
+
+                        // Replace
+                        this.groups = groupsWorking;
+                        }
                     )
             }
 
@@ -6771,19 +6771,19 @@ export class EazlService implements OnInit {
                 let dashboardTabWorking: DashboardTab[] = [];
                 // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlDashboardTab>('dashboard-tabs')
-                        .subscribe(
-                            (eazlDasboardTab) => {
-                                for (var i = 0; i < eazlDasboardTab.length; i++) {
-                                    let dashboardTabSingle = new DashboardTab();
-                                    dashboardTabSingle = this.cdal.loadDashboardTab(eazlDasboardTab[i]);
-                                    dashboardTabWorking.push(dashboardTabSingle);
+                    .subscribe(
+                        (eazlDasboardTab) => {
+                            for (var i = 0; i < eazlDasboardTab.length; i++) {
+                                let dashboardTabSingle = new DashboardTab();
+                                dashboardTabSingle = this.cdal.loadDashboardTab(eazlDasboardTab[i]);
+                                dashboardTabWorking.push(dashboardTabSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardTabs = groupsWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dashboardTabs = groupsWorking;
+                        }
                 )
             }
 
@@ -6804,19 +6804,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let canvasMessageWorking: CanvasMessage[] = [];
                 this.get<EazlCanvasMessage>('canvas-messages')
-                        .subscribe(
-                            (eazlCanvasMessage) => {
-                                for (var i = 0; i < eazlCanvasMessage.length; i++) {
-                                    let canvasMessageSingle = new CanvasMessage();
-                                    canvasMessageSingle = this.cdal.loadCanvasMessage(eazlCanvasMessage[i]);
-                                    canvasMessageWorking.push(canvasMessageSingle);
+                    .subscribe(
+                        (eazlCanvasMessage) => {
+                            for (var i = 0; i < eazlCanvasMessage.length; i++) {
+                                let canvasMessageSingle = new CanvasMessage();
+                                canvasMessageSingle = this.cdal.loadCanvasMessage(eazlCanvasMessage[i]);
+                                canvasMessageWorking.push(canvasMessageSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.canvasMessages = canvasMessageWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.canvasMessages = canvasMessageWorking;
+                        }
                 )
             }
 
@@ -6837,19 +6837,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let canvasMessageRecipientWorking: CanvasMessageRecipient[] = [];
                 this.get<EazlCanvasMessageRecipient>('canvas-message-recipients')
-                        .subscribe(
-                            (eazlCanvasMessageRecipient) => {
-                                for (var i = 0; i < eazlCanvasMessageRecipient.length; i++) {
-                                    let canvasMessageRecipientSingle = new CanvasMessageRecipient();
-                                    canvasMessageRecipientSingle = this.cdal.loadCanvasMessageRecipient(eazlCanvasMessageRecipient[i]);
-                                    canvasMessageRecipientWorking.push(canvasMessageRecipientSingle);
+                    .subscribe(
+                        (eazlCanvasMessageRecipient) => {
+                            for (var i = 0; i < eazlCanvasMessageRecipient.length; i++) {
+                                let canvasMessageRecipientSingle = new CanvasMessageRecipient();
+                                canvasMessageRecipientSingle = this.cdal.loadCanvasMessageRecipient(eazlCanvasMessageRecipient[i]);
+                                canvasMessageRecipientWorking.push(canvasMessageRecipientSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.canvasMessageRecipients = canvasMessageRecipientWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.canvasMessageRecipients = canvasMessageRecipientWorking;
+                        }
                 )
             }
 
@@ -6870,19 +6870,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DashboardGroupWorking: DashboardGroup[] = [];
                 this.get<EazlDashboardGroup>('dashboard-groups')
-                        .subscribe(
-                            (eazlDashboardGroup) => {
-                                for (var i = 0; i < eazlDashboardGroup.length; i++) {
-                                    let DashboardGroupSingle = new DashboardGroup();
-                                    DashboardGroupSingle = this.cdal.loadDashboardGroup(eazlDashboardGroup[i]);
-                                    DashboardGroupWorking.push(DashboardGroupSingle);
+                    .subscribe(
+                        (eazlDashboardGroup) => {
+                            for (var i = 0; i < eazlDashboardGroup.length; i++) {
+                                let DashboardGroupSingle = new DashboardGroup();
+                                DashboardGroupSingle = this.cdal.loadDashboardGroup(eazlDashboardGroup[i]);
+                                DashboardGroupWorking.push(DashboardGroupSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardGroups = dashboardGroupWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dashboardGroups = dashboardGroupWorking;
+                        }
                 )
             }
 
@@ -6903,19 +6903,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DashboardGroupMembershipWorking: DashboardGroupMembership[] = [];
                 this.get<EazlDashboardGroupMembership>('dashboard-group-membership')
-                        .subscribe(
-                            (eazlDashboardGroupMembership) => {
-                                for (var i = 0; i < eazlDashboardGroupMembership.length; i++) {
-                                    let DashboardGroupMembershipSingle = new DashboardGroupMembership();
-                                    DashboardGroupMembershipSingle = this.cdal.loadDashboardGroupMembership(eazlDashboardGroupMembership[i]);
-                                    DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);
+                    .subscribe(
+                        (eazlDashboardGroupMembership) => {
+                            for (var i = 0; i < eazlDashboardGroupMembership.length; i++) {
+                                let DashboardGroupMembershipSingle = new DashboardGroupMembership();
+                                DashboardGroupMembershipSingle = this.cdal.loadDashboardGroupMembership(eazlDashboardGroupMembership[i]);
+                                DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardGroupMembership = dashboardGroupMembershipWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dashboardGroupMembership = dashboardGroupMembershipWorking;
+                        }
                 )
             }
 
@@ -6936,19 +6936,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
                 this.get<EazlDashboardGroupRelationship>('dashboard-group-relationship')
-                        .subscribe(
-                            (eazlDashboardGroupRelationship) => {
-                                for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
-                                    let DashboardGroupRelationshipSingle = new DashboardGroupRelationship();
-                                    DashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
-                                    DashboardGroupRelationshipWorking.push(DashboardGroupRelationshipSingle);
+                    .subscribe(
+                        (eazlDashboardGroupRelationship) => {
+                            for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
+                                let DashboardGroupRelationshipSingle = new DashboardGroupRelationship();
+                                DashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
+                                DashboardGroupRelationshipWorking.push(DashboardGroupRelationshipSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
+                        }
                 )
             }
 
@@ -6969,19 +6969,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DashboardWorking: Dashboard[] = [];
                 this.get<EazlDashboard>('dashboards')
-                        .subscribe(
-                            (eazlDashboard) => {
-                                for (var i = 0; i < eazlDashboard.length; i++) {
-                                    let DashboardSingle = new Dashboard();
-                                    DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
-                                    DashboardWorking.push(DashboardSingle);
+                    .subscribe(
+                        (eazlDashboard) => {
+                            for (var i = 0; i < eazlDashboard.length; i++) {
+                                let DashboardSingle = new Dashboard();
+                                DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
+                                DashboardWorking.push(DashboardSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboards = dashboardWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dashboards = dashboardWorking;
+                        }
                 )
             }
 
@@ -7002,19 +7002,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DashboardsPerUserWorking: DashboardsPerUser[] = [];
                 this.get<EazlDashboardsPerUser>('dashboards-per-user')
-                        .subscribe(
-                            (eazlDashboardsPerUser) => {
-                                for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
-                                    let DashboardsPerUserSingle = new DashboardsPerUser();
-                                    DashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
-                                    DashboardsPerUserWorking.push(DashboardsPerUserSingle);
+                    .subscribe(
+                        (eazlDashboardsPerUser) => {
+                            for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
+                                let DashboardsPerUserSingle = new DashboardsPerUser();
+                                DashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
+                                DashboardsPerUserWorking.push(DashboardsPerUserSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardsPerUser = dashboardsPerUserWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dashboardsPerUser = dashboardsPerUserWorking;
+                        }
                 )
             }
 
@@ -7035,19 +7035,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
                 this.get<EazlDashboardUserRelationship>('dashboard-user-relationships')
-                        .subscribe(
-                            (eazlDashboardUserRelationship) => {
-                                for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
-                                    let DashboardUserRelationshipSingle = new DashboardUserRelationship();
-                                    DashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
-                                    DashboardUserRelationshipWorking.push(DashboardUserRelationshipSingle);
+                    .subscribe(
+                        (eazlDashboardUserRelationship) => {
+                            for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
+                                let DashboardUserRelationshipSingle = new DashboardUserRelationship();
+                                DashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
+                                DashboardUserRelationshipWorking.push(DashboardUserRelationshipSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
+                        }
                 )
             }
 
@@ -7068,19 +7068,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DatasourcesPerUserWorking: DatasourcesPerUser[] = [];
                 this.get<EazlDatasourcesPerUser>('datasources-per-user')
-                        .subscribe(
-                            (eazlDatasourcesPerUser) => {
-                                for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
-                                    let DatasourcesPerUserSingle = new DatasourcesPerUser();
-                                    DatasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
-                                    DatasourcesPerUserWorking.push(DatasourcesPerUserSingle);
+                    .subscribe(
+                        (eazlDatasourcesPerUser) => {
+                            for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
+                                let DatasourcesPerUserSingle = new DatasourcesPerUser();
+                                DatasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
+                                DatasourcesPerUserWorking.push(DatasourcesPerUserSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.datasourcesPerUser = datasourcesPerUserWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.datasourcesPerUser = datasourcesPerUserWorking;
+                        }
                 )
             }
 
@@ -7101,20 +7101,20 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let DataSourceUserAccessWorking: DataSourceUserAccess[] = [];
                 this.get<EazlDataSourceUserAccess>('datasource-user-accesss')
-                        .subscribe(
-                            (eazlDataSourceUserAccess) => {
-                                for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
-                                    let DataSourceUserAccessSingle = new DataSourceUserAccess();
-                                    DataSourceUserAccessSingle = 
-                                        this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
-                                    DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);
+                    .subscribe(
+                        (eazlDataSourceUserAccess) => {
+                            for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
+                                let DataSourceUserAccessSingle = new DataSourceUserAccess();
+                                DataSourceUserAccessSingle = 
+                                    this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
+                                DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
+                        }
                 )
             }
 
@@ -7135,19 +7135,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let FilterWorking: Filter[] = [];
                 this.get<EazlFilter>('filters')
-                        .subscribe(
-                            (eazlFilter) => {
-                                for (var i = 0; i < eazlFilter.length; i++) {
-                                    let FilterSingle = new Filter();
-                                    FilterSingle = this.cdal.loadFilter(eazlFilter[i]);
-                                    FilterWorking.push(FilterSingle);
+                    .subscribe(
+                        (eazlFilter) => {
+                            for (var i = 0; i < eazlFilter.length; i++) {
+                                let FilterSingle = new Filter();
+                                FilterSingle = this.cdal.loadFilter(eazlFilter[i]);
+                                FilterWorking.push(FilterSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.filters = filterWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.filters = filterWorking;
+                        }
                 )
             }
 
@@ -7168,19 +7168,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let GroupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
                 this.get<EazlGroupDatasourceAccess>('group-datasource-accesss')
-                        .subscribe(
-                            (eazlGroupDatasourceAccess) => {
-                                for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
-                                    let GroupDatasourceAccessSingle = new GroupDatasourceAccess();
-                                    GroupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
-                                    GroupDatasourceAccessWorking.push(GroupDatasourceAccessSingle);
+                    .subscribe(
+                        (eazlGroupDatasourceAccess) => {
+                            for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
+                                let GroupDatasourceAccessSingle = new GroupDatasourceAccess();
+                                GroupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
+                                GroupDatasourceAccessWorking.push(GroupDatasourceAccessSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
+                        }
                 )
             }
 
@@ -7201,19 +7201,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let NotificationWorking: Notification[] = [];
                 this.get<EazlNotification>('notifications')
-                        .subscribe(
-                            (eazlNotification) => {
-                                for (var i = 0; i < eazlNotification.length; i++) {
-                                    let NotificationSingle = new Notification();
-                                    NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
-                                    NotificationWorking.push(NotificationSingle);
+                    .subscribe(
+                        (eazlNotification) => {
+                            for (var i = 0; i < eazlNotification.length; i++) {
+                                let NotificationSingle = new Notification();
+                                NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
+                                NotificationWorking.push(NotificationSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.notifications = notificationWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.notifications = notificationWorking;
+                        }
                 )
             }
 
@@ -7234,19 +7234,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let packageTaskWorking: PackageTask[] = [];
                 this.get<EazlPackageTask>('package-tasks')
-                        .subscribe(
-                            (eazlPackageTask) => {
-                                for (var i = 0; i < eazlPackageTask.length; i++) {
-                                    let packageTaskSingle = new PackageTask();
-                                    packageTaskSingle = this.cdal.loadPackageTask(eazlPackageTask[i]);
-                                    packageTaskWorking.push(packageTaskSingle);
+                    .subscribe(
+                        (eazlPackageTask) => {
+                            for (var i = 0; i < eazlPackageTask.length; i++) {
+                                let packageTaskSingle = new PackageTask();
+                                packageTaskSingle = this.cdal.loadPackageTask(eazlPackageTask[i]);
+                                packageTaskWorking.push(packageTaskSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                             this.packageTask = packageTaskWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                            this.packageTask = packageTaskWorking;
+                        }
                 )
             }
 
@@ -7267,19 +7267,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let ReportWorking: Report[] = [];
                 this.get<EazlReport>('reports')
-                        .subscribe(
-                            (eazlReport) => {
-                                for (var i = 0; i < eazlReport.length; i++) {
-                                    let ReportSingle = new Report();
-                                    ReportSingle = this.cdal.loadReport(eazlReport[i]);
-                                    ReportWorking.push(ReportSingle);
+                    .subscribe(
+                        (eazlReport) => {
+                            for (var i = 0; i < eazlReport.length; i++) {
+                                let ReportSingle = new Report();
+                                ReportSingle = this.cdal.loadReport(eazlReport[i]);
+                                ReportWorking.push(ReportSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.reports = reportWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.reports = reportWorking;
+                        }
                 )
             }
 
@@ -7300,19 +7300,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let ReportWidgetSetWorking: ReportWidgetSet[] = [];
                 this.get<EazlReportWidgetSet>('report-widget-sets')
-                        .subscribe(
-                            (eazlReportWidgetSet) => {
-                                for (var i = 0; i < eazlReportWidgetSet.length; i++) {
-                                    let ReportWidgetSetSingle = new ReportWidgetSet();
-                                    ReportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
-                                    ReportWidgetSetWorking.push(ReportWidgetSetSingle);
+                    .subscribe(
+                        (eazlReportWidgetSet) => {
+                            for (var i = 0; i < eazlReportWidgetSet.length; i++) {
+                                let ReportWidgetSetSingle = new ReportWidgetSet();
+                                ReportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
+                                ReportWidgetSetWorking.push(ReportWidgetSetSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.reportWidgetSet = ReportWidgetSetWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.reportWidgetSet = ReportWidgetSetWorking;
+                        }
                 )
             }
 
@@ -7333,19 +7333,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let ReportHistoryWorking: ReportHistory[] = [];
                 this.get<EazlReportHistory>('report-history')
-                        .subscribe(
-                            (eazlReportHistory) => {
-                                for (var i = 0; i < eazlReportHistory.length; i++) {
-                                    let ReportHistorySingle = new ReportHistory();
-                                    ReportHistorySingle = this.cdal.loadReportHistory(eazlReportHistory[i]);
-                                    ReportHistoryWorking.push(ReportHistorySingle);
+                    .subscribe(
+                        (eazlReportHistory) => {
+                            for (var i = 0; i < eazlReportHistory.length; i++) {
+                                let ReportHistorySingle = new ReportHistory();
+                                ReportHistorySingle = this.cdal.loadReportHistory(eazlReportHistory[i]);
+                                ReportHistoryWorking.push(ReportHistorySingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.reportHistory = reportHistoryWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.reportHistory = reportHistoryWorking;
+                        }
                 )
             }
 
@@ -7366,19 +7366,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let ReportUserRelationshipWorking: ReportUserRelationship[] = [];
                 this.get<EazlReportUserRelationship>('report-user-relationships')
-                        .subscribe(
-                            (eazlReportUserRelationship) => {
-                                for (var i = 0; i < eazlReportUserRelationship.length; i++) {
-                                    let ReportUserRelationshipSingle = new ReportUserRelationship();
-                                    ReportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
-                                    ReportUserRelationshipWorking.push(ReportUserRelationshipSingle);
+                    .subscribe(
+                        (eazlReportUserRelationship) => {
+                            for (var i = 0; i < eazlReportUserRelationship.length; i++) {
+                                let ReportUserRelationshipSingle = new ReportUserRelationship();
+                                ReportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
+                                ReportUserRelationshipWorking.push(ReportUserRelationshipSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.reportUserRelationship = reportUserRelationshipWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.reportUserRelationship = reportUserRelationshipWorking;
+                        }
                 )
             }
 
@@ -7399,19 +7399,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let SystemConfigurationWorking: SystemConfiguration[] = [];
                 this.get<EazlSystemConfiguration>('system-configuration')
-                        .subscribe(
-                            (eazlSystemConfiguration) => {
-                                for (var i = 0; i < eazlSystemConfiguration.length; i++) {
-                                    let SystemConfigurationSingle = new SystemConfiguration();
-                                    SystemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
-                                    SystemConfigurationWorking.push(SystemConfigurationSingle);
+                    .subscribe(
+                        (eazlSystemConfiguration) => {
+                            for (var i = 0; i < eazlSystemConfiguration.length; i++) {
+                                let SystemConfigurationSingle = new SystemConfiguration();
+                                SystemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
+                                SystemConfigurationWorking.push(SystemConfigurationSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.systemConfiguration = systemConfigurationWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.systemConfiguration = systemConfigurationWorking;
+                        }
                 )
             }
 
@@ -7431,20 +7431,20 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let UserGroupMembershipWorking: UserGroupMembership[] = [];
-                this.get<EazlUserGroupMembership>('user-group-membership')
-                        .subscribe(
-                            (eazlUserGroupMembership) => {
-                                for (var i = 0; i < eazlUserGroupMembership.length; i++) {
-                                    let UserGroupMembershipSingle = new UserGroupMembership();
-                                    UserGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
-                                    UserGroupMembershipWorking.push(UserGroupMembershipSingle);
+            this.get<EazlUserGroupMembership>('user-group-membership')
+                    .subscribe(
+                        (eazlUserGroupMembership) => {
+                            for (var i = 0; i < eazlUserGroupMembership.length; i++) {
+                                let UserGroupMembershipSingle = new UserGroupMembership();
+                                UserGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
+                                UserGroupMembershipWorking.push(UserGroupMembershipSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.userGroupMembership = userGroupMembershipWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.userGroupMembership = userGroupMembershipWorking;
+                        }
                 )
             }
 
@@ -7465,19 +7465,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let WidgetCommentWorking: WidgetComment[] = [];
                 this.get<EazlWidgetComment>('widget-comments')
-                        .subscribe(
-                            (eazlWidgetComment) => {
-                                for (var i = 0; i < eazlWidgetComment.length; i++) {
-                                    let WidgetCommentSingle = new WidgetComment();
-                                    WidgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
-                                    WidgetCommentWorking.push(WidgetCommentSingle);
+                    .subscribe(
+                        (eazlWidgetComment) => {
+                            for (var i = 0; i < eazlWidgetComment.length; i++) {
+                                let WidgetCommentSingle = new WidgetComment();
+                                WidgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
+                                WidgetCommentWorking.push(WidgetCommentSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.widgetComments = widgetCommentWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.widgetComments = widgetCommentWorking;
+                        }
                 )
             }
 
@@ -7498,19 +7498,19 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let WidgetTemplateWorking: WidgetTemplate[] = [];
                 this.get<EazlWidgetTemplate>('widget-templates')
-                        .subscribe(
-                            (eazlWidgetTemplate) => {
-                                for (var i = 0; i < eazlWidgetTemplate.length; i++) {
-                                    let WidgetTemplateSingle = new WidgetTemplate();
-                                    WidgetTemplateSingle = this.cdal.loadWidgetTemplate(eazlWidgetTemplate[i]);
-                                    WidgetTemplateWorking.push(WidgetTemplateSingle);
+                    .subscribe(
+                        (eazlWidgetTemplate) => {
+                            for (var i = 0; i < eazlWidgetTemplate.length; i++) {
+                                let WidgetTemplateSingle = new WidgetTemplate();
+                                WidgetTemplateSingle = this.cdal.loadWidgetTemplate(eazlWidgetTemplate[i]);
+                                WidgetTemplateWorking.push(WidgetTemplateSingle);
 
-                                }
-
-                            // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.widgetTemplates = widgetTemplateWorking;
                             }
+
+                        // Replace
+                        // TODO - replace local Array after Bradley's done initial upload
+                        //  this.widgetTemplates = widgetTemplateWorking;
+                        }
                 )
             }
 
@@ -7532,23 +7532,23 @@ export class EazlService implements OnInit {
                 let widgetsWorking: EazlWidget[] = [];
                 // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlWidget>('widgets')
-                        .subscribe(
-                            (eazlWidget) => {
-                                for (var i = 0; i < eazlWidget.length; i++) {
+                    .subscribe(
+                        (eazlWidget) => {
+                            for (var i = 0; i < eazlWidget.length; i++) {
 
-            // TODO - fix code here
-                                    // widgetsWorking.push({
-                                    //     id: eazlWidget[i].id,
-                                    //     name: eazlWidget[i].name,
-                                    //     query: eazlWidget[i].query,
-                                    //     widget_type: eazlWidget[i].widget_type,
-                                    //     specification: eazlWidget[i].specification
-                                    // });
-                                }
-
-                            // Replace
-                            // this.widgets = widgetsWorking;
+        // TODO - fix code here
+                                // widgetsWorking.push({
+                                //     id: eazlWidget[i].id,
+                                //     name: eazlWidget[i].name,
+                                //     query: eazlWidget[i].query,
+                                //     widget_type: eazlWidget[i].widget_type,
+                                //     specification: eazlWidget[i].specification
+                                // });
                             }
+
+                        // Replace
+                        // this.widgets = widgetsWorking;
+                        }
                     )
             }
 
@@ -7558,39 +7558,6 @@ export class EazlService implements OnInit {
                 this.widgets = [];
             }
         }
-
-        // // Widget
-        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Widget') {
-
-        //     // Reset
-        //     if (resetAction == 'reset') {
-                // this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Widget');
-
-        //         // Get all the data via API
-        //         let WidgetWorking: Widget[] = [];
-        //         this.get<EazlWidget>('widgets')
-        //                 .subscribe(
-        //                     (eazlWidget) => {
-        //                         for (var i = 0; i < eazlWidget.length; i++) {
-        //                             let WidgetSingle = new Widget();
-        //                             WidgetSingle = this.cdal.loadWidget(eazlWidget[i]);
-        //                             WidgetWorking.push(WidgetSingle);
-
-        //                         }
-
-        //                     // Replace
-        //                     // TODO - replace local Array after Bradley's done initial upload
-        //                     //  this.widgets = widgetWorking;
-        //                     }
-        //         )
-        //     }
-
-        //     // Clear all
-        //     if (resetAction.toLowerCase() == 'clear') {
-                // this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Widget');
-        //         this.widgets = [];
-        //     }
-        // }
 
     }
 }
