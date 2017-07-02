@@ -4760,7 +4760,8 @@ export class EazlService implements OnInit {
                         // Get the data locally
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
-                        this.cacheCanvasData('all', 'reset');
+console.log("TODO - restore! this.cacheCanvasData('all', 'reset'   ");
+                        this.cacheCanvasData('SystemConfiguration', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -4833,7 +4834,7 @@ export class EazlService implements OnInit {
 
     get<T>(route: string, data?: Object): Observable<any> {
         // Get from http
-        this.globalFunctionService.printToConsole(this.constructor.name,'get', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'get-http', '@Start');
 
         return this.http.get(this.prepareRoute(route), this.httpOptions)
             .map(this.parseResponse)
@@ -4842,7 +4843,7 @@ export class EazlService implements OnInit {
 
     post<T>(route: string, data: Object): Observable<any> {
         // Post to http
-        this.globalFunctionService.printToConsole(this.constructor.name,'post', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'post-http', '@Start');
 
         return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.httpOptions)
             .map(this.parseResponse)
@@ -7396,23 +7397,27 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset SystemConfiguration');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataSystemConfiguration.next(true);
+
                 // Get all the data via API
-                let SystemConfigurationWorking: SystemConfiguration[] = [];
+                let systemConfigurationWorking: SystemConfiguration = null;
                 this.get<EazlSystemConfiguration>('system-configuration')
                     .subscribe(
                         (eazlSystemConfiguration) => {
                             for (var i = 0; i < eazlSystemConfiguration.length; i++) {
-                                let SystemConfigurationSingle = new SystemConfiguration();
-                                SystemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
-                                SystemConfigurationWorking.push(SystemConfigurationSingle);
-
+                                let systemConfigurationSingle = new SystemConfiguration();
+                                systemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
+                                systemConfigurationWorking = systemConfigurationSingle;
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.systemConfiguration = systemConfigurationWorking;
+                        this.systemConfiguration = systemConfigurationWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataSystemConfiguration.next(false);
                         }
-                )
+                    )
             }
 
             // Clear all

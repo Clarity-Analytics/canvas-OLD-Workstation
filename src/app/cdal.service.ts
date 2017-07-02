@@ -4,6 +4,8 @@
 // - load: converts API data to Canvas data format.  It does CALCULATE extra data needed.
 // - save: reverse of load.  It does ADD data useful to DB.
 
+// Note: this is done for a SINGLE record - Eazl will add the loop
+
 import { Injectable }                 from '@angular/core';
 
 //  PrimeNG stuffies
@@ -1453,8 +1455,6 @@ export class CDAL {
         //     eazlSystemConfigurationWorking.max_rows_per_widget_graph = 0;
         // }
 
-        // TODO - update DB here with POST ...
-
         // Return the result
         return eazlSystemConfigurationWorking;
     }
@@ -1598,8 +1598,6 @@ export class CDAL {
         } else {
             eazlPersonalisationWorking.snap_to_grid = false;
         }
-
-        // TODO - update DB here with POST ...
 
         // Return the result
         return eazlPersonalisationWorking;
@@ -1784,7 +1782,6 @@ export class CDAL {
         return widgetTemplateWorking;
     }
 
-// TODO - add multiple users who likes it; or not and treat elsewhere
     loadWidget(eazlWidget: EazlWidget): Widget {
         // Load Widget: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidget', '@Start');
@@ -2388,7 +2385,6 @@ export class CDAL {
         return graphTypesWorking;
     }
 
-// TODO Add LOOP to all !!!
     loadBorderDropdowns(eazlBorderDropdowns: SelectItem): SelectItem {
         // Load BorderDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBorderDropdowns', '@Start');

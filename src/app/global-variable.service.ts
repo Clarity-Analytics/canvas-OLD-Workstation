@@ -3,7 +3,7 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 
 // Our Models
 import { CanvasUser }                 from './model.user';
@@ -12,7 +12,7 @@ import { SelectedItemColor }          from './model.selectedItemColor';
 
 @Injectable()
 export class GlobalVariableService {
-    
+
     // Company related variables
     companyName = new BehaviorSubject('Clarity');               // Optional, set in SystemConfig
     companyLogo = new BehaviorSubject('');                      // Optional file name, set in SystemConfig
@@ -20,10 +20,10 @@ export class GlobalVariableService {
     // System-wide related variables, set at Installation
     backendName = new BehaviorSubject('Eazl');
     backendUrl = new BehaviorSubject('');                       // RESTi url, set in SystemConfig
-    defaultDaysToKeepResultSet = new BehaviorSubject(1);        // Optional, set in SystemConfig    
+    defaultDaysToKeepResultSet = new BehaviorSubject(1);        // Optional, set in SystemConfig
     frontendName = new BehaviorSubject('Canvas');
-    maxRowsDataReturned = new BehaviorSubject(1000000);         // Optional, set in SystemConfig    
-    maxRowsPerWidgetGraph = new BehaviorSubject(15)             // Optional, set in SystemConfig    
+    maxRowsDataReturned = new BehaviorSubject(1000000);         // Optional, set in SystemConfig
+    maxRowsPerWidgetGraph = new BehaviorSubject(15)             // Optional, set in SystemConfig
     systemTitle = new BehaviorSubject('Canvas');
 
     // Current User
@@ -51,15 +51,18 @@ export class GlobalVariableService {
     // Environment
     testEnvironmentName = new BehaviorSubject('');   // Spaces = in PROD
 
+    // Dirtiness of system (local) data: True if dirty (all dirty at startup)
+    dirtyDataSystemConfiguration = new BehaviorSubject(true);
+
     // System & operation config
     averageWarningRuntime = new BehaviorSubject(0);
     defaultWidgetConfiguration = new BehaviorSubject('');
     dashboardIDStartup = new BehaviorSubject(-1);
-    defaultReportFilters = new BehaviorSubject(''); 
+    defaultReportFilters = new BehaviorSubject('');
     environment = new BehaviorSubject('');
     frontendColorScheme = new BehaviorSubject('lightgray');
-    growlSticky = new BehaviorSubject(false); 
-    growlLife = new BehaviorSubject(3000); 
+    growlSticky = new BehaviorSubject(false);
+    growlLife = new BehaviorSubject(3000);
     gridSize = new BehaviorSubject(3);
     snapToGrid = new BehaviorSubject(true);
 
@@ -67,33 +70,33 @@ export class GlobalVariableService {
     // as the user uses them, and used the next time (a Widget is created)
     lastContainerFontSize = new BehaviorSubject<SelectedItem>(
         {
-            id: 1, 
+            id: 1,
             name: '1'
         }
     );
     lastColor = new BehaviorSubject<SelectedItemColor>(
         {
-            id: 'black', 
-            name: 'black', 
+            id: 'black',
+            name: 'black',
             code: '#000000'
         }
     );
     lastBoxShadow = new BehaviorSubject<SelectedItem>(
         {
-            id:1, 
+            id:1,
             name: ''
         }
     );
     lastBorder = new BehaviorSubject<SelectedItem>(
         {
-            id:1, 
+            id:1,
             name: '1px solid black'
         }
     );
     lastBackgroundColor = new BehaviorSubject<SelectedItemColor>(
         {
-            id: 'white', 
-            name: 'white', 
+            id: 'white',
+            name: 'white',
             code: '#FFFFFF'
         }
     );
