@@ -8,7 +8,7 @@ export class EazlSystemConfiguration {
     company_logo: string;                   // File name of Company Logo - for later use
     result_expires: number;                 // Number of days to keep ResultSets (auto delete if older)
     default_row_limit: number;         // Max amount of data rows returned from the Server (ever)
-    max_rows_per_widget_graph: number;      // Max nr of rows used per Widget Graph (not tables)
+    // max_rows_per_widget_graph: number;      // Max nr of rows used per Widget Graph (not tables)
 }
 
 // Canvas

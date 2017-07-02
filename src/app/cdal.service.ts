@@ -1381,23 +1381,26 @@ export class CDAL {
             systemConfigurationWorking.backendUrl = '';
         }
 
-        if (eazlSystemConfiguration.default_days_to_keep_resultset != null) {
-            systemConfigurationWorking.defaultDaysToKeepResultSet = eazlSystemConfiguration.default_days_to_keep_resultset;
+        if (eazlSystemConfiguration.result_expires != null) {
+            systemConfigurationWorking.defaultDaysToKeepResultSet = eazlSystemConfiguration.result_expires;
         } else {
             systemConfigurationWorking.defaultDaysToKeepResultSet = 0;
         }
 
-        if (eazlSystemConfiguration.max_rows_data_returned != null) {
-            systemConfigurationWorking.maxRowsDataReturned = eazlSystemConfiguration.max_rows_data_returned;
+        if (eazlSystemConfiguration.default_row_limit != null) {
+            systemConfigurationWorking.maxRowsDataReturned = eazlSystemConfiguration.default_row_limit;
         } else {
             systemConfigurationWorking.maxRowsDataReturned = 0;
         }
 
-        if (eazlSystemConfiguration.max_rows_per_widget_graph != null) {
-            systemConfigurationWorking.maxRowsPerWidgetGraph = eazlSystemConfiguration.max_rows_per_widget_graph;
-        } else {
-            systemConfigurationWorking.maxRowsPerWidgetGraph = 0;
-        }
+        // TODO - fix more better later
+        systemConfigurationWorking.maxRowsPerWidgetGraph = 
+            this.globalVariableService.maxRowsPerWidgetGraph.getValue();
+        // if (eazlSystemConfiguration.max_rows_per_widget_graph != null) {
+        //     systemConfigurationWorking.maxRowsPerWidgetGraph = eazlSystemConfiguration.max_rows_per_widget_graph;
+        // } else {
+        //     systemConfigurationWorking.maxRowsPerWidgetGraph = 0;
+        // }
 
         // Return the result
         return systemConfigurationWorking;
@@ -1430,22 +1433,23 @@ export class CDAL {
         }
 
         if (systemConfiguration.defaultDaysToKeepResultSet != null) {
-            eazlSystemConfigurationWorking.default_days_to_keep_resultset = systemConfiguration.defaultDaysToKeepResultSet;
+            eazlSystemConfigurationWorking.result_expires = systemConfiguration.defaultDaysToKeepResultSet;
         } else {
-            eazlSystemConfigurationWorking.default_days_to_keep_resultset = 0;
+            eazlSystemConfigurationWorking.result_expires = 0;
         }
 
         if (systemConfiguration.maxRowsDataReturned != null) {
-            eazlSystemConfigurationWorking.max_rows_data_returned = systemConfiguration.maxRowsDataReturned;
+            eazlSystemConfigurationWorking.default_row_limit = systemConfiguration.maxRowsDataReturned;
         } else {
-            eazlSystemConfigurationWorking.max_rows_data_returned = 0;
+            eazlSystemConfigurationWorking.default_row_limit = 0;
         }
 
-        if (systemConfiguration.maxRowsPerWidgetGraph != null) {
-            eazlSystemConfigurationWorking.max_rows_per_widget_graph = systemConfiguration.maxRowsPerWidgetGraph;
-        } else {
-            eazlSystemConfigurationWorking.max_rows_per_widget_graph = 0;
-        }
+        // TODO - add in some form or other
+        // if (systemConfiguration.maxRowsPerWidgetGraph != null) {
+        //     eazlSystemConfigurationWorking.max_rows_per_widget_graph = systemConfiguration.maxRowsPerWidgetGraph;
+        // } else {
+        //     eazlSystemConfigurationWorking.max_rows_per_widget_graph = 0;
+        // }
 
         // TODO - update DB here with POST ...
 
