@@ -5566,6 +5566,15 @@ export class EazlService implements OnInit {
         // Return a list of WidgetSets per Report
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTemplates', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'WidgetTemplate data is dirty / not up to date',
+                detail:   'The WidgetTemplate data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // Get the relevant template
         let workingTemplate = this.widgetTemplates.filter(
             wt => wt.widgetTemplateName == widgetTemplateName
@@ -7928,6 +7937,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetTemplate');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidgetTemplate.next(true);
+
                 // Get all the data via API
                 let WidgetTemplateWorking: WidgetTemplate[] = [];
                 this.get<EazlWidgetTemplate>('widget-templates')
@@ -7943,6 +7955,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.widgetTemplates = widgetTemplateWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataWidgetTemplate.next(false);
                         }
                 )
             }
@@ -7951,6 +7966,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetTemplate');
                 this.widgetTemplates = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidgetTemplate.next(true);
             }
         }
 
