@@ -5607,6 +5607,15 @@ export class EazlService implements OnInit {
         // - groupID Optional parameter to select ONE, else select ALL (if >= 0)
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroups', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataGroup.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Group data is dirty / not up to date',
+                detail:   'The Group data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // TODO - from DB
         if (groupID == -1) {
             return this.groups;
@@ -5633,11 +5642,17 @@ export class EazlService implements OnInit {
             groupUpdatedDateTime:this.canvasDate.now('standard'),
             groupUpdatedUserName: currentUser
         })
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataGroup.next(true);
     }
 
     updateGroup(groupID: number, groupName: string, groupDescription: string) {
         // Update a given Group
         this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataGroup.next(true);
 
         let currentUser: string = this.globalFunctionService.currentUser();
 
@@ -5650,11 +5665,17 @@ export class EazlService implements OnInit {
                 this.groups[i].groupUpdatedUserName = currentUser
             }
         };
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataGroup.next(false);
     }
 
     deleteGroup(groupID: number) {
         // Delete a given Group
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroup', '@Start');
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataGroup.next(true);
 
         // Delete the data
         for (var i = 0; i < this.groups.length; i++) {
@@ -5662,6 +5683,9 @@ export class EazlService implements OnInit {
                 this.groups.splice(i,1);
             }
         };
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataGroup.next(false);
     }
 
     getUsersWhoCanAccessDatasource(
@@ -6770,6 +6794,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Group');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGroup.next(true);
+
                 // Get all the data via API
                 let groupsWorking: Group[] = [];
                 // this.get<EazlGroup>(`${this.route}`)
@@ -6784,6 +6811,9 @@ export class EazlService implements OnInit {
 
                         // Replace
                         this.groups = groupsWorking;
+
+                        // Mark the data as dirty
+                        this.globalVariableService.dirtyDataGroup.next(false);
                         }
                     )
             }
@@ -6792,6 +6822,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Group');
                 this.groups = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGroup.next(true);
             }
         }
 
