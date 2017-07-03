@@ -7385,6 +7385,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Filter');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataFilter.next(true);
+
                 // Get all the data via API
                 let FilterWorking: Filter[] = [];
                 this.get<EazlFilter>('filters')
@@ -7400,6 +7403,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.filters = filterWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataFilter.next(false);
                         }
                 )
             }
@@ -7408,6 +7414,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Filter');
                 this.filters = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataFilter.next(true);
             }
         }
 
