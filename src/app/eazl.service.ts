@@ -6714,7 +6714,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset User');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyData.next(true);
+                // this.globalVariableService.dirtyData.next(true);
 
                 // Get all the data via API
                 let usersWorking: User[] = [];
