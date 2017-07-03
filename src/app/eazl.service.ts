@@ -6980,6 +6980,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroup');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardGroup.next(true);
+
                 // Get all the data via API
                 let DashboardGroupWorking: DashboardGroup[] = [];
                 this.get<EazlDashboardGroup>('dashboard-groups')
@@ -6995,6 +6998,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboardGroups = dashboardGroupWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDashboardGroup.next(false);
                         }
                 )
             }
@@ -7003,6 +7009,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroup');
                 this.dashboardGroups = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardGroup.next(true);
             }
         }
 
