@@ -5540,7 +5540,7 @@ export class EazlService implements OnInit {
     getReportHistory(
             username: string ='*',
             reportID: number = -1,
-            datasourceID: number = -1) {
+            datasourceID: number = -1): ReportHistory[] {
         // Return history of reports run, optionally filtered
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
 
