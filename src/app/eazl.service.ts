@@ -7072,6 +7072,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupRelationship');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
+
                 // Get all the data via API
                 let DashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
                 this.get<EazlDashboardGroupRelationship>('dashboard-group-relationship')
@@ -7087,6 +7090,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(false);
                         }
                 )
             }
@@ -7095,6 +7101,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupRelationship');
                 this.dashboardGroupRelationship = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
             }
         }
 

@@ -56,6 +56,7 @@ export class GlobalVariableService {
     dirtyDataCanvasMessageRecipient = new BehaviorSubject(true);
     dirtyDataDashboardGroup = new BehaviorSubject(true);
     dirtyDataDashboardGroupMembership = new BehaviorSubject(true);
+    dirtyDataDashboardGroupRelationship = new BehaviorSubject(true);
     
     dirtyDataSystemConfiguration = new BehaviorSubject(true);
 
