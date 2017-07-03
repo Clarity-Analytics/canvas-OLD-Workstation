@@ -4988,7 +4988,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboard.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Dashboard data is dirty / not up to date',
@@ -5237,7 +5237,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'addWidgetsComments', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataWidgetComment.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'WidgetsComment data is dirty / not up to date',
@@ -5408,7 +5408,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReports', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'ReportUserRelationship data is dirty / not up to date',
@@ -5463,7 +5463,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReport', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Report data is dirty / not up to date',
@@ -5527,7 +5527,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportWidgetSets', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReportWidgetSet.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'ReportWidgetSet data is dirty / not up to date',
@@ -5546,7 +5546,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReportHistory.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'ReportHistory data is dirty / not up to date',
@@ -5569,7 +5569,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTemplates', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataWidgetTemplate.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'WidgetTemplate data is dirty / not up to date',
@@ -5805,7 +5805,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerUser', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDatasourcesPerUser.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DatasourcesPerUser data is dirty / not up to date',
@@ -5887,11 +5887,11 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerUser', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardUserRelationship.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
-                summary:  'DashboardsPerUser data is dirty / not up to date',
-                detail:   'The DashboardsPerUser data is being refreshed; request again to get the latest from the database'
+                summary:  'DashboardUserRelationship data is dirty / not up to date',
+                detail:   'The DashboardUserRelationship data is being refreshed; request again to get the latest from the database'
             });
         }
 
@@ -6016,7 +6016,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDataSourceUserAccess.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DatasourceUserAccess data is dirty / not up to date',
@@ -6090,7 +6090,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupDatasourceAccess', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataGroupDatasourceAccess.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'GroupDatasourceAccess data is dirty / not up to date',
@@ -6155,7 +6155,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataUserGroupMembership.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'UserGroupMembership data is dirty / not up to date',
@@ -6195,7 +6195,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersPerGroup', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataUserGroupMembership.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'UserGroupMembership data is dirty / not up to date',
@@ -6332,7 +6332,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardGroupMembership', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardGroupMembership.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DashboardGroupMembership data is dirty / not up to date',
@@ -6466,7 +6466,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'getUsersRelatedToDashboard', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardUserRelationship.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DataDashboardUserRelationship  data is dirty / not up to date',
@@ -6705,7 +6705,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataCanvasMessage.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'CanvasMessages data is dirty / not up to date',
