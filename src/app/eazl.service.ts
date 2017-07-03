@@ -4569,7 +4569,7 @@ export class EazlService implements OnInit {
         // Returns SystemConfiguration
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.isDirtySystemConfiguration.getValue() == true) {
+        if (this.globalVariableService.dirtyDataSystemConfiguration.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'SystemConfiguration is dirty / not up to date',
@@ -4595,7 +4595,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
 
         // Mark as dirty
-        this.globalVariableService.isDirtySystemConfiguration.next(true) ;
+        this.globalVariableService.dirtyDataSystemConfiguration.next(true) ;
         
         // Update Global Variables
         this.globalVariablesSystemConfiguration(systemConfiguration);
@@ -4607,7 +4607,7 @@ export class EazlService implements OnInit {
         this.systemConfiguration = systemConfiguration;
 
         // Mark as clean
-        this.globalVariableService.isDirtySystemConfiguration.next(false) ;
+        this.globalVariableService.dirtyDataSystemConfiguration.next(false) ;
     }
 
     globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
@@ -4899,7 +4899,7 @@ export class EazlService implements OnInit {
 
                     // TODO - reGet the local => always in sync
                     // Not dirty any longer
-                    this.globalVariableService.isDirtySystemConfiguration.next(false);
+                    this.globalVariableService.dirtyDataSystemConfiguration.next(false);
 
                     // Return the data
                     return this.users;
@@ -6712,6 +6712,9 @@ export class EazlService implements OnInit {
             // Reset
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset User');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyData.next(true);
 
                 // Get all the data via API
                 let usersWorking: User[] = [];
