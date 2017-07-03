@@ -4899,7 +4899,7 @@ export class EazlService implements OnInit {
 
                     // TODO - reGet the local => always in sync
                     // Not dirty any longer
-                    this.globalVariableService.dirtyDataSystemConfiguration.next(false);
+                    this.globalVariableService.dirtyDataUser.next(false);
 
                     // Return the data
                     return this.users;
@@ -4917,6 +4917,15 @@ export class EazlService implements OnInit {
     getUsers(): User[] {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'User data is dirty / not up to date',
+                detail:   'The User data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         return this.users;
     }
@@ -6714,7 +6723,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset User');
 
                 // Mark the data as dirty
-                // this.globalVariableService.dirtyData.next(true);
+                this.globalVariableService.dirtyDataUser.next(true);
 
                 // Get all the data via API
                 let usersWorking: User[] = [];
@@ -6736,6 +6745,9 @@ export class EazlService implements OnInit {
 
                         // Replace
                         this.users = usersWorking;
+
+                        // Mark the data as dirty
+                        this.globalVariableService.dirtyDataUser.next(false);
                         }
                     )
             }
@@ -6744,6 +6756,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear User');
                 this.users = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataUser.next(true);
             }
 
         }

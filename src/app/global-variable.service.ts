@@ -49,6 +49,7 @@ export class GlobalVariableService {
     testEnvironmentName = new BehaviorSubject('');   // Spaces = in PROD
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
+    dirtyDataUser = new BehaviorSubject(true);
     dirtyDataSystemConfiguration = new BehaviorSubject(true);
 
     // System & operation config
