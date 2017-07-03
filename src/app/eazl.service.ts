@@ -7529,6 +7529,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset PackageTask');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataPackageTask.next(true);
+
                 // Get all the data via API
                 let packageTaskWorking: PackageTask[] = [];
                 this.get<EazlPackageTask>('package-tasks')
@@ -7544,6 +7547,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                             this.packageTask = packageTaskWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataPackageTask.next(false);
                         }
                 )
             }
@@ -7552,6 +7558,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear PackageTask');
                 this.packageTask = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataPackageTask.next(true);
             }
         }
 
