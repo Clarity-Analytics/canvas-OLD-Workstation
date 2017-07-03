@@ -7001,6 +7001,15 @@ export class EazlService implements OnInit {
         // Return list of Grapy Types
         this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataGraphType.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'GraphType data is dirty / not up to date',
+                detail:   'The GraphType data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.graphTypes;
     }
 
@@ -8315,8 +8324,46 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataWidgetType.next(true);
             }
         }
-//----
 
+        // GraphType
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GraphType') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GraphType');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGraphType.next(true);
+
+                // Get all the data via API
+                let graphTypeWorking: GraphType[] = [];
+                this.get<EazlGraphType>('graph-type')
+                    .subscribe(
+                        (eazlGraphType) => {
+                            for (var i = 0; i < eazlGraphType.length; i++) {
+                                let graphTypeSingle = new GraphType();
+                                graphTypeSingle = this.cdal.loadGraphTypes(eazlGraphType[i]);
+                                graphTypeWorking.push(graphTypeSingle);                                    
+                            }
+
+                        // Replace
+                        this.graphTypes = graphTypeWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataGraphType.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear GraphType');
+                this.graphTypes = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGraphType.next(true);
+            }
+        }
 
 
 
