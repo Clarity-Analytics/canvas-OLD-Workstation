@@ -1,7 +1,7 @@
 // Schema for the Notification (message layout) class
 
 // TODO - combine this with 
-
+// TODO - merge with CanvasMessage once it has been compeleted
 // Eazl
 export class EazlNotification {
     id: number;
@@ -22,7 +22,7 @@ export class Notification {
 
 // Basic message
 export class WebSocketBasicMessage {
-	webSocketDatetime: Date;			// DateTime when the WS server sent the message
+	webSocketDatetime: string;			// DateTime when the WS server sent the message
 	webSocketSenderUsername: string;	// Sender / originator of the message
 	webSocketMessageType: string;		// Type that determines the body content:
 										// - WebSocketCanvasMessage

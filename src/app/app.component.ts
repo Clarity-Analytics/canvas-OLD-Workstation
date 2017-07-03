@@ -25,6 +25,8 @@ import { ReconnectingWebSocket }      from './websocket.service';
 import { CanvasUser }                 from './model.user';
 import { EazlService }                from './eazl.service';
 import { Notification }               from './model.notification';
+import { WebSocketBasicMessage }      from './model.notification';
+import { WebSocketRefDataMessage }    from './model.notification';
 
 
 @Component({
@@ -49,7 +51,8 @@ export class AppComponent implements OnInit {
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     routerLink:string = '';                         // RouterLink in Menu.Command
     sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
-    private notificationFromServer: Notification;   // Websocket msg
+    notificationFromServer: Notification;           // Websocket msg (OLD TODO - remove later...)
+    webSocketBasicMessage: WebSocketBasicMessage;   // Basic WS message
 
     // Define Variables - define here if a global variable is used in html.
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
@@ -73,7 +76,7 @@ export class AppComponent implements OnInit {
             // Subscribe to Web Socket
 this.reconnectingWebSocket.messageWS.subscribe(
     msg => console.log('msg', msg))            
-            // notificationService.messages.subscribe(msg => {
+            // handleNotificationFromWS.messages.subscribe(msg => {
 
             //     if (msg.messageType != '' ) {
             //         this.globalVariableService.growlGlobalMessage.next({
@@ -88,13 +91,15 @@ this.reconnectingWebSocket.messageWS.subscribe(
             this.globalVariableService.sessionDebugging.next(true);
         }
 
-    sendNotificationToServer() {
-        //   Send Notification To Server
-        this.globalFunctionService.printToConsole(this.constructor.name,'sendNotificationToServer', '@Start');
+    handleNotificationFromWS(message: any) {
+        // Receive and act upon the notification received from the WebSocket 
+        // - message can be of any type, see model.notification.ts for detail
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleNotificationFromWS', '@Start');
 
-        // Refresh the data
-        this.eazlService.cacheCanvasData();
+        // // Refresh the data
+        // this.eazlService.cacheCanvasData();
 
+        // TODO - remove once webSocketBasicMessage is working
         // Temp solution to generate a Web Socket message
         this.notificationFromServer = {
             notificationID: 0,
@@ -103,20 +108,32 @@ this.reconnectingWebSocket.messageWS.subscribe(
             messageType: 'UserMessage',
             message: 'Your Magnum PI report has completed'
         }
-
-// export class WebSocketBasicMessage {
-// 	webSocketDatetime: Date;			// DateTime when the WS server sent the message
-// 	webSocketSenderUsername: string;	// Sender / originator of the message
-// 	webSocketMessageType: string;		// Type that determines the body content:
-// 										// - WebSocketCanvasMessage
-// 										// - WebSocketSystemMessage
-// 										// - WebSocketCeleryMessage
-// 										// - WebSocketRefDataMessage
-// 	webSocketMessageBody: any;			// Detail, as per message type
-// }
-
 		this.notificationService.messages.next(this.notificationFromServer);
 		this.notificationFromServer.message = '';
+
+        // Decide on type of message
+
+        // Reset Reference Data
+        if (message.webSocketMessageType == 'WebSocketRefDataMessage') {
+            let webSocketRefDataMessage: WebSocketRefDataMessage = message;
+         this.eazlService.cacheCanvasData(
+             webSocketRefDataMessage.webSocketMessageBody.webSocketTableName, 
+             'reset'
+        );
+        }
+        if (message.webSocketMessageType == 'WebSocketCeleryMessage') {
+
+        }
+        if (message.webSocketMessageType == 'WebSocketSystemMessage') {
+
+        }
+        if (message.webSocketMessageType == 'WebSocketCanvasMessage') {
+
+        }
+
+
+
+
         // let d = new Date();
         // console.log(d);
         // console.log(this.canvasDate.weekDay(1))
@@ -276,10 +293,25 @@ this.reconnectingWebSocket.messageWS.subscribe(
         // Is triggered after the new Message form is submitted
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCanvasMessageFormSubmit', '@Start');
 
-        // TODO - proper websocket message
+        // TODO - proper websocket message, remove this one
         // Send the message
+        this.webSocketBasicMessage = {
+            webSocketDatetime: '2017/05/01 12:21',
+            webSocketSenderUsername: 'janniei',
+            webSocketMessageType: 'WebSocketRefDataMessage',
+                                                // - WebSocketCanvasMessage
+                                                // - WebSocketSystemMessage
+                                                // - WebSocketCeleryMessage
+                                                // - WebSocketRefDataMessage
+            webSocketMessageBody: {
+                webSocketTableName: 'SystemConfiguration',
+                webSocketAction: 'Add',
+                webSocketRecordID: 14,
+                webSocketMessage: ''
+            }
+        }        
         if (event == 'Submit') {
-            this.sendNotificationToServer();
+            this.handleNotificationFromWS(this.webSocketBasicMessage);
         }
 
         // Rip away popup
@@ -558,6 +590,21 @@ this.reconnectingWebSocket.messageWS.subscribe(
 
 testFn() {
 // TODO - remove once done
-this.sendNotificationToServer()
+        this.webSocketBasicMessage = {
+            webSocketDatetime: '2017/05/01 12:21',
+            webSocketSenderUsername: 'janniei',
+            webSocketMessageType: 'WebSocketRefDataMessage',
+                                                // - WebSocketCanvasMessage
+                                                // - WebSocketSystemMessage
+                                                // - WebSocketCeleryMessage
+                                                // - WebSocketRefDataMessage
+            webSocketMessageBody: {
+                webSocketTableName: 'SystemConfiguration',
+                webSocketAction: 'Add',
+                webSocketRecordID: 14,
+                webSocketMessage: ''
+            }
+        }
+this.handleNotificationFromWS(this.webSocketBasicMessage)
 }
 }

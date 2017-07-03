@@ -4760,8 +4760,8 @@ export class EazlService implements OnInit {
                         // Get the data locally
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
-console.log("TODO - restore! this.cacheCanvasData('all', 'reset'   ");
-                        this.cacheCanvasData('SystemConfiguration', 'reset');
+                            this.cacheCanvasData('all', 'reset');
+                        // this.cacheCanvasData('SystemConfiguration', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
