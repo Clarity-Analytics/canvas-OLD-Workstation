@@ -6905,7 +6905,7 @@ export class EazlService implements OnInit {
         return this.textPositionDropdowns;
     }
 
-    getTextAlignDropdowns() {
+    getTextAlignDropdowns(): SelectItem[] {
         // Returns list of Text Alignment dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextAlignDropdowns', '@Start');
 
