@@ -102,6 +102,7 @@ import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
+import { EazlWidgetType }             from './model.widget.type';
 import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
@@ -6984,6 +6985,15 @@ export class EazlService implements OnInit {
         // Return list of Grapy Types
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTypes', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataWidgetType.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'WidgetType data is dirty / not up to date',
+                detail:   'The WidgetType data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.widgetTypes;
     }
     
@@ -7185,7 +7195,6 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let groupsWorking: Group[] = [];
-                // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlGroup>('groups')
                     .subscribe(
                         (eazlGroup) => {
@@ -7226,7 +7235,6 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let dashboardTabWorking: DashboardTab[] = [];
-                // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlDashboardTab>('dashboard-tabs')
                     .subscribe(
                         (eazlDasboardTab) => {
@@ -8234,7 +8242,6 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let widgetsWorking: EazlWidget[] = [];
-                // this.get<EazlGroup>(`${this.route}`)
                 this.get<EazlWidget>('widgets')
                     .subscribe(
                         (eazlWidget) => {
@@ -8268,6 +8275,50 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataWidget.next(true);
             }
         }
+
+        // WidgetType
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetType') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetType');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidgetType.next(true);
+
+                // Get all the data via API
+                let widgetTypeWorking: WidgetType[] = [];
+                this.get<EazlWidget>('widget-type')
+                    .subscribe(
+                        (eazlWidgetType) => {
+                            for (var i = 0; i < eazlWidgetType.length; i++) {
+                                let widgetTypeSingle = new WidgetType();
+                                widgetTypeSingle = this.cdal.loadWidgetTypes(eazlWidgetType[i]);
+                                widgetTypeWorking.push(widgetTypeSingle);                                    
+                            }
+
+                        // Replace
+                        this.widgetTypes = widgetTypeWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataWidgetType.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetType');
+                this.widgetTypes = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidgetType.next(true);
+            }
+        }
+//----
+
+
+
 
     }
 }
