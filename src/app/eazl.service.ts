@@ -6877,7 +6877,7 @@ export class EazlService implements OnInit {
         return this.isSuperuserDropdown;
     }
 
-    getFontWeightDropdown() {
+    getFontWeightDropdown(): SelectItem[] {
         // Returns list of IsSuperuser dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getFontWeightDropdown', '@Start');
 
