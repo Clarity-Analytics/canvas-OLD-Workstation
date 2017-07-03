@@ -83,6 +83,7 @@ export class GlobalVariableService {
     dirtyDataBoxShadowDropdown = new BehaviorSubject(true);
     dirtyDataFontSizeDropdown = new BehaviorSubject(true);
     dirtyDataGridSizeDropdown = new BehaviorSubject(true);
+    dirtyDataBackgroundImageDropdown = new BehaviorSubject(true);
     
     // System & operation config
     averageWarningRuntime = new BehaviorSubject(0);

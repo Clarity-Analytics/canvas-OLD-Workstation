@@ -7095,6 +7095,14 @@ export class EazlService implements OnInit {
         // Return list of dropdown options for Background Images
         this.globalFunctionService.printToConsole(this.constructor.name,'getBackgroundImageDropdowns', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataBackgroundImageDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'BackgroundImageDropdown data is dirty / not up to date',
+                detail:   'The BackgroundImageDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
         return this.backgroundImageDropdowns;
     }
 
@@ -8558,6 +8566,46 @@ export class EazlService implements OnInit {
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataGridSizeDropdown.next(true);
+            }
+        }
+
+        // BackgroundImageDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'BackgroundImageDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset BackgroundImageDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataBackgroundImageDropdown.next(true);
+
+                // Get all the data via API
+                let BackgroundImageDropdownsWorking: SelectItem[] = [];
+                this.get<SelectItem>('BackgroundImageDropdowns')
+                    .subscribe(
+                        (eazlBackgroundImageDropdown) => {
+                            for (var i = 0; i < eazlBackgroundImageDropdown.length; i++) {
+                                let BackgroundImageDropdownSingle = 
+                                    this.cdal.loadBackgroundImageDropdowns(eazlBackgroundImageDropdown[i]);
+                                BackgroundImageDropdownsWorking.push(BackgroundImageDropdownSingle);                                    
+                            }
+
+                        // Replace
+                        this.backgroundImageDropdowns = BackgroundImageDropdownsWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataBackgroundImageDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear BackgroundImageDropdown');
+                this.backgroundImageDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataBackgroundImageDropdown.next(true);
             }
         }
 
