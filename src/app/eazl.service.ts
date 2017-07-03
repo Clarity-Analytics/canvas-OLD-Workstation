@@ -5524,6 +5524,15 @@ export class EazlService implements OnInit {
         // Return history of reports run, optionally filtered
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'ReportHistory data is dirty / not up to date',
+                detail:   'The ReportHistory data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.reportHistory.filter(rh =>
             (username == '*'        ||   rh.userName == username)
             &&
@@ -7673,6 +7682,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportHistory');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReportHistory.next(true);
+
                 // Get all the data via API
                 let ReportHistoryWorking: ReportHistory[] = [];
                 this.get<EazlReportHistory>('report-history')
@@ -7688,6 +7700,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.reportHistory = reportHistoryWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataReportHistory.next(false);
                         }
                 )
             }
@@ -7696,6 +7711,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportHistory');
                 this.reportHistory = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReportHistory.next(true);
             }
         }
 
