@@ -6834,7 +6834,7 @@ export class EazlService implements OnInit {
         return this.fontSizeDropdowns;
     }
 
-    getGridSizeDropdowns() {
+    getGridSizeDropdowns(): SelectItem[] {
         // Return list of dropdown options for Grid Sizes
         this.globalFunctionService.printToConsole(this.constructor.name,'getGridSizeDropdowns', '@Start');
 
