@@ -6530,6 +6530,15 @@ export class EazlService implements OnInit {
         // - widgetID Optional filter, -1 = all
         this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'CanvasMessages data is dirty / not up to date',
+                detail:   'The CanvasMessages data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // Return the necessary
         let found: boolean = false;
         let myStatus: string = '';
@@ -6887,6 +6896,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset CanvasMessage');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataCanvasMessage.next(true);
+
                 // Get all the data via API
                 let canvasMessageWorking: CanvasMessage[] = [];
                 this.get<EazlCanvasMessage>('canvas-messages')
@@ -6902,6 +6914,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.canvasMessages = canvasMessageWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataCanvasMessage.next(false);
                         }
                 )
             }
@@ -6910,6 +6925,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear CanvasMessage');
                 this.canvasMessages = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataCanvasMessage.next(true);
             }
         }
 
@@ -6919,6 +6937,9 @@ export class EazlService implements OnInit {
             // Reset
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset CanvasMessageRecipient');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataCanvasMessageRecipient.next(true);
 
                 // Get all the data via API
                 let canvasMessageRecipientWorking: CanvasMessageRecipient[] = [];
@@ -6935,6 +6956,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.canvasMessageRecipients = canvasMessageRecipientWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataCanvasMessageRecipient.next(false);
                         }
                 )
             }
@@ -6943,6 +6967,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear CanvasMessageRecipient');
                 this.canvasMessageRecipients = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataCanvasMessageRecipient.next(true);
             }
         }
 
