@@ -6079,7 +6079,10 @@ export class EazlService implements OnInit {
         });
     }
 
-    getGroupDatasourceAccess(groupID: number = -1, datasourceID: number = -1) {
+    getGroupDatasourceAccess(
+        groupID: number = -1, 
+        datasourceID: number = -1
+        ): GroupDatasourceAccess[] {
         // Return of list with group - datasource access
         // - groupID Optional filter, -1 = all
         // - datasourceID Optional filter,-1 = all
