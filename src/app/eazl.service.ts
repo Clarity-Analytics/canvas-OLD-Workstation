@@ -6813,7 +6813,7 @@ export class EazlService implements OnInit {
         return maxZindex;
     }
 
-    getBorderDropdowns() {
+    getBorderDropdowns(): SelectItem[] {
         // Return list of dropdown options for Borders
         this.globalFunctionService.printToConsole(this.constructor.name,'getBorderDropdowns', '@Start');
 
