@@ -6884,7 +6884,7 @@ export class EazlService implements OnInit {
         return this.fontWeightDropdown;
     }
 
-    getTextMarginDropdowns() {
+    getTextMarginDropdowns(): SelectItem[] {
         // Returns list of Text Margin dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextMarginDropdowns', '@Start');
 
