@@ -6912,7 +6912,7 @@ export class EazlService implements OnInit {
         return this.textAlignDropdowns;
     }
 
-    getImageSourceDropdowns() {
+    getImageSourceDropdowns(): SelectItem[] {
         // Returns list of Image Source file dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getImageSourceDropdowns', '@Start');
 
