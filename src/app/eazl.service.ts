@@ -5161,8 +5161,6 @@ export class EazlService implements OnInit {
         return dashboardTabsDropDownWorking;
     }
 
-
-
     updateDashboardTab(dashboardID: number,
         dashboardTabID: number,
         dashboardTabDescription: string
@@ -5194,7 +5192,7 @@ export class EazlService implements OnInit {
         return lastWidgetID + 1;
     }
 
-    getWidgetsForDashboard(selectedDashboardID: number, selectedDashboarTabName: string) {
+    getWidgetsForDashboard(selectedDashboardID: number, selectedDashboarTabName: string): Widget[] {
         // Return a list of Dashboards
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
 
