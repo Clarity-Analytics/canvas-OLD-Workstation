@@ -5441,6 +5441,15 @@ export class EazlService implements OnInit {
         // Return a single Report
         this.globalFunctionService.printToConsole(this.constructor.name,'getReport', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Report data is dirty / not up to date',
+                detail:   'The Report data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         for (var i = 0; i < this.reports.length; i++) {
             if (this.reports[i].reportID == reportID) {
                 return this.reports[i];
@@ -7571,6 +7580,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Report');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReport.next(true);
+
                 // Get all the data via API
                 let ReportWorking: Report[] = [];
                 this.get<EazlReport>('reports')
@@ -7586,6 +7598,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.reports = reportWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataReport.next(false);
                         }
                 )
             }
@@ -7594,6 +7609,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Report');
                 this.reports = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReport.next(true);
             }
         }
 
