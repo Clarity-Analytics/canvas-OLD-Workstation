@@ -4587,6 +4587,14 @@ export class EazlService implements OnInit {
         // Returns Personalisation
         this.globalFunctionService.printToConsole(this.constructor.name,'getPersonalisation', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataPersonalisation.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Personalisation is dirty / not up to date',
+                detail:   'The Personalisation data is being refreshed; request again to get the latest from the database'
+            });
+        }
         return this.personalisation;
     }
 
@@ -4643,6 +4651,9 @@ export class EazlService implements OnInit {
         // - personalisation New data
         this.globalFunctionService.printToConsole(this.constructor.name,'updatePersonalisation', '@Start');
 
+        // Mark as dirty
+        this.globalVariableService.dirtyDataPersonalisation.next(true) ;
+
         // Refresh globals variables that may have changed
         this.globalVariablesPersonalisation(personalisation);
 
@@ -4651,6 +4662,9 @@ export class EazlService implements OnInit {
         
         // Update local array
         this.personalisation = personalisation;
+
+        // Mark as clean
+        this.globalVariableService.dirtyDataPersonalisation.next(false) ;
     }
 
     globalVariablesPersonalisation(personalisation: Personalisation) {
@@ -4954,7 +4968,13 @@ export class EazlService implements OnInit {
         // - dashboardID: ID of Dashboard to update
         // - showContainerHeader: new value of showContainerHeader field
 
+        // Mark the data as dirty
+        // this.globalVariableService.dirtyData....next(true);
+
         // TODO - update for real in DB
+
+        // Mark the data as dirty
+        // this.globalVariableService.dirtyData....next(true);
     }
 
     updateDashboardBackgroundColor(
@@ -5089,6 +5109,15 @@ export class EazlService implements OnInit {
         // - relationshipType Optional type, ie SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardSelectionItems', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDashboard.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Dashboard data is dirty / not up to date',
+                detail:   'The Dashboard data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // Get a list of Dashboards
         let dashboardsWorking: Dashboard[] = this.getDashboards(
             dashboardID,
@@ -5110,7 +5139,6 @@ export class EazlService implements OnInit {
         return dashboardsSelectItemsWorking;
     }
 
-
     getDashboardTabs(selectedDashboardID: number, selectedDashboardTabID?: number): DashboardTab[] {
         // Return a list of Dashboard Tabs for a given DashboardID,
         //   and Optionally if a DashboardTabID was given
@@ -5120,8 +5148,8 @@ export class EazlService implements OnInit {
         if (this.globalVariableService.dirtyDataDashboardTab.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
-                summary:  'DashboardTa data is dirty / not up to date',
-                detail:   'The DashboardTa data is being refreshed; request again to get the latest from the database'
+                summary:  'DashboardTab data is dirty / not up to date',
+                detail:   'The DashboardTab data is being refreshed; request again to get the latest from the database'
             });
         }
 
@@ -5142,6 +5170,15 @@ export class EazlService implements OnInit {
         // Return a list of Dashboard Tabs for a given DashboardID as SelectItem Array
         // - selectedDashboardID = filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabsSelectItem', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDashboardTab.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DashboardTab data is dirty / not up to date',
+                detail:   'The DashboardTab data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         let workingDashboardTabs: DashboardTab[] = [];
         let dashboardTabsDropDownWorking: SelectItem[] = [];
@@ -5169,6 +5206,9 @@ export class EazlService implements OnInit {
         // Update the details (like description) for a Dashboard Tab)
         this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardTab', '@Start');
 
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardTab.next(true);
+
         // Get the Tab
         let workingDashboardTabs: DashboardTab[] = [];
         workingDashboardTabs = this.getDashboardTabs(dashboardID, dashboardTabID)
@@ -5176,6 +5216,10 @@ export class EazlService implements OnInit {
         // Update detail
         if (workingDashboardTabs.length > 0) {
             workingDashboardTabs[0].dashboardTabDescription = dashboardTabDescription;
+
+            // Mark the data as clean
+            this.globalVariableService.dirtyDataDashboardTab.next(false);
+
             return true;
         } else {
             return false;
@@ -5185,6 +5229,15 @@ export class EazlService implements OnInit {
     getWidgetLastWidgetID(): number {
         // Return the last (biggest) WidgetID
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataWidget.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Widget data is dirty / not up to date',
+                detail:   'The Widget data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // TODO - do via Eazl into DB
         let lastWidgetID = this.widgets[this.widgets.length - 1].properties.widgetID;
@@ -5196,6 +5249,15 @@ export class EazlService implements OnInit {
     getWidgetsForDashboard(selectedDashboardID: number, selectedDashboarTabName: string): Widget[] {
         // Return a list of Dashboards
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataWidget.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Widget data is dirty / not up to date',
+                detail:   'The Widget data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // Calc WIDGET certain fields, as it is easy to use in *ngIf or *ngFor
         // TODO - this is impure - do better
@@ -5236,15 +5298,6 @@ export class EazlService implements OnInit {
         // Add a Widget Comment to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'addWidgetsComments', '@Start');
 
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataWidgetComment.getValue() == true) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'WidgetsComment data is dirty / not up to date',
-                detail:   'The WidgetsComment data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
         this.widgetComments.push(
             {
                 widgetCommentID: inputWidgetCommentID,
@@ -5256,12 +5309,24 @@ export class EazlService implements OnInit {
                 widgetCommentBody: inputWidgetCommentBody
             }
         )
+
+        // Mark as dirty
+        this.globalVariableService.dirtyDataWidgetComment.next(false);
     }
 
     getWidgetsComments(selectedWidgetID: number): WidgetComment[] {
         // Return a list of Widget Comments
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsComments', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataWidgetComment.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'WidgetComment data is dirty / not up to date',
+                detail:   'The WidgetComment data is being refreshed; request again to get the latest from the database'
+            });
+        }
+        
         return this.widgetComments.filter(widgetComment =>
             widgetComment.widgetID == selectedWidgetID
         );
@@ -5411,6 +5476,15 @@ export class EazlService implements OnInit {
         if (this.globalVariableService.dirtyDataReport.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
+                summary:  'Report data is dirty / not up to date',
+                detail:   'The Report data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataReportUserRelationship.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
                 summary:  'ReportUserRelationship data is dirty / not up to date',
                 detail:   'The ReportUserRelationship data is being refreshed; request again to get the latest from the database'
             });
@@ -5482,6 +5556,15 @@ export class EazlService implements OnInit {
         // Return a list of Reports
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFields', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Report data is dirty / not up to date',
+                detail:   'The Report data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         for (var i = 0; i < this.reports.length; i++) {
             if (this.reports[i].reportID == reportID) {
                 return this.reports[i].reportFields;
@@ -5492,6 +5575,15 @@ export class EazlService implements OnInit {
     getReportFieldSelectedItems(reportID: number): SelectItem[] {
         // Return a list of Report Fields in SelectItem format
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldSelectedItems', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Report data is dirty / not up to date',
+                detail:   'The Report data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         let reportWorking: Report = this.getReport(reportID);
 
@@ -5514,6 +5606,15 @@ export class EazlService implements OnInit {
     getReportData(reportID: number): string[] {
         // Return a list of Reports
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportData', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Report data is dirty / not up to date',
+                detail:   'The Report data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         for (var i = 0; i < this.reports.length; i++) {
             if (this.reports[i].reportID == reportID) {
@@ -5783,6 +5884,15 @@ export class EazlService implements OnInit {
         // - include: True = those who can access, False = CANNOT access
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersWhoCanAccessDatasource', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDataSourceUserAccess.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DataSourceUserAccess data is dirty / not up to date',
+                detail:   'DataSourceUserAccess User data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // Get list of usernames with access
         // TODO - when from DB, add access type as I think this will be useful
         let usernames: string[] = [];
@@ -5961,6 +6071,15 @@ export class EazlService implements OnInit {
         // - include: True means that has access, False means has NO access
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerGroup', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataGroupDatasourceAccess.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'GroupDatasourceAccess data is dirty / not up to date',
+                detail:   'The GroupDatasourceAccess data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // TODO - from DB
         // Get Array of all Groups IDs
         let resultDS: number[] = [];
@@ -5985,6 +6104,15 @@ export class EazlService implements OnInit {
         // - datasourceID filter
         // - include: True means that has access, False means has NO access
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerDatasource', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataGroupDatasourceAccess.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'GroupDatasourceAccess data is dirty / not up to date',
+                detail:   'The GroupDatasourceAccess data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // TODO - from DB
         // Get Array of all Groups IDs
@@ -6054,6 +6182,15 @@ export class EazlService implements OnInit {
         // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
         // - include Optional filter: True = include, False = complement (NO access)
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDataSourceUserAccess.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DatasourceUserAccess data is dirty / not up to date',
+                detail:   'The DatasourceUserAccess data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // Create list of Datasource IDs that are relevant
         let dataSourceIDs: number[] = [];
@@ -6137,6 +6274,9 @@ export class EazlService implements OnInit {
                 }
             )
         }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
     }
 
     deleteDatasourceUserAccess(datasourceID: number, username: string) {
@@ -6146,6 +6286,9 @@ export class EazlService implements OnInit {
         this.dataSourceUserAccess = this.dataSourceUserAccess.filter(
             item => (!(item.datasourceID == datasourceID  &&  item.userName == username))
         );
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
     }
 
     getGroupsPerUser(username: string = '', include: boolean = true): Group[] {
@@ -6259,6 +6402,9 @@ export class EazlService implements OnInit {
                 }
             )
         }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataUserGroupMembership.next(true);
     }
 
     deleteUserGroupMembership(username: string, groupID: number) {
@@ -6268,6 +6414,9 @@ export class EazlService implements OnInit {
         this.userGroupMembership = this.userGroupMembership.filter(
             item => (!(item.userName == username  &&  item.groupID == groupID))
         );
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataUserGroupMembership.next(true);
     }
 
     addGroupDatasourceAccess(datasourceID: number, groupID: number) {
@@ -6405,16 +6554,25 @@ export class EazlService implements OnInit {
                 }
             )
         }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
     }
 
     deleteDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
         // Deletes a Dashboard - Group record to the Dashboard Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupMembership', '@Start');
 
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
+
         this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
             item => (!(item.dashboardID == dashboardID  &&
                        item.dashboardGroupID == dashboardGroupID))
         );
+
+        // Mark the data as clean
+        this.globalVariableService.dirtyDataDashboardGroupMembership.next(false);
     }
 
     getGroupsRelatedToDashboard(
@@ -6428,6 +6586,15 @@ export class EazlService implements OnInit {
         // - include: True = related, False = complement (NOT related)
         // - groupID: Optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'getGroupsRelatedToDashboard', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDashboardGroupRelationship.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DashboardGroupRelationship data is dirty / not up to date',
+                detail:   'The DashboardGroupRelationship data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         let groupIDs: number[] = [];
         this.dashboardGroupRelationship.forEach(gd => {
@@ -6539,6 +6706,9 @@ export class EazlService implements OnInit {
                     dashboardGroupRelationshipUpdatedUserName: currentUser
                 });
         }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
     }
 
     deleteDashboardGroupRelationship(
@@ -6547,6 +6717,9 @@ export class EazlService implements OnInit {
         relationshipType: string) {
         // Removes Group from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupRelationship', '@Start');
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
 
         let currentUser: string = this.globalFunctionService.currentUser();
 
@@ -6561,6 +6734,9 @@ export class EazlService implements OnInit {
                     this.dashboardGroupRelationship.splice(i, 1);
                 }
         }
+
+        // Mark the data as clean
+        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(false);
     }
 
     addDashboardUserRelationship(
@@ -6642,6 +6818,15 @@ export class EazlService implements OnInit {
         // Note: Dashboard <1-many> Widget <1-1> Report <1-1> DataSource
         // TODO - agree design to integrate with Overlay, and do in DB
         this.globalFunctionService.printToConsole(this.constructor.name,'getDataSources', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDatasource.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Datasource data is dirty / not up to date',
+                detail:   'The Datasource data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // Return all if no filter
         if (dashboardID == -1) {
@@ -6760,6 +6945,15 @@ export class EazlService implements OnInit {
         // Updates the status of the CanvasMessage for the current user
         // - messageID message to update
         this.globalFunctionService.printToConsole(this.constructor.name,'canvasMessageToggleRead', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataCanvasMessage.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'CanvasMessages data is dirty / not up to date',
+                detail:   'The CanvasMessages data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // Return the necessary
         let username: string = '';
