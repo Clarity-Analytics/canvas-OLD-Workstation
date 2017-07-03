@@ -6692,7 +6692,11 @@ export class EazlService implements OnInit {
         }
     }
 
-    getCanvasMessages(dashboardID: number = -1, reportID: number = -1, widgetID: number = -1) {
+    getCanvasMessages(
+        dashboardID: number = -1, 
+        reportID: number = -1, 
+        widgetID: number = -1
+        ): CanvasMessage[] {
         // Returns CanvasMessages
         // - dashboardID Optional filter, -1 = all
         // - reportID Optional filter, -1 = all
