@@ -7079,6 +7079,15 @@ export class EazlService implements OnInit {
         // Return list of dropdown options for Grid Sizes
         this.globalFunctionService.printToConsole(this.constructor.name,'getGridSizeDropdowns', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataGridSizeDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'GridSizeDropdown data is dirty / not up to date',
+                detail:   'The GridSizeDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.gridSizeDropdowns;
     }
 
@@ -8509,6 +8518,46 @@ export class EazlService implements OnInit {
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataFontSizeDropdown.next(true);
+            }
+        }
+
+        // GridSizeDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GridSizeDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GridSizeDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGridSizeDropdown.next(true);
+
+                // Get all the data via API
+                let GridSizeDropdownsWorking: SelectItem[] = [];
+                this.get<SelectItem>('GridSizeDropdowns')
+                    .subscribe(
+                        (eazlGridSizeDropdown) => {
+                            for (var i = 0; i < eazlGridSizeDropdown.length; i++) {
+                                let GridSizeDropdownSingle = 
+                                    this.cdal.loadGridSizeDropdowns(eazlGridSizeDropdown[i]);
+                                GridSizeDropdownsWorking.push(GridSizeDropdownSingle);                                    
+                            }
+
+                        // Replace
+                        this.gridSizeDropdowns = GridSizeDropdownsWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataGridSizeDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear GridSizeDropdown');
+                this.gridSizeDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGridSizeDropdown.next(true);
             }
         }
 
