@@ -4937,7 +4937,13 @@ export class EazlService implements OnInit {
         // - dashboardID: ID of Dashboard to update
         // - isContainerHeaderDark: new value of isContainerHeaderDark field
 
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboard.next(true);
+
         // TODO - update for real in DB
+
+        // Mark the data as clean
+        this.globalVariableService.dirtyDataDashboard.next(false);
     }
 
     updateDashboardshowContainerHeader(
@@ -4979,6 +4985,15 @@ export class EazlService implements OnInit {
         // - relatedUsername Optional username
         // - relationshipType Optional type, ie SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Dashboard data is dirty / not up to date',
+                detail:   'The Dashboard data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
@@ -7114,6 +7129,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Dashboard');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboard.next(true);
+
                 // Get all the data via API
                 let DashboardWorking: Dashboard[] = [];
                 this.get<EazlDashboard>('dashboards')
@@ -7129,6 +7147,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboards = dashboardWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDashboard.next(false);
                         }
                 )
             }
@@ -7137,6 +7158,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Dashboard');
                 this.dashboards = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboard.next(true);
             }
         }
 
