@@ -7047,6 +7047,15 @@ export class EazlService implements OnInit {
         // Return list of dropdown options for Box Shadows
         this.globalFunctionService.printToConsole(this.constructor.name,'getBoxShadowDropdowns', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataBoxShadowDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'BoxShadowDropdown data is dirty / not up to date',
+                detail:   'The BoxShadowDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.boxShadowDropdowns;
     }
 
@@ -8306,7 +8315,7 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let widgetTypeWorking: WidgetType[] = [];
-                this.get<EazlWidget>('widget-type')
+                this.get<EazlWidget>('widget-types')
                     .subscribe(
                         (eazlWidgetType) => {
                             for (var i = 0; i < eazlWidgetType.length; i++) {
@@ -8386,7 +8395,7 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let borderDropdownWorking: SelectItem[] = [];
-                this.get<SelectItem>('border-dropdown')
+                this.get<SelectItem>('border-dropdowns')
                     .subscribe(
                         (eazlBorderDropdown) => {
                             for (var i = 0; i < eazlBorderDropdown.length; i++) {
@@ -8411,6 +8420,46 @@ export class EazlService implements OnInit {
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataBorderDropdown.next(true);
+            }
+        }
+
+        // BoxShadowDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'BoxShadowDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset BoxShadowDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataBoxShadowDropdown.next(true);
+
+                // Get all the data via API
+                let boxShadowDropdownsWorking: SelectItem[] = [];
+                this.get<SelectItem>('boxshadow-dropdowns')
+                    .subscribe(
+                        (eazlBoxShadowDropdown) => {
+                            for (var i = 0; i < eazlBoxShadowDropdown.length; i++) {
+                                let boxShadowDropdownSingle = 
+                                    this.cdal.loadBoxShadowDropdowns(eazlBoxShadowDropdown[i]);
+                                boxShadowDropdownsWorking.push(boxShadowDropdownSingle);                                    
+                            }
+
+                        // Replace
+                        this.boxShadowDropdowns = boxShadowDropdownsWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataBoxShadowDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear BoxShadowDropdown');
+                this.boxShadowDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataBoxShadowDropdown.next(true);
             }
         }
 
