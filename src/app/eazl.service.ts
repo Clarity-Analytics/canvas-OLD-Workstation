@@ -6898,7 +6898,7 @@ export class EazlService implements OnInit {
         return this.textPaddingDropdowns;
     }
 
-    getTextPositionDropdowns() {
+    getTextPositionDropdowns(): SelectItem[] {
         // Returns list of Text Position dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextPositionDropdowns', '@Start');
 
