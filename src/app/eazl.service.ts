@@ -5741,6 +5741,15 @@ export class EazlService implements OnInit {
         // - username filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerUser', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DatasourcesPerUser data is dirty / not up to date',
+                detail:   'DatasourcesPerUser User data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         let datasourceWorking: DataSource[] = [];
         let datasourceName: string = '';
 
@@ -6345,6 +6354,15 @@ export class EazlService implements OnInit {
         // - username Optional filter
         this.globalFunctionService.printToConsole(this.constructor.name, 'getUsersRelatedToDashboard', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DataDashboardUserRelationship  data is dirty / not up to date',
+                detail:   'The DataDashboardUserRelationship  data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // Get Array of UserNames that are related to this Dashboard, or Not if include = false
         let userNames: string[] = [];
         this.dashboardUserRelationship.forEach(dur => {
@@ -6474,6 +6492,9 @@ export class EazlService implements OnInit {
                     dashboardUserRelationshipUpdatedUserName: currentUser
                 });
         }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
     }
 
     deleteDashboardUserRelationship(
@@ -6482,6 +6503,9 @@ export class EazlService implements OnInit {
         relationshipType: string) {
         // Removes user from a Dashboard Relationship
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardUserRelationship', '@Start');
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
 
         let currentUser: string = this.globalFunctionService.currentUser();
 
@@ -6496,6 +6520,9 @@ export class EazlService implements OnInit {
                     this.dashboardUserRelationship.splice(i, 1);
                 }
         }
+
+        // Mark the data as clean
+        this.globalVariableService.dirtyDataDashboardUserRelationship.next(false);
     }
 
     getDataSources(dashboardID: number = -1) {
@@ -7222,6 +7249,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardUserRelationship');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
+
                 // Get all the data via API
                 let DashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
                 this.get<EazlDashboardUserRelationship>('dashboard-user-relationships')
@@ -7237,6 +7267,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDashboardUserRelationship.next(false);
                         }
                 )
             }
@@ -7245,6 +7278,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardUserRelationship');
                 this.dashboardUserRelationship = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
             }
         }
 
@@ -7254,6 +7290,9 @@ export class EazlService implements OnInit {
             // Reset
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DatasourcesPerUser');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDatasourcesPerUser.next(true);
 
                 // Get all the data via API
                 let DatasourcesPerUserWorking: DatasourcesPerUser[] = [];
@@ -7270,6 +7309,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.datasourcesPerUser = datasourcesPerUserWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDatasourcesPerUser.next(false);
                         }
                 )
             }
@@ -7278,6 +7320,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DatasourcesPerUser');
                 this.datasourcesPerUser = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDatasourcesPerUser.next(true);
             }
         }
 
