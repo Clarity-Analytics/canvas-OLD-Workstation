@@ -6820,7 +6820,7 @@ export class EazlService implements OnInit {
         return this.borderDropdowns;
     }
 
-    getBoxShadowDropdowns() {
+    getBoxShadowDropdowns(): SelectItem[] {
         // Return list of dropdown options for Box Shadows
         this.globalFunctionService.printToConsole(this.constructor.name,'getBoxShadowDropdowns', '@Start');
 
