@@ -6007,7 +6007,7 @@ export class EazlService implements OnInit {
     getDatasourceUserAccess(
             datasourceID: number = -1,
             username: string = '*',
-            accessType: string = '*') {
+            accessType: string = '*'): DataSourceUserAccess[] {
         // Return a list of Datasource-User and their access
         // - datasourceID Optional filter,
         // - username Optional filter
