@@ -7031,6 +7031,15 @@ export class EazlService implements OnInit {
         // Return list of dropdown options for Borders
         this.globalFunctionService.printToConsole(this.constructor.name,'getBorderDropdowns', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataBorderDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'BorderDropdown data is dirty / not up to date',
+                detail:   'The BorderDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.borderDropdowns;
     }
 
@@ -8365,6 +8374,45 @@ export class EazlService implements OnInit {
             }
         }
 
+        // BorderDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'BorderDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset BorderDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataBorderDropdown.next(true);
+
+                // Get all the data via API
+                let borderDropdownWorking: SelectItem[] = [];
+                this.get<SelectItem>('border-dropdown')
+                    .subscribe(
+                        (eazlBorderDropdown) => {
+                            for (var i = 0; i < eazlBorderDropdown.length; i++) {
+                                let borderDropdownSingle = 
+                                    this.cdal.loadBorderDropdowns(eazlBorderDropdown[i]);
+                                borderDropdownWorking.push(borderDropdownSingle);                                    
+                            }
+
+                        // Replace
+                        this.borderDropdowns = borderDropdownWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataBorderDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear BorderDropdown');
+                this.borderDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataBorderDropdown.next(true);
+            }
+        }
 
 
     }
