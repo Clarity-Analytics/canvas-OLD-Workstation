@@ -4979,7 +4979,7 @@ export class EazlService implements OnInit {
     getDashboards(
         dashboardID: number = -1,
         relatedUsername: string = '*',
-        relationshipType: string = '') {
+        relationshipType: string = ''): Dashboard[] {
         // Return a list of Dashboards, with optional filters
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
         // - relatedUsername Optional username
