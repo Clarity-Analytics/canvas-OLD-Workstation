@@ -6635,7 +6635,7 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataDashboardUserRelationship.next(false);
     }
 
-    getDataSources(dashboardID: number = -1) {
+    getDataSources(dashboardID: number = -1): DataSource[] {
         // List of Data Sources
         // - dashboardID is optional Dashboard to filter on
         // Note: Dashboard <1-many> Widget <1-1> Report <1-1> DataSource
