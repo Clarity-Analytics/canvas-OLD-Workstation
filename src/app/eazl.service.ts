@@ -6827,7 +6827,7 @@ export class EazlService implements OnInit {
         return this.boxShadowDropdowns;
     }
 
-    getFontSizeDropdowns() {
+    getFontSizeDropdowns(): SelectItem[] {
         // Return list of dropdown options for Font Size
         this.globalFunctionService.printToConsole(this.constructor.name,'getFontSizeDropdowns', '@Start');
 
