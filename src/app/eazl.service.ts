@@ -6780,7 +6780,7 @@ export class EazlService implements OnInit {
         }
     }
 
-    getWidgetTypes(): GraphType[] {
+    getWidgetTypes(): WidgetType[] {
         // Return list of Grapy Types
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTypes', '@Start');
 
