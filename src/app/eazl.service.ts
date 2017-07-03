@@ -5257,7 +5257,7 @@ export class EazlService implements OnInit {
         )
     }
 
-    getWidgetsComments(selectedWidgetID: number) {
+    getWidgetsComments(selectedWidgetID: number): WidgetComment[] {
         // Return a list of Widget Comments
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsComments', '@Start');
 
