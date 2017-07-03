@@ -6023,6 +6023,15 @@ export class EazlService implements OnInit {
         // - datasourceID Optional filter,-1 = all
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupDatasourceAccess', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'GroupDatasourceAccess data is dirty / not up to date',
+                detail:   'The GroupDatasourceAccess data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.groupDatasourceAccess.filter(gDS => (
             (groupID == -1  ||  gDS.groupID == groupID)
             &&
@@ -6208,15 +6217,24 @@ export class EazlService implements OnInit {
                 }
             )
         }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
     }
 
     deleteGroupDatasourceAccess(datasourceID: number, groupID: number) {
         // Deletes a Datasource - Group record from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroupDatasourceAccess', '@Start');
 
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
+
         this.groupDatasourceAccess = this.groupDatasourceAccess.filter(
             item => (!(item.datasourceID == datasourceID  &&  item.groupID == groupID))
         );
+
+        // Mark the data as clean
+        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(false);
     }
 
     getDashboardGroupMembership(
@@ -7427,6 +7445,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GroupDatasourceAccess');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
+
                 // Get all the data via API
                 let GroupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
                 this.get<EazlGroupDatasourceAccess>('group-datasource-accesss')
@@ -7442,6 +7463,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(false);
                         }
                 )
             }
@@ -7450,6 +7474,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear GroupDatasourceAccess');
                 this.groupDatasourceAccess = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
             }
         }
 
