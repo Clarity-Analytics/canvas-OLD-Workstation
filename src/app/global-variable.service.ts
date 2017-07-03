@@ -51,6 +51,7 @@ export class GlobalVariableService {
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     dirtyDataUser = new BehaviorSubject(true);
     dirtyDataGroup = new BehaviorSubject(true);
+    dirtyDataDashboardTab = new BehaviorSubject(true);
     
     dirtyDataSystemConfiguration = new BehaviorSubject(true);
 

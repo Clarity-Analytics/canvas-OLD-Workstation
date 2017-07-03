@@ -5100,6 +5100,15 @@ export class EazlService implements OnInit {
         //   and Optionally if a DashboardTabID was given
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabs', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDashboardTab.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DashboardTa data is dirty / not up to date',
+                detail:   'The DashboardTa data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         let workingDashboardTabs: DashboardTab[] = [];
 
         workingDashboardTabs = this.dashboardTabs.filter(
@@ -6770,7 +6779,7 @@ export class EazlService implements OnInit {
                         // Replace
                         this.users = usersWorking;
 
-                        // Mark the data as dirty
+                        // Mark the data as clean
                         this.globalVariableService.dirtyDataUser.next(false);
                         }
                     )
@@ -6812,7 +6821,7 @@ export class EazlService implements OnInit {
                         // Replace
                         this.groups = groupsWorking;
 
-                        // Mark the data as dirty
+                        // Mark the data as clean
                         this.globalVariableService.dirtyDataGroup.next(false);
                         }
                     )
@@ -6835,6 +6844,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTab');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardTab.next(true);
+
                 // Get all the data via API
                 let dashboardTabWorking: DashboardTab[] = [];
                 // this.get<EazlGroup>(`${this.route}`)
@@ -6851,6 +6863,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboardTabs = groupsWorking;
+
+                // Mark the data as clean
+                this.globalVariableService.dirtyDataDashboardTab.next(false);
                         }
                 )
             }
@@ -6859,6 +6874,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTab');
                 this.dashboardTabs = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardTab.next(true);
             }
         }
 
