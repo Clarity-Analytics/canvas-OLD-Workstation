@@ -70,6 +70,7 @@ export class GlobalVariableService {
     dirtyDataReportWidgetSet = new BehaviorSubject(true);
     dirtyDataReportHistory = new BehaviorSubject(true);
     dirtyDataReportUserRelationship = new BehaviorSubject(true);
+    dirtyDataUserGroupMembership = new BehaviorSubject(true);
     
     dirtyDataSystemConfiguration = new BehaviorSubject(true);
 

@@ -6124,6 +6124,15 @@ export class EazlService implements OnInit {
         // - include Optional parameter, true = include all for user, else group NOT for username
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'UserGroupMembership data is dirty / not up to date',
+                detail:   'The UserGroupMembership data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // TODO - from DB
         // Get Array of groups to in or ex clude
         let resultUsergroupMembership: number[] = [];
@@ -6154,6 +6163,15 @@ export class EazlService implements OnInit {
         // - groupID Optional parameter, -1 = include all
         // - include, True means to which belongs, False means complements (NOT)
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersPerGroup', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'UserGroupMembership data is dirty / not up to date',
+                detail:   'The UserGroupMembership data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // TODO - from DB
         // Get Array of users to in or ex clude
@@ -7816,6 +7834,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset UserGroupMembership');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataUserGroupMembership.next(true);
+
                 // Get all the data via API
                 let UserGroupMembershipWorking: UserGroupMembership[] = [];
             this.get<EazlUserGroupMembership>('user-group-membership')
@@ -7831,6 +7852,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.userGroupMembership = userGroupMembershipWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataUserGroupMembership.next(false);
                         }
                 )
             }
@@ -7839,6 +7863,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear UserGroupMembership');
                 this.userGroupMembership = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataUserGroupMembership.next(true);
             }
         }
 
