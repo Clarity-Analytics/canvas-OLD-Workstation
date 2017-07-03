@@ -4569,7 +4569,7 @@ export class EazlService implements OnInit {
         // Returns SystemConfiguration
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.isDirtyUsers.getValue() == true) {
+        if (this.globalVariableService.isDirtySystemConfiguration.getValue() == true) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'SystemConfiguration is dirty / not up to date',
@@ -4595,7 +4595,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
 
         // Mark as dirty
-        this.globalVariableService.isDirtyUsers.next(true) ;
+        this.globalVariableService.isDirtySystemConfiguration.next(true) ;
         
         // Update Global Variables
         this.globalVariablesSystemConfiguration(systemConfiguration);
@@ -4607,7 +4607,7 @@ export class EazlService implements OnInit {
         this.systemConfiguration = systemConfiguration;
 
         // Mark as clean
-        this.globalVariableService.isDirtyUsers.next(false) ;
+        this.globalVariableService.isDirtySystemConfiguration.next(false) ;
     }
 
     globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
@@ -4899,7 +4899,7 @@ export class EazlService implements OnInit {
 
                     // TODO - reGet the local => always in sync
                     // Not dirty any longer
-                    this.globalVariableService.isDirtyUsers.next(false);
+                    this.globalVariableService.isDirtySystemConfiguration.next(false);
 
                     // Return the data
                     return this.users;
