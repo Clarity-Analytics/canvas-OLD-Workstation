@@ -7063,6 +7063,15 @@ export class EazlService implements OnInit {
         // Return list of dropdown options for Font Size
         this.globalFunctionService.printToConsole(this.constructor.name,'getFontSizeDropdowns', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataFontSizeDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'FontSizeDropdown data is dirty / not up to date',
+                detail:   'The FontSizeDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.fontSizeDropdowns;
     }
 
@@ -8460,6 +8469,46 @@ export class EazlService implements OnInit {
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataBoxShadowDropdown.next(true);
+            }
+        }
+
+        // FontSizeDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'FontSizeDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset FontSizeDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataFontSizeDropdown.next(true);
+
+                // Get all the data via API
+                let fontSizeDropdownsWorking: SelectItem[] = [];
+                this.get<SelectItem>('FontSizeDropdowns')
+                    .subscribe(
+                        (eazlFontSizeDropdown) => {
+                            for (var i = 0; i < eazlFontSizeDropdown.length; i++) {
+                                let fontSizeDropdownSingle = 
+                                    this.cdal.loadFontSizeDropdowns(eazlFontSizeDropdown[i]);
+                                fontSizeDropdownsWorking.push(fontSizeDropdownSingle);                                    
+                            }
+
+                        // Replace
+                        this.fontSizeDropdowns = fontSizeDropdownsWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataFontSizeDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear FontSizeDropdown');
+                this.fontSizeDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataFontSizeDropdown.next(true);
             }
         }
 
