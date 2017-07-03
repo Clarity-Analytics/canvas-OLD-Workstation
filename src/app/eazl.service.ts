@@ -5952,6 +5952,15 @@ export class EazlService implements OnInit {
         // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DatasourceUserAccess data is dirty / not up to date',
+                detail:   'The DatasourceUserAccess data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         let dataSourceUserAccessWorking = this.dataSourceUserAccess;
 
         // Filter as needed
@@ -7333,6 +7342,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DataSourceUserAccess');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
+
                 // Get all the data via API
                 let DataSourceUserAccessWorking: DataSourceUserAccess[] = [];
                 this.get<EazlDataSourceUserAccess>('datasource-user-accesss')
@@ -7349,6 +7361,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDataSourceUserAccess.next(false);
                         }
                 )
             }
@@ -7357,6 +7372,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DataSourceUserAccess');
                 this.dataSourceUserAccess = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
             }
         }
 
