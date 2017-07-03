@@ -5395,6 +5395,15 @@ export class EazlService implements OnInit {
         // - relationship Optiona filter of Type of relationship IF username: Likes, Rates, Owns
         this.globalFunctionService.printToConsole(this.constructor.name,'getReports', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'ReportUserRelationship data is dirty / not up to date',
+                detail:   'The ReportUserRelationship data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         // Get all of them
         let reportsWorking: Report[] = this.reports;
 
@@ -7724,6 +7733,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportUserRelationship');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReportUserRelationship.next(true);
+
                 // Get all the data via API
                 let ReportUserRelationshipWorking: ReportUserRelationship[] = [];
                 this.get<EazlReportUserRelationship>('report-user-relationships')
@@ -7739,6 +7751,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.reportUserRelationship = reportUserRelationshipWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataReportUserRelationship.next(false);
                         }
                 )
             }
@@ -7747,6 +7762,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportUserRelationship');
                 this.reportUserRelationship = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReportUserRelationship.next(true);
             }
         }
 
