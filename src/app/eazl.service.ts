@@ -5814,6 +5814,15 @@ export class EazlService implements OnInit {
         // - username filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerUser', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DashboardsPerUser data is dirty / not up to date',
+                detail:   'The DashboardsPerUser data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         let dashboardsWorking: Dashboard[] = [];
         let dashboardName: string = '';
 
@@ -7171,6 +7180,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardsPerUser');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardsPerUser.next(true);
+
                 // Get all the data via API
                 let DashboardsPerUserWorking: DashboardsPerUser[] = [];
                 this.get<EazlDashboardsPerUser>('dashboards-per-user')
@@ -7186,6 +7198,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboardsPerUser = dashboardsPerUserWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDashboardsPerUser.next(false);
                         }
                 )
             }
@@ -7194,6 +7209,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardsPerUser');
                 this.dashboardsPerUser = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardsPerUser.next(true);
             }
         }
 

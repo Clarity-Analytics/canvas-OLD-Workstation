@@ -58,6 +58,7 @@ export class GlobalVariableService {
     dirtyDataDashboardGroupMembership = new BehaviorSubject(true);
     dirtyDataDashboardGroupRelationship = new BehaviorSubject(true);
     dirtyDataDashboard = new BehaviorSubject(true);
+    dirtyDataDashboardsPerUser = new BehaviorSubject(true);
     
     dirtyDataSystemConfiguration = new BehaviorSubject(true);
 
