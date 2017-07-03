@@ -6185,8 +6185,16 @@ export class EazlService implements OnInit {
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else
         //   group NOT for dashboardID
-
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardGroupMembership', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'DashboardGroupMembership data is dirty / not up to date',
+                detail:   'The DashboardGroupMembership data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         // TODO - from DB
         // Get Array of groups to in or ex clude
@@ -7022,6 +7030,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupMembership');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
+
                 // Get all the data via API
                 let DashboardGroupMembershipWorking: DashboardGroupMembership[] = [];
                 this.get<EazlDashboardGroupMembership>('dashboard-group-membership')
@@ -7037,6 +7048,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboardGroupMembership = dashboardGroupMembershipWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDashboardGroupMembership.next(false);
                         }
                 )
             }
@@ -7045,6 +7059,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupMembership');
                 this.dashboardGroupMembership = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
             }
         }
 
