@@ -91,6 +91,7 @@ import { EazlGraphType }              from './model.graph.type';
 import { EazlGroup }                  from './model.group';
 import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
+import { EazlPersonalisation }        from  './model.personalisation';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
@@ -7857,6 +7858,47 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataSystemConfiguration.next(true);
 
                 this.systemConfiguration = null;
+            }
+        }
+
+        // Personalisation
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Personalisation') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Personalisation');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataPersonalisation.next(true);
+
+                // Get all the data via API
+                let personalisationWorking: Personalisation = null;
+                this.get<EazlPersonalisation>('personalisation')
+                    .subscribe(
+                        (eazlPersonalisation) => {
+                            for (var i = 0; i < eazlPersonalisation.length; i++) {
+                                let personalisationSingle = new Personalisation();
+                                personalisationSingle = this.cdal.loadPersonalisation(eazlPersonalisation[i]);
+                                personalisationWorking = personalisationSingle;
+                            }
+
+                        // Replace
+                        this.personalisation = personalisationWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataPersonalisation.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Personalisation');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataPersonalisation.next(true);
+
+                this.personalisation = null;
             }
         }
 
