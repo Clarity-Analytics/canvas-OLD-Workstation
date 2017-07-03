@@ -67,6 +67,7 @@ export class GlobalVariableService {
     dirtyDataNotification = new BehaviorSubject(true);
     dirtyDataPackageTask = new BehaviorSubject(true);
     dirtyDataReport = new BehaviorSubject(true);
+    dirtyDataReportWidgetSet = new BehaviorSubject(true);
     
     dirtyDataSystemConfiguration = new BehaviorSubject(true);
 

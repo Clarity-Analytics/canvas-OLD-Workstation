@@ -5505,6 +5505,15 @@ export class EazlService implements OnInit {
         // Return a list of WidgetSets per Report
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportWidgetSets', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'ReportWidgetSet data is dirty / not up to date',
+                detail:   'The ReportWidgetSet data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.reportWidgetSet.filter(wset => wset.reportID == reportID);
     }
 
@@ -7622,6 +7631,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportWidgetSet');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReportWidgetSet.next(true);
+
                 // Get all the data via API
                 let ReportWidgetSetWorking: ReportWidgetSet[] = [];
                 this.get<EazlReportWidgetSet>('report-widget-sets')
@@ -7637,6 +7649,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.reportWidgetSet = ReportWidgetSetWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataReportWidgetSet.next(false);
                         }
                 )
             }
@@ -7645,6 +7660,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportWidgetSet');
                 this.reportWidgetSet = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataReportWidgetSet.next(true);
             }
         }
 
