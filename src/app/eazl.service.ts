@@ -5236,6 +5236,16 @@ export class EazlService implements OnInit {
         ) {
         // Add a Widget Comment to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'addWidgetsComments', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'WidgetsComment data is dirty / not up to date',
+                detail:   'The WidgetsComment data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         this.widgetComments.push(
             {
                 widgetCommentID: inputWidgetCommentID,
@@ -7876,6 +7886,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetComment');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidgetComment.next(true);
+
                 // Get all the data via API
                 let WidgetCommentWorking: WidgetComment[] = [];
                 this.get<EazlWidgetComment>('widget-comments')
@@ -7891,6 +7904,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.widgetComments = widgetCommentWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataWidgetComment.next(false);
                         }
                 )
             }
@@ -7899,6 +7915,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetComment');
                 this.widgetComments = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidgetComment.next(true);
             }
         }
 
