@@ -7487,6 +7487,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Notification');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataNotification.next(true);
+
                 // Get all the data via API
                 let NotificationWorking: Notification[] = [];
                 this.get<EazlNotification>('notifications')
@@ -7502,6 +7505,9 @@ export class EazlService implements OnInit {
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.notifications = notificationWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataNotification.next(false);
                         }
                 )
             }
@@ -7510,6 +7516,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Notification');
                 this.notifications = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataNotification.next(true);
             }
         }
 
