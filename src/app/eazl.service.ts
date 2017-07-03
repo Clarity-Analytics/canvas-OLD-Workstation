@@ -5272,6 +5272,9 @@ export class EazlService implements OnInit {
         // Add a new Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'addWidget', '@Start');
         this.widgets.push(widget)
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataWidget.next(true);
     }
 
     getDefaultWidgetConfig (): Widget {
@@ -5645,6 +5648,9 @@ export class EazlService implements OnInit {
         // - isLikedNewState = new state, so true -> add user, else delete
         this.globalFunctionService.printToConsole(this.constructor.name,'updateWidgetIsLiked', '@Start');
 
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataWidget.next(true);
+
         let foundUser: boolean = false;
 
         // Add
@@ -5679,6 +5685,9 @@ export class EazlService implements OnInit {
                 }
             }
         }
+
+        // Mark the data as clean
+        this.globalVariableService.dirtyDataWidget.next(false);
     }
 
     getGroups(groupID: number = -1): Group[] {
@@ -7979,6 +7988,9 @@ export class EazlService implements OnInit {
             if (resetAction == 'reset') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Widget');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidget.next(true);
+
                 // Get all the data via API
                 let widgetsWorking: EazlWidget[] = [];
                 // this.get<EazlGroup>(`${this.route}`)
@@ -7999,6 +8011,9 @@ export class EazlService implements OnInit {
 
                         // Replace
                         // this.widgets = widgetsWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataWidget.next(false);
                         }
                     )
             }
@@ -8007,6 +8022,9 @@ export class EazlService implements OnInit {
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Widget');
                 this.widgets = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataWidget.next(true);
             }
         }
 

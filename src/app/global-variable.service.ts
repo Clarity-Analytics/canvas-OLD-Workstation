@@ -70,12 +70,12 @@ export class GlobalVariableService {
     dirtyDataReportWidgetSet = new BehaviorSubject(true);
     dirtyDataReportHistory = new BehaviorSubject(true);
     dirtyDataReportUserRelationship = new BehaviorSubject(true);
+    dirtyDataSystemConfiguration = new BehaviorSubject(true);
     dirtyDataUserGroupMembership = new BehaviorSubject(true);
     dirtyDataWidgetComment = new BehaviorSubject(true);
     dirtyDataWidgetTemplate = new BehaviorSubject(true);
+    dirtyDataWidget = new BehaviorSubject(true);
     
-    dirtyDataSystemConfiguration = new BehaviorSubject(true);
-
     // System & operation config
     averageWarningRuntime = new BehaviorSubject(0);
     defaultWidgetConfiguration = new BehaviorSubject('');
