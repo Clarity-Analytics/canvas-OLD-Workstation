@@ -10,13 +10,13 @@
 // Process for reading system data:
 // 1. At start (before login) all system resources are marked as dirty.
 // 2. At login, Canvas issues async requests for all system data.
-// 3. This component will issue an http-get request, and transform the result 
+// 3. This component will issue an http-get request, and transform the result
 //    (Eazl -> Canvas format).  This method currently lives in CDAL, but will probably move.
 // 4. The Canvas formatted data is stored in local Arrays.
 // 5. All DSs are now marked as clean.
-// 6. When a Canvas module needs data, it issues a get-DS (DS = DataSource) request to 
+// 6. When a Canvas module needs data, it issues a get-DS (DS = DataSource) request to
 //    this module.
-// 7. It simply returns the local Array (with filtering and additional calculated 
+// 7. It simply returns the local Array (with filtering and additional calculated
 //    data where necessary).
 // Note:  it does not check if there is data in the Array, or if the data is clean.
 //        It knows when a DS is dirty, so in time we may issue a warning to the user.
@@ -26,8 +26,8 @@
 // 2. When system data is changed on the server, the API sends a message to all active
 //    users (logged in at that point in time).
 // 3. On receipt of a message, Canvas marks that data-source as dirty.
-// 4. This component will issue an http-get request to get the latest copy of the data, 
-//    and transform the result (Eazl -> Canvas format).  This method currently lives 
+// 4. This component will issue an http-get request to get the latest copy of the data,
+//    and transform the result (Eazl -> Canvas format).  This method currently lives
 //    in CDAL, but will probably move.
 // 5. The Canvas formatted data is stored in a local Array.
 // 6. It will mark the DS as clean.
@@ -35,7 +35,7 @@
 
 // Process for changes to system data:
 // 1. This component is the only place where data is read or updated.
-// 2. The Canvas component issues data-related requests to this component as 
+// 2. The Canvas component issues data-related requests to this component as
 //    add-, delete-, update-DS requests.
 // 3. This component will transform the data (Canvas -> Eazl or API format).
 // 4. It will issue a http-put or -post request.
@@ -78,6 +78,12 @@ import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
+
+
+import { APIDashboard }              from './model.dashboards';
+
+
+
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroup }         from './model.dashboardGroup';
@@ -144,35 +150,35 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
         maxRowsPerWidgetGraph: 15,
     }
 
-export const ISSTAFFDROPDOWN: SelectItem[] = 
+export const ISSTAFFDROPDOWN: SelectItem[] =
     [
-        { 
-            label: 'Select option', 
-            value: '' 
+        {
+            label: 'Select option',
+            value: ''
         },
-        { 
-            label: 'Is Staff Member', 
-            value: 'True' 
+        {
+            label: 'Is Staff Member',
+            value: 'True'
         },
-        { 
-            label: 'Non-staff', 
-            value: 'False' 
+        {
+            label: 'Non-staff',
+            value: 'False'
         },
     ]
 
 export const ISSUPERUSERDROPDOWN: SelectItem[] =
     [
-        { 
-            label: 'Select option', 
-            value: '' 
+        {
+            label: 'Select option',
+            value: ''
         },
-        { 
-            label: 'Is Superuser', 
-            value: 'True' 
+        {
+            label: 'Is Superuser',
+            value: 'True'
         },
-        { 
-            label: 'Normal staff', 
-            value: 'False' 
+        {
+            label: 'Normal staff',
+            value: 'False'
         }
     ]
 
@@ -320,18 +326,18 @@ export const FONTSIZEDROPDOWNS: SelectItem[] =
 export const FONTWEIGHTDROPDOWNS: SelectItem[] =
     [
         {
-            label: 'Normal', 
-            value: 
+            label: 'Normal',
+            value:
                 {
-                    id: 0, 
+                    id: 0,
                     name: 'normal'
                 }
         },
         {
-            label: 'Bold',   
+            label: 'Bold',
             value:
                 {
-                    id: 1, 
+                    id: 1,
                     name: 'bold'
                 }
         }
@@ -340,118 +346,118 @@ export const FONTWEIGHTDROPDOWNS: SelectItem[] =
 export const TEXTMARGINDROPDOWNS: SelectItem[] =
     [
         {
-            label: 'None',   
+            label: 'None',
             value:
                 {
-                    id: 0, 
+                    id: 0,
                     name: '0'
                 }
         },
         {
-            label: 'Small',  
+            label: 'Small',
             value:
                 {
-                    id: 1, 
+                    id: 1,
                     name: '5px 5px 5px 5px'
                 }
         },
         {
-            label: 'Medium', 
+            label: 'Medium',
             value:
                 {
-                    id: 2, 
+                    id: 2,
                     name: '20px 20px 20px 20px'
                 }
         },
         {
-            label: 'Large',  
+            label: 'Large',
             value:
                 {
-                    id: 3, 
-                    name: '50px 50px 50px 50px'
-                }
-        }
-    ]
-    
-export const TEXTPADDINGDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'None',   
-            value: 
-                {
-                    id: 0, 
-                    name: '0'
-                }
-        },
-        {
-            label: 'Small',  
-            value: 
-                {
-                    id: 1, 
-                    name: '5px 5px 5px 5px'
-                }
-        },
-        {
-            label: 'Medium', 
-            value: 
-                {
-                    id: 2, 
-                    name: '20px 20px 20px 20px'
-                }
-        },
-        {
-            label: 'Large',  
-            value: 
-                {
-                    id: 3, 
+                    id: 3,
                     name: '50px 50px 50px 50px'
                 }
         }
     ]
 
-export const TEXTPOSITIONDROPDOWNS: SelectItem[] = 
+export const TEXTPADDINGDROPDOWNS: SelectItem[] =
     [
         {
-            label: 'Relative',  
+            label: 'None',
             value:
                 {
-                    id: 0, 
+                    id: 0,
+                    name: '0'
+                }
+        },
+        {
+            label: 'Small',
+            value:
+                {
+                    id: 1,
+                    name: '5px 5px 5px 5px'
+                }
+        },
+        {
+            label: 'Medium',
+            value:
+                {
+                    id: 2,
+                    name: '20px 20px 20px 20px'
+                }
+        },
+        {
+            label: 'Large',
+            value:
+                {
+                    id: 3,
+                    name: '50px 50px 50px 50px'
+                }
+        }
+    ]
+
+export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
+    [
+        {
+            label: 'Relative',
+            value:
+                {
+                    id: 0,
                     name: 'relative'
                 }
         },
         {
-            label: 'Absolute',  
+            label: 'Absolute',
             value:
                 {
-                    id: 1, 
+                    id: 1,
                     name: 'absolute'
                 }
         }
     ]
 
-export const TEXTALIGNDROPDOWNS: SelectItem[] = 
+export const TEXTALIGNDROPDOWNS: SelectItem[] =
     [
         {
-            label: 'Left',     
+            label: 'Left',
             value:
                 {
-                    id: 0, 
+                    id: 0,
                     name: 'left'
                 }
         },
         {
-            label: 'Center',   
+            label: 'Center',
             value:
                 {
-                    id: 1, 
+                    id: 1,
                     name: 'center'
                 }
         },
         {
-            label: 'Right',    
+            label: 'Right',
             value:
                 {
-                    id: 2, 
+                    id: 2,
                     name: 'right'
                 }
         }
@@ -460,10 +466,10 @@ export const TEXTALIGNDROPDOWNS: SelectItem[] =
 export const IMAGESOURCEDROPDOWNS: SelectItem[] =
     [
         {
-            label: 'Coffee', 
+            label: 'Coffee',
             value:
                 {
-                    id: 1, 
+                    id: 1,
                     name: '../assets/coffee.jpg'
                 }
         }
@@ -597,7 +603,7 @@ export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
         },
     ];
 
-export const GRAPHTYPES: GraphType[] = 
+export const GRAPHTYPES: GraphType[] =
     [
         {
             label: 'BarChart',
@@ -622,7 +628,7 @@ export const GRAPHTYPES: GraphType[] =
         },
     ];
 
-export const WIDGETTYPES: WidgetType[] = 
+export const WIDGETTYPES: WidgetType[] =
     [
         {
             label: 'WidgetSet',
@@ -660,8 +666,8 @@ export const WIDGETTYPES: WidgetType[] =
             }
         }
     ];
-       
-export const PERSONALISATION: Personalisation = 
+
+export const PERSONALISATION: Personalisation =
     {
         personalisationID: 0,
         averageWarningRuntime: 3,
@@ -1034,6 +1040,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '',
             dashboardRefreshedUserName: '',
             dashboardRefreshMode: 'Manual',
+            dashboardRefreshFrequency: 0,
             dashboardNrUsersSharedWith: 0,
             dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
@@ -1062,6 +1069,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserName: '',
             dashboardRefreshMode: 'Manual',
+            dashboardRefreshFrequency: 0,
             dashboardNrUsersSharedWith: 0,
             dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
@@ -1090,6 +1098,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserName: '',
             dashboardRefreshMode: 'Manual',
+            dashboardRefreshFrequency: 0,
             dashboardNrUsersSharedWith: 0,
             dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
@@ -1118,6 +1127,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserName: '',
             dashboardRefreshMode: 'Manual',
+            dashboardRefreshFrequency: 0,
             dashboardNrUsersSharedWith: 0,
             dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
@@ -1146,6 +1156,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserName: '',
             dashboardRefreshMode: 'Manual',
+            dashboardRefreshFrequency: 0,
             dashboardNrUsersSharedWith: 0,
             dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
@@ -1174,6 +1185,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardRefreshedDateTime: '2016/08/07',
             dashboardRefreshedUserName: '',
             dashboardRefreshMode: 'Manual',
+            dashboardRefreshFrequency: 0,
             dashboardNrUsersSharedWith: 0,
             dashboardNrGroupsSharedWith: 0,
             dashboardSystemMessage: '',
@@ -4606,7 +4618,7 @@ export class EazlService implements OnInit {
 
         // Mark as dirty
         this.globalVariableService.dirtyDataSystemConfiguration.next(true) ;
-        
+
         // Update Global Variables
         this.globalVariablesSystemConfiguration(systemConfiguration);
 
@@ -4621,7 +4633,7 @@ export class EazlService implements OnInit {
     }
 
     globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
-        //  Refresh (.next) global variables 
+        //  Refresh (.next) global variables
         // - systemConfiguration New data
         this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesSystemConfiguration', '@Start');
 
@@ -4660,7 +4672,7 @@ export class EazlService implements OnInit {
 
         // Store in DB
         this.cdal.savePersonalisation(personalisation);
-        
+
         // Update local array
         this.personalisation = personalisation;
 
@@ -4792,8 +4804,8 @@ export class EazlService implements OnInit {
                         // Get the data locally
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
-                            this.cacheCanvasData('all', 'reset');
-                        // this.cacheCanvasData('SystemConfiguration', 'reset');
+                        //     this.cacheCanvasData('all', 'reset');
+                        this.cacheCanvasData('Dashboard', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -5365,7 +5377,7 @@ export class EazlService implements OnInit {
                 detail:   'The WidgetComment data is being refreshed; request again to get the latest from the database'
             });
         }
-        
+
         return this.widgetComments.filter(widgetComment =>
             widgetComment.widgetID == selectedWidgetID
         );
@@ -6257,7 +6269,7 @@ export class EazlService implements OnInit {
     }
 
     getGroupDatasourceAccess(
-        groupID: number = -1, 
+        groupID: number = -1,
         datasourceID: number = -1
         ): GroupDatasourceAccess[] {
         // Return of list with group - datasource access
@@ -6918,8 +6930,8 @@ export class EazlService implements OnInit {
     }
 
     getCanvasMessages(
-        dashboardID: number = -1, 
-        reportID: number = -1, 
+        dashboardID: number = -1,
+        reportID: number = -1,
         widgetID: number = -1
         ): CanvasMessage[] {
         // Returns CanvasMessages
@@ -7034,7 +7046,7 @@ export class EazlService implements OnInit {
 
         return this.widgetTypes;
     }
-    
+
     getGraphTypes(): GraphType[] {
         // Return list of Grapy Types
         this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
@@ -7292,7 +7304,7 @@ export class EazlService implements OnInit {
                             for (var i = 0; i < eazlGroup.length; i++) {
                                 let groupSingle = new Group();
                                 groupSingle = this.cdal.loadGroup(eazlGroup[i]);
-                                groupsWorking.push(groupSingle);                                    
+                                groupsWorking.push(groupSingle);
                             }
 
                         // Replace
@@ -7577,17 +7589,19 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataDashboard.next(true);
 
                 // Get all the data via API
-                let DashboardWorking: Dashboard[] = [];
-                this.get<EazlDashboard>('dashboards')
+                let dashboardWorking: Dashboard[] = [];
+                
+this.get<APIDashboard>('dashboards')
+                // this.get<EazlDashboard>('dashboards')
                     .subscribe(
                         (eazlDashboard) => {
                             for (var i = 0; i < eazlDashboard.length; i++) {
-                                let DashboardSingle = new Dashboard();
-                                DashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
-                                DashboardWorking.push(DashboardSingle);
+                                let dashboardSingle = new Dashboard();
+                                dashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
+                                dashboardWorking.push(dashboardSingle);
 
                             }
-
+console.log('dashboardWorking', dashboardWorking)
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboards = dashboardWorking;
@@ -7751,7 +7765,7 @@ export class EazlService implements OnInit {
                         (eazlDataSourceUserAccess) => {
                             for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
                                 let DataSourceUserAccessSingle = new DataSourceUserAccess();
-                                DataSourceUserAccessSingle = 
+                                DataSourceUserAccessSingle =
                                     this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
                                 DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);
 
@@ -8385,7 +8399,7 @@ export class EazlService implements OnInit {
                             for (var i = 0; i < eazlWidgetType.length; i++) {
                                 let widgetTypeSingle = new WidgetType();
                                 widgetTypeSingle = this.cdal.loadWidgetTypes(eazlWidgetType[i]);
-                                widgetTypeWorking.push(widgetTypeSingle);                                    
+                                widgetTypeWorking.push(widgetTypeSingle);
                             }
 
                         // Replace
@@ -8425,7 +8439,7 @@ export class EazlService implements OnInit {
                             for (var i = 0; i < eazlGraphType.length; i++) {
                                 let graphTypeSingle = new GraphType();
                                 graphTypeSingle = this.cdal.loadGraphTypes(eazlGraphType[i]);
-                                graphTypeWorking.push(graphTypeSingle);                                    
+                                graphTypeWorking.push(graphTypeSingle);
                             }
 
                         // Replace
@@ -8463,9 +8477,9 @@ export class EazlService implements OnInit {
                     .subscribe(
                         (eazlBorderDropdown) => {
                             for (var i = 0; i < eazlBorderDropdown.length; i++) {
-                                let borderDropdownSingle = 
+                                let borderDropdownSingle =
                                     this.cdal.loadBorderDropdowns(eazlBorderDropdown[i]);
-                                borderDropdownWorking.push(borderDropdownSingle);                                    
+                                borderDropdownWorking.push(borderDropdownSingle);
                             }
 
                         // Replace
@@ -8503,9 +8517,9 @@ export class EazlService implements OnInit {
                     .subscribe(
                         (eazlBoxShadowDropdown) => {
                             for (var i = 0; i < eazlBoxShadowDropdown.length; i++) {
-                                let boxShadowDropdownSingle = 
+                                let boxShadowDropdownSingle =
                                     this.cdal.loadBoxShadowDropdowns(eazlBoxShadowDropdown[i]);
-                                boxShadowDropdownsWorking.push(boxShadowDropdownSingle);                                    
+                                boxShadowDropdownsWorking.push(boxShadowDropdownSingle);
                             }
 
                         // Replace
@@ -8543,9 +8557,9 @@ export class EazlService implements OnInit {
                     .subscribe(
                         (eazlFontSizeDropdown) => {
                             for (var i = 0; i < eazlFontSizeDropdown.length; i++) {
-                                let fontSizeDropdownSingle = 
+                                let fontSizeDropdownSingle =
                                     this.cdal.loadFontSizeDropdowns(eazlFontSizeDropdown[i]);
-                                fontSizeDropdownsWorking.push(fontSizeDropdownSingle);                                    
+                                fontSizeDropdownsWorking.push(fontSizeDropdownSingle);
                             }
 
                         // Replace
@@ -8583,9 +8597,9 @@ export class EazlService implements OnInit {
                     .subscribe(
                         (eazlGridSizeDropdown) => {
                             for (var i = 0; i < eazlGridSizeDropdown.length; i++) {
-                                let GridSizeDropdownSingle = 
+                                let GridSizeDropdownSingle =
                                     this.cdal.loadGridSizeDropdowns(eazlGridSizeDropdown[i]);
-                                GridSizeDropdownsWorking.push(GridSizeDropdownSingle);                                    
+                                GridSizeDropdownsWorking.push(GridSizeDropdownSingle);
                             }
 
                         // Replace
@@ -8623,9 +8637,9 @@ export class EazlService implements OnInit {
                     .subscribe(
                         (eazlBackgroundImageDropdown) => {
                             for (var i = 0; i < eazlBackgroundImageDropdown.length; i++) {
-                                let BackgroundImageDropdownSingle = 
+                                let BackgroundImageDropdownSingle =
                                     this.cdal.loadBackgroundImageDropdowns(eazlBackgroundImageDropdown[i]);
-                                BackgroundImageDropdownsWorking.push(BackgroundImageDropdownSingle);                                    
+                                BackgroundImageDropdownsWorking.push(BackgroundImageDropdownSingle);
                             }
 
                         // Replace

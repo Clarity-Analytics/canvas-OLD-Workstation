@@ -7,7 +7,7 @@ export class EazlDashboard {
     name: string;                               // Descriptive name
     is_containerheader_dark: boolean;           // True if container header widgets dark (else light)
     show_container_header: boolean;             // True to show Container Header
-    background_color: string;                   // Optional color of the whole Dashboard    
+    background_color: string;                   // Optional color of the whole Dashboard
     background_image_src: string;               // Optional picture to show in background
     comments: string;                           // Optional comments
     default_export_filetype: string;            // Excel, JSON, PDF, PowerPoint, Jupyter or csv
@@ -18,7 +18,7 @@ export class EazlDashboard {
     open_tab_nr: number;                        // Optional Tab Nr to open on (default = 0)
     owner_userName: string;                     // UserName of owner
     password: string;                           // Optional password to open
-    refresh_mode: string;                       // Manual, onOpen  
+    refresh_mode: string;                       // Manual, onOpen
     nrUsers_shared_with: number;                // @RunTime: @ of UserNames shared with
     nr_groups_shared_with: number;              // @RunTime: @ of Groups shared with
     system_message: string;                     // Optional for Canvas to say something to user
@@ -37,7 +37,7 @@ export class Dashboard {
     dashboardName: string;                      // Descriptive name
     isContainerHeaderDark: boolean;             // True if container header widgets dark (else light)
     showContainerHeader: boolean;               // True to show Container Header
-    dashboardBackgroundColor: string;           // Optional color of the whole Dashboard    
+    dashboardBackgroundColor: string;           // Optional color of the whole Dashboard
     dashboardBackgroundImageSrc: string;        // Optional picture to show in background
     dashboardComments: string;                  // Optional comments
     dashboardDefaultExportFileType: string;     // Excel, JSON, PDF, PowerPoint, Jupyter or csv
@@ -48,7 +48,8 @@ export class Dashboard {
     dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
     dashboardOwnerUserName: string;             // UserName of owner
     dashboardPassword: string;                  // Optional password to open
-    dashboardRefreshMode: string;               // Manual, onOpen  
+    dashboardRefreshMode: string;               // Manual, onOpen
+    dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard
     dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserNames shared with
     dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
@@ -59,3 +60,39 @@ export class Dashboard {
     dashboardCreatedDateTime: string;           // Created on
     dashboardCreatedUserName: string;           // Created by
 }
+
+// Temp API
+export class APIDashboard
+    {
+        id: number;
+        name: string;
+        description: string;
+        refresh_mode: string;
+        refresh_timer: number;
+        tabs: any;
+        comments: string;
+        system_message: string;
+        is_locked: false;
+        is_container_header_dark: false;
+        show_container_header: false;
+        background_color: string;
+        background_image: string;
+        default_export_file_type: string;
+        creator: string;
+        date_created: string;
+        editor: string;
+        date_edited: string;
+        url: string
+    }
+//     nrUsers_shared_with: number; // @RunTime: @ of UserNames shared with
+// nr_groups_shared_with: number; // @RunTime: @ of Groups shared with
+// nr_groups: number; // @Runtime: # of groups this dashboard belongs to
+// is_liked: boolean; // @RunTime: True if Dashboard is liked by me
+
+// open_tab_nr: number; // Optional Tab Nr to open on (default = 0)
+// owner_userName: string; // UserName of owner
+// password: string; // Optional password to open
+// refreshed_on: string; // Data Refreshed on
+// refreshed_by: string; // Data Refreshed by
+// code: string; // Code or ShortName
+

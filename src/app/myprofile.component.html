@@ -376,6 +376,16 @@
                     >
                 </p-column>
                 <p-column 
+                    field="dashboardRefreshFrequency" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="RefreshMode" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
                     field="dashboardNrUsersSharedWith" 
                     [filter]="false" 
                     filterMatchMode="contains" 
@@ -674,6 +684,16 @@
                 </p-column>
                 <p-column 
                     field="dashboardRefreshMode" 
+                    [filter]="false" 
+                    filterMatchMode="contains" 
+                    header="RefreshMode" 
+                    [sortable]="true"
+                    [style]="{width: '80px', 
+                            'text-align': 'center'}"
+                    >
+                </p-column>
+                <p-column 
+                    field="dashboardRefreshFrequency" 
                     [filter]="false" 
                     filterMatchMode="contains" 
                     header="RefreshMode" 
