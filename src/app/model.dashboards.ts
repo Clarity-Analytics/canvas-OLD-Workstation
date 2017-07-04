@@ -46,7 +46,7 @@ export class Dashboard {
     dashboardIsLocked: boolean;                 // If true, then cannot be modified
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
     dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
-    dashboardOwnerUserName: string;             // UserName of owner
+    dashboardOwners: string;             // UserName of owner
     dashboardPassword: string;                  // Optional password to open
     dashboardRefreshMode: string;               // Manual, onOpen
     dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard in seconds
@@ -84,13 +84,13 @@ export class APIDashboard
         date_edited: string;
         url: string
     }
-//     nrUsers_shared_with: number; // @RunTime: @ of UserNames shared with
+// nrUsers_shared_with: number; // @RunTime: @ of UserNames shared with
 // nr_groups_shared_with: number; // @RunTime: @ of Groups shared with
 // nr_groups: number; // @Runtime: # of groups this dashboard belongs to
 // is_liked: boolean; // @RunTime: True if Dashboard is liked by me
+// owners: string; // @Runtime: csv list of UserNames of owners
 
 // open_tab_nr: number; // Optional Tab Nr to open on (default = 0)
-// owner_userName: string; // UserName of owner
 // password: string; // Optional password to open
 // refreshed_on: string; // Data Refreshed on
 // refreshed_by: string; // Data Refreshed by

@@ -555,8 +555,8 @@ console.log('hier')
                             this.dashboardToEdit.dashboardIsLocked;
                         this.dashboards[i].dashboardOpenTabNr =
                             this.dashboardToEdit.dashboardOpenTabNr;
-                        this.dashboards[i].dashboardOwnerUserName =
-                            this.dashboardToEdit.dashboardOwnerUserName;
+                        this.dashboards[i].dashboardOwners =
+                            this.dashboardToEdit.dashboardOwners;
                         this.dashboards[i].dashboardPassword =
                             this.dashboardToEdit.dashboardPassword;
                         this.dashboards[i].dashboardRefreshMode =

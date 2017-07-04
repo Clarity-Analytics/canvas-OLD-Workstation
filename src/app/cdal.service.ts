@@ -640,9 +640,9 @@ export class CDAL {
         // }
 
         // if (eazlDashboard.owner_userName != null) {
-        //     dashboardWorking.dashboardOwnerUserName = eazlDashboard.owner_userName;
+        //     dashboardWorking.dashboardOwners = eazlDashboard.owner_userName;
         // } else {
-        //     dashboardWorking.dashboardOwnerUserName = '';
+        //     dashboardWorking.dashboardOwners = '';
         // }
 
         // if (eazlDashboard.password != null) {

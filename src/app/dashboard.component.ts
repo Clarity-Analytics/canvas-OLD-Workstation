@@ -1496,7 +1496,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardIsLocked: false,
                 dashboardIsLiked: false,
                 dashboardOpenTabNr: 1,
-                dashboardOwnerUserName: 'JohnH',
+                dashboardOwners: '',
                 dashboardPassword: 'StudeBaker',
                 dashboardRefreshedDateTime: '',
                 dashboardRefreshedUserName: '',
@@ -2450,7 +2450,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             recordPassesFilter = true;
             if (inputFilter != null) {
                 if (inputFilter.ownerUserName != '') {
-                    if (this.dashboards[i].dashboardOwnerUserName.toLocaleLowerCase().indexOf(inputFilter.ownerUserName.toLocaleLowerCase())
+                    if (this.dashboards[i].dashboardOwners.toLocaleLowerCase().indexOf(inputFilter.ownerUserName.toLocaleLowerCase())
                         == -1) {
                             recordPassesFilter = false
                     }
