@@ -4957,7 +4957,12 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataDashboard.next(true);
 
         // TODO - update for real in DB
-
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboardID) {
+                this.dashboards[i].isContainerHeaderDark = isContainerHeaderDark;
+            }
+        }
+        
         // Mark the data as clean
         this.globalVariableService.dirtyDataDashboard.next(false);
     }
