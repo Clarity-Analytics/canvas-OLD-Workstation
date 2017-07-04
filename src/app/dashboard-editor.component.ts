@@ -84,6 +84,7 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardOwnerUserName':           new FormControl(''),
             'dashboardPassword':                new FormControl(''),
             'dashboardRefreshMode':             new FormControl(''),
+            'dashboardRefreshFrequency':        new FormControl(''),
             'dashboardSystemMessage':           new FormControl(''),
             'dashboardRefreshedDateTime':       new FormControl(''),
             'dashboardRefreshedUserName':       new FormControl(''),
@@ -154,6 +155,9 @@ export class DashboardEditorComponent implements OnInit {
             );
             this.dashboardForm.controls['dashboardRefreshMode'].setValue(
                 this.selectedDashboard.dashboardRefreshMode
+            );
+            this.dashboardForm.controls['dashboardRefreshFrequency'].setValue(
+                this.selectedDashboard.dashboardRefreshFrequency
             );
             this.dashboardForm.controls['dashboardSystemMessage'].setValue(
                 this.selectedDashboard.dashboardSystemMessage
@@ -312,6 +316,8 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardPassword'].value;
         this.dashboardToEdit.dashboardRefreshMode = 
             this.dashboardForm.controls['dashboardRefreshMode'].value;
+        this.dashboardToEdit.dashboardRefreshFrequency = 
+            this.dashboardForm.controls['dashboardRefreshFrequency'].value;
         this.dashboardToEdit.dashboardSystemMessage = 
             this.dashboardForm.controls['dashboardSystemMessage'].value;
             this.canvasDate.now('standard');

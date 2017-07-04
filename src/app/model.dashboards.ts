@@ -49,7 +49,7 @@ export class Dashboard {
     dashboardOwnerUserName: string;             // UserName of owner
     dashboardPassword: string;                  // Optional password to open
     dashboardRefreshMode: string;               // Manual, onOpen
-    dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard
+    dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard in seconds
     dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserNames shared with
     dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
