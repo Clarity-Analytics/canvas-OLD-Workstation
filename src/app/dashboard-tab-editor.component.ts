@@ -150,26 +150,18 @@ export class DashboardTabEditorComponent implements OnInit {
         // }
 
         // Update DB
-        let result: boolean = this.eazlService.updateDashboardTab(
+        this.eazlService.updateDashboardTab(
             this.currentDashboardTab.dashboardID, 
             this.currentDashboardTab.dashboardTabID,
             this.dashboardTabForm.controls['dashboardTabDescription'].value
         );
-        if (result) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'info',
-                summary:  'Success',
-                detail:   'Tab details changed'
-            });
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info',
+            summary:  'Success',
+            detail:   'Tab details changed'
+        });
 
-            // Trigger event emitter 'emit' method
-            this.formDashboarTabSubmit.emit(true);
-        } else {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'Fail',
-                detail:   'Tab details not updated'
-            });
-        }
+        // Trigger event emitter 'emit' method
+        this.formDashboarTabSubmit.emit(true);
     }
 }

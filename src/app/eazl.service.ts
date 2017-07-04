@@ -5018,7 +5018,7 @@ export class EazlService implements OnInit {
         dashboardBackgroundImageSrc: string){
         // Update dashboardBackgroundImageSrc for given dashboard
         // - dashboardID: ID of Dashboard to update
-        // - dashboardBackgroundImageSrc: new value of dashboardBackgroundImageSrc field
+        // - dashboardBackgroundImageSrc: new value of dashboardBackgroundImageSrc fieldp
 
         // Mark the data as dirty
         this.globalVariableService.dirtyDataDashboard.next(true);
@@ -5241,7 +5241,7 @@ export class EazlService implements OnInit {
     updateDashboardTab(dashboardID: number,
         dashboardTabID: number,
         dashboardTabDescription: string
-        ): boolean {
+        ) {
         // Update the details (like description) for a Dashboard Tab)
         this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardTab', '@Start');
 
