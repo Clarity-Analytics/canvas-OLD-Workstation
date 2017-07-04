@@ -78,12 +78,6 @@ import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
-
-
-import { APIDashboard }              from './model.dashboards';
-
-
-
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroup }         from './model.dashboardGroup';
@@ -7591,8 +7585,7 @@ export class EazlService implements OnInit {
                 // Get all the data via API
                 let dashboardWorking: Dashboard[] = [];
                 
-this.get<APIDashboard>('dashboards')
-                // this.get<EazlDashboard>('dashboards')
+                this.get<EazlDashboard>('dashboards')
                     .subscribe(
                         (eazlDashboard) => {
                             for (var i = 0; i < eazlDashboard.length; i++) {
