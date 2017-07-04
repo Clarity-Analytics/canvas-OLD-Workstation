@@ -4975,7 +4975,7 @@ export class EazlService implements OnInit {
         // - showContainerHeader: new value of showContainerHeader field
 
         // Mark the data as dirty
-        // this.globalVariableService.dirtyData....next(true);
+        this.globalVariableService.dirtyDataDashboard.next(true);
 
         // TODO - update for real in DB
 
@@ -4987,7 +4987,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        // this.globalVariableService.dirtyData....next(true);
+        this.globalVariableService.dirtyDataDashboard.next(false);
     }
 
     updateDashboardBackgroundColor(
@@ -5007,7 +5007,20 @@ export class EazlService implements OnInit {
         // - dashboardID: ID of Dashboard to update
         // - dashboardBackgroundImageSrc: new value of dashboardBackgroundImageSrc field
 
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboard.next(true);
+
         // TODO - update for real in DB
+
+        // TODO - update for real in DB
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboardID) {
+                this.dashboards[i].dashboardBackgroundImageSrc = dashboardBackgroundImageSrc;
+            }
+        }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboard.next(false);
     }
 
     getDashboards(
