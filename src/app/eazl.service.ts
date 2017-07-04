@@ -4962,7 +4962,7 @@ export class EazlService implements OnInit {
                 this.dashboards[i].isContainerHeaderDark = isContainerHeaderDark;
             }
         }
-        
+
         // Mark the data as clean
         this.globalVariableService.dirtyDataDashboard.next(false);
     }
@@ -4978,6 +4978,13 @@ export class EazlService implements OnInit {
         // this.globalVariableService.dirtyData....next(true);
 
         // TODO - update for real in DB
+
+        // TODO - update for real in DB
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboardID) {
+                this.dashboards[i].showContainerHeader = showContainerHeader;
+            }
+        }
 
         // Mark the data as dirty
         // this.globalVariableService.dirtyData....next(true);
