@@ -73,8 +73,8 @@ export class APIDashboard
         comments: string;
         system_message: string;
         is_locked: false;
-        is_container_header_dark: false;
-        show_container_header: false;
+        is_container_header_dark: boolean;
+        show_container_header: boolean;
         background_color: string;
         background_image: string;
         default_export_file_type: string;

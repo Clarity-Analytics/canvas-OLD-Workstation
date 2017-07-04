@@ -30,6 +30,11 @@ import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
+
+
+import { APIDashboard }              from './model.dashboards';
+
+
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroup }         from './model.dashboardGroup';
@@ -547,7 +552,8 @@ export class CDAL {
         return DashboardGroupRelationshipWorking;
     }
 
-    loadDashboard(eazlDashboard: EazlDashboard): Dashboard {
+    // loadDashboard(eazlDashboard: EazlDashboard): Dashboard {
+    loadDashboard(eazlDashboard: APIDashboard): Dashboard {
         // Load dDashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboard', '@Start');
 
@@ -567,41 +573,41 @@ export class CDAL {
             dashboardWorking.dashboardName = '';
         }
 
-        // if (eazlDashboard.is_containerheader_dark != null) {
-        //     dashboardWorking.isContainerHeaderDark = eazlDashboard.is_containerheader_dark;
-        // } else {
-        //     dashboardWorking.isContainerHeaderDark = false;
-        // }
+        if (eazlDashboard.is_container_header_dark != null) {
+            dashboardWorking.isContainerHeaderDark = eazlDashboard.is_container_header_dark;
+        } else {
+            dashboardWorking.isContainerHeaderDark = false;
+        }
 
-        // if (eazlDashboard.show_container_header != null) {
-        //     dashboardWorking.showContainerHeader = eazlDashboard.show_container_header;
-        // } else {
-        //     dashboardWorking.showContainerHeader = false;
-        // }
+        if (eazlDashboard.show_container_header != null) {
+            dashboardWorking.showContainerHeader = eazlDashboard.show_container_header;
+        } else {
+            dashboardWorking.showContainerHeader = false;
+        }
 
-        // if (eazlDashboard.background_color != null) {
-        //     dashboardWorking.dashboardBackgroundColor = eazlDashboard.background_color;
-        // } else {
-        //     dashboardWorking.dashboardBackgroundColor = '';
-        // }
+        if (eazlDashboard.background_color != null) {
+            dashboardWorking.dashboardBackgroundColor = eazlDashboard.background_color;
+        } else {
+            dashboardWorking.dashboardBackgroundColor = '';
+        }
 
-        // if (eazlDashboard.background_image_src != null) {
-        //     dashboardWorking.dashboardBackgroundImageSrc = eazlDashboard.background_image_src;
-        // } else {
-        //     dashboardWorking.dashboardBackgroundImageSrc = '';
-        // }
+        if (eazlDashboard.background_image != null) {
+            dashboardWorking.dashboardBackgroundImageSrc = eazlDashboard.background_image;
+        } else {
+            dashboardWorking.dashboardBackgroundImageSrc = '';
+        }
 
-        // if (eazlDashboard.comments != null) {
-        //     dashboardWorking.dashboardComments = eazlDashboard.comments;
-        // } else {
-        //     dashboardWorking.dashboardComments = '';
-        // }
+        if (eazlDashboard.comments != null) {
+            dashboardWorking.dashboardComments = eazlDashboard.comments;
+        } else {
+            dashboardWorking.dashboardComments = '';
+        }
 
-        // if (eazlDashboard.default_export_filetype != null) {
-        //     dashboardWorking.dashboardDefaultExportFileType = eazlDashboard.default_export_filetype;
-        // } else {
-        //     dashboardWorking.dashboardDefaultExportFileType = '';
-        // }
+        if (eazlDashboard.default_export_file_type != null) {
+            dashboardWorking.dashboardDefaultExportFileType = eazlDashboard.default_export_file_type;
+        } else {
+            dashboardWorking.dashboardDefaultExportFileType = '';
+        }
 
         if (eazlDashboard.description != null) {
             dashboardWorking.dashboardDescription = eazlDashboard.description;
@@ -615,11 +621,11 @@ export class CDAL {
         //     dashboardWorking.dashboardNrGroups = 0;
         // }
 
-        // if (eazlDashboard.is_locked != null) {
-        //     dashboardWorking.dashboardIsLocked = eazlDashboard.is_locked;
-        // } else {
-        //     dashboardWorking.dashboardIsLocked = false;
-        // }
+        if (eazlDashboard.is_locked != null) {
+            dashboardWorking.dashboardIsLocked = eazlDashboard.is_locked;
+        } else {
+            dashboardWorking.dashboardIsLocked = false;
+        }
 
         // if (eazlDashboard.is_liked != null) {
         //     dashboardWorking.dashboardIsLiked = eazlDashboard.is_liked;
@@ -650,7 +656,13 @@ export class CDAL {
         } else {
             dashboardWorking.dashboardRefreshMode = '';
         }
-// dashboardRefreshFrequency
+
+
+        if (eazlDashboard.refresh_timer != null) {
+            dashboardWorking.dashboardRefreshFrequency = eazlDashboard.refresh_timer;
+        } else {
+            dashboardWorking.dashboardRefreshFrequency = 0;
+        }// 
         // if (eazlDashboard.nrUsers_shared_with != null) {
         //     dashboardWorking.dashboardNrUsersSharedWith = eazlDashboard.nrUsers_shared_with;
         // } else {
@@ -663,11 +675,11 @@ export class CDAL {
         //     dashboardWorking.dashboardNrGroupsSharedWith = 0;
         // }
 
-        // if (eazlDashboard.system_message != null) {
-        //     dashboardWorking.dashboardSystemMessage = eazlDashboard.system_message;
-        // } else {
-        //     dashboardWorking.dashboardSystemMessage = '';
-        // }
+        if (eazlDashboard.system_message != null) {
+            dashboardWorking.dashboardSystemMessage = eazlDashboard.system_message;
+        } else {
+            dashboardWorking.dashboardSystemMessage = '';
+        }
 
         // if (eazlDashboard.refreshed_on != null) {
         //     dashboardWorking.dashboardRefreshedDateTime = eazlDashboard.refreshed_on;
@@ -681,29 +693,29 @@ export class CDAL {
         //     dashboardWorking.dashboardRefreshedUserName = '';
         // }
 
-        // if (eazlDashboard.updated_on != null) {
-        //     dashboardWorking.dashboardUpdatedDateTime = eazlDashboard.updated_on;
-        // } else {
-        //     dashboardWorking.dashboardUpdatedDateTime = '';
-        // }
+        if (eazlDashboard.date_edited != null) {
+            dashboardWorking.dashboardUpdatedDateTime = eazlDashboard.date_edited;
+        } else {
+            dashboardWorking.dashboardUpdatedDateTime = '';
+        }
 
-        // if (eazlDashboard.updated_by != null) {
-        //     dashboardWorking.dashboardUpdatedUserName = eazlDashboard.updated_by;
-        // } else {
-        //     dashboardWorking.dashboardUpdatedUserName = '';
-        // }
+        if (eazlDashboard.editor != null) {
+            dashboardWorking.dashboardUpdatedUserName = eazlDashboard.editor;
+        } else {
+            dashboardWorking.dashboardUpdatedUserName = '';
+        }
 
-        // if (eazlDashboard.created_on != null) {
-        //     dashboardWorking.dashboardCreatedDateTime = eazlDashboard.created_on;
-        // } else {
-        //     dashboardWorking.dashboardCreatedDateTime = '';
-        // }
+        if (eazlDashboard.date_created != null) {
+            dashboardWorking.dashboardCreatedDateTime = eazlDashboard.date_created;
+        } else {
+            dashboardWorking.dashboardCreatedDateTime = '';
+        }
 
-        // if (eazlDashboard.created_by != null) {
-        //     dashboardWorking.dashboardCreatedUserName = eazlDashboard.created_by;
-        // } else {
-        //     dashboardWorking.dashboardCreatedUserName = '';
-        // }
+        if (eazlDashboard.creator != null) {
+            dashboardWorking.dashboardCreatedUserName = eazlDashboard.creator;
+        } else {
+            dashboardWorking.dashboardCreatedUserName = '';
+        }
 
         // Return the result
         return dashboardWorking;
