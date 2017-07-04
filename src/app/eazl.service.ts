@@ -4997,7 +4997,20 @@ export class EazlService implements OnInit {
         // - dashboardID: ID of Dashboard to update
         // - dashboardBackgroundColor: new value of dashboardBackgroundColor field
 
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboard.next(true);
+
         // TODO - update for real in DB
+
+        // TODO - update for real in DB
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboards[i].dashboardID == dashboardID) {
+                this.dashboards[i].dashboardBackgroundColor = dashboardBackgroundColor;
+            }
+        }
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboard.next(false);
     }
 
     updateDashboardBackgroundImageSrc(
