@@ -561,6 +561,8 @@ console.log('hier')
                             this.dashboardToEdit.dashboardPassword;
                         this.dashboards[i].dashboardRefreshMode =
                             this.dashboardToEdit.dashboardRefreshMode;
+                        this.dashboards[i].dashboardRefreshFrequency =
+                            this.dashboardToEdit.dashboardRefreshFrequency;
                         this.dashboards[i].dashboardSystemMessage =
                             this.dashboardToEdit.dashboardSystemMessage;
                         this.dashboards[i].dashboardUpdatedDateTime =
