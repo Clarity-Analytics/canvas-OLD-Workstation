@@ -5392,16 +5392,16 @@ export class EazlService implements OnInit {
 
         let DefaultWidgetConfig: Widget = {
             container: {
-                backgroundColor: 'white',
-                border: '1px solid white',
-                boxShadow: 'none',
-                color: 'black',
-                fontSize: 1,
-                height: 310,
-                left: 240,
-                widgetTitle: '',
-                top: 80,
-                width: 380,
+                backgroundColor: this.globalVariableService.lastBackgroundColor.getValue().name,
+                border: this.globalVariableService.lastBorder.getValue().name,
+                boxShadow: this.globalVariableService.lastBoxShadow.getValue().name,
+                color: this.globalVariableService.lastColor.getValue().name,
+                fontSize: +this.globalVariableService.lastContainerFontSize.getValue().name,
+                height: this.globalVariableService.lastWidgetHeight.getValue(),
+                left: this.globalVariableService.lastWidgetLeft.getValue(),
+                widgetTitle: 'Untitled',
+                top: this.globalVariableService.lastWidgetTop.getValue(),
+                width: this.globalVariableService.lastWidgetWidth.getValue(),
             },
             areas: {
                 showWidgetText: false,
@@ -6034,7 +6034,7 @@ export class EazlService implements OnInit {
                     datasourcesPerUserCreatedDateTime: this.canvasDate.now('standard'),
                     datasourcesPerUserCreatedUserName: currentUser,
                     datasourcesPerUserUpdatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserUpdatedUserName: currentUser                
+                    datasourcesPerUserUpdatedUserName: currentUser
                 })
             }
         })
@@ -7591,7 +7591,7 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let dashboardWorking: Dashboard[] = [];
-                
+
                 this.get<EazlDashboard>('dashboards')
                     .subscribe(
                         (eazlDashboard) => {
