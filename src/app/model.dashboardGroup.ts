@@ -1,4 +1,6 @@
 // Schema for the Dashboard Group class
+// - This is to group Dashboards together, like tags, that are related
+// - it has NO relationship with the Groups (of users) entitry
 
 // Eazl
 export class EazlDashboardGroup {
