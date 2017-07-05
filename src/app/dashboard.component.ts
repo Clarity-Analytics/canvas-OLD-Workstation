@@ -1612,6 +1612,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
         this.displayEditWidget = true;
+console.log('this.widgetToEdit', this.widgetToEdit)
     }
 
     onWidgetDragHandleMouseDown(idWidget: number) {

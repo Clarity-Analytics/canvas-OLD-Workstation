@@ -1058,14 +1058,24 @@ export class WidgetEditorComponent implements OnInit {
             this.identificationForm.controls['widgetRefreshMode'].value;
         this.widgetToEdit.properties.widgetReportName =
             this.identificationForm.controls['widgetReportName'].value;
-        this.widgetToEdit.properties.widgetReportParameters =
-            this.identificationForm.controls['widgetReportParameters'].value;
-        this.widgetToEdit.properties.widgetShowLimitedRows =
-            this.identificationForm.controls['widgetShowLimitedRows'].value;
-        this.widgetToEdit.properties.widgetTypeID =
-            this.identificationForm.controls['widgetType'].value.id;
-        this.widgetToEdit.properties.widgetType =
-            this.identificationForm.controls['widgetType'].value.name;
+        if (this.identificationForm.controls['widgetReportParameters'].value != null) {
+            this.widgetToEdit.properties.widgetReportParameters =
+                this.identificationForm.controls['widgetReportParameters'].value;
+        }
+        if (this.identificationForm.controls['widgetShowLimitedRows'].value != null) {
+            this.widgetToEdit.properties.widgetShowLimitedRows =
+                this.identificationForm.controls['widgetShowLimitedRows'].value;
+        }
+        if (this.identificationForm.controls['widgetType'].value == null) {
+            this.widgetToEdit.properties.widgetTypeID = 0;
+            this.widgetToEdit.properties.widgetType = '';
+
+        } else {
+            this.widgetToEdit.properties.widgetTypeID =
+                this.identificationForm.controls['widgetType'].value.id;
+            this.widgetToEdit.properties.widgetType =
+                this.identificationForm.controls['widgetType'].value.name;
+        }
 
         // Amend the specs IF given, according to the Widget Sets
         if (this.identificationForm.controls['widgetType'].value != null) {
@@ -1263,7 +1273,7 @@ export class WidgetEditorComponent implements OnInit {
             this.canvasDate.now('standard');
         this.widgetToEdit.properties.widgetUpdatedUserName =
             this.canvasUser.username;
-console.log('@end', this.widgetToEdit)
+console.log('@end of onClickSubmit in widget-editor', this.widgetToEdit)
 
         // Trigger event emitter 'emit' method
         this.formSubmit.emit('Submit');
