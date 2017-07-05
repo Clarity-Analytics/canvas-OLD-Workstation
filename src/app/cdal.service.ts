@@ -16,6 +16,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { Dashboard }                  from './model.dashboards';
@@ -81,6 +82,7 @@ import { WidgetType }                 from './model.widget.type';
 export class CDAL {
 
     constructor(
+        private canvasDate: CanvasDate,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
     ){ }
@@ -130,7 +132,7 @@ export class CDAL {
         }
 
         if (eazlUser.is_active != null) {
-            userWorking.inactiveDate = eazlUser.is_active? '2017/05/01' : '';
+            userWorking.inactiveDate = eazlUser.is_active? this.canvasDate.now('standard') : '';
         } else {
             userWorking.inactiveDate  = '';
         }

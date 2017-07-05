@@ -104,7 +104,7 @@ this.reconnectingWebSocket.messageWS.subscribe(
         this.notificationFromServer = {
             notificationID: 0,
             author:  'James Lawrance',
-            dateSend: '2017/04/01',
+            dateSend: this.canvasDate.now('standard'),
             messageType: 'UserMessage',
             message: 'Your Magnum PI report has completed'
         }
@@ -296,7 +296,7 @@ this.reconnectingWebSocket.messageWS.subscribe(
         // TODO - proper websocket message, remove this one
         // Send the message
         this.webSocketBasicMessage = {
-            webSocketDatetime: '2017/05/01 12:21',
+            webSocketDatetime: this.canvasDate.now('standard'),
             webSocketSenderUsername: 'janniei',
             webSocketMessageType: 'WebSocketRefDataMessage',
                                                 // - WebSocketCanvasMessage
@@ -591,7 +591,7 @@ this.reconnectingWebSocket.messageWS.subscribe(
 testFn() {
 // TODO - remove once done
         this.webSocketBasicMessage = {
-            webSocketDatetime: '2017/05/01 12:21',
+            webSocketDatetime: this.canvasDate.now('standard'),
             webSocketSenderUsername: 'janniei',
             webSocketMessageType: 'WebSocketRefDataMessage',
                                                 // - WebSocketCanvasMessage

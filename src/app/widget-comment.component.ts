@@ -1,21 +1,22 @@
 // Popup form to show the Comments for the selected Widget, and to add new ones
-import { Component } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { Input } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { Output } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Component }                  from '@angular/core';
+import { EventEmitter }               from '@angular/core';
+import { FormBuilder }                from '@angular/forms';
+import { FormControl }                from '@angular/forms';
+import { FormGroup }                  from '@angular/forms';
+import { Input }                      from '@angular/core';
+import { OnInit }                     from '@angular/core';
+import { Output }                     from '@angular/core';
+import { Validators }                 from '@angular/forms';
 
 // Our Services
 import { EazlService } from './eazl.service';
-import { GlobalFunctionService } from './global-function.service';
-import { GlobalVariableService } from './global-variable.service';
+import { GlobalFunctionService }      from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
-import { WidgetComment } from './model.widget.comment';
+import { CanvasDate }                 from './date.services';
+import { WidgetComment }              from './model.widget.comment';
 
 @Component({
     selector: 'widget-comment',
@@ -37,6 +38,7 @@ export class WidgetCommentComponent implements OnInit {
     widgetComments: WidgetComment[] = [];       // Array of Widget Comments
 
     constructor(
+        private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
@@ -130,7 +132,7 @@ export class WidgetCommentComponent implements OnInit {
                 this.lastWidgetCommentID, 
                 this.selectedWidgetID,
                 this.lastWidgetCommentThreadID,
-                '2017/05/03 12:04',
+                this.canvasDate.now('standard'),
                 'JohnDeerT',
                 this.userform.get('commentheader').value,
                 this.userform.get('commentbody').value

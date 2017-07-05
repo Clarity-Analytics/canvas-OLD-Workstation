@@ -5987,9 +5987,9 @@ export class EazlService implements OnInit {
                     datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'User: ' + username,
                     datasourcesPerUserAccessType: du.dataSourceUserAccessType,
-                    datasourcesPerUserCreatedDateTime: '2017/05/01',
+                    datasourcesPerUserCreatedDateTime: this.canvasDate.now('standard'),
                     datasourcesPerUserCreatedUserName: 'janniei',
-                    datasourcesPerUserUpdatedDateTime: '2017/05/01',
+                    datasourcesPerUserUpdatedDateTime: this.canvasDate.now('standard'),
                     datasourcesPerUserUpdatedUserName: 'janniei'
                 })
             }
@@ -6025,9 +6025,9 @@ export class EazlService implements OnInit {
                     datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'Group: ' + groupWorking[0].groupName,
                     datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType,
-                    datasourcesPerUserCreatedDateTime: '2017/05/01',
+                    datasourcesPerUserCreatedDateTime: this.canvasDate.now('standard'),
                     datasourcesPerUserCreatedUserName: 'janniei',
-                    datasourcesPerUserUpdatedDateTime: '2017/05/01',
+                    datasourcesPerUserUpdatedDateTime: this.canvasDate.now('standard'),
                     datasourcesPerUserUpdatedUserName: 'janniei'                })
             }
         })
@@ -6312,9 +6312,9 @@ export class EazlService implements OnInit {
 	                userName: username,
                     dataSourceUserAccessType: 'Readonly',
                     dataSourceUserAccessScope: 'All',
-                datasourceUserAccessCreatedDateTime: '2017/05/01',
+                datasourceUserAccessCreatedDateTime: this.canvasDate.now('standard'),
                 datasourceUserAccessCreatedUserName: 'janniei',
-                datasourceUserAccessUpdatedDateTime: '2017/05/01',
+                datasourceUserAccessUpdatedDateTime: this.canvasDate.now('standard'),
                 datasourceUserAccessUpdatedUserName: 'janniei'
                 }
             )

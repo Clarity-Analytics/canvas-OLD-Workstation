@@ -1348,9 +1348,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardTabID: maxID,
                 dashboardTabName: newdashboardTabName,
                 dashboardTabDescription: '',
-                dashboardTabCreatedDateTime: '2017/05/01',
+                dashboardTabCreatedDateTime: this.canvasDate.now('standard'),
                 dashboardTabCreatedUserName: 'John Doe',
-                dashboardTabUpdatedDateTime: '2017/05/01',
+                dashboardTabUpdatedDateTime: this.canvasDate.now('standard'),
                 dashboardTabUpdatedUserName: 'Leonard Cohen'
             }
         );
@@ -1488,7 +1488,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardBackgroundColor: '',
                 dashboardBackgroundImageSrc: '',
                 dashboardComments: 'Comments for ' + this.numberUntitledDashboards.toString(),
-                dashboardCreatedDateTime: '2017/07/08',
+                dashboardCreatedDateTime: this.canvasDate.now('standard'),
                 dashboardCreatedUserName: 'BenVdMark',
                 dashboardDefaultExportFileType: 'PowerPoint',
                 dashboardDescription: 'This is a unique and special dashboard, like all others',
@@ -1505,7 +1505,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardNrUsersSharedWith: 0,
                 dashboardNrGroupsSharedWith: 0,
                 dashboardSystemMessage: '',
-                dashboardUpdatedDateTime: '2017/07/08',
+                dashboardUpdatedDateTime: this.canvasDate.now('standard'),
                 dashboardUpdatedUserName: 'GordenJ'
             }
         );
