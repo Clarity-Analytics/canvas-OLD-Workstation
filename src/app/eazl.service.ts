@@ -5971,6 +5971,9 @@ export class EazlService implements OnInit {
         let datasourceWorking: DataSource[] = [];
         let datasourceName: string = '';
 
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+
         // Filter on users
         let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
         this.dataSourceUserAccess.forEach(du => {
@@ -5988,9 +5991,9 @@ export class EazlService implements OnInit {
                     datasourcesPerUserAccessVia: 'User: ' + username,
                     datasourcesPerUserAccessType: du.dataSourceUserAccessType,
                     datasourcesPerUserCreatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserCreatedUserName: 'janniei',
+                    datasourcesPerUserCreatedUserName: currentUser,
                     datasourcesPerUserUpdatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserUpdatedUserName: 'janniei'
+                    datasourcesPerUserUpdatedUserName: currentUser
                 })
             }
         })
@@ -6018,17 +6021,21 @@ export class EazlService implements OnInit {
                     datasourceName = datasourceWorking[0].datasourceName;
                 }
 
+                // Get current user
+                let currentUser: string = this.globalFunctionService.currentUser();
+
                 // TODO - make the push once - this is not DRY
-                datasourcesPerUserWorking.push( {
+                datasourcesPerUserWorking.push({
                     datasourceID: gd.datasourceID,
                     userName: username,
                     datasourceName: datasourceName,
                     datasourcesPerUserAccessVia: 'Group: ' + groupWorking[0].groupName,
                     datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType,
                     datasourcesPerUserCreatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserCreatedUserName: 'janniei',
+                    datasourcesPerUserCreatedUserName: currentUser,
                     datasourcesPerUserUpdatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserUpdatedUserName: 'janniei'                })
+                    datasourcesPerUserUpdatedUserName: currentUser                
+                })
             }
         })
 
@@ -6313,9 +6320,9 @@ export class EazlService implements OnInit {
                     dataSourceUserAccessType: 'Readonly',
                     dataSourceUserAccessScope: 'All',
                 datasourceUserAccessCreatedDateTime: this.canvasDate.now('standard'),
-                datasourceUserAccessCreatedUserName: 'janniei',
+                datasourceUserAccessCreatedUserName: currentUser,
                 datasourceUserAccessUpdatedDateTime: this.canvasDate.now('standard'),
-                datasourceUserAccessUpdatedUserName: 'janniei'
+                datasourceUserAccessUpdatedUserName: currentUser
                 }
             )
         }

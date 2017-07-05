@@ -293,11 +293,14 @@ this.reconnectingWebSocket.messageWS.subscribe(
         // Is triggered after the new Message form is submitted
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCanvasMessageFormSubmit', '@Start');
 
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+
         // TODO - proper websocket message, remove this one
         // Send the message
         this.webSocketBasicMessage = {
             webSocketDatetime: this.canvasDate.now('standard'),
-            webSocketSenderUsername: 'janniei',
+            webSocketSenderUsername: currentUser,
             webSocketMessageType: 'WebSocketRefDataMessage',
                                                 // - WebSocketCanvasMessage
                                                 // - WebSocketSystemMessage
@@ -590,9 +593,12 @@ this.reconnectingWebSocket.messageWS.subscribe(
 
 testFn() {
 // TODO - remove once done
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+
         this.webSocketBasicMessage = {
             webSocketDatetime: this.canvasDate.now('standard'),
-            webSocketSenderUsername: 'janniei',
+            webSocketSenderUsername: currentUser,
             webSocketMessageType: 'WebSocketRefDataMessage',
                                                 // - WebSocketCanvasMessage
                                                 // - WebSocketSystemMessage

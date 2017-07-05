@@ -1339,6 +1339,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.numberUntitledTabs = this.numberUntitledDashboards + 1;
         let newdashboardTabName: string = 'Untitled - ' + this.numberUntitledTabs.toString();
         let maxID = this.dashboardTabs.length + 1;
+
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+
         // Add
         // TODO - do via DB RESTi
         // TODO - do ID properly
@@ -1349,9 +1353,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardTabName: newdashboardTabName,
                 dashboardTabDescription: '',
                 dashboardTabCreatedDateTime: this.canvasDate.now('standard'),
-                dashboardTabCreatedUserName: 'John Doe',
+                dashboardTabCreatedUserName: currentUser,
                 dashboardTabUpdatedDateTime: this.canvasDate.now('standard'),
-                dashboardTabUpdatedUserName: 'Leonard Cohen'
+                dashboardTabUpdatedUserName: currentUser
             }
         );
 
@@ -1475,6 +1479,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             maxID = this.dashboards[this.dashboards.length - 1].dashboardID;
         }
 
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+
         // Add
         // TODO - do via DB RESTi
         this.numberUntitledDashboards = this.numberUntitledDashboards + 1;
@@ -1506,7 +1513,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardNrGroupsSharedWith: 0,
                 dashboardSystemMessage: '',
                 dashboardUpdatedDateTime: this.canvasDate.now('standard'),
-                dashboardUpdatedUserName: 'GordenJ'
+                dashboardUpdatedUserName: currentUser
             }
         );
 
