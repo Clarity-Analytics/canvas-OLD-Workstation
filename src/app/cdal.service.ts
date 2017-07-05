@@ -2332,18 +2332,20 @@ export class CDAL {
         } else {
             widgetTypesWorking.label = '';
         }
-
+        let idWorking: number = 0;
+        let nameWorking: string = '';
         if (eazlWidgetTypes.value_id != null) {
-            widgetTypesWorking.value.id = eazlWidgetTypes.value_id;
-        } else {
-            widgetTypesWorking.value.id = 0;
+            idWorking = eazlWidgetTypes.value_id;
+        }
+        if (eazlWidgetTypes.value_name != null) {
+            nameWorking = eazlWidgetTypes.value_name;
         }
 
-        if (eazlWidgetTypes.value_name != null) {
-            widgetTypesWorking.value.name = eazlWidgetTypes.value_name;
-        } else {
-            widgetTypesWorking.value.name = '';
-        }
+        widgetTypesWorking.value = 
+            {
+                id: idWorking,
+                name: nameWorking
+            }
 
         // Return the result
         return widgetTypesWorking;

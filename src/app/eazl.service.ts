@@ -4799,7 +4799,7 @@ export class EazlService implements OnInit {
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
                         //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('Dashboard', 'reset');
+                        this.cacheCanvasData('WidgetType', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -4862,7 +4862,7 @@ export class EazlService implements OnInit {
             // TODO - this must be sorted IF return is html - since it errors (in the error)
             // var payload = response.json() || '';
             //  error = payload.body || JSON.stringify(payload);
-            console.log('response', response);
+            console.log('CDAL testing response', response);
             error = response.toString();
         } else {
             error = response.message ? response.message : response.toString();
@@ -7601,7 +7601,7 @@ export class EazlService implements OnInit {
                                 dashboardWorking.push(dashboardSingle);
 
                             }
-console.log('dashboardWorking', dashboardWorking)
+console.log('CDAL testing dashboardWorking', dashboardWorking)
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboards = dashboardWorking;
@@ -8393,7 +8393,7 @@ console.log('dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let widgetTypeWorking: WidgetType[] = [];
-                this.get<EazlWidget>('widget-types')
+                this.get<EazlWidget>('lookup-widget-types')
                     .subscribe(
                         (eazlWidgetType) => {
                             for (var i = 0; i < eazlWidgetType.length; i++) {
@@ -8404,7 +8404,7 @@ console.log('dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.widgetTypes = widgetTypeWorking;
-
+console.log('CDAL testing this.widgetTypes', this.widgetTypes)
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataWidgetType.next(false);
                         }
