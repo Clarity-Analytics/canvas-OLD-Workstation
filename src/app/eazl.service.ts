@@ -4800,7 +4800,7 @@ export class EazlService implements OnInit {
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
                         //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('GraphType', 'reset');
+                        this.cacheCanvasData('WidgetType', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -8394,13 +8394,13 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let widgetTypeWorking: WidgetType[] = [];
-                this.get<EazlWidget>('lookup-widget-types')
+                this.get<EazlAppData>('appdata')
                     .subscribe(
-                        (eazlWidgetType) => {
-                            for (var i = 0; i < eazlWidgetType.length; i++) {
-                                let widgetTypeSingle = new WidgetType();
-                                widgetTypeSingle = this.cdal.loadWidgetTypes(eazlWidgetType[i]);
-                                widgetTypeWorking.push(widgetTypeSingle);
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'WidgetType') {
+                                    widgetTypeWorking.push(this.cdal.loadWidgetTypes(eazlAppData[i]));
+                                }
                             }
 
                         // Replace
@@ -8437,16 +8437,15 @@ console.log('CDAL testing this.widgetTypes', this.widgetTypes)
                 this.get<EazlAppData>('appdata')
                     .subscribe(
                         (eazlAppData) => {
-console.log('eazlGraphType', eazlAppData)                            
                             for (var i = 0; i < eazlAppData.length; i++) {
-                                graphTypeWorking.push(
-                                    this.cdal.loadGraphTypes(eazlAppData[i])
-                                );
+                                if (eazlAppData[i].entity == 'GraphType') {
+                                    graphTypeWorking.push(
+                                        this.cdal.loadGraphTypes(eazlAppData[i]));
+                                }
                             }
 
                         // Replace
                         this.graphTypes = graphTypeWorking;
-console.log('CDAL testing this.graphTypes', this.graphTypes)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataGraphType.next(false);

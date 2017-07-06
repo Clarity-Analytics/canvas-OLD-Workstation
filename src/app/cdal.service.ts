@@ -2322,70 +2322,62 @@ export class CDAL {
         return widgetWorking;
     }
 
-    loadWidgetTypes(eazlWidgetTypes: EazlWidgetType): WidgetType {
+    loadWidgetTypes(eazlAppData: EazlAppData): WidgetType {
         // Load WidgetTypes: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetTypes', '@Start');
 
         let widgetTypesWorking = new WidgetType();
-
-        if (eazlWidgetTypes.label != null) {
-            widgetTypesWorking.label = eazlWidgetTypes.label;
+        widgetTypesWorking.value = {
+            id: -1,
+            name: ''
+        }
+        if (eazlAppData.label != null) {
+            widgetTypesWorking.label = eazlAppData.label;
         } else {
             widgetTypesWorking.label = '';
         }
-        let idWorking: number = 0;
-        let nameWorking: string = '';
-        if (eazlWidgetTypes.value_id != null) {
-            idWorking = eazlWidgetTypes.value_id;
-        }
-        if (eazlWidgetTypes.value_name != null) {
-            nameWorking = eazlWidgetTypes.value_name;
+
+        if (eazlAppData.record_id != null) {
+            widgetTypesWorking.value.id = eazlAppData.record_id;
+        } else {
+            widgetTypesWorking.value.id = 0;
         }
 
-        widgetTypesWorking.value = 
-            {
-                id: idWorking,
-                name: nameWorking
-            }
-console.log(ApplicationCache.name)
+        if (eazlAppData.name != null) {
+            widgetTypesWorking.value.name = eazlAppData.name;
+        } else {
+            widgetTypesWorking.value.name = '';
+        }
+
         // Return the result
         return widgetTypesWorking;
     }
 
-    loadGraphTypes(eazlGraphTypes: EazlAppData): GraphType {
+    loadGraphTypes(eazlAppData: EazlAppData): GraphType {
         // Load GraphTypes: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGraphTypes', '@Start');
 
+        // Create new local variable with right shape
         let graphTypesWorking = new GraphType();
-
-			// 'record_id',
-			// 'entity',
-    		// 'name',
-    		// 'label',
-    		// 'code',
-			// 'description',
-			// 'date_created',
-			// 'url')
-
         graphTypesWorking.value = {
             id: -1,
             name: ''
         }
 
-        if (eazlGraphTypes.label != null) {
-            graphTypesWorking.label = eazlGraphTypes.label;
+        if (eazlAppData.label != null) {
+            graphTypesWorking.label = eazlAppData.label;
         } else {
             graphTypesWorking.label = '';
         }
 
-        if (eazlGraphTypes.record_id != null) {
-            graphTypesWorking.value.id = eazlGraphTypes.record_id;
+        if (eazlAppData.record_id != null) {
+            graphTypesWorking.value.id = eazlAppData.record_id;
         } else {
             graphTypesWorking.value.id = 0;
         }
 
-        if (eazlGraphTypes.name != null) {
-            graphTypesWorking.value.name = eazlGraphTypes.name;
+        if (eazlAppData.name != null) {
+            graphTypesWorking.value.name = eazlAppData.name;
         } else {
             graphTypesWorking.value.name = '';
         }
