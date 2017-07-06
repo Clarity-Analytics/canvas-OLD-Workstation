@@ -75,6 +75,7 @@ import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { EazlAppData }                from './model.appdata';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
@@ -85,7 +86,7 @@ import { EazlDashboardGroupMembership }     from './model.dashboardGroupMembersh
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
-import { EazlDashboardUserRelationship } from './model.dashboardUserRelationship';
+import { EazlDashboardUserRelationship }    from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
 import { EazlGraphType }              from './model.graph.type';
 import { EazlGroup }                  from './model.group';
@@ -4799,7 +4800,7 @@ export class EazlService implements OnInit {
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
                         //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('WidgetType', 'reset');
+                        this.cacheCanvasData('GraphType', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -8433,17 +8434,19 @@ console.log('CDAL testing this.widgetTypes', this.widgetTypes)
 
                 // Get all the data via API
                 let graphTypeWorking: GraphType[] = [];
-                this.get<EazlGraphType>('graph-type')
+                this.get<EazlAppData>('appdata')
                     .subscribe(
-                        (eazlGraphType) => {
-                            for (var i = 0; i < eazlGraphType.length; i++) {
-                                let graphTypeSingle = new GraphType();
-                                graphTypeSingle = this.cdal.loadGraphTypes(eazlGraphType[i]);
-                                graphTypeWorking.push(graphTypeSingle);
+                        (eazlAppData) => {
+console.log('eazlGraphType', eazlAppData)                            
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                graphTypeWorking.push(
+                                    this.cdal.loadGraphTypes(eazlAppData[i])
+                                );
                             }
 
                         // Replace
                         this.graphTypes = graphTypeWorking;
+console.log('CDAL testing this.graphTypes', this.graphTypes)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataGraphType.next(false);

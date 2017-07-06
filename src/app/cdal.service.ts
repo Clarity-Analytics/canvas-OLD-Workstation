@@ -28,6 +28,7 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { EazlAppData }                from './model.appdata';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
@@ -2346,16 +2347,30 @@ export class CDAL {
                 id: idWorking,
                 name: nameWorking
             }
-
+console.log(ApplicationCache.name)
         // Return the result
         return widgetTypesWorking;
     }
 
-    loadGraphTypes(eazlGraphTypes: EazlGraphType): GraphType {
+    loadGraphTypes(eazlGraphTypes: EazlAppData): GraphType {
         // Load GraphTypes: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGraphTypes', '@Start');
 
         let graphTypesWorking = new GraphType();
+
+			// 'record_id',
+			// 'entity',
+    		// 'name',
+    		// 'label',
+    		// 'code',
+			// 'description',
+			// 'date_created',
+			// 'url')
+
+        graphTypesWorking.value = {
+            id: -1,
+            name: ''
+        }
 
         if (eazlGraphTypes.label != null) {
             graphTypesWorking.label = eazlGraphTypes.label;
@@ -2363,14 +2378,14 @@ export class CDAL {
             graphTypesWorking.label = '';
         }
 
-        if (eazlGraphTypes.value_id != null) {
-            graphTypesWorking.value.id = eazlGraphTypes.value_id;
+        if (eazlGraphTypes.record_id != null) {
+            graphTypesWorking.value.id = eazlGraphTypes.record_id;
         } else {
             graphTypesWorking.value.id = 0;
         }
 
-        if (eazlGraphTypes.value_name != null) {
-            graphTypesWorking.value.name = eazlGraphTypes.value_name;
+        if (eazlGraphTypes.name != null) {
+            graphTypesWorking.value.name = eazlGraphTypes.name;
         } else {
             graphTypesWorking.value.name = '';
         }
