@@ -456,6 +456,7 @@ export const TEXTALIGNDROPDOWNS: SelectItem[] =
         }
     ]
 
+// const IMAGESOURCEDROPDOWNS replaced with API data
 export const IMAGESOURCEDROPDOWNS: SelectItem[] =
     [
         {
@@ -468,97 +469,98 @@ export const IMAGESOURCEDROPDOWNS: SelectItem[] =
         }
     ]
 
-export const GRIDSIZEDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: '1px',
-            value:
-                {
-                    id: 1,
-                    name: '1'
-                }
-        },
-        {
-            label: '2px',
-            value:
-                {
-                    id: 2,
-                    name: '2'
-                }
-        },
-        {
-            label: '3px',
-            value:
-                {
-                    id: 3,
-                    name: '3'
-                }
-        },
-        {
-            label: '4px',
-            value:
-                {
-                    id: 4,
-                    name: '4'
-                }
-        },
-        {
-            label: '5px',
-            value:
-                {
-                    id: 5,
-                    name: '5'
-                }
-        },
-        {
-            label: '6px',
-            value:
-                {
-                    id: 6,
-                    name: '6'
-                }
-        },
-        {
-            label: '9px',
-            value:
-                {
-                    id: 9,
-                    name: '9'
-                }
-        },
-        {
-            label: '12px',
-            value:
-                {
-                    id: 12,
-                    name: '12'
-                }
-        },
-        {
-            label: '18px',
-            value:
-                {
-                    id: 18,
-                    name: '18'
-                }
-        },
-        {
-            label: '24px',
-            value:
-                {
-                    id: 24,
-                    name: '24'
-                }
-        },
-        {
-            label: '30px',
-            value:
-                {
-                    id: 30,
-                    name: '30'
-                }
-        },
-    ];
+// const GRIDSIZEDROPDOWNS replaced with API data
+    // export const GRIDSIZEDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: '1px',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: '1'
+    //                 }
+    //         },
+    //         {
+    //             label: '2px',
+    //             value:
+    //                 {
+    //                     id: 2,
+    //                     name: '2'
+    //                 }
+    //         },
+    //         {
+    //             label: '3px',
+    //             value:
+    //                 {
+    //                     id: 3,
+    //                     name: '3'
+    //                 }
+    //         },
+    //         {
+    //             label: '4px',
+    //             value:
+    //                 {
+    //                     id: 4,
+    //                     name: '4'
+    //                 }
+    //         },
+    //         {
+    //             label: '5px',
+    //             value:
+    //                 {
+    //                     id: 5,
+    //                     name: '5'
+    //                 }
+    //         },
+    //         {
+    //             label: '6px',
+    //             value:
+    //                 {
+    //                     id: 6,
+    //                     name: '6'
+    //                 }
+    //         },
+    //         {
+    //             label: '9px',
+    //             value:
+    //                 {
+    //                     id: 9,
+    //                     name: '9'
+    //                 }
+    //         },
+    //         {
+    //             label: '12px',
+    //             value:
+    //                 {
+    //                     id: 12,
+    //                     name: '12'
+    //                 }
+    //         },
+    //         {
+    //             label: '18px',
+    //             value:
+    //                 {
+    //                     id: 18,
+    //                     name: '18'
+    //                 }
+    //         },
+    //         {
+    //             label: '24px',
+    //             value:
+    //                 {
+    //                     id: 24,
+    //                     name: '24'
+    //                 }
+    //         },
+    //         {
+    //             label: '30px',
+    //             value:
+    //                 {
+    //                     id: 30,
+    //                     name: '30'
+    //                 }
+    //         },
+    //     ];
 
 // const BACKGROUNDIMAGEDROPDOWNS replaced with API data
     // export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
@@ -4510,7 +4512,7 @@ export class EazlService implements OnInit {
     boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
     fontSizeDropdowns: SelectItem[] = FONTSIZEDROPDOWNS;    // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[] = FONTWEIGHTDROPDOWNS; // List of FontWeight dropwdown options
-    gridSizeDropdowns: SelectItem[] = GRIDSIZEDROPDOWNS;    // List of Grid Size dropdown options
+    gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
     textMarginDropdowns: SelectItem[] = TEXTMARGINDROPDOWNS;        // List of Margins for text box dropdown options
     textPaddingDropdowns: SelectItem[] = TEXTPADDINGDROPDOWNS;      // List of Text Padding dropdown options
     textPositionDropdowns: SelectItem[] = TEXTPOSITIONDROPDOWNS;    // List of Text Position dropdown options
