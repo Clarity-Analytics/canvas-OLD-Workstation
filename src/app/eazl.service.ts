@@ -320,25 +320,25 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
 
 
 // const FONTWEIGHTDROPDOWNS replaced with API data
-    export const FONTWEIGHTDROPDOWNS: SelectItem[] =
-        [
-            {
-                label: 'Normal',
-                value:
-                    {
-                        id: 0,
-                        name: 'normal'
-                    }
-            },
-            {
-                label: 'Bold',
-                value:
-                    {
-                        id: 1,
-                        name: 'bold'
-                    }
-            }
-        ]
+    // export const FONTWEIGHTDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'Normal',
+    //             value:
+    //                 {
+    //                     id: 0,
+    //                     name: 'normal'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Bold',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: 'bold'
+    //                 }
+    //         }
+    //     ]
 
 // const TEXTMARGINDROPDOWNS replaced with API data
     // export const TEXTMARGINDROPDOWNS: SelectItem[] =
@@ -4519,7 +4519,7 @@ export class EazlService implements OnInit {
     borderDropdowns: SelectItem[];                          // List of Border dropdown options
     boxShadowDropdowns: SelectItem[];                       // List of Box Shadow dropdown options
     fontSizeDropdowns: SelectItem[];                        // List of FontSize dropdown options
-    fontWeightDropdown: SelectItem[] = FONTWEIGHTDROPDOWNS; // List of FontWeight dropwdown options
+    fontWeightDropdown: SelectItem[];                       // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
     textMarginDropdowns: SelectItem[];                      // List of Margins for text box dropdown options
     textPaddingDropdowns: SelectItem[] = TEXTPADDINGDROPDOWNS;      // List of Text Padding dropdown options
@@ -8775,7 +8775,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.fontWeightDropdown = fontWeightDropdownWorking;
-console.log('this.fontWeightDropdown', this.fontWeightDropdown)
+
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataFontWeightDropdown.next(false);
                         }
