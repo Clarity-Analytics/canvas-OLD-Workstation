@@ -437,33 +437,33 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
 
 //TEXTALIGNDROPDOWNS    TextAlignDropdown
 // const TEXTALIGNDROPDOWNS replaced with API data  
-    export const TEXTALIGNDROPDOWNS: SelectItem[] =
-        [
-            {
-                label: 'Left',
-                value:
-                    {
-                        id: 0,
-                        name: 'left'
-                    }
-            },
-            {
-                label: 'Center',
-                value:
-                    {
-                        id: 1,
-                        name: 'center'
-                    }
-            },
-            {
-                label: 'Right',
-                value:
-                    {
-                        id: 2,
-                        name: 'right'
-                    }
-            }
-        ]
+    // export const TEXTALIGNDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'Left',
+    //             value:
+    //                 {
+    //                     id: 0,
+    //                     name: 'left'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Center',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: 'center'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Right',
+    //             value:
+    //                 {
+    //                     id: 2,
+    //                     name: 'right'
+    //                 }
+    //         }
+    //     ]
 
 //IMAGESOURCEDROPDOWNS  ImageSourceDropdown
 // const IMAGESOURCEDROPDOWNS replaced with API data  
@@ -4526,7 +4526,7 @@ export class EazlService implements OnInit {
     textMarginDropdowns: SelectItem[];                      // List of Margins for text box dropdown options
     textPaddingDropdowns: SelectItem[];                     // List of Text Padding dropdown options
     textPositionDropdowns: SelectItem[];                    // List of Text Position dropdown options
-    textAlignDropdowns: SelectItem[] = TEXTALIGNDROPDOWNS;          // List of Text alignment options
+    textAlignDropdowns: SelectItem[];                       // List of Text alignment options
     imageSourceDropdowns: SelectItem[] = IMAGESOURCEDROPDOWNS;       // List of Image Source file dropdown options
     backgroundImageDropdowns: SelectItem[];                 // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
