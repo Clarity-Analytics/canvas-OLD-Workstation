@@ -7269,12 +7269,30 @@ export class EazlService implements OnInit {
         // Returns list of Text Alignment dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextAlignDropdowns', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataTextAlignDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'TextAlignDropdown data is dirty / not up to date',
+                detail:   'The TextAlignDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.textAlignDropdowns;
     }
 
     getImageSourceDropdowns(): SelectItem[] {
         // Returns list of Image Source file dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getImageSourceDropdowns', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataImageSourceDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'ImageSourceDropdown data is dirty / not up to date',
+                detail:   'The ImageSourceDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         return this.imageSourceDropdowns;
     }

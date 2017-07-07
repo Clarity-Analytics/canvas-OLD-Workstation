@@ -12,7 +12,6 @@ export class EazlPersonalisation {
     grid_size: number;                      // Size of Grid on Dashboard in px
     growl_life: number;                     // Life is seconds of Growls
     growl_sticky: boolean;                  // True: Growls are sticky
-    keep_dev_logged_in: boolean;            // True: keep Dev logged in Dev Environment - for later use
     snap_to_grid: boolean;                  // True: snap Widgets to the grid points on Dashboard
 }
 
