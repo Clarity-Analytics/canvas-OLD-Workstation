@@ -435,7 +435,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ]
 
-//TEXTALIGNDROPDOWNS    TextAlignDropdown
+
 // const TEXTALIGNDROPDOWNS replaced with API data  
     // export const TEXTALIGNDROPDOWNS: SelectItem[] =
     //     [
@@ -465,19 +465,19 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ]
 
-//IMAGESOURCEDROPDOWNS  ImageSourceDropdown
+
 // const IMAGESOURCEDROPDOWNS replaced with API data  
-    export const IMAGESOURCEDROPDOWNS: SelectItem[] =
-        [
-            {
-                label: 'Coffee',
-                value:
-                    {
-                        id: 1,
-                        name: '../assets/coffee.jpg'
-                    }
-            }
-        ]
+    // export const IMAGESOURCEDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'Coffee',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: '../assets/coffee.jpg'
+    //                 }
+    //         }
+    //     ]
 
 // const GRIDSIZEDROPDOWNS replaced with API data
     // export const GRIDSIZEDROPDOWNS: SelectItem[] =
@@ -4527,7 +4527,7 @@ export class EazlService implements OnInit {
     textPaddingDropdowns: SelectItem[];                     // List of Text Padding dropdown options
     textPositionDropdowns: SelectItem[];                    // List of Text Position dropdown options
     textAlignDropdowns: SelectItem[];                       // List of Text alignment options
-    imageSourceDropdowns: SelectItem[] = IMAGESOURCEDROPDOWNS;       // List of Image Source file dropdown options
+    imageSourceDropdowns: SelectItem[];                     // List of Image Source file dropdown options
     backgroundImageDropdowns: SelectItem[];                 // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
