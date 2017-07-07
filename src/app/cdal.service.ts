@@ -1456,7 +1456,7 @@ export class CDAL {
 
         let personalisationWorking = new Personalisation();
 
-        personalisationWorking.personalisationID = eazlPersonalisation.id;
+        personalisationWorking.personalisationID = eazlPersonalisation.record_id;
 
         if (eazlPersonalisation.dashboard_id_at_startup != null) {
             personalisationWorking.dashboardIDStartup = eazlPersonalisation.dashboard_id_at_startup;
@@ -1528,7 +1528,7 @@ export class CDAL {
 
         let eazlPersonalisationWorking = new EazlPersonalisation();
 
-        eazlPersonalisationWorking.id = personalisation.personalisationID;
+        eazlPersonalisationWorking.record_id = personalisation.personalisationID;
 
         if (personalisation.dashboardIDStartup != null) {
             eazlPersonalisationWorking.dashboard_id_at_startup = personalisation.dashboardIDStartup;

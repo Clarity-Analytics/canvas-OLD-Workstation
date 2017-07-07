@@ -2,7 +2,7 @@
 
 // Eazl
 export class EazlPersonalisation {
-    id: number;                             // Unique DB ID
+    record_id: number;                       // Unique DB ID
     average_warning_runtime: number;        // Minutes: Warn user if a report is known to run longer
     dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
     environment: string;                    // Live, Test-Environment-Name
