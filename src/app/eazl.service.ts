@@ -8938,47 +8938,46 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
 
-//IMAGESOURCEDROPDOWNS  ImageSourceDropdown
-        // //  ImageSourceDropdown
-        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ImageSourceDropdown') {
+        //  ImageSourceDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ImageSourceDropdown') {
 
-        //     // Reset
-        //     if (resetAction == 'reset') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ImageSourceDropdown');
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ImageSourceDropdown');
 
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
 
-        //         // Get all the data via API
-        //         let ImageSourceDropdownWorking: WidgetType[] = [];
-        //         this.get<EazlAppData>('appdata')
-        //             .subscribe(
-        //                 (eazlAppData) => {
-        //                     for (var i = 0; i < eazlAppData.length; i++) {
-        //                         if (eazlAppData[i].entity == 'ImageSourceDropdown') {
-        //                             ImageSourceDropdownWorking.push(
-        //                                 this.cdal.loadImageSourceDropdown(eazlAppData[i])
-        //                             );
-        //                         }
-        //                     }
+                // Get all the data via API
+                let imageSourceDropdownWorking: WidgetType[] = [];
+                this.get<EazlAppData>('appdata')
+                    .subscribe(
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'ImageSourceDropdown') {
+                                    imageSourceDropdownWorking.push(
+                                        this.cdal.loadImageSourceDropdown(eazlAppData[i])
+                                    );
+                                }
+                            }
 
-        //                 // Replace
-        //                 this.ImageSourceDropdowns = ImageSourceDropdownWorking;
-        // console.log('this.ImageSourceDropdowns', this.ImageSourceDropdowns)
-        //                 // Mark the data as clean
-        //                 this.globalVariableService.dirtyDataImageSourceDropdown.next(false);
-        //                 }
-        //             )
-        //     }
+                        // Replace
+                        this.imageSourceDropdowns = imageSourceDropdownWorking;
 
-        //     // Clear all
-        //     if (resetAction == 'clear') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ImageSourceDropdown');
-        //         this.ImageSourceDropdowns = [];
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataImageSourceDropdown.next(false);
+                        }
+                    )
+            }
 
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
-        //     }
-        // }
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ImageSourceDropdown');
+                this.imageSourceDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
+            }
+        }
     }
 }
