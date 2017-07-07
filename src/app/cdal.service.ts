@@ -2389,16 +2389,15 @@ export class CDAL {
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBorderDropdowns', '@Start');
 
         let borderDropdownsWorking: SelectItem =
-        {label: '',
-            value: 
-            {id: 0,
-             name: ''
-            }
-        };
-        borderDropdownsWorking.value = {
-            id: -1,
-            name: ''
-        }
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
+
         if (eazlAppData.label != null) {
             borderDropdownsWorking.label = eazlAppData.label;
         } else {
@@ -2421,26 +2420,34 @@ export class CDAL {
         return borderDropdownsWorking;
     }
 
-    loadBoxShadowDropdowns(eazlBoxShadowDropdowns: SelectItem): SelectItem {
+    loadBoxShadowDropdowns(eazlAppData: EazlAppData): SelectItem {
         // Load BoxShadowDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBoxShadowDropdowns', '@Start');
 
-        let boxShadowDropdownsWorking: SelectItem;
+        let boxShadowDropdownsWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
 
-        if (eazlBoxShadowDropdowns.label != null) {
-            boxShadowDropdownsWorking.label = eazlBoxShadowDropdowns.label;
+        if (eazlAppData.label != null) {
+            boxShadowDropdownsWorking.label = eazlAppData.label;
         } else {
             boxShadowDropdownsWorking.label = '';
         }
 
-        if (eazlBoxShadowDropdowns.value.id != null) {
-            boxShadowDropdownsWorking.value.id = eazlBoxShadowDropdowns.value.id;
+        if (eazlAppData.record_id != null) {
+            boxShadowDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
             boxShadowDropdownsWorking.value.id = 0;
         }
 
-        if (eazlBoxShadowDropdowns.value.name != null) {
-            boxShadowDropdownsWorking.value.name = eazlBoxShadowDropdowns.value.name;
+        if (eazlAppData.name != null) {
+            boxShadowDropdownsWorking.value.name = eazlAppData.name;
         } else {
             boxShadowDropdownsWorking.value.name = '';
         }

@@ -4798,7 +4798,7 @@ export class EazlService implements OnInit {
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
                         //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('BorderDropdown', 'reset');
+                        this.cacheCanvasData('FontSizeDropdown', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -8487,7 +8487,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.borderDropdowns = borderDropdownWorking;
-console.log('CDAL testing this.borderDropdowns', this.borderDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBorderDropdown.next(false);
@@ -8517,17 +8516,21 @@ console.log('CDAL testing this.borderDropdowns', this.borderDropdowns)
 
                 // Get all the data via API
                 let boxShadowDropdownsWorking: SelectItem[] = [];
-                this.get<SelectItem>('boxshadow-dropdowns')
+
+                this.get<EazlAppData>('appdata')
                     .subscribe(
-                        (eazlBoxShadowDropdown) => {
-                            for (var i = 0; i < eazlBoxShadowDropdown.length; i++) {
-                                let boxShadowDropdownSingle =
-                                    this.cdal.loadBoxShadowDropdowns(eazlBoxShadowDropdown[i]);
-                                boxShadowDropdownsWorking.push(boxShadowDropdownSingle);
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'BoxShadowDropdown') {
+                                    boxShadowDropdownsWorking.push(
+                                        this.cdal.loadBoxShadowDropdowns(eazlAppData[i])
+                                    );
+                                }
                             }
 
                         // Replace
                         this.boxShadowDropdowns = boxShadowDropdownsWorking;
+console.log('CDAL testing this.boxShadowDropdowns', this.boxShadowDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBoxShadowDropdown.next(false);
