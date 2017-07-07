@@ -377,43 +377,43 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ]
 
-// const TEXTPADDINGDROPDOWNS replaced with API data 900
-    export const TEXTPADDINGDROPDOWNS: SelectItem[] =
-        [
-            {
-                label: 'None',
-                value:
-                    {
-                        id: 0,
-                        name: '0'
-                    }
-            },
-            {
-                label: 'Small',
-                value:
-                    {
-                        id: 1,
-                        name: '5px 5px 5px 5px'
-                    }
-            },
-            {
-                label: 'Medium',
-                value:
-                    {
-                        id: 2,
-                        name: '20px 20px 20px 20px'
-                    }
-            },
-            {
-                label: 'Large',
-                value:
-                    {
-                        id: 3,
-                        name: '50px 50px 50px 50px'
-                    }
-            }
-        ]
-//TEXTPOSITIONDROPDOWNS TextPositionDropdown
+// const TEXTPADDINGDROPDOWNS replaced with API data 
+    // export const TEXTPADDINGDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'None',
+    //             value:
+    //                 {
+    //                     id: 0,
+    //                     name: '0'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Small',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: '5px 5px 5px 5px'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Medium',
+    //             value:
+    //                 {
+    //                     id: 2,
+    //                     name: '20px 20px 20px 20px'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Large',
+    //             value:
+    //                 {
+    //                     id: 3,
+    //                     name: '50px 50px 50px 50px'
+    //                 }
+    //         }
+    //     ]
+
 // const TEXTPOSITIONDROPDOWNS replaced with API data  1000
     export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
         [
@@ -4524,7 +4524,7 @@ export class EazlService implements OnInit {
     fontWeightDropdown: SelectItem[];                       // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
     textMarginDropdowns: SelectItem[];                      // List of Margins for text box dropdown options
-    textPaddingDropdowns: SelectItem[] = TEXTPADDINGDROPDOWNS;      // List of Text Padding dropdown options
+    textPaddingDropdowns: SelectItem[];                     // List of Text Padding dropdown options
     textPositionDropdowns: SelectItem[] = TEXTPOSITIONDROPDOWNS;    // List of Text Position dropdown options
     textAlignDropdowns: SelectItem[] = TEXTALIGNDROPDOWNS;          // List of Text alignment options
     imageSourceDropdowns: SelectItem[] = IMAGESOURCEDROPDOWNS;       // List of Image Source file dropdown options
