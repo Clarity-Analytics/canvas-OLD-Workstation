@@ -414,29 +414,29 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ]
 
-// const TEXTPOSITIONDROPDOWNS replaced with API data  1000
-    export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
-        [
-            {
-                label: 'Relative',
-                value:
-                    {
-                        id: 0,
-                        name: 'relative'
-                    }
-            },
-            {
-                label: 'Absolute',
-                value:
-                    {
-                        id: 1,
-                        name: 'absolute'
-                    }
-            }
-        ]
+// const TEXTPOSITIONDROPDOWNS replaced with API data  
+    // export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'Relative',
+    //             value:
+    //                 {
+    //                     id: 0,
+    //                     name: 'relative'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Absolute',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: 'absolute'
+    //                 }
+    //         }
+    //     ]
 
 //TEXTALIGNDROPDOWNS    TextAlignDropdown
-// const TEXTALIGNDROPDOWNS replaced with API data  1100
+// const TEXTALIGNDROPDOWNS replaced with API data  
     export const TEXTALIGNDROPDOWNS: SelectItem[] =
         [
             {
@@ -466,7 +466,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
         ]
 
 //IMAGESOURCEDROPDOWNS  ImageSourceDropdown
-// const IMAGESOURCEDROPDOWNS replaced with API data  1200
+// const IMAGESOURCEDROPDOWNS replaced with API data  
     export const IMAGESOURCEDROPDOWNS: SelectItem[] =
         [
             {
@@ -4525,7 +4525,7 @@ export class EazlService implements OnInit {
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
     textMarginDropdowns: SelectItem[];                      // List of Margins for text box dropdown options
     textPaddingDropdowns: SelectItem[];                     // List of Text Padding dropdown options
-    textPositionDropdowns: SelectItem[] = TEXTPOSITIONDROPDOWNS;    // List of Text Position dropdown options
+    textPositionDropdowns: SelectItem[];                    // List of Text Position dropdown options
     textAlignDropdowns: SelectItem[] = TEXTALIGNDROPDOWNS;          // List of Text alignment options
     imageSourceDropdowns: SelectItem[] = IMAGESOURCEDROPDOWNS;       // List of Image Source file dropdown options
     backgroundImageDropdowns: SelectItem[];                 // List of backgrounds for dropdown options
