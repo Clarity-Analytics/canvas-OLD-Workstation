@@ -2456,26 +2456,34 @@ export class CDAL {
         return boxShadowDropdownsWorking;
     }
 
-    loadFontSizeDropdowns(eazlFontSizeDropdowns: SelectItem): SelectItem {
+    loadFontSizeDropdowns(eazlAppData: EazlAppData): SelectItem {
         // Load FontSizeDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFontSizeDropdowns', '@Start');
 
-        let fontSizeDropdownsWorking: SelectItem;
+        let fontSizeDropdownsWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
 
-        if (eazlFontSizeDropdowns.label != null) {
-            fontSizeDropdownsWorking.label = eazlFontSizeDropdowns.label;
+        if (eazlAppData.label != null) {
+            fontSizeDropdownsWorking.label = eazlAppData.label;
         } else {
             fontSizeDropdownsWorking.label = '';
         }
 
-        if (eazlFontSizeDropdowns.value.id != null) {
-            fontSizeDropdownsWorking.value.id = eazlFontSizeDropdowns.value.id;
+        if (eazlAppData.record_id != null) {
+            fontSizeDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
             fontSizeDropdownsWorking.value.id = 0;
         }
 
-        if (eazlFontSizeDropdowns.value.name != null) {
-            fontSizeDropdownsWorking.value.name = eazlFontSizeDropdowns.value.name;
+        if (eazlAppData.name != null) {
+            fontSizeDropdownsWorking.value.name = eazlAppData.name;
         } else {
             fontSizeDropdownsWorking.value.name = '';
         }

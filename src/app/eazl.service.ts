@@ -8530,7 +8530,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.boxShadowDropdowns = boxShadowDropdownsWorking;
-console.log('CDAL testing this.boxShadowDropdowns', this.boxShadowDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBoxShadowDropdown.next(false);
@@ -8560,17 +8559,19 @@ console.log('CDAL testing this.boxShadowDropdowns', this.boxShadowDropdowns)
 
                 // Get all the data via API
                 let fontSizeDropdownsWorking: SelectItem[] = [];
-                this.get<SelectItem>('FontSizeDropdowns')
+
+                this.get<EazlAppData>('appdata')
                     .subscribe(
-                        (eazlFontSizeDropdown) => {
-                            for (var i = 0; i < eazlFontSizeDropdown.length; i++) {
-                                let fontSizeDropdownSingle =
-                                    this.cdal.loadFontSizeDropdowns(eazlFontSizeDropdown[i]);
-                                fontSizeDropdownsWorking.push(fontSizeDropdownSingle);
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'FontSizeDropdown') {
+                                    fontSizeDropdownsWorking.push(this.cdal.loadFontSizeDropdowns(eazlAppData[i]));
+                                }
                             }
 
                         // Replace
                         this.fontSizeDropdowns = fontSizeDropdownsWorking;
+console.log('CDAL testing this.fontSizeDropdowns', this.fontSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataFontSizeDropdown.next(false);
