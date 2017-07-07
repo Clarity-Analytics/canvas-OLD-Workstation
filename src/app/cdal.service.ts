@@ -2554,8 +2554,8 @@ export class CDAL {
             backgroundImageDropdownsWorking.value.id = 0;
         }
 
-        if (eazlAppData.name != null) {
-            backgroundImageDropdownsWorking.value.name = eazlAppData.name;
+        if (eazlAppData.code != null) {
+            backgroundImageDropdownsWorking.value.name = eazlAppData.code;
         } else {
             backgroundImageDropdownsWorking.value.name = '';
         }

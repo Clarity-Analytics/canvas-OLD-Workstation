@@ -560,41 +560,42 @@ export const GRIDSIZEDROPDOWNS: SelectItem[] =
         },
     ];
 
-export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'None',
-            value:
-                {
-                    id: 1,
-                    name: ''
-                }
-        },
-        {
-            label: 'Dolphin',
-            value:
-                {
-                    id: 1,
-                    name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"
-                }
-        },
-        {
-            label: 'River Sunset',
-            value:
-                {
-                    id: 1,
-                    name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"
-                }
-        },
-        {
-            label: 'Snow Landscape',
-            value:
-                {
-                    id: 1,
-                    name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"
-                }
-        },
-    ];
+// const BACKGROUNDIMAGEDROPDOWNS replaced with API data
+    // export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'None',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: ''
+    //                 }
+    //         },
+    //         {
+    //             label: 'Dolphin',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')"
+    //                 }
+    //         },
+    //         {
+    //             label: 'River Sunset',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: "url('../assets/CanvasBackgroundImages/River Sunset.png')"
+    //                 }
+    //         },
+    //         {
+    //             label: 'Snow Landscape',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: "url('../assets/CanvasBackgroundImages/snow landscape.jpg')"
+    //                 }
+    //         },
+    //     ];
 
 // const GRAPHTYPES replaced with API data
     export const GRAPHTYPES: GraphType[] =
@@ -4515,7 +4516,7 @@ export class EazlService implements OnInit {
     textPositionDropdowns: SelectItem[] = TEXTPOSITIONDROPDOWNS;    // List of Text Position dropdown options
     textAlignDropdowns: SelectItem[] = TEXTALIGNDROPDOWNS;          // List of Text alignment options
     imageSourceDropdowns: SelectItem[] = IMAGESOURCEDROPDOWNS;       // List of Image Source file dropdown options
-    backgroundImageDropdowns: SelectItem[] = BACKGROUNDIMAGEDROPDOWNS;  // List of backgrounds for dropdown options
+    backgroundImageDropdowns: SelectItem[];                 // List of backgrounds for dropdown options
     canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
@@ -8532,6 +8533,7 @@ console.log('this.borderDropdowns', this.borderDropdowns)
 
                         // Replace
                         this.boxShadowDropdowns = boxShadowDropdownsWorking;
+console.log('this.boxShadowDropdowns', this.boxShadowDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBoxShadowDropdown.next(false);
@@ -8573,6 +8575,7 @@ console.log('this.borderDropdowns', this.borderDropdowns)
 
                         // Replace
                         this.fontSizeDropdowns = fontSizeDropdownsWorking;
+console.log('this.fontSizeDropdowns', this.fontSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataFontSizeDropdown.next(false);
@@ -8614,6 +8617,7 @@ console.log('this.borderDropdowns', this.borderDropdowns)
 
                         // Replace
                         this.gridSizeDropdowns = gridSizeDropdownsWorking;
+console.log('this.gridSizeDropdowns', this.gridSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataGridSizeDropdown.next(false);
@@ -8655,7 +8659,6 @@ console.log('this.borderDropdowns', this.borderDropdowns)
 
                         // Replace
                         this.backgroundImageDropdowns = backgroundImageDropdownsWorking;
-console.log('CDAL testing this.backgroundImageDropdowns', this.backgroundImageDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBackgroundImageDropdown.next(false);
