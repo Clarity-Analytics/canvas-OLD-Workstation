@@ -4798,7 +4798,7 @@ export class EazlService implements OnInit {
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
                         //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('WidgetType', 'reset');
+                        this.cacheCanvasData('BorderDropdown', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -8403,7 +8403,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.widgetTypes = widgetTypeWorking;
-console.log('CDAL testing this.widgetTypes', this.widgetTypes)
+
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataWidgetType.next(false);
                         }
@@ -8473,17 +8473,21 @@ console.log('CDAL testing this.widgetTypes', this.widgetTypes)
 
                 // Get all the data via API
                 let borderDropdownWorking: SelectItem[] = [];
-                this.get<SelectItem>('border-dropdowns')
+
+                this.get<EazlAppData>('appdata')
                     .subscribe(
-                        (eazlBorderDropdown) => {
-                            for (var i = 0; i < eazlBorderDropdown.length; i++) {
-                                let borderDropdownSingle =
-                                    this.cdal.loadBorderDropdowns(eazlBorderDropdown[i]);
-                                borderDropdownWorking.push(borderDropdownSingle);
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'BorderDropdown') {
+                                    borderDropdownWorking.push(
+                                        this.cdal.loadBorderDropdowns(eazlAppData[i])
+                                    );
+                                }
                             }
 
                         // Replace
                         this.borderDropdowns = borderDropdownWorking;
+console.log('CDAL testing this.borderDropdowns', this.borderDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBorderDropdown.next(false);

@@ -2384,26 +2384,35 @@ export class CDAL {
         return graphTypesWorking;
     }
 
-    loadBorderDropdowns(eazlBorderDropdowns: SelectItem): SelectItem {
+    loadBorderDropdowns(eazlAppData: EazlAppData): SelectItem {
         // Load BorderDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBorderDropdowns', '@Start');
 
-        let borderDropdownsWorking: SelectItem;
-
-        if (eazlBorderDropdowns.label != null) {
-            borderDropdownsWorking.label = eazlBorderDropdowns.label;
+        let borderDropdownsWorking: SelectItem =
+        {label: '',
+            value: 
+            {id: 0,
+             name: ''
+            }
+        };
+        borderDropdownsWorking.value = {
+            id: -1,
+            name: ''
+        }
+        if (eazlAppData.label != null) {
+            borderDropdownsWorking.label = eazlAppData.label;
         } else {
             borderDropdownsWorking.label = '';
         }
 
-        if (eazlBorderDropdowns.value.id != null) {
-            borderDropdownsWorking.value.id = eazlBorderDropdowns.value.id;
+        if (eazlAppData.record_id != null) {
+            borderDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
             borderDropdownsWorking.value.id = 0;
         }
 
-        if (eazlBorderDropdowns.value.name != null) {
-            borderDropdownsWorking.value.name = eazlBorderDropdowns.value.name;
+        if (eazlAppData.name != null) {
+            borderDropdownsWorking.value.name = eazlAppData.name;
         } else {
             borderDropdownsWorking.value.name = '';
         }
