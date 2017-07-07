@@ -143,331 +143,341 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
         maxRowsPerWidgetGraph: 15,
     }
 
-export const ISSTAFFDROPDOWN: SelectItem[] =
-    [
-        {
-            label: 'Select option',
-            value: ''
-        },
-        {
-            label: 'Is Staff Member',
-            value: 'True'
-        },
-        {
-            label: 'Non-staff',
-            value: 'False'
-        },
-    ]
+// const ISSTAFFDROPDOWN replaced with API data
+    export const ISSTAFFDROPDOWN: SelectItem[] =
+        [
+            {
+                label: 'Select option',
+                value: ''
+            },
+            {
+                label: 'Is Staff Member',
+                value: 'True'
+            },
+            {
+                label: 'Non-staff',
+                value: 'False'
+            },
+        ]
 
-export const ISSUPERUSERDROPDOWN: SelectItem[] =
-    [
-        {
-            label: 'Select option',
-            value: ''
-        },
-        {
-            label: 'Is Superuser',
-            value: 'True'
-        },
-        {
-            label: 'Normal staff',
-            value: 'False'
-        }
-    ]
+// const ISSUPERUSERDROPDOWN replaced with API data
+    export const ISSUPERUSERDROPDOWN: SelectItem[] =
+        [
+            {
+                label: 'Select option',
+                value: ''
+            },
+            {
+                label: 'Is Superuser',
+                value: 'True'
+            },
+            {
+                label: 'Normal staff',
+                value: 'False'
+            }
+        ]
 
-export const BORDERDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'None',
-            value:
-                {
-                    id: 0,
-                    name: 'transparent'
-                }
-        },
-        {
-            label: 'Thick Black',
-            value:
-                {
-                    id: 1,
-                    name: '3px solid black'
-                }
-        },
-        {
-            label: 'Thin Black',
-            value:
-                {
-                    id: 2,
-                    name: '1px solid black'
-                }
-        },
-        {
-            label: 'Thin White',
-            value:
-                {
-                    id: 3,
-                    name: '1px solid white'
-                }
-        },
-        {
-            label: 'Thin Red',
-            value:
-                {
-                    id: 4,
-                    name: '1px solid red'
-                }
-        },
-        {
-            label: 'Thin Gray',
-            value:
-                {
-                    id: 5,
-                    name: '1px solid gray'
-                }
-        }
-    ];
+// const BORDERDROPDOWNS replaced with API data
+    export const BORDERDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'None',
+                value:
+                    {
+                        id: 0,
+                        name: 'transparent'
+                    }
+            },
+            {
+                label: 'Thick Black',
+                value:
+                    {
+                        id: 1,
+                        name: '3px solid black'
+                    }
+            },
+            {
+                label: 'Thin Black',
+                value:
+                    {
+                        id: 2,
+                        name: '1px solid black'
+                    }
+            },
+            {
+                label: 'Thin White',
+                value:
+                    {
+                        id: 3,
+                        name: '1px solid white'
+                    }
+            },
+            {
+                label: 'Thin Red',
+                value:
+                    {
+                        id: 4,
+                        name: '1px solid red'
+                    }
+            },
+            {
+                label: 'Thin Gray',
+                value:
+                    {
+                        id: 5,
+                        name: '1px solid gray'
+                    }
+            }
+        ];
 
-export const BOXSHADOWDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'None',
-            value:
-                {
-                    id: 0,
-                    name: ''
-                }
-        },
-        {
-            label: 'Black',
-            value:
-                {
-                    id: 1,
-                    name: '2px 2px 12px black'
-                }
-        },
-        {
-            label: 'Gray',
-            value:
-                {
-                    id: 2,
-                    name: '2px 2px 12px gray'
-                }
-        },
-        {
-            label: 'White',
-            value:
-                {
-                    id: 3,
-                    name: '2px 2px 12px white'
-                }
-        },
-    ];
+// const BOXSHADOWDROPDOWNS replaced with API data
+    export const BOXSHADOWDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'None',
+                value:
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            },
+            {
+                label: 'Black',
+                value:
+                    {
+                        id: 1,
+                        name: '2px 2px 12px black'
+                    }
+            },
+            {
+                label: 'Gray',
+                value:
+                    {
+                        id: 2,
+                        name: '2px 2px 12px gray'
+                    }
+            },
+            {
+                label: 'White',
+                value:
+                    {
+                        id: 3,
+                        name: '2px 2px 12px white'
+                    }
+            },
+        ];
 
-export const FONTSIZEDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: '0.5em',
-            value:
-                {
-                    id: 0,
-                    name: '0.5'
-                }
-        },
-        {
-            label: '0.75em',
-            value:
-                {
-                    id: 1,
-                    name: '0.75'
-                }
-        },
-        {
-            label: '1em',
-            value:
-                {
-                    id: 2,
-                    name: '1'
-                }
-        },
-        {
-            label: '1.25em',
-            value:
-                {
-                    id: 3,
-                    name: '1.25'
-                }
-        },
-        {
-            label: '1.5em',
-            value:
-                {
-                    id: 4,
-                    name: '1.5'
-                }
-        },
-        {
-            label: '2em',
-            value:
-                {
-                    id: 5,
-                    name: '2'
-                }
-        },
-    ];
+// const FONTSIZEDROPDOWNS replaced with API data
+    // export const FONTSIZEDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: '0.5em',
+    //             value:
+    //                 {
+    //                     id: 0,
+    //                     name: '0.5'
+    //                 }
+    //         },
+    //         {
+    //             label: '0.75em',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: '0.75'
+    //                 }
+    //         },
+    //         {
+    //             label: '1em',
+    //             value:
+    //                 {
+    //                     id: 2,
+    //                     name: '1'
+    //                 }
+    //         },
+    //         {
+    //             label: '1.25em',
+    //             value:
+    //                 {
+    //                     id: 3,
+    //                     name: '1.25'
+    //                 }
+    //         },
+    //         {
+    //             label: '1.5em',
+    //             value:
+    //                 {
+    //                     id: 4,
+    //                     name: '1.5'
+    //                 }
+    //         },
+    //         {
+    //             label: '2em',
+    //             value:
+    //                 {
+    //                     id: 5,
+    //                     name: '2'
+    //                 }
+    //         },
+    //     ];
 
 
-export const FONTWEIGHTDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'Normal',
-            value:
-                {
-                    id: 0,
-                    name: 'normal'
-                }
-        },
-        {
-            label: 'Bold',
-            value:
-                {
-                    id: 1,
-                    name: 'bold'
-                }
-        }
-    ]
+// const FONTWEIGHTDROPDOWNS replaced with API data
+    export const FONTWEIGHTDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'Normal',
+                value:
+                    {
+                        id: 0,
+                        name: 'normal'
+                    }
+            },
+            {
+                label: 'Bold',
+                value:
+                    {
+                        id: 1,
+                        name: 'bold'
+                    }
+            }
+        ]
 
-export const TEXTMARGINDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'None',
-            value:
-                {
-                    id: 0,
-                    name: '0'
-                }
-        },
-        {
-            label: 'Small',
-            value:
-                {
-                    id: 1,
-                    name: '5px 5px 5px 5px'
-                }
-        },
-        {
-            label: 'Medium',
-            value:
-                {
-                    id: 2,
-                    name: '20px 20px 20px 20px'
-                }
-        },
-        {
-            label: 'Large',
-            value:
-                {
-                    id: 3,
-                    name: '50px 50px 50px 50px'
-                }
-        }
-    ]
+// const TEXTMARGINDROPDOWNS replaced with API data
+    export const TEXTMARGINDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'None',
+                value:
+                    {
+                        id: 0,
+                        name: '0'
+                    }
+            },
+            {
+                label: 'Small',
+                value:
+                    {
+                        id: 1,
+                        name: '5px 5px 5px 5px'
+                    }
+            },
+            {
+                label: 'Medium',
+                value:
+                    {
+                        id: 2,
+                        name: '20px 20px 20px 20px'
+                    }
+            },
+            {
+                label: 'Large',
+                value:
+                    {
+                        id: 3,
+                        name: '50px 50px 50px 50px'
+                    }
+            }
+        ]
 
-export const TEXTPADDINGDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'None',
-            value:
-                {
-                    id: 0,
-                    name: '0'
-                }
-        },
-        {
-            label: 'Small',
-            value:
-                {
-                    id: 1,
-                    name: '5px 5px 5px 5px'
-                }
-        },
-        {
-            label: 'Medium',
-            value:
-                {
-                    id: 2,
-                    name: '20px 20px 20px 20px'
-                }
-        },
-        {
-            label: 'Large',
-            value:
-                {
-                    id: 3,
-                    name: '50px 50px 50px 50px'
-                }
-        }
-    ]
+// const TEXTPADDINGDROPDOWNS replaced with API data
+    export const TEXTPADDINGDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'None',
+                value:
+                    {
+                        id: 0,
+                        name: '0'
+                    }
+            },
+            {
+                label: 'Small',
+                value:
+                    {
+                        id: 1,
+                        name: '5px 5px 5px 5px'
+                    }
+            },
+            {
+                label: 'Medium',
+                value:
+                    {
+                        id: 2,
+                        name: '20px 20px 20px 20px'
+                    }
+            },
+            {
+                label: 'Large',
+                value:
+                    {
+                        id: 3,
+                        name: '50px 50px 50px 50px'
+                    }
+            }
+        ]
 
-export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'Relative',
-            value:
-                {
-                    id: 0,
-                    name: 'relative'
-                }
-        },
-        {
-            label: 'Absolute',
-            value:
-                {
-                    id: 1,
-                    name: 'absolute'
-                }
-        }
-    ]
+// const TEXTPOSITIONDROPDOWNS replaced with API data
+    export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'Relative',
+                value:
+                    {
+                        id: 0,
+                        name: 'relative'
+                    }
+            },
+            {
+                label: 'Absolute',
+                value:
+                    {
+                        id: 1,
+                        name: 'absolute'
+                    }
+            }
+        ]
 
-export const TEXTALIGNDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'Left',
-            value:
-                {
-                    id: 0,
-                    name: 'left'
-                }
-        },
-        {
-            label: 'Center',
-            value:
-                {
-                    id: 1,
-                    name: 'center'
-                }
-        },
-        {
-            label: 'Right',
-            value:
-                {
-                    id: 2,
-                    name: 'right'
-                }
-        }
-    ]
+// const TEXTALIGNDROPDOWNS replaced with API data
+    export const TEXTALIGNDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'Left',
+                value:
+                    {
+                        id: 0,
+                        name: 'left'
+                    }
+            },
+            {
+                label: 'Center',
+                value:
+                    {
+                        id: 1,
+                        name: 'center'
+                    }
+            },
+            {
+                label: 'Right',
+                value:
+                    {
+                        id: 2,
+                        name: 'right'
+                    }
+            }
+        ]
 
 // const IMAGESOURCEDROPDOWNS replaced with API data
-export const IMAGESOURCEDROPDOWNS: SelectItem[] =
-    [
-        {
-            label: 'Coffee',
-            value:
-                {
-                    id: 1,
-                    name: '../assets/coffee.jpg'
-                }
-        }
-    ]
+    export const IMAGESOURCEDROPDOWNS: SelectItem[] =
+        [
+            {
+                label: 'Coffee',
+                value:
+                    {
+                        id: 1,
+                        name: '../assets/coffee.jpg'
+                    }
+            }
+        ]
 
 // const GRIDSIZEDROPDOWNS replaced with API data
     // export const GRIDSIZEDROPDOWNS: SelectItem[] =
@@ -4510,7 +4520,7 @@ export class EazlService implements OnInit {
     // Local Arrays to keep data for the rest of the Application
     borderDropdowns: SelectItem[] = BORDERDROPDOWNS;        // List of Border dropdown options
     boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
-    fontSizeDropdowns: SelectItem[] = FONTSIZEDROPDOWNS;    // List of FontSize dropdown options
+    fontSizeDropdowns: SelectItem[];                        // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[] = FONTWEIGHTDROPDOWNS; // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
     textMarginDropdowns: SelectItem[] = TEXTMARGINDROPDOWNS;        // List of Margins for text box dropdown options
@@ -8619,7 +8629,6 @@ console.log('this.fontSizeDropdowns', this.fontSizeDropdowns)
 
                         // Replace
                         this.gridSizeDropdowns = gridSizeDropdownsWorking;
-console.log('this.gridSizeDropdowns', this.gridSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataGridSizeDropdown.next(false);
