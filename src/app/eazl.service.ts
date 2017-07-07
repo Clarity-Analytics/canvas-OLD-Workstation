@@ -143,92 +143,90 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
         maxRowsPerWidgetGraph: 15,
     }
 
-// const ISSTAFFDROPDOWN replaced with API data
-    export const ISSTAFFDROPDOWN: SelectItem[] =
-        [
-            {
-                label: 'Select option',
-                value: ''
-            },
-            {
-                label: 'Is Staff Member',
-                value: 'True'
-            },
-            {
-                label: 'Non-staff',
-                value: 'False'
-            },
-        ]
+export const ISSTAFFDROPDOWN: SelectItem[] =
+    [
+        {
+            label: 'Select option',
+            value: ''
+        },
+        {
+            label: 'Is Staff Member',
+            value: 'True'
+        },
+        {
+            label: 'Non-staff',
+            value: 'False'
+        },
+    ]
 
-// const ISSUPERUSERDROPDOWN replaced with API data
-    export const ISSUPERUSERDROPDOWN: SelectItem[] =
-        [
-            {
-                label: 'Select option',
-                value: ''
-            },
-            {
-                label: 'Is Superuser',
-                value: 'True'
-            },
-            {
-                label: 'Normal staff',
-                value: 'False'
-            }
-        ]
+export const ISSUPERUSERDROPDOWN: SelectItem[] =
+    [
+        {
+            label: 'Select option',
+            value: ''
+        },
+        {
+            label: 'Is Superuser',
+            value: 'True'
+        },
+        {
+            label: 'Normal staff',
+            value: 'False'
+        }
+    ]
 
 // const BORDERDROPDOWNS replaced with API data
-    export const BORDERDROPDOWNS: SelectItem[] =
-        [
-            {
-                label: 'None',
-                value:
-                    {
-                        id: 0,
-                        name: 'transparent'
-                    }
-            },
-            {
-                label: 'Thick Black',
-                value:
-                    {
-                        id: 1,
-                        name: '3px solid black'
-                    }
-            },
-            {
-                label: 'Thin Black',
-                value:
-                    {
-                        id: 2,
-                        name: '1px solid black'
-                    }
-            },
-            {
-                label: 'Thin White',
-                value:
-                    {
-                        id: 3,
-                        name: '1px solid white'
-                    }
-            },
-            {
-                label: 'Thin Red',
-                value:
-                    {
-                        id: 4,
-                        name: '1px solid red'
-                    }
-            },
-            {
-                label: 'Thin Gray',
-                value:
-                    {
-                        id: 5,
-                        name: '1px solid gray'
-                    }
-            }
-        ];
+    // export const BORDERDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'None',
+    //             value:
+    //                 {
+    //                     id: 0,
+    //                     name: 'transparent'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Thick Black',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: '3px solid black'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Thin Black',
+    //             value:
+    //                 {
+    //                     id: 2,
+    //                     name: '1px solid black'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Thin White',
+    //             value:
+    //                 {
+    //                     id: 3,
+    //                     name: '1px solid white'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Thin Red',
+    //             value:
+    //                 {
+    //                     id: 4,
+    //                     name: '1px solid red'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Thin Gray',
+    //             value:
+    //                 {
+    //                     id: 5,
+    //                     name: '1px solid gray'
+    //                 }
+    //         }
+    //     ];
 
 // const BOXSHADOWDROPDOWNS replaced with API data
     // export const BOXSHADOWDROPDOWNS: SelectItem[] =
@@ -345,38 +343,38 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
 // const TEXTMARGINDROPDOWNS replaced with API data
     export const TEXTMARGINDROPDOWNS: SelectItem[] =
         [
-            {
-                label: 'None',
-                value:
-                    {
-                        id: 0,
-                        name: '0'
-                    }
-            },
-            {
-                label: 'Small',
-                value:
-                    {
-                        id: 1,
-                        name: '5px 5px 5px 5px'
-                    }
-            },
-            {
-                label: 'Medium',
-                value:
-                    {
-                        id: 2,
-                        name: '20px 20px 20px 20px'
-                    }
-            },
-            {
-                label: 'Large',
-                value:
-                    {
-                        id: 3,
-                        name: '50px 50px 50px 50px'
-                    }
-            }
+            // {
+            //     label: 'None',
+            //     value:
+            //         {
+            //             id: 0,
+            //             name: '0'
+            //         }
+            // },
+            // {
+            //     label: 'Small',
+            //     value:
+            //         {
+            //             id: 1,
+            //             name: '5px 5px 5px 5px'
+            //         }
+            // },
+            // {
+            //     label: 'Medium',
+            //     value:
+            //         {
+            //             id: 2,
+            //             name: '20px 20px 20px 20px'
+            //         }
+            // },
+            // {
+            //     label: 'Large',
+            //     value:
+            //         {
+            //             id: 3,
+            //             name: '50px 50px 50px 50px'
+            //         }
+            // }
         ]
 
 // const TEXTPADDINGDROPDOWNS replaced with API data
@@ -4518,7 +4516,7 @@ export class EazlService implements OnInit {
     route: string = 'users';                                // Route to RESTi - users/authen...
 
     // Local Arrays to keep data for the rest of the Application
-    borderDropdowns: SelectItem[] = BORDERDROPDOWNS;        // List of Border dropdown options
+    borderDropdowns: SelectItem[];                          // List of Border dropdown options
     boxShadowDropdowns: SelectItem[];                       // List of Box Shadow dropdown options
     fontSizeDropdowns: SelectItem[];                        // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[] = FONTWEIGHTDROPDOWNS; // List of FontWeight dropwdown options
@@ -7168,6 +7166,7 @@ export class EazlService implements OnInit {
                 detail:   'The BackgroundImageDropdown data is being refreshed; request again to get the latest from the database'
             });
         }
+
         return this.backgroundImageDropdowns;
     }
 
@@ -7211,7 +7210,15 @@ export class EazlService implements OnInit {
         // Returns list of Text Margin dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextMarginDropdowns', '@Start');
 
-        return this.textMarginDropdowns;
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataTextMarginDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'TextMarginDropdown data is dirty / not up to date',
+                detail:   'The TextMarginDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+                return this.textMarginDropdowns;
     }
 
     getTextPaddingDropdowns(): SelectItem[] {
@@ -8412,12 +8419,15 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
                                 if (eazlAppData[i].entity == 'WidgetType') {
-                                    widgetTypeWorking.push(this.cdal.loadWidgetTypes(eazlAppData[i]));
+                                    widgetTypeWorking.push(
+                                        this.cdal.loadWidgetTypes(eazlAppData[i])
+                                    );
                                 }
                             }
 
                         // Replace
                         this.widgetTypes = widgetTypeWorking;
+
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataWidgetType.next(false);
                         }
@@ -8501,7 +8511,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.borderDropdowns = borderDropdownWorking;
-console.log('this.borderDropdowns', this.borderDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBorderDropdown.next(false);
@@ -8545,7 +8554,6 @@ console.log('this.borderDropdowns', this.borderDropdowns)
 
                         // Replace
                         this.boxShadowDropdowns = boxShadowDropdownsWorking;
-console.log('this.boxShadowDropdowns', this.boxShadowDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBoxShadowDropdown.next(false);
@@ -8581,7 +8589,9 @@ console.log('this.boxShadowDropdowns', this.boxShadowDropdowns)
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
                                 if (eazlAppData[i].entity == 'FontSizeDropdown') {
-                                    fontSizeDropdownsWorking.push(this.cdal.loadFontSizeDropdowns(eazlAppData[i]));
+                                    fontSizeDropdownsWorking.push(
+                                        this.cdal.loadFontSizeDropdowns(eazlAppData[i])
+                                    );
                                 }
                             }
 
@@ -8622,7 +8632,9 @@ console.log('this.boxShadowDropdowns', this.boxShadowDropdowns)
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
                                 if (eazlAppData[i].entity == 'GridSizeDropdown') {
-                                    gridSizeDropdownsWorking.push(this.cdal.loadGridSizeDropdowns(eazlAppData[i]));
+                                    gridSizeDropdownsWorking.push(
+                                        this.cdal.loadGridSizeDropdowns(eazlAppData[i])
+                                    );
                                 }
                             }
 
@@ -8685,6 +8697,10 @@ console.log('this.boxShadowDropdowns', this.boxShadowDropdowns)
                 this.globalVariableService.dirtyDataBackgroundImageDropdown.next(true);
             }
         }
+
+
+
+
 
 
     }
