@@ -596,30 +596,31 @@ export const BACKGROUNDIMAGEDROPDOWNS: SelectItem[] =
         },
     ];
 
-export const GRAPHTYPES: GraphType[] =
-    [
-        {
-            label: 'BarChart',
-            value: {
-                id: 0,
-                name: 'BarChart'
-            }
-        },
-        {
-            label: 'PieChart',
-            value: {
-                id: 2,
-                name: 'PieChart'
-            }
-        },
-        {
-            label: 'LineChart',
-            value: {
-                id: 3,
-                name: 'LineChart'
-            }
-        },
-    ];
+// const GRAPHTYPES replaced with API data
+    export const GRAPHTYPES: GraphType[] =
+        [
+            {
+                label: 'BarChart',
+                value: {
+                    id: 0,
+                    name: 'BarChart'
+                }
+            },
+            {
+                label: 'PieChart',
+                value: {
+                    id: 2,
+                    name: 'PieChart'
+                }
+            },
+            {
+                label: 'LineChart',
+                value: {
+                    id: 3,
+                    name: 'LineChart'
+                }
+            },
+        ];
 
 // const WIDGETTYPES replaced with API data
     // export const WIDGETTYPES: WidgetType[] =
@@ -8404,7 +8405,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.widgetTypes = widgetTypeWorking;
-console.log('this.widgetTypes', this.widgetTypes)
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataWidgetType.next(false);
                         }
@@ -8488,6 +8488,7 @@ console.log('this.widgetTypes', this.widgetTypes)
 
                         // Replace
                         this.borderDropdowns = borderDropdownWorking;
+console.log('this.borderDropdowns', this.borderDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBorderDropdown.next(false);
