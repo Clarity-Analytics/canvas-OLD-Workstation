@@ -2637,7 +2637,7 @@ export class CDAL {
     }
 
     loadTextPaddingDropdown(eazlAppData: EazlAppData): SelectItem {
-        // Load FontWeightDropdown: move data Eazl -> Canvas
+        // Load TextPaddingDropdown: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFontWeightDropdown', '@Start');
 
         let fontWeightDropdownDropdownWorking =
@@ -2673,7 +2673,7 @@ export class CDAL {
     }
 
     loadTextPositionDropdown(eazlAppData: EazlAppData): SelectItem {
-        // Load FontWeightDropdown: move data Eazl -> Canvas
+        // Load TextPositionDropdown: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadTextPositionDropdown', '@Start');
 
         let textPositionDropdownDropdownWorking =
@@ -2706,6 +2706,42 @@ export class CDAL {
 
         // Return the result
         return textPositionDropdownDropdownWorking;
+    }
+
+    loadTextAlignDropdown(eazlAppData: EazlAppData): SelectItem {
+        // Load TextAlignDropdown: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadTextAlignDropdown', '@Start');
+
+        let textAlignDropdownDropdownWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
+
+        if (eazlAppData.label != null) {
+            textAlignDropdownDropdownWorking.label = eazlAppData.label;
+        } else {
+            textAlignDropdownDropdownWorking.label = '';
+        }
+
+        if (eazlAppData.record_id != null) {
+            textAlignDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        } else {
+            textAlignDropdownDropdownWorking.value.id = 0;
+        }
+
+        if (eazlAppData.name != null) {
+            textAlignDropdownDropdownWorking.value.name = eazlAppData.name;
+        } else {
+            textAlignDropdownDropdownWorking.value.name = '';
+        }
+
+        // Return the result
+        return textAlignDropdownDropdownWorking;
     }
 
 
