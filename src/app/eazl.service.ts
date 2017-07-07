@@ -377,7 +377,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ]
 
-// const TEXTPADDINGDROPDOWNS replaced with API data
+// const TEXTPADDINGDROPDOWNS replaced with API data 900
     export const TEXTPADDINGDROPDOWNS: SelectItem[] =
         [
             {
@@ -413,8 +413,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
                     }
             }
         ]
-
-// const TEXTPOSITIONDROPDOWNS replaced with API data
+//TEXTPOSITIONDROPDOWNS TextPositionDropdown
+// const TEXTPOSITIONDROPDOWNS replaced with API data  1000
     export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
         [
             {
@@ -435,7 +435,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             }
         ]
 
-// const TEXTALIGNDROPDOWNS replaced with API data
+//TEXTALIGNDROPDOWNS    TextAlignDropdown
+// const TEXTALIGNDROPDOWNS replaced with API data  1100
     export const TEXTALIGNDROPDOWNS: SelectItem[] =
         [
             {
@@ -464,7 +465,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             }
         ]
 
-// const IMAGESOURCEDROPDOWNS replaced with API data
+//IMAGESOURCEDROPDOWNS  ImageSourceDropdown
+// const IMAGESOURCEDROPDOWNS replaced with API data  1200
     export const IMAGESOURCEDROPDOWNS: SelectItem[] =
         [
             {
@@ -7235,12 +7237,30 @@ export class EazlService implements OnInit {
         // Returns list of Text Padding dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextPaddingDropdowns', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataTextPaddingDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'TextPaddingDropdown data is dirty / not up to date',
+                detail:   'The TextPaddingDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.textPaddingDropdowns;
     }
 
     getTextPositionDropdowns(): SelectItem[] {
         // Returns list of Text Position dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextPositionDropdowns', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataTextPositionDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'TextPositionDropdown data is dirty / not up to date',
+                detail:   'The TextPositionDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
 
         return this.textPositionDropdowns;
     }
@@ -8792,7 +8812,175 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
 
+        //  TextPaddingDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextPaddingDropdown') {
 
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextPaddingDropdown');
 
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+
+                // Get all the data via API
+                let textPaddingDropdownWorking: WidgetType[] = [];
+                this.get<EazlAppData>('appdata')
+                    .subscribe(
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'TextPaddingDropdown') {
+                                    textPaddingDropdownWorking.push(
+                                        this.cdal.loadTextPaddingDropdown(eazlAppData[i])
+                                    );
+                                }
+                            }
+
+                        // Replace
+                        this.textPaddingDropdowns = textPaddingDropdownWorking;
+console.log('this.textPaddingDropdowns', this.textPaddingDropdowns)
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataTextPaddingDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear TextPaddingDropdown');
+                this.textPaddingDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+            }
+        }
+
+        //  TextPositionDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextPositionDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextPositionDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataTextPositionDropdown.next(true);
+
+                // Get all the data via API
+                let TextPositionDropdownWorking: WidgetType[] = [];
+                this.get<EazlAppData>('appdata')
+                    .subscribe(
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'TextPositionDropdown') {
+                                    TextPositionDropdownWorking.push(
+                                        this.cdal.loadTextPositionDropdown(eazlAppData[i])
+                                    );
+                                }
+                            }
+
+                        // Replace
+                        this.textPositionDropdowns = TextPositionDropdownWorking;
+        console.log('this.TextPositionDropdowns', this.textPositionDropdowns)
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataTextPositionDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear TextPositionDropdown');
+                this.textPositionDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataTextPositionDropdown.next(true);
+            }
+        }
+    
+    // //TEXTALIGNDROPDOWNS    TextAlignDropdown
+    //     //  TextPaddingDropdown
+    //     if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextPaddingDropdown') {
+
+    //         // Reset
+    //         if (resetAction == 'reset') {
+    //             this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextPaddingDropdown');
+
+    //             // Mark the data as dirty
+    //             this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+
+    //             // Get all the data via API
+    //             let textPaddingDropdownWorking: WidgetType[] = [];
+    //             this.get<EazlAppData>('appdata')
+    //                 .subscribe(
+    //                     (eazlAppData) => {
+    //                         for (var i = 0; i < eazlAppData.length; i++) {
+    //                             if (eazlAppData[i].entity == 'TextPaddingDropdown') {
+    //                                 textPaddingDropdownWorking.push(
+    //                                     this.cdal.loadTextPaddingDropdown(eazlAppData[i])
+    //                                 );
+    //                             }
+    //                         }
+
+    //                     // Replace
+    //                     this.textPaddingDropdowns = textPaddingDropdownWorking;
+    //     console.log('this.textPaddingDropdowns', this.textPaddingDropdowns)
+    //                     // Mark the data as clean
+    //                     this.globalVariableService.dirtyDataTextPaddingDropdown.next(false);
+    //                     }
+    //                 )
+    //         }
+
+    //         // Clear all
+    //         if (resetAction == 'clear') {
+    //             this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear TextPaddingDropdown');
+    //             this.textPaddingDropdowns = [];
+
+    //             // Mark the data as dirty
+    //             this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+    //         }
+    //     }
+    // }
+
+//IMAGESOURCEDROPDOWNS  ImageSourceDropdown
+        // //  TextPaddingDropdown
+        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextPaddingDropdown') {
+
+        //     // Reset
+        //     if (resetAction == 'reset') {
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextPaddingDropdown');
+
+        //         // Mark the data as dirty
+        //         this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+
+        //         // Get all the data via API
+        //         let textPaddingDropdownWorking: WidgetType[] = [];
+        //         this.get<EazlAppData>('appdata')
+        //             .subscribe(
+        //                 (eazlAppData) => {
+        //                     for (var i = 0; i < eazlAppData.length; i++) {
+        //                         if (eazlAppData[i].entity == 'TextPaddingDropdown') {
+        //                             textPaddingDropdownWorking.push(
+        //                                 this.cdal.loadTextPaddingDropdown(eazlAppData[i])
+        //                             );
+        //                         }
+        //                     }
+
+        //                 // Replace
+        //                 this.textPaddingDropdowns = textPaddingDropdownWorking;
+        // console.log('this.textPaddingDropdowns', this.textPaddingDropdowns)
+        //                 // Mark the data as clean
+        //                 this.globalVariableService.dirtyDataTextPaddingDropdown.next(false);
+        //                 }
+        //             )
+        //     }
+
+        //     // Clear all
+        //     if (resetAction == 'clear') {
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear TextPaddingDropdown');
+        //         this.textPaddingDropdowns = [];
+
+        //         // Mark the data as dirty
+        //         this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+        //     }
+        // }
     }
 }

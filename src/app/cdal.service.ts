@@ -2590,8 +2590,8 @@ export class CDAL {
             textMarginDropdownWorking.value.id = 0;
         }
 
-        if (eazlAppData.code != null) {
-            textMarginDropdownWorking.value.name = eazlAppData.code;
+        if (eazlAppData.name != null) {
+            textMarginDropdownWorking.value.name = eazlAppData.name;
         } else {
             textMarginDropdownWorking.value.name = '';
         }
@@ -2626,14 +2626,86 @@ export class CDAL {
             fontWeightDropdownDropdownWorking.value.id = 0;
         }
 
-        if (eazlAppData.code != null) {
-            fontWeightDropdownDropdownWorking.value.name = eazlAppData.code;
+        if (eazlAppData.name != null) {
+            fontWeightDropdownDropdownWorking.value.name = eazlAppData.name;
         } else {
             fontWeightDropdownDropdownWorking.value.name = '';
         }
 
         // Return the result
         return fontWeightDropdownDropdownWorking;
+    }
+
+    loadTextPaddingDropdown(eazlAppData: EazlAppData): SelectItem {
+        // Load FontWeightDropdown: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadFontWeightDropdown', '@Start');
+
+        let fontWeightDropdownDropdownWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
+
+        if (eazlAppData.label != null) {
+            fontWeightDropdownDropdownWorking.label = eazlAppData.label;
+        } else {
+            fontWeightDropdownDropdownWorking.label = '';
+        }
+
+        if (eazlAppData.record_id != null) {
+            fontWeightDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        } else {
+            fontWeightDropdownDropdownWorking.value.id = 0;
+        }
+
+        if (eazlAppData.name != null) {
+            fontWeightDropdownDropdownWorking.value.name = eazlAppData.name;
+        } else {
+            fontWeightDropdownDropdownWorking.value.name = '';
+        }
+
+        // Return the result
+        return fontWeightDropdownDropdownWorking;
+    }
+
+    loadTextPositionDropdown(eazlAppData: EazlAppData): SelectItem {
+        // Load FontWeightDropdown: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadTextPositionDropdown', '@Start');
+
+        let textPositionDropdownDropdownWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
+
+        if (eazlAppData.label != null) {
+            textPositionDropdownDropdownWorking.label = eazlAppData.label;
+        } else {
+            textPositionDropdownDropdownWorking.label = '';
+        }
+
+        if (eazlAppData.record_id != null) {
+            textPositionDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        } else {
+            textPositionDropdownDropdownWorking.value.id = 0;
+        }
+
+        if (eazlAppData.name != null) {
+            textPositionDropdownDropdownWorking.value.name = eazlAppData.name;
+        } else {
+            textPositionDropdownDropdownWorking.value.name = '';
+        }
+
+        // Return the result
+        return textPositionDropdownDropdownWorking;
     }
 
 
