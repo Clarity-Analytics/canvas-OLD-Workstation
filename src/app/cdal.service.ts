@@ -2744,6 +2744,41 @@ export class CDAL {
         return textAlignDropdownDropdownWorking;
     }
 
+    loadImageSourceDropdown(eazlAppData: EazlAppData): SelectItem {
+        // Load ImageSourceDropdown: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadImageSourceDropdown', '@Start');
+
+        let imageSourceDropdownDropdownWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
+
+        if (eazlAppData.label != null) {
+            imageSourceDropdownDropdownWorking.label = eazlAppData.label;
+        } else {
+            imageSourceDropdownDropdownWorking.label = '';
+        }
+
+        if (eazlAppData.record_id != null) {
+            imageSourceDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        } else {
+            imageSourceDropdownDropdownWorking.value.id = 0;
+        }
+
+        if (eazlAppData.name != null) {
+            imageSourceDropdownDropdownWorking.value.name = eazlAppData.name;
+        } else {
+            imageSourceDropdownDropdownWorking.value.name = '';
+        }
+
+        // Return the result
+        return imageSourceDropdownDropdownWorking;
+    }
 
 }
 

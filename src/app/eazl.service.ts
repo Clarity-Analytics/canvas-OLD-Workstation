@@ -8896,7 +8896,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
     
-    // //TEXTALIGNDROPDOWNS    TextAlignDropdown
         //  TextAlignDropdown
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextAlignDropdown') {
 
@@ -8922,7 +8921,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.textAlignDropdowns = TextAlignDropdownWorking;
-        console.log('this.TextAlignDropdowns', this.textAlignDropdowns)
+
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataTextAlignDropdown.next(false);
                         }
@@ -8940,45 +8939,45 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
         }
 
 //IMAGESOURCEDROPDOWNS  ImageSourceDropdown
-        // //  TextPaddingDropdown
-        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextPaddingDropdown') {
+        // //  ImageSourceDropdown
+        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ImageSourceDropdown') {
 
         //     // Reset
         //     if (resetAction == 'reset') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextPaddingDropdown');
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ImageSourceDropdown');
 
         //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+        //         this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
 
         //         // Get all the data via API
-        //         let textPaddingDropdownWorking: WidgetType[] = [];
+        //         let ImageSourceDropdownWorking: WidgetType[] = [];
         //         this.get<EazlAppData>('appdata')
         //             .subscribe(
         //                 (eazlAppData) => {
         //                     for (var i = 0; i < eazlAppData.length; i++) {
-        //                         if (eazlAppData[i].entity == 'TextPaddingDropdown') {
-        //                             textPaddingDropdownWorking.push(
-        //                                 this.cdal.loadTextPaddingDropdown(eazlAppData[i])
+        //                         if (eazlAppData[i].entity == 'ImageSourceDropdown') {
+        //                             ImageSourceDropdownWorking.push(
+        //                                 this.cdal.loadImageSourceDropdown(eazlAppData[i])
         //                             );
         //                         }
         //                     }
 
         //                 // Replace
-        //                 this.textPaddingDropdowns = textPaddingDropdownWorking;
-        // console.log('this.textPaddingDropdowns', this.textPaddingDropdowns)
+        //                 this.ImageSourceDropdowns = ImageSourceDropdownWorking;
+        // console.log('this.ImageSourceDropdowns', this.ImageSourceDropdowns)
         //                 // Mark the data as clean
-        //                 this.globalVariableService.dirtyDataTextPaddingDropdown.next(false);
+        //                 this.globalVariableService.dirtyDataImageSourceDropdown.next(false);
         //                 }
         //             )
         //     }
 
         //     // Clear all
         //     if (resetAction == 'clear') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear TextPaddingDropdown');
-        //         this.textPaddingDropdowns = [];
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ImageSourceDropdown');
+        //         this.ImageSourceDropdowns = [];
 
         //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+        //         this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
         //     }
         // }
     }
