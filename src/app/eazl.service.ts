@@ -231,41 +231,41 @@ export const SYSTEMCONFIGURATION: SystemConfiguration =
         ];
 
 // const BOXSHADOWDROPDOWNS replaced with API data
-    export const BOXSHADOWDROPDOWNS: SelectItem[] =
-        [
-            {
-                label: 'None',
-                value:
-                    {
-                        id: 0,
-                        name: ''
-                    }
-            },
-            {
-                label: 'Black',
-                value:
-                    {
-                        id: 1,
-                        name: '2px 2px 12px black'
-                    }
-            },
-            {
-                label: 'Gray',
-                value:
-                    {
-                        id: 2,
-                        name: '2px 2px 12px gray'
-                    }
-            },
-            {
-                label: 'White',
-                value:
-                    {
-                        id: 3,
-                        name: '2px 2px 12px white'
-                    }
-            },
-        ];
+    // export const BOXSHADOWDROPDOWNS: SelectItem[] =
+    //     [
+    //         {
+    //             label: 'None',
+    //             value:
+    //                 {
+    //                     id: 0,
+    //                     name: ''
+    //                 }
+    //         },
+    //         {
+    //             label: 'Black',
+    //             value:
+    //                 {
+    //                     id: 1,
+    //                     name: '2px 2px 12px black'
+    //                 }
+    //         },
+    //         {
+    //             label: 'Gray',
+    //             value:
+    //                 {
+    //                     id: 2,
+    //                     name: '2px 2px 12px gray'
+    //                 }
+    //         },
+    //         {
+    //             label: 'White',
+    //             value:
+    //                 {
+    //                     id: 3,
+    //                     name: '2px 2px 12px white'
+    //                 }
+    //         },
+    //     ];
 
 // const FONTSIZEDROPDOWNS replaced with API data
     // export const FONTSIZEDROPDOWNS: SelectItem[] =
@@ -4519,7 +4519,7 @@ export class EazlService implements OnInit {
 
     // Local Arrays to keep data for the rest of the Application
     borderDropdowns: SelectItem[] = BORDERDROPDOWNS;        // List of Border dropdown options
-    boxShadowDropdowns: SelectItem[] = BOXSHADOWDROPDOWNS;  // List of Box Shadow dropdown options
+    boxShadowDropdowns: SelectItem[];                       // List of Box Shadow dropdown options
     fontSizeDropdowns: SelectItem[];                        // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[] = FONTWEIGHTDROPDOWNS; // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
@@ -8587,7 +8587,6 @@ console.log('this.boxShadowDropdowns', this.boxShadowDropdowns)
 
                         // Replace
                         this.fontSizeDropdowns = fontSizeDropdownsWorking;
-console.log('this.fontSizeDropdowns', this.fontSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataFontSizeDropdown.next(false);
