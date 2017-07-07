@@ -8701,6 +8701,48 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
 
 
+        // TextMarginDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextMarginDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextMarginDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataTextMarginDropdown.next(true);
+
+                // Get all the data via API
+                let textMarginDropdownWorking: WidgetType[] = [];
+                this.get<EazlAppData>('appdata')
+                    .subscribe(
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'TextMarginDropdown') {
+                                    textMarginDropdownWorking.push(this.cdal.loadTextMarginDropdown(eazlAppData[i]));
+                                }
+                            }
+
+                        // Replace
+                        this.textMarginDropdowns = textMarginDropdownWorking;
+console.log('this.textMarginDropdowns', this.textMarginDropdowns)
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataTextMarginDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear TextMarginDropdown');
+                this.textMarginDropdowns = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataTextMarginDropdown.next(true);
+            }
+        }
+
+
 
 
     }
