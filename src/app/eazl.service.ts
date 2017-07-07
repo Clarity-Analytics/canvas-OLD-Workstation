@@ -343,40 +343,39 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
 // const TEXTMARGINDROPDOWNS replaced with API data
     export const TEXTMARGINDROPDOWNS: SelectItem[] =
         [
-            // {
-            //     label: 'None',
-            //     value:
-            //         {
-            //             id: 0,
-            //             name: '0'
-            //         }
-            // },
-            // {
-            //     label: 'Small',
-            //     value:
-            //         {
-            //             id: 1,
-            //             name: '5px 5px 5px 5px'
-            //         }
-            // },
-            // {
-            //     label: 'Medium',
-            //     value:
-            //         {
-            //             id: 2,
-            //             name: '20px 20px 20px 20px'
-            //         }
-            // },
-            // {
-            //     label: 'Large',
-            //     value:
-            //         {
-            //             id: 3,
-            //             name: '50px 50px 50px 50px'
-            //         }
-            // }
+            {
+                label: 'None',
+                value:
+                    {
+                        id: 0,
+                        name: '0'
+                    }
+            },
+            {
+                label: 'Small',
+                value:
+                    {
+                        id: 1,
+                        name: '5px 5px 5px 5px'
+                    }
+            },
+            {
+                label: 'Medium',
+                value:
+                    {
+                        id: 2,
+                        name: '20px 20px 20px 20px'
+                    }
+            },
+            {
+                label: 'Large',
+                value:
+                    {
+                        id: 3,
+                        name: '50px 50px 50px 50px'
+                    }
+            }
         ]
-
 // const TEXTPADDINGDROPDOWNS replaced with API data
     export const TEXTPADDINGDROPDOWNS: SelectItem[] =
         [
@@ -8718,13 +8717,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
                                 if (eazlAppData[i].entity == 'TextMarginDropdown') {
-                                    textMarginDropdownWorking.push(this.cdal.loadTextMarginDropdown(eazlAppData[i]));
+                                    textMarginDropdownWorking.push(
+                                        this.cdal.loadTextMarginDropdown(eazlAppData[i])
+                                    );
                                 }
                             }
 
                         // Replace
                         this.textMarginDropdowns = textMarginDropdownWorking;
-console.log('this.textMarginDropdowns', this.textMarginDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataTextMarginDropdown.next(false);
