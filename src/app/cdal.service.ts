@@ -2564,8 +2564,6 @@ export class CDAL {
         return backgroundImageDropdownsWorking;
     }
 
-
-
     loadTextMarginDropdown(eazlAppData: EazlAppData): SelectItem {
         // Load TextMarginDropdown: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadTextMarginDropdown', '@Start');
@@ -2601,7 +2599,42 @@ export class CDAL {
         // Return the result
         return textMarginDropdownWorking;
     }
+    
+    loadFontWeightDropdown(eazlAppData: EazlAppData): SelectItem {
+        // Load FontWeightDropdown: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadFontWeightDropdown', '@Start');
 
+        let fontWeightDropdownDropdownWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
+
+        if (eazlAppData.label != null) {
+            fontWeightDropdownDropdownWorking.label = eazlAppData.label;
+        } else {
+            fontWeightDropdownDropdownWorking.label = '';
+        }
+
+        if (eazlAppData.record_id != null) {
+            fontWeightDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        } else {
+            fontWeightDropdownDropdownWorking.value.id = 0;
+        }
+
+        if (eazlAppData.code != null) {
+            fontWeightDropdownDropdownWorking.value.name = eazlAppData.code;
+        } else {
+            fontWeightDropdownDropdownWorking.value.name = '';
+        }
+
+        // Return the result
+        return fontWeightDropdownDropdownWorking;
+    }
 
 
 }

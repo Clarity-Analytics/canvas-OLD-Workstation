@@ -7203,6 +7203,15 @@ export class EazlService implements OnInit {
         // Returns list of IsSuperuser dropdown options
         this.globalFunctionService.printToConsole(this.constructor.name,'getFontWeightDropdown', '@Start');
 
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataFontWeightDropdown.getValue() == true) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'FontWeightDropdown data is dirty / not up to date',
+                detail:   'The FontWeightDropdown data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
         return this.fontWeightDropdown;
     }
 
@@ -7218,7 +7227,8 @@ export class EazlService implements OnInit {
                 detail:   'The TextMarginDropdown data is being refreshed; request again to get the latest from the database'
             });
         }
-                return this.textMarginDropdowns;
+
+        return this.textMarginDropdowns;
     }
 
     getTextPaddingDropdowns(): SelectItem[] {
@@ -8698,10 +8708,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
 
-
-
-
-        // TextMarginDropdown
+        // TextMarginDropdown 
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextMarginDropdown') {
 
             // Reset
@@ -8743,6 +8750,47 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
 
+        //  FontWeightDropdown
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'FontWeightDropdown') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset FontWeightDropdown');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataFontWeightDropdown.next(true);
+
+                // Get all the data via API
+                let fontWeightDropdownWorking: WidgetType[] = [];
+                this.get<EazlAppData>('appdata')
+                    .subscribe(
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'FontWeightDropdown') {
+                                    fontWeightDropdownWorking.push(
+                                        this.cdal.loadFontWeightDropdown(eazlAppData[i])
+                                    );
+                                }
+                            }
+
+                        // Replace
+                        this.fontWeightDropdown = fontWeightDropdownWorking;
+console.log('this.fontWeightDropdown', this.fontWeightDropdown)
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataFontWeightDropdown.next(false);
+                        }
+                    )
+            }
+
+            // Clear all
+            if (resetAction == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear FontWeightDropdown');
+                this.fontWeightDropdown = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataFontWeightDropdown.next(true);
+            }
+        }
 
 
 
