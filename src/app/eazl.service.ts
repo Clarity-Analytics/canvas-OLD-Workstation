@@ -4798,7 +4798,7 @@ export class EazlService implements OnInit {
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
                         //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('GridSizeDropdown', 'reset');
+                        this.cacheCanvasData('BackgroundImageDropdown', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -8612,7 +8612,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.gridSizeDropdowns = gridSizeDropdownsWorking;
-console.log('CDAL testing this.gridSizeDropdowns', this.gridSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataGridSizeDropdown.next(false);
@@ -8641,18 +8640,20 @@ console.log('CDAL testing this.gridSizeDropdowns', this.gridSizeDropdowns)
                 this.globalVariableService.dirtyDataBackgroundImageDropdown.next(true);
 
                 // Get all the data via API
-                let BackgroundImageDropdownsWorking: SelectItem[] = [];
-                this.get<SelectItem>('BackgroundImageDropdowns')
+                let backgroundImageDropdownsWorking: SelectItem[] = [];
+
+                this.get<EazlAppData>('appdata')
                     .subscribe(
-                        (eazlBackgroundImageDropdown) => {
-                            for (var i = 0; i < eazlBackgroundImageDropdown.length; i++) {
-                                let BackgroundImageDropdownSingle =
-                                    this.cdal.loadBackgroundImageDropdowns(eazlBackgroundImageDropdown[i]);
-                                BackgroundImageDropdownsWorking.push(BackgroundImageDropdownSingle);
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'BackgroundImageDropdown') {
+                                    backgroundImageDropdownsWorking.push(this.cdal.loadBackgroundImageDropdowns(eazlAppData[i]));
+                                }
                             }
 
                         // Replace
-                        this.backgroundImageDropdowns = BackgroundImageDropdownsWorking;
+                        this.backgroundImageDropdowns = backgroundImageDropdownsWorking;
+console.log('CDAL testing this.backgroundImageDropdowns', this.backgroundImageDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataBackgroundImageDropdown.next(false);

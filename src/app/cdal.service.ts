@@ -2528,26 +2528,34 @@ export class CDAL {
         return gridSizeDropdownsWorking;
     }
 
-    loadBackgroundImageDropdowns(eazlBackgroundImageDropdowns: SelectItem): SelectItem {
+    loadBackgroundImageDropdowns(eazlAppData: EazlAppData): SelectItem {
         // Load BackgroundImageDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadBackgroundImageDropdowns', '@Start');
 
-        let backgroundImageDropdownsWorking: SelectItem;
+        let backgroundImageDropdownsWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
 
-        if (eazlBackgroundImageDropdowns.label != null) {
-            backgroundImageDropdownsWorking.label = eazlBackgroundImageDropdowns.label;
+        if (eazlAppData.label != null) {
+            backgroundImageDropdownsWorking.label = eazlAppData.label;
         } else {
             backgroundImageDropdownsWorking.label = '';
         }
 
-        if (eazlBackgroundImageDropdowns.value.id != null) {
-            backgroundImageDropdownsWorking.value.id = eazlBackgroundImageDropdowns.value.id;
+        if (eazlAppData.record_id != null) {
+            backgroundImageDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
             backgroundImageDropdownsWorking.value.id = 0;
         }
 
-        if (eazlBackgroundImageDropdowns.value.name != null) {
-            backgroundImageDropdownsWorking.value.name = eazlBackgroundImageDropdowns.value.name;
+        if (eazlAppData.name != null) {
+            backgroundImageDropdownsWorking.value.name = eazlAppData.name;
         } else {
             backgroundImageDropdownsWorking.value.name = '';
         }
