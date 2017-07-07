@@ -4798,7 +4798,7 @@ export class EazlService implements OnInit {
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
                         //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('FontSizeDropdown', 'reset');
+                        this.cacheCanvasData('GridSizeDropdown', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -8571,7 +8571,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.fontSizeDropdowns = fontSizeDropdownsWorking;
-console.log('CDAL testing this.fontSizeDropdowns', this.fontSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataFontSizeDropdown.next(false);
@@ -8600,18 +8599,20 @@ console.log('CDAL testing this.fontSizeDropdowns', this.fontSizeDropdowns)
                 this.globalVariableService.dirtyDataGridSizeDropdown.next(true);
 
                 // Get all the data via API
-                let GridSizeDropdownsWorking: SelectItem[] = [];
-                this.get<SelectItem>('GridSizeDropdowns')
+                let gridSizeDropdownsWorking: SelectItem[] = [];
+
+                this.get<EazlAppData>('appdata')
                     .subscribe(
-                        (eazlGridSizeDropdown) => {
-                            for (var i = 0; i < eazlGridSizeDropdown.length; i++) {
-                                let GridSizeDropdownSingle =
-                                    this.cdal.loadGridSizeDropdowns(eazlGridSizeDropdown[i]);
-                                GridSizeDropdownsWorking.push(GridSizeDropdownSingle);
+                        (eazlAppData) => {
+                            for (var i = 0; i < eazlAppData.length; i++) {
+                                if (eazlAppData[i].entity == 'GridSizeDropdown') {
+                                    gridSizeDropdownsWorking.push(this.cdal.loadGridSizeDropdowns(eazlAppData[i]));
+                                }
                             }
 
                         // Replace
-                        this.gridSizeDropdowns = GridSizeDropdownsWorking;
+                        this.gridSizeDropdowns = gridSizeDropdownsWorking;
+console.log('CDAL testing this.gridSizeDropdowns', this.gridSizeDropdowns)
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataGridSizeDropdown.next(false);

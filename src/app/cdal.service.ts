@@ -2492,26 +2492,34 @@ export class CDAL {
         return fontSizeDropdownsWorking;
     }
 
-    loadGridSizeDropdowns(eazlGridSizeDropdowns: SelectItem): SelectItem {
+    loadGridSizeDropdowns(eazlAppData: EazlAppData): SelectItem {
         // Load GridSizeDropdowns: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGridSizeDropdowns', '@Start');
 
-        let gridSizeDropdownsWorking: SelectItem;
+        let gridSizeDropdownsWorking =
+            {
+                label: '',
+                value: 
+                    {
+                        id: 0,
+                        name: ''
+                    }
+            };
 
-        if (eazlGridSizeDropdowns.label != null) {
-            gridSizeDropdownsWorking.label = eazlGridSizeDropdowns.label;
+        if (eazlAppData.label != null) {
+            gridSizeDropdownsWorking.label = eazlAppData.label;
         } else {
             gridSizeDropdownsWorking.label = '';
         }
 
-        if (eazlGridSizeDropdowns.value.id != null) {
-            gridSizeDropdownsWorking.value.id = eazlGridSizeDropdowns.value.id;
+        if (eazlAppData.record_id != null) {
+            gridSizeDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
             gridSizeDropdownsWorking.value.id = 0;
         }
 
-        if (eazlGridSizeDropdowns.value.name != null) {
-            gridSizeDropdownsWorking.value.name = eazlGridSizeDropdowns.value.name;
+        if (eazlAppData.name != null) {
+            gridSizeDropdownsWorking.value.name = eazlAppData.name;
         } else {
             gridSizeDropdownsWorking.value.name = '';
         }
