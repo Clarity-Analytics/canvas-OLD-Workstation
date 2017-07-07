@@ -1,11 +1,11 @@
 // Schema for the Widget Type
 
-// Eazl
-export class EazlWidgetType {
-    label: string;
-    value_id: number;
-    value_name: string;
-}
+// Eazl - use EazlAppData
+// export class EazlWidgetType {
+//     label: string;
+//     value_id: number;
+//     value_name: string;
+// }
 
 // Canvas
 export class WidgetType {

@@ -57,7 +57,6 @@ import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
-import { EazlWidgetType }             from './model.widget.type';
 import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
