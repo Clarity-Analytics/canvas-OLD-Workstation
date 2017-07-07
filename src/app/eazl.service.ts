@@ -88,7 +88,6 @@ import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
 import { EazlDashboardUserRelationship }    from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
-import { EazlGraphType }              from './model.graph.type';
 import { EazlGroup }                  from './model.group';
 import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';

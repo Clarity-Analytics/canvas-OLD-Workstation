@@ -1,11 +1,11 @@
 // Schema for the Graph Type
 
-// Eazl
-export class EazlGraphType {
-    label: string;
-    value_id: number;
-    value_name: string;
-}
+// Eazl - use EazlAppData
+// export class EazlGraphType {
+//     label: string;
+//     value_id: number;
+//     value_name: string;
+// }
 
 // Canvas
 export class GraphType {
