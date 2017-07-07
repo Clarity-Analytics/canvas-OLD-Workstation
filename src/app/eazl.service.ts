@@ -621,44 +621,45 @@ export const GRAPHTYPES: GraphType[] =
         },
     ];
 
-export const WIDGETTYPES: WidgetType[] =
-    [
-        {
-            label: 'WidgetSet',
-            value: {
-                id: 0,
-                name: 'WidgetSet'
-            }
-        },
-        {
-            label: 'BarChart',
-            value: {
-                id: 1,
-                name: 'BarChart'
-            }
-        },
-        {
-            label: 'PieChart',
-            value: {
-                id: 2,
-                name: 'PieChart'
-            }
-        },
-        {
-            label: 'LineChart',
-            value: {
-                id: 3,
-                name: 'LineChart'
-            }
-        },
-        {
-            label: 'Custom',
-            value: {
-                id: 4,
-                name: 'Custom'
-            }
-        }
-    ];
+// const WIDGETTYPES replaced with API data
+    // export const WIDGETTYPES: WidgetType[] =
+    //     [
+    //         {
+    //             label: 'WidgetSet',
+    //             value: {
+    //                 id: 0,
+    //                 name: 'WidgetSet'
+    //             }
+    //         },
+    //         {
+    //             label: 'BarChart',
+    //             value: {
+    //                 id: 1,
+    //                 name: 'BarChart'
+    //             }
+    //         },
+    //         {
+    //             label: 'PieChart',
+    //             value: {
+    //                 id: 2,
+    //                 name: 'PieChart'
+    //             }
+    //         },
+    //         {
+    //             label: 'LineChart',
+    //             value: {
+    //                 id: 3,
+    //                 name: 'LineChart'
+    //             }
+    //         },
+    //         {
+    //             label: 'Custom',
+    //             value: {
+    //                 id: 4,
+    //                 name: 'Custom'
+    //             }
+    //         }
+    //     ];
 
 export const PERSONALISATION: Personalisation =
     {
@@ -4546,7 +4547,7 @@ export class EazlService implements OnInit {
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
     widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
-    widgetTypes: WidgetType[] = WIDGETTYPES;                 // List of Widget types
+    widgetTypes: WidgetType[];                              // List of Widget types
 
     constructor(
         private canvasDate: CanvasDate,
@@ -4797,8 +4798,8 @@ export class EazlService implements OnInit {
                         // Get the data locally
                         this.globalFunctionService.printToConsole(
                             this.constructor.name,'login', '  refresh the Cache');
-                        //     this.cacheCanvasData('all', 'reset');
-                        this.cacheCanvasData('BackgroundImageDropdown', 'reset');
+                            this.cacheCanvasData('all', 'reset');
+                        // this.cacheCanvasData('BackgroundImageDropdown', 'reset');
 
                         // Log into web socket service
                         this.reconnectingWebSocket.connect(authToken)
@@ -8403,7 +8404,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                         // Replace
                         this.widgetTypes = widgetTypeWorking;
-
+console.log('this.widgetTypes', this.widgetTypes)
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataWidgetType.next(false);
                         }
