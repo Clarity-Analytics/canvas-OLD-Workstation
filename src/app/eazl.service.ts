@@ -5729,7 +5729,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTemplates', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataWidgetTemplate.getValue() == true) {
+        if (this.globalVariableService.dirtyDataWidgetTemplate) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'WidgetTemplate data is dirty / not up to date',
@@ -8208,7 +8208,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let systemConfigurationWorking: SystemConfiguration = null;
-                this.get<EazlSystemConfiguration>('system-configuration')
+                this.get<EazlSystemConfiguration>('system_configuration')
                     .subscribe(
                         (eazlSystemConfiguration) => {
                             for (var i = 0; i < eazlSystemConfiguration.length; i++) {
@@ -8370,7 +8370,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetTemplate');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetTemplate.next(true);
+                this.globalVariableService.dirtyDataWidgetTemplate = true;
 
                 // Get all the data via API
                 let WidgetTemplateWorking: WidgetTemplate[] = [];
@@ -8389,7 +8389,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.widgetTemplates = widgetTemplateWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataWidgetTemplate.next(false);
+                        this.globalVariableService.dirtyDataWidgetTemplate = false;
                         }
                 )
             }
@@ -8400,7 +8400,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.widgetTemplates = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetTemplate.next(true);
+                this.globalVariableService.dirtyDataWidgetTemplate = true;
             }
         }
 

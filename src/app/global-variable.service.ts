@@ -75,7 +75,7 @@ export class GlobalVariableService {
     dirtyDataSystemConfiguration = new BehaviorSubject(true);
     dirtyDataUserGroupMembership = new BehaviorSubject(true);
     dirtyDataWidgetComment = new BehaviorSubject(true);
-    dirtyDataWidgetTemplate = new BehaviorSubject(true);
+    dirtyDataWidgetTemplate: boolean = true;
     dirtyDataWidget = new BehaviorSubject(true);
     dirtyDataWidgetType = new BehaviorSubject(true);
     dirtyDataGraphType = new BehaviorSubject(true);
