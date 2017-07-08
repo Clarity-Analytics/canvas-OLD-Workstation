@@ -193,17 +193,17 @@ this.reconnectingWebSocket.messageWS.subscribe(
                         detail:   'Auto login for janniei failed'
                     });
 
+                    // Get the SystemConfiguration, and refesh global variables
+                    this.eazlService.globalVariablesSystemConfiguration(
+                        this.eazlService.getSystemConfiguration()
+                    )
+
                     // Set the menu items
                     this.menuItems = this.loadMenu()
                     console.log('Error in app.component.ts @ fakeLogin', err)
                     }
                 )
         }
-
-        // Get the SystemConfiguration, and refesh global variables
-        this.eazlService.globalVariablesSystemConfiguration(
-            this.eazlService.getSystemConfiguration()
-        )
 
         // Get the Personalisation, and refesh global variables
         this.eazlService.globalVariablesPersonalisation(

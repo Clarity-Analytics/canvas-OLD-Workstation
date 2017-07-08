@@ -132,17 +132,18 @@ export interface Token {
 var req = new XMLHttpRequest();
 
 // TODO - use RESTi
-export const SYSTEMCONFIGURATION: SystemConfiguration =
-    {
-        systemConfigurationID: 0,
-        backendUrl: 'localhost:8000',
-        companyLogo: '',
-        companyName: 'Clarity',
-        defaultDaysToKeepResultSet: 3,
-        maxRowsDataReturned: 1000000,
-        maxRowsPerWidgetGraph: 15,
-    }
+// export const SYSTEMCONFIGURATION: SystemConfiguration =
+//     {
+//         systemConfigurationID: 0,
+//         backendUrl: 'localhost:8000',
+//         companyLogo: '',
+//         companyName: 'Clarity',
+//         defaultDaysToKeepResultSet: 3,
+//         maxRowsDataReturned: 1000000,
+//         maxRowsPerWidgetGraph: 15,
+//     }
 
+// Constants
 export const ISSTAFFDROPDOWN: SelectItem[] =
     [
         {
@@ -377,7 +378,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ]
 
-// const TEXTPADDINGDROPDOWNS replaced with API data 
+// const TEXTPADDINGDROPDOWNS replaced with API data
     // export const TEXTPADDINGDROPDOWNS: SelectItem[] =
     //     [
     //         {
@@ -414,7 +415,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ]
 
-// const TEXTPOSITIONDROPDOWNS replaced with API data  
+// const TEXTPOSITIONDROPDOWNS replaced with API data
     // export const TEXTPOSITIONDROPDOWNS: SelectItem[] =
     //     [
     //         {
@@ -436,7 +437,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //     ]
 
 
-// const TEXTALIGNDROPDOWNS replaced with API data  
+// const TEXTALIGNDROPDOWNS replaced with API data
     // export const TEXTALIGNDROPDOWNS: SelectItem[] =
     //     [
     //         {
@@ -466,7 +467,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //     ]
 
 
-// const IMAGESOURCEDROPDOWNS replaced with API data  
+// const IMAGESOURCEDROPDOWNS replaced with API data
     // export const IMAGESOURCEDROPDOWNS: SelectItem[] =
     //     [
     //         {
@@ -4555,7 +4556,7 @@ export class EazlService implements OnInit {
     personalisation: Personalisation = PERSONALISATION;     // Personal settings for current user
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
-    systemConfiguration: SystemConfiguration = SYSTEMCONFIGURATION; // System wide settings
+    systemConfiguration: SystemConfiguration;               // System wide settings
     users: User[] = [];                                     // List of Users
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
@@ -8208,7 +8209,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let systemConfigurationWorking: SystemConfiguration = null;
-                this.get<EazlSystemConfiguration>('system_configuration')
+                this.get<EazlSystemConfiguration>('system-configuration')
                     .subscribe(
                         (eazlSystemConfiguration) => {
                             for (var i = 0; i < eazlSystemConfiguration.length; i++) {
@@ -8746,7 +8747,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
 
-        // TextMarginDropdown 
+        // TextMarginDropdown
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextMarginDropdown') {
 
             // Reset
@@ -8913,7 +8914,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataTextPositionDropdown = true;
             }
         }
-    
+
         //  TextAlignDropdown
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'TextAlignDropdown') {
 
