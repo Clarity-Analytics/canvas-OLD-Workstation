@@ -4591,7 +4591,7 @@ export class EazlService implements OnInit {
         // Returns SystemConfiguration
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataSystemConfiguration.getValue() == true) {
+        if (this.globalVariableService.dirtyDataSystemConfiguration) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'SystemConfiguration is dirty / not up to date',
@@ -4609,7 +4609,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getPersonalisation', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataPersonalisation.getValue() == true) {
+        if (this.globalVariableService.dirtyDataPersonalisation) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Personalisation is dirty / not up to date',
@@ -4625,7 +4625,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
 
         // Mark as dirty
-        this.globalVariableService.dirtyDataSystemConfiguration.next(true) ;
+        this.globalVariableService.dirtyDataSystemConfiguration = true;
 
         // Update Global Variables
         this.globalVariablesSystemConfiguration(systemConfiguration);
@@ -4637,7 +4637,7 @@ export class EazlService implements OnInit {
         this.systemConfiguration = systemConfiguration;
 
         // Mark as clean
-        this.globalVariableService.dirtyDataSystemConfiguration.next(false) ;
+        this.globalVariableService.dirtyDataSystemConfiguration = false;
     }
 
     globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
@@ -4673,7 +4673,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updatePersonalisation', '@Start');
 
         // Mark as dirty
-        this.globalVariableService.dirtyDataPersonalisation.next(true) ;
+        this.globalVariableService.dirtyDataPersonalisation = true;
 
         // Refresh globals variables that may have changed
         this.globalVariablesPersonalisation(personalisation);
@@ -4685,7 +4685,7 @@ export class EazlService implements OnInit {
         this.personalisation = personalisation;
 
         // Mark as clean
-        this.globalVariableService.dirtyDataPersonalisation.next(false) ;
+        this.globalVariableService.dirtyDataPersonalisation = false;
     }
 
     globalVariablesPersonalisation(personalisation: Personalisation) {
@@ -4935,7 +4935,7 @@ export class EazlService implements OnInit {
 
                     // TODO - reGet the local => always in sync
                     // Not dirty any longer
-                    this.globalVariableService.dirtyDataUser.next(false);
+                    this.globalVariableService.dirtyDataUser = false;
 
                     // Return the data
                     return this.users;
@@ -4955,7 +4955,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataUser) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'User data is dirty / not up to date',
@@ -4974,7 +4974,7 @@ export class EazlService implements OnInit {
         // - isContainerHeaderDark: new value of isContainerHeaderDark field
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard.next(true);
+        this.globalVariableService.dirtyDataDashboard = true;
 
         // TODO - update for real in DB
         for (var i = 0; i < this.dashboards.length; i++) {
@@ -4984,7 +4984,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboard.next(false);
+        this.globalVariableService.dirtyDataDashboard = false;
     }
 
     updateDashboardshowContainerHeader(
@@ -4995,7 +4995,7 @@ export class EazlService implements OnInit {
         // - showContainerHeader: new value of showContainerHeader field
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard.next(true);
+        this.globalVariableService.dirtyDataDashboard = true;
 
         // TODO - update for real in DB
 
@@ -5007,7 +5007,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard.next(false);
+        this.globalVariableService.dirtyDataDashboard = false;
     }
 
     updateDashboardBackgroundColor(
@@ -5018,7 +5018,7 @@ export class EazlService implements OnInit {
         // - dashboardBackgroundColor: new value of dashboardBackgroundColor field
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard.next(true);
+        this.globalVariableService.dirtyDataDashboard = true;
 
         // TODO - update for real in DB
 
@@ -5030,7 +5030,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard.next(false);
+        this.globalVariableService.dirtyDataDashboard = false;
     }
 
     updateDashboardBackgroundImageSrc(
@@ -5041,7 +5041,7 @@ export class EazlService implements OnInit {
         // - dashboardBackgroundImageSrc: new value of dashboardBackgroundImageSrc fieldp
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard.next(true);
+        this.globalVariableService.dirtyDataDashboard = true;
 
         // TODO - update for real in DB
 
@@ -5053,7 +5053,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard.next(false);
+        this.globalVariableService.dirtyDataDashboard = false;
     }
 
     getDashboards(
@@ -5067,7 +5067,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboard.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboard) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Dashboard data is dirty / not up to date',
@@ -5169,7 +5169,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardSelectionItems', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboard.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboard) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Dashboard data is dirty / not up to date',
@@ -5204,7 +5204,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabs', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboardTab.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardTab) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DashboardTab data is dirty / not up to date',
@@ -5231,7 +5231,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTabsSelectItem', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboardTab.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardTab) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DashboardTab data is dirty / not up to date',
@@ -5266,7 +5266,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardTab', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardTab.next(true);
+        this.globalVariableService.dirtyDataDashboardTab = true;
 
         // Get the Tab
         let workingDashboardTabs: DashboardTab[] = [];
@@ -5277,7 +5277,7 @@ export class EazlService implements OnInit {
             workingDashboardTabs[0].dashboardTabDescription = dashboardTabDescription;
 
             // Mark the data as clean
-            this.globalVariableService.dirtyDataDashboardTab.next(false);
+            this.globalVariableService.dirtyDataDashboardTab = false;
 
             return true;
         } else {
@@ -5290,7 +5290,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataWidget.getValue() == true) {
+        if (this.globalVariableService.dirtyDataWidget) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Widget data is dirty / not up to date',
@@ -5310,7 +5310,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataWidget.getValue() == true) {
+        if (this.globalVariableService.dirtyDataWidget) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Widget data is dirty / not up to date',
@@ -5370,7 +5370,7 @@ export class EazlService implements OnInit {
         )
 
         // Mark as dirty
-        this.globalVariableService.dirtyDataWidgetComment.next(false);
+        this.globalVariableService.dirtyDataWidgetComment = false;
     }
 
     getWidgetsComments(selectedWidgetID: number): WidgetComment[] {
@@ -5378,7 +5378,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsComments', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataWidgetComment.getValue() == true) {
+        if (this.globalVariableService.dirtyDataWidgetComment) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'WidgetComment data is dirty / not up to date',
@@ -5397,7 +5397,7 @@ export class EazlService implements OnInit {
         this.widgets.push(widget)
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataWidget.next(true);
+        this.globalVariableService.dirtyDataWidget = true;
     }
 
     getDefaultWidgetConfig (): Widget {
@@ -5532,7 +5532,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReports', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReport) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Report data is dirty / not up to date',
@@ -5541,7 +5541,7 @@ export class EazlService implements OnInit {
         }
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReportUserRelationship.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReportUserRelationship) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'ReportUserRelationship data is dirty / not up to date',
@@ -5596,7 +5596,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReport', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReport) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Report data is dirty / not up to date',
@@ -5616,7 +5616,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFields', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReport) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Report data is dirty / not up to date',
@@ -5636,7 +5636,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFieldSelectedItems', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReport) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Report data is dirty / not up to date',
@@ -5667,7 +5667,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportData', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReport.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReport) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Report data is dirty / not up to date',
@@ -5687,7 +5687,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportWidgetSets', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReportWidgetSet.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReportWidgetSet) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'ReportWidgetSet data is dirty / not up to date',
@@ -5706,7 +5706,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportHistory', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReportHistory.getValue() == true) {
+        if (this.globalVariableService.dirtyDataReportHistory) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'ReportHistory data is dirty / not up to date',
@@ -5808,7 +5808,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updateWidgetIsLiked', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataWidget.next(true);
+        this.globalVariableService.dirtyDataWidget = true;
 
         let foundUser: boolean = false;
 
@@ -5846,7 +5846,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as clean
-        this.globalVariableService.dirtyDataWidget.next(false);
+        this.globalVariableService.dirtyDataWidget = false;
     }
 
     getGroups(groupID: number = -1): Group[] {
@@ -5855,7 +5855,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroups', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGroup.getValue() == true) {
+        if (this.globalVariableService.dirtyDataGroup) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Group data is dirty / not up to date',
@@ -5891,7 +5891,7 @@ export class EazlService implements OnInit {
         })
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup.next(true);
+        this.globalVariableService.dirtyDataGroup = true;
     }
 
     updateGroup(groupID: number, groupName: string, groupDescription: string) {
@@ -5899,7 +5899,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup.next(true);
+        this.globalVariableService.dirtyDataGroup = true;
 
         let currentUser: string = this.globalFunctionService.currentUser();
 
@@ -5914,7 +5914,7 @@ export class EazlService implements OnInit {
         };
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup.next(false);
+        this.globalVariableService.dirtyDataGroup = false;
     }
 
     deleteGroup(groupID: number) {
@@ -5922,7 +5922,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroup', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup.next(true);
+        this.globalVariableService.dirtyDataGroup = true;
 
         // Delete the data
         for (var i = 0; i < this.groups.length; i++) {
@@ -5932,7 +5932,7 @@ export class EazlService implements OnInit {
         };
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup.next(false);
+        this.globalVariableService.dirtyDataGroup = false;
     }
 
     getUsersWhoCanAccessDatasource(
@@ -5944,7 +5944,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersWhoCanAccessDatasource', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDataSourceUserAccess.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDataSourceUserAccess) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DataSourceUserAccess data is dirty / not up to date',
@@ -5974,7 +5974,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerUser', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDatasourcesPerUser.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDatasourcesPerUser) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DatasourcesPerUser data is dirty / not up to date',
@@ -6063,7 +6063,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerUser', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboardUserRelationship.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardUserRelationship) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DashboardUserRelationship data is dirty / not up to date',
@@ -6138,7 +6138,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerGroup', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGroupDatasourceAccess.getValue() == true) {
+        if (this.globalVariableService.dirtyDataGroupDatasourceAccess) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'GroupDatasourceAccess data is dirty / not up to date',
@@ -6172,7 +6172,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerDatasource', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGroupDatasourceAccess.getValue() == true) {
+        if (this.globalVariableService.dirtyDataGroupDatasourceAccess) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'GroupDatasourceAccess data is dirty / not up to date',
@@ -6210,7 +6210,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDataSourceUserAccess.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDataSourceUserAccess) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DatasourceUserAccess data is dirty / not up to date',
@@ -6250,7 +6250,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDataSourceUserAccess.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDataSourceUserAccess) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DatasourceUserAccess data is dirty / not up to date',
@@ -6293,7 +6293,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupDatasourceAccess', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGroupDatasourceAccess.getValue() == true) {
+        if (this.globalVariableService.dirtyDataGroupDatasourceAccess) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'GroupDatasourceAccess data is dirty / not up to date',
@@ -6342,7 +6342,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
+        this.globalVariableService.dirtyDataDataSourceUserAccess = true;
     }
 
     deleteDatasourceUserAccess(datasourceID: number, username: string) {
@@ -6354,7 +6354,7 @@ export class EazlService implements OnInit {
         );
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
+        this.globalVariableService.dirtyDataDataSourceUserAccess = true;
     }
 
     getGroupsPerUser(username: string = '', include: boolean = true): Group[] {
@@ -6364,7 +6364,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUserGroupMembership.getValue() == true) {
+        if (this.globalVariableService.dirtyDataUserGroupMembership) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'UserGroupMembership data is dirty / not up to date',
@@ -6404,7 +6404,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersPerGroup', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUserGroupMembership.getValue() == true) {
+        if (this.globalVariableService.dirtyDataUserGroupMembership) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'UserGroupMembership data is dirty / not up to date',
@@ -6470,7 +6470,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataUserGroupMembership.next(true);
+        this.globalVariableService.dirtyDataUserGroupMembership = true;
     }
 
     deleteUserGroupMembership(username: string, groupID: number) {
@@ -6482,7 +6482,7 @@ export class EazlService implements OnInit {
         );
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataUserGroupMembership.next(true);
+        this.globalVariableService.dirtyDataUserGroupMembership = true;
     }
 
     addGroupDatasourceAccess(datasourceID: number, groupID: number) {
@@ -6518,7 +6518,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
+        this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
     }
 
     deleteGroupDatasourceAccess(datasourceID: number, groupID: number) {
@@ -6526,14 +6526,14 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroupDatasourceAccess', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
+        this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
 
         this.groupDatasourceAccess = this.groupDatasourceAccess.filter(
             item => (!(item.datasourceID == datasourceID  &&  item.groupID == groupID))
         );
 
         // Mark the data as clean
-        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(false);
+        this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
     }
 
     getDashboardGroupMembership(
@@ -6547,7 +6547,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardGroupMembership', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboardGroupMembership.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardGroupMembership) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DashboardGroupMembership data is dirty / not up to date',
@@ -6622,7 +6622,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
+        this.globalVariableService.dirtyDataDashboardGroupMembership = true;
     }
 
     deleteDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
@@ -6630,7 +6630,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupMembership', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
+        this.globalVariableService.dirtyDataDashboardGroupMembership = true;
 
         this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
             item => (!(item.dashboardID == dashboardID  &&
@@ -6638,7 +6638,7 @@ export class EazlService implements OnInit {
         );
 
         // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboardGroupMembership.next(false);
+        this.globalVariableService.dirtyDataDashboardGroupMembership = false;
     }
 
     getGroupsRelatedToDashboard(
@@ -6654,7 +6654,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'getGroupsRelatedToDashboard', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboardGroupRelationship.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardGroupRelationship) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DashboardGroupRelationship data is dirty / not up to date',
@@ -6699,7 +6699,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name, 'getUsersRelatedToDashboard', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboardUserRelationship.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDashboardUserRelationship) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DataDashboardUserRelationship  data is dirty / not up to date',
@@ -6774,7 +6774,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
+        this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
     }
 
     deleteDashboardGroupRelationship(
@@ -6785,7 +6785,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupRelationship', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
+        this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
 
         let currentUser: string = this.globalFunctionService.currentUser();
 
@@ -6802,7 +6802,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(false);
+        this.globalVariableService.dirtyDataDashboardGroupRelationship = false;
     }
 
     addDashboardUserRelationship(
@@ -6847,7 +6847,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
+        this.globalVariableService.dirtyDataDashboardUserRelationship = true;
     }
 
     deleteDashboardUserRelationship(
@@ -6858,7 +6858,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardUserRelationship', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
+        this.globalVariableService.dirtyDataDashboardUserRelationship = true;
 
         let currentUser: string = this.globalFunctionService.currentUser();
 
@@ -6875,7 +6875,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboardUserRelationship.next(false);
+        this.globalVariableService.dirtyDataDashboardUserRelationship = false;
     }
 
     getDataSources(dashboardID: number = -1): DataSource[] {
@@ -6886,7 +6886,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDataSources', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDatasource.getValue() == true) {
+        if (this.globalVariableService.dirtyDataDatasource) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'Datasource data is dirty / not up to date',
@@ -6956,7 +6956,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataCanvasMessage.getValue() == true) {
+        if (this.globalVariableService.dirtyDataCanvasMessage) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'CanvasMessages data is dirty / not up to date',
@@ -7013,7 +7013,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'canvasMessageToggleRead', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataCanvasMessage.getValue() == true) {
+        if (this.globalVariableService.dirtyDataCanvasMessage) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'CanvasMessages data is dirty / not up to date',
@@ -7051,7 +7051,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetTypes', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataWidgetType.getValue() == true) {
+        if (this.globalVariableService.dirtyDataWidgetType) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'WidgetType data is dirty / not up to date',
@@ -7067,7 +7067,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGraphTypes', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGraphType.getValue() == true) {
+        if (this.globalVariableService.dirtyDataGraphType) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'GraphType data is dirty / not up to date',
@@ -7097,7 +7097,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getBorderDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataBorderDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataBorderDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'BorderDropdown data is dirty / not up to date',
@@ -7113,7 +7113,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getBoxShadowDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataBoxShadowDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataBoxShadowDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'BoxShadowDropdown data is dirty / not up to date',
@@ -7129,7 +7129,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getFontSizeDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataFontSizeDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataFontSizeDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'FontSizeDropdown data is dirty / not up to date',
@@ -7145,7 +7145,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getGridSizeDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGridSizeDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataGridSizeDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'GridSizeDropdown data is dirty / not up to date',
@@ -7161,7 +7161,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getBackgroundImageDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataBackgroundImageDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataBackgroundImageDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'BackgroundImageDropdown data is dirty / not up to date',
@@ -7206,7 +7206,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getFontWeightDropdown', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataFontWeightDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataFontWeightDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'FontWeightDropdown data is dirty / not up to date',
@@ -7222,7 +7222,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextMarginDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataTextMarginDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataTextMarginDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'TextMarginDropdown data is dirty / not up to date',
@@ -7238,7 +7238,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextPaddingDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataTextPaddingDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataTextPaddingDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'TextPaddingDropdown data is dirty / not up to date',
@@ -7254,7 +7254,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextPositionDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataTextPositionDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataTextPositionDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'TextPositionDropdown data is dirty / not up to date',
@@ -7270,7 +7270,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getTextAlignDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataTextAlignDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataTextAlignDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'TextAlignDropdown data is dirty / not up to date',
@@ -7286,7 +7286,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getImageSourceDropdowns', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataImageSourceDropdown.getValue() == true) {
+        if (this.globalVariableService.dirtyDataImageSourceDropdown) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'ImageSourceDropdown data is dirty / not up to date',
@@ -7316,7 +7316,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset User');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataUser.next(true);
+                this.globalVariableService.dirtyDataUser = true;
 
                 // Get all the data via API
                 let usersWorking: User[] = [];
@@ -7340,7 +7340,7 @@ export class EazlService implements OnInit {
                         this.users = usersWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataUser.next(false);
+                        this.globalVariableService.dirtyDataUser = false;
                         }
                     )
             }
@@ -7351,7 +7351,7 @@ export class EazlService implements OnInit {
                 this.users = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataUser.next(true);
+                this.globalVariableService.dirtyDataUser = true;
             }
 
         }
@@ -7364,7 +7364,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Group');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGroup.next(true);
+                this.globalVariableService.dirtyDataGroup = true;
 
                 // Get all the data via API
                 let groupsWorking: Group[] = [];
@@ -7381,7 +7381,7 @@ export class EazlService implements OnInit {
                         this.groups = groupsWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataGroup.next(false);
+                        this.globalVariableService.dirtyDataGroup = false;
                         }
                     )
             }
@@ -7392,7 +7392,7 @@ export class EazlService implements OnInit {
                 this.groups = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGroup.next(true);
+                this.globalVariableService.dirtyDataGroup = true;
             }
         }
 
@@ -7404,7 +7404,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTab');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardTab.next(true);
+                this.globalVariableService.dirtyDataDashboardTab = true;
 
                 // Get all the data via API
                 let dashboardTabWorking: DashboardTab[] = [];
@@ -7423,7 +7423,7 @@ export class EazlService implements OnInit {
                         //  this.dashboardTabs = groupsWorking;
 
                 // Mark the data as clean
-                this.globalVariableService.dirtyDataDashboardTab.next(false);
+                this.globalVariableService.dirtyDataDashboardTab = false;
                         }
                 )
             }
@@ -7434,7 +7434,7 @@ export class EazlService implements OnInit {
                 this.dashboardTabs = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardTab.next(true);
+                this.globalVariableService.dirtyDataDashboardTab = true;
             }
         }
 
@@ -7446,7 +7446,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset CanvasMessage');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataCanvasMessage.next(true);
+                this.globalVariableService.dirtyDataCanvasMessage = true;
 
                 // Get all the data via API
                 let canvasMessageWorking: CanvasMessage[] = [];
@@ -7465,7 +7465,7 @@ export class EazlService implements OnInit {
                         //  this.canvasMessages = canvasMessageWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataCanvasMessage.next(false);
+                        this.globalVariableService.dirtyDataCanvasMessage = false;
                         }
                 )
             }
@@ -7476,7 +7476,7 @@ export class EazlService implements OnInit {
                 this.canvasMessages = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataCanvasMessage.next(true);
+                this.globalVariableService.dirtyDataCanvasMessage = true;
             }
         }
 
@@ -7488,7 +7488,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset CanvasMessageRecipient');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataCanvasMessageRecipient.next(true);
+                this.globalVariableService.dirtyDataCanvasMessageRecipient = true;
 
                 // Get all the data via API
                 let canvasMessageRecipientWorking: CanvasMessageRecipient[] = [];
@@ -7507,7 +7507,7 @@ export class EazlService implements OnInit {
                         //  this.canvasMessageRecipients = canvasMessageRecipientWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataCanvasMessageRecipient.next(false);
+                        this.globalVariableService.dirtyDataCanvasMessageRecipient = false;
                         }
                 )
             }
@@ -7518,7 +7518,7 @@ export class EazlService implements OnInit {
                 this.canvasMessageRecipients = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataCanvasMessageRecipient.next(true);
+                this.globalVariableService.dirtyDataCanvasMessageRecipient = true;
             }
         }
 
@@ -7530,7 +7530,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroup');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroup.next(true);
+                this.globalVariableService.dirtyDataDashboardGroup = true;
 
                 // Get all the data via API
                 let DashboardGroupWorking: DashboardGroup[] = [];
@@ -7549,7 +7549,7 @@ export class EazlService implements OnInit {
                         //  this.dashboardGroups = dashboardGroupWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardGroup.next(false);
+                        this.globalVariableService.dirtyDataDashboardGroup = false;
                         }
                 )
             }
@@ -7560,7 +7560,7 @@ export class EazlService implements OnInit {
                 this.dashboardGroups = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroup.next(true);
+                this.globalVariableService.dirtyDataDashboardGroup = true;
             }
         }
 
@@ -7572,7 +7572,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupMembership');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
+                this.globalVariableService.dirtyDataDashboardGroupMembership = true;
 
                 // Get all the data via API
                 let DashboardGroupMembershipWorking: DashboardGroupMembership[] = [];
@@ -7591,7 +7591,7 @@ export class EazlService implements OnInit {
                         //  this.dashboardGroupMembership = dashboardGroupMembershipWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardGroupMembership.next(false);
+                        this.globalVariableService.dirtyDataDashboardGroupMembership = false;
                         }
                 )
             }
@@ -7602,7 +7602,7 @@ export class EazlService implements OnInit {
                 this.dashboardGroupMembership = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupMembership.next(true);
+                this.globalVariableService.dirtyDataDashboardGroupMembership = true;
             }
         }
 
@@ -7614,7 +7614,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupRelationship');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
+                this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
 
                 // Get all the data via API
                 let DashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
@@ -7633,7 +7633,7 @@ export class EazlService implements OnInit {
                         //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardGroupRelationship.next(false);
+                        this.globalVariableService.dirtyDataDashboardGroupRelationship = false;
                         }
                 )
             }
@@ -7644,7 +7644,7 @@ export class EazlService implements OnInit {
                 this.dashboardGroupRelationship = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupRelationship.next(true);
+                this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
             }
         }
 
@@ -7656,7 +7656,7 @@ export class EazlService implements OnInit {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Dashboard');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboard.next(true);
+                this.globalVariableService.dirtyDataDashboard=  true;
 
                 // Get all the data via API
                 let dashboardWorking: Dashboard[] = [];
@@ -7676,7 +7676,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.dashboards = dashboardWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboard.next(false);
+                        this.globalVariableService.dirtyDataDashboard = false;
                         }
                 )
             }
@@ -7687,7 +7687,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.dashboards = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboard.next(true);
+                this.globalVariableService.dirtyDataDashboard = true;
             }
         }
 
@@ -7699,7 +7699,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardsPerUser');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardsPerUser.next(true);
+                this.globalVariableService.dirtyDataDashboardsPerUser = true;
 
                 // Get all the data via API
                 let DashboardsPerUserWorking: DashboardsPerUser[] = [];
@@ -7718,7 +7718,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.dashboardsPerUser = dashboardsPerUserWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardsPerUser.next(false);
+                        this.globalVariableService.dirtyDataDashboardsPerUser = false;
                         }
                 )
             }
@@ -7729,7 +7729,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.dashboardsPerUser = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardsPerUser.next(true);
+                this.globalVariableService.dirtyDataDashboardsPerUser = true;
             }
         }
 
@@ -7741,7 +7741,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardUserRelationship');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
+                this.globalVariableService.dirtyDataDashboardUserRelationship = true;
 
                 // Get all the data via API
                 let DashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
@@ -7760,7 +7760,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardUserRelationship.next(false);
+                        this.globalVariableService.dirtyDataDashboardUserRelationship = false;
                         }
                 )
             }
@@ -7771,7 +7771,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.dashboardUserRelationship = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardUserRelationship.next(true);
+                this.globalVariableService.dirtyDataDashboardUserRelationship = true;
             }
         }
 
@@ -7783,7 +7783,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DatasourcesPerUser');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDatasourcesPerUser.next(true);
+                this.globalVariableService.dirtyDataDatasourcesPerUser = true;
 
                 // Get all the data via API
                 let DatasourcesPerUserWorking: DatasourcesPerUser[] = [];
@@ -7802,7 +7802,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.datasourcesPerUser = datasourcesPerUserWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDatasourcesPerUser.next(false);
+                        this.globalVariableService.dirtyDataDatasourcesPerUser = false;
                         }
                 )
             }
@@ -7813,7 +7813,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.datasourcesPerUser = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDatasourcesPerUser.next(true);
+                this.globalVariableService.dirtyDataDatasourcesPerUser = true;
             }
         }
 
@@ -7825,7 +7825,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DataSourceUserAccess');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
+                this.globalVariableService.dirtyDataDataSourceUserAccess = true;
 
                 // Get all the data via API
                 let DataSourceUserAccessWorking: DataSourceUserAccess[] = [];
@@ -7845,7 +7845,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDataSourceUserAccess.next(false);
+                        this.globalVariableService.dirtyDataDataSourceUserAccess = false;
                         }
                 )
             }
@@ -7856,7 +7856,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.dataSourceUserAccess = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDataSourceUserAccess.next(true);
+                this.globalVariableService.dirtyDataDataSourceUserAccess = true;
             }
         }
 
@@ -7868,7 +7868,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Filter');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataFilter.next(true);
+                this.globalVariableService.dirtyDataFilter = true;
 
                 // Get all the data via API
                 let FilterWorking: Filter[] = [];
@@ -7887,7 +7887,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.filters = filterWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataFilter.next(false);
+                        this.globalVariableService.dirtyDataFilter = false;
                         }
                 )
             }
@@ -7898,7 +7898,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.filters = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataFilter.next(true);
+                this.globalVariableService.dirtyDataFilter = true;
             }
         }
 
@@ -7910,7 +7910,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GroupDatasourceAccess');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
+                this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
 
                 // Get all the data via API
                 let GroupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
@@ -7929,7 +7929,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataGroupDatasourceAccess.next(false);
+                        this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
                         }
                 )
             }
@@ -7940,7 +7940,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.groupDatasourceAccess = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGroupDatasourceAccess.next(true);
+                this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
             }
         }
 
@@ -7952,7 +7952,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Notification');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataNotification.next(true);
+                this.globalVariableService.dirtyDataNotification = true;
 
                 // Get all the data via API
                 let NotificationWorking: Notification[] = [];
@@ -7971,7 +7971,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.notifications = notificationWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataNotification.next(false);
+                        this.globalVariableService.dirtyDataNotification = false;
                         }
                 )
             }
@@ -7982,7 +7982,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.notifications = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataNotification.next(true);
+                this.globalVariableService.dirtyDataNotification = true;
             }
         }
 
@@ -7994,7 +7994,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset PackageTask');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataPackageTask.next(true);
+                this.globalVariableService.dirtyDataPackageTask = true;
 
                 // Get all the data via API
                 let packageTaskWorking: PackageTask[] = [];
@@ -8013,7 +8013,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                             this.packageTask = packageTaskWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataPackageTask.next(false);
+                        this.globalVariableService.dirtyDataPackageTask = false;
                         }
                 )
             }
@@ -8024,7 +8024,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.packageTask = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataPackageTask.next(true);
+                this.globalVariableService.dirtyDataPackageTask = true;
             }
         }
 
@@ -8036,7 +8036,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Report');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReport.next(true);
+                this.globalVariableService.dirtyDataReport = true;
 
                 // Get all the data via API
                 let ReportWorking: Report[] = [];
@@ -8055,7 +8055,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.reports = reportWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataReport.next(false);
+                        this.globalVariableService.dirtyDataReport = false;
                         }
                 )
             }
@@ -8066,7 +8066,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.reports = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReport.next(true);
+                this.globalVariableService.dirtyDataReport = true;
             }
         }
 
@@ -8078,7 +8078,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportWidgetSet');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportWidgetSet.next(true);
+                this.globalVariableService.dirtyDataReportWidgetSet = true;
 
                 // Get all the data via API
                 let ReportWidgetSetWorking: ReportWidgetSet[] = [];
@@ -8097,7 +8097,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.reportWidgetSet = ReportWidgetSetWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataReportWidgetSet.next(false);
+                        this.globalVariableService.dirtyDataReportWidgetSet = false;
                         }
                 )
             }
@@ -8108,7 +8108,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.reportWidgetSet = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportWidgetSet.next(true);
+                this.globalVariableService.dirtyDataReportWidgetSet = true;
             }
         }
 
@@ -8120,7 +8120,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportHistory');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportHistory.next(true);
+                this.globalVariableService.dirtyDataReportHistory = true;
 
                 // Get all the data via API
                 let ReportHistoryWorking: ReportHistory[] = [];
@@ -8139,7 +8139,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.reportHistory = reportHistoryWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataReportHistory.next(false);
+                        this.globalVariableService.dirtyDataReportHistory = false;
                         }
                 )
             }
@@ -8150,7 +8150,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.reportHistory = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportHistory.next(true);
+                this.globalVariableService.dirtyDataReportHistory = true;
             }
         }
 
@@ -8162,7 +8162,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportUserRelationship');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportUserRelationship.next(true);
+                this.globalVariableService.dirtyDataReportUserRelationship = true;
 
                 // Get all the data via API
                 let ReportUserRelationshipWorking: ReportUserRelationship[] = [];
@@ -8181,7 +8181,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.reportUserRelationship = reportUserRelationshipWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataReportUserRelationship.next(false);
+                        this.globalVariableService.dirtyDataReportUserRelationship = false;
                         }
                 )
             }
@@ -8192,7 +8192,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.reportUserRelationship = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportUserRelationship.next(true);
+                this.globalVariableService.dirtyDataReportUserRelationship = true;
             }
         }
 
@@ -8204,7 +8204,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset SystemConfiguration');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataSystemConfiguration.next(true);
+                this.globalVariableService.dirtyDataSystemConfiguration = true;
 
                 // Get all the data via API
                 let systemConfigurationWorking: SystemConfiguration = null;
@@ -8221,7 +8221,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.systemConfiguration = systemConfigurationWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataSystemConfiguration.next(false);
+                        this.globalVariableService.dirtyDataSystemConfiguration = false;
                         }
                     )
             }
@@ -8231,7 +8231,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear SystemConfiguration');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataSystemConfiguration.next(true);
+                this.globalVariableService.dirtyDataSystemConfiguration = true;
 
                 this.systemConfiguration = null;
             }
@@ -8245,7 +8245,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Personalisation');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataPersonalisation.next(true);
+                this.globalVariableService.dirtyDataPersonalisation = true;
 
                 // Get all the data via API
                 let personalisationWorking: Personalisation = null;
@@ -8262,7 +8262,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.personalisation = personalisationWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataPersonalisation.next(false);
+                        this.globalVariableService.dirtyDataPersonalisation = false;
                         }
                     )
             }
@@ -8272,7 +8272,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Personalisation');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataPersonalisation.next(true);
+                this.globalVariableService.dirtyDataPersonalisation = true;
 
                 this.personalisation = null;
             }
@@ -8286,7 +8286,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset UserGroupMembership');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataUserGroupMembership.next(true);
+                this.globalVariableService.dirtyDataUserGroupMembership = true;
 
                 // Get all the data via API
                 let UserGroupMembershipWorking: UserGroupMembership[] = [];
@@ -8305,7 +8305,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.userGroupMembership = userGroupMembershipWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataUserGroupMembership.next(false);
+                        this.globalVariableService.dirtyDataUserGroupMembership = false;
                         }
                 )
             }
@@ -8316,7 +8316,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.userGroupMembership = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataUserGroupMembership.next(true);
+                this.globalVariableService.dirtyDataUserGroupMembership = true;
             }
         }
 
@@ -8328,7 +8328,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetComment');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetComment.next(true);
+                this.globalVariableService.dirtyDataWidgetComment = true;
 
                 // Get all the data via API
                 let WidgetCommentWorking: WidgetComment[] = [];
@@ -8347,7 +8347,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         //  this.widgetComments = widgetCommentWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataWidgetComment.next(false);
+                        this.globalVariableService.dirtyDataWidgetComment = false;
                         }
                 )
             }
@@ -8358,7 +8358,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.widgetComments = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetComment.next(true);
+                this.globalVariableService.dirtyDataWidgetComment = true;
             }
         }
 
@@ -8412,7 +8412,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Widget');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidget.next(true);
+                this.globalVariableService.dirtyDataWidget = true;
 
                 // Get all the data via API
                 let widgetsWorking: EazlWidget[] = [];
@@ -8435,7 +8435,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         // this.widgets = widgetsWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataWidget.next(false);
+                        this.globalVariableService.dirtyDataWidget = false;
                         }
                     )
             }
@@ -8446,7 +8446,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.widgets = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidget.next(true);
+                this.globalVariableService.dirtyDataWidget = true;
             }
         }
 
@@ -8458,7 +8458,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetType');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetType.next(true);
+                this.globalVariableService.dirtyDataWidgetType = true;
 
                 // Get all the data via API
                 let widgetTypeWorking: WidgetType[] = [];
@@ -8477,7 +8477,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.widgetTypes = widgetTypeWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataWidgetType.next(false);
+                        this.globalVariableService.dirtyDataWidgetType = false;
                         }
                     )
             }
@@ -8488,7 +8488,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.widgetTypes = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetType.next(true);
+                this.globalVariableService.dirtyDataWidgetType = true;
             }
         }
 
@@ -8500,7 +8500,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GraphType');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGraphType.next(true);
+                this.globalVariableService.dirtyDataGraphType = true;
 
                 // Get all the data via API
                 let graphTypeWorking: GraphType[] = [];
@@ -8518,7 +8518,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.graphTypes = graphTypeWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataGraphType.next(false);
+                        this.globalVariableService.dirtyDataGraphType = false;
                         }
                     )
             }
@@ -8529,7 +8529,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.graphTypes = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGraphType.next(true);
+                this.globalVariableService.dirtyDataGraphType = true;
             }
         }
 
@@ -8541,7 +8541,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset BorderDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataBorderDropdown.next(true);
+                this.globalVariableService.dirtyDataBorderDropdown = true;
 
                 // Get all the data via API
                 let borderDropdownWorking: SelectItem[] = [];
@@ -8561,7 +8561,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.borderDropdowns = borderDropdownWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataBorderDropdown.next(false);
+                        this.globalVariableService.dirtyDataBorderDropdown = false;
                         }
                     )
             }
@@ -8572,7 +8572,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.borderDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataBorderDropdown.next(true);
+                this.globalVariableService.dirtyDataBorderDropdown = true;
             }
         }
 
@@ -8584,7 +8584,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset BoxShadowDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataBoxShadowDropdown.next(true);
+                this.globalVariableService.dirtyDataBoxShadowDropdown = true;
 
                 // Get all the data via API
                 let boxShadowDropdownsWorking: SelectItem[] = [];
@@ -8604,7 +8604,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.boxShadowDropdowns = boxShadowDropdownsWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataBoxShadowDropdown.next(false);
+                        this.globalVariableService.dirtyDataBoxShadowDropdown = false;
                         }
                     )
             }
@@ -8615,7 +8615,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.boxShadowDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataBoxShadowDropdown.next(true);
+                this.globalVariableService.dirtyDataBoxShadowDropdown = true;
             }
         }
 
@@ -8627,7 +8627,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset FontSizeDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataFontSizeDropdown.next(true);
+                this.globalVariableService.dirtyDataFontSizeDropdown = true;
 
                 // Get all the data via API
                 let fontSizeDropdownsWorking: SelectItem[] = [];
@@ -8647,7 +8647,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.fontSizeDropdowns = fontSizeDropdownsWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataFontSizeDropdown.next(false);
+                        this.globalVariableService.dirtyDataFontSizeDropdown = false;
                         }
                     )
             }
@@ -8658,7 +8658,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.fontSizeDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataFontSizeDropdown.next(true);
+                this.globalVariableService.dirtyDataFontSizeDropdown = true;
             }
         }
 
@@ -8670,7 +8670,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GridSizeDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGridSizeDropdown.next(true);
+                this.globalVariableService.dirtyDataGridSizeDropdown = true;
 
                 // Get all the data via API
                 let gridSizeDropdownsWorking: SelectItem[] = [];
@@ -8690,7 +8690,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.gridSizeDropdowns = gridSizeDropdownsWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataGridSizeDropdown.next(false);
+                        this.globalVariableService.dirtyDataGridSizeDropdown = false;
                         }
                     )
             }
@@ -8701,7 +8701,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.gridSizeDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataGridSizeDropdown.next(true);
+                this.globalVariableService.dirtyDataGridSizeDropdown = true;
             }
         }
 
@@ -8713,7 +8713,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset BackgroundImageDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataBackgroundImageDropdown.next(true);
+                this.globalVariableService.dirtyDataBackgroundImageDropdown = true;
 
                 // Get all the data via API
                 let backgroundImageDropdownsWorking: SelectItem[] = [];
@@ -8731,7 +8731,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.backgroundImageDropdowns = backgroundImageDropdownsWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataBackgroundImageDropdown.next(false);
+                        this.globalVariableService.dirtyDataBackgroundImageDropdown = false;
                         }
                     )
             }
@@ -8742,7 +8742,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.backgroundImageDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataBackgroundImageDropdown.next(true);
+                this.globalVariableService.dirtyDataBackgroundImageDropdown = true;
             }
         }
 
@@ -8754,7 +8754,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextMarginDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextMarginDropdown.next(true);
+                this.globalVariableService.dirtyDataTextMarginDropdown = true;
 
                 // Get all the data via API
                 let textMarginDropdownWorking: WidgetType[] = [];
@@ -8773,7 +8773,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.textMarginDropdowns = textMarginDropdownWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataTextMarginDropdown.next(false);
+                        this.globalVariableService.dirtyDataTextMarginDropdown = false;
                         }
                     )
             }
@@ -8784,7 +8784,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.textMarginDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextMarginDropdown.next(true);
+                this.globalVariableService.dirtyDataTextMarginDropdown = true;
             }
         }
 
@@ -8796,7 +8796,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset FontWeightDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataFontWeightDropdown.next(true);
+                this.globalVariableService.dirtyDataFontWeightDropdown = true;
 
                 // Get all the data via API
                 let fontWeightDropdownWorking: WidgetType[] = [];
@@ -8815,7 +8815,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.fontWeightDropdown = fontWeightDropdownWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataFontWeightDropdown.next(false);
+                        this.globalVariableService.dirtyDataFontWeightDropdown = false;
                         }
                     )
             }
@@ -8826,7 +8826,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.fontWeightDropdown = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataFontWeightDropdown.next(true);
+                this.globalVariableService.dirtyDataFontWeightDropdown = true;
             }
         }
 
@@ -8838,7 +8838,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextPaddingDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+                this.globalVariableService.dirtyDataTextPaddingDropdown = true;
 
                 // Get all the data via API
                 let textPaddingDropdownWorking: WidgetType[] = [];
@@ -8857,7 +8857,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.textPaddingDropdowns = textPaddingDropdownWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataTextPaddingDropdown.next(false);
+                        this.globalVariableService.dirtyDataTextPaddingDropdown = false;
                         }
                     )
             }
@@ -8868,7 +8868,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.textPaddingDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextPaddingDropdown.next(true);
+                this.globalVariableService.dirtyDataTextPaddingDropdown = true;
             }
         }
 
@@ -8880,7 +8880,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextPositionDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextPositionDropdown.next(true);
+                this.globalVariableService.dirtyDataTextPositionDropdown = true;
 
                 // Get all the data via API
                 let TextPositionDropdownWorking: WidgetType[] = [];
@@ -8899,7 +8899,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.textPositionDropdowns = TextPositionDropdownWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataTextPositionDropdown.next(false);
+                        this.globalVariableService.dirtyDataTextPositionDropdown = false;
                         }
                     )
             }
@@ -8910,7 +8910,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.textPositionDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextPositionDropdown.next(true);
+                this.globalVariableService.dirtyDataTextPositionDropdown = true;
             }
         }
     
@@ -8922,7 +8922,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset TextAlignDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextAlignDropdown.next(true);
+                this.globalVariableService.dirtyDataTextAlignDropdown = true;
 
                 // Get all the data via API
                 let TextAlignDropdownWorking: WidgetType[] = [];
@@ -8941,7 +8941,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.textAlignDropdowns = TextAlignDropdownWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataTextAlignDropdown.next(false);
+                        this.globalVariableService.dirtyDataTextAlignDropdown = false;
                         }
                     )
             }
@@ -8952,7 +8952,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.textAlignDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataTextAlignDropdown.next(true);
+                this.globalVariableService.dirtyDataTextAlignDropdown = true;
             }
         }
 
@@ -8964,7 +8964,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ImageSourceDropdown');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
+                this.globalVariableService.dirtyDataImageSourceDropdown = true;
 
                 // Get all the data via API
                 let imageSourceDropdownWorking: WidgetType[] = [];
@@ -8983,7 +8983,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         this.imageSourceDropdowns = imageSourceDropdownWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataImageSourceDropdown.next(false);
+                        this.globalVariableService.dirtyDataImageSourceDropdown = false;
                         }
                     )
             }
@@ -8994,7 +8994,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.imageSourceDropdowns = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataImageSourceDropdown.next(true);
+                this.globalVariableService.dirtyDataImageSourceDropdown = true;
             }
         }
     }
