@@ -18,7 +18,7 @@ export class GlobalVariableService {
     companyLogo = new BehaviorSubject('');                      // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation
-    backendName = new BehaviorSubject('Eazl');
+    backendName: string = 'Eazl';
     backendUrl = new BehaviorSubject('');                       // RESTi url, set in SystemConfig
     defaultDaysToKeepResultSet = new BehaviorSubject(1);        // Optional, set in SystemConfig
     frontendName = new BehaviorSubject('Canvas');
