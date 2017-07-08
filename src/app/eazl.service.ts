@@ -131,7 +131,6 @@ export interface Token {
 
 var req = new XMLHttpRequest();
 
-// TODO - use RESTi
 // export const SYSTEMCONFIGURATION: SystemConfiguration =
 //     {
 //         systemConfigurationID: 0,
@@ -676,20 +675,20 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ];
 
-export const PERSONALISATION: Personalisation =
-    {
-        personalisationID: 0,
-        averageWarningRuntime: 3,
-        dashboardIDStartup: -1,
-        environment: 'Live',
-        frontendColorScheme: 'beige',
-        defaultReportFilters: '',
-        defaultWidgetConfiguration: '',
-        gridSize: 3,
-        growlLife: 3,
-        growlSticky: false,
-        snapToGrid: true
-    };
+// export const PERSONALISATION: Personalisation =
+//     {
+//         personalisationID: 0,
+//         averageWarningRuntime: 3,
+//         dashboardIDStartup: -1,
+//         environment: 'Live',
+//         frontendColorScheme: 'beige',
+//         defaultReportFilters: '',
+//         defaultWidgetConfiguration: '',
+//         gridSize: 3,
+//         growlLife: 3,
+//         growlSticky: false,
+//         snapToGrid: true
+//     };
 
 export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
@@ -4553,7 +4552,7 @@ export class EazlService implements OnInit {
     reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
     reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
-    personalisation: Personalisation = PERSONALISATION;     // Personal settings for current user
+    personalisation: Personalisation ;                      // Personal settings for current user
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
     systemConfiguration: SystemConfiguration;               // System wide settings

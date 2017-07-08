@@ -198,6 +198,11 @@ this.reconnectingWebSocket.messageWS.subscribe(
                         this.eazlService.getSystemConfiguration()
                     )
 
+                    // Get the Personalisation, and refesh global variables
+                    this.eazlService.globalVariablesPersonalisation(
+                        this.eazlService.getPersonalisation()
+                    );
+        
                     // Set the menu items
                     this.menuItems = this.loadMenu()
                     console.log('Error in app.component.ts @ fakeLogin', err)
@@ -205,11 +210,6 @@ this.reconnectingWebSocket.messageWS.subscribe(
                 )
         }
 
-        // Get the Personalisation, and refesh global variables
-        this.eazlService.globalVariablesPersonalisation(
-            this.eazlService.getPersonalisation()
-        );
-        
     }
 
     menuActionNewMessage() {
