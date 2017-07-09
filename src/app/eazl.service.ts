@@ -4626,9 +4626,9 @@ export class EazlService implements OnInit {
 
         // Mark as dirty
         this.globalVariableService.dirtyDataSystemConfiguration = true;
-
-        return this.post<EazlSystemConfiguration>(
-            'system-configuration',
+console.log('systemConfiguration.systemConfigRecordID', systemConfiguration.systemConfigurationID)
+        return this.put<EazlSystemConfiguration>(
+            'system-configuration/' + systemConfiguration.systemConfigurationID.toString() + '/',
             this.cdal.saveSystemConfiguration(systemConfiguration)
             )
                 .toPromise()
@@ -4666,6 +4666,9 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesSystemConfiguration', '@Start');
 
         // Update local values that have changed
+        this.globalVariableService.systemConfigID = systemConfiguration.systemConfigurationID;
+        this.globalVariableService.systemConfigRecordID = systemConfiguration.recordID;
+
         if (systemConfiguration.companyName != this.systemConfiguration.companyName) {
             this.globalVariableService.companyName.next(systemConfiguration.companyName);
         }
@@ -4928,6 +4931,15 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'get-http', '@Start');
 
         return this.http.get(this.prepareRoute(route), this.httpOptions)
+            .map(this.parseResponse)
+            .catch(this.handleError);
+    }
+
+    put<T>(route: string, data: Object): Observable<any> {
+        // Post to http
+        this.globalFunctionService.printToConsole(this.constructor.name,'put-http', '@Start');
+
+        return this.http.put(this.prepareRoute(route), JSON.stringify(data), this.httpOptions)
             .map(this.parseResponse)
             .catch(this.handleError);
     }

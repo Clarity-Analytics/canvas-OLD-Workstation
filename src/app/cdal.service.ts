@@ -1356,6 +1356,7 @@ export class CDAL {
 
         let systemConfigurationWorking = new SystemConfiguration();
 
+        systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.id;
         systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.record_id;
 
         if (eazlSystemConfiguration.company_name != null) {
@@ -1407,6 +1408,7 @@ export class CDAL {
 
         let eazlSystemConfigurationWorking = new EazlSystemConfiguration();
 
+        eazlSystemConfigurationWorking.id = systemConfiguration.systemConfigurationID;
         eazlSystemConfigurationWorking.record_id = systemConfiguration.systemConfigurationID;
 
         if (systemConfiguration.companyName != null) {
