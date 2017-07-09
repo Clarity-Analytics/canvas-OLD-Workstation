@@ -4695,6 +4695,36 @@ export class EazlService implements OnInit {
         // Mark as dirty
         this.globalVariableService.dirtyDataPersonalisation = true;
 
+        return this.post<EazlPersonalisation>(
+            'system-configuration',
+            this.cdal.savePersonalisation(personalisation)
+            )
+                .toPromise()
+                .then(eazlPersonalisation => {
+
+                    // Refresh globals variables that may have changed
+                    this.globalVariablesPersonalisation(personalisation);
+
+                    // Store in DB
+                    this.cdal.savePersonalisation(personalisation);
+
+                    // Update local array
+                    this.personalisation = personalisation;
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataPersonalisation = false;
+
+                    // Return the data
+                    return this.personalisation;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'AddUsers',
+                        detail:   'Unsuccessful in updating Personalisation info to the database'
+                    });
+                    error.message || error
+                })
     }
 
     globalVariablesPersonalisation(personalisation: Personalisation) {
