@@ -4626,7 +4626,7 @@ export class EazlService implements OnInit {
 
         // Mark as dirty
         this.globalVariableService.dirtyDataSystemConfiguration = true;
-console.log('systemConfiguration.systemConfigRecordID', systemConfiguration.systemConfigurationID)
+
         return this.put<EazlSystemConfiguration>(
             'system-configuration/' + systemConfiguration.systemConfigurationID.toString() + '/',
             this.cdal.saveSystemConfiguration(systemConfiguration)
@@ -4666,9 +4666,12 @@ console.log('systemConfiguration.systemConfigRecordID', systemConfiguration.syst
         this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesSystemConfiguration', '@Start');
 
         // Update local values that have changed
-        this.globalVariableService.systemConfigID = systemConfiguration.systemConfigurationID;
+        this.globalVariableService.systemConfigurationID = systemConfiguration.systemConfigurationID;
         this.globalVariableService.systemConfigRecordID = systemConfiguration.recordID;
-
+        
+        if (systemConfiguration.recordID != this.globalVariableService.systemConfigRecordID) {
+            this.globalVariableService.systemConfigRecordID = systemConfiguration.recordID;
+        }
         if (systemConfiguration.companyName != this.systemConfiguration.companyName) {
             this.globalVariableService.companyName.next(systemConfiguration.companyName);
         }
@@ -8267,13 +8270,13 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                                 systemConfigurationWorking = systemConfigurationSingle;
                             }
 
+                            // Replace
+                            this.systemConfiguration = systemConfigurationWorking;
+
                             // Get the SystemConfiguration, and refesh global variables
                             this.globalVariablesSystemConfiguration(
                                 systemConfigurationWorking
                             )
-
-                            // Replace
-                            this.systemConfiguration = systemConfigurationWorking;
 
                             // Mark the data as clean
                             this.globalVariableService.dirtyDataSystemConfiguration = false;

@@ -161,9 +161,10 @@ export class SystemConfigComponent implements OnInit {
             });
             return;
         }
+
         this.eazlService.updateSystemConfiguration(
             {
-                systemConfigurationID: this.globalVariableService.systemConfigID,
+                systemConfigurationID: this.globalVariableService.systemConfigurationID,
                 recordID: this.globalVariableService.systemConfigRecordID,
                 companyName: this.configForm.controls['companyName'].value,
                 companyLogo: this.configForm.controls['companyLogo'].value,

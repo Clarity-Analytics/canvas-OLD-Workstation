@@ -18,8 +18,8 @@ export class GlobalVariableService {
     companyLogo = new BehaviorSubject('');                      // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation
-    systemConfigID: number = 0;
-    systemConfigRecordID: number = 0;
+    systemConfigurationID: number = -1;
+    systemConfigRecordID: number = -1;
     backendName: string = 'Eazl';
     backendUrl = new BehaviorSubject('');                       // RESTi url, set in SystemConfig
     defaultDaysToKeepResultSet = new BehaviorSubject(1);        // Optional, set in SystemConfig

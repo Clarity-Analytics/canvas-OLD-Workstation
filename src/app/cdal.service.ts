@@ -1357,7 +1357,12 @@ export class CDAL {
         let systemConfigurationWorking = new SystemConfiguration();
 
         systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.id;
-        systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.record_id;
+        
+        if (eazlSystemConfiguration.record_id != null) {
+            systemConfigurationWorking.recordID = eazlSystemConfiguration.record_id;
+        } else {
+            systemConfigurationWorking.recordID = 0;
+        }
 
         if (eazlSystemConfiguration.company_name != null) {
             systemConfigurationWorking.companyName = eazlSystemConfiguration.company_name;
@@ -1409,7 +1414,12 @@ export class CDAL {
         let eazlSystemConfigurationWorking = new EazlSystemConfiguration();
 
         eazlSystemConfigurationWorking.id = systemConfiguration.systemConfigurationID;
-        eazlSystemConfigurationWorking.record_id = systemConfiguration.systemConfigurationID;
+
+        if (systemConfiguration.recordID != null) {
+            eazlSystemConfigurationWorking.record_id = systemConfiguration.recordID;
+        } else {
+            eazlSystemConfigurationWorking.record_id = 0;
+        }
 
         if (systemConfiguration.companyName != null) {
             eazlSystemConfigurationWorking.company_name = systemConfiguration.companyName;
