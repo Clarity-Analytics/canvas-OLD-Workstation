@@ -8267,11 +8267,16 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                                 systemConfigurationWorking = systemConfigurationSingle;
                             }
 
-                        // Replace
-                        this.systemConfiguration = systemConfigurationWorking;
+                            // Get the SystemConfiguration, and refesh global variables
+                            this.globalVariablesSystemConfiguration(
+                                systemConfigurationWorking
+                            )
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataSystemConfiguration = false;
+                            // Replace
+                            this.systemConfiguration = systemConfigurationWorking;
+
+                            // Mark the data as clean
+                            this.globalVariableService.dirtyDataSystemConfiguration = false;
                         }
                     )
             }

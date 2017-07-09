@@ -196,11 +196,6 @@ this.reconnectingWebSocket.messageWS.subscribe(
                         summary:  'Login Failed',
                         detail:   'Auto login for janniei failed'
                     });
-
-                    // Get the SystemConfiguration, and refesh global variables
-                    this.eazlService.globalVariablesSystemConfiguration(
-                        this.eazlService.getSystemConfiguration()
-                    )
         
                     // Set the menu items
                     this.menuItems = this.loadMenu()
