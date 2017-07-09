@@ -58,6 +58,11 @@ export class SystemConfigComponent implements OnInit {
         // Get the system wide settings
         this.systemConfiguration = this.eazlService.getSystemConfiguration();
 
+        // Load the data into the form
+        this.loadForm();
+    }
+    
+    loadForm() {
         // Move the data into the form
         this.configForm.controls['companyName'].setValue(
             this.systemConfiguration.companyName);
