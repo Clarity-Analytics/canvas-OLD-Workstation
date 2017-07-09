@@ -71,8 +71,12 @@ export class PersonalisationComponent implements OnInit {
         });
 
         // Fill combos
-        this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
-        
+        // this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
+        this.dashboardDropDown = [{label: 'None', value: {id: -1, name: 'None'} }]
+        this.dashboardDropDown = this.dashboardDropDown.concat(
+            this.eazlService.getDashboardSelectionItems()
+        );
+
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();
