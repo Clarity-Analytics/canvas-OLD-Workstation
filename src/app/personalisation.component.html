@@ -1,23 +1,23 @@
-<p 
-    class="iserror" 
-    *ngIf="formIsValid"> 
+<p
+    class="iserror"
+    *ngIf="formIsValid">
     {{ errorMessageOnForm }}
 </p>
 
 
-<form 
+<form
     class="formBody"
-    [formGroup]="configForm" 
+    [formGroup]="configForm"
     >
-    <div 
-        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+    <div
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
         style="margin: 10px 0px">
 
         <div class="ui-grid-row">
 
             <!--Dashboard Name-->
             <div class="ui-grid-col-2">
-                StartupDash : 
+                StartupDash :
             </div>
             <div class="ui-grid-col-4">
                 <p-dropdown
@@ -31,7 +31,7 @@
                             'padding':'0',
                             'width':'300px'
                             }"
-                    placeholder="Required"
+                    placeholder="(Optional)"
                     formControlName="dashboardStartupName"
                     filter="true"
                     >
@@ -39,12 +39,12 @@
             </div>
 
             <div class="ui-grid-col-2">
-                Environment: 
+                Environment:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="environment" 
+                <input pInputText
+                        type="text"
+                        formControlName="environment"
                         placeholder="(Optional)"
                         pTooltip="Enter your environment (Life, Test-Environment-Name)"
                         tooltipPosition="top"
@@ -57,8 +57,8 @@
                 Avg Runtime:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
+                <input pInputText
+                        type="text"
                         placeholder="Required"
                         formControlName="averageWarningRuntime"
                         pTooltip="Warn user if a report is known to run longer than this averag RunTime in minutes"
@@ -88,15 +88,15 @@
                 </p-dropdown>
             </div>
         </div>
-        
+
         <div class="ui-grid-row">
 
             <div class="ui-grid-col-2">
                 Widget Config:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
+                <input pInputText
+                        type="text"
                         formControlName="defaultWidgetConfiguration"
                         placeholder="(Optional)"
                         pTooltip="Default configuration for new Widgets"
@@ -108,8 +108,8 @@
                 RptFilters:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
+                <input pInputText
+                        type="text"
                         formControlName="defaultReportFilters"
                         placeholder="(Optional)"
                         pTooltip="Default Report Filters"
@@ -117,7 +117,7 @@
                         >
             </div>
         </div>
-        
+
         <div class="ui-grid-row">
 
             <div class="ui-grid-col-2">
@@ -139,8 +139,8 @@
                 GrowlLife:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
+                <input pInputText
+                        type="text"
                         formControlName="growlLife"
                         placeholder="Required"
                         pTooltip="Duration for messages (grow) to be displayed"
@@ -148,15 +148,15 @@
                         >
             </div>
         </div>
-        
+
         <div class="ui-grid-row">
 
             <div class="ui-grid-col-2">
                 Grid Size:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
+                <input pInputText
+                        type="text"
                         formControlName="gridSize"
                         placeholder="Required"
                         pTooltip="Size of grid on Dashboard in px"
@@ -179,28 +179,28 @@
             </div>
         </div>
     </div>
-</form> 
+</form>
 
 
 <!--Toolbar-->
 <p-toolbar>
 
     <div class="ui-toolbar-group-left">
-        <button 
-            pButton 
-            type="button" 
+        <button
+            pButton
+            type="button"
             label="Reset"
             icon="fa-undo"
             (click)="loadForm()"
             >
         </button>
     </div>
-    
+
     <div class="ui-toolbar-group-right">
-        <button 
-            pButton 
-            type="submit" 
-            label="Submit" 
+        <button
+            pButton
+            type="submit"
+            label="Submit"
             icon="fa-refresh"
             (click)="onSubmit()"
             >

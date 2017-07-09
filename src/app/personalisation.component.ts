@@ -42,7 +42,6 @@ export class PersonalisationComponent implements OnInit {
     selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
     selectedFrontendColorScheme: SelectedItem;  // Selected option for Text Color
     selectedDashboard: SelectedItem;            // Selected in DropDown
-    selectedItem: SelectedItem;                 // Temp storage to load form
     snapToGrid: boolean = false;                // True if widgets must snap to the grid
 
     constructor(
@@ -92,14 +91,11 @@ export class PersonalisationComponent implements OnInit {
         if (this.personalisation.dashboardIDStartup != -1) {
             let dashboardName: string = '';
             dashboardName = this.eazlService.getdashboardName(this.personalisation.dashboardIDStartup);
-
             if (dashboardName != null) {     
-                this.selectedItem = {
+                this.selectedDashboard = {
                     id: this.personalisation.dashboardIDStartup,
                     name: dashboardName
                 };
-
-                this.selectedDashboard = this.selectedItem;
             }
         }
 

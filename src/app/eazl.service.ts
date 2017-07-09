@@ -4702,7 +4702,7 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataPersonalisation = true;
 
         return this.put<EazlPersonalisation>(
-            'personalisation' + this.globalVariableService.personalisationID.toString() + '/',
+            'personalisation/' + this.globalVariableService.personalisationID.toString() + '/',
             this.cdal.savePersonalisation(personalisation)
             )
                 .toPromise()
