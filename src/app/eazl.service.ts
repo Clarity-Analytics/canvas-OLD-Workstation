@@ -8308,11 +8308,16 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                                 personalisationWorking = personalisationSingle;
                             }
 
-                        // Replace
-                        this.personalisation = personalisationWorking;
+                            // Get the Personalisation, and refesh global variables
+                            this.globalVariablesPersonalisation(
+                                personalisationWorking
+                            );
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataPersonalisation = false;
+                            // Replace
+                            this.personalisation = personalisationWorking;
+
+                            // Mark the data as clean
+                            this.globalVariableService.dirtyDataPersonalisation = false;
                         }
                     )
             }

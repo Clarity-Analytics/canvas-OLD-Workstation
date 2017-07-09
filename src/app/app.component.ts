@@ -201,11 +201,6 @@ this.reconnectingWebSocket.messageWS.subscribe(
                     this.eazlService.globalVariablesSystemConfiguration(
                         this.eazlService.getSystemConfiguration()
                     )
-
-                    // Get the Personalisation, and refesh global variables
-                    this.eazlService.globalVariablesPersonalisation(
-                        this.eazlService.getPersonalisation()
-                    );
         
                     // Set the menu items
                     this.menuItems = this.loadMenu()
