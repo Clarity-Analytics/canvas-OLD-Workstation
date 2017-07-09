@@ -81,6 +81,11 @@ export class PersonalisationComponent implements OnInit {
         // Get the system wide settings
         this.personalisation = this.eazlService.getPersonalisation();
 
+        // Load the data into the form
+        this.loadForm();
+    }
+    
+    loadForm() {
         // Move the data into the form
         if (this.personalisation.dashboardIDStartup != -1) {
             let dashboardName: string = '';
