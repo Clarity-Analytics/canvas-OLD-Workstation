@@ -15,6 +15,12 @@
     <p-menubar [model]="menuItems"> </p-menubar>
 </div>
 
+<div 
+    *ngIf="devMode"
+    class="devMode"
+    >
+    In Dev Mode ...
+</div>
 
 <div class="router-outlet">
     <router-outlet 

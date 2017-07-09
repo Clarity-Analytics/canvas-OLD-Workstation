@@ -15,3 +15,6 @@ img {
     padding-left:  0px;
 }
 
+.devMode {
+    color: darkred;
+}
