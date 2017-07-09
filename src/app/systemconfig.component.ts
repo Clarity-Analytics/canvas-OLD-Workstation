@@ -80,17 +80,6 @@ export class SystemConfigComponent implements OnInit {
             this.systemConfiguration.maxRowsPerWidgetGraph);
     }
 
-    onClickCancel() {
-        // User clicked Cancel
-        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Cancel',
-            detail:   'No changes as requested'
-        });
-        
-    }
 
     onSubmit(value: string) {
         // User clicked submit button
