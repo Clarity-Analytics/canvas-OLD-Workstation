@@ -1470,7 +1470,13 @@ eazlSystemConfigurationWorking.company_logo = null
 
         let personalisationWorking = new Personalisation();
 
-        personalisationWorking.personalisationID = eazlPersonalisation.record_id;
+        personalisationWorking.personalisationID = eazlPersonalisation.id;
+
+        if (eazlPersonalisation.record_id != null) {
+            personalisationWorking.personalisationRecordID = eazlPersonalisation.record_id;
+        } else {
+            personalisationWorking.personalisationRecordID = 0;
+        }
 
         if (eazlPersonalisation.dashboard_id_at_startup != null) {
             personalisationWorking.dashboardIDStartup = eazlPersonalisation.dashboard_id_at_startup;
@@ -1543,6 +1549,12 @@ eazlSystemConfigurationWorking.company_logo = null
         let eazlPersonalisationWorking = new EazlPersonalisation();
 
         eazlPersonalisationWorking.record_id = personalisation.personalisationID;
+
+        if (personalisation.personalisationRecordID != null) {
+            eazlPersonalisationWorking.record_id = personalisation.personalisationRecordID;
+        } else {
+            eazlPersonalisationWorking.record_id = 0;
+        }
 
         if (personalisation.dashboardIDStartup != null) {
             eazlPersonalisationWorking.dashboard_id_at_startup = personalisation.dashboardIDStartup;

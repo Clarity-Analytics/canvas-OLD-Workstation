@@ -220,7 +220,8 @@ export class PersonalisationComponent implements OnInit {
 
         this.eazlService.updatePersonalisation(
             {
-                personalisationID: 0,
+                personalisationID: this.globalVariableService.personalisationID,
+                personalisationRecordID: this.globalVariableService.personalisationRecordID,
                 averageWarningRuntime: this.configForm.controls['averageWarningRuntime'].value,
                 dashboardIDStartup: dashboardIDWorking,
                 environment: this.configForm.controls['environment'].value,

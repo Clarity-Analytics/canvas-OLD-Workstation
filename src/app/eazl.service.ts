@@ -4701,8 +4701,8 @@ export class EazlService implements OnInit {
         // Mark as dirty
         this.globalVariableService.dirtyDataPersonalisation = true;
 
-        return this.post<EazlPersonalisation>(
-            'system-configuration',
+        return this.put<EazlPersonalisation>(
+            'personalisation' + this.globalVariableService.personalisationID.toString() + '/',
             this.cdal.savePersonalisation(personalisation)
             )
                 .toPromise()
@@ -4737,6 +4737,11 @@ export class EazlService implements OnInit {
         // Refresh (.next) global variables
         // - personalisation New data
         this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesPersonalisation', '@Start');
+
+        this.globalVariableService.averageWarningRuntime.next(personalisation.personalisationID);
+
+        this.globalVariableService.personalisationID = personalisation.personalisationID;
+        this.globalVariableService.personalisationRecordID = personalisation.personalisationRecordID;
 
         // Update local values that have changed
         if (personalisation.averageWarningRuntime != this.personalisation.averageWarningRuntime) {
@@ -8316,13 +8321,13 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                                 personalisationWorking = personalisationSingle;
                             }
 
+                            // Replace
+                            this.personalisation = personalisationWorking;
+
                             // Get the Personalisation, and refesh global variables
                             this.globalVariablesPersonalisation(
                                 personalisationWorking
                             );
-
-                            // Replace
-                            this.personalisation = personalisationWorking;
 
                             // Mark the data as clean
                             this.globalVariableService.dirtyDataPersonalisation = false;

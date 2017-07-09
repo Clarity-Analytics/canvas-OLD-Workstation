@@ -94,6 +94,8 @@ export class GlobalVariableService {
     dirtyDataUserGroupMembership: boolean = true;
 
     // System & operation config
+    personalisationID: number = 0;
+    personalisationRecordID: number = 0;
     averageWarningRuntime = new BehaviorSubject(0);
     defaultWidgetConfiguration = new BehaviorSubject('');
     dashboardIDStartup = new BehaviorSubject(-1);
