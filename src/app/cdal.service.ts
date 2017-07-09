@@ -1418,9 +1418,11 @@ export class CDAL {
         if (systemConfiguration.companyLogo != null) {
             eazlSystemConfigurationWorking.company_logo = systemConfiguration.companyLogo;
         } else {
-            eazlSystemConfigurationWorking.company_logo = '';
+            eazlSystemConfigurationWorking.company_logo = null;
         }
 
+// TODO - do this correctly, and better        
+eazlSystemConfigurationWorking.company_logo = null
         if (systemConfiguration.backendUrl != null) {
             eazlSystemConfigurationWorking.backend_url = systemConfiguration.backendUrl;
         } else {

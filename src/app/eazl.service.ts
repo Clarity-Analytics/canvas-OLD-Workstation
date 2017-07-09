@@ -4627,17 +4627,37 @@ export class EazlService implements OnInit {
         // Mark as dirty
         this.globalVariableService.dirtyDataSystemConfiguration = true;
 
-        // Update Global Variables
-        this.globalVariablesSystemConfiguration(systemConfiguration);
+        return this.post<EazlSystemConfiguration>(
+            'system-configuration',
+            this.cdal.saveSystemConfiguration(systemConfiguration)
+            )
+                .toPromise()
+                .then(eazSystemConfiguration => {
 
-        // Store in DB
-        this.cdal.saveSystemConfiguration(systemConfiguration);
+                    // Update Global Variables
+                    this.globalVariablesSystemConfiguration(systemConfiguration);
 
-        // Update local array
-        this.systemConfiguration = systemConfiguration;
+                    // Store in DB
+                    this.cdal.saveSystemConfiguration(systemConfiguration);
 
-        // Mark as clean
-        this.globalVariableService.dirtyDataSystemConfiguration = false;
+                    // Update local array
+                    this.systemConfiguration = systemConfiguration;
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataSystemConfiguration = false;
+
+                    // Return the data
+                    return this.systemConfiguration;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'AddUsers',
+                        detail:   'Unsuccessful in updating SystemConfiguration to the database'
+                    });
+                    error.message || error
+                })
+
     }
 
     globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
@@ -4675,17 +4695,6 @@ export class EazlService implements OnInit {
         // Mark as dirty
         this.globalVariableService.dirtyDataPersonalisation = true;
 
-        // Refresh globals variables that may have changed
-        this.globalVariablesPersonalisation(personalisation);
-
-        // Store in DB
-        this.cdal.savePersonalisation(personalisation);
-
-        // Update local array
-        this.personalisation = personalisation;
-
-        // Mark as clean
-        this.globalVariableService.dirtyDataPersonalisation = false;
     }
 
     globalVariablesPersonalisation(personalisation: Personalisation) {
