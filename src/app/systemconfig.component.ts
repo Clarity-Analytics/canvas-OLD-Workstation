@@ -61,9 +61,11 @@ export class SystemConfigComponent implements OnInit {
         // Load the data into the form
         this.loadForm();
     }
-    
+
     loadForm() {
         // Move the data into the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadForm', '@Start');
+
         this.configForm.controls['companyName'].setValue(
             this.systemConfiguration.companyName);
         this.configForm.controls['companyLogo'].setValue(

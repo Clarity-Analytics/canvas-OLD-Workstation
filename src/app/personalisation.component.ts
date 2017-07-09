@@ -84,9 +84,11 @@ export class PersonalisationComponent implements OnInit {
         // Load the data into the form
         this.loadForm();
     }
-    
+
     loadForm() {
         // Move the data into the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadForm', '@Start');
+
         if (this.personalisation.dashboardIDStartup != -1) {
             let dashboardName: string = '';
             dashboardName = this.eazlService.getdashboardName(this.personalisation.dashboardIDStartup);
@@ -133,18 +135,6 @@ export class PersonalisationComponent implements OnInit {
         this.snapToGrid = this.personalisation.snapToGrid;
         this.configForm.controls['snapToGrid'].setValue(
             this.personalisation.snapToGrid);
-    }
-
-    onClickCancel() {
-        // User clicked Cancel
-        this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Cancel',
-            detail:   'No changes as requested'
-        });
-        
     }
 
     onSubmit(value: string) {
