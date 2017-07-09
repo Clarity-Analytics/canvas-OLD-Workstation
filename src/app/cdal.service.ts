@@ -2640,7 +2640,7 @@ eazlSystemConfigurationWorking.company_logo = null
 
     loadTextPaddingDropdown(eazlAppData: EazlAppData): SelectItem {
         // Load TextPaddingDropdown: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadFontWeightDropdown', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadTextPaddingDropdown', '@Start');
 
         let fontWeightDropdownDropdownWorking =
             {

@@ -8048,8 +8048,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                            this.packageTask = packageTaskWorking;
+                        this.packageTask = packageTaskWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataPackageTask = false;
@@ -8329,7 +8328,8 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let UserGroupMembershipWorking: UserGroupMembership[] = [];
-            this.get<EazlUserGroupMembership>('user-group-membership')
+                
+                this.get<EazlUserGroupMembership>('user-group-membership')
                     .subscribe(
                         (eazlUserGroupMembership) => {
                             for (var i = 0; i < eazlUserGroupMembership.length; i++) {
