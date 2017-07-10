@@ -4682,7 +4682,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.backendUrl = systemConfiguration.backendUrl
         }
         if (systemConfiguration.defaultDaysToKeepResultSet != this.systemConfiguration.defaultDaysToKeepResultSet) {
-            this.globalVariableService.defaultDaysToKeepResultSet.next(systemConfiguration.defaultDaysToKeepResultSet);
+            this.globalVariableService.defaultDaysToKeepResultSet = systemConfiguration.defaultDaysToKeepResultSet;
         }
         if (systemConfiguration.maxRowsDataReturned != this.systemConfiguration.maxRowsDataReturned) {
             this.globalVariableService.maxRowsDataReturned.next(systemConfiguration.maxRowsDataReturned);
