@@ -1057,7 +1057,7 @@ export class WidgetEditorComponent implements OnInit {
         this.widgetToEdit.properties.widgetRefreshMode =
             this.identificationForm.controls['widgetRefreshMode'].value;
         this.widgetToEdit.properties.widgetReportName =
-            this.identificationForm.controls['widgetReportName'].value;
+            this.identificationForm.controls['widgetReportName'].value.name;
         if (this.identificationForm.controls['widgetReportParameters'].value != null) {
             this.widgetToEdit.properties.widgetReportParameters =
                 this.identificationForm.controls['widgetReportParameters'].value;
