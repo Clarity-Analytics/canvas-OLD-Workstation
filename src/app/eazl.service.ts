@@ -4685,7 +4685,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.defaultDaysToKeepResultSet = systemConfiguration.defaultDaysToKeepResultSet;
         }
         if (systemConfiguration.maxRowsDataReturned != this.systemConfiguration.maxRowsDataReturned) {
-            this.globalVariableService.maxRowsDataReturned.next(systemConfiguration.maxRowsDataReturned);
+            this.globalVariableService.maxRowsDataReturned = systemConfiguration.maxRowsDataReturned;
         }
         if (systemConfiguration.maxRowsPerWidgetGraph != this.systemConfiguration.maxRowsPerWidgetGraph) {
             this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
