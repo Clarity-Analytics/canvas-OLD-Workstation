@@ -25,7 +25,7 @@ export class GlobalVariableService {
     defaultDaysToKeepResultSet: number = 1;                     // Optional, set in SystemConfig
     frontendName: string = 'Canvas';
     maxRowsDataReturned: number = 1000000;                      // Optional, set in SystemConfig
-    maxRowsPerWidgetGraph = new BehaviorSubject(15)             // Optional, set in SystemConfig
+    maxRowsPerWidgetGraph: number = 1;                          // Optional, set in SystemConfig
     systemTitle = new BehaviorSubject('Canvas');
 
     // Current User

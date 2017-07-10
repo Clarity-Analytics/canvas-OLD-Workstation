@@ -1396,7 +1396,7 @@ export class CDAL {
 
         // TODO - fix more better later
         systemConfigurationWorking.maxRowsPerWidgetGraph = 
-            this.globalVariableService.maxRowsPerWidgetGraph.getValue();
+            this.globalVariableService.maxRowsPerWidgetGraph;
         // if (eazlSystemConfiguration.max_rows_per_widget_graph != null) {
         //     systemConfigurationWorking.maxRowsPerWidgetGraph = eazlSystemConfiguration.max_rows_per_widget_graph;
         // } else {

@@ -4688,7 +4688,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.maxRowsDataReturned = systemConfiguration.maxRowsDataReturned;
         }
         if (systemConfiguration.maxRowsPerWidgetGraph != this.systemConfiguration.maxRowsPerWidgetGraph) {
-            this.globalVariableService.maxRowsPerWidgetGraph.next(systemConfiguration.maxRowsPerWidgetGraph);
+            this.globalVariableService.maxRowsPerWidgetGraph = systemConfiguration.maxRowsPerWidgetGraph;
         }
 
     }
