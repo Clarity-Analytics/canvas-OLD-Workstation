@@ -14,7 +14,9 @@ export class DocReferenceComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { 
-        window.open('file:///home/jannie/Projects/canvas/src/documentation/references.html');
+        // TODO - clear or make work as you cannot open local files
+        // window.open('file:///home/jannie/Projects/canvas/src/documentation/references.html');
+        // window.open('http://localhost:4200/documentation/references.html');
 
     }
 

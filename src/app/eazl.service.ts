@@ -5509,14 +5509,14 @@ export class EazlService implements OnInit {
                     vegaHasSignals: true,
                     vegaXcolumn: 'category',
                     vegaYcolumn: 'amount',
-                    vegaFillColor: 'pink',
-                    vegaHoverColor: 'lightgray'
+                    vegaFillColor: 'lightgreen',
+                    vegaHoverColor: 'black'
                 },
                 spec: {
                 }
             },
             table:{
-                tableColor: 'white',
+                tableColor: 'black',
                 tableCols: 1,
                 tableHeight: 25,
                 tableHideHeader: false,

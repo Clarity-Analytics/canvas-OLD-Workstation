@@ -14,7 +14,7 @@ export class DocDiscussionsComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { 
-        window.open('file:///home/jannie/Projects/canvas/src/documentation/discussions.html');
+        // window.open('file:///home/jannie/Projects/canvas/src/documentation/discussions.html');
 
     }
 

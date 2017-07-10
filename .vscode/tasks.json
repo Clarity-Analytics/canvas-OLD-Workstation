@@ -7,21 +7,24 @@
             "taskName": "references",    
             "command": "markdown-it",
             "isShellCommand": true,
-            "args": ["./src/documentation/references.md", "-o", "./src/documentation/references.html"],
+            // "args": ["./src/documentation/references.md", "-o", "./src/documentation/references.html"],
+            "args": ["./src/app/doc.reference.component.md", "-o", "./src/app/doc.reference.component.html"],
             "showOutput": "always"
         },
         {
             "taskName": "tutorials",
             "command": "markdown-it",
             "isShellCommand": true,
-            "args": ["./src/documentation/tutorials.md", "-o", "./src/documentation/tutorials.html"],
+            // "args": ["./src/documentation/tutorials.md", "-o", "./src/documentation/tutorials.html"],
+            "args": ["./src/app/doc.tutorials.component.md", "-o", "./src/app/doc.tutorials.component.html"],
             "showOutput": "always"
         },
         {
             "taskName": "discussions",
             "command": "markdown-it",
             "isShellCommand": true,
-            "args": ["./src/documentation/discussions.md", "-o", "./src/documentation/discussions.html"],
+            // "args": ["./src/documentation/discussions.md", "-o", "./src/documentation/discussions.html"],
+            "args": ["./src/app/doc.discussions.component.md", "-o", "./src/app/doc.discussions.component.html"],
             "showOutput": "always"
         },
         {

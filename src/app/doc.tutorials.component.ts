@@ -14,7 +14,7 @@ export class DocTutorialsComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { 
-        window.open('file:///home/jannie/Projects/canvas/src/documentation/tutorials.html');
+        // window.open('file:///home/jannie/Projects/canvas/src/documentation/tutorials.html');
 
     }
 
