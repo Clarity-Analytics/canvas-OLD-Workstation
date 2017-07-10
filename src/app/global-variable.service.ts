@@ -15,7 +15,7 @@ export class GlobalVariableService {
 
     // Company related variables
     companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
-    companyLogo = new BehaviorSubject('');                      // Optional file name, set in SystemConfig
+    companyLogo: string = '';                                   // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation
     systemConfigurationID: number = -1;

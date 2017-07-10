@@ -4676,7 +4676,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.companyName = this.systemConfiguration.companyName;
         }
         if (systemConfiguration.companyLogo != this.systemConfiguration.companyLogo) {
-            this.globalVariableService.companyLogo.next(systemConfiguration.companyLogo);
+            this.globalVariableService.companyLogo = systemConfiguration.companyLogo;
         }
         if (systemConfiguration.backendUrl != this.systemConfiguration.backendUrl) {
             this.globalVariableService.backendUrl.next(systemConfiguration.backendUrl);
