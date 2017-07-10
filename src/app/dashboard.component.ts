@@ -1935,7 +1935,7 @@ console.log('this.widgetToEdit', this.widgetToEdit)
             this.dashboardBackgroundColor = this.selectedItemColor;
         }
 
-        // TODO - for now, many id = 1 records.  Either this does not matter at all,
+        // TODO - for now, many id = 1 records.  Either this does not matter at all, OR ...
         let currentdashboardBackgroundImageSrc: string = this.dashboards.filter(
             dash => dash.dashboardID == selectedDashboardID
         )[0].dashboardBackgroundImageSrc;
@@ -1966,7 +1966,11 @@ console.log('this.widgetToEdit', this.widgetToEdit)
                 summary:  'Selection',
                 detail:   'Select a tab from the Widget Editor to show'
             });
-
+            this.selectedDashboardTab =
+                {
+                    id: -1,
+                    name: ''
+                }
         }
     }
 
