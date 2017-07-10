@@ -26,7 +26,6 @@ export class NotificationService {
         this.messages = <Subject<Notification>>wsService
             .connect(CHAT_URL)
             .map((response: MessageEvent): Notification => {
-console.log('not', response)                
                 let data = JSON.parse(response.data);
                 return {
                     notificationID: 0,

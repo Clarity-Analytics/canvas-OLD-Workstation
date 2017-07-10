@@ -1477,7 +1477,6 @@ eazlSystemConfigurationWorking.company_logo = null
         } else {
             personalisationWorking.personalisationRecordID = 0;
         }
-console.log('eazlPersonalisation.dashboard_id_at_startup', eazlPersonalisation.dashboard_id_at_startup)
         if (eazlPersonalisation.dashboard_id_at_startup != null) {
             personalisationWorking.dashboardIDStartup = eazlPersonalisation.dashboard_id_at_startup;
         } else {

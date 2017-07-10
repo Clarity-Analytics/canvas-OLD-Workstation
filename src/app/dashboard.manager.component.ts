@@ -142,7 +142,6 @@ export class DashboardManagerComponent implements OnInit {
             },
 
         ];
-console.log('hier')
     }
 
     dashboardMenuAdd(dashboard: Dashboard) {

@@ -1952,21 +1952,21 @@ console.log('this.widgetToEdit', this.widgetToEdit)
 
         // If a single tab, auto select it AFTER all other settings and work has been done
         if (this.dashboardTabsDropDown.length == 1) {
-            this.selectedDashboardTab = 
+            this.selectedDashboardTab =
                 {
                     id: this.dashboardTabsDropDown[0].value.id,
                     name: this.dashboardTabsDropDown[0].value.name
                 }
 
             // Fill the Dashboard
-            this.loadDashboard()       
+            this.loadDashboard()
         } else {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
                 summary:  'Selection',
                 detail:   'Select a tab from the Widget Editor to show'
             });
-            
+
         }
     }
 
