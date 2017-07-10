@@ -26,7 +26,7 @@ export class GlobalVariableService {
     frontendName: string = 'Canvas';
     maxRowsDataReturned: number = 1000000;                      // Optional, set in SystemConfig
     maxRowsPerWidgetGraph: number = 1;                          // Optional, set in SystemConfig
-    systemTitle = new BehaviorSubject('Canvas');
+    systemTitle: string = 'Canvas';
 
     // Current User
     canvasUser = new BehaviorSubject<CanvasUser>(null);

@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     frontendName: string = this.globalVariableService.frontendName;
     growlLife: number = this.globalVariableService.growlLife.getValue();
     growlSticky: boolean = this.globalVariableService.growlSticky.getValue();
-    systemTitle: string = this.globalVariableService.systemTitle.getValue();
+    systemTitle: string = this.globalVariableService.systemTitle;
     testEnvironmentName: string = this.globalVariableService.testEnvironmentName.getValue();
 
     constructor(
