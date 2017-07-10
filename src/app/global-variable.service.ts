@@ -14,7 +14,7 @@ import { SelectedItemColor }          from './model.selectedItemColor';
 export class GlobalVariableService {
 
     // Company related variables
-    companyName = new BehaviorSubject('Clarity');               // Optional, set in SystemConfig
+    companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
     companyLogo = new BehaviorSubject('');                      // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation

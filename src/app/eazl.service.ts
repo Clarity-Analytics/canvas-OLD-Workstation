@@ -89,9 +89,10 @@ import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
 import { EazlDashboardUserRelationship }    from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
+import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
-import { EazlPersonalisation }        from  './model.personalisation';
+import { EazlPersonalisation }        from './model.personalisation';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
@@ -106,10 +107,9 @@ import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
-import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
-import { Personalisation }            from  './model.personalisation';
+import { Personalisation }            from './model.personalisation';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
@@ -4673,7 +4673,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.systemConfigRecordID = systemConfiguration.recordID;
         }
         if (systemConfiguration.companyName != this.systemConfiguration.companyName) {
-            this.globalVariableService.companyName.next(systemConfiguration.companyName);
+            this.globalVariableService.companyName = this.systemConfiguration.companyName;
         }
         if (systemConfiguration.companyLogo != this.systemConfiguration.companyLogo) {
             this.globalVariableService.companyLogo.next(systemConfiguration.companyLogo);

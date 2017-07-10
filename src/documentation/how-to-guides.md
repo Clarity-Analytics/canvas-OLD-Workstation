@@ -1,4 +1,5 @@
 # How-to Guide for Canvas
+# TODO Include in the menu if this is meaninngful
 
 This is a simple introduction to compiling Markdown in VS Code.
 
