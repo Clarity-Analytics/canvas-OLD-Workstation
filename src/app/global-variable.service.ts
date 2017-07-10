@@ -23,7 +23,7 @@ export class GlobalVariableService {
     backendName: string = 'Eazl';
     backendUrl: string = '';                                    // RESTi url, set in SystemConfig
     defaultDaysToKeepResultSet: number = 1;                     // Optional, set in SystemConfig
-    frontendName = new BehaviorSubject('Canvas');
+    frontendName: string = 'Canvas';
     maxRowsDataReturned = new BehaviorSubject(1000000);         // Optional, set in SystemConfig
     maxRowsPerWidgetGraph = new BehaviorSubject(15)             // Optional, set in SystemConfig
     systemTitle = new BehaviorSubject('Canvas');
