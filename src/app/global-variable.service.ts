@@ -21,7 +21,7 @@ export class GlobalVariableService {
     systemConfigurationID: number = -1;
     systemConfigRecordID: number = -1;
     backendName: string = 'Eazl';
-    backendUrl = new BehaviorSubject('');                       // RESTi url, set in SystemConfig
+    backendUrl: string = '';                                    // RESTi url, set in SystemConfig
     defaultDaysToKeepResultSet = new BehaviorSubject(1);        // Optional, set in SystemConfig
     frontendName = new BehaviorSubject('Canvas');
     maxRowsDataReturned = new BehaviorSubject(1000000);         // Optional, set in SystemConfig
