@@ -7592,20 +7592,19 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataDashboardGroup = true;
 
                 // Get all the data via API
-                let DashboardGroupWorking: DashboardGroup[] = [];
-                this.get<EazlDashboardGroup>('dashboard-groups')
+                let dashboardGroupWorking: DashboardGroup[] = [];
+                this.get<EazlDashboardGroup>('dashboard-group')
                     .subscribe(
                         (eazlDashboardGroup) => {
                             for (var i = 0; i < eazlDashboardGroup.length; i++) {
                                 let DashboardGroupSingle = new DashboardGroup();
                                 DashboardGroupSingle = this.cdal.loadDashboardGroup(eazlDashboardGroup[i]);
-                                DashboardGroupWorking.push(DashboardGroupSingle);
+                                dashboardGroupWorking.push(DashboardGroupSingle);
 
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dashboardGroups = dashboardGroupWorking;
+                         this.dashboardGroups = dashboardGroupWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataDashboardGroup = false;
