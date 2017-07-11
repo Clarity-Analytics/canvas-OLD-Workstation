@@ -634,9 +634,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //             }
     //         },
     //     ];
-
-
-    // const WIDGETTYPES replaced with API data
+// const WIDGETTYPES replaced with API data
     // export const WIDGETTYPES: WidgetType[] =
     //     [
     //         {
@@ -675,97 +673,97 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //             }
     //         }
     //     ];
-
-
-// export const PERSONALISATION: Personalisation =
-//     {
-//         personalisationID: 0,
-//         averageWarningRuntime: 3,
-//         dashboardIDStartup: -1,
-//         environment: 'Live',
-//         frontendColorScheme: 'beige',
-//         defaultReportFilters: '',
-//         defaultWidgetConfiguration: '',
-//         gridSize: 3,
-//         growlLife: 3,
-//         growlSticky: false,
-//         snapToGrid: true
-//     };
-export const DASHBOARDGROUPS: DashboardGroup[] =
-    [
-        {
-            dashboardGroupID: 0,
-            dashboardGroupName: 'Admin',
-            dashboardGroupDescription: 'Dashboards for Admin users',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 1,
-            dashboardGroupName: 'Marketing',
-            dashboardGroupDescription: 'Dashboards for Marketing Team',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 2,
-            dashboardGroupName: 'BI Team',
-            dashboardGroupDescription: 'Dashboards for BI Team',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 3,
-            dashboardGroupName: 'HR',
-            dashboardGroupDescription: 'Dashboards for Human Resources Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 4,
-            dashboardGroupName: 'Finance',
-            dashboardGroupDescription: 'Dashboards for Finance Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 5,
-            dashboardGroupName: 'Sales',
-            dashboardGroupDescription: 'Dashboards for Sales Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 6,
-            dashboardGroupName: 'R&D',
-            dashboardGroupDescription: 'Dashboards for Research and Development Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 7,
-            dashboardGroupName: 'IT',
-            dashboardGroupDescription: 'Dashboards for Information Technology Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        }
-    ];
+// const PERSONALISATION
+    // export const PERSONALISATION: Personalisation =
+    //     {
+    //         personalisationID: 0,
+    //         averageWarningRuntime: 3,
+    //         dashboardIDStartup: -1,
+    //         environment: 'Live',
+    //         frontendColorScheme: 'beige',
+    //         defaultReportFilters: '',
+    //         defaultWidgetConfiguration: '',
+    //         gridSize: 3,
+    //         growlLife: 3,
+    //         growlSticky: false,
+    //         snapToGrid: true
+    //     };
+// const DASHBOARDGROUPS
+    // export const DASHBOARDGROUPS: DashboardGroup[] =
+    //     [
+    //         {
+    //             dashboardGroupID: 0,
+    //             dashboardGroupName: 'Admin',
+    //             dashboardGroupDescription: 'Dashboards for Admin users',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardGroupID: 1,
+    //             dashboardGroupName: 'Marketing',
+    //             dashboardGroupDescription: 'Dashboards for Marketing Team',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardGroupID: 2,
+    //             dashboardGroupName: 'BI Team',
+    //             dashboardGroupDescription: 'Dashboards for BI Team',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardGroupID: 3,
+    //             dashboardGroupName: 'HR',
+    //             dashboardGroupDescription: 'Dashboards for Human Resources Department',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardGroupID: 4,
+    //             dashboardGroupName: 'Finance',
+    //             dashboardGroupDescription: 'Dashboards for Finance Department',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardGroupID: 5,
+    //             dashboardGroupName: 'Sales',
+    //             dashboardGroupDescription: 'Dashboards for Sales Department',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardGroupID: 6,
+    //             dashboardGroupName: 'R&D',
+    //             dashboardGroupDescription: 'Dashboards for Research and Development Department',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardGroupID: 7,
+    //             dashboardGroupName: 'IT',
+    //             dashboardGroupDescription: 'Dashboards for Information Technology Department',
+    //             dashboardGroupCreatedDateTime: '2017/05/01',
+    //             dashboardGroupCreatedUserName: 'JamesK',
+    //             dashboardGroupUpdatedDateTime: '2017/05/01',
+    //             dashboardGroupUpdatedUserName: 'JamesK'
+    //         }
+    //     ];
 export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
         {
@@ -4535,7 +4533,7 @@ export class EazlService implements OnInit {
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardGroups: DashboardGroup[] = DASHBOARDGROUPS;    //List of Dashboard-Group
+    dashboardGroups: DashboardGroup[];                      //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
