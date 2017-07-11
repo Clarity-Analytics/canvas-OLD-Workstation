@@ -610,32 +610,33 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //     ];
 
 // const GRAPHTYPES replaced with API data
-    export const GRAPHTYPES: GraphType[] =
-        [
-            {
-                label: 'BarChart',
-                value: {
-                    id: 0,
-                    name: 'BarChart'
-                }
-            },
-            {
-                label: 'PieChart',
-                value: {
-                    id: 2,
-                    name: 'PieChart'
-                }
-            },
-            {
-                label: 'LineChart',
-                value: {
-                    id: 3,
-                    name: 'LineChart'
-                }
-            },
-        ];
+    // export const GRAPHTYPES: GraphType[] =
+    //     [
+    //         {
+    //             label: 'BarChart',
+    //             value: {
+    //                 id: 0,
+    //                 name: 'BarChart'
+    //             }
+    //         },
+    //         {
+    //             label: 'PieChart',
+    //             value: {
+    //                 id: 2,
+    //                 name: 'PieChart'
+    //             }
+    //         },
+    //         {
+    //             label: 'LineChart',
+    //             value: {
+    //                 id: 3,
+    //                 name: 'LineChart'
+    //             }
+    //         },
+    //     ];
 
-// const WIDGETTYPES replaced with API data
+
+    // const WIDGETTYPES replaced with API data
     // export const WIDGETTYPES: WidgetType[] =
     //     [
     //         {
@@ -675,6 +676,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ];
 
+
 // export const PERSONALISATION: Personalisation =
 //     {
 //         personalisationID: 0,
@@ -689,7 +691,81 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
 //         growlSticky: false,
 //         snapToGrid: true
 //     };
-
+export const DASHBOARDGROUPS: DashboardGroup[] =
+    [
+        {
+            dashboardGroupID: 0,
+            dashboardGroupName: 'Admin',
+            dashboardGroupDescription: 'Dashboards for Admin users',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        },
+        {
+            dashboardGroupID: 1,
+            dashboardGroupName: 'Marketing',
+            dashboardGroupDescription: 'Dashboards for Marketing Team',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        },
+        {
+            dashboardGroupID: 2,
+            dashboardGroupName: 'BI Team',
+            dashboardGroupDescription: 'Dashboards for BI Team',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        },
+        {
+            dashboardGroupID: 3,
+            dashboardGroupName: 'HR',
+            dashboardGroupDescription: 'Dashboards for Human Resources Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        },
+        {
+            dashboardGroupID: 4,
+            dashboardGroupName: 'Finance',
+            dashboardGroupDescription: 'Dashboards for Finance Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        },
+        {
+            dashboardGroupID: 5,
+            dashboardGroupName: 'Sales',
+            dashboardGroupDescription: 'Dashboards for Sales Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        },
+        {
+            dashboardGroupID: 6,
+            dashboardGroupName: 'R&D',
+            dashboardGroupDescription: 'Dashboards for Research and Development Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        },
+        {
+            dashboardGroupID: 7,
+            dashboardGroupName: 'IT',
+            dashboardGroupDescription: 'Dashboards for Information Technology Department',
+            dashboardGroupCreatedDateTime: '2017/05/01',
+            dashboardGroupCreatedUserName: 'JamesK',
+            dashboardGroupUpdatedDateTime: '2017/05/01',
+            dashboardGroupUpdatedUserName: 'JamesK'
+        }
+    ];
 export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
         {
@@ -1199,82 +1275,6 @@ export const DASHBOARDS: Dashboard[] =
             dashboardSystemMessage: '',
             dashboardUpdatedDateTime: '2016/09/08',
             dashboardUpdatedUserName: 'JerimiaA'
-        }
-    ];
-
-export const DASHBOARDGROUPS: DashboardGroup[] =
-    [
-        {
-            dashboardGroupID: 0,
-            dashboardGroupName: 'Admin',
-            dashboardGroupDescription: 'Dashboards for Admin users',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 1,
-            dashboardGroupName: 'Marketing',
-            dashboardGroupDescription: 'Dashboards for Marketing Team',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 2,
-            dashboardGroupName: 'BI Team',
-            dashboardGroupDescription: 'Dashboards for BI Team',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 3,
-            dashboardGroupName: 'HR',
-            dashboardGroupDescription: 'Dashboards for Human Resources Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 4,
-            dashboardGroupName: 'Finance',
-            dashboardGroupDescription: 'Dashboards for Finance Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 5,
-            dashboardGroupName: 'Sales',
-            dashboardGroupDescription: 'Dashboards for Sales Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 6,
-            dashboardGroupName: 'R&D',
-            dashboardGroupDescription: 'Dashboards for Research and Development Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardGroupID: 7,
-            dashboardGroupName: 'IT',
-            dashboardGroupDescription: 'Dashboards for Information Technology Department',
-            dashboardGroupCreatedDateTime: '2017/05/01',
-            dashboardGroupCreatedUserName: 'JamesK',
-            dashboardGroupUpdatedDateTime: '2017/05/01',
-            dashboardGroupUpdatedUserName: 'JamesK'
         }
     ];
 
@@ -4542,7 +4542,7 @@ export class EazlService implements OnInit {
     datasourcesPerUser: DatasourcesPerUser[] = [];          // List of DatasourcesPerUser
     dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
     filters: Filter[] [];                                   // List of Filters
-    graphTypes: GraphType[] = GRAPHTYPES;                   // List of Graph Types
+    graphTypes: GraphType[];                                // List of Graph Types
     groups: Group[] = GROUPS;                               // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     isStaffDropdown: SelectItem[] = ISSTAFFDROPDOWN;        // List of IsStaff dropdown options
