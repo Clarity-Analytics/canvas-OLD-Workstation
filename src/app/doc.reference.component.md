@@ -42,7 +42,22 @@ This guide aims to provide technical descriptions of the machinery and how to op
 * Overlay task management
 
 ## 1. Overview
- – how everything fits together
+
+Our purpose is to create a workspace for knowledge workers to visualise any existing data sources in order to obtain information, understanding and insight, with easy collaboration.  Just like a canvas provides a painter with a workspace, our Canvas provides a knowledge worker with a working space to get information and insight in order to work.
+An existing data source is any piece of data in computer readable format.  Examples are company databases, text files, Excel spreadsheets, external databases, web sites and even streaming data.  Inherent to our solutions are the provision of new data sources, data cleansing and data hygiene.
+
+A Data Source is a block of data with associated meta-data (description that tells us more about the format and content of the data).  All Data Sources are provided by Eazl (which is the backend REST API in techno speack).  The Data Sources can be structured (rows and columns) or unstructured data (i.e. documents).
+With Canvas, our web-based frontend, it is easy to extract, manipulate and visualise data.  One can store the visualisation, and event schedule recurring extractions.
+The output of a visualisation can be presented graphically or in tabular format on a Dashboard.  These can be printed or exported to other destinations like Excel.
+
+The Canvas Dashboard can be used in different ways, for example:
+A novice user can easily ran an existing Report with a single click.
+One can create a Dashboard with graphs to summarise monthly management information.
+A more experienced user can create new Reports.
+Users can collaborate with Messages and while sharing the same content.
+It is easy to extract and format data used by third party packages.
+
+
 
 
 
