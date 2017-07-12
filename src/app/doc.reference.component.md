@@ -58,7 +58,23 @@ Users can collaborate with Messages and while sharing the same content.
 It is easy to extract and format data used by third party packages.
 
 
+## 2. Design principles
 
+* In designing the software, we took the following principles into consideration:
+* Keep it simple and clean; cut down on clutter.
+* Line up things; pixels matter.
+* Must be easy to access anything from anywhere.
+* Use known / familiar concepts (easy to learn).
+* Colours: 
+1. use complimentary colours
+2. use neutral colours and one bright colour for focus
+3. use an established colour palette
+* Fonts: 
+1.only use a few different ones
+2. avoid fancy fonts  
+3. vary bold and italic to differentiate stuff
+* As few levels of menus & forms as possible.
+* Make an interface that works for the users.
 
 
 _____
