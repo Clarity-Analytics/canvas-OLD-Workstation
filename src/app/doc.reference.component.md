@@ -99,8 +99,74 @@ A test environment prefixes all output with TEST, for example to an ftp, url, fo
 
 ## 4. Architecture
 
+There are 3 distinct software components that work together to render the data:
+* Canvas is the frontend where data is visualised, either in tabular or graphical form
+* Eazl is the RESTful API, to which Canvas connects
+* Overlay is a descriptive data collection tool.
 
 
+## 5. Installation
+
+Follow these steps:
+cd Projects/ (parent folder to Canvas folder)
+ng new canvas (install skeleton via CLI)
+cd canvas
+npm install --save @angular/material
+npm install --save hammerjs
+npm install ng2-table –save
+npm install ng2-bootstrap –save
+npm install angular2-grid
+Install PrimeNG & font awesome
+Ensure packages.json shows something like:
+"dependencies": {
+  //...
+  "primeng": "^2.0.3",
+  "font-awesome": "^4.7.0"
+},
+Ensure angular-cli.json shows something like (omega or other theme):
+    "../node_modules/font-awesome/css/font-awesome.css",
+    "../node_modules/primeng/resources/themes/omega/theme.css" , 
+    "../node_modules/primeng/resources/primeng.css"
+sudo npm install vega
+sudo npm install vega-lite
+
+The following has to be done to get the system ready for users (it should be automated via a script):
+Create Admin group.
+Create a System user for us; not visible on frontend?
+Create / Import System Reports.
+Setup backend details, like url, etc.
+
+Upgrades:
+Versions matter.  Period.  
+
+Upgrade to the latest CLI globally:
+sudo npm uninstall -g angular-cli
+sudo npm cache clean
+sudo npm install -g angular-cli@latest 
+
+Upgrade your local Node.js with NPM (v7.8.0):
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+
+Upgrade TypeScript (2.2.2):
+sudo npm install -g typescript@latest
+
+Upgrade VS Code (v1.10):
+Get tar from https://code.visualstudio.com/updates/v1_10
+
+Upgrade  / Add typings for Vega (used in TS) – see http://definitelytyped.org/ for detail on classes, etc:
+sudo npm install --save @types/lodash
+Alternatively: try /// <reference path="..." />, see www.typescriptlang.org
+
+Prime: https://stackoverflow.com/questions/43258960/update-angular2-primeng-version-1-1-4-to-last-version
+https://libraries.io/npm/primeng
+Ng4: https://angular-update-guide.firebaseapp.com/
+Change: template tags to ng-template ?
+Error: angular 4 Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource
+Solution: https://stackoverflow.com/questions/44046778/no-access-control-allow-origin-for-angular-cli-localhost4200
+
+    
 _____
 
 # MD cheatsheet
