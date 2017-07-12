@@ -104,6 +104,19 @@ There are 3 distinct software components that work together to render the data:
 * Eazl is the RESTful API, to which Canvas connects
 * Overlay is a descriptive data collection tool.
 
+Backend Services
+There are two types of services:
+Data Services — A generic backend services that serves data based on input parameters and is not dependent on any visualisations. This layer is exposed as REST API which are generically consumed by other applications at Myntra some of which are customer facing applications as well.
+UDP Services — A service layer that saves users interaction with visualisation interface. This layer is also acting as a bridge between UI and Data Services and performing very thin semantic changes on the data passing through this layer.
+
+Data Caching
+This acts as one of the key component to help provide faster data by minimising the number of database queries. Cache hits are generally served in milliseconds and database hits take few seconds depending on the type of data being requested.
+Redis is used to as data cache. Data gets stored in cache once it is requested by any user and if same data is requested by other user then it is served out of cache itself. Data is cached by generating a unique key based on request parameters of data services API
+A pre-cacher is implemented that scans through all the dashboards created by user or accessed by users in last X days and it caches the data with default date for all the dashboards. This ensures super fast first load of any dashboard being accessed by user.
+
+Metadata (Data Catalog)
+Metadata store acts as an understanding layer between metric data store and UDP. The metadata store is responsible to define collections, metrics and dimensions mapped to a table in SQL world. It also supports definition of each metric that is eventually displayed to end user of UDP. It supports various additional features like formula definitions, type of metrics (e.g. Aggregate Metrics Vs Snapshot Metrics), visibility of metric or dimension etc. There are set of REST API defined that enables easy discovery of collections, metrics and dimensions
+MySQL is used as metadata store as well as for application data store for UDP services
 
 ## 5. Installation
 
@@ -166,7 +179,29 @@ Change: template tags to ng-template ?
 Error: angular 4 Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource
 Solution: https://stackoverflow.com/questions/44046778/no-access-control-allow-origin-for-angular-cli-localhost4200
 
-    
+
+## 6. Frontend Menu 
+
+The Canvas frontend is a SPA (Single Page Application) that presents one form to the user instead of several web pages.  This form has the following areas:
+Main menu at the top, each with a drop-down sub-menu. 
+Working space in the middle (where other forms are placed).  A table will be used to display several rows at once.
+On occasion, a button bar will be displayed at the top of the working space.  Actions like Add, Edit, Delete form part of the table and not part of the button bar.
+
+This is the startup form for the frontend:
+
+There are lots of features built in:
+Share dashboards with team members, mark your favourite dashboards
+Schedule the dashboards as email reports daily/weekly/monthly
+Export chart widgets as image or export the data in CSV format, ability to even obtain raw data for widget in CSV format
+Compare data for two date ranges, allows to visualise the comparative performance for two time periods
+Explore data allows to play with data and visualisations, very helpful for exploring the datasets without need to create widgets or dashboards
+Business Alerting allows ability to define rules on metrics that will trigger alert, very useful to keep check of drastic drop/increase in any metric
+Data extracts provides capability to get new dataset in the metric store by writing a SQL on top of granular data in the data warehouse
+Custom drill-downs, conditional formatting, derived metrics etc. are the customised features that helps more with data visualisations
+
+
+
+
 _____
 
 # MD cheatsheet
