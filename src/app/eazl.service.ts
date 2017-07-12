@@ -131,17 +131,6 @@ export interface Token {
 
 var req = new XMLHttpRequest();
 
-// export const SYSTEMCONFIGURATION: SystemConfiguration =
-//     {
-//         systemConfigurationID: 0,
-//         backendUrl: 'localhost:8000',
-//         companyLogo: '',
-//         companyName: 'Clarity',
-//         defaultDaysToKeepResultSet: 3,
-//         maxRowsDataReturned: 1000000,
-//         maxRowsPerWidgetGraph: 15,
-//     }
-
 // Constants
 export const ISSTAFFDROPDOWN: SelectItem[] =
     [
@@ -174,6 +163,18 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             value: 'False'
         }
     ]
+
+// const SYSTEMCONFIGURATION
+    // export const SYSTEMCONFIGURATION: SystemConfiguration =
+    //     {
+    //         systemConfigurationID: 0,
+    //         backendUrl: 'localhost:8000',
+    //         companyLogo: '',
+    //         companyName: 'Clarity',
+    //         defaultDaysToKeepResultSet: 3,
+    //         maxRowsDataReturned: 1000000,
+    //         maxRowsPerWidgetGraph: 15,
+    //     }
 
 // const BORDERDROPDOWNS replaced with API data
     // export const BORDERDROPDOWNS: SelectItem[] =

@@ -4,22 +4,51 @@ This guide aims to provide technical descriptions of the machinery and how to op
 
 ## Table of Contentt
 
-1. Architecture – how everything fits together
-2. Canvas user manual: 
-1. forms, fields and buttons
-2. ER
-3. Eazl admin – Django console
-4. Overlay package and query structures
-5. Overlay task management
+1. Overview
+2. Design principles
+3. Environments
+4. Architecture
+5. Installation
+6. Frontend Menu
+7. Login
+8. Visualisation
+* Dashboard Editor
+* Widget Editor
+9. Collaboration
+* New messages
+* View messages
+10. Manage / Admin
+* Users
+* Groups
+* Datasources
+* Reports
+* Dashboard Manager
+* System Configuration
+11. My Account
+* Who am I
+* Logout
+* Profile
+* Personalation
+12. Help
+* System info
+* Feedback
+* Tutorials
+* Reference Guide
+* Discussions
+13. Backend
+* Data diagram
+* Eazl admin – Django console
+* Overlay package and query structures
+* Overlay task management
+
+## 1. Overview
+ – how everything fits together
 
 
-___
+
+_____
 
 # MD cheatsheet
-
-* [node](https://nodejs.org)
-* [markdown-it](https://www.npmjs.com/package/markdown-it)
-* [tasks.json](/docs/editor/tasks)
 
 ## Section Title
 
