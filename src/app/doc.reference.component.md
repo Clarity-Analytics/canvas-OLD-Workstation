@@ -88,9 +88,24 @@ Once logged in successfully, the user will be presented with a single form conta
 
 ## 4. Visualisation
 
-The Visualise menu option is used to display data; in fact, it is the only way for users to extract data.  The data shown can be a mixture of tabular data (tables) and graphs, customiseable by the user.  So, the term visualise includes ‘standard reports’.
-The following preparations are necessary to visualise data:
-Identify the data: define a Data Source using the Manage menu option tells the system where the data lives, and how how different data portions are related.  
+The Visualise menu option is used to display data; in fact, it is the only way for users to extract data and show (visualise) data.  Data shown can be a mixture of tabular data (tables) and graphs, customiseable by the user.  So, the term visualise includes ‘standard reports’.
+
+As mentioned, data is visualised using Widgets.  Each Widget reads it data from a Report; rows and columns extracted from a Datasource (like a database table).  For now it is assumed that the reports already exist (see the Admin -> Reports section on how to create or amend these).
+
+Hover the cursor over the Visualise menu optio, and select Dashboard editor.  For a new user, a clean (blank) Dashboard is presented.  A Dashboard is a workspace, and contains one or more tabs.  This is similar to an Excel workbook with multiple tabs or worksheets.  A palette is shown in the top left corner, and provide tools to manage your Dashboard.  It contains two portions:
+* Dashboard Editor to create new Dashboard, select an existing Dashboard and an advanced filter on Dashboards to show in the dropdown.
+* Widget tools to manage individual Widgets.
+
+To select an existing Dashboard, select one from the dropdown.  In case too many options are presented, one can filter it down using the advanced editor.  Note that the icons on th left have tooltips, which will be shown when the cursor hovers over it.  A Dashboard can have one or more tabs, and it is important to know since the required information may be on another tab in the Dashboard.  It the selected Dashboard only has one tab, this tab will be shown automatically.  In case the Dashboard has more than one tab, one has to select the desire tab from the tabs dropdown.  More actions on tabs are shown just below the tab dropdown:
+- edit a dashboard, where a name or description can be amended.
+- add a tab, with a name.
+- delete a tab.  Note that all Widgets on a tab must be deleted before the whole tab can be deleted.
+
+To create a new Dashboard, click on the + sign in the Dashboard Editor to create a new Dashboard.  Canvas will assign a name to it.  In order to rename the Dashboard or change more properties (like who has access to it), please use the Admin -> Dashboards menu option.  To add a new Widget, drag the top left icon in the Widget tools area onto the open space of the Dashboard.  The 
+
+The following actions are available in the Widget tools area:
+
+The first step is to identify the source of the data: define a Data Source using the Manage menu option tells the system where the data lives, and how how different data portions are related.  
 Describe how to extract the data: define a Report using the Manage menu option will describe how the data must be manipulated and aggregated (i.e. sum the SalesVolume).
 
 Visualisation is done onto a blank space called a Dashboard.  Each Dashboard is a collection of existing Reports, completed as part of the preparation above.  A user can create any number of Dashboards. 
