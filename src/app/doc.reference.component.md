@@ -5,41 +5,42 @@ This guide aims to provide technical descriptions of the machinery and how to op
 ## Table of Contentt
 
 1. Overview
-2. Design principles
-3. Environments
-4. Architecture
-5. Installation
-6. Frontend Menu
-7. Login
-8. Visualisation
+2. Installation
+3. Login
+4. Frontend Menu
+5. Visualisation
 * Dashboard Editor
 * Widget Editor
-9. Collaboration
+6. Collaboration
 * New messages
 * View messages
-10. Manage / Admin
+7. Manage / Admin
 * Users
 * Groups
 * Datasources
 * Reports
 * Dashboard Manager
 * System Configuration
-11. My Account
+8. My Account
 * Who am I
 * Logout
 * Profile
 * Personalation
-12. Help
+9. Help
 * System info
 * Feedback
 * Tutorials
 * Reference Guide
 * Discussions
+10. Design principles
+11. Environments
+12. Architecture
 13. Backend
 * Data diagram
 * Eazl admin – Django console
 * Overlay package and query structures
 * Overlay task management
+
 
 ## 1. Overview
 
@@ -61,101 +62,23 @@ A key feature of Canvas is collaboration, making it easy for users to discuss re
 Data Sources are provided by Eazl (which is the backend REST API in techno speack).  This loosely coupled architecture make it possible for other applications to connect to Eazl and extract data.  The solution provide admin functionality to manage users, groups, access and so on.  
 
 
+## 2. Installation
 
-## 2. Design principles
+Canvas is written in Angular and Typescript, and installation for a user is a single instruction:
+// TODO - after build, finalise this whole section !!!
 
-* In designing the software, we took the following principles into consideration:
-* Keep it simple and clean; cut down on clutter.
-* Line up things; pixels matter.
-* Must be easy to access anything from anywhere.
-* Use known / familiar concepts (easy to learn).
-* Colours: 
-1. use complimentary colours
-2. use neutral colours and one bright colour for focus
-3. use an established colour palette
-* Fonts: 
-1.only use a few different ones
-2. avoid fancy fonts  
-3. vary bold and italic to differentiate stuff
-* As few levels of menus & forms as possible.
-* Make an interface that works for the users.
-* Whitespace: ultimate clutter reducer; actually increases conversion rates.
-* Pay attention to your goals, and make sure the user gets them easily.  Make it easy to find * the most important things.
-* Content: less is more, bullet and shorten.
-* Headlines: talk value, not detail.
-* Pay attention to image size and response times.
-* You dont have to be original – COPY.  
-* Use mockups (Gimp, balsamiq, Ai).
-* Persist; design by definition is messy and requires patience.
+This is all you that a user needs from this section.  
 
-
-## 3. Environments
-An environment is built on a hardware platform, and consists of a backend (a collection of databases that may be accessed, users and groups, associated security access, configuration parameters like the url for REST API, etc. ) and a web-based frontend (which may be located on a different set of hardware).
-Environment information (like access) is kept by the backend, from where the frontend reads it.  For production, the links are fixed with no user option to change it.
-For test, the workspace (frontend) can read the list of available environments from the backend, and the user can select one to work with.  No further information is kept about it in the workspace.
-
-One can copy and also sync the details (users, access, etc) from an existing environment.  That way, it is one click to get a new environment up and running.
-In order to ensure consistent data quality, the following configurations are possible:
-Prod environment (prod databases and third party read-only databases) that lives on a hardware configuration, and linked to a prod version of the frontend.  This prod-prod setup is done at installation (by us) and cannot be changed.
-A test environment (test databases and potential third party read-only databases) lives on a hardware configuration, and linked to a test frontend. 
-
-A test environment prefixes all output with TEST, for example to an ftp, url, folder or email (subject and attachment).
-
-## 4. Architecture
-
-There are 3 distinct software components that work together to render the data:
-* Canvas is the frontend where data is visualised, either in tabular or graphical form
-* Eazl is the RESTful API, to which Canvas connects
-* Overlay is a descriptive data collection tool.
-
-Backend Services
-There are two types of services:
-Data Services — A generic backend services that serves data based on input parameters and is not dependent on any visualisations. This layer is exposed as REST API which are generically consumed by other applications at Myntra some of which are customer facing applications as well.
-UDP Services — A service layer that saves users interaction with visualisation interface. This layer is also acting as a bridge between UI and Data Services and performing very thin semantic changes on the data passing through this layer.
-
-Data Caching
-This acts as one of the key component to help provide faster data by minimising the number of database queries. Cache hits are generally served in milliseconds and database hits take few seconds depending on the type of data being requested.
-Redis is used to as data cache. Data gets stored in cache once it is requested by any user and if same data is requested by other user then it is served out of cache itself. Data is cached by generating a unique key based on request parameters of data services API
-A pre-cacher is implemented that scans through all the dashboards created by user or accessed by users in last X days and it caches the data with default date for all the dashboards. This ensures super fast first load of any dashboard being accessed by user.
-
-Metadata (Data Catalog)
-Metadata store acts as an understanding layer between metric data store and UDP. The metadata store is responsible to define collections, metrics and dimensions mapped to a table in SQL world. It also supports definition of each metric that is eventually displayed to end user of UDP. It supports various additional features like formula definitions, type of metrics (e.g. Aggregate Metrics Vs Snapshot Metrics), visibility of metric or dimension etc. There are set of REST API defined that enables easy discovery of collections, metrics and dimensions
-MySQL is used as metadata store as well as for application data store for UDP services
-
-## 5. Installation
-
-Follow these steps:
+In the development environment however, one has to follow these steps to install Angular, etc in order to perform development work:
 cd Projects/ (parent folder to Canvas folder)
 ng new canvas (install skeleton via CLI)
-cd canvas
-npm install --save @angular/material
-npm install --save hammerjs
-npm install ng2-table –save
-npm install ng2-bootstrap –save
-npm install angular2-grid
+Create canvas folder
+Install Angular-cli
+Install the correct version of Angular (see the packages.json file for detail)
 Install PrimeNG & font awesome
-Ensure packages.json shows something like:
-"dependencies": {
-  //...
-  "primeng": "^2.0.3",
-  "font-awesome": "^4.7.0"
-},
-Ensure angular-cli.json shows something like (omega or other theme):
-    "../node_modules/font-awesome/css/font-awesome.css",
-    "../node_modules/primeng/resources/themes/omega/theme.css" , 
-    "../node_modules/primeng/resources/primeng.css"
-sudo npm install vega
-sudo npm install vega-lite
+Install Vega and Vega-lite
 
-The following has to be done to get the system ready for users (it should be automated via a script):
-Create Admin group.
-Create a System user for us; not visible on frontend?
-Create / Import System Reports.
-Setup backend details, like url, etc.
-
-Upgrades:
-Versions matter.  Period.  
-
+To upgrade the development environment, perform the following:
 Upgrade to the latest CLI globally:
 sudo npm uninstall -g angular-cli
 sudo npm cache clean
@@ -176,12 +99,9 @@ Upgrade  / Add typings for Vega (used in TS) – see http://definitelytyped.org/
 sudo npm install --save @types/lodash
 Alternatively: try /// <reference path="..." />, see www.typescriptlang.org
 
-Prime: https://stackoverflow.com/questions/43258960/update-angular2-primeng-version-1-1-4-to-last-version
-https://libraries.io/npm/primeng
-Ng4: https://angular-update-guide.firebaseapp.com/
-Change: template tags to ng-template ?
-Error: angular 4 Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource
-Solution: https://stackoverflow.com/questions/44046778/no-access-control-allow-origin-for-angular-cli-localhost4200
+Create datasources, reports and users.  Assign access where required.  Create or import Dashboards via Canvas.
+
+The above assumes that you are connected to an Eazl server.  The instructions to install a new server are provided towards the end of the document.
 
 
 ## 6. Frontend Menu 
@@ -732,6 +652,59 @@ Whenever a base package changes,overlay will
 Automatically compile it with all related queries (which means Reports).
 Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the frontend so that the user cannot run them.
 
+
+## 2. Design principles
+
+In designing the software, we took the following principles into consideration:
+* Keep it simple and clean; cut down on clutter.
+* Line up things; pixels matter.
+* Must be easy to access anything from anywhere.
+* Use known / familiar concepts (easy to learn).
+* Colours: 
+1. use complimentary colours
+2. use neutral colours and one bright colour for focus
+3. use an established colour palette
+* Fonts: 
+1.only use a few different ones
+2. avoid fancy fonts  
+3. vary bold and italic to differentiate stuff
+* As few levels of menus & forms as possible.
+* Make an interface that works for the users.
+* Whitespace: ultimate clutter reducer; actually increases conversion rates.
+* Pay attention to your goals, and make sure the user gets them easily.  Make it easy to find * the most important things.
+* Content: less is more, bullet and shorten.
+* Headlines: talk value, not detail.
+* Pay attention to image size and response times.
+* You dont have to be original – COPY.  
+* Use mockups (Gimp, balsamiq, Ai).
+* Persist; design by definition is messy and requires patience.
+
+
+## 3. Environments
+It is important to separate develop and test from production.  In order to achieve this, we use environments.  An environment is built on a hardware platform, and consists of a backend (a collection of databases that may be accessed, users and groups, associated security access, configuration parameters like the url for REST API, etc. ) and a web-based frontend (which may be located on a different set of hardware).
+
+Environment information (like access) is kept by the backend, from where the frontend reads it.  For production, the links are fixed with no user option to change it.  For test, the workspace (frontend) can read the list of available environments from the backend, and the user can select one to work with.  No further information is kept about it in the workspace.
+
+One can copy and also sync the details (users, access, etc) from an existing environment.  That way, it is one click to get a new environment up and running.  In order to ensure consistent data quality, the following configurations are possible:
+* Prod environment (prod databases and third party read-only databases) that lives on a hardware configuration, and linked to a prod version of the frontend.  This prod-prod setup is done at installation (by us) and cannot be changed.
+* A test environment (test databases and potential third party read-only databases) lives on a hardware configuration, and linked to a test frontend. 
+
+A test environment prefixes all output with TEST, for example to an ftp, url, folder or email (subject and attachment).
+
+
+## 4. Architecture
+
+There are 3 distinct software components that work together to render the data:
+* Canvas is the frontend where data is visualised, either in tabular or graphical form
+* Eazl is the RESTful API, to which Canvas connects
+* Overlay is a descriptive data collection tool.
+
+Backend Services / connections
+There are two types of services / connections:
+* Data provision that serves data based on input parameters and is not dependent on any visualisations. This layer is exposed as REST API which can be consumed by other applications. 
+* Permanent connection to receive updates and messages.  This is implemented as a Web Socket.
+
+System data is read at startup, and cached.  This is done in order to minimise the number of database queries.  When this data is changed on the server, a message is sent to the frontend, and the latest dataset is read again from the server.
 
 
 _____
