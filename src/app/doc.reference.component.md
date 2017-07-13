@@ -7,8 +7,7 @@ This guide aims to provide technical descriptions of the machinery and how to op
 1. Overview
 2. Installation
 3. Login
-4. Frontend Menu
-5. Visualisation
+4. Visualisation
 * Dashboard Editor
 * Widget Editor
 6. Collaboration
@@ -57,7 +56,15 @@ Data is visualised on the Dashboard by means of one or more Widgets.  Each Widge
 
 A Datasource is any piece of data in computer readable format, with associated meta-data (description that tells us more about the format and content of the data).  The Data Sources can be structured (rows and columns) or unstructured data (i.e. documents).  Examples are company databases, text files, Excel spreadsheets, external databases, web sites and even streaming data.  Inherent to our solutions is the provision of new data sources, data cleansing and data hygiene.
 
-A key feature of Canvas is collaboration, making it easy for users to discuss results and add comments.  Additional automation is included, for example all results can be scheduled and exported to other systems (like Excel). There is integration with other products, like Python Notebooks.
+A key feature of Canvas is collaboration, making it easy for users to discuss results and add comments.  Additional automation is included, for example all results can be scheduled and exported to other systems (like Excel). There is integration with other products, like Python Notebooks.  Other features include:
+* Share dashboards with team members, mark your favourite dashboards
+* Schedule the dashboards as email reports daily/weekly/monthly
+* Export chart widgets as image or export the data in CSV format, ability to even obtain raw data for widget in CSV format
+* Compare data for two date ranges, allows to visualise the comparative performance for two time periods
+* Explore data allows to play with data and visualisations, very helpful for exploring the datasets without need to create widgets or dashboards
+* Business Alerting allows ability to define rules on metrics that will trigger alert, very useful to keep check of drastic drop/increase in any metric
+* Data extracts provides capability to get new dataset in the metric store by writing a SQL on top of granular data in the data warehouse
+* Custom drill-downs, conditional formatting, derived metrics etc. are the customised features that helps more with data visualisations
 
 Data Sources are provided by Eazl (which is the backend REST API in techno speack).  This loosely coupled architecture make it possible for other applications to connect to Eazl and extract data.  The solution provide admin functionality to manage users, groups, access and so on.  
 
@@ -67,71 +74,19 @@ Data Sources are provided by Eazl (which is the backend REST API in techno speac
 Canvas is written in Angular and Typescript, and installation for a user is a single instruction:
 // TODO - after build, finalise this whole section !!!
 
-This is all you that a user needs from this section.  
-
-In the development environment however, one has to follow these steps to install Angular, etc in order to perform development work:
-cd Projects/ (parent folder to Canvas folder)
-ng new canvas (install skeleton via CLI)
-Create canvas folder
-Install Angular-cli
-Install the correct version of Angular (see the packages.json file for detail)
-Install PrimeNG & font awesome
-Install Vega and Vega-lite
-
-To upgrade the development environment, perform the following:
-Upgrade to the latest CLI globally:
-sudo npm uninstall -g angular-cli
-sudo npm cache clean
-sudo npm install -g angular-cli@latest 
-
-Upgrade your local Node.js with NPM (v7.8.0):
-sudo npm cache clean -f
-sudo npm install -g n
-sudo n stable
-
-Upgrade TypeScript (2.2.2):
-sudo npm install -g typescript@latest
-
-Upgrade VS Code (v1.10):
-Get tar from https://code.visualstudio.com/updates/v1_10
-
-Upgrade  / Add typings for Vega (used in TS) – see http://definitelytyped.org/ for detail on classes, etc:
-sudo npm install --save @types/lodash
-Alternatively: try /// <reference path="..." />, see www.typescriptlang.org
-
-Create datasources, reports and users.  Assign access where required.  Create or import Dashboards via Canvas.
+Create datasources, reports and users as described in the admin section of the document.  Assign access where required.  Create or import Dashboards via Canvas.
 
 The above assumes that you are connected to an Eazl server.  The instructions to install a new server are provided towards the end of the document.
 
 
-## 6. Frontend Menu 
+## 3. Login
 
-The Canvas frontend is a SPA (Single Page Application) that presents one form to the user instead of several web pages.  This form has the following areas:
-Main menu at the top, each with a drop-down sub-menu. 
-Working space in the middle (where other forms are placed).  A table will be used to display several rows at once.
-On occasion, a button bar will be displayed at the top of the working space.  Actions like Add, Edit, Delete form part of the table and not part of the button bar.
+On startup of Canvas a login form will be presented, requesting a username and password.  These must have been created before by the system administrator.  The password is case sensitive, and the user will remain logged in until he closes the tab in the browser.  When the tab is re-opened, he / she will have to log in again.
 
-This is the startup form for the frontend:
-
-There are lots of features built in:
-Share dashboards with team members, mark your favourite dashboards
-Schedule the dashboards as email reports daily/weekly/monthly
-Export chart widgets as image or export the data in CSV format, ability to even obtain raw data for widget in CSV format
-Compare data for two date ranges, allows to visualise the comparative performance for two time periods
-Explore data allows to play with data and visualisations, very helpful for exploring the datasets without need to create widgets or dashboards
-Business Alerting allows ability to define rules on metrics that will trigger alert, very useful to keep check of drastic drop/increase in any metric
-Data extracts provides capability to get new dataset in the metric store by writing a SQL on top of granular data in the data warehouse
-Custom drill-downs, conditional formatting, derived metrics etc. are the customised features that helps more with data visualisations
+Once logged in successfully, the user will be presented with a single form containing a menu at the top.  The menu is adapted for access rights of the user, and inaccessable menu options are dimmed out.  This form will remain in focus, showing different parts of the system as the user clicks the menu options (in techno-speack, Canvas is a SPA or Single Page Application which enhances the user experience).
 
 
-## 7. Login
-
-On startup, the system will determine if the UserName was logged previously logged in, and simply provide the screen above if the case.
-If the user has not logged in before, or previous credentials cannot be found, a login form will be presented.
-The user cannot perform any work on the system until the login has been completed successfully.  In techno-speak: routes are guarded in Angular using AuthGuard.
-
-
-## 8. Visualisation
+## 4. Visualisation
 
 The Visualise menu option is used to display data; in fact, it is the only way for users to extract data.  The data shown can be a mixture of tabular data (tables) and graphs, customiseable by the user.  So, the term visualise includes ‘standard reports’.
 The following preparations are necessary to visualise data:
@@ -706,6 +661,40 @@ There are two types of services / connections:
 
 System data is read at startup, and cached.  This is done in order to minimise the number of database queries.  When this data is changed on the server, a message is sent to the frontend, and the latest dataset is read again from the server.
 
+
+## Canvas Development installation
+
+This is all you that a user needs from this section.  
+
+In the development environment however, one has to follow these steps to install Angular, etc in order to perform development work:
+cd Projects/ (parent folder to Canvas folder)
+ng new canvas (install skeleton via CLI)
+Create canvas folder
+Install Angular-cli
+Install the correct version of Angular (see the packages.json file for detail)
+Install PrimeNG & font awesome
+Install Vega and Vega-lite
+
+To upgrade the development environment, perform the following:
+Upgrade to the latest CLI globally:
+sudo npm uninstall -g angular-cli
+sudo npm cache clean
+sudo npm install -g angular-cli@latest 
+
+Upgrade your local Node.js with NPM (v7.8.0):
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+
+Upgrade TypeScript (2.2.2):
+sudo npm install -g typescript@latest
+
+Upgrade VS Code (v1.10):
+Get tar from https://code.visualstudio.com/updates/v1_10
+
+Upgrade  / Add typings for Vega (used in TS) – see http://definitelytyped.org/ for detail on classes, etc:
+sudo npm install --save @types/lodash
+Alternatively: try /// <reference path="..." />, see www.typescriptlang.org
 
 _____
 
