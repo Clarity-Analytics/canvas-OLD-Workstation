@@ -286,69 +286,59 @@ Messages are non-intrusive; the user can send and receive Messages while leaving
 
 Each messages can be marked as Read or UnRead by right-clicking on it.
 
-## 10. Manage / Admin
-The Manage menu option is used to manage the following entities in the system:
-Users.
-Groups.
-Data Sources.
-Reports.
-Dashboards.
-System configuration.
 
-Manage in the context above includes the following functions:
-Add.
-Edit.
-Delete.
-Membership (for users and groups).
-Access permission (to Data Sources for users and groups).
-Ownership (to groups and Data Sources).
-History (audit trail / activity log).
+## 6. Manage / Admin
+
+Administrative tasks are performed using this menu.  It has the following sub-menu options:
+- Users
+- Groups
+- Data Sources
+- Reports
+- Dashboards
+- System configuration
+
+Access is assigned per group and / or per user.  No access is not given by default, and must be explicitly assigned.  The only exception is Admin who has rights to all entities.  
+
+Access to data is controlled by granting rights to Data Sources.  All the Reports based on a this Data Source inherits its access; and similarly the Widgets based on the Report.  A Dashboard can have one or more Data Sources.  When a Dashboard is shared, the recipient may will only see those Widgets where he has access to.  Access assignments are inclusive: if a user has no access to a Report, but belongs to a group that does have access, the user will have access to the Report.  There are no exclusion rights (once included via a group, the user stays included).
+
+// TODO - where does superuser fit in?
+Admin rights are not granted to individual users; users get admin rights when they belong to the Admin group.  
+
+Admin has access to all users, groups, Reports and Dashboards.  Once part of the Admin group, specific access cannot be excluded (its all of nothing).  Admin can reset a user password, but the user will be notified and has to change his password at the next logon.  Admin can also change the system configuration: for example the location of the backend server.  It goes without saying that Admin rights should be used sparingly.
+
+Users, Groups, Reports, Access, etc. exist per environment.  This way one can introduce a new Report into test without the production environment knowing about it.
 
 * Users
 
-A data table of users will be display, with the following buttons built into each row:
-Add / Edit / Delete user.
-Group Membership.
-Access rights to Data Sources.
-Related Dashboards: owned, shared with others, shared by others.
-Message history.
-History of Reports run in a Dashboard.
+A data table of users will be display, with the following columns:
+- Username is the unique username in the system.  In some companies this is called the UserID.  It can contain text and numbers.
+- First Name of the user
+- Nickname: optional.
+- Photo Path: optional.
+- Last logged in: date-time when the user last logged in.
+- Last Report: last report ran by the user.
+- Email: work email address of the user.
+- Cell: optional cell number of the user.
+- Work tel: work telephone number, or extension of the user.
+- Active from: date from when the user has been made active, which can be in the future and can only be done by a user with admin rights.
+- Inactive date: date when the user was made inactive, and can only be done by a user with admin rights.
+- Date Created: date the user record was created, which may be different from the Active from date.
+- Username Last Updated: who last updated this record.
+- Is staff: true if the user is a staff member, thus allowing for guest logins.
+- Is Superuser: true if this use has superuser or admin powers, thus being able to create and delete any user or group.
 
-On registration, only a Username (say max 50 characters with no spaces that must be UNIQUE) and Password are required.  The Username could be the UserID in a big company, or a friendly name in a smaller company.  Adding a user requires the appropriate access rights.
-On clicking Add User, the following popup will appear (the popup for Group is similar with Group-Name and Group-Description) :
+The following context menu is available by right-clicking on a record:
+- Add (a new user)
+- Delete:  A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the InactiveDate field.  An inactive user (and its memberships) can be re-activated again.  Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.
+- Edit (if the user has the appropriate rights)
+- Group Membership: groups to which the user belongs.  A popup form with a picklist is shown.  A user can belong to zero or many groups.  Groups live in a flat structure, with no hierarchy.  So, groups cannot belong to groups.  Groups and how they are created is described in the next section.  Once a group or membership has been editted, the affected users will be send a message.
+- Datasources shows the Datasources to which this user has access.
+- Show Datasources shows all the Datasources.
+- Related Dashboards shows all the Dashboards that this user owns or has access to.
+- Message History: all messages where this user was the Sender or one of the recipients.
+- Report History: reports previously ran by this user.  History of previous activity is not on a separate form, but build into each entity.  This provides a readonly history of all Reports previously requested by the user.  Each Report already processed has a status of Completed Successfully or Failed, with additional information like StartDateTime, CompletionDateTime, ErrorMessage, etc.  When a Report has been submitted, but not yet completed is has a status of Pending.  In case it has been scheduled to only start at a later time, the ScheduledDateTime will be displayed.  Each record in the history has a Requestor, which is the UserName of the user who requested the Report, or scheduled it.
 
-A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the InactiveDate field.  An inactive user (and its memberships) can be re-activated again. 
-Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.  
-If the user belongs to one or more groups, the membership will be either deleted physically or made inactive using the InactiveDate field.  There is no undo button for a physical delete.
-
-Additional user fields are optional, and can be completed by the user himself, or for all users by an Admin person:
-Firstname, Lastname, Nickname, Photo.
-Limited transactional info: last Datetime logged in, last Datetime a Report was run, etc.
-Email address, Cell, Work Telephone, WorkExtension.
-A button for the user to reset his password.  Admin can use this to reset the password for any user.  The new password will be a 4 digit truly random number.  On the next login, the user will be forced to select a new password (no work can be done with this random password at all).  
-
-ActiveFromDate (useful to be able to set in advance), InactiveDate (can only be editted by Admin), DateCreated, DateLastLogin, IsStaff.
-There are also 10 text, 10 date, 10 number and 10 boolean fields that can be customised (the user provides the label and the form validates input according to the data type before saving it).
-
-Group Membership:
-A user can belong to zero or many groups.  Groups live in a flat structure, with no hierarchy.  So, groups cannot belong to groups.
-Users, Groups, Reports, Access, etc. exist per environment.  This way one can introduce a new Report into test without the production environment knowing about it.
-Once a group or membership has been editted, the affected users will be send a message.
-
-Access:
-Access is assigned per group and / or per user.  No access is not given by default, and must be explicitly assigned.  The only exception is Admin who has rights to all entities.
-Access rights are granted to Data Sources.  All the Reports based on a this Data Source inherits its access; and similarly the Widgets based on the Report.  A Dashboard can have one or more Data Sources.  When a Dashboard is shared, the recipient may will only see those Widgets where he has access to.
-Access assignments are inclusive: if a user has no access to a Report, but belongs to a group that does have access, the user will have access to the Report.  There are no exclusion rights (once included via a group, the user stays included).
-Admin rights are not granted to individual users; users get admin rights when they belong to the Admin group.  
-
-Admin has access to all users, groups, Reports and Dashboards.  Once part of the Admin group, specific access cannot be excluded (its all of nothing).
-
-Admin can reset a user password, but the user will be notified and has to change his password at the next logon.
-
-Admin can also change the system configuration: for example the location of the backend server.  It goes without saying that Admin rights should be used sparingly.
-
-History:
-History of previous activity is not on a separate form, but build into each entity.  This provides a readonly history of all Reports previously requested by the user.  Each Report already processed has a status of Completed Successfully or Failed, with additional information like StartDateTime, CompletionDateTime, ErrorMessage, etc.  When a Report has been submitted, but not yet completed is has a status of Pending.  In case it has been scheduled to only start at a later time, the ScheduledDateTime will be displayed.  Each record in the history has a Requestor, which is the UserName of the user who requested the Report, or scheduled it.
+When editting a user record, there is a button to the password.  Admin can use this to reset the password for any user.  The new password will be a 4 digit truly random number.  On the next login, the user will be forced to select a new password (no work can be done with this random password at all).  
 
 * Groups
 The table for groups will have the following buttons:
