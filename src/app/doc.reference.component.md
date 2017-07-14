@@ -148,7 +148,87 @@ Widgets are manipulated with the Widgets tools, on the left of the screen.  The 
 - The Font Size tool changes the font size.
 - The Grid Size tool allows to change the size of the grid.  This is measured in px, a technical measurement (16px is a normal line height).  A good choice is 3.  Note that if the grid size is very big, say 30px, Widgets cannot be placed closer than 30 px of each other (as they will snap to the closest grid point when created or moved).
 
+The Widget container can have any of the following areas:
+- text
+- image
+- graph
+- table
 
+A Widget can be editted with the Widget Editor (the button to open it is in the Widget header).  The Widget Editor shows the left top fo the form, and is a modal form (while open, one cannot work on other forms).  It has the following options:
+- Content, which is used to indicate the 1 - 4 areas that a Widget must contain.
+- Idenfication, which give information to identify the Widget.
+- Behaviour, an optional area to specify how the Widget should behave.
+- Text (optional)
+- Image (optional)
+- Graph (optional)
+- Table (optional)
+
+The Identification info are:
+- Dashboard on which the Widget lives.
+- Dashboard Tab where the Widget is placed.  If a Widget has to be shown on where than one tab, it has to be copied.
+- Title, which is shown in the container.  It is thus important to be brief and concise.
+- Code, an abbreviation of the Name.
+- Name, which is descriptive and complete.
+- Description, with detail.
+
+The Behaviour info are:
+- Export F-Type is the default file type when a Widget is exported.
+- Hyper-TabNr: a Widget can be hyper linked to another Tab.  This is useful for dril down: show a summary Widget, which has a whole tab of detail information should one wants to explore further.
+- Hyper-Widget, when a Widget is linked to a single Widget.
+- Refresh Mode incidates the frequency when a Widget has to be refreshed.  Manual would indicate that the Widget information will only be refreshed when the user so requests.  This makes sense for static, historical information.  OnOpen would mean the information is refreshed each time the Dashboard is opened.  This is useful for daily statistics, where one always wants to see the latest info.  Take caution that the underlying set is small, as it may delay the opening of the Dashboard significantly if very large.  In future the Widget can be refreshed real-time.
+- Refresh Frequency, the interval between refreshes if the frequency is set to real-time.
+- Password is an optional feature to protect information.  Passwords can only be added and deleted by Owners.  Users with the appropriate access rights may see the underlying information if they know the password.
+- Nr Liked is the number of users that likes this Widget.  This is a good indication of how useful the information in the Widget is.
+
+The Data info are:
+- ReportName.  The data used in a Widget is provided by a predefined Report.  See Admin -> Reports for more detail.
+- Rpt Params: optional report parameters.
+- Limit Rows is a limit on the number of data rows to ue in the extraction of the Widget.  This is a good saveguard to prevent an accidental extraction of a million rows into a pie chart.
+- Rest Row: is a useful feature to show proportion when selecting a limited dataset.  For example, show the value traded by the top 5 brokers in a pie chart.  While this is good to know in itself, it does not say what percentage the top 5 makes of the total value traded.  Check Add Rest to add a new row to the data (it will thus return 6 rows) that shows the total for the rest of the brokers.
+
+The Text info are:
+- Text is the text to show in the container.  This text can include HTML tags, if the user is familiar with it.  For example, to make the word August show in bold, one can add the following text: <bold>August</bold>
+- Background indicates the background color of the text area (not the whole container).
+- Text Border is the border around the text area.
+- Text Color is the color of the text.  Chose this in conjunction with the background color, since certain colors dont form a sufficient contrast to be readable.
+- Font Size is the size of the font.
+- Font Weight is the weigt of the text, for example bold.
+- Text Height is the height of the text area (in px)
+- Text Left is the leftmost position of the text area, relative to the container.  0 is the leftmost position.
+- Text Margin is the margin (HTML style) between the text and the container.  It is best to be conservative with this option.
+- Text Padding  is the space (HTML style) between the text and the text border.  It is best to be conservative with this option.
+- Text Position is relative or absolute, and works together with the left and top.
+- Text Align is how the text is aligned (left, center, right) in the text area.
+- Text Top is the position of the top area in px.
+- Text Width is the width of the text area in px.
+
+The Graph info are:
+- Widget Type indicates the type of graph, i.e. Bar Chart.
+- Height is the Height of the Graph area.
+- Width is the Width of the Graph area.
+- Padding is the area around the actual graph and the graph area.
+- X Axis is the field (from the data provided by the Report selected above) shown on the x axis.
+- Y Axis is the field shown on the y axis.
+- Fill Color is the color with which the graph (i.e. bars in the barchar) must be filled.
+- Hover Color is the color when hovering over an item, i.e. an individual bar.
+
+The Table info are:
+- HideHeader is a toggle to show the headers (top row) of the table.
+- Text Color is the color of the text in the table.
+- Nr Cols is the optional number of columns to show from the data.  When this is larger than the total number of columns in the data, all the columns will be shown.
+- Nr Rows is the optional number of rows to show from the data.  It is thus important that the data is sorted correctly in the Report if this option is used.
+- Height is the height of the table area.
+- Width is the width of the table area.
+- Left is the left of the table in px inside the container.
+- Top is the top of the table area in px.
+
+The Image info are:
+- Alt is the alternative text shown when the image is not available.
+- Height is the height of the image.
+- Left is the left of the image, in px inside the container.
+- Source is the source of the image (file name).
+- Top is the top of the image area in px.
+- Width is the width of the image area in px.
 
 The first step is to identify the source of the data: define a Data Source using the Manage menu option tells the system where the data lives, and how how different data portions are related.  
 Describe how to extract the data: define a Report using the Manage menu option will describe how the data must be manipulated and aggregated (i.e. sum the SalesVolume).
