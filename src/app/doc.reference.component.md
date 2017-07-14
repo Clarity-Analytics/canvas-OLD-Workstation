@@ -595,38 +595,16 @@ Personalistion includes:
 
 
 ## 8. Help
+
 Help menu options are:
-Current version of the system (this is needed for support).
-User Manual.
-Backend documentation.
-System installation guidelines (frontend and backend).
-Feedback …
-Backend information (readonly popup form):
-Configuration and status information (running/not) of current backend.
-Available REST APIs with their status (up or not), usage (how to use i.e. required fields, etc) and maybe sample file, sample code, etc.
-
-# Backend
-The frontend does not store any data (other than caching user-related info).  
-The system records will have Deleted / Archived flag.  Thus, the SQL must cater for this.  This is less work than a separate Archive table, and allows for an easy UNDO.  For now the system does not have an Undo button; it will be created quickly once needed.
-Eazl data will not have ANY versioning in the form of EFD & ETD.  If the client has data with this feature, we will write the base Packages to cater for it.
-The backend status provides an elegant way to close the REST (for say maintenance) and send the user a friendly message.
-
-Installation:
-In canvas: 
-git clone https://github.com/BradleyKirton/eazl-rest.git backend  
-Activate the virtual environment
-pip install -r requirements.txt
-Then migrate, makemigrations, migrate
-Loaddate, make sure API running
-To create: python manage.py loaddata fixtures.json 
-
-Overlay Packages:
-Whenever a base package changes,overlay will 
-Automatically compile it with all related queries (which means Reports).
-Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the frontend so that the user cannot run them.
+- System info, for example the current version of the system that is useful for responding to support calls.
+- Feedback: when the user wants to give feedback on the usage of the system, or log a support call.
+- Tutorials: short instruction sets to get going quickly, without elaborate explanations.
+- Reference Guide: this guide.
+- Discussions: in-depth discussion on selected topics.
 
 
-## 2. Design principles
+## 9. Design principles
 
 In designing the software, we took the following principles into consideration:
 * Keep it simple and clean; cut down on clutter.
@@ -651,6 +629,42 @@ In designing the software, we took the following principles into consideration:
 * You dont have to be original – COPY.  
 * Use mockups (Gimp, balsamiq, Ai).
 * Persist; design by definition is messy and requires patience.
+
+
+## 10. Environments
+
+
+
+## 11. Architecture
+
+
+## 12. Backend
+* Data diagram
+* Eazl admin – Django console
+* Overlay package and query structures
+* Overlay task management
+
+The frontend does not store any data (other than caching user-related info).  
+The system records will have Deleted / Archived flag.  Thus, the SQL must cater for this.  This is less work than a separate Archive table, and allows for an easy UNDO.  For now the system does not have an Undo button; it will be created quickly once needed.
+Eazl data will not have ANY versioning in the form of EFD & ETD.  If the client has data with this feature, we will write the base Packages to cater for it.
+The backend status provides an elegant way to close the REST (for say maintenance) and send the user a friendly message.
+
+Installation:
+In canvas: 
+git clone https://github.com/BradleyKirton/eazl-rest.git backend  
+Activate the virtual environment
+pip install -r requirements.txt
+Then migrate, makemigrations, migrate
+Loaddate, make sure API running
+To create: python manage.py loaddata fixtures.json 
+
+Overlay Packages:
+Whenever a base package changes,overlay will 
+Automatically compile it with all related queries (which means Reports).
+Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the frontend so that the user cannot run them.
+
+
+
 
 
 ## 3. Environments
