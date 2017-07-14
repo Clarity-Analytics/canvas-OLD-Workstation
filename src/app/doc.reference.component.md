@@ -399,26 +399,25 @@ File (we provide location and format).
 Web url & say table name.   
 
 * Reports
-The Reports sub-menu option will show a table with the following buttons inside the grid:
-Add / Edit / Delete Report (the form for Reports deviates from the standard table for other entities, due to the complexity of the workflow).  
-Access (users and groups to the underlying Data Source).
-Schedules.
-Parameters.
-Import / Export.
-Report history (who ran it when, including Pending ones).
 
-State: Reports can be suspended, with a user-friendly message that will pop up when used anywhere.
-Access are not explicitly granted to Reports; they inherit the access of the Data Source that they are based on.  Security access is not content sensitive; so it cannot be restricted to a specific department or number of user IDs.  From experience this get really complicated and only needed in specific cases.
-If the underlying Data Source requires parameters, the Report must have at least one default parameter set.  At start, the values are set to the parameter set from the Data Source.  Note that certain parameters may not be editable by the user, and will be included in the Report as it is essential for it to run.
+As mentioned before, Datasources are defined in the backend and represents a (potentially) large block of data with rows and columns.  A report is an extraction from that data.  It may contain all or some rows and columns.  It may also manipulate the data.  For example, the Datasource can be a list of all trades in a given year.  One report can be the value traded by month, resulting in 12 records with 2 columns.  One or more reports can be created on each Datasource.
 
-When selecting Reports (either on the Manage menu option or in Widget creation), a user will only see those Reports that he has access to (i.e. has access to the Data Source) 
-The following are readonly information per Report: 
-Schedules (future dated ones).  These are only the definitions.
-Messages (filtered to the current user, or for all users if an Admin user is looking at it).
-Report History (all previously run Reports); filtered to the current user or all users for an Admin person. 
+The Reports sub-menu option will show a table with the following columns:
+- ID is the unique database ID.
+- Code is a short code.
+- Name is a brief, descriptive name.
+- Description is a detailed description of the report.  This should include guidance on how other users should use it, exceptions and so on.
+- Parameters is an optional field, that is a set of parameters required for this report.
+- DS ID is the ID of the Datasource on which the report is based.
+- DS Parameters is an optional field, that is a set of parameters required for this datasource.
+- Fields
 
-The above exists per environment.  In fact, all the entities (users, groups, Reports, etc) exists per environment.  This way one can introduce a new Report into test without the production environment knowing about it.  Once a Report has been created, the structure can be Exported to a text (JSON format) file.  Reports can be Imported from these files.  If the imported Report does not exist, a new one will be created.  The user performing the action will become the owner of the Report.  If the Report already exists, the result will be the same as a edit action: a new version will be created.  In both cases, the necessary validation will be performed.  If validation fails, the Report will be marked as diry (not runable).  Admin may change the owner of a Report.
-
+The following context menu will be shown when right-clicking on a Report:
+- User Access shows a table with all users that have access to the selected Report.
+- Group Access shows a table with all groups that have access to the selected Report.
+- Report history, including who ran it when as well as the status (for example completed or still pending ones.
+- Create Widget: this is a shortcut to quickly and easily build a Widget on the selected Report.  The user has to provide the Dashboard and Tab where the report has to live, the type of graph (i.e. BarChart), and the fields to show on the X axix and Y axis (where appropriate).
+- Report Builder // TODO
 A Report is defined as a rectangular block of data selected from a Data Source.  It is created by means of the following steps, some of which are optional:
 Select a Data Source (which is a pre-created large block of data, and includes database location(s), database type, defined relationships / business rules between different data sets and optional parameters).  This equates to a base package in Eazl.
 If the Data Source contains a parameter set, a default one must be creatd for the Report.  It will open up with the same values as that of the Data Source parameter set.  Multiple parameter sets can be defined per Data Source; each one will be uniquely identified and useable as the input to a Widget on a Dashboard. 
@@ -427,56 +426,23 @@ Select fields (columns) and rows to show, using filters.
 Group and aggregate (optional).  Note that once grouping is applied, the selected fields to show can only be grouped and aggregated fields, not detail fields.  Also, if aggregated in the Report, the Widget can only use the aggregated fields in the display and cannot drill down to the detail data.  This type of aggregation is done in the backend (using SQL against the database) and useful to reduce very large datasets.
  Sort ASC or DESC on any number of fields (optional).
  Limit the number of rows returned (optional).  This is most useful when used in conjuction with sorting (otherwise the user has no control over which records are returned).
-
-The extraction of the data only happens when the user displays the associated Widget on a Dashboard (or a Dashboard is scheduled).  It is triggered by the frontend asynchronisly, which means that the frontend can continue with other tasks while the data is being extracted.  
-The backend will extract the data, store the results as a Result set (in a backend database) and then notify the user via a Message.  When the user clicks the Show Dashboard button on the Message, the related Dashboard and Widget will be shown.  
-The Widget was formatted at creation.  So, at this point in time the frontend only pours in the data and presents it to the user.
-
-Reports are versioned, and each change (or import) increments the version by one.  The history is kept per version, and so are the future dated schedules.  On editing, the system will validate the Report to ensure the parameters and fields are a subset of its Data Source parameters and fields, and that the Widgets and schedules based on this Report are still valid (uses the same fields, filters, etc).  Reports can only use the latest version of a Data Source.  Widgets do not have versions, and always use the latest version of a Report.
-In reverse, the Eazl backend will validate all Reports whenever a Data Source is changed.
-
 Reports can be created by:
 The Canvas frontend.
 The Import / Export facility for Reports, which will allow someone else to create a Report for a user and let him import it, or to load Reports from the test environment into the production environment.  On importing a new Report from test, the access rights are not imported as well; access in production has to be created and maintained by Admin.
 Similarly, access rights to Data Sources (and thus its Reports) cannot be promoted from test to prod.
 
-The following buttons are presented in the Reports grid:
+Access are not explicitly granted to Reports; they inherit the access of the Data Source that they are based on.  Security access is not content sensitive; so it cannot be restricted to a specific department or number of user IDs.  From experience this get really complicated and only needed in specific cases.
 
-Schedules: Shows a popup form with a table containing future dated and recurring schedules, with limited additional detail like when last the Report was run.  A user with the appropriate rights will be able to Add, Delete and Edit the schedules.
-Activity History: The History shows all times the Report that have been Run before.  It gives the status: Completed, Errorred or Pending.  It also shows the metadata required for each Report (Data Source used, etc), a read-only link to the output Result set and pending Reports being run at the moment (which can be cancelled).
-Access: Shows who (users & groups) have access to this Report.  Access is given to the underlying Data Source.
+If the underlying Data Source requires parameters, the Report must have at least one default parameter set.  At start, the values are set to the parameter set from the Data Source.  Note that certain parameters may not be editable by the user, and will be included in the Report as it is essential for it to run.
 
-Delete: this is used to delete the Report; of course given that the user has rights to do so.  For now, this can only be done by an owner or Admin.  If a Report has never been run before, it will be permanently deleted.  Else, it will be made inactive.
-Edit: Show the form to edit the Report.  If the user does not have rights, the data will be readonly.
-Add New: allows the user to add a new Report.  This is the same form as the Show / Edit form.
-Show All: by default users only see Reports that they have access to.  The Show All checkbox will show all existing Reports.  Reports to which the user do not have access will be dimmed out.
+// TODO - Schedules (future dated ones).  
 
-Search: opens the search form shown below, and afterwards show the results in the table of Reports above.  This is the same as the search button on the Widget.
+The above exists per environment.  In fact, all the entities (users, groups, Reports, etc) exists per environment.  This way one can introduce a new Report into test without the production environment knowing about it.  Once a Report has been created, the structure can be Exported to a text (JSON format) file.  Reports can be Imported from these files.  If the imported Report does not exist, a new one will be created.  The user performing the action will become the owner of the Report.  If the Report already exists, the result will be the same as a edit action: a new version will be created.  In both cases, the necessary validation will be performed.  If validation fails, the Report will be marked as diry (not runable).  Admin may change the owner of a Report.
 
+The extraction of the data only happens when the user displays the associated Widget on a Dashboard (or a Dashboard is scheduled).  It is triggered by the frontend asynchronisly, which means that the frontend can continue with other tasks while the data is being extracted.  The backend will extract the data, store the results as a Result set (in a backend database) and then notify the user via a Message.  When the user clicks the Show Dashboard button on the Message, the related Dashboard and Widget will be shown.  The Widget was formatted at creation.  So, at this point in time the frontend only pours in the data and presents it to the user.
 
-Note that Reports cannot be run from this table – the only way to show data is to create a Dashboard using the Visualise menu option.
-
-Each Report is based on a base package, which knows the metadata (description, datatypes, etc) of all its fields.  Thus, each Report knows (or references) the metadata of the fields it contains. 
-
-The user can search for useful Reports using the following:
-Report info: name, description, bundels, owners, favourites.
-Users with access to a Report.
-Data source info: repo, name, description, databases used, etc.
-Table info: name and description of those used in base package.
-Field info: names, aliases, description, data types, etc.
-
-The Report form is used to add new or edit (or show) existing ones:
-
-Data Source: As provided by the Eazl backend.  This includes the parameter set for the Data Source.
-Parameter set: a Report has to have at least one parameter set if the Data Source has one, else none.  It can have multiple parameter sets.
-Fields: Select Show/Not field in the output with an optional custom heading.
-Filters: Users can select one optional filter per field (=, <>, between, etc.) and all filters are strung together with AND.  Else it gets too complicated.
-
-Grouping on selected fields (optional).
-Aggregation (SUM, AVG, COUNT, etc) on selected fields (optional).  Once one field has been grouped or aggregated, the output can only contain grouped and aggregated fields, and no detail fields.
-Sort (ASC or DESC) on any number of fields (optional).
-Limits: Show Top / Bottom n records (optional).
-Having: a filter applied to an aggregated field.
+Reports are versioned, and each change (or import) increments the version by one.  The history is kept per version, and so are the future dated schedules.  On editing, the system will validate the Report to ensure the parameters and fields are a subset of its Data Source parameters and fields, and that the Widgets and schedules based on this Report are still valid (uses the same fields, filters, etc).  Reports can only use the latest version of a Data Source.  Widgets do not have versions, and always use the latest version of a Report.
+In reverse, the Eazl backend will validate all Reports whenever a Data Source is changed.
 
 For now, all results are stored as a Result set in a Postgress database.  This brings about storage size and performance considerations.  These Result sets are kept for a default period, after which they are deleted.  This period is editable, and can be increased by an Admin person.  Access to Result sets are the same as that of the Report which created it.
 
@@ -484,50 +450,61 @@ Each result set has additional information:
 Event – who ran it when, what version, etc.
 Meta-data – filters and fields used, data types, number of records, run-time, base package used, etc.
 
-Reports can be bundled together into a Report Bundle (a group of Reports).  A Report may belong to zero or many bundles.  The Reports in the bundle are ordered, which determines the sequence in which they are run.  
+// TODO - Report bundles
 
-Each Report added to a bundle has a checkbox: only run this Report if all previous Reports in the bundle have been executed successfully.  The default value is true.  
-
-Each Report in the bundle may use the  same or a different Data Source.  It is possible to schedule a bundle.  This can only be done if the user has access to ALL Reports in the bundle. 
-
-A user can filter the table of Reports on bundles.  This makes it useful to see only related Reports, say all Equity Risk reports.
-Each user can tag Reports as favourites.  The user can also filter the table of Reports on favourites.
-
-The user can have startup parameters to show all Reports in a specific bundle, or all favourite Reports.  This way the user will only start with the most useful Reports when the frontend opens.
-
-* System Reports
+// TODO - System Reports
 After installation, the system contains a number of Reports out of the box.  They are normal Reports, but access to amend them has only been granted to Admin:
+
 List of users (includes number of Data Sources owned, number of Reports owned, number of Dashboards owned, number of Dashboards shared with this user, number of Data Sources to which user has read access, number of groups that his user own, number of groups that this user belongs to).
+
 List of Reports (including owner, number of filters, number of parameter fields, number of fields, number of Dashboards in which Report is used, owner, number of Widgets that use this Report, number of times Report has been run, number of active schedules on this Report, number of Result sets that currently exists for this Report).
 
 List of groups (includes number of Data Sources to which group has rights, number of users, owner, number of Dashboards shared to this group).
+
 List of Dashboards (number of Data Sources used, number of Reports used, owner, number of tabs and Widgets on this Dashboard, number of users shared with, number of groups shared with).
+
 Users per Group (can filter on 1 or more groups, duplicating group name).
 Groups per user (can be filtered on one or more users, duplicating the UserName).
 
 List of users with rights to a Data Source (user, rights, Data Source, direct or via group, duplicating the Data Source).
 List of groups with rights to a Data Source (group, rights, Data Source, duplicating the Data Source).
+
 List of users with access to a Report (inherited from Data Source, direct or via group, duplicating the Report).
+
 List of Data Sources (including repo, number of parameters, number of fields in the Data Source, number of fields used in at least one Report, number of Reports using it, number of Widgets using it, number of Dashboards using it, owner, number of users with rights, number of groups with rights).
 
 List of groups with access to a Report (inherited from Data Source, duplicating the Report).
+
 List of Report bundles (number of Reports inside the bundle, number of Data Sources used).
+
 List of Reports per bundle (can be filtered on one or more bundles, duplicating the Report).
+
 Filters per Report, duplicating the Report.
+
 Fields per Report, duplicating the Report.
+
 Parameters per Report, duplicating the Report.
 
 Data Sources per Dashboard (can be filtered on one or more Dashboards, duplicating the Dashboard).
+
 List of fields per Data Source (can be filtered on field or Data Source, includes number of Reports that it is used in, duplicating the Data Source.
+
 List of fields per Dashboard (can be filtered on one or more Dashboards – includes Data Source of each field, duplicating the Dashboard).
+
 List of Widgets per Dashboard (with Report and Data Source, duplicating the Dashboard).
+
 Filters per Widget, duplicating the Widget.
 
 Fields per Widget, duplicating the Widget.
+
 Parameters per Widget, duplicating the Widget.
+
 Report detail (all detail for one Report).
+
 Dashboard detail (all detail for one Dashboard).
+
 Widget detail (all properties for one Widget).
+
 Current Result sets (can filter on Report and parameters).
 
 
