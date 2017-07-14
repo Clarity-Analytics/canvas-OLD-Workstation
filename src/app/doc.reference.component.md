@@ -96,14 +96,59 @@ Hover the cursor over the Visualise menu optio, and select Dashboard editor.  Fo
 * Dashboard Editor to create new Dashboard, select an existing Dashboard and an advanced filter on Dashboards to show in the dropdown.
 * Widget tools to manage individual Widgets.
 
-To select an existing Dashboard, select one from the dropdown.  In case too many options are presented, one can filter it down using the advanced editor.  Note that the icons on th left have tooltips, which will be shown when the cursor hovers over it.  A Dashboard can have one or more tabs, and it is important to know since the required information may be on another tab in the Dashboard.  It the selected Dashboard only has one tab, this tab will be shown automatically.  In case the Dashboard has more than one tab, one has to select the desire tab from the tabs dropdown.  More actions on tabs are shown just below the tab dropdown:
+![Dashboard Palette](../assets/Dashboard Palette.png)
+
+
+To select an existing Dashboard, select one from the dropdown.  In case too many options are presented, one can filter it down using the advanced editor.  The number in the heading indicats how many of the total number of Dashboards are shown in the dropdown after using the filter.  Note that the icons on the left have tooltips, which will be shown when the cursor hovers over it.  A Dashboard can have one or more tabs, and it is important to know since the required information may be on another tab in the Dashboard.  It the selected Dashboard only has one tab, this tab will be shown automatically.  In case the Dashboard has more than one tab, one has to select the desire tab from the tabs dropdown.  More actions on tabs are shown just below the tab dropdown:
 - edit a dashboard, where a name or description can be amended.
 - add a tab, with a name.
 - delete a tab.  Note that all Widgets on a tab must be deleted before the whole tab can be deleted.
 
-To create a new Dashboard, click on the + sign in the Dashboard Editor to create a new Dashboard.  Canvas will assign a name to it.  In order to rename the Dashboard or change more properties (like who has access to it), please use the Admin -> Dashboards menu option.  To add a new Widget, drag the top left icon in the Widget tools area onto the open space of the Dashboard.  The 
+To create a new Dashboard, click on the + sign in the Dashboard Editor to create a new Dashboard.  Canvas will assign a name to it.  In order to rename the Dashboard or change more properties (like who has access to it), please use the Admin -> Dashboards menu option.  To add a new Widget, drag the top left icon in the Widget tools area onto the open space of the Dashboard.  
 
-The following actions are available in the Widget tools area:
+The Widget has the following areas:
+- Container, which is the box around the Widget.  This container has properties like position, background color and so on.
+- Header, which is used to manipulate the Widget.  
+
+The header of each Widget has the following icons:
+- drag handle.  To move a Widget, select it and then move it around using this handle.
+- Widget Editor button.  Click this button to open the Widget Editor.
+- Delete button.  When clicked, a confirmation message with prompt before permanently deleting the Widget.
+- Like button.  Users can mark invidual Widgets as liked, indicating to other users what they find useful.
+- Lock button.  A Widget can be locked for editing.  The lock is a temporary feature that could be useful during the Dashboard creation process, and indicates that a Widget has been fully completed.
+- short title.  This is useful to show the information shown in each Widget.
+- selected checkbox.  This is only active when a Widget has been selected, by clicking on it. 
+- Comments button.  Users can leave comments on individual Widgets.  Click this button to show the message trail.
+
+Widgets are manipulated with the Widgets tools, on the left of the screen.  The following actions are available in the Widget tools area:
+- Add a new Widget to the Dashboard
+- Left align selected Widgets.  Alignments is only applicable to multiple selected Widgets.  The selection of a Widget is indicated with a check in the right hand top corner.
+- Center align selected Widgets
+- Right align selected Widgets.
+- Set equal horisontal distances between (3 or more) selected Widgets.
+- Increase the horison distance between selected Widgets.
+- Descrease the horison distance between selected Widgets.
+- Align the top of selected Widget containers.
+- Align the middle of selected Widgets.
+- Align the middle of selected Widgets.
+- Set an equal vertical distance between (3 or more) selected Widgets.
+- Increase the vertical distance between selected Widgets.
+- Decrease the vertical distance between selected Widgets.
+- Select all the Widgets on the current Tab of the Dashboard
+- Toggle the Widget header between dark and light.  Remember to select one or more Widgets before using this tool.
+- Copy the selected Widget(s).
+- Bring the selected Widget(s) to the front (on the z-index), which is useful if Widgets are placed partially on top of one another.
+- Background selection opens up an area where the background color of the Dashboard tab, and / or the background image can be set.  If both are set, the image will take preferrence.  This setting, is remembered for future Dashboard Tabs.
+- The snap-to-grid option can be toggled with this tool.  There is an invisible grid at the base of the Dashboard that can be used for alignment.  When the snap-to-grid option is set to on, all Widgets will snap to the closest grid point when manipulated.  
+- The toggle headers on or off tool will show all the Widget headers, or hide them.  It may be useful to show headers during the design process, where Widgets can be dragged, editted, deleted, etc. while these headers dont any value when viewing.  
+- The Widget Background tool allows the background color of the individual Widget to be modified.  Tranparent is a valid color selection, thus allowing one to 'see through' a Widget.
+- The Widget border tool allows the user to set the border of the Widget container.  Valid options include None, thin black line and so on.
+- The Widget box shadow tool can be used to give the Widget container an optional shadow.
+- The Widget color tool can be used to change the color of the text in the container.
+- The Font Size tool changes the font size.
+- The Grid Size tool allows to change the size of the grid.  This is measured in px, a technical measurement (16px is a normal line height).  A good choice is 3.  Note that if the grid size is very big, say 30px, Widgets cannot be placed closer than 30 px of each other (as they will snap to the closest grid point when created or moved).
+
+
 
 The first step is to identify the source of the data: define a Data Source using the Manage menu option tells the system where the data lives, and how how different data portions are related.  
 Describe how to extract the data: define a Report using the Manage menu option will describe how the data must be manipulated and aggregated (i.e. sum the SalesVolume).
