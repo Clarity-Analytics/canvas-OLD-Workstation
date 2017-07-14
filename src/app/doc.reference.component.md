@@ -633,6 +633,15 @@ In designing the software, we took the following principles into consideration:
 
 ## 10. Environments
 
+It is important to separate develop and test from production.  In order to achieve this, we use environments.  An environment is built on a hardware platform, and consists of a backend (a collection of databases that may be accessed, users and groups, associated security access, configuration parameters like the url for REST API, etc. ) and a web-based frontend (which may be located on a different set of hardware).
+
+Environment information (like access) is kept by the backend, from where the frontend reads it.  For production, the links are fixed with no user option to change it.  For test, the workspace (frontend) can read the list of available environments from the backend, and the user can select one to work with.  No further information is kept about it in the workspace.
+
+One can copy and also sync the details (users, access, etc) from an existing environment.  That way, it is one click to get a new environment up and running.  In order to ensure consistent data quality, the following configurations are possible:
+* Prod environment (prod databases and third party read-only databases) that lives on a hardware configuration, and linked to a prod version of the frontend.  This prod-prod setup is done at installation (by us) and cannot be changed.
+* A test environment (test databases and potential third party read-only databases) lives on a hardware configuration, and linked to a test frontend. 
+
+A test environment prefixes all output with TEST, for example to an ftp, url, folder or email (subject and attachment).
 
 
 ## 11. Architecture
@@ -667,16 +676,6 @@ Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the 
 
 
 
-## 3. Environments
-It is important to separate develop and test from production.  In order to achieve this, we use environments.  An environment is built on a hardware platform, and consists of a backend (a collection of databases that may be accessed, users and groups, associated security access, configuration parameters like the url for REST API, etc. ) and a web-based frontend (which may be located on a different set of hardware).
-
-Environment information (like access) is kept by the backend, from where the frontend reads it.  For production, the links are fixed with no user option to change it.  For test, the workspace (frontend) can read the list of available environments from the backend, and the user can select one to work with.  No further information is kept about it in the workspace.
-
-One can copy and also sync the details (users, access, etc) from an existing environment.  That way, it is one click to get a new environment up and running.  In order to ensure consistent data quality, the following configurations are possible:
-* Prod environment (prod databases and third party read-only databases) that lives on a hardware configuration, and linked to a prod version of the frontend.  This prod-prod setup is done at installation (by us) and cannot be changed.
-* A test environment (test databases and potential third party read-only databases) lives on a hardware configuration, and linked to a test frontend. 
-
-A test environment prefixes all output with TEST, for example to an ftp, url, folder or email (subject and attachment).
 
 
 ## 4. Architecture
