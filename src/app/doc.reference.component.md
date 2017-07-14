@@ -646,40 +646,6 @@ A test environment prefixes all output with TEST, for example to an ftp, url, fo
 
 ## 11. Architecture
 
-
-## 12. Backend
-* Data diagram
-* Eazl admin – Django console
-* Overlay package and query structures
-* Overlay task management
-
-The frontend does not store any data (other than caching user-related info).  
-The system records will have Deleted / Archived flag.  Thus, the SQL must cater for this.  This is less work than a separate Archive table, and allows for an easy UNDO.  For now the system does not have an Undo button; it will be created quickly once needed.
-Eazl data will not have ANY versioning in the form of EFD & ETD.  If the client has data with this feature, we will write the base Packages to cater for it.
-The backend status provides an elegant way to close the REST (for say maintenance) and send the user a friendly message.
-
-Installation:
-In canvas: 
-git clone https://github.com/BradleyKirton/eazl-rest.git backend  
-Activate the virtual environment
-pip install -r requirements.txt
-Then migrate, makemigrations, migrate
-Loaddate, make sure API running
-To create: python manage.py loaddata fixtures.json 
-
-Overlay Packages:
-Whenever a base package changes,overlay will 
-Automatically compile it with all related queries (which means Reports).
-Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the frontend so that the user cannot run them.
-
-
-
-
-
-
-
-## 4. Architecture
-
 There are 3 distinct software components that work together to render the data:
 * Canvas is the frontend where data is visualised, either in tabular or graphical form
 * Eazl is the RESTful API, to which Canvas connects
@@ -692,8 +658,7 @@ There are two types of services / connections:
 
 System data is read at startup, and cached.  This is done in order to minimise the number of database queries.  When this data is changed on the server, a message is sent to the frontend, and the latest dataset is read again from the server.
 
-
-## Canvas Development installation
+The Canvas Development installation
 
 This is all you that a user needs from this section.  
 
@@ -726,6 +691,41 @@ Get tar from https://code.visualstudio.com/updates/v1_10
 Upgrade  / Add typings for Vega (used in TS) – see http://definitelytyped.org/ for detail on classes, etc:
 sudo npm install --save @types/lodash
 Alternatively: try /// <reference path="..." />, see www.typescriptlang.org
+
+
+## 12. Backend
+* Data diagram
+* Eazl admin – Django console
+* Overlay package and query structures
+* Overlay task management
+
+The frontend does not store any data (other than caching user-related info).  
+The system records will have Deleted / Archived flag.  Thus, the SQL must cater for this.  This is less work than a separate Archive table, and allows for an easy UNDO.  For now the system does not have an Undo button; it will be created quickly once needed.
+Eazl data will not have ANY versioning in the form of EFD & ETD.  If the client has data with this feature, we will write the base Packages to cater for it.
+The backend status provides an elegant way to close the REST (for say maintenance) and send the user a friendly message.
+
+Installation:
+In canvas: 
+git clone https://github.com/BradleyKirton/eazl-rest.git backend  
+Activate the virtual environment
+pip install -r requirements.txt
+Then migrate, makemigrations, migrate
+Loaddate, make sure API running
+To create: python manage.py loaddata fixtures.json 
+
+Overlay Packages:
+Whenever a base package changes,overlay will 
+Automatically compile it with all related queries (which means Reports).
+Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the frontend so that the user cannot run them.
+
+
+
+
+
+
+
+
+
 
 _____
 
