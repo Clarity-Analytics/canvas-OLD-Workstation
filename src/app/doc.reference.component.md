@@ -572,30 +572,29 @@ A database itself is neither production nor test; it always belongs to one or mo
 There is no visual clue when in a production environment, and a very clear one when in a test environment (similar to but nicer than green-screen). 
 
 
-# My Account
+## 7. My Account
 
 The My Account menu option allows personalisation of the system. The following sub-menu options are available:
-Who am I / Current UserName and DateTime logged in.
-Logout (will show the initial login form, and will not proceed until successfully logged in again).
-My Profile:
-User Detail (a user can edit all details via a popup form except the blocked ones like UserName, which can only be editted by Admin).  Fields are firstname, lastname, etc.
-Change password, via a popup form.
-My group membership (popup readonly form of the groups the current user belong to).
-My Data Source access (popup readonly form of actions that the current user is allowed per Data Source).
-My Report Ownership (popup readonly form of the Reports that the current user has created).
-My Dashboard Ownership (popup readonly form of the Dashboards that the current user has created, indicating which ones that have shared with others).
-My Shared Dashboards (Dashboards that others have shared with me).
-My History (popup readonly form of previous activities, i.e. Reports run).
-Personalisation (how my system should function):
-My startup options: Dashboard to open and show when the frontend starts up.
-My environment (test, prod), and option to select a new environment.  All existing Dashboards, Reports, etc will be closed, and the new account profile will be read from the selected environment.  The system will then configure accordingly.  Status information about all environments is also available under the Help menu option.
-My frontend colour scheme: these are pre-created via a CSS file, and the user can select a file from here.
-Default Widget configuration, which determines what buttons and information is shown on Widgets when created.
-Average runtime for which a message is displayed.
-Default Report filters (bundle, my favourites only, name, etc) to apply whenever opening the table of Reports, Dashboard to open at startup, etc.
+- Who am I / Current UserName and DateTime logged in.
+- Logout (will show the initial login form, and will not proceed until successfully logged in again).  All cached data (data stored locally from the server) will be cleared.
+- My Profile: User Detail (a user can edit all details via a popup form except the blocked ones like UserName, which can only be editted by Admin).  Fields are firstname, lastname, etc.
+Change password, via a popup form.  It also shows a table with my group membership (popup readonly form of the groups the current user belong to), my Data Source access (popup readonly form of actions that the current user is allowed per Data Source), my Report Ownership (popup readonly form of the Reports that the current user has created), my Dashboard Ownership (popup readonly form of the Dashboards that the current user has created, indicating which ones that have shared with others), my Shared Dashboards (Dashboards that others have shared with me) and my History (popup readonly form of previous activities, i.e. Reports run).
+- Personalisation is where the user indicates how the system should function. 
+
+Personalistion includes:
+- Startup Dashboard: optional Dashboard to open and show when the frontend starts up.
+- Environment (test, prod), and option to select a new environment.  All existing Dashboards, Reports, etc will be closed, and the new account profile will be read from the selected environment.  The system will then configure accordingly.  Status information about all environments is also available under the Help menu option.
+- Average Runtime: the system stores average historic runtimes per report.  When this is larger that the Average Runtime value, the user will be warn and prompted if he is certain to proceed.
+- Colour Scheme applicable to the System.
+- Widget Config is the default Widget configuration used when a new Widget is created.
+- RptFilters is the default Report filters to apply whenever opening the table of Reports, Dashboard to open at startup, etc.
+- growlSticky: when true, growl messages (shown in the right top corner) will not disappear automatically, and the user has to close each one manually.
+- GrowlLife is the duration in seconds of non sticky growl messages.
+- Grid Size: is the size of the grid in px to use.
+- SnapToGrid: when true, Widgets snap to the grid when created or moved.
 
 
-# Help
+## 8. Help
 Help menu options are:
 Current version of the system (this is needed for support).
 User Manual.
