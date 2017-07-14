@@ -557,25 +557,17 @@ Dashboard Shared with (list of users; either ReadOnly, Full).  ReadOnly access m
 Dashboard Mode: Tab mode will show the Dashboard with diferent tabs (allowing for modification), while View mode will show the Dashboard as a slideshow (and no option to modify).  The slidehow is a view-only presentation of all the Widgets on all the tabs onto one big canvas.  By default, the tabs will be organised below each other, with the maximum number of columns are per the user default.  This user has freedom to arrange the Widgets dynamically with the mouse.  The user has the following buttons for the slideshow: Print, Show Comments or Show as full screen (allowing for the Dashboard to be used in a presentation).
 
 * System Configuration
-The system configuration includes all the necessary options and actions to make the system work.  It is typically done once off, and not changed unless something in the environment changes (i.e. servers renamed).  It has the following options:
-The following white-labelling can be amended by a person with Admin rights:
-Company Logo and Company Name.
-Company theme (planned to be a CSS file).
-Testing: Not sure what to do here ???
-Report (query builder): No idea how …. ??
-System wide parameters:
-REST base url, which is set per environement.
-Default period to keep Result sets, after which it will automatically be deleted.  The default value at installation is 1 day.
-Max size for Result sets.  When a new Report is added and the total storage is above this max size, result sets will be deleted accordingly (could be all of them, except the last one).
-Maximum number of rows per wdiget in a Dashboard Widget (i.e. max 15 lines per pie chart).
-Default dimensions of a graphical Dashboard: 3 columns by 0 (infinite) rows.
-System wide parameters (continues):
-Average runtime for which a message is displayed (user will be prompted Y/N if the average runtime of a Report is larger than this).
-Keep and read user credentials at startup: No (each user has to login each time), Yes.  
-Environments:
+The system configuration includes all the necessary options and actions to make the system work.  It is typically done once off, and not changed unless something in the environment changes (i.e. servers renamed).  The following information can be editted:
+- Company Name
+- Company Logo
+- Backend url: this is the IP address of Eazl.
+- Days to Keep: this is the default period to keep Result sets, after which it will automatically be deleted.  The default value at installation is 1 day.
+- Max RowsData is the maximum allowed size for Result sets.  When a new Report is added and the total storage is above this max size, result sets will be deleted accordingly (could be all of them, except the last one).
+- Max RowsGraph is the maximum number of rows that will be returned for all graphs.  While this is intended as a safeguard against huge datasets in graphs, it can cause irretation if set too small.
+
+A word about Environments:
 Duplicate Environments: all or some entities (users, groups, etc) can be copied from an existing environment.  This import ask for advice when the same entity already exists in the destination system (ignore/ replace for one/all).
 Edit the enviroment (production or a test environment) with all parameters.  All the data for environments is stored in the Eazl backend (REST API), including the data it contains, the database locations, database connection strings, etc.  Only Admin users can change the environment.
-Environments (continues):
 A database itself is neither production nor test; it always belongs to one or more environments (which determines whether it is production or test).  So, if there is only one readonly copy of a third party database (either too large or not possible to create a test version), it may be linked to test and production at the same time.  Another example: towards the end of testing a large project, the databases could become production; so the same database can be both test or production.
 There is no visual clue when in a production environment, and a very clear one when in a test environment (similar to but nicer than green-screen). 
 
