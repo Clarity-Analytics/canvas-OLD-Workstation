@@ -341,44 +341,41 @@ The following context menu is available by right-clicking on a record:
 When editting a user record, there is a button to the password.  Admin can use this to reset the password for any user.  The new password will be a 4 digit truly random number.  On the next login, the user will be forced to select a new password (no work can be done with this random password at all).  
 
 * Groups
-The table for groups will have the following buttons:
 
-Add group.
-Edit group.
-Delete group.
-Users-in-this-Group.  Group membership can be editted on the user or the group forms.
-Data Source access.
-Shared Dashboards.
+As noted before, groups have a flat structure: users can belong to zero or more groups, but groups cannot belong to other groups.  Also remember that the access is inclusive: if a user belongs to two different groups, he has the full rights of both groups.  The group structure is flat, while most companies have a hierarchy of groups or departments.  Given the complexity and amount of admin involved, we will not try to mimic the company structure using groups.  We assume that the company structure is available for HR reporting, and up to date.  It is the user’s decision how to link groups to the hierarchy, if at all.  
+Canvas has no functionality to import or sync to the company hierarchy.  Groups and group member ship can be exported to Excel as per usual, where it can be compared if necessary.
+It also does not cater for restructuring (where for example all users from Group A and Group B are merged into Group C).
 
-A group can contain zero or more users.  A user can belong to zero or many groups.  Groups are flat, with no hierarchy.
-The Add Group and Delete Group buttons function exactly the same as the Add User or Delete User buttons.
+The table for groups has the following columsn:
+- ID (unique)
+- Name, for example HR, Sales, etc.
+- Description: detailed description.
+
+The following context menu will be displayed when one right-clicks on a group record:
+- Add
+- Edit
+- Delete
+- Users in Group: shows a picklist of users that belongs to a group.
+- Related Datasources to which the group has access.
+
 The following groups are permanent and not deleteable:
 Admin – can be used to easily manage admin access.  By default, no one belongs to the Admin group.
 Everyone – simplified access to innocent Reports. On creation, a user belongs by default to this group.  This membership can be deleted.  Only the owner has access to a new Report, other users or Everyone has to be explicitly added.
 
-The Edit Group button brings up a form with group properties and access rights, similar to Edit User.
-The Users-in-this-Group button brings up a form similar to the Group Membership form: it shows a list of all users and whether they belong to this group or not.  It also allows toggling of membership.  Note that one can edit on both forms (User or Group), and it will reflect on the other one.
-The Data Source Access and Related Dashboards buttons are similar to those for users.  
-There are no built-in groups for roles (i.e. Can-manage-Reports, Can-manage-Dashboard, etc) – each company will decide on the groups required and create accordingly.
-
-The group structure is flat, while most companies have a hierarchy of groups or departments.  Given the complexity and amount of admin involved, we will not try to mimic the company structure using groups.  We assume that the company structure is available for HR reporting, and up to date.  It is the user’s decision how to link groups to the hierarchy, if at all.  
-Canvas has no functionality to import or sync to the company hierarchy.  Groups and group member ship can be exported to Excel as per usual, where it can be compared if necessary.
-It also does not cater for restructuring (where for example all users from Group A and Group B are merged into Group C).
-
+// TODO - refine
 Each group has an owner, which is the creator.  This owner and Admin are the only ones that can add / delete other users as owners.  These owners manage group membership.
 Each group can be marked a public (visible by all users) or private (only visible to owners and members).  The latter is a similar feature to groups on WhatsApp, and equates to a personal distribution list.  All lists can be edited and deleted by an Admin person.  Once a group or membership has been editted, the affected users will be send a message.
 Currently Canvas does not access Active Directory (users or groups) and does not authenticate against it.
+
+* Datasources
+A Data Source (called a base package in the backend) is a large block of data from which Reports are constructed.  In the case of a list of codes, the Data Source will be used as is in the Reports (select all records), while it will be too large in some cases (and the Report will have to filter down the data to selected columns and rows, say to a particular month). 
+It is the basic building block for overlay, which is a backend component.  Each Data Source is versioned, keeping all associated data for each version.  When a Data Source changes, it will recompile all Reports (queries) based on it and mark the bad / dirty ones (which cannot be run).
 
 Data Sources are defined in the backend.  In techno speak: they are SQL packages that collect data from one or more databases or other sources, and collate it in a rectangular block of data.  The table of Data Sources has the following actions:
 Add / Edit / Delete a Data Source.
 Manage parameters via a popup form.
 Each Data Source has a maximum one set of parameters, it is however optional.
 The parameters are embedded filters that are required to make the SQL work.  It also serves to limit the amount of data returned.
-
-
-* Datasources
-A Data Source (called a base package in the backend) is a large block of data from which Reports are constructed.  In the case of a list of codes, the Data Source will be used as is in the Reports (select all records), while it will be too large in some cases (and the Report will have to filter down the data to selected columns and rows, say to a particular month). 
-It is the basic building block for overlay, which is a backend component.  Each Data Source is versioned, keeping all associated data for each version.  When a Data Source changes, it will recompile all Reports (queries) based on it and mark the bad / dirty ones (which cannot be run).
 
 The frontend provides basic information on Data Sources from the backend:
 List of Data Sources with information like databases, connections, etc.
