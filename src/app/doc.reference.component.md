@@ -368,28 +368,32 @@ Each group can be marked a public (visible by all users) or private (only visibl
 Currently Canvas does not access Active Directory (users or groups) and does not authenticate against it.
 
 * Datasources
-A Data Source (called a base package in the backend) is a large block of data from which Reports are constructed.  In the case of a list of codes, the Data Source will be used as is in the Reports (select all records), while it will be too large in some cases (and the Report will have to filter down the data to selected columns and rows, say to a particular month). 
-It is the basic building block for overlay, which is a backend component.  Each Data Source is versioned, keeping all associated data for each version.  When a Data Source changes, it will recompile all Reports (queries) based on it and mark the bad / dirty ones (which cannot be run).
 
-Data Sources are defined in the backend.  In techno speak: they are SQL packages that collect data from one or more databases or other sources, and collate it in a rectangular block of data.  The table of Data Sources has the following actions:
-Add / Edit / Delete a Data Source.
-Manage parameters via a popup form.
+A Data Source (called a base package in the backend) is a large block of data from which Reports are constructed.  In techno speak: they are SQL packages that collect data from one or more databases or other sources, and collate it in a rectangular block of data.  The Datasource thus defines the universe of information to work with.  A report is an extraction from a Datasource.  For example, in the case of a list of codes, the Datasource will be used as is in the Reports (select all records), while it will be too large in some cases (and the Report will have to filter down the data to selected columns and rows, say to a particular month). 
+
+The Datasource is the basic building block for overlay, which is a backend component.  Each Data Source is versioned, keeping all associated data for each version.  When a Data Source changes, it will recompile all Reports (queries) based on it and mark the bad / dirty ones (which cannot be run).
+
+When the Datasource sub-menu option is chosen, a grid is shown with the following fields:
+ - ID
+ - Name
+ - Description
+
+The following context menu is shown by right-clicking on a Datasource in the grid:
+- User Access shows a picklist to add or remove users that has access to this Datasource.
+- List User Access shows a grid with all users that have acces to this Datasource.  It is useful for an overall view, and also allows the export to a CSV file.
+- Group Membership shows a picklist to add or remove groups that has access to this Datasource.
+- List Group Access shows a grid with all groups that have acces to this Datasource.  It is useful for an overall view, and also allows the export to a CSV file.
+- Related Reports shows a table of all the reports that are based on the selected Datasource.
+
+
 Each Data Source has a maximum one set of parameters, it is however optional.
 The parameters are embedded filters that are required to make the SQL work.  It also serves to limit the amount of data returned.
 
-The frontend provides basic information on Data Sources from the backend:
-List of Data Sources with information like databases, connections, etc.
-State (compiled, or compile errors).
-Delta between two different Data Sources (base packages) or two different versions of the same Data Source.
-Delta between two different queries, making it easy to understand what is different, or in case one won’t compile. 
-Data issues per Data Source, which can be stored per Data Source, per table or per table & field.  Each issue has a Logger-UserName, DateTime, Description.  Issues can be added, deleted, edited. 
-
-
+// TODO - add ReportBuilder stuffies here once done
 The SQL for a Data Source is created outside of Canvas.  Data Source may require parameters and default values for some fields; indicating which are changeable by users.  Examples will be a date range for very large amounts of data.  Some values will be set conservatively to ensure that a Report does not return 1bn rows if the user does not enter a value.
 The system stores a list of all fields.  This can be supplemented, for example: field description (allowing to build a data dictionary if this is not available in the underlying database), quality of the data, and so on.
 
-The Data Source is supplied by the backend (Eazl REST API with data provided by the overlay module).
-In future, overlay will have a generic feature to read from the following (constructed by us, or simply available in Canvas by the use of basic parameters like file name and file format, or table and field names):
+The Data Source is supplied by the backend (Eazl REST API with data provided by the overlay module).  In future, overlay will have a generic feature to read from the following (constructed by us, or simply available in Canvas by the use of basic parameters like file name and file format, or table and field names):
 Database (provide connection string and SQL / table and field names and JOINs).  
 File (we provide location and format).
 Web url & say table name.   
