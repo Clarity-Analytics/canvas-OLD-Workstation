@@ -155,7 +155,7 @@ export class CDAL {
         } else {
             userWorking.isSuperUser = false;
         }
-
+console.log('CDAL eazlUser.profile', eazlUser.profile)
         if (eazlUser.profile != null) {
 
             if (eazlUser.profile.profile_picture != null) {

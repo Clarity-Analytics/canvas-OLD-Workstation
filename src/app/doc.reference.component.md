@@ -85,6 +85,10 @@ On startup of Canvas a login form will be presented, requesting a username and p
 
 Once logged in successfully, the user will be presented with a single form containing a menu at the top.  The menu is adapted for access rights of the user, and inaccessable menu options are dimmed out.  This form will remain in focus, showing different parts of the system as the user clicks the menu options (in techno-speack, Canvas is a SPA or Single Page Application which enhances the user experience).
 
+A menu with the following options is displayed at the top of the page:
+
+|  Visualise  |  Collaborate  | Manage |  My Account  |  Help  |
+
 
 ## 4. Visualisation
 
@@ -248,8 +252,11 @@ A key objective of the system is to make collaboration between users easier.  In
 - Widgets allows for comments by users.
 
 The Collaboration menu option has two sub options:
-* New Messages
-* Show Messages
+
+|   Visualise   |
+|---------------|
+| New Messages  |
+| Show Messages |
 
 The New Messages allows the user to enter the following information:
 - Subject
@@ -290,12 +297,15 @@ Each messages can be marked as Read or UnRead by right-clicking on it.
 ## 6. Manage / Admin
 
 Administrative tasks are performed using this menu.  It has the following sub-menu options:
-- Users
-- Groups
-- Data Sources
-- Reports
-- Dashboards
-- System configuration
+
+|   Manage              |
+|-----------------------|
+|  Users                |
+|  Groups               |
+|  Data Sources         |
+|  Reports              |
+|  Dashboards           |
+|  System configuration |
 
 Access is assigned per group and / or per user.  No access is not given by default, and must be explicitly assigned.  The only exception is Admin who has rights to all entities.  
 
@@ -575,6 +585,14 @@ There is no visual clue when in a production environment, and a very clear one w
 ## 7. My Account
 
 The My Account menu option allows personalisation of the system. The following sub-menu options are available:
+
+|   My Account      |
+|-------------------|
+|  Who Am I         |
+|  Logout           |
+|  My Profile       |
+|  Personalisation  |
+
 - Who am I / Current UserName and DateTime logged in.
 - Logout (will show the initial login form, and will not proceed until successfully logged in again).  All cached data (data stored locally from the server) will be cleared.
 - My Profile: User Detail (a user can edit all details via a popup form except the blocked ones like UserName, which can only be editted by Admin).  Fields are firstname, lastname, etc.
@@ -597,6 +615,15 @@ Personalistion includes:
 ## 8. Help
 
 Help menu options are:
+
+|   Help            |
+|-------------------|
+|  System Info      |
+|  Feedback         |
+|  Tutorials        |
+|  Reference Guide  |
+|  Discussions      |
+
 - System info, for example the current version of the system that is useful for responding to support calls.
 - Feedback: when the user wants to give feedback on the usage of the system, or log a support call.
 - Tutorials: short instruction sets to get going quickly, without elaborate explanations.
@@ -616,7 +643,7 @@ In designing the software, we took the following principles into consideration:
 2. use neutral colours and one bright colour for focus
 3. use an established colour palette
 * Fonts: 
-1.only use a few different ones
+1. only use a few different ones
 2. avoid fancy fonts  
 3. vary bold and italic to differentiate stuff
 * As few levels of menus & forms as possible.
@@ -717,47 +744,3 @@ Overlay Packages:
 Whenever a base package changes,overlay will 
 Automatically compile it with all related queries (which means Reports).
 Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the frontend so that the user cannot run them.
-
-
-
-
-
-
-
-
-
-
-
-
-_____
-
-# MD cheatsheet
-
-
-> This block quote is here for your information.
-
-
-
-|              |          Grouping           ||
-| First Header | Second Header | Third Header |
-| ------------ | :-----------: | -----------: |
-| Content      |          *Long Cell*        ||
-| Content      |   **Cell**    |         Cell |
-
-| New section  |     More      |         Data |
-| And more     |            And more         ||
-[MultiMarkdown Table]
-
-
-~~Strikethrough~~
-
-|  Tables  |      Are      | Cool |
-|----------|:-------------:|-----:|
-| col 1 is |  left-aligned | $100 |
-| col 2 is |    centered   |  $52 |
-| col 3 is | right-aligned |   $9 |
-
-
-[⋅] Unchecked Item
-
-[X] Checked Item

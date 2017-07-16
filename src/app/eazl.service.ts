@@ -7382,10 +7382,11 @@ export class EazlService implements OnInit {
                 let cellNumberWorking: string;
                 let workTelephoneNumberWorking: string;
                 let photoPathWorking: string;
+console.log('route', (`${this.route}`))                
                 this.get<EazlUser>(`${this.route}`)
                     .subscribe(
                         (eazlUser) => {
-
+console.log('eazlUser',eazlUser)
                             // Loop on Array returned, convert to Canvas format into local Array
                             for (var i = 0; i < eazlUser.length; i++) {
                                 let userSingle = new User;
@@ -7396,7 +7397,7 @@ export class EazlService implements OnInit {
 
                         // Replace
                         this.users = usersWorking;
-
+console.log('Eazl XXXXXXXXXX users', this.users)
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataUser = false;
                         }
