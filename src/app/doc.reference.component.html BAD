@@ -1,0 +1,758 @@
+<h1>Reference Guide for Canvas</h1>
+<p>This guide aims to provide technical descriptions of the machinery and how to operate it.</p>
+<h2>Table of Contentt</h2>
+<ol>
+<li>Overview</li>
+<li>Installation</li>
+<li>Login</li>
+<li>Visualisation</li>
+</ol>
+<ul>
+<li>Dashboard Editor</li>
+<li>Widget Editor</li>
+</ul>
+<ol start="5">
+<li>Collaboration</li>
+</ol>
+<ul>
+<li>New messages</li>
+<li>View messages</li>
+</ul>
+<ol start="6">
+<li>Manage / Admin</li>
+</ol>
+<ul>
+<li>Users</li>
+<li>Groups</li>
+<li>Datasources</li>
+<li>Reports</li>
+<li>Dashboard Manager</li>
+<li>System Configuration</li>
+</ul>
+<ol start="7">
+<li>My Account</li>
+</ol>
+<ul>
+<li>Who am I</li>
+<li>Logout</li>
+<li>Profile</li>
+<li>Personalation</li>
+</ul>
+<ol start="8">
+<li>Help</li>
+</ol>
+<ul>
+<li>System info</li>
+<li>Feedback</li>
+<li>Tutorials</li>
+<li>Reference Guide</li>
+<li>Discussions</li>
+</ul>
+<ol start="9">
+<li>Design principles</li>
+<li>Environments</li>
+<li>Architecture</li>
+<li>Backend</li>
+</ol>
+<ul>
+<li>Data diagram</li>
+<li>Eazl admin – Django console</li>
+<li>Overlay package and query structures</li>
+<li>Overlay task management</li>
+</ul>
+<h2>1. Overview</h2>
+<p>Our purpose is to create a workspace for knowledge workers to visualise any existing data sources in order to obtain information, understanding and insight, with easy collaboration.  Just like a canvas provides a painter with a workspace, our Canvas provides a knowledge worker with a working space.</p>
+<p>Canvas is a web-based frontend which makes it easy to extract, manipulate and visualise data.  Here the user can create and manage workspaces, each called a Dashboard.  The Canvas Dashboard can be used in different ways, for example:</p>
+<ul>
+<li>A novice user can easily ran an existing Report with a single click.</li>
+<li>One can create a Dashboard with graphs to summarise monthly management information.</li>
+<li>A more experienced user can create new Reports.</li>
+<li>Users can collaborate with Messages and while sharing the same content.</li>
+<li>It is easy to extract and format data used by third party packages.</li>
+</ul>
+<p>Data is visualised on the Dashboard by means of one or more Widgets.  Each Widget can contain text, tables, graphs or images.  Canvas provide tools to create and easily customise Widgets.  The data shown in the Widget is extracted from a Datasource.  Widget templates can be created to facilitate the creation of new Widgets.  In addition, a user can create very sophisticated graphical presentation using custom code.</p>
+<p>A Datasource is any piece of data in computer readable format, with associated meta-data (description that tells us more about the format and content of the data).  The Data Sources can be structured (rows and columns) or unstructured data (i.e. documents).  Examples are company databases, text files, Excel spreadsheets, external databases, web sites and even streaming data.  Inherent to our solutions is the provision of new data sources, data cleansing and data hygiene.</p>
+<p>A key feature of Canvas is collaboration, making it easy for users to discuss results and add comments.  Additional automation is included, for example all results can be scheduled and exported to other systems (like Excel). There is integration with other products, like Python Notebooks.  Other features include:</p>
+<ul>
+<li>Share dashboards with team members, mark your favourite dashboards</li>
+<li>Schedule the dashboards as email reports daily/weekly/monthly</li>
+<li>Export chart widgets as image or export the data in CSV format, ability to even obtain raw data for widget in CSV format</li>
+<li>Compare data for two date ranges, allows to visualise the comparative performance for two time periods</li>
+<li>Explore data allows to play with data and visualisations, very helpful for exploring the datasets without need to create widgets or dashboards</li>
+<li>Business Alerting allows ability to define rules on metrics that will trigger alert, very useful to keep check of drastic drop/increase in any metric</li>
+<li>Data extracts provides capability to get new dataset in the metric store by writing a SQL on top of granular data in the data warehouse</li>
+<li>Custom drill-downs, conditional formatting, derived metrics etc. are the customised features that helps more with data visualisations</li>
+</ul>
+<p>Data Sources are provided by Eazl (which is the backend REST API in techno speack).  This loosely coupled architecture make it possible for other applications to connect to Eazl and extract data.  The solution provide admin functionality to manage users, groups, access and so on.</p>
+<h2>2. Installation</h2>
+<p>Canvas is written in Angular and Typescript, and installation for a user is a single instruction:
+// TODO - after build, finalise this whole section !!!</p>
+<p>Create datasources, reports and users as described in the admin section of the document.  Assign access where required.  Create or import Dashboards via Canvas.</p>
+<p>The above assumes that you are connected to an Eazl server.  The instructions to install a new server are provided towards the end of the document.</p>
+<h2>3. Login</h2>
+<p>On startup of Canvas a login form will be presented, requesting a username and password.  These must have been created before by the system administrator.  The password is case sensitive, and the user will remain logged in until he closes the tab in the browser.  When the tab is re-opened, he / she will have to log in again.</p>
+<p>Once logged in successfully, the user will be presented with a single form containing a menu at the top.  The menu is adapted for access rights of the user, and inaccessable menu options are dimmed out.  This form will remain in focus, showing different parts of the system as the user clicks the menu options (in techno-speack, Canvas is a SPA or Single Page Application which enhances the user experience).</p>
+<p>A menu with the following options is displayed at the top of the page:</p>
+<p>|  Visualise  |  Collaborate  | Manage |  My Account  |  Help  |</p>
+<h2>4. Visualisation</h2>
+<p>The Visualise menu option is used to display data; in fact, it is the only way for users to extract data and show (visualise) data.  Data shown can be a mixture of tabular data (tables) and graphs, customiseable by the user.  So, the term visualise includes ‘standard reports’.</p>
+<p>Visualisation is done onto a blank space called a Dashboard.  Each Dashboard is a collection of existing Reports, completed as part of the preparation above.  A user can create any number of Dashboards.  A Report is placed onto the Dashboard as a Widget, which is simply the data from the selected Report as formatted by the user.  For example, lets say we have a Report that provides the sales volumes per region and per month.  Any number of Widgets can now be created using this Report, for example: Widget A can be a pie chart per region, Widget B can be a bar chart of the total sales volumes per month, Widget C can be a table with the detail data, etc.</p>
+<p>As mentioned, data is visualised using Widgets.  Each Widget reads it data from a Report; rows and columns extracted from a Datasource (like a database table).  For now it is assumed that the reports already exist (see the Admin -&gt; Reports section on how to create or amend these).</p>
+<p>Hover the cursor over the Visualise menu optio, and select Dashboard editor.  For a new user, a clean (blank) Dashboard is presented.  A Dashboard is a workspace, and contains one or more tabs.  This is similar to an Excel workbook with multiple tabs or worksheets.  A palette is shown in the top left corner, and provide tools to manage your Dashboard.  It contains two portions:</p>
+<ul>
+<li>Dashboard Editor to create new Dashboard, select an existing Dashboard and an advanced filter on Dashboards to show in the dropdown.</li>
+<li>Widget tools to manage individual Widgets.</li>
+</ul>
+<p>![Dashboard Palette](../assets/Dashboard Palette.png)</p>
+<p>To select an existing Dashboard, select one from the dropdown.  In case too many options are presented, one can filter it down using the advanced editor.  The number in the heading indicats how many of the total number of Dashboards are shown in the dropdown after using the filter.  Note that the icons on the left have tooltips, which will be shown when the cursor hovers over it.  A Dashboard can have one or more tabs, and it is important to know since the required information may be on another tab in the Dashboard.  It the selected Dashboard only has one tab, this tab will be shown automatically.  In case the Dashboard has more than one tab, one has to select the desire tab from the tabs dropdown.  More actions on tabs are shown just below the tab dropdown:</p>
+<ul>
+<li>edit a dashboard, where a name or description can be amended.</li>
+<li>add a tab, with a name.</li>
+<li>delete a tab.  Note that all Widgets on a tab must be deleted before the whole tab can be deleted.</li>
+</ul>
+<p>To create a new Dashboard, click on the + sign in the Dashboard Editor to create a new Dashboard.  Canvas will assign a name to it.  In order to rename the Dashboard or change more properties (like who has access to it), please use the Admin -&gt; Dashboards menu option.  To add a new Widget, drag the top left icon in the Widget tools area onto the open space of the Dashboard.</p>
+<p>Now, lets go about the practical job of creating Widgets.  The first step is to identify the source of the data:</p>
+<ul>
+<li>define a Data Source using the Manage menu option tells the system where the data lives, and how how different data portions are related.</li>
+<li>then describe how to extract the data: define a Report using the Manage menu option will describe how the data must be manipulated and aggregated (i.e. sum the SalesVolume).</li>
+<li>last, show the data by creating a Widget on the above report.  For now, we will assume that the Report already exists.</li>
+</ul>
+<p>The Widget has the following areas:</p>
+<ul>
+<li>Container, which is the box around the Widget.  This container has properties like position, background color and so on.</li>
+<li>Header, which is used to manipulate the Widget.</li>
+</ul>
+<p>The header of each Widget has the following icons:</p>
+<ul>
+<li>drag handle.  To move a Widget, select it and then move it around using this handle.</li>
+<li>Widget Editor button.  Click this button to open the Widget Editor.</li>
+<li>Delete button.  When clicked, a confirmation message with prompt before permanently deleting the Widget.</li>
+<li>Like button.  Users can mark invidual Widgets as liked, indicating to other users what they find useful.</li>
+<li>Lock button.  A Widget can be locked for editing.  The lock is a temporary feature that could be useful during the Dashboard creation process, and indicates that a Widget has been fully completed.</li>
+<li>short title.  This is useful to show the information shown in each Widget.</li>
+<li>selected checkbox.  This is only active when a Widget has been selected, by clicking on it.</li>
+<li>Comments button.  Users can leave comments on individual Widgets.  Click this button to show the message trail.</li>
+</ul>
+<p>Widgets are manipulated with the Widgets tools, on the left of the screen.  The following actions are available in the Widget tools area:</p>
+<ul>
+<li>Add a new Widget to the Dashboard</li>
+<li>Left align selected Widgets.  Alignments is only applicable to multiple selected Widgets.  The selection of a Widget is indicated with a check in the right hand top corner.</li>
+<li>Center align selected Widgets</li>
+<li>Right align selected Widgets.</li>
+<li>Set equal horisontal distances between (3 or more) selected Widgets.</li>
+<li>Increase the horison distance between selected Widgets.</li>
+<li>Descrease the horison distance between selected Widgets.</li>
+<li>Align the top of selected Widget containers.</li>
+<li>Align the middle of selected Widgets.</li>
+<li>Align the middle of selected Widgets.</li>
+<li>Set an equal vertical distance between (3 or more) selected Widgets.</li>
+<li>Increase the vertical distance between selected Widgets.</li>
+<li>Decrease the vertical distance between selected Widgets.</li>
+<li>Select all the Widgets on the current Tab of the Dashboard</li>
+<li>Toggle the Widget header between dark and light.  Remember to select one or more Widgets before using this tool.</li>
+<li>Copy the selected Widget(s).</li>
+<li>Bring the selected Widget(s) to the front (on the z-index), which is useful if Widgets are placed partially on top of one another.</li>
+<li>Background selection opens up an area where the background color of the Dashboard tab, and / or the background image can be set.  If both are set, the image will take preferrence.  This setting, is remembered for future Dashboard Tabs.</li>
+<li>The snap-to-grid option can be toggled with this tool.  There is an invisible grid at the base of the Dashboard that can be used for alignment.  When the snap-to-grid option is set to on, all Widgets will snap to the closest grid point when manipulated.</li>
+<li>The toggle headers on or off tool will show all the Widget headers, or hide them.  It may be useful to show headers during the design process, where Widgets can be dragged, editted, deleted, etc. while these headers dont any value when viewing.</li>
+<li>The Widget Background tool allows the background color of the individual Widget to be modified.  Tranparent is a valid color selection, thus allowing one to 'see through' a Widget.</li>
+<li>The Widget border tool allows the user to set the border of the Widget container.  Valid options include None, thin black line and so on.</li>
+<li>The Widget box shadow tool can be used to give the Widget container an optional shadow.</li>
+<li>The Widget color tool can be used to change the color of the text in the container.</li>
+<li>The Font Size tool changes the font size.</li>
+<li>The Grid Size tool allows to change the size of the grid.  This is measured in px, a technical measurement (16px is a normal line height).  A good choice is 3.  Note that if the grid size is very big, say 30px, Widgets cannot be placed closer than 30 px of each other (as they will snap to the closest grid point when created or moved).</li>
+</ul>
+<p>The Widget container can have any of the following areas:</p>
+<ul>
+<li>text</li>
+<li>image</li>
+<li>graph</li>
+<li>table</li>
+</ul>
+<p>A Widget can be editted with the Widget Editor (the button to open it is in the Widget header).  The Widget Editor shows the left top fo the form, and is a modal form (while open, one cannot work on other forms).  It has the following options:</p>
+<ul>
+<li>Content, which is used to indicate the 1 - 4 areas that a Widget must contain.</li>
+<li>Idenfication, which give information to identify the Widget.</li>
+<li>Behaviour, an optional area to specify how the Widget should behave.</li>
+<li>Text (optional)</li>
+<li>Image (optional)</li>
+<li>Graph (optional)</li>
+<li>Table (optional)</li>
+</ul>
+<p>The Identification info are:</p>
+<ul>
+<li>Dashboard on which the Widget lives.</li>
+<li>Dashboard Tab where the Widget is placed.  If a Widget has to be shown on where than one tab, it has to be copied.</li>
+<li>Title, which is shown in the container.  It is thus important to be brief and concise.</li>
+<li>Code, an abbreviation of the Name.</li>
+<li>Name, which is descriptive and complete.</li>
+<li>Description, with detail.</li>
+</ul>
+<p>The Behaviour info are:</p>
+<ul>
+<li>Export F-Type is the default file type when a Widget is exported.</li>
+<li>Hyper-TabNr: a Widget can be hyper linked to another Tab.  This is useful for dril down: show a summary Widget, which has a whole tab of detail information should one wants to explore further.</li>
+<li>Hyper-Widget, when a Widget is linked to a single Widget.</li>
+<li>Refresh Mode incidates the frequency when a Widget has to be refreshed.  Manual would indicate that the Widget information will only be refreshed when the user so requests.  This makes sense for static, historical information.  OnOpen would mean the information is refreshed each time the Dashboard is opened.  This is useful for daily statistics, where one always wants to see the latest info.  Take caution that the underlying set is small, as it may delay the opening of the Dashboard significantly if very large.  In future the Widget can be refreshed real-time.</li>
+<li>Refresh Frequency, the interval between refreshes if the frequency is set to real-time.</li>
+<li>Password is an optional feature to protect information.  Passwords can only be added and deleted by Owners.  Users with the appropriate access rights may see the underlying information if they know the password.</li>
+<li>Nr Liked is the number of users that likes this Widget.  This is a good indication of how useful the information in the Widget is.</li>
+</ul>
+<p>The Data info are:</p>
+<ul>
+<li>ReportName.  The data used in a Widget is provided by a predefined Report.  See Admin -&gt; Reports for more detail.</li>
+<li>Rpt Params: optional report parameters.</li>
+<li>Limit Rows is a limit on the number of data rows to ue in the extraction of the Widget.  This is a good saveguard to prevent an accidental extraction of a million rows into a pie chart.</li>
+<li>Rest Row: is a useful feature to show proportion when selecting a limited dataset.  For example, show the value traded by the top 5 brokers in a pie chart.  While this is good to know in itself, it does not say what percentage the top 5 makes of the total value traded.  Check Add Rest to add a new row to the data (it will thus return 6 rows) that shows the total for the rest of the brokers.</li>
+</ul>
+<p>The Text info are:</p>
+<ul>
+<li>Text is the text to show in the container.  This text can include HTML tags, if the user is familiar with it.  For example, to make the word August show in bold, one can add the following text: <bold>August</bold></li>
+<li>Background indicates the background color of the text area (not the whole container).</li>
+<li>Text Border is the border around the text area.</li>
+<li>Text Color is the color of the text.  Chose this in conjunction with the background color, since certain colors dont form a sufficient contrast to be readable.</li>
+<li>Font Size is the size of the font.</li>
+<li>Font Weight is the weigt of the text, for example bold.</li>
+<li>Text Height is the height of the text area (in px)</li>
+<li>Text Left is the leftmost position of the text area, relative to the container.  0 is the leftmost position.</li>
+<li>Text Margin is the margin (HTML style) between the text and the container.  It is best to be conservative with this option.</li>
+<li>Text Padding  is the space (HTML style) between the text and the text border.  It is best to be conservative with this option.</li>
+<li>Text Position is relative or absolute, and works together with the left and top.</li>
+<li>Text Align is how the text is aligned (left, center, right) in the text area.</li>
+<li>Text Top is the position of the top area in px.</li>
+<li>Text Width is the width of the text area in px.</li>
+</ul>
+<p>The Graph info are:</p>
+<ul>
+<li>Widget Type indicates the type of graph, i.e. Bar Chart.</li>
+<li>Height is the Height of the Graph area.</li>
+<li>Width is the Width of the Graph area.</li>
+<li>Padding is the area around the actual graph and the graph area.</li>
+<li>X Axis is the field (from the data provided by the Report selected above) shown on the x axis.</li>
+<li>Y Axis is the field shown on the y axis.</li>
+<li>Fill Color is the color with which the graph (i.e. bars in the barchar) must be filled.</li>
+<li>Hover Color is the color when hovering over an item, i.e. an individual bar.</li>
+</ul>
+<p>The Table info are:</p>
+<ul>
+<li>HideHeader is a toggle to show the headers (top row) of the table.</li>
+<li>Text Color is the color of the text in the table.</li>
+<li>Nr Cols is the optional number of columns to show from the data.  When this is larger than the total number of columns in the data, all the columns will be shown.</li>
+<li>Nr Rows is the optional number of rows to show from the data.  It is thus important that the data is sorted correctly in the Report if this option is used.</li>
+<li>Height is the height of the table area.</li>
+<li>Width is the width of the table area.</li>
+<li>Left is the left of the table in px inside the container.</li>
+<li>Top is the top of the table area in px.</li>
+</ul>
+<p>The Image info are:</p>
+<ul>
+<li>Alt is the alternative text shown when the image is not available.</li>
+<li>Height is the height of the image.</li>
+<li>Left is the left of the image, in px inside the container.</li>
+<li>Source is the source of the image (file name).</li>
+<li>Top is the top of the image area in px.</li>
+<li>Width is the width of the image area in px.</li>
+</ul>
+<h2>5. Collaboration</h2>
+<p>A key objective of the system is to make collaboration between users easier.  In addition to emailing of output, the following are available:</p>
+<ul>
+<li>Widgets can be liked.  This is an indication of its popularity / usefulness.</li>
+<li>The natural display order of Reports and Dashboards are per number of times used.</li>
+<li>Report suggestions: it will show the top n Reports used by other users that belong to the same groups as a user, and not yet run by this user.</li>
+<li>Widgets allows for comments by users.</li>
+</ul>
+<p>The Collaboration menu option has two sub options:</p>
+<table>
+<thead>
+<tr>
+<th>Visualise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New Messages</td>
+</tr>
+<tr>
+<td>Show Messages</td>
+</tr>
+</tbody>
+</table>
+<p>The New Messages allows the user to enter the following information:</p>
+<ul>
+<li>Subject</li>
+<li>Body</li>
+<li>Recipients in the form of a picklist (the left hand column shows all available users while the right hand column shows recipients already selected).  At least one recipient is required.</li>
+</ul>
+<p>The form shows the number of unread message at the top.</p>
+<p>The Show Messages sub-menu option shows a grid with the following fields:</p>
+<ul>
+<li>Conversation ID: messages can be grouped together in the same converstation ID, which is similar to a topic.  Each conversation ID will have one or more messages linked to it.</li>
+<li>Message ID: internal ID of the message, which is unique.</li>
+<li>Sender: username of the user who sent the message.</li>
+<li>Sent on: date-time the message was sent.</li>
+<li>System?: True if the message was system generated, i.e. by the software and not a human.  This is handy for informing users when the system picks up problems or issues.</li>
+<li>Dashboard ID: optional Dashboard to which the message is linked.  This means tht the recipient can open the same Dashbord, which is more optimal than emails which creats multiple copied of the same Widget.  Versioning is thus not an issue.</li>
+<li>Report ID: optional Report to which the message is linked.</li>
+<li>Widget ID: optional Widget to which the message is linked.  In addition, specific comments can be included on Widgets.</li>
+<li>Subject</li>
+<li>Body</li>
+<li>To me? is true when this message was sent to me.</li>
+<li>My Status indicates whether I have read the message or not.</li>
+</ul>
+<p>It is possible to filter on any fields in the grid.</p>
+<p>Messages can be sent to one or more users, and / or to one or more groups: note that each user will only get one message even if a member of multiple groups.  A user can only share Dashboards to which he has access, and to recipients with whom this Dashboard has been shared.  If a user is online in the system, his name will be shown in green (and not black).  When hovering on a user, the last datetime logged into the system will be shown as a tooltippie text.  For now, it will not read Outlook to determine Out of office notification status.  Messages do not have any priority (i.e. urgent).</p>
+<p>The icon for the Collaborate menu option will change when a new message has arrived.  New messages can result from:</p>
+<ul>
+<li>A previously requested (async) Report has completed and the Result set is ready.  This is an example of a system generated message.</li>
+<li>A Message from another user has arrived.</li>
+<li>Alerts (system generated messages, i.e. an error occurred).</li>
+</ul>
+<p>Messages are non-intrusive; the user can send and receive Messages while leaving the forms on their work space intact.</p>
+<p>Each messages can be marked as Read or UnRead by right-clicking on it.</p>
+<h2>6. Manage / Admin</h2>
+<p>Administrative tasks are performed using this menu.  It has the following sub-menu options:</p>
+<table>
+<thead>
+<tr>
+<th>Manage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Users</td>
+</tr>
+<tr>
+<td>Groups</td>
+</tr>
+<tr>
+<td>Data Sources</td>
+</tr>
+<tr>
+<td>Reports</td>
+</tr>
+<tr>
+<td>Dashboards</td>
+</tr>
+<tr>
+<td>System configuration</td>
+</tr>
+</tbody>
+</table>
+<p>Access is assigned per group and / or per user.  No access is not given by default, and must be explicitly assigned.  The only exception is Admin who has rights to all entities.</p>
+<p>Access to data is controlled by granting rights to Data Sources.  All the Reports based on a this Data Source inherits its access; and similarly the Widgets based on the Report.  A Dashboard can have one or more Data Sources.  When a Dashboard is shared, the recipient may will only see those Widgets where he has access to.  Access assignments are inclusive: if a user has no access to a Report, but belongs to a group that does have access, the user will have access to the Report.  There are no exclusion rights (once included via a group, the user stays included).</p>
+<p>// TODO - where does superuser fit in?
+Admin rights are not granted to individual users; users get admin rights when they belong to the Admin group.</p>
+<p>Admin has access to all users, groups, Reports and Dashboards.  Once part of the Admin group, specific access cannot be excluded (its all of nothing).  Admin can reset a user password, but the user will be notified and has to change his password at the next logon.  Admin can also change the system configuration: for example the location of the backend server.  It goes without saying that Admin rights should be used sparingly.</p>
+<p>Users, Groups, Reports, Access, etc. exist per environment.  This way one can introduce a new Report into test without the production environment knowing about it.</p>
+<ul>
+<li>Users</li>
+</ul>
+<p>A data table of users will be display, with the following columns:</p>
+<ul>
+<li>Username is the unique username in the system.  In some companies this is called the UserID.  It can contain text and numbers.</li>
+<li>First Name of the user</li>
+<li>Nickname: optional.</li>
+<li>Photo Path: optional.</li>
+<li>Last logged in: date-time when the user last logged in.</li>
+<li>Last Report: last report ran by the user.</li>
+<li>Email: work email address of the user.</li>
+<li>Cell: optional cell number of the user.</li>
+<li>Work tel: work telephone number, or extension of the user.</li>
+<li>Active from: date from when the user has been made active, which can be in the future and can only be done by a user with admin rights.</li>
+<li>Inactive date: date when the user was made inactive, and can only be done by a user with admin rights.</li>
+<li>Date Created: date the user record was created, which may be different from the Active from date.</li>
+<li>Username Last Updated: who last updated this record.</li>
+<li>Is staff: true if the user is a staff member, thus allowing for guest logins.</li>
+<li>Is Superuser: true if this use has superuser or admin powers, thus being able to create and delete any user or group.</li>
+</ul>
+<p>The following context menu is available by right-clicking on a record:</p>
+<ul>
+<li>Add (a new user)</li>
+<li>Delete:  A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the InactiveDate field.  An inactive user (and its memberships) can be re-activated again.  Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.</li>
+<li>Edit (if the user has the appropriate rights)</li>
+<li>Group Membership: groups to which the user belongs.  A popup form with a picklist is shown.  A user can belong to zero or many groups.  Groups live in a flat structure, with no hierarchy.  So, groups cannot belong to groups.  Groups and how they are created is described in the next section.  Once a group or membership has been editted, the affected users will be send a message.</li>
+<li>Datasources shows the Datasources to which this user has access.</li>
+<li>Show Datasources shows all the Datasources.</li>
+<li>Related Dashboards shows all the Dashboards that this user owns or has access to.</li>
+<li>Message History: all messages where this user was the Sender or one of the recipients.</li>
+<li>Report History: reports previously ran by this user.  History of previous activity is not on a separate form, but build into each entity.  This provides a readonly history of all Reports previously requested by the user.  Each Report already processed has a status of Completed Successfully or Failed, with additional information like StartDateTime, CompletionDateTime, ErrorMessage, etc.  When a Report has been submitted, but not yet completed is has a status of Pending.  In case it has been scheduled to only start at a later time, the ScheduledDateTime will be displayed.  Each record in the history has a Requestor, which is the UserName of the user who requested the Report, or scheduled it.</li>
+</ul>
+<p>When editting a user record, there is a button to the password.  Admin can use this to reset the password for any user.  The new password will be a 4 digit truly random number.  On the next login, the user will be forced to select a new password (no work can be done with this random password at all).</p>
+<ul>
+<li>Groups</li>
+</ul>
+<p>As noted before, groups have a flat structure: users can belong to zero or more groups, but groups cannot belong to other groups.  Also remember that the access is inclusive: if a user belongs to two different groups, he has the full rights of both groups.  The group structure is flat, while most companies have a hierarchy of groups or departments.  Given the complexity and amount of admin involved, we will not try to mimic the company structure using groups.  We assume that the company structure is available for HR reporting, and up to date.  It is the user’s decision how to link groups to the hierarchy, if at all.<br>
+Canvas has no functionality to import or sync to the company hierarchy.  Groups and group member ship can be exported to Excel as per usual, where it can be compared if necessary.
+It also does not cater for restructuring (where for example all users from Group A and Group B are merged into Group C).</p>
+<p>The table for groups has the following columsn:</p>
+<ul>
+<li>ID (unique)</li>
+<li>Name, for example HR, Sales, etc.</li>
+<li>Description: detailed description.</li>
+</ul>
+<p>The following context menu will be displayed when one right-clicks on a group record:</p>
+<ul>
+<li>Add</li>
+<li>Edit</li>
+<li>Delete</li>
+<li>Users in Group: shows a picklist of users that belongs to a group.</li>
+<li>Related Datasources to which the group has access.</li>
+</ul>
+<p>The following groups are permanent and not deleteable:
+Admin – can be used to easily manage admin access.  By default, no one belongs to the Admin group.
+Everyone – simplified access to innocent Reports. On creation, a user belongs by default to this group.  This membership can be deleted.  Only the owner has access to a new Report, other users or Everyone has to be explicitly added.</p>
+<p>// TODO - refine
+Each group has an owner, which is the creator.  This owner and Admin are the only ones that can add / delete other users as owners.  These owners manage group membership.
+Each group can be marked a public (visible by all users) or private (only visible to owners and members).  The latter is a similar feature to groups on WhatsApp, and equates to a personal distribution list.  All lists can be edited and deleted by an Admin person.  Once a group or membership has been editted, the affected users will be send a message.
+Currently Canvas does not access Active Directory (users or groups) and does not authenticate against it.</p>
+<ul>
+<li>Datasources</li>
+</ul>
+<p>A Data Source (called a base package in the backend) is a large block of data from which Reports are constructed.  In techno speak: they are SQL packages that collect data from one or more databases or other sources, and collate it in a rectangular block of data.  The Datasource thus defines the universe of information to work with.  A report is an extraction from a Datasource.  For example, in the case of a list of codes, the Datasource will be used as is in the Reports (select all records), while it will be too large in some cases (and the Report will have to filter down the data to selected columns and rows, say to a particular month).</p>
+<p>The Datasource is the basic building block for overlay, which is a backend component.  Each Data Source is versioned, keeping all associated data for each version.  When a Data Source changes, it will recompile all Reports (queries) based on it and mark the bad / dirty ones (which cannot be run).</p>
+<p>When the Datasource sub-menu option is chosen, a grid is shown with the following fields:</p>
+<ul>
+<li>ID</li>
+<li>Name</li>
+<li>Description</li>
+</ul>
+<p>The following context menu is shown by right-clicking on a Datasource in the grid:</p>
+<ul>
+<li>User Access shows a picklist to add or remove users that has access to this Datasource.</li>
+<li>List User Access shows a grid with all users that have acces to this Datasource.  It is useful for an overall view, and also allows the export to a CSV file.</li>
+<li>Group Membership shows a picklist to add or remove groups that has access to this Datasource.</li>
+<li>List Group Access shows a grid with all groups that have acces to this Datasource.  It is useful for an overall view, and also allows the export to a CSV file.</li>
+<li>Related Reports shows a table of all the reports that are based on the selected Datasource.</li>
+</ul>
+<p>Each Data Source has a maximum one set of parameters, it is however optional.
+The parameters are embedded filters that are required to make the SQL work.  It also serves to limit the amount of data returned.</p>
+<p>// TODO - add ReportBuilder stuffies here once done
+The SQL for a Data Source is created outside of Canvas.  Data Source may require parameters and default values for some fields; indicating which are changeable by users.  Examples will be a date range for very large amounts of data.  Some values will be set conservatively to ensure that a Report does not return 1bn rows if the user does not enter a value.
+The system stores a list of all fields.  This can be supplemented, for example: field description (allowing to build a data dictionary if this is not available in the underlying database), quality of the data, and so on.</p>
+<p>The Data Source is supplied by the backend (Eazl REST API with data provided by the overlay module).  In future, overlay will have a generic feature to read from the following (constructed by us, or simply available in Canvas by the use of basic parameters like file name and file format, or table and field names):
+Database (provide connection string and SQL / table and field names and JOINs).<br>
+File (we provide location and format).
+Web url &amp; say table name.</p>
+<ul>
+<li>Reports</li>
+</ul>
+<p>As mentioned before, Datasources are defined in the backend and represents a (potentially) large block of data with rows and columns.  A report is an extraction from that data.  It may contain all or some rows and columns.  It may also manipulate the data.  For example, the Datasource can be a list of all trades in a given year.  One report can be the value traded by month, resulting in 12 records with 2 columns.  One or more reports can be created on each Datasource.</p>
+<p>The Reports sub-menu option will show a table with the following columns:</p>
+<ul>
+<li>ID is the unique database ID.</li>
+<li>Code is a short code.</li>
+<li>Name is a brief, descriptive name.</li>
+<li>Description is a detailed description of the report.  This should include guidance on how other users should use it, exceptions and so on.</li>
+<li>Parameters is an optional field, that is a set of parameters required for this report.</li>
+<li>DS ID is the ID of the Datasource on which the report is based.</li>
+<li>DS Parameters is an optional field, that is a set of parameters required for this datasource.</li>
+<li>Fields</li>
+</ul>
+<p>The following context menu will be shown when right-clicking on a Report:</p>
+<ul>
+<li>User Access shows a table with all users that have access to the selected Report.</li>
+<li>Group Access shows a table with all groups that have access to the selected Report.</li>
+<li>Report history, including who ran it when as well as the status (for example completed or still pending ones.</li>
+<li>Create Widget: this is a shortcut to quickly and easily build a Widget on the selected Report.  The user has to provide the Dashboard and Tab where the report has to live, the type of graph (i.e. BarChart), and the fields to show on the X axix and Y axis (where appropriate).</li>
+<li>Report Builder // TODO
+A Report is defined as a rectangular block of data selected from a Data Source.  It is created by means of the following steps, some of which are optional:
+Select a Data Source (which is a pre-created large block of data, and includes database location(s), database type, defined relationships / business rules between different data sets and optional parameters).  This equates to a base package in Eazl.
+If the Data Source contains a parameter set, a default one must be creatd for the Report.  It will open up with the same values as that of the Data Source parameter set.  Multiple parameter sets can be defined per Data Source; each one will be uniquely identified and useable as the input to a Widget on a Dashboard.</li>
+</ul>
+<p>Select fields (columns) and rows to show, using filters.
+Group and aggregate (optional).  Note that once grouping is applied, the selected fields to show can only be grouped and aggregated fields, not detail fields.  Also, if aggregated in the Report, the Widget can only use the aggregated fields in the display and cannot drill down to the detail data.  This type of aggregation is done in the backend (using SQL against the database) and useful to reduce very large datasets.
+Sort ASC or DESC on any number of fields (optional).
+Limit the number of rows returned (optional).  This is most useful when used in conjuction with sorting (otherwise the user has no control over which records are returned).
+Reports can be created by:
+The Canvas frontend.
+The Import / Export facility for Reports, which will allow someone else to create a Report for a user and let him import it, or to load Reports from the test environment into the production environment.  On importing a new Report from test, the access rights are not imported as well; access in production has to be created and maintained by Admin.
+Similarly, access rights to Data Sources (and thus its Reports) cannot be promoted from test to prod.</p>
+<p>Access are not explicitly granted to Reports; they inherit the access of the Data Source that they are based on.  Security access is not content sensitive; so it cannot be restricted to a specific department or number of user IDs.  From experience this get really complicated and only needed in specific cases.</p>
+<p>If the underlying Data Source requires parameters, the Report must have at least one default parameter set.  At start, the values are set to the parameter set from the Data Source.  Note that certain parameters may not be editable by the user, and will be included in the Report as it is essential for it to run.</p>
+<p>// TODO - Schedules (future dated ones).</p>
+<p>The above exists per environment.  In fact, all the entities (users, groups, Reports, etc) exists per environment.  This way one can introduce a new Report into test without the production environment knowing about it.  Once a Report has been created, the structure can be Exported to a text (JSON format) file.  Reports can be Imported from these files.  If the imported Report does not exist, a new one will be created.  The user performing the action will become the owner of the Report.  If the Report already exists, the result will be the same as a edit action: a new version will be created.  In both cases, the necessary validation will be performed.  If validation fails, the Report will be marked as diry (not runable).  Admin may change the owner of a Report.</p>
+<p>The extraction of the data only happens when the user displays the associated Widget on a Dashboard (or a Dashboard is scheduled).  It is triggered by the frontend asynchronisly, which means that the frontend can continue with other tasks while the data is being extracted.  The backend will extract the data, store the results as a Result set (in a backend database) and then notify the user via a Message.  When the user clicks the Show Dashboard button on the Message, the related Dashboard and Widget will be shown.  The Widget was formatted at creation.  So, at this point in time the frontend only pours in the data and presents it to the user.</p>
+<p>Reports are versioned, and each change (or import) increments the version by one.  The history is kept per version, and so are the future dated schedules.  On editing, the system will validate the Report to ensure the parameters and fields are a subset of its Data Source parameters and fields, and that the Widgets and schedules based on this Report are still valid (uses the same fields, filters, etc).  Reports can only use the latest version of a Data Source.  Widgets do not have versions, and always use the latest version of a Report.
+In reverse, the Eazl backend will validate all Reports whenever a Data Source is changed.</p>
+<p>For now, all results are stored as a Result set in a Postgress database.  This brings about storage size and performance considerations.  These Result sets are kept for a default period, after which they are deleted.  This period is editable, and can be increased by an Admin person.  Access to Result sets are the same as that of the Report which created it.</p>
+<p>Each result set has additional information:
+Event – who ran it when, what version, etc.
+Meta-data – filters and fields used, data types, number of records, run-time, base package used, etc.</p>
+<p>// TODO - Report bundles</p>
+<p>// TODO - System Reports
+After installation, the system contains a number of Reports out of the box.  They are normal Reports, but access to amend them has only been granted to Admin:</p>
+<p>List of users (includes number of Data Sources owned, number of Reports owned, number of Dashboards owned, number of Dashboards shared with this user, number of Data Sources to which user has read access, number of groups that his user own, number of groups that this user belongs to).</p>
+<p>List of Reports (including owner, number of filters, number of parameter fields, number of fields, number of Dashboards in which Report is used, owner, number of Widgets that use this Report, number of times Report has been run, number of active schedules on this Report, number of Result sets that currently exists for this Report).</p>
+<p>List of groups (includes number of Data Sources to which group has rights, number of users, owner, number of Dashboards shared to this group).</p>
+<p>List of Dashboards (number of Data Sources used, number of Reports used, owner, number of tabs and Widgets on this Dashboard, number of users shared with, number of groups shared with).</p>
+<p>Users per Group (can filter on 1 or more groups, duplicating group name).
+Groups per user (can be filtered on one or more users, duplicating the UserName).</p>
+<p>List of users with rights to a Data Source (user, rights, Data Source, direct or via group, duplicating the Data Source).
+List of groups with rights to a Data Source (group, rights, Data Source, duplicating the Data Source).</p>
+<p>List of users with access to a Report (inherited from Data Source, direct or via group, duplicating the Report).</p>
+<p>List of Data Sources (including repo, number of parameters, number of fields in the Data Source, number of fields used in at least one Report, number of Reports using it, number of Widgets using it, number of Dashboards using it, owner, number of users with rights, number of groups with rights).</p>
+<p>List of groups with access to a Report (inherited from Data Source, duplicating the Report).</p>
+<p>List of Report bundles (number of Reports inside the bundle, number of Data Sources used).</p>
+<p>List of Reports per bundle (can be filtered on one or more bundles, duplicating the Report).</p>
+<p>Filters per Report, duplicating the Report.</p>
+<p>Fields per Report, duplicating the Report.</p>
+<p>Parameters per Report, duplicating the Report.</p>
+<p>Data Sources per Dashboard (can be filtered on one or more Dashboards, duplicating the Dashboard).</p>
+<p>List of fields per Data Source (can be filtered on field or Data Source, includes number of Reports that it is used in, duplicating the Data Source.</p>
+<p>List of fields per Dashboard (can be filtered on one or more Dashboards – includes Data Source of each field, duplicating the Dashboard).</p>
+<p>List of Widgets per Dashboard (with Report and Data Source, duplicating the Dashboard).</p>
+<p>Filters per Widget, duplicating the Widget.</p>
+<p>Fields per Widget, duplicating the Widget.</p>
+<p>Parameters per Widget, duplicating the Widget.</p>
+<p>Report detail (all detail for one Report).</p>
+<p>Dashboard detail (all detail for one Dashboard).</p>
+<p>Widget detail (all properties for one Widget).</p>
+<p>Current Result sets (can filter on Report and parameters).</p>
+<ul>
+<li>Dashboards</li>
+</ul>
+<p>This shows a list of all available Dashboards in a single table with the following columns:</p>
+<ul>
+<li>ID (unique database ID)</li>
+<li>Name, brief and descriptive</li>
+<li>Dark Headers? When true, the headers for the Widgets on the Dashboard will default to dark.</li>
+<li>Show Headers? When true, the headers for all its Widgets will show its headers.</li>
+<li>BG Color: background color of the Dashboard.</li>
+<li>Bg Image: background image or picture.  If selectd, it will take preferrence over the background color.</li>
+<li>Comment: optional comment on the Dashboard.</li>
+<li>Export FType: file type when exported.</li>
+<li>Description: detailed description</li>
+<li>Nr Groups</li>
+<li>Locked</li>
+<li>Liked?</li>
+<li>Open Tab Nr</li>
+<li>Owner</li>
+<li>Password</li>
+<li>Refresh Mode</li>
+<li>Refresh Frequency</li>
+<li>#Users Shared: number of users with whom the selected Dashboard is shared.</li>
+<li>#Groups Shared: number of groups with which the selected Dashboard is shared.</li>
+<li>System message: optional message generated by the system.</li>
+<li>Refreshed by: when the Dashboard was last refreshed.</li>
+<li>Refreshed on</li>
+<li>Updated on: when information on the Dashboard was last updated.</li>
+<li>Updated by</li>
+<li>Created on: when the Dashboard record was created.</li>
+<li>Created by</li>
+</ul>
+<p>The following context menu is displayed when right-clicking on a Dashboard record in the grid:</p>
+<ul>
+<li>Add</li>
+<li>Edit</li>
+<li>Delete</li>
+<li>Group Membership: groups with which the Dashboard is shared.</li>
+<li>Shared Users: users with whom the Dashboard is shared.</li>
+<li>Related Datasources: all the Datasources used in the creation of the selected Dashboard.</li>
+<li>Message History: shows a table with all messages linked to a Dashboard.</li>
+<li>Related Reports: all the reports used in the selected Dashboard.  Recall that a Dashboard is a collection of Widgets, and each Widget is based on a Report.</li>
+<li>Like: toggle whether a user likes a Dashboard.</li>
+<li>Lock: toggle to lock a Dashboard, in which case no Widget on it can be editted.</li>
+</ul>
+<p>// TODO - update this section after permissions
+Dashboard Shared with (list of users; either ReadOnly, Full).  ReadOnly access means that the user can only view the data tabs, while Full access means that the user also has access to the Manage Tab (and can thus modify the Dashboard).  In case the recipient does not have access to the Data Source of a particular Widget, it will simply show ‘No Access to underlying Data Source’.  The sender can add a password to a Widget.  The recipient will be able to see the data with the correct password, irrespective of access rights.  This password has to be entered each time to view this Widget.</p>
+<p>// TODO - finalise how to do this
+Dashboard Mode: Tab mode will show the Dashboard with diferent tabs (allowing for modification), while View mode will show the Dashboard as a slideshow (and no option to modify).  The slidehow is a view-only presentation of all the Widgets on all the tabs onto one big canvas.  By default, the tabs will be organised below each other, with the maximum number of columns are per the user default.  This user has freedom to arrange the Widgets dynamically with the mouse.  The user has the following buttons for the slideshow: Print, Show Comments or Show as full screen (allowing for the Dashboard to be used in a presentation).</p>
+<ul>
+<li>System Configuration
+The system configuration includes all the necessary options and actions to make the system work.  It is typically done once off, and not changed unless something in the environment changes (i.e. servers renamed).  The following information can be editted:</li>
+</ul>
+<ul>
+<li>Company Name</li>
+<li>Company Logo</li>
+<li>Backend url: this is the IP address of Eazl.</li>
+<li>Days to Keep: this is the default period to keep Result sets, after which it will automatically be deleted.  The default value at installation is 1 day.</li>
+<li>Max RowsData is the maximum allowed size for Result sets.  When a new Report is added and the total storage is above this max size, result sets will be deleted accordingly (could be all of them, except the last one).</li>
+<li>Max RowsGraph is the maximum number of rows that will be returned for all graphs.  While this is intended as a safeguard against huge datasets in graphs, it can cause irretation if set too small.</li>
+</ul>
+<p>A word about Environments:
+Duplicate Environments: all or some entities (users, groups, etc) can be copied from an existing environment.  This import ask for advice when the same entity already exists in the destination system (ignore/ replace for one/all).
+Edit the enviroment (production or a test environment) with all parameters.  All the data for environments is stored in the Eazl backend (REST API), including the data it contains, the database locations, database connection strings, etc.  Only Admin users can change the environment.
+A database itself is neither production nor test; it always belongs to one or more environments (which determines whether it is production or test).  So, if there is only one readonly copy of a third party database (either too large or not possible to create a test version), it may be linked to test and production at the same time.  Another example: towards the end of testing a large project, the databases could become production; so the same database can be both test or production.
+There is no visual clue when in a production environment, and a very clear one when in a test environment (similar to but nicer than green-screen).</p>
+<h2>7. My Account</h2>
+<p>The My Account menu option allows personalisation of the system. The following sub-menu options are available:</p>
+<table>
+<thead>
+<tr>
+<th>My Account</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who Am I</td>
+</tr>
+<tr>
+<td>Logout</td>
+</tr>
+<tr>
+<td>My Profile</td>
+</tr>
+<tr>
+<td>Personalisation</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Who am I / Current UserName and DateTime logged in.</li>
+<li>Logout (will show the initial login form, and will not proceed until successfully logged in again).  All cached data (data stored locally from the server) will be cleared.</li>
+<li>My Profile: User Detail (a user can edit all details via a popup form except the blocked ones like UserName, which can only be editted by Admin).  Fields are firstname, lastname, etc.
+Change password, via a popup form.  It also shows a table with my group membership (popup readonly form of the groups the current user belong to), my Data Source access (popup readonly form of actions that the current user is allowed per Data Source), my Report Ownership (popup readonly form of the Reports that the current user has created), my Dashboard Ownership (popup readonly form of the Dashboards that the current user has created, indicating which ones that have shared with others), my Shared Dashboards (Dashboards that others have shared with me) and my History (popup readonly form of previous activities, i.e. Reports run).</li>
+<li>Personalisation is where the user indicates how the system should function.</li>
+</ul>
+<p>Personalistion includes:</p>
+<ul>
+<li>Startup Dashboard: optional Dashboard to open and show when the frontend starts up.</li>
+<li>Environment (test, prod), and option to select a new environment.  All existing Dashboards, Reports, etc will be closed, and the new account profile will be read from the selected environment.  The system will then configure accordingly.  Status information about all environments is also available under the Help menu option.</li>
+<li>Average Runtime: the system stores average historic runtimes per report.  When this is larger that the Average Runtime value, the user will be warn and prompted if he is certain to proceed.</li>
+<li>Colour Scheme applicable to the System.</li>
+<li>Widget Config is the default Widget configuration used when a new Widget is created.</li>
+<li>RptFilters is the default Report filters to apply whenever opening the table of Reports, Dashboard to open at startup, etc.</li>
+<li>growlSticky: when true, growl messages (shown in the right top corner) will not disappear automatically, and the user has to close each one manually.</li>
+<li>GrowlLife is the duration in seconds of non sticky growl messages.</li>
+<li>Grid Size: is the size of the grid in px to use.</li>
+<li>SnapToGrid: when true, Widgets snap to the grid when created or moved.</li>
+</ul>
+<h2>8. Help</h2>
+<p>Help menu options are:</p>
+<table>
+<thead>
+<tr>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System Info</td>
+</tr>
+<tr>
+<td>Feedback</td>
+</tr>
+<tr>
+<td>Tutorials</td>
+</tr>
+<tr>
+<td>Reference Guide</td>
+</tr>
+<tr>
+<td>Discussions</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>System info, for example the current version of the system that is useful for responding to support calls.</li>
+<li>Feedback: when the user wants to give feedback on the usage of the system, or log a support call.</li>
+<li>Tutorials: short instruction sets to get going quickly, without elaborate explanations.</li>
+<li>Reference Guide: this guide.</li>
+<li>Discussions: in-depth discussion on selected topics.</li>
+</ul>
+<h2>9. Design principles</h2>
+<p>In designing the software, we took the following principles into consideration:</p>
+<ul>
+<li>Keep it simple and clean; cut down on clutter.</li>
+<li>Line up things; pixels matter.</li>
+<li>Must be easy to access anything from anywhere.</li>
+<li>Use known / familiar concepts (easy to learn).</li>
+<li>Colours:</li>
+</ul>
+<ol>
+<li>use complimentary colours</li>
+<li>use neutral colours and one bright colour for focus</li>
+<li>use an established colour palette</li>
+</ol>
+<ul>
+<li>Fonts:</li>
+</ul>
+<ol>
+<li>only use a few different ones</li>
+<li>avoid fancy fonts</li>
+<li>vary bold and italic to differentiate stuff</li>
+</ol>
+<ul>
+<li>As few levels of menus &amp; forms as possible.</li>
+<li>Make an interface that works for the users.</li>
+<li>Whitespace: ultimate clutter reducer; actually increases conversion rates.</li>
+<li>Pay attention to your goals, and make sure the user gets them easily.  Make it easy to find * the most important things.</li>
+<li>Content: less is more, bullet and shorten.</li>
+<li>Headlines: talk value, not detail.</li>
+<li>Pay attention to image size and response times.</li>
+<li>You dont have to be original – COPY.</li>
+<li>Use mockups (Gimp, balsamiq, Ai).</li>
+<li>Persist; design by definition is messy and requires patience.</li>
+</ul>
+<h2>10. Environments</h2>
+<p>It is important to separate develop and test from production.  In order to achieve this, we use environments.  An environment is built on a hardware platform, and consists of a backend (a collection of databases that may be accessed, users and groups, associated security access, configuration parameters like the url for REST API, etc. ) and a web-based frontend (which may be located on a different set of hardware).</p>
+<p>Environment information (like access) is kept by the backend, from where the frontend reads it.  For production, the links are fixed with no user option to change it.  For test, the workspace (frontend) can read the list of available environments from the backend, and the user can select one to work with.  No further information is kept about it in the workspace.</p>
+<p>One can copy and also sync the details (users, access, etc) from an existing environment.  That way, it is one click to get a new environment up and running.  In order to ensure consistent data quality, the following configurations are possible:</p>
+<ul>
+<li>Prod environment (prod databases and third party read-only databases) that lives on a hardware configuration, and linked to a prod version of the frontend.  This prod-prod setup is done at installation (by us) and cannot be changed.</li>
+<li>A test environment (test databases and potential third party read-only databases) lives on a hardware configuration, and linked to a test frontend.</li>
+</ul>
+<p>A test environment prefixes all output with TEST, for example to an ftp, url, folder or email (subject and attachment).</p>
+<h2>11. Architecture</h2>
+<p>There are 3 distinct software components that work together to render the data:</p>
+<ul>
+<li>Canvas is the frontend where data is visualised, either in tabular or graphical form</li>
+<li>Eazl is the RESTful API, to which Canvas connects</li>
+<li>Overlay is a descriptive data collection tool.</li>
+</ul>
+<p>Backend Services / connections
+There are two types of services / connections:</p>
+<ul>
+<li>Data provision that serves data based on input parameters and is not dependent on any visualisations. This layer is exposed as REST API which can be consumed by other applications.</li>
+<li>Permanent connection to receive updates and messages.  This is implemented as a Web Socket.</li>
+</ul>
+<p>System data is read at startup, and cached.  This is done in order to minimise the number of database queries.  When this data is changed on the server, a message is sent to the frontend, and the latest dataset is read again from the server.</p>
+<p>The Canvas Development installation</p>
+<p>This is all you that a user needs from this section.</p>
+<p>In the development environment however, one has to follow these steps to install Angular, etc in order to perform development work:
+cd Projects/ (parent folder to Canvas folder)
+ng new canvas (install skeleton via CLI)
+Create canvas folder
+Install Angular-cli
+Install the correct version of Angular (see the packages.json file for detail)
+Install PrimeNG &amp; font awesome
+Install Vega and Vega-lite</p>
+<p>To upgrade the development environment, perform the following:
+Upgrade to the latest CLI globally:
+sudo npm uninstall -g angular-cli
+sudo npm cache clean
+sudo npm install -g angular-cli@latest</p>
+<p>Upgrade your local Node.js with NPM (v7.8.0):
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable</p>
+<p>Upgrade TypeScript (2.2.2):
+sudo npm install -g typescript@latest</p>
+<p>Upgrade VS Code (v1.10):
+Get tar from https://code.visualstudio.com/updates/v1_10</p>
+<p>Upgrade  / Add typings for Vega (used in TS) – see http://definitelytyped.org/ for detail on classes, etc:
+sudo npm install --save @types/lodash
+Alternatively: try /// <reference path="..." />, see www.typescriptlang.org</p>
+<h2>12. Backend</h2>
+<ul>
+<li>Data diagram</li>
+<li>Eazl admin – Django console</li>
+<li>Overlay package and query structures</li>
+<li>Overlay task management</li>
+</ul>
+<p>The frontend does not store any data (other than caching user-related info).<br>
+The system records will have Deleted / Archived flag.  Thus, the SQL must cater for this.  This is less work than a separate Archive table, and allows for an easy UNDO.  For now the system does not have an Undo button; it will be created quickly once needed.
+Eazl data will not have ANY versioning in the form of EFD &amp; ETD.  If the client has data with this feature, we will write the base Packages to cater for it.
+The backend status provides an elegant way to close the REST (for say maintenance) and send the user a friendly message.</p>
+<p>Installation:
+In canvas:
+git clone https://github.com/BradleyKirton/eazl-rest.git backend<br>
+Activate the virtual environment
+pip install -r requirements.txt
+Then migrate, makemigrations, migrate
+Loaddate, make sure API running
+To create: python manage.py loaddata fixtures.json</p>
+<p>Overlay Packages:
+Whenever a base package changes,overlay will
+Automatically compile it with all related queries (which means Reports).
+Queries (Reports) that fail, will be deemed bad / dirty, flagged as such on the frontend so that the user cannot run them.</p>

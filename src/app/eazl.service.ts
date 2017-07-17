@@ -4822,12 +4822,32 @@ export class EazlService implements OnInit {
                         let cell_number: string = '';
                         let work_number: string = '';
                         let profile_picture: string = '';
+                        let average_warning_runtime: number = 0;
+                        let dashboard_id_at_startup: number = -1;
+                        let environment: string = '';
+                        let frontend_color_scheme: string = '';
+                        let default_report_filters: string = '';
+                        let default_widget_configuration: string = '';
+                        let grid_size: number = 3;
+                        let growl_life: number = 3;
+                        let growl_sticky: boolean = false;
+                        let snap_to_grid: boolean = false;
 
                         if (eazlUser.profile != null) {
                             nick_name = eazlUser.profile.nick_name;
                             cell_number = eazlUser.profile.cell_number;
                             work_number = eazlUser.profile.work_number;
                             profile_picture = eazlUser.profile.profile_picture;
+                            average_warning_runtime = eazlUser.average_warning_runtime;
+                            dashboard_id_at_startup = eazlUser.dashboard_id_at_startup;
+                            environment = eazlUser.environment;
+                            frontend_color_scheme = eazlUser.frontend_color_scheme;
+                            default_report_filters = eazlUser.default_report_filters;
+                            default_widget_configuration = eazlUser.default_widget_configuration;
+                            grid_size = eazlUser.grid_size;
+                            growl_life = eazlUser.growl_life;
+                            growl_sticky = eazlUser.growl_sticky;
+                            snap_to_grid = eazlUser.snap_to_grid;
                         }
                         this.globalVariableService.canvasUser.next({
                             pk: eazlUser.pk,
@@ -4846,7 +4866,17 @@ export class EazlService implements OnInit {
                                     nick_name:  nick_name,
                                     cell_number: cell_number,
                                     work_number: work_number,
-                                    profile_picture: profile_picture
+                                    profile_picture: profile_picture,
+                                    average_warning_runtime : average_warning_runtime,
+                                    dashboard_id_at_startup : dashboard_id_at_startup,
+                                    environment : environment,
+                                    frontend_color_scheme : frontend_color_scheme,
+                                    default_report_filters : default_report_filters,
+                                    default_widget_configuration : default_widget_configuration,
+                                    grid_size : grid_size,
+                                    growl_life : growl_life,
+                                    growl_sticky : growl_sticky,
+                                    snap_to_grid : snap_to_grid
                                 }
                         });
                         this.globalVariableService.isAuthenticatedOnEazl.next(true);

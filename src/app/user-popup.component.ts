@@ -297,6 +297,23 @@ export class UserPopupComponent implements OnInit {
                 userNameLastUpdated:        this.userformActivity.controls['userNameLastUpdated'].value,
                 isStaff:                    this.userformID.controls['isStaff'].valuel,
                 isSuperUser:                this.userformID.controls['isSuperUser'].valuel,
+                profile: 
+                    {
+                        nick_name: '',
+                        cell_number: '',
+                        work_number: '',
+                        profile_picture: '',
+                        averageWarningRuntime: 0,
+                        dashboardIDStartup: -1,
+                        environment: '',
+                        frontendColorScheme: '',
+                        defaultReportFilters: '',
+                        defaultWidgetConfiguration: '',
+                        gridSize: 3,
+                        growlLife: 3,
+                        growlSticky: false,
+                        snapToGrid: false
+                    }
             });
 
         this.globalVariableService.growlGlobalMessage.next({
