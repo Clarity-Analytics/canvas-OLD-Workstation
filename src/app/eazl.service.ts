@@ -4848,6 +4848,21 @@ export class EazlService implements OnInit {
                             growl_life = eazlUser.growl_life;
                             growl_sticky = eazlUser.growl_sticky;
                             snap_to_grid = eazlUser.snap_to_grid;
+                        } else {
+                            nick_name = '';
+                            cell_number = '';
+                            work_number = '';
+                            profile_picture = '';
+                            average_warning_runtime = 3;
+                            dashboard_id_at_startup = -1;
+                            environment = '';
+                            frontend_color_scheme = '';
+                            default_report_filters = '';
+                            default_widget_configuration = '';
+                            grid_size = 3;
+                            growl_life = 3;
+                            growl_sticky = false;
+                            snap_to_grid = false;
                         }
                         this.globalVariableService.canvasUser.next({
                             pk: eazlUser.pk,

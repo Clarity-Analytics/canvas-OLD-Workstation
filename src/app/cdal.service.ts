@@ -156,25 +156,25 @@ export class CDAL {
             userWorking.isSuperUser = false;
         }
 
-        if (eazlUser.profile != null) {
+        userWorking.profile = 
+            {
+                nick_name: '',
+                cell_number: '',
+                work_number: '',
+                profile_picture: '',
+                averageWarningRuntime: 3,
+                dashboardIDStartup: -1,
+                environment: '',
+                frontendColorScheme: '',
+                defaultReportFilters: '',
+                defaultWidgetConfiguration: '',
+                gridSize: 3,
+                growlLife: 3,
+                growlSticky: false,
+                snapToGrid: false,
+            }
 
-            userWorking.profile = 
-                {
-                    nick_name: '',
-                    cell_number: '',
-                    work_number: '',
-                    profile_picture: '',
-                    averageWarningRuntime: 3,
-                    dashboardIDStartup: -1,
-                    environment: '',
-                    frontendColorScheme: '',
-                    defaultReportFilters: '',
-                    defaultWidgetConfiguration: '',
-                    gridSize: 3,
-                    growlLife: 3,
-                    growlSticky: false,
-                    snapToGrid: false,
-                }
+        if (eazlUser.profile != null) {
 
             if (eazlUser.profile.profile_picture != null) {
                 userWorking.photoPath = eazlUser.profile.profile_picture;
