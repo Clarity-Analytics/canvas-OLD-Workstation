@@ -155,8 +155,26 @@ export class CDAL {
         } else {
             userWorking.isSuperUser = false;
         }
-console.log('CDAL eazlUser.profile', eazlUser.profile)
+
         if (eazlUser.profile != null) {
+
+            userWorking.profile = 
+                {
+                    nick_name: '',
+                    cell_number: '',
+                    work_number: '',
+                    profile_picture: '',
+                    averageWarningRuntime: 3,
+                    dashboardIDStartup: -1,
+                    environment: '',
+                    frontendColorScheme: '',
+                    defaultReportFilters: '',
+                    defaultWidgetConfiguration: '',
+                    gridSize: 3,
+                    growlLife: 3,
+                    growlSticky: false,
+                    snapToGrid: false,
+                }
 
             if (eazlUser.profile.profile_picture != null) {
                 userWorking.photoPath = eazlUser.profile.profile_picture;
@@ -180,6 +198,66 @@ console.log('CDAL eazlUser.profile', eazlUser.profile)
                 userWorking.cellNumber = eazlUser.profile.cell_number;
             } else {
                 userWorking.cellNumber = '';
+            }
+
+            if (eazlUser.profile.average_warning_runtime != null) {
+                userWorking.profile.averageWarningRuntime = eazlUser.profile.average_warning_runtime;
+            } else {
+                userWorking.profile.averageWarningRuntime = 3;
+            }
+
+            if (eazlUser.profile.dashboard_id_at_startup != null) {
+                userWorking.profile.dashboardIDStartup = eazlUser.profile.dashboard_id_at_startup;
+            } else {
+                userWorking.profile.dashboardIDStartup = -1;
+            }
+
+            if (eazlUser.profile.environment != null) {
+                userWorking.profile.environment = eazlUser.profile.environment;
+            } else {
+                userWorking.profile.environment = '';
+            }
+
+            if (eazlUser.profile.frontend_color_scheme != null) {
+                userWorking.profile.frontendColorScheme = eazlUser.profile.frontend_color_scheme;
+            } else {
+                userWorking.profile.frontendColorScheme = '';
+            }
+
+            if (eazlUser.profile.default_report_filters != null) {
+                userWorking.profile.defaultReportFilters = eazlUser.profile.default_report_filters;
+            } else {
+                userWorking.profile.defaultReportFilters = '';
+            }
+
+            if (eazlUser.profile.default_widget_configuration != null) {
+                userWorking.profile.defaultWidgetConfiguration = eazlUser.profile.default_widget_configuration;
+            } else {
+                userWorking.profile.defaultWidgetConfiguration = '';
+            }
+
+            if (eazlUser.profile.grid_size != null) {
+                userWorking.profile.gridSize = eazlUser.profile.grid_size;
+            } else {
+                userWorking.profile.gridSize = 3;
+            }
+
+            if (eazlUser.profile.growl_life != null) {
+                userWorking.profile.growlLife = eazlUser.profile.growl_life;
+            } else {
+                userWorking.profile.growlLife = 3;
+            }
+
+            if (eazlUser.profile.growl_sticky != null) {
+                userWorking.profile.growlSticky = eazlUser.profile.growl_sticky;
+            } else {
+                userWorking.profile.growlSticky = false;
+            }
+
+            if (eazlUser.profile.snap_to_grid != null) {
+                userWorking.profile.snapToGrid = eazlUser.profile.snap_to_grid;
+            } else {
+                userWorking.profile.snapToGrid = false;
             }
         }
 
