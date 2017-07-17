@@ -32,19 +32,5 @@ export class Personalisation {
     snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
 }
 
-export class UserProfile {
-    id: number; 
-    profile_picture: any;
-    nick_name: string;
-    cell_number: string;
-    work_number: string;
-    growl_life: number;
-    growl_sticky: boolean;
-    grid_size: number;
-    snap_to_grid: boolean;
-    color_scheme: string;
-    default_widget_configuration: string;
-    query_runtime_warning: number;
-}
 
 
