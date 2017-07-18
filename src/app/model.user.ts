@@ -4,7 +4,7 @@
 export interface EazlUser 
     {
         // Defines data model for User Entity
-        pk: number;
+        id: number;
         username: string;
         first_name: string;
         last_name: string;
@@ -75,7 +75,7 @@ export class User
 // Current user info in Canvas
 export class CanvasUser implements EazlUser 
     {
-        pk: number;
+        id: number;
         username: string;
         first_name: string;
         last_name: string;

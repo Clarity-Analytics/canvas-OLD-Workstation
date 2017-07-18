@@ -7,9 +7,9 @@ import { FormGroup }                  from '@angular/forms';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
+
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
@@ -19,6 +19,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { CanvasColors }               from './chartcolors.data';
+import { CanvasUser }                 from './model.user';
 import { Personalisation }            from './model.personalisation';
 import { SelectedItemColor }          from './model.selectedItemColor';
 import { SelectedItem }               from './model.selectedItem';
@@ -29,8 +30,9 @@ import { SelectedItem }               from './model.selectedItem';
     styleUrls:  ['personalisation.component.css']
 })
 export class PersonalisationComponent implements OnInit {
-    
+
     // Local properties
+    canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     configForm: FormGroup;
     dashboardDropDown: SelectItem[];            // Drop Down options
@@ -51,7 +53,7 @@ export class PersonalisationComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -91,11 +93,11 @@ export class PersonalisationComponent implements OnInit {
     loadForm() {
         // Move the data into the form
         this.globalFunctionService.printToConsole(this.constructor.name,'loadForm', '@Start');
-
+console.log('pers', this.canvasUser,  this.personalisation)
         if (this.personalisation.dashboardIDStartup != -1) {
             let dashboardName: string = '';
             dashboardName = this.eazlService.getdashboardName(this.personalisation.dashboardIDStartup);
-            if (dashboardName != null) {     
+            if (dashboardName != null) {
                 this.selectedDashboard = {
                     id: this.personalisation.dashboardIDStartup,
                     name: dashboardName
@@ -143,54 +145,54 @@ export class PersonalisationComponent implements OnInit {
 
         this.formIsValid = false;
         this.numberErrors = 0;
-        this.errorMessageOnForm = ''; 
+        this.errorMessageOnForm = '';
 
-        if (this.configForm.controls['averageWarningRuntime'].value == ''  || 
+        if (this.configForm.controls['averageWarningRuntime'].value == ''  ||
             this.configForm.controls['averageWarningRuntime'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The avg warning runtime is compulsory.'
         }
-        if (this.configForm.controls['averageWarningRuntime'].touched  && 
+        if (this.configForm.controls['averageWarningRuntime'].touched  &&
             !this.configForm.controls['averageWarningRuntime'].valid) {
                 if (this.configForm.controls['averageWarningRuntime'].value != '0') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The average Warning Runtime must be numeric';
                 }
         }
-        if (this.configForm.controls['growlLife'].value == ''  || 
+        if (this.configForm.controls['growlLife'].value == ''  ||
             this.configForm.controls['growlLife'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Growl Life is compulsory.'
         }
-        if (this.configForm.controls['growlLife'].touched  && 
+        if (this.configForm.controls['growlLife'].touched  &&
             !this.configForm.controls['growlLife'].valid) {
                 if (this.configForm.controls['growlLife'].value != '0') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The growl Life must be numeric';
                 }
         }
-        if (this.configForm.controls['gridSize'].value == ''  || 
+        if (this.configForm.controls['gridSize'].value == ''  ||
             this.configForm.controls['gridSize'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The GridSize is compulsory.'
         }
-        if (this.configForm.controls['gridSize'].touched  && 
+        if (this.configForm.controls['gridSize'].touched  &&
             !this.configForm.controls['gridSize'].valid) {
                 if (this.configForm.controls['gridSize'].value != '0') {
                     this.formIsValid = false;
                     this.numberErrors = this.numberErrors + 1;
-                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                         'The Grid Size must be numeric';
                 }
         }
-    
+
         // Error(s) encountered
         if (this.errorMessageOnForm != '') {
             this.formIsValid = true;
@@ -237,4 +239,4 @@ export class PersonalisationComponent implements OnInit {
             detail:   'The information has been updated'
         });
     }
-} 
+}

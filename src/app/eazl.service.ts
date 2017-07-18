@@ -4865,7 +4865,7 @@ export class EazlService implements OnInit {
                             snap_to_grid = false;
                         }
                         this.globalVariableService.canvasUser.next({
-                            pk: eazlUser.pk,
+                            id: eazlUser.id,
                             username: eazlUser.username,
                             first_name: eazlUser.first_name,
                             last_name: eazlUser.last_name,
