@@ -101,7 +101,7 @@ export class GlobalVariableService {
     dashboardIDStartup: number = -1;
     defaultReportFilters: string = '';
     environment: string = '';
-    frontendColorScheme = new BehaviorSubject('');
+    frontendColorScheme: string = '';
     growlSticky: boolean = false;
     growlLife: number = 3;
     gridSize: number = 3;
