@@ -100,6 +100,23 @@ export class PersonalisationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'loadForm', '@Start');
 console.log('pers', this.canvasUser.id,  this.users)
 console.log('pers', this.canvasUser,  this.personalisation)
+
+let index: number = -1;
+for (var i = 0; i < this.users.length; i++) {
+    if (this.canvasUser.id == this.users[i].id) {
+        index = i;
+        break;
+    }
+}
+if (index == -1) {
+    alert ("Error - current user id in canvasUser not in users object !")
+}
+console.log ('index', index, this.users[index].profile.growlLife)
+
+//  color_scheme = frontendColorScheme
+// query_runtime_warning = averageWarningRuntime
+// default_widget_configuration
+// this.personalisation.dashboardIDStartup
         if (this.personalisation.dashboardIDStartup != -1) {
             let dashboardName: string = '';
             dashboardName = this.eazlService.getdashboardName(this.personalisation.dashboardIDStartup);

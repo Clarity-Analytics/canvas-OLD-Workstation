@@ -4737,14 +4737,12 @@ export class EazlService implements OnInit {
         // - personalisation New data
         this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesPersonalisation', '@Start');
 
-        this.globalVariableService.averageWarningRuntime.next(personalisation.personalisationID);
-
         this.globalVariableService.personalisationID = personalisation.personalisationID;
         this.globalVariableService.personalisationRecordID = personalisation.personalisationRecordID;
 
         // Update local values that have changed
         if (personalisation.averageWarningRuntime != this.personalisation.averageWarningRuntime) {
-            this.globalVariableService.averageWarningRuntime.next(personalisation.averageWarningRuntime);
+            this.globalVariableService.averageWarningRuntime = personalisation.averageWarningRuntime;
         }
         if (personalisation.dashboardIDStartup != this.personalisation.dashboardIDStartup) {
             this.globalVariableService.dashboardIDStartup.next(personalisation.dashboardIDStartup);
