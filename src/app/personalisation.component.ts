@@ -98,81 +98,43 @@ export class PersonalisationComponent implements OnInit {
     loadForm() {
         // Move the data into the form
         this.globalFunctionService.printToConsole(this.constructor.name,'loadForm', '@Start');
-console.log('pers', this.canvasUser.id,  this.users)
-console.log('pers', this.canvasUser,  this.personalisation)
 
-let index: number = -1;
-for (var i = 0; i < this.users.length; i++) {
-    if (this.canvasUser.id == this.users[i].id) {
-        index = i;
-        break;
-    }
-}
-if (index == -1) {
-    alert ("Error - current user id in canvasUser not in users object !")
-}
-console.log ('index', index, this.users[index].profile.growlLife)
-
-//  color_scheme = frontendColorScheme
-// query_runtime_warning = averageWarningRuntime
-// default_widget_configuration
-// this.personalisation.dashboardIDStartup
-
-console.log('xxx all', this.users[index].profile)
-console.log('xxx', this.users[index].profile.nickName)
-console.log('xxx', this.users[index].profile.cellNumber)
-console.log('xxx', this.users[index].profile.workTelephoneNumber)
-console.log('xxx profile_picture', this.users[index].profile.photoPath)
-console.log('xxx averageWarningRuntime', this.users[index].profile.averageWarningRuntime)
-console.log('xxx dashboardIDStartup', this.users[index].profile.dashboardIDStartup)
-console.log('xxx environment', this.users[index].profile.environment)
-console.log('xxx frontendColorScheme', this.users[index].profile.frontendColorScheme)
-console.log('xxx defaultReportFilters', this.users[index].profile.defaultReportFilters)
-console.log('xxx defaultWidgetConfiguration', this.users[index].profile.defaultWidgetConfiguration)
-console.log('xxx gridSize', this.users[index].profile.gridSize)
-console.log('xxx growlLife', this.users[index].profile.growlLife)
-console.log('xxx growlSticky', this.users[index].profile.growlSticky)
-console.log('xxx snapToGrid', this.users[index].profile.snapToGrid)
+        // Get the index in the users array for the current user
+        let index: number = -1;
+        for (var i = 0; i < this.users.length; i++) {
+            if (this.canvasUser.id == this.users[i].id) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            alert ("Error - current user id in canvasUser not in users object !")
+        }
 
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-    		
-    		
-    		
-
-        if (this.personalisation.dashboardIDStartup != -1) {
+        if (this.users[index].profile.dashboardIDStartup != -1) {
             let dashboardName: string = '';
-            dashboardName = this.eazlService.getdashboardName(this.personalisation.dashboardIDStartup);
+            dashboardName = this.eazlService.getdashboardName(this.users[index].profile.dashboardIDStartup);
             if (dashboardName != null) {
                 this.selectedDashboard = {
-                    id: this.personalisation.dashboardIDStartup,
+                    id: this.users[index].profile.dashboardIDStartup,
                     name: dashboardName
                 };
             }
         }
 
         this.configForm.controls['environment'].setValue(
-            this.personalisation.environment);
+            this.users[index].profile.environment);
         this.configForm.controls['averageWarningRuntime'].setValue(
-            this.personalisation.averageWarningRuntime);
+            this.users[index].profile.averageWarningRuntime);
         this.configForm.controls['frontendColorScheme'].setValue(
-            this.personalisation.frontendColorScheme);
+            this.users[index].profile.frontendColorScheme);
 
         this.selectedItemColor = {
-            id: this.personalisation.frontendColorScheme,
-            name: this.personalisation.frontendColorScheme,
+            id: this.users[index].profile.frontendColorScheme,
+            name: this.users[index].profile.frontendColorScheme,
             code: this.canvasColors.hexCodeOfColor(
-                this.personalisation.frontendColorScheme
+                this.users[index].profile.frontendColorScheme
             )
         }
         this.configForm.controls['frontendColorScheme'].setValue(
@@ -180,19 +142,19 @@ console.log('xxx snapToGrid', this.users[index].profile.snapToGrid)
         );
         this.selectedFrontendColorScheme = this.selectedItemColor;
         this.configForm.controls['defaultWidgetConfiguration'].setValue(
-            this.personalisation.defaultWidgetConfiguration);
+            this.users[index].profile.defaultWidgetConfiguration);
         this.configForm.controls['defaultReportFilters'].setValue(
-            this.personalisation.defaultReportFilters);
+            this.users[index].profile.defaultReportFilters);
         this.configForm.controls['growlSticky'].setValue(
-            this.personalisation.growlSticky);
-        this.growlSticky = this.personalisation.growlSticky;
+            this.users[index].profile.growlSticky);
+        this.growlSticky = this.users[index].profile.growlSticky;
         this.configForm.controls['growlLife'].setValue(
-            this.personalisation.growlLife);
+            this.users[index].profile.growlLife);
         this.configForm.controls['gridSize'].setValue(
-            this.personalisation.gridSize);
-        this.snapToGrid = this.personalisation.snapToGrid;
+            this.users[index].profile.gridSize);
+        this.snapToGrid = this.users[index].profile.snapToGrid;
         this.configForm.controls['snapToGrid'].setValue(
-            this.personalisation.snapToGrid);
+            this.users[index].profile.snapToGrid);
     }
 
     onSubmit(value: string) {
