@@ -4763,7 +4763,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.growlSticky = personalisation.growlSticky;
         }
         if (personalisation.growlLife != this.personalisation.growlLife) {
-            this.globalVariableService.growlLife.next(personalisation.growlLife);
+            this.globalVariableService.growlLife = personalisation.growlLife;
         }
         if (personalisation.gridSize != this.personalisation.gridSize) {
             this.globalVariableService.gridSize.next(personalisation.gridSize);

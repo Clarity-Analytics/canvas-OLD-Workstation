@@ -103,7 +103,7 @@ export class GlobalVariableService {
     environment = new BehaviorSubject('');
     frontendColorScheme = new BehaviorSubject('');
     growlSticky: boolean = false;
-    growlLife = new BehaviorSubject(3000);
+    growlLife: number = 3;
     gridSize = new BehaviorSubject(3);
     snapToGrid = new BehaviorSubject(true);
 
