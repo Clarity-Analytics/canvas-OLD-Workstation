@@ -102,7 +102,7 @@ export class GlobalVariableService {
     defaultReportFilters: string = '';
     environment = new BehaviorSubject('');
     frontendColorScheme = new BehaviorSubject('');
-    growlSticky = new BehaviorSubject(false);
+    growlSticky: boolean = false;
     growlLife = new BehaviorSubject(3000);
     gridSize = new BehaviorSubject(3);
     snapToGrid = new BehaviorSubject(true);

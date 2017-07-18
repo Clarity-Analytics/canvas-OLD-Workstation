@@ -4760,7 +4760,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.defaultReportFilters = personalisation.defaultReportFilters;
         }
         if (personalisation.growlSticky != this.personalisation.growlSticky) {
-            this.globalVariableService.growlSticky.next(personalisation.growlSticky);
+            this.globalVariableService.growlSticky = personalisation.growlSticky;
         }
         if (personalisation.growlLife != this.personalisation.growlLife) {
             this.globalVariableService.growlLife.next(personalisation.growlLife);
