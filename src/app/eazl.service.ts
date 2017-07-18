@@ -4754,7 +4754,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.frontendColorScheme.next(personalisation.frontendColorScheme);
         }
         if (personalisation.defaultWidgetConfiguration != this.personalisation.defaultWidgetConfiguration) {
-            this.globalVariableService.defaultWidgetConfiguration.next(personalisation.defaultWidgetConfiguration);
+            this.globalVariableService.defaultWidgetConfiguration = personalisation.defaultWidgetConfiguration;
         }
         if (personalisation.defaultReportFilters != this.personalisation.defaultReportFilters) {
             this.globalVariableService.defaultReportFilters.next(personalisation.defaultReportFilters);
