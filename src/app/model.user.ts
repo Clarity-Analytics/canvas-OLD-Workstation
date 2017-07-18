@@ -21,10 +21,10 @@ export interface EazlUser
                 cell_number: string;
                 work_number: string;
                 profile_picture: string;
-                average_warning_runtime: number;        // Minutes: Warn user if a report is known to run longer
+                query_runtime_warning: number;          // Minutes: Warn user if a report is known to run longer
                 dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
                 environment: string;                    // Live, Test-Environment-Name
-                frontend_color_scheme: string;          // Color scheme for Canvas - for later use
+                color_scheme: string;                   // Color scheme for Canvas - for later use
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
                 grid_size: number;                      // Size of Grid on Dashboard in px
@@ -93,10 +93,10 @@ export class CanvasUser implements EazlUser
                 cell_number: string;
                 work_number: string;
                 profile_picture: string;
-                average_warning_runtime: number;        // Minutes: Warn user if a report is known to run longer
+                query_runtime_warning: number;          // Minutes: Warn user if a report is known to run longer
                 dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
                 environment: string;                    // Live, Test-Environment-Name
-                frontend_color_scheme: string;          // Color scheme for Canvas - for later use
+                color_scheme: string;                   // Color scheme for Canvas - for later use
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
                 grid_size: number;                      // Size of Grid on Dashboard in px

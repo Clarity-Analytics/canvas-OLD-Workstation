@@ -58,8 +58,8 @@ export class AppComponent implements OnInit {
     // Define Variables - define here if a global variable is used in html.
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     frontendName: string = this.globalVariableService.frontendName;
-    growlLife: number = this.globalVariableService.growlLife.getValue();
-    growlSticky: boolean = this.globalVariableService.growlSticky.getValue();
+    growlLife: number = this.globalVariableService.growlLife;
+    growlSticky: boolean = this.globalVariableService.growlSticky;
     systemTitle: string = this.globalVariableService.systemTitle;
     testEnvironmentName: string = this.globalVariableService.testEnvironmentName.getValue();
 

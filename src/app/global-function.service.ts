@@ -41,8 +41,8 @@ export class GlobalFunctionService {
         this.printToConsole(this.constructor.name, 'snapToGrid', '@Start');
 
         // Set startup stuffies
-        this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
-        this.gridSize = this.globalVariableService.gridSize.getValue();
+        this.snapToGrid = this.globalVariableService.snapToGrid;
+        this.gridSize = this.globalVariableService.gridSize;
 
         if (this.snapToGrid) {
             if ( (inputValue % this.gridSize) >= (this.gridSize / 2)) {

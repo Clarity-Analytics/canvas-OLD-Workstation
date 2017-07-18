@@ -219,8 +219,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Set startup stuffies
         // TODO - make sure global vars obtained @startup / login
         //      - and maintained when they change via WebSocket messages
-        this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
-        this.gridSize = this.globalVariableService.gridSize.getValue();
+        this.snapToGrid = this.globalVariableService.snapToGrid;
+        this.gridSize = this.globalVariableService.gridSize;
         this.selectedBackgroundColor = this.globalVariableService.lastBackgroundColor.getValue();
         this.selectedBorder = this.globalVariableService.lastBorder.getValue();
         this.selectedBoxShadow = this.globalVariableService.lastBoxShadow.getValue();
@@ -485,12 +485,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.displayExpandGridSize) {
 
             // Update the data (for next time only, not moving anything now)
-            this.globalVariableService.gridSize.next(
-                +this.selectedContainerGridSize['name']
-            );
+            this.globalVariableService.gridSize = +this.selectedContainerGridSize['name'];
 
             // Remember for next time, permanently
-            this.globalVariableService.gridSize.next(this.gridSize);
+            this.globalVariableService.gridSize = this.gridSize;
 
             return;
         }
@@ -626,7 +624,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.snapToGrid = !this.snapToGrid;
 
         // Remember for next time, permanently
-        this.globalVariableService.snapToGrid.next(this.snapToGrid);
+        this.globalVariableService.snapToGrid = this.snapToGrid;
     }
 
     dashboardAdvanceFilter() {

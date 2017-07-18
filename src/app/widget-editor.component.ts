@@ -267,8 +267,8 @@ export class WidgetEditorComponent implements OnInit {
         this.loadWidgetTemplateFields();
 
         // Set startup stuffies
-        this.snapToGrid = this.globalVariableService.snapToGrid.getValue();
-        this.gridSize = this.globalVariableService.gridSize.getValue();
+        this.snapToGrid = this.globalVariableService.snapToGrid;
+        this.gridSize = this.globalVariableService.gridSize;
 
     }
 

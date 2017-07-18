@@ -201,8 +201,8 @@ export class CDAL {
                 userWorking.cellNumber = '';
             }
 
-            if (eazlUser.profile.average_warning_runtime != null) {
-                userWorking.profile.averageWarningRuntime = eazlUser.profile.average_warning_runtime;
+            if (eazlUser.profile.query_runtime_warning != null) {
+                userWorking.profile.averageWarningRuntime = eazlUser.profile.query_runtime_warning;
             } else {
                 userWorking.profile.averageWarningRuntime = 3;
             }
@@ -219,8 +219,8 @@ export class CDAL {
                 userWorking.profile.environment = '';
             }
 
-            if (eazlUser.profile.frontend_color_scheme != null) {
-                userWorking.profile.frontendColorScheme = eazlUser.profile.frontend_color_scheme;
+            if (eazlUser.profile.color_scheme != null) {
+                userWorking.profile.frontendColorScheme = eazlUser.profile.color_scheme;
             } else {
                 userWorking.profile.frontendColorScheme = '';
             }
