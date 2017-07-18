@@ -4766,7 +4766,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.growlLife = personalisation.growlLife;
         }
         if (personalisation.gridSize != this.personalisation.gridSize) {
-            this.globalVariableService.gridSize.next(personalisation.gridSize);
+            this.globalVariableService.gridSize = personalisation.gridSize;
         }
         if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
             this.globalVariableService.snapToGrid = personalisation.snapToGrid;

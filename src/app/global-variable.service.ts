@@ -104,7 +104,7 @@ export class GlobalVariableService {
     frontendColorScheme = new BehaviorSubject('');
     growlSticky: boolean = false;
     growlLife: number = 3;
-    gridSize = new BehaviorSubject(3);
+    gridSize: number = 3;
     snapToGrid: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
