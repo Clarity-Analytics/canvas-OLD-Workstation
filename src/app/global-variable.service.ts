@@ -99,7 +99,7 @@ export class GlobalVariableService {
     averageWarningRuntime: number = 0;
     defaultWidgetConfiguration: string = '';
     dashboardIDStartup: number = -1;
-    defaultReportFilters = new BehaviorSubject('');
+    defaultReportFilters: string = '';
     environment = new BehaviorSubject('');
     frontendColorScheme = new BehaviorSubject('lightgray');
     growlSticky = new BehaviorSubject(false);

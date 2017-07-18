@@ -4757,7 +4757,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.defaultWidgetConfiguration = personalisation.defaultWidgetConfiguration;
         }
         if (personalisation.defaultReportFilters != this.personalisation.defaultReportFilters) {
-            this.globalVariableService.defaultReportFilters.next(personalisation.defaultReportFilters);
+            this.globalVariableService.defaultReportFilters = personalisation.defaultReportFilters;
         }
         if (personalisation.growlSticky != this.personalisation.growlSticky) {
             this.globalVariableService.growlSticky.next(personalisation.growlSticky);
