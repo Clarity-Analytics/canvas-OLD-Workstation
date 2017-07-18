@@ -4769,7 +4769,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.gridSize.next(personalisation.gridSize);
         }
         if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
-            this.globalVariableService.snapToGrid.next(personalisation.snapToGrid);
+            this.globalVariableService.snapToGrid = personalisation.snapToGrid;
         }
     }
 

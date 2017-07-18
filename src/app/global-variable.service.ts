@@ -105,7 +105,7 @@ export class GlobalVariableService {
     growlSticky: boolean = false;
     growlLife: number = 3;
     gridSize = new BehaviorSubject(3);
-    snapToGrid = new BehaviorSubject(true);
+    snapToGrid: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
