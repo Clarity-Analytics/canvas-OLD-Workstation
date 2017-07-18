@@ -4745,7 +4745,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.averageWarningRuntime = personalisation.averageWarningRuntime;
         }
         if (personalisation.dashboardIDStartup != this.personalisation.dashboardIDStartup) {
-            this.globalVariableService.dashboardIDStartup.next(personalisation.dashboardIDStartup);
+            this.globalVariableService.dashboardIDStartup = personalisation.dashboardIDStartup;
         }
         if (personalisation.environment != this.personalisation.environment) {
             this.globalVariableService.environment.next(personalisation.environment);

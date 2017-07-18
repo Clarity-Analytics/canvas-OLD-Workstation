@@ -98,7 +98,7 @@ export class GlobalVariableService {
     personalisationRecordID: number = 0;
     averageWarningRuntime: number = 0;
     defaultWidgetConfiguration: string = '';
-    dashboardIDStartup = new BehaviorSubject(-1);
+    dashboardIDStartup: number = -1;
     defaultReportFilters = new BehaviorSubject('');
     environment = new BehaviorSubject('');
     frontendColorScheme = new BehaviorSubject('lightgray');
