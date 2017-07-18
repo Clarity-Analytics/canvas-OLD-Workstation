@@ -5021,10 +5021,10 @@ export class EazlService implements OnInit {
             last_login: null,
             profile:
                 {
-                    nick_name: user.nickName,
-                    cell_number: user.cellNumber,
-                    work_number: user.workTelephoneNumber,
-                    profile_picture: user.photoPath
+                    nick_name: user.profile.nickName,
+                    cell_number: user.profile.cellNumber,
+                    work_number: user.profile.workTelephoneNumber,
+                    profile_picture: user.profile.photoPath
                 }
         }
 

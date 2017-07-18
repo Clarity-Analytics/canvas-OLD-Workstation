@@ -41,13 +41,9 @@ export class User
         username: string;
         firstName: string;
         lastName: string;
-        nickName: string;
-        photoPath: string;
         lastDatetimeLoggedIn: string;
         lastDatetimeReportWasRun: string;
         emailAddress: string;
-        cellNumber: string;
-        workTelephoneNumber: string;
         activeFromDate: string;
         inactiveDate: string;
         dateCreated: string;
@@ -56,10 +52,10 @@ export class User
         isSuperUser: boolean;
         profile: 
             {
-                nick_name: string;
-                cell_number: string;
-                work_number: string;
-                profile_picture: string;
+                nickName: string;
+                cellNumber: string;
+                workTelephoneNumber: string;
+                photoPath: string;
                 averageWarningRuntime: number;          // Minutes: Warn user if a report is known to run longer
                 dashboardIDStartup: number;             // Optional Dashboard ID to show at startup
                 environment: string;                    // Live, Test-Environment-Name

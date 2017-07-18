@@ -89,7 +89,7 @@ export class CDAL {
     loadUser(eazlUser: EazlUser): User {
         // Load User: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUser', '@Start');
-
+console.log('xxxx eazlUser', eazlUser)
         let userWorking = new User();
         userWorking.id = eazlUser.id;
         
@@ -159,10 +159,10 @@ export class CDAL {
 
         userWorking.profile = 
             {
-                nick_name: '',
-                cell_number: '',
-                work_number: '',
-                profile_picture: '',
+                nickName: '',
+                cellNumber: '',
+                workTelephoneNumber: '',
+                photoPath: '',
                 averageWarningRuntime: 3,
                 dashboardIDStartup: -1,
                 environment: '',
@@ -178,27 +178,27 @@ export class CDAL {
         if (eazlUser.profile != null) {
 
             if (eazlUser.profile.profile_picture != null) {
-                userWorking.photoPath = eazlUser.profile.profile_picture;
+                userWorking.profile.photoPath = eazlUser.profile.profile_picture;
             } else {
-                userWorking.photoPath = '';
+                userWorking.profile.photoPath = '';
             }
 
             if (eazlUser.profile.nick_name != null) {
-                userWorking.nickName = eazlUser.profile.nick_name;
+                userWorking.profile.nickName = eazlUser.profile.nick_name;
             } else {
-                userWorking.nickName = '';
+                userWorking.profile.nickName = '';
             }
 
             if (eazlUser.profile.work_number != null) {
-                userWorking.workTelephoneNumber = eazlUser.profile.work_number;
+                userWorking.profile.workTelephoneNumber = eazlUser.profile.work_number;
             } else {
-                userWorking.workTelephoneNumber = '';
+                userWorking.profile.workTelephoneNumber = '';
             }
 
             if (eazlUser.profile.cell_number != null) {
-                userWorking.cellNumber = eazlUser.profile.cell_number;
+                userWorking.profile.cellNumber = eazlUser.profile.cell_number;
             } else {
-                userWorking.cellNumber = '';
+                userWorking.profile.cellNumber = '';
             }
 
             if (eazlUser.profile.query_runtime_warning != null) {

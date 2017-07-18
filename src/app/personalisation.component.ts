@@ -117,6 +117,39 @@ console.log ('index', index, this.users[index].profile.growlLife)
 // query_runtime_warning = averageWarningRuntime
 // default_widget_configuration
 // this.personalisation.dashboardIDStartup
+
+console.log('xxx all', this.users[index].profile)
+console.log('xxx', this.users[index].profile.nickName)
+console.log('xxx', this.users[index].profile.cellNumber)
+console.log('xxx', this.users[index].profile.workTelephoneNumber)
+console.log('xxx profile_picture', this.users[index].profile.photoPath)
+console.log('xxx averageWarningRuntime', this.users[index].profile.averageWarningRuntime)
+console.log('xxx dashboardIDStartup', this.users[index].profile.dashboardIDStartup)
+console.log('xxx environment', this.users[index].profile.environment)
+console.log('xxx frontendColorScheme', this.users[index].profile.frontendColorScheme)
+console.log('xxx defaultReportFilters', this.users[index].profile.defaultReportFilters)
+console.log('xxx defaultWidgetConfiguration', this.users[index].profile.defaultWidgetConfiguration)
+console.log('xxx gridSize', this.users[index].profile.gridSize)
+console.log('xxx growlLife', this.users[index].profile.growlLife)
+console.log('xxx growlSticky', this.users[index].profile.growlSticky)
+console.log('xxx snapToGrid', this.users[index].profile.snapToGrid)
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+    		
+    		
+    		
+
         if (this.personalisation.dashboardIDStartup != -1) {
             let dashboardName: string = '';
             dashboardName = this.eazlService.getdashboardName(this.personalisation.dashboardIDStartup);

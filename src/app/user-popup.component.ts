@@ -170,11 +170,11 @@ export class UserPopupComponent implements OnInit {
                 if (this.selectedUser.lastName) {
                     this.userformID.controls['lastName'].setValue(this.selectedUser.lastName);
                 }
-                if (this.selectedUser.nickName) {
-                    this.userformID.controls['nickName'].setValue(this.selectedUser.nickName);
+                if (this.selectedUser.profile.nickName) {
+                    this.userformID.controls['nickName'].setValue(this.selectedUser.profile.nickName);
                 }
-                if (this.selectedUser.photoPath) {
-                    this.userformID.controls['photoPath'].setValue(this.selectedUser.photoPath);
+                if (this.selectedUser.profile.photoPath) {
+                    this.userformID.controls['photoPath'].setValue(this.selectedUser.profile.photoPath);
                 }
                 if (this.selectedUser.lastDatetimeLoggedIn) {
                     this.userformActivity.controls['lastDatetimeLoggedIn'].setValue(this.selectedUser.lastDatetimeLoggedIn);
@@ -185,11 +185,11 @@ export class UserPopupComponent implements OnInit {
                 if (this.selectedUser.emailAddress) {
                     this.userformID.controls['emailAddress'].setValue(this.selectedUser.emailAddress);
                 }
-                if (this.selectedUser.cellNumber) {
-                    this.userformID.controls['cellNumber'].setValue(this.selectedUser.cellNumber);
+                if (this.selectedUser.profile.cellNumber) {
+                    this.userformID.controls['cellNumber'].setValue(this.selectedUser.profile.cellNumber);
                 }
-                if (this.selectedUser.workTelephoneNumber) {
-                    this.userformID.controls['workTelephoneNumber'].setValue(this.selectedUser.workTelephoneNumber);
+                if (this.selectedUser.profile.workTelephoneNumber) {
+                    this.userformID.controls['workTelephoneNumber'].setValue(this.selectedUser.profile.workTelephoneNumber);
                 }
                 if (this.selectedUser.activeFromDate) {
                     this.userformActivity.controls['activeFromDate'].setValue(this.selectedUser.activeFromDate);
@@ -285,13 +285,9 @@ export class UserPopupComponent implements OnInit {
                 username:                   this.userformID.controls['username'].value,
                 firstName:                  this.userformID.controls['firstName'].value,
                 lastName:                   this.userformID.controls['lastName'].value,
-                nickName:                   this.userformID.controls['nickName'].value,
-                photoPath:                  this.userformID.controls['photoPath'].value,
                 lastDatetimeLoggedIn:       this.userformActivity.controls['lastDatetimeLoggedIn'].value,
                 lastDatetimeReportWasRun:   this.userformActivity.controls['lastDatetimeReportWasRun'].value,
                 emailAddress:               this.userformID.controls['emailAddress'].value,
-                cellNumber:                 this.userformID.controls['cellNumber'].value,
-                workTelephoneNumber:        this.userformID.controls['workTelephoneNumber'].value,
                 activeFromDate:             this.userformActivity.controls['activeFromDate'].value,
                 inactiveDate:               this.userformActivity.controls['inactiveDate'].value,
                 dateCreated:                this.userformActivity.controls['dateCreated'].value,
@@ -300,10 +296,10 @@ export class UserPopupComponent implements OnInit {
                 isSuperUser:                this.userformID.controls['isSuperUser'].valuel,
                 profile: 
                     {
-                        nick_name: '',
-                        cell_number: '',
-                        work_number: '',
-                        profile_picture: '',
+                        nickName: this.userformID.controls['nickName'].value,
+                        cellNumber: this.userformID.controls['cellNumber'].value,
+                        workTelephoneNumber: this.userformID.controls['workTelephoneNumber'].value,
+                        photoPath: this.userformID.controls['photoPath'].value,
                         averageWarningRuntime: 0,
                         dashboardIDStartup: -1,
                         environment: '',
@@ -332,11 +328,11 @@ export class UserPopupComponent implements OnInit {
                 this.selectedUser.username = this.userformID.controls['username'].value;
                 this.selectedUser.firstName = this.userformID.controls['firstName'].value;
                 this.selectedUser.lastName = this.userformID.controls['lastName'].value;
-                this.selectedUser.nickName = this.userformID.controls['nickName'].value;
-                this.selectedUser.photoPath = this.userformID.controls['photoPath'].value;
+                this.selectedUser.profile.nickName = this.userformID.controls['nickName'].value;
+                this.selectedUser.profile.photoPath = this.userformID.controls['photoPath'].value;
                 this.selectedUser.emailAddress = this.userformID.controls['emailAddress'].value;
-                this.selectedUser.cellNumber = this.userformID.controls['cellNumber'].value;
-                this.selectedUser.workTelephoneNumber = this.userformID.controls['workTelephoneNumber'].value;
+                this.selectedUser.profile.cellNumber = this.userformID.controls['cellNumber'].value;
+                this.selectedUser.profile.workTelephoneNumber = this.userformID.controls['workTelephoneNumber'].value;
                 this.selectedUser.isStaff = this.userformID.controls['isStaff'].value;
                 this.selectedUser.isSuperUser = this.userformID.controls['isSuperUser'].value;
             }
