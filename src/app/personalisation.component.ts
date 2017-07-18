@@ -23,6 +23,7 @@ import { CanvasUser }                 from './model.user';
 import { Personalisation }            from './model.personalisation';
 import { SelectedItemColor }          from './model.selectedItemColor';
 import { SelectedItem }               from './model.selectedItem';
+import { User }                       from './model.user';
 
 @Component({
     selector:    'personalisation',
@@ -33,6 +34,7 @@ export class PersonalisationComponent implements OnInit {
 
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
+    users: User[];                              // Current users 
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     configForm: FormGroup;
     dashboardDropDown: SelectItem[];            // Drop Down options
@@ -86,6 +88,9 @@ export class PersonalisationComponent implements OnInit {
         // Get the system wide settings
         this.personalisation = this.eazlService.getPersonalisation();
 
+        // Get the users
+        this.users = this.eazlService.getUsers();
+
         // Load the data into the form
         this.loadForm();
     }
@@ -93,6 +98,7 @@ export class PersonalisationComponent implements OnInit {
     loadForm() {
         // Move the data into the form
         this.globalFunctionService.printToConsole(this.constructor.name,'loadForm', '@Start');
+console.log('pers', this.canvasUser.id,  this.users)
 console.log('pers', this.canvasUser,  this.personalisation)
         if (this.personalisation.dashboardIDStartup != -1) {
             let dashboardName: string = '';

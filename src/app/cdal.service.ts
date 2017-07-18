@@ -91,7 +91,8 @@ export class CDAL {
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUser', '@Start');
 
         let userWorking = new User();
-
+        userWorking.id = eazlUser.id;
+        
         if (eazlUser.username != null) {
             userWorking.username = eazlUser.username;
         } else {

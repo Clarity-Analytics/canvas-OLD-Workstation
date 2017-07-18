@@ -281,6 +281,7 @@ export class UserPopupComponent implements OnInit {
         // Adding new user
         if (this.addEditMode == 'Add' && this.displayUserPopup) {
             this.eazlService.addUser({
+                id:                         0,
                 username:                   this.userformID.controls['username'].value,
                 firstName:                  this.userformID.controls['firstName'].value,
                 lastName:                   this.userformID.controls['lastName'].value,
