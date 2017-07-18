@@ -4651,7 +4651,7 @@ export class EazlService implements OnInit {
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'AddUsers',
+                        summary:  'SystemConfiguration',
                         detail:   'Unsuccessful in updating SystemConfiguration to the database'
                     });
                     error.message || error
@@ -4725,7 +4725,7 @@ export class EazlService implements OnInit {
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'AddUsers',
+                        summary:  'Personalisation',
                         detail:   'Unsuccessful in updating Personalisation info to the database'
                     });
                     error.message || error

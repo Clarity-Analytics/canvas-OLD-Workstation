@@ -111,7 +111,6 @@ export class PersonalisationComponent implements OnInit {
             alert ("Error - current user id in canvasUser not in users object !")
         }
 
-
         if (this.users[index].profile.dashboardIDStartup != -1) {
             let dashboardName: string = '';
             dashboardName = this.eazlService.getdashboardName(this.users[index].profile.dashboardIDStartup);
