@@ -100,7 +100,7 @@ export class GlobalVariableService {
     defaultWidgetConfiguration: string = '';
     dashboardIDStartup: number = -1;
     defaultReportFilters: string = '';
-    environment = new BehaviorSubject('');
+    environment: string = '';
     frontendColorScheme = new BehaviorSubject('');
     growlSticky: boolean = false;
     growlLife: number = 3;

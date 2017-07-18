@@ -4748,7 +4748,7 @@ export class EazlService implements OnInit {
             this.globalVariableService.dashboardIDStartup = personalisation.dashboardIDStartup;
         }
         if (personalisation.environment != this.personalisation.environment) {
-            this.globalVariableService.environment.next(personalisation.environment);
+            this.globalVariableService.environment = personalisation.environment;
         }
         if (personalisation.frontendColorScheme != this.personalisation.frontendColorScheme) {
             this.globalVariableService.frontendColorScheme.next(personalisation.frontendColorScheme);
