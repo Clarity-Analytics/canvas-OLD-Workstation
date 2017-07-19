@@ -4603,20 +4603,20 @@ export class EazlService implements OnInit {
         return this.systemConfiguration;
     }
 
-    getPersonalisation(): Personalisation {
-        // Returns Personalisation
-        this.globalFunctionService.printToConsole(this.constructor.name,'getPersonalisation', '@Start');
+    // getPersonalisation(): Personalisation {
+    //     // Returns Personalisation
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getPersonalisation', '@Start');
 
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataPersonalisation) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'Personalisation is dirty / not up to date',
-                detail:   'The Personalisation data is being refreshed; request again to get the latest from the database'
-            });
-        }
-        return this.personalisation;
-    }
+    //     // Report to user if dirty at the moment
+    //     if (this.globalVariableService.dirtyDataPersonalisation) {
+    //         this.globalVariableService.growlGlobalMessage.next({
+    //             severity: 'warn',
+    //             summary:  'Personalisation is dirty / not up to date',
+    //             detail:   'The Personalisation data is being refreshed; request again to get the latest from the database'
+    //         });
+    //     }
+    //     return this.personalisation;
+    // }
 
     updateSystemConfiguration(systemConfiguration: SystemConfiguration) {
         // Updates SystemConfiguration, and also refresh (.next) global variables
@@ -8436,9 +8436,9 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                             this.personalisation = personalisationWorking;
 
                             // Get the Personalisation, and refesh global variables
-                            this.globalVariablesPersonalisation(
-                                personalisationWorking
-                            );
+                            // this.globalVariablesPersonalisation(
+                            //     personalisationWorking
+                            // );
 
                             // Mark the data as clean
                             this.globalVariableService.dirtyDataPersonalisation = false;
