@@ -5081,6 +5081,9 @@ console.log('eazl eazlUser', eazlUser)
                     // Update local array
                     this.users[i] = user;
 
+                    // Refresh global variables
+                    this.globalVariablesUsers(user);
+
                     // Mark as clean
                     // this.globalVariableService.dirtyU... = false;
 
