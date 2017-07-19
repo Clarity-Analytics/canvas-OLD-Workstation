@@ -4692,45 +4692,45 @@ export class EazlService implements OnInit {
 
     }
 
-    updatePersonalisation(personalisation: Personalisation) {
-        // Updates Personalisation, and also refresh (.next) global variables
-        // - personalisation New data
-        this.globalFunctionService.printToConsole(this.constructor.name,'updatePersonalisation', '@Start');
+    // updatePersonalisation(personalisation: Personalisation) {
+    //     // Updates Personalisation, and also refresh (.next) global variables
+    //     // - personalisation New data
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'updatePersonalisation', '@Start');
 
-        // Mark as dirty
-        this.globalVariableService.dirtyDataPersonalisation = true;
+    //     // Mark as dirty
+    //     this.globalVariableService.dirtyDataPersonalisation = true;
 
-        return this.put<EazlPersonalisation>(
-            'personalisation/' + this.globalVariableService.personalisationID.toString() + '/',
-            this.cdal.savePersonalisation(personalisation)
-            )
-                .toPromise()
-                .then(eazlPersonalisation => {
+    //     return this.put<EazlPersonalisation>(
+    //         'personalisation/' + this.globalVariableService.personalisationID.toString() + '/',
+    //         this.cdal.savePersonalisation(personalisation)
+    //         )
+    //             .toPromise()
+    //             .then(eazlPersonalisation => {
 
-                    // Refresh globals variables that may have changed
-                    this.globalVariablesPersonalisation(personalisation);
+    //                 // Refresh globals variables that may have changed
+    //                 this.globalVariablesPersonalisation(personalisation);
 
-                    // Store in DB
-                    this.cdal.savePersonalisation(personalisation);
+    //                 // Store in DB
+    //                 this.cdal.savePersonalisation(personalisation);
 
-                    // Update local array
-                    this.personalisation = personalisation;
+    //                 // Update local array
+    //                 this.personalisation = personalisation;
 
-                    // Mark as clean
-                    this.globalVariableService.dirtyDataPersonalisation = false;
+    //                 // Mark as clean
+    //                 this.globalVariableService.dirtyDataPersonalisation = false;
 
-                    // Return the data
-                    return this.personalisation;
-                } )
-                .catch(error => {
-                    this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'warn',
-                        summary:  'Personalisation',
-                        detail:   'Unsuccessful in updating Personalisation info to the database'
-                    });
-                    error.message || error
-                })
-    }
+    //                 // Return the data
+    //                 return this.personalisation;
+    //             } )
+    //             .catch(error => {
+    //                 this.globalVariableService.growlGlobalMessage.next({
+    //                     severity: 'warn',
+    //                     summary:  'Personalisation',
+    //                     detail:   'Unsuccessful in updating Personalisation info to the database'
+    //                 });
+    //                 error.message || error
+    //             })
+    // }
 
     globalVariablesPersonalisation(personalisation: Personalisation) {
         // Refresh (.next) global variables

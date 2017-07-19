@@ -263,22 +263,22 @@ export class PersonalisationComponent implements OnInit {
 console.log('this.users[i].profile.', this.users[i].profile)
         this.eazlService.updateUser(this.users[i]);
 
-        this.eazlService.updatePersonalisation(
-            {
-                personalisationID: this.globalVariableService.personalisationID,
-                personalisationRecordID: this.globalVariableService.personalisationRecordID,
-                averageWarningRuntime: this.configForm.controls['averageWarningRuntime'].value,
-                dashboardIDStartup: dashboardIDWorking,
-                environment: this.configForm.controls['environment'].value,
-                frontendColorScheme: textColorWorking,
-                defaultReportFilters: this.configForm.controls['defaultReportFilters'].value,
-                defaultWidgetConfiguration: this.configForm.controls['defaultWidgetConfiguration'].value,
-                gridSize: this.configForm.controls['gridSize'].value,
-                growlSticky: this.configForm.controls['growlSticky'].value,
-                growlLife: this.configForm.controls['growlLife'].value,
-                snapToGrid: this.configForm.controls['snapToGrid'].value
-            }
-        )
+        // this.eazlService.updatePersonalisation(
+        //     {
+        //         personalisationID: this.globalVariableService.personalisationID,
+        //         personalisationRecordID: this.globalVariableService.personalisationRecordID,
+        //         averageWarningRuntime: this.configForm.controls['averageWarningRuntime'].value,
+        //         dashboardIDStartup: dashboardIDWorking,
+        //         environment: this.configForm.controls['environment'].value,
+        //         frontendColorScheme: textColorWorking,
+        //         defaultReportFilters: this.configForm.controls['defaultReportFilters'].value,
+        //         defaultWidgetConfiguration: this.configForm.controls['defaultWidgetConfiguration'].value,
+        //         gridSize: this.configForm.controls['gridSize'].value,
+        //         growlSticky: this.configForm.controls['growlSticky'].value,
+        //         growlLife: this.configForm.controls['growlLife'].value,
+        //         snapToGrid: this.configForm.controls['snapToGrid'].value
+        //     }
+        // )
 
         // Tell user
         this.globalVariableService.growlGlobalMessage.next({
