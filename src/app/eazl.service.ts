@@ -5051,50 +5051,51 @@ export class EazlService implements OnInit {
                 })
     }
 
+    updateUser(user: User) {
+        // Updates a single User, and also refresh (.next) global variables
+        // - user = data to replace
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateUser', '@Start');
 
+        // Mark as dirty
+        // this.globalVariableService.dirtyU... = true;
 
-    // updateUser(user: User) {
-    //     // Updates a single User, and also refresh (.next) global variables
-    //     // - user = data to replace
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'updateUser', '@Start');
+        return this.put<EazlUser>(
+            'users/' + user.id.toString() + '/',
+            this.cdal.saveUser(user)
+            )
+                .toPromise()
+                .then(eazlUser => {
 
-    //     // Mark as dirty
-    //     this.globalVariableService.dirtyDataPersonalisation = true;
+                    // Get the index in the users array for the current user
+                    let index: number = -1;
+                    for (var i = 0; i < this.users.length; i++) {
+                        if (user.id == this.users[i].id) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index == -1) {
+                        alert ("Error - current user id in canvasUser not in users object !")
+                    }
+                
+                    // Update local array
+                    this.users[i] = user;
 
-    //     return this.put<EazlUser>(
-    //         'personalisation/' + user.id.toString() + '/',
-    //         this.cdal.saveUser(user)
-    //         )
-    //             .toPromise()
-    //             .then(eazlPersonalisation => {
+                    // Mark as clean
+                    // this.globalVariableService.dirtyU... = false;
 
-    //                 // Refresh globals variables that may have changed
-    //                 this.globalVariablesPersonalisation(personalisation);
-
-    //                 // Store in DB
-    //                 this.cdal.savePersonalisation(personalisation);
-
-    //                 // Update local array
-    //                 this.personalisation = personalisation;
-
-    //                 // Mark as clean
-    //                 this.globalVariableService.dirtyDataPersonalisation = false;
-
-    //                 // Return the data
-    //                 return this.personalisation;
-    //             } )
-    //             .catch(error => {
-    //                 this.globalVariableService.growlGlobalMessage.next({
-    //                     severity: 'warn',
-    //                     summary:  'Personalisation',
-    //                     detail:   'Unsuccessful in updating Personalisation info to the database'
-    //                 });
-    //                 error.message || error
-    //             })
-    // }
-
-
-
+                    // Return the data
+                    return eazlUser;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'User',
+                        detail:   'Unsuccessful in updating your User info to the database'
+                    });
+                    error.message || error
+                })
+    }
 
     getUsers(): User[] {
         // Return a list of Users
