@@ -4732,46 +4732,46 @@ export class EazlService implements OnInit {
     //             })
     // }
 
-    globalVariablesPersonalisation(personalisation: Personalisation) {
-        // Refresh (.next) global variables
-        // - personalisation New data
-        this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesPersonalisation', '@Start');
+    // globalVariablesPersonalisation(personalisation: Personalisation) {
+    //     // Refresh (.next) global variables
+    //     // - personalisation New data
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesPersonalisation', '@Start');
 
-        this.globalVariableService.personalisationID = personalisation.personalisationID;
-        this.globalVariableService.personalisationRecordID = personalisation.personalisationRecordID;
+    //     this.globalVariableService.personalisationID = personalisation.personalisationID;
+    //     this.globalVariableService.personalisationRecordID = personalisation.personalisationRecordID;
 
-        // Update local values that have changed
-        if (personalisation.averageWarningRuntime != this.personalisation.averageWarningRuntime) {
-            this.globalVariableService.averageWarningRuntime = personalisation.averageWarningRuntime;
-        }
-        if (personalisation.dashboardIDStartup != this.personalisation.dashboardIDStartup) {
-            this.globalVariableService.dashboardIDStartup = personalisation.dashboardIDStartup;
-        }
-        if (personalisation.environment != this.personalisation.environment) {
-            this.globalVariableService.environment = personalisation.environment;
-        }
-        if (personalisation.frontendColorScheme != this.personalisation.frontendColorScheme) {
-            this.globalVariableService.frontendColorScheme = personalisation.frontendColorScheme;
-        }
-        if (personalisation.defaultWidgetConfiguration != this.personalisation.defaultWidgetConfiguration) {
-            this.globalVariableService.defaultWidgetConfiguration = personalisation.defaultWidgetConfiguration;
-        }
-        if (personalisation.defaultReportFilters != this.personalisation.defaultReportFilters) {
-            this.globalVariableService.defaultReportFilters = personalisation.defaultReportFilters;
-        }
-        if (personalisation.growlSticky != this.personalisation.growlSticky) {
-            this.globalVariableService.growlSticky = personalisation.growlSticky;
-        }
-        if (personalisation.growlLife != this.personalisation.growlLife) {
-            this.globalVariableService.growlLife = personalisation.growlLife;
-        }
-        if (personalisation.gridSize != this.personalisation.gridSize) {
-            this.globalVariableService.gridSize = personalisation.gridSize;
-        }
-        if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
-            this.globalVariableService.snapToGrid = personalisation.snapToGrid;
-        }
-    }
+    //     // Update local values that have changed
+    //     if (personalisation.averageWarningRuntime != this.personalisation.averageWarningRuntime) {
+    //         this.globalVariableService.averageWarningRuntime = personalisation.averageWarningRuntime;
+    //     }
+    //     if (personalisation.dashboardIDStartup != this.personalisation.dashboardIDStartup) {
+    //         this.globalVariableService.dashboardIDStartup = personalisation.dashboardIDStartup;
+    //     }
+    //     if (personalisation.environment != this.personalisation.environment) {
+    //         this.globalVariableService.environment = personalisation.environment;
+    //     }
+    //     if (personalisation.frontendColorScheme != this.personalisation.frontendColorScheme) {
+    //         this.globalVariableService.frontendColorScheme = personalisation.frontendColorScheme;
+    //     }
+    //     if (personalisation.defaultWidgetConfiguration != this.personalisation.defaultWidgetConfiguration) {
+    //         this.globalVariableService.defaultWidgetConfiguration = personalisation.defaultWidgetConfiguration;
+    //     }
+    //     if (personalisation.defaultReportFilters != this.personalisation.defaultReportFilters) {
+    //         this.globalVariableService.defaultReportFilters = personalisation.defaultReportFilters;
+    //     }
+    //     if (personalisation.growlSticky != this.personalisation.growlSticky) {
+    //         this.globalVariableService.growlSticky = personalisation.growlSticky;
+    //     }
+    //     if (personalisation.growlLife != this.personalisation.growlLife) {
+    //         this.globalVariableService.growlLife = personalisation.growlLife;
+    //     }
+    //     if (personalisation.gridSize != this.personalisation.gridSize) {
+    //         this.globalVariableService.gridSize = personalisation.gridSize;
+    //     }
+    //     if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
+    //         this.globalVariableService.snapToGrid = personalisation.snapToGrid;
+    //     }
+    // }
 
     logout(username: string) {
         // Logout user from backend
