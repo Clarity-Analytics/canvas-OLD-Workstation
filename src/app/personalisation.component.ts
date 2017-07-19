@@ -232,6 +232,37 @@ export class PersonalisationComponent implements OnInit {
             textColorWorking = this.selectedFrontendColorScheme.name;
         }
 
+        // Get the index in the users array for the current user
+        let index: number = -1;
+        for (var i = 0; i < this.users.length; i++) {
+            if (this.canvasUser.id == this.users[i].id) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            alert ("Error - current user id in canvasUser not in users object !")
+        }
+
+        // Update the user info
+        // this.users[i].profile.nickName: ,
+        // this.users[i].profile.cellNumber: '',
+        // this.users[i].profile.workTelephoneNumber: ,
+        // this.users[i].profile.photoPath: '',
+        this.users[i].profile.averageWarningRuntime = this.configForm.controls['averageWarningRuntime'].value;
+        this.users[i].profile.dashboardIDStartup = dashboardIDWorking;
+        this.users[i].profile.environment = this.configForm.controls['environment'].value;
+        this.users[i].profile.frontendColorScheme = textColorWorking;
+        this.users[i].profile.defaultReportFilters = this.configForm.controls['defaultReportFilters'].value;
+        this.users[i].profile.defaultWidgetConfiguration = this.configForm.controls['defaultWidgetConfiguration'].value;
+        this.users[i].profile.gridSize = this.configForm.controls['gridSize'].value;
+        this.users[i].profile.growlLife = this.configForm.controls['growlLife'].value;
+        this.users[i].profile.growlSticky = this.configForm.controls['growlSticky'].value;
+        this.users[i].profile.snapToGrid = this.configForm.controls['snapToGrid'].value
+        
+console.log('this.users[i].profile.', this.users[i].profile)
+        this.eazlService.updateUser(this.users[i]);
+
         this.eazlService.updatePersonalisation(
             {
                 personalisationID: this.globalVariableService.personalisationID,

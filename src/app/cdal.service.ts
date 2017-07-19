@@ -358,9 +358,13 @@ export class CDAL {
         if (user.profile != null) {
 
             if (user.profile.photoPath != null) {
-                eazlUserWorking.profile.profile_picture = user.profile.photoPath;
+                if (user.profile.photoPath == '') {
+                    eazlUserWorking.profile.profile_picture = null;
+                } else {    
+                    eazlUserWorking.profile.profile_picture = user.profile.photoPath;
+                }
             } else {
-                eazlUserWorking.profile.profile_picture = '';
+                eazlUserWorking.profile.profile_picture = null;
             }
 
             if (user.profile.nickName != null) {
@@ -441,7 +445,7 @@ export class CDAL {
                 eazlUserWorking.profile.snap_to_grid = false;
             }
         }
-
+console.log('cdal eazlUserWorking', eazlUserWorking)
         // Return the User
         return eazlUserWorking;
     }
