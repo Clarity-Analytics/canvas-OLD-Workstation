@@ -4603,21 +4603,6 @@ export class EazlService implements OnInit {
         return this.systemConfiguration;
     }
 
-    // getPersonalisation(): Personalisation {
-    //     // Returns Personalisation
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getPersonalisation', '@Start');
-
-    //     // Report to user if dirty at the moment
-    //     if (this.globalVariableService.dirtyDataPersonalisation) {
-    //         this.globalVariableService.growlGlobalMessage.next({
-    //             severity: 'warn',
-    //             summary:  'Personalisation is dirty / not up to date',
-    //             detail:   'The Personalisation data is being refreshed; request again to get the latest from the database'
-    //         });
-    //     }
-    //     return this.personalisation;
-    // }
-
     updateSystemConfiguration(systemConfiguration: SystemConfiguration) {
         // Updates SystemConfiguration, and also refresh (.next) global variables
         // - systemConfiguration New data
@@ -4691,87 +4676,6 @@ export class EazlService implements OnInit {
         }
 
     }
-
-    // updatePersonalisation(personalisation: Personalisation) {
-    //     // Updates Personalisation, and also refresh (.next) global variables
-    //     // - personalisation New data
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'updatePersonalisation', '@Start');
-
-    //     // Mark as dirty
-    //     this.globalVariableService.dirtyDataPersonalisation = true;
-
-    //     return this.put<EazlPersonalisation>(
-    //         'personalisation/' + this.globalVariableService.personalisationID.toString() + '/',
-    //         this.cdal.savePersonalisation(personalisation)
-    //         )
-    //             .toPromise()
-    //             .then(eazlPersonalisation => {
-
-    //                 // Refresh globals variables that may have changed
-    //                 this.globalVariablesPersonalisation(personalisation);
-
-    //                 // Store in DB
-    //                 this.cdal.savePersonalisation(personalisation);
-
-    //                 // Update local array
-    //                 this.personalisation = personalisation;
-
-    //                 // Mark as clean
-    //                 this.globalVariableService.dirtyDataPersonalisation = false;
-
-    //                 // Return the data
-    //                 return this.personalisation;
-    //             } )
-    //             .catch(error => {
-    //                 this.globalVariableService.growlGlobalMessage.next({
-    //                     severity: 'warn',
-    //                     summary:  'Personalisation',
-    //                     detail:   'Unsuccessful in updating Personalisation info to the database'
-    //                 });
-    //                 error.message || error
-    //             })
-    // }
-
-    // globalVariablesPersonalisation(personalisation: Personalisation) {
-    //     // Refresh (.next) global variables
-    //     // - personalisation New data
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesPersonalisation', '@Start');
-
-    //     this.globalVariableService.personalisationID = personalisation.personalisationID;
-    //     this.globalVariableService.personalisationRecordID = personalisation.personalisationRecordID;
-
-    //     // Update local values that have changed
-    //     if (personalisation.averageWarningRuntime != this.personalisation.averageWarningRuntime) {
-    //         this.globalVariableService.averageWarningRuntime = personalisation.averageWarningRuntime;
-    //     }
-    //     if (personalisation.dashboardIDStartup != this.personalisation.dashboardIDStartup) {
-    //         this.globalVariableService.dashboardIDStartup = personalisation.dashboardIDStartup;
-    //     }
-    //     if (personalisation.environment != this.personalisation.environment) {
-    //         this.globalVariableService.environment = personalisation.environment;
-    //     }
-    //     if (personalisation.frontendColorScheme != this.personalisation.frontendColorScheme) {
-    //         this.globalVariableService.frontendColorScheme = personalisation.frontendColorScheme;
-    //     }
-    //     if (personalisation.defaultWidgetConfiguration != this.personalisation.defaultWidgetConfiguration) {
-    //         this.globalVariableService.defaultWidgetConfiguration = personalisation.defaultWidgetConfiguration;
-    //     }
-    //     if (personalisation.defaultReportFilters != this.personalisation.defaultReportFilters) {
-    //         this.globalVariableService.defaultReportFilters = personalisation.defaultReportFilters;
-    //     }
-    //     if (personalisation.growlSticky != this.personalisation.growlSticky) {
-    //         this.globalVariableService.growlSticky = personalisation.growlSticky;
-    //     }
-    //     if (personalisation.growlLife != this.personalisation.growlLife) {
-    //         this.globalVariableService.growlLife = personalisation.growlLife;
-    //     }
-    //     if (personalisation.gridSize != this.personalisation.gridSize) {
-    //         this.globalVariableService.gridSize = personalisation.gridSize;
-    //     }
-    //     if (personalisation.snapToGrid != this.personalisation.snapToGrid) {
-    //         this.globalVariableService.snapToGrid = personalisation.snapToGrid;
-    //     }
-    // }
 
     logout(username: string) {
         // Logout user from backend
@@ -8412,50 +8316,50 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
         }
 
         // Personalisation
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Personalisation') {
+        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Personalisation') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Personalisation');
+        //     // Reset
+        //     if (resetAction == 'reset') {
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Personalisation');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataPersonalisation = true;
+        //         // Mark the data as dirty
+        //         this.globalVariableService.dirtyDataPersonalisation = true;
 
-                // Get all the data via API
-                let personalisationWorking: Personalisation = null;
-                this.get<EazlPersonalisation>('personalisation')
-                    .subscribe(
-                        (eazlPersonalisation) => {
-                            for (var i = 0; i < eazlPersonalisation.length; i++) {
-                                let personalisationSingle = new Personalisation();
-                                // personalisationSingle = this.cdal.loadPersonalisation(eazlPersonalisation[i]);
-                                personalisationWorking = personalisationSingle;
-                            }
+        //         // Get all the data via API
+        //         let personalisationWorking: Personalisation = null;
+        //         this.get<EazlPersonalisation>('personalisation')
+        //             .subscribe(
+        //                 (eazlPersonalisation) => {
+        //                     for (var i = 0; i < eazlPersonalisation.length; i++) {
+        //                         let personalisationSingle = new Personalisation();
+        //                         // personalisationSingle = this.cdal.loadPersonalisation(eazlPersonalisation[i]);
+        //                         personalisationWorking = personalisationSingle;
+        //                     }
 
-                            // Replace
-                            this.personalisation = personalisationWorking;
+        //                     // Replace
+        //                     this.personalisation = personalisationWorking;
 
-                            // Get the Personalisation, and refesh global variables
-                            // this.globalVariablesPersonalisation(
-                            //     personalisationWorking
-                            // );
+        //                     // Get the Personalisation, and refesh global variables
+        //                     // this.globalVariablesPersonalisation(
+        //                     //     personalisationWorking
+        //                     // );
 
-                            // Mark the data as clean
-                            this.globalVariableService.dirtyDataPersonalisation = false;
-                        }
-                    )
-            }
+        //                     // Mark the data as clean
+        //                     this.globalVariableService.dirtyDataPersonalisation = false;
+        //                 }
+        //             )
+        //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Personalisation');
+        //     // Clear all
+        //     if (resetAction.toLowerCase() == 'clear') {
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Personalisation');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataPersonalisation = true;
+        //         // Mark the data as dirty
+        //         this.globalVariableService.dirtyDataPersonalisation = true;
 
-                this.personalisation = null;
-            }
-        }
+        //         this.personalisation = null;
+        //     }
+        // }
 
         // UserGroupMembership
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'UserGroupMembership') {
