@@ -4892,7 +4892,10 @@ export class EazlService implements OnInit {
                                     snap_to_grid : snap_to_grid
                                 }
                         });
+
+                        // Refresh global variables
                         this.globalVariableService.isAuthenticatedOnEazl.next(true);
+                        this.globalVariablesUsers(this.cdal.loadUser(eazlUser));
 
                         // Inform the user
                         this.globalVariableService.growlGlobalMessage.next({
@@ -7502,12 +7505,11 @@ console.log('eazl eazlUser', eazlUser)
                                 let userSingle = new User;
                                 userSingle = this.cdal.loadUser(eazlUser[i]);
                                 usersWorking.push(userSingle);
-
                             }
 
                         // Replace
                         this.users = usersWorking;
-console.log('Eazl XXXXXXXXXX users', this.users)
+
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataUser = false;
                         }
