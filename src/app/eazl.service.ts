@@ -92,7 +92,6 @@ import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
-import { EazlPersonalisation }        from './model.personalisation';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
@@ -109,7 +108,6 @@ import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
-import { Personalisation }            from './model.personalisation';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
@@ -4551,7 +4549,6 @@ export class EazlService implements OnInit {
     reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
     reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
-    personalisation: Personalisation ;                      // Personal settings for current user
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
     systemConfiguration: SystemConfiguration;               // System wide settings
@@ -8314,52 +8311,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.systemConfiguration = null;
             }
         }
-
-        // Personalisation
-        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Personalisation') {
-
-        //     // Reset
-        //     if (resetAction == 'reset') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Personalisation');
-
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataPersonalisation = true;
-
-        //         // Get all the data via API
-        //         let personalisationWorking: Personalisation = null;
-        //         this.get<EazlPersonalisation>('personalisation')
-        //             .subscribe(
-        //                 (eazlPersonalisation) => {
-        //                     for (var i = 0; i < eazlPersonalisation.length; i++) {
-        //                         let personalisationSingle = new Personalisation();
-        //                         // personalisationSingle = this.cdal.loadPersonalisation(eazlPersonalisation[i]);
-        //                         personalisationWorking = personalisationSingle;
-        //                     }
-
-        //                     // Replace
-        //                     this.personalisation = personalisationWorking;
-
-        //                     // Get the Personalisation, and refesh global variables
-        //                     // this.globalVariablesPersonalisation(
-        //                     //     personalisationWorking
-        //                     // );
-
-        //                     // Mark the data as clean
-        //                     this.globalVariableService.dirtyDataPersonalisation = false;
-        //                 }
-        //             )
-        //     }
-
-        //     // Clear all
-        //     if (resetAction.toLowerCase() == 'clear') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Personalisation');
-
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataPersonalisation = true;
-
-        //         this.personalisation = null;
-        //     }
-        // }
 
         // UserGroupMembership
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'UserGroupMembership') {
