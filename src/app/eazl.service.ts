@@ -5097,6 +5097,24 @@ console.log('eazl eazlUser', eazlUser)
                 })
     }
 
+    globalVariablesUsers(user: User) {
+        // Refresh (.next) global variables
+        // - userthat has changed
+        this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesUsers', '@Start');
+
+        // Update local values that have changed
+        this.globalVariableService.averageWarningRuntime = user.profile.averageWarningRuntime;
+        this.globalVariableService.dashboardIDStartup = user.profile.dashboardIDStartup;
+        this.globalVariableService.environment = user.profile.environment;
+        this.globalVariableService.frontendColorScheme = user.profile.frontendColorScheme;
+        this.globalVariableService.defaultWidgetConfiguration = user.profile.defaultWidgetConfiguration;
+        this.globalVariableService.defaultReportFilters = user.profile.defaultReportFilters;
+        this.globalVariableService.growlSticky = user.profile.growlSticky;
+        this.globalVariableService.growlLife = user.profile.growlLife;
+        this.globalVariableService.gridSize = user.profile.gridSize;
+        this.globalVariableService.snapToGrid = user.profile.snapToGrid;
+    }
+
     getUsers(): User[] {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');
