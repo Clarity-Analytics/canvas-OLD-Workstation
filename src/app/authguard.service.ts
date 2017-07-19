@@ -78,7 +78,7 @@ export class AuthGuard implements OnInit, CanActivate {
         if (oldRouterPath == 'dashboard') {
 
             // Set the document / body background color
-            let frontendColorScheme = this.globalVariableService.frontendColorScheme.getValue();
+            let frontendColorScheme = this.globalVariableService.frontendColorScheme;
             this.document.body.style.backgroundColor =  frontendColorScheme;
             this.document.body.style.backgroundImage = '';
         }

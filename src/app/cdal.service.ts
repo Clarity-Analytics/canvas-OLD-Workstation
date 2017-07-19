@@ -89,7 +89,7 @@ export class CDAL {
     loadUser(eazlUser: EazlUser): User {
         // Load User: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadUser', '@Start');
-console.log('xxxx eazlUser', eazlUser)
+
         let userWorking = new User();
         userWorking.id = eazlUser.id;
         
@@ -264,6 +264,186 @@ console.log('xxxx eazlUser', eazlUser)
 
         // Return the User
         return userWorking;
+    }
+
+    saveUser(user: User): EazlUser {
+        // Load User: move data Canvas -> Eazl
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveUser', '@Start');
+
+        let eazlUserWorking = new EazlUser();
+        eazlUserWorking.id = user.id;
+        
+        if (user.username != null) {
+            eazlUserWorking.username = user.username;
+        } else {
+            eazlUserWorking.username = '';
+        }
+
+        if (user.firstName != null) {
+            eazlUserWorking.first_name = user.firstName;
+        } else {
+            eazlUserWorking.first_name = '';
+        }
+
+        if (user.lastName != null) {
+            eazlUserWorking.last_name = user.lastName;
+        } else {
+            eazlUserWorking.last_name = '';
+        }
+
+        if (user.lastDatetimeLoggedIn != null) {
+            eazlUserWorking.last_login = new Date(user.lastDatetimeLoggedIn);
+        } else {
+            eazlUserWorking.last_login = null;
+        }
+
+        // user.lastDatetimeReportWasRun = '';
+
+        if (user.emailAddress != null) {
+            eazlUserWorking.email = user.emailAddress;
+        } else {
+            eazlUserWorking.email = '';
+        }
+
+        if (user.activeFromDate != null) {
+            eazlUserWorking.date_joined = new Date(user.activeFromDate);
+        } else {
+            eazlUserWorking.date_joined = null;
+        }
+
+        if (user.inactiveDate != null) {
+            eazlUserWorking.is_active = true;
+        } else {
+            eazlUserWorking.is_active  = false;
+        }
+
+        if (user.dateCreated != null) {
+            eazlUserWorking.date_joined = new Date(user.dateCreated);
+        } else {
+            eazlUserWorking.date_joined = null;
+        }
+
+        // user.userNameLastUpdated = '';
+
+        if (user.isStaff != null) {
+            eazlUserWorking.is_staff = user.isStaff;
+        } else {
+            eazlUserWorking.is_staff = false;
+        }
+
+        if (user.isSuperUser != null) {
+            eazlUserWorking.is_superuser = user.isSuperUser;
+        } else {
+            eazlUserWorking.is_superuser = false;
+        }
+
+        eazlUserWorking.profile = 
+            {
+                nick_name: '',
+                cell_number: '',
+                work_number: '',
+                profile_picture: '',
+                query_runtime_warning: 0,
+                dashboard_id_at_startup: 0,
+                environment: '',
+                color_scheme: '',
+                default_report_filters: '',
+                default_widget_configuration: '',
+                grid_size: 0,
+                growl_life: 0,
+                growl_sticky: false,
+                snap_to_grid: false
+            }
+
+        if (user.profile != null) {
+
+            if (user.profile.photoPath != null) {
+                eazlUserWorking.profile.profile_picture = user.profile.photoPath;
+            } else {
+                eazlUserWorking.profile.profile_picture = '';
+            }
+
+            if (user.profile.nickName != null) {
+                eazlUserWorking.profile.nick_name = user.profile.nickName;
+            } else {
+                eazlUserWorking.profile.nick_name = '';
+            }
+
+            if (user.profile.workTelephoneNumber != null) {
+                eazlUserWorking.profile.work_number = user.profile.workTelephoneNumber;
+            } else {
+                eazlUserWorking.profile.work_number = '';
+            }
+
+            if (user.profile.cellNumber != null) {
+                eazlUserWorking.profile.cell_number = user.profile.cellNumber;
+            } else {
+                eazlUserWorking.profile.cell_number = '';
+            }
+
+            if (user.profile.averageWarningRuntime != null) {
+                eazlUserWorking.profile.query_runtime_warning = user.profile.averageWarningRuntime;
+            } else {
+                eazlUserWorking.profile.query_runtime_warning = 3;
+            }
+
+            if (user.profile.dashboardIDStartup != null) {
+                eazlUserWorking.profile.dashboard_id_at_startup = user.profile.dashboardIDStartup;
+            } else {
+                eazlUserWorking.profile.dashboard_id_at_startup = -1;
+            }
+
+            if (user.profile.environment != null) {
+                eazlUserWorking.profile.environment = user.profile.environment;
+            } else {
+                eazlUserWorking.profile.environment = '';
+            }
+
+            if (user.profile.frontendColorScheme != null) {
+                eazlUserWorking.profile.color_scheme = user.profile.frontendColorScheme;
+            } else {
+                eazlUserWorking.profile.color_scheme = '';
+            }
+
+            if (user.profile.defaultReportFilters != null) {
+                eazlUserWorking.profile.default_report_filters = user.profile.defaultReportFilters;
+            } else {
+                eazlUserWorking.profile.default_report_filters = '';
+            }
+
+            if (user.profile.defaultWidgetConfiguration != null) {
+                eazlUserWorking.profile.default_widget_configuration = user.profile.defaultWidgetConfiguration;
+            } else {
+                eazlUserWorking.profile.default_widget_configuration = '';
+            }
+
+            if (user.profile.gridSize != null) {
+                eazlUserWorking.profile.grid_size = user.profile.gridSize;
+            } else {
+                eazlUserWorking.profile.grid_size = 3;
+            }
+
+            if (user.profile.growlLife != null) {
+                eazlUserWorking.profile.growl_life = user.profile.growlLife;
+            } else {
+                eazlUserWorking.profile.growl_life = 3;
+            }
+
+            if (user.profile.growlSticky != null) {
+                eazlUserWorking.profile.growl_sticky = user.profile.growlSticky;
+            } else {
+                eazlUserWorking.profile.growl_sticky = false;
+            }
+
+            if (user.profile.snapToGrid != null) {
+                eazlUserWorking.profile.snap_to_grid = user.profile.snapToGrid;
+            } else {
+                eazlUserWorking.profile.snap_to_grid = false;
+            }
+        }
+
+        // Return the User
+        return eazlUserWorking;
     }
 
     loadGroup(eazlGroup: EazlGroup): Group {

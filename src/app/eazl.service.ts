@@ -5051,6 +5051,51 @@ export class EazlService implements OnInit {
                 })
     }
 
+
+
+    // updateUser(user: User) {
+    //     // Updates a single User, and also refresh (.next) global variables
+    //     // - user = data to replace
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'updateUser', '@Start');
+
+    //     // Mark as dirty
+    //     this.globalVariableService.dirtyDataPersonalisation = true;
+
+    //     return this.put<EazlUser>(
+    //         'personalisation/' + user.id.toString() + '/',
+    //         this.cdal.saveUser(user)
+    //         )
+    //             .toPromise()
+    //             .then(eazlPersonalisation => {
+
+    //                 // Refresh globals variables that may have changed
+    //                 this.globalVariablesPersonalisation(personalisation);
+
+    //                 // Store in DB
+    //                 this.cdal.savePersonalisation(personalisation);
+
+    //                 // Update local array
+    //                 this.personalisation = personalisation;
+
+    //                 // Mark as clean
+    //                 this.globalVariableService.dirtyDataPersonalisation = false;
+
+    //                 // Return the data
+    //                 return this.personalisation;
+    //             } )
+    //             .catch(error => {
+    //                 this.globalVariableService.growlGlobalMessage.next({
+    //                     severity: 'warn',
+    //                     summary:  'Personalisation',
+    //                     detail:   'Unsuccessful in updating Personalisation info to the database'
+    //                 });
+    //                 error.message || error
+    //             })
+    // }
+
+
+
+
     getUsers(): User[] {
         // Return a list of Users
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsers', '@Start');

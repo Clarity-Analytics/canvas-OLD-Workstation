@@ -1,7 +1,7 @@
 // Schema for the User class
 
 // Eazl
-export interface EazlUser 
+export class EazlUser 
     {
         // Defines data model for User Entity
         id: number;
