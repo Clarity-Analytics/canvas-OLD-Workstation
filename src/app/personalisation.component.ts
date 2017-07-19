@@ -20,7 +20,6 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { CanvasColors }               from './chartcolors.data';
 import { CanvasUser }                 from './model.user';
-import { Personalisation }            from './model.personalisation';
 import { SelectedItemColor }          from './model.selectedItemColor';
 import { SelectedItem }               from './model.selectedItem';
 import { User }                       from './model.user';
@@ -42,7 +41,6 @@ export class PersonalisationComponent implements OnInit {
     formIsValid: boolean = false;
     growlSticky: boolean = false;               // True if the Growl must be sticky
     numberErrors: number = 0;
-    personalisation: Personalisation;           // System wide settings
     selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
     selectedFrontendColorScheme: SelectedItem;  // Selected option for Text Color
     selectedDashboard: SelectedItem;            // Selected in DropDown
@@ -84,9 +82,6 @@ export class PersonalisationComponent implements OnInit {
         // Background Colors Options
         this.chartColor = [];
         this.chartColor = this.canvasColors.getColors();
-
-        // Get the system wide settings
-        // this.personalisation = this.eazlService.getPersonalisation();
 
         // Get the users
         this.users = this.eazlService.getUsers();
