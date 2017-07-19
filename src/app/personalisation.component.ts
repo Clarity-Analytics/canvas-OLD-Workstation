@@ -86,7 +86,7 @@ export class PersonalisationComponent implements OnInit {
         this.chartColor = this.canvasColors.getColors();
 
         // Get the system wide settings
-        this.personalisation = this.eazlService.getPersonalisation();
+        // this.personalisation = this.eazlService.getPersonalisation();
 
         // Get the users
         this.users = this.eazlService.getUsers();
