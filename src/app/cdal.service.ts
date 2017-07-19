@@ -45,7 +45,6 @@ import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
-import { EazlPersonalisation }        from '././model.personalisation';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
@@ -62,7 +61,6 @@ import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
-import { Personalisation }            from '././model.personalisation';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
@@ -445,7 +443,7 @@ export class CDAL {
                 eazlUserWorking.profile.snap_to_grid = false;
             }
         }
-console.log('cdal eazlUserWorking', eazlUserWorking)
+
         // Return the User
         return eazlUserWorking;
     }

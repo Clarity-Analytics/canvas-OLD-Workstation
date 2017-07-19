@@ -4969,7 +4969,7 @@ export class EazlService implements OnInit {
             )
                 .toPromise()
                 .then(eazlUser => {
-console.log('eazl eazlUser', eazlUser)
+
                     // Get the index in the users array for the current user
                     let index: number = -1;
                     for (var i = 0; i < this.users.length; i++) {
