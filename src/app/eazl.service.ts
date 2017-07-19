@@ -8428,7 +8428,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                         (eazlPersonalisation) => {
                             for (var i = 0; i < eazlPersonalisation.length; i++) {
                                 let personalisationSingle = new Personalisation();
-                                personalisationSingle = this.cdal.loadPersonalisation(eazlPersonalisation[i]);
+                                // personalisationSingle = this.cdal.loadPersonalisation(eazlPersonalisation[i]);
                                 personalisationWorking = personalisationSingle;
                             }
 

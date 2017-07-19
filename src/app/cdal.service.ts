@@ -1727,82 +1727,82 @@ eazlSystemConfigurationWorking.company_logo = null
         return eazlSystemConfigurationWorking;
     }
 
-    loadPersonalisation(eazlPersonalisation: EazlPersonalisation): Personalisation {
-        // Load Personalisation: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadPersonalisation', '@Start');
+    // loadPersonalisation(eazlPersonalisation: EazlPersonalisation): Personalisation {
+    //     // Load Personalisation: move data Eazl -> Canvas
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadPersonalisation', '@Start');
 
-        let personalisationWorking = new Personalisation();
+    //     let personalisationWorking = new Personalisation();
 
-        personalisationWorking.personalisationID = eazlPersonalisation.id;
+    //     personalisationWorking.personalisationID = eazlPersonalisation.id;
 
-        if (eazlPersonalisation.record_id != null) {
-            personalisationWorking.personalisationRecordID = eazlPersonalisation.record_id;
-        } else {
-            personalisationWorking.personalisationRecordID = 0;
-        }
-        if (eazlPersonalisation.dashboard_id_at_startup != null) {
-            personalisationWorking.dashboardIDStartup = eazlPersonalisation.dashboard_id_at_startup;
-        } else {
-            personalisationWorking.dashboardIDStartup = 0;
-        }
+    //     if (eazlPersonalisation.record_id != null) {
+    //         personalisationWorking.personalisationRecordID = eazlPersonalisation.record_id;
+    //     } else {
+    //         personalisationWorking.personalisationRecordID = 0;
+    //     }
+    //     if (eazlPersonalisation.dashboard_id_at_startup != null) {
+    //         personalisationWorking.dashboardIDStartup = eazlPersonalisation.dashboard_id_at_startup;
+    //     } else {
+    //         personalisationWorking.dashboardIDStartup = 0;
+    //     }
 
-        if (eazlPersonalisation.environment != null) {
-            personalisationWorking.environment = eazlPersonalisation.environment;
-        } else {
-            personalisationWorking.environment = '';
-        }
+    //     if (eazlPersonalisation.environment != null) {
+    //         personalisationWorking.environment = eazlPersonalisation.environment;
+    //     } else {
+    //         personalisationWorking.environment = '';
+    //     }
 
-        if (eazlPersonalisation.average_warning_runtime != null) {
-            personalisationWorking.averageWarningRuntime = eazlPersonalisation.average_warning_runtime;
-        } else {
-            personalisationWorking.averageWarningRuntime = 0;
-        }
+    //     if (eazlPersonalisation.average_warning_runtime != null) {
+    //         personalisationWorking.averageWarningRuntime = eazlPersonalisation.average_warning_runtime;
+    //     } else {
+    //         personalisationWorking.averageWarningRuntime = 0;
+    //     }
 
-        if (eazlPersonalisation.frontend_color_scheme != null) {
-            personalisationWorking.frontendColorScheme = eazlPersonalisation.frontend_color_scheme;
-        } else {
-            personalisationWorking.frontendColorScheme = '';
-        }
+    //     if (eazlPersonalisation.frontend_color_scheme != null) {
+    //         personalisationWorking.frontendColorScheme = eazlPersonalisation.frontend_color_scheme;
+    //     } else {
+    //         personalisationWorking.frontendColorScheme = '';
+    //     }
 
-        if (eazlPersonalisation.default_widget_configuration != null) {
-            personalisationWorking.defaultWidgetConfiguration = eazlPersonalisation.default_widget_configuration;
-        } else {
-            personalisationWorking.defaultWidgetConfiguration = '';
-        }
+    //     if (eazlPersonalisation.default_widget_configuration != null) {
+    //         personalisationWorking.defaultWidgetConfiguration = eazlPersonalisation.default_widget_configuration;
+    //     } else {
+    //         personalisationWorking.defaultWidgetConfiguration = '';
+    //     }
 
-        if (eazlPersonalisation.default_report_filters != null) {
-            personalisationWorking.defaultReportFilters = eazlPersonalisation.default_report_filters;
-        } else {
-            personalisationWorking.defaultReportFilters = '';
-        }
+    //     if (eazlPersonalisation.default_report_filters != null) {
+    //         personalisationWorking.defaultReportFilters = eazlPersonalisation.default_report_filters;
+    //     } else {
+    //         personalisationWorking.defaultReportFilters = '';
+    //     }
 
-        if (eazlPersonalisation.growl_sticky != null) {
-            personalisationWorking.growlSticky = eazlPersonalisation.growl_sticky;
-        } else {
-            personalisationWorking.growlSticky = false;
-        }
+    //     if (eazlPersonalisation.growl_sticky != null) {
+    //         personalisationWorking.growlSticky = eazlPersonalisation.growl_sticky;
+    //     } else {
+    //         personalisationWorking.growlSticky = false;
+    //     }
 
-        if (eazlPersonalisation.growl_life != null) {
-            personalisationWorking.growlLife = eazlPersonalisation.growl_life;
-        } else {
-            personalisationWorking.growlLife = 0;
-        }
+    //     if (eazlPersonalisation.growl_life != null) {
+    //         personalisationWorking.growlLife = eazlPersonalisation.growl_life;
+    //     } else {
+    //         personalisationWorking.growlLife = 0;
+    //     }
 
-        if (eazlPersonalisation.grid_size != null) {
-            personalisationWorking.gridSize = eazlPersonalisation.grid_size;
-        } else {
-            personalisationWorking.gridSize = 0;
-        }
+    //     if (eazlPersonalisation.grid_size != null) {
+    //         personalisationWorking.gridSize = eazlPersonalisation.grid_size;
+    //     } else {
+    //         personalisationWorking.gridSize = 0;
+    //     }
 
-        if (eazlPersonalisation.snap_to_grid != null) {
-            personalisationWorking.snapToGrid = eazlPersonalisation.snap_to_grid;
-        } else {
-            personalisationWorking.snapToGrid = false;
-        }
+    //     if (eazlPersonalisation.snap_to_grid != null) {
+    //         personalisationWorking.snapToGrid = eazlPersonalisation.snap_to_grid;
+    //     } else {
+    //         personalisationWorking.snapToGrid = false;
+    //     }
 
-        // Return the result
-        return personalisationWorking;
-    }
+    //     // Return the result
+    //     return personalisationWorking;
+    // }
 
     savePersonalisation(personalisation: Personalisation): EazlPersonalisation {
         // Load Personalisation: move data Canvas -> Eazl
