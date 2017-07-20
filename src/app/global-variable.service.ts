@@ -93,7 +93,6 @@ export class GlobalVariableService {
     dirtyDataUserGroupMembership: boolean = true;
 
     // System & operation config
-    personalisationID: number = 0; 
     personalisationRecordID: number = 0;
     averageWarningRuntime: number = 0;
     defaultWidgetConfiguration: string = '';
