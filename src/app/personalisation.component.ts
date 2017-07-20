@@ -1,4 +1,4 @@
-// Personalisation form
+// Personalisation form (see UserProfile data model)
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { FormBuilder }                from '@angular/forms';

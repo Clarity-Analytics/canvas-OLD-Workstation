@@ -77,7 +77,6 @@ export class GlobalVariableService {
     dirtyDataImageSourceDropdown: boolean = true;
     dirtyDataNotification: boolean = true;
     dirtyDataPackageTask: boolean = true;
-    dirtyDataPersonalisation: boolean = true;
     dirtyDataReport: boolean = true;
     dirtyDataReportWidgetSet: boolean = true;
     dirtyDataReportHistory: boolean = true;
