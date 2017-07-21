@@ -34,7 +34,7 @@ export class GlobalVariableService {
 
     // This session
     growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
-    sessionDateTimeLoggedin = new BehaviorSubject('');
+    sessionDateTimeLoggedin: string = '';
     sessionDashboardTabID = new BehaviorSubject(-1);            // Tab ID to load when form opens, -1 = none
     sessionDebugging = new BehaviorSubject(false);
     sessionLogging = new BehaviorSubject(false);
