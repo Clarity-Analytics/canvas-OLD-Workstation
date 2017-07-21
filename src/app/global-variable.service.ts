@@ -30,7 +30,7 @@ export class GlobalVariableService {
 
     // Current User
     canvasUser = new BehaviorSubject<CanvasUser>(null);
-    isAuthenticatedOnEazl = new BehaviorSubject(false);         // True if authenticated
+    isAuthenticatedOnEazl: boolean = false;         // True if authenticated
 
     // This session
     growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });

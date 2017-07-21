@@ -1103,30 +1103,31 @@ export const DASHBOARDS: Dashboard[] =
             dashboardID: 0,
             dashboardCode: 'Bar charts',
             dashboardName: 'Collection of Bar charts',
+            dashboardDescription: 'This is a unique and special dashboard, like all others',
+            dashboardPassword: 'StudeBaker',
+            dashboardRefreshMode: 'Manual',
+            dashboardRefreshFrequency: 0,
+            dashboardComments: 'Comments bla-bla-bla',
+            dashboardSystemMessage: '',
+            dashboardIsLocked: false,
             isContainerHeaderDark: true,
             showContainerHeader: true,
             dashboardBackgroundColor: '',
             dashboardBackgroundImageSrc: "url('../assets/CanvasBackgroundImages/dolphin-1078319_1280.jpg')",
-            dashboardComments: 'Comments bla-bla-bla',
-            dashboardCreatedDateTime: '2017/07/08',
-            dashboardCreatedUserName: 'BenVdMark',
             dashboardDefaultExportFileType: 'PowerPoint',
-            dashboardDescription: 'This is a unique and special dashboard, like all others',
-            dashboardNrGroups: 0,
-            dashboardIsLocked: false,
-            dashboardIsLiked: false,
+            dashboardCreatedUserName: 'BenVdMark',
+            dashboardCreatedDateTime: '2017/07/08',
+            dashboardUpdatedUserName: 'GordenJ',
+            dashboardUpdatedDateTime: '2017/07/08',
             dashboardOpenTabNr: 1,
-            dashboardOwners: 'JohnH',
-            dashboardPassword: 'StudeBaker',
+            dashboardNrGroups: 0,
             dashboardRefreshedDateTime: '',
             dashboardRefreshedUserName: '',
-            dashboardRefreshMode: 'Manual',
-            dashboardRefreshFrequency: 0,
+
+            dashboardIsLiked: false,
+            dashboardOwners: 'JohnH',
             dashboardNrUsersSharedWith: 0,
             dashboardNrGroupsSharedWith: 0,
-            dashboardSystemMessage: '',
-            dashboardUpdatedDateTime: '2017/07/08',
-            dashboardUpdatedUserName: 'GordenJ'
         },
         {
             dashboardID: 1,
@@ -4679,7 +4680,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'logout', '@Start');
 
         this.globalVariableService.canvasUser.next(new CanvasUser);
-        this.globalVariableService.isAuthenticatedOnEazl.next(false);
+        this.globalVariableService.isAuthenticatedOnEazl = false;
         this.storage.removeItem('canvas-token');
 
         // Clear local data
@@ -4795,7 +4796,7 @@ export class EazlService implements OnInit {
                         });
 
                         // Refresh global variables
-                        this.globalVariableService.isAuthenticatedOnEazl.next(true);
+                        this.globalVariableService.isAuthenticatedOnEazl = true;
                         this.globalVariablesUsers(this.cdal.loadUser(eazlUser));
 
                         // Inform the user
@@ -4833,7 +4834,7 @@ export class EazlService implements OnInit {
             summary:  'Login Failed',
             detail:   '*Login unsuccessful'
         });
-        this.globalVariableService.isAuthenticatedOnEazl.next(false);
+        this.globalVariableService.isAuthenticatedOnEazl = false;
         return Promise.reject(error.message || error);
     }
 
