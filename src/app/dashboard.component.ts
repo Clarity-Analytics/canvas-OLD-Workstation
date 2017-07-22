@@ -231,11 +231,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.getDashboards()
 
         // Set the Dashboard ID to load on Init
-        if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() == -1) {
+        if (this.globalVariableService.sessionLoadOnOpenDashboardID == -1) {
             if (this.globalVariableService.startupDashboardID.getValue() != -1) {
-                this.globalVariableService.sessionLoadOnOpenDashboardID.next(
+                this.globalVariableService.sessionLoadOnOpenDashboardID = 
                     this.globalVariableService.startupDashboardID.getValue()
-                )
                 this.globalVariableService.sessionLoadOnOpenDashboardName.next(
                     this.globalVariableService.startupDashboardName.getValue()
                 )
@@ -243,14 +242,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
 
         // Call if anyone is eligible
-        if (this.globalVariableService.sessionLoadOnOpenDashboardID.getValue() != -1) {
+        if (this.globalVariableService.sessionLoadOnOpenDashboardID != -1) {
             this.selectedDashboard =
                 {
-                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                    id: this.globalVariableService.sessionLoadOnOpenDashboardID,
                     name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
                 }
             // Load the Tabs for this Dashboard
-            this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
+            this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID);
 
             // Use startup Dashboard Tab ID at the very beginning
             if (this.globalVariableService.sessionDashboardTabID == -1) {
@@ -267,7 +266,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 let sessionDashboardTabName: string = ''
                 if (this.globalVariableService.sessionDashboardTabID != -1) {
                     let workingDashboardTab: DashboardTab[] = this.eazlService.getDashboardTabs(
-                        this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                        this.globalVariableService.sessionLoadOnOpenDashboardID,
                         this.globalVariableService.sessionDashboardTabID);
                     if (workingDashboardTab.length != 0) {
                         sessionDashboardTabName = workingDashboardTab[0].dashboardTabName;
@@ -275,7 +274,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 this.selectedDashboardTab = {
-                    id: this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
+                    id: this.globalVariableService.sessionLoadOnOpenDashboardID,
                     name: sessionDashboardTabName
                 }
 
@@ -1875,8 +1874,7 @@ console.log('this.widgetToEdit', this.widgetToEdit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
 
         // Remember this for next time
-        this.globalVariableService.sessionLoadOnOpenDashboardID.next(
-            this.selectedDashboard.id);
+        this.globalVariableService.sessionLoadOnOpenDashboardID = this.selectedDashboard.id;
         this.globalVariableService.sessionLoadOnOpenDashboardName.next(
             this.dashboards.filter(dash =>
                 dash.dashboardID == this.selectedDashboard.id)[0].dashboardName

@@ -38,7 +38,7 @@ export class GlobalVariableService {
     sessionDashboardTabID: number = -1;            // Tab ID to load when form opens, -1 = none
     sessionDebugging = new BehaviorSubject(false);
     sessionLogging = new BehaviorSubject(false);
-    sessionLoadOnOpenDashboardID = new BehaviorSubject(-1);     // Dashboard to load when form opens, 0 = none
+    sessionLoadOnOpenDashboardID: number = -1;     // Dashboard to load when form opens, 0 = none
     sessionLoadOnOpenDashboardName = new BehaviorSubject('');   // Dashboard to load when form opens, '' = none
 
     // At startup
