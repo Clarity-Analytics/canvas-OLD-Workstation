@@ -4412,8 +4412,8 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
 export const CANVASMESSAGES: CanvasMessage[] =
     [
         {
-            canvasMessageConversationID: 0,
             canvasMessageID: 0,
+            canvasMessageConversationID: 0,
             canvasMessageSenderUserName: 'janniei',
             canvasMessageSentDateTime: '2017/05/01 09:10',
             canvasMessageIsSystemGenerated: false,
@@ -4426,7 +4426,10 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageMyStatus: 'UnRead',
             canvasMessageRecipients: [
                 {
+                    canvasMessageRecipientID: 0,
+                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserName: 'bradleyk',
+                    canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: 'Read',
                     canvasMessageReadDateTime: '2017/05/01 09:11',
                 }
@@ -4447,8 +4450,11 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageMyStatus: 'Read',
             canvasMessageRecipients: [
                 {
+                    canvasMessageRecipientID: 0,
+                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserName: 'janniei',
                     canvasMessageRecipientStatus: 'Read',
+                    canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '2017/05/01 11:50',
                 }
             ]
@@ -4468,8 +4474,11 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageMyStatus: 'UnRead',
             canvasMessageRecipients: [
                 {
+                    canvasMessageRecipientID: 0,
+                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserName: 'bradleyk',
                     canvasMessageRecipientStatus: 'UnRead',
+                    canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '',
                 }
             ]
@@ -4489,18 +4498,27 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageMyStatus: 'UnRead',
             canvasMessageRecipients: [
                 {
+                    canvasMessageRecipientID: 0,
+                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserName: 'jamesv',
                     canvasMessageRecipientStatus: 'UnRead',
+                    canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '',
                 },
                 {
+                    canvasMessageRecipientID: 0,
+                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserName: 'bradleyk',
                     canvasMessageRecipientStatus: 'Read',
+                   canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '2017/05/02 14:23',
                 },
                 {
+                    canvasMessageRecipientID: 1,
+                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserName: 'veronicas',
                     canvasMessageRecipientStatus: 'UnRead',
+                    canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '',
                 }
             ]

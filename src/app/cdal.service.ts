@@ -536,46 +536,10 @@ export class CDAL {
 
         canvasMessageWorking.canvasMessageID = eazlCanvasMessage.id;
 
-        if (eazlCanvasMessage.conversation_id != null) {
-            canvasMessageWorking.canvasMessageConversationID = eazlCanvasMessage.conversation_id;
+        if (eazlCanvasMessage.conversation != null) {
+            canvasMessageWorking.canvasMessageConversationID = eazlCanvasMessage.conversation;
         } else {
             canvasMessageWorking.canvasMessageConversationID = 0;
-        }
-
-        if (eazlCanvasMessage.sender_username != null) {
-            canvasMessageWorking.canvasMessageSenderUserName = eazlCanvasMessage.sender_username;
-        } else {
-            canvasMessageWorking.canvasMessageSenderUserName = '';
-        }
-
-        if (eazlCanvasMessage.sent_datetime != null) {
-            canvasMessageWorking.canvasMessageSentDateTime = eazlCanvasMessage.sent_datetime;
-        } else {
-            canvasMessageWorking.canvasMessageSentDateTime = '';
-        }
-
-        if (eazlCanvasMessage.issystem_generated != null) {
-            canvasMessageWorking.canvasMessageIsSystemGenerated = eazlCanvasMessage.issystem_generated;
-        } else {
-            canvasMessageWorking.canvasMessageIsSystemGenerated = false;
-        }
-
-        if (eazlCanvasMessage.dashboard_id != null) {
-            canvasMessageWorking.canvasMessageDashboardID = eazlCanvasMessage.dashboard_id;
-        } else {
-            canvasMessageWorking.canvasMessageDashboardID = 0;
-        }
-
-        if (eazlCanvasMessage.report_id != null) {
-            canvasMessageWorking.canvasMessageReportID = eazlCanvasMessage.report_id;
-        } else {
-            canvasMessageWorking.canvasMessageReportID = 0;
-        }
-
-        if (eazlCanvasMessage.widget_id != null) {
-            canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget_id;
-        } else {
-            canvasMessageWorking.canvasMessageWidgetID = 0;
         }
 
         if (eazlCanvasMessage.subject != null) {
@@ -590,15 +554,61 @@ export class CDAL {
             canvasMessageWorking.canvasMessageBody = '';
         }
 
-        if (eazlCanvasMessage.sent_to_me != null) {
-            canvasMessageWorking.canvasMessageSentToMe = eazlCanvasMessage.sent_to_me;
+        if (eazlCanvasMessage.dashboard_id != null) {
+            canvasMessageWorking.canvasMessageDashboardID = eazlCanvasMessage.dashboard_id;
         } else {
-            canvasMessageWorking.canvasMessageSentToMe = false;
+            canvasMessageWorking.canvasMessageDashboardID = 0;
         }
 
-        if (eazlCanvasMessage.my_status != null) {
-            canvasMessageWorking.canvasMessageMyStatus = eazlCanvasMessage.my_status;
+        if (eazlCanvasMessage.package_id != null) {
+            canvasMessageWorking.canvasMessageReportID = eazlCanvasMessage.package_id;
         } else {
+            canvasMessageWorking.canvasMessageReportID = 0;
+        }
+
+        if (eazlCanvasMessage.widget_id != null) {
+            canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget_id;
+        } else {
+            canvasMessageWorking.canvasMessageWidgetID = 0;
+        }
+
+        if (eazlCanvasMessage.issystem_generated != null) {
+            canvasMessageWorking.canvasMessageIsSystemGenerated = eazlCanvasMessage.issystem_generated;
+        } else {
+            canvasMessageWorking.canvasMessageIsSystemGenerated = false;
+        }
+
+// TODO - add ReadDateTime field for all recipients
+        // Defaults
+        canvasMessageWorking.canvasMessageSentToMe = false;
+        canvasMessageWorking.canvasMessageMyStatus = '';
+
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+
+        for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
+
+            if (eazlCanvasMessage.recipients[i].user == currentUser) {
+                canvasMessageWorking.canvasMessageSentToMe = true;
+                canvasMessageWorking.canvasMessageMyStatus = 
+                    eazlCanvasMessage.recipients[i].status;
+                if (eazlCanvasMessage.recipients[i].is_sender == true) {
+                    canvasMessageWorking.canvasMessageSenderUserName =
+                        eazlCanvasMessage.recipients[i].user;
+                    canvasMessageWorking.canvasMessageSentDateTime = null;
+                };
+            };
+
+            canvasMessageWorking.canvasMessageRecipients.push(
+               {
+                canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
+                canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[i].message,
+                canvasMessageRecipientUserName: eazlCanvasMessage.recipients[i].user,
+                canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[i].is_sender,
+                canvasMessageRecipientStatus: eazlCanvasMessage.recipients[i].status,
+                canvasMessageReadDateTime: null,
+            });
+            canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
 
