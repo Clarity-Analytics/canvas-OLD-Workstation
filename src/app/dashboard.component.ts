@@ -253,23 +253,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID.getValue());
 
             // Use startup Dashboard Tab ID at the very beginning
-            if (this.globalVariableService.sessionDashboardTabID.getValue() == -1) {
+            if (this.globalVariableService.sessionDashboardTabID == -1) {
                 if (this.globalVariableService.startupDashboardTabID.getValue() != -1) {
-                    this.globalVariableService.sessionDashboardTabID.next(
+                    this.globalVariableService.sessionDashboardTabID = 
                         this.globalVariableService.startupDashboardTabID.getValue()
-                    )
                 }
             }
 
             // Load the session's Dashboard Tab
-            if (this.globalVariableService.sessionDashboardTabID.getValue() != -1) {
+            if (this.globalVariableService.sessionDashboardTabID != -1) {
 
                 // Get the Dashboard Tab Name, used by drop down (value = id, name)
                 let sessionDashboardTabName: string = ''
-                if (this.globalVariableService.sessionDashboardTabID.getValue() != -1) {
+                if (this.globalVariableService.sessionDashboardTabID != -1) {
                     let workingDashboardTab: DashboardTab[] = this.eazlService.getDashboardTabs(
                         this.globalVariableService.sessionLoadOnOpenDashboardID.getValue(),
-                        this.globalVariableService.sessionDashboardTabID.getValue());
+                        this.globalVariableService.sessionDashboardTabID);
                     if (workingDashboardTab.length != 0) {
                         sessionDashboardTabName = workingDashboardTab[0].dashboardTabName;
                     }
@@ -2007,8 +2006,7 @@ console.log('this.widgetToEdit', this.widgetToEdit)
         this.globalFunctionService.printToConsole(this.constructor.name, 'loadDashboard', '@Start');
 
         // // Remember this for next time
-        this.globalVariableService.sessionDashboardTabID.next(
-            this.selectedDashboardTab.id);
+        this.globalVariableService.sessionDashboardTabID = this.selectedDashboardTab.id;
 
         // Reset the list of selected Widgets
         this.selectedWidgetIDs = [];
