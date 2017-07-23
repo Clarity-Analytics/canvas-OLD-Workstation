@@ -9,18 +9,18 @@
         columnResizeMode="expand"
         exportFilename="messages"
         [contextMenu]="cm"
-        [paginator]="true" 
-        [pageLinks]="3" 
+        [paginator]="true"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedCanvasMessage"
-        selectionMode="single" 
-        [scrollable]="false"  
+        selectionMode="single"
+        [scrollable]="false"
         [sortMode]="multiple"
-        [value]="canvasMessages"  
+        [value]="canvasMessages"
         (click)="onClickMessageTable()"
         >
         <p-header
@@ -31,192 +31,138 @@
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
+                <button
+                    type="button"
+                    pButton
+                    icon="fa-file-o"
+                    iconPos="left"
+                    label="CSV"
+                    (click)="dt.exportCSV()"
                     >
                 </button>
             </span>
-            
+
         </p-header>
 
-        <p-column 
-            field="messageConversationID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageConversationID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Convers. ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSenderUserName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSenderUserName"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Sender"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSentDateTime" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSentDateTime"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Sent on"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageIsSystemGenerated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageIsSystemGenerated"
+            [filter]="true"
+            filterMatchMode="contains"
             header="System?"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageDashboardID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageDashboardID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Dashboard ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageReportID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageReportID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Report ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageWidgetID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageWidgetID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Widget ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSubject" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSubject"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Subject"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageBody" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageBody"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Body"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSentToMe" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSentToMe"
+            [filter]="true"
+            filterMatchMode="contains"
             header="To me?"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageMyStatus" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageMyStatus"
+            [filter]="true"
+            filterMatchMode="contains"
             header="My Status"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
-        </p-column>        
+        </p-column>
     </p-dataTable>
 </div>
-
-
-<!--Shared with panel-->
-<div
-    class="groupMembershipPanel"
-    *ngIf="displaySharedWith"
-    >
-
-    <div
-        class="groupMembershipHeading"
-        >
-        Users this Dashboard is Shared with
-        <button 
-            class="panelButtonWithLabel"
-            pButton 
-            type="button" 
-            label="Cancel"
-            icon="fa-undo"
-            (click)="onClickSharedWithCancel()"
-            >
-        </button>
-    </div>
-    
-    <!--Content-->
-    <form>
-
-        <div
-            >
-            <p-pickList 
-                [source]="availableSharedWith" 
-                [target]="belongstoSharedWith"
-                sourceHeader="Available Users"
-                targetHeader="Shared with these Users"
-                (onMoveToTarget)="onMoveToTargetDashboardSharedWith($event)"
-                (onMoveToSource)="onMoveToSourceDashboardSharedWith($event)"
-                >
-                <ng-template let-grp pTemplate="item">
-                    <div class="ui-helper-clearfix">
-                        <div 
-                            style="font-size:14px;float:left;margin:15px 5px 0 0"
-                            >
-                            {{ grp }}
-                        </div>
-                    </div>
-                </ng-template>
-            </p-pickList>
-
-        </div>
-
-    </form>
-</div>
-
-
-    
