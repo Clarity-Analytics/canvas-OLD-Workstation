@@ -585,7 +585,17 @@ export class CDAL {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-
+        
+        canvasMessageWorking.canvasMessageRecipients = [
+            {
+            canvasMessageRecipientID: 0,
+            canvasMessageRecipientMessageURL: '',
+            canvasMessageRecipientUserName: '',
+            canvasMessageRecipientIsSender: false,
+            canvasMessageRecipientStatus: '',
+            canvasMessageReadDateTime: ''
+        }];
+        
         for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
 
             if (eazlCanvasMessage.recipients[i].user == currentUser) {
@@ -598,7 +608,7 @@ export class CDAL {
                     canvasMessageWorking.canvasMessageSentDateTime = null;
                 };
             };
-
+           
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
@@ -606,8 +616,9 @@ export class CDAL {
                 canvasMessageRecipientUserName: eazlCanvasMessage.recipients[i].user,
                 canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[i].is_sender,
                 canvasMessageRecipientStatus: eazlCanvasMessage.recipients[i].status,
-                canvasMessageReadDateTime: null,
-            });
+                canvasMessageReadDateTime: null
+            }
+            );
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }

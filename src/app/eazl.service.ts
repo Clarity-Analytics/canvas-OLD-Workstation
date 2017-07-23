@@ -7045,7 +7045,7 @@ export class EazlService implements OnInit {
         // - reportID Optional filter, -1 = all
         // - widgetID Optional filter, -1 = all
         this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
-
+console.log('this.canvasMessages', this.canvasMessages)
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataCanvasMessage) {
             this.globalVariableService.growlGlobalMessage.next({
@@ -7541,7 +7541,7 @@ export class EazlService implements OnInit {
 
                 // Get all the data via API
                 let canvasMessageWorking: CanvasMessage[] = [];
-                this.get<EazlCanvasMessage>('canvas-messages')
+                this.get<EazlCanvasMessage>('messages')
                     .subscribe(
                         (eazlCanvasMessage) => {
                             for (var i = 0; i < eazlCanvasMessage.length; i++) {
@@ -7552,8 +7552,7 @@ export class EazlService implements OnInit {
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.canvasMessages = canvasMessageWorking;
+                         this.canvasMessages = canvasMessageWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataCanvasMessage = false;
