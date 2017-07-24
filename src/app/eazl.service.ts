@@ -5029,7 +5029,7 @@ export class EazlService implements OnInit {
 
         let usernameWorking: string = '';
 
-        for (var i =0; i < this.users.length; i++) {
+        for (var i = 0; i < this.users.length; i++) {
             if (this.users[i].id == userID) {
                 usernameWorking = this.users[i].username;
                 break;
@@ -5038,7 +5038,24 @@ export class EazlService implements OnInit {
 
         // Return answer
         return usernameWorking;
-        
+    }
+
+    usernameFromUserID(username: string): number {
+        // Return the userID for a given username (-1 if username not found)
+        // - username to search
+        this.globalFunctionService.printToConsole(this.constructor.name,'usernameFromUserID', '@Start');
+
+        let userIDWorking: number = -1;
+
+        for (var i = 0; i < this.users.length; i++) {
+            if (this.users[i].username == username) {
+                userIDWorking = this.users[i].id;
+                break;
+            }
+        }
+
+        // Return answer
+        return userIDWorking;
     }
 
     globalVariablesUsers(user: User) {
