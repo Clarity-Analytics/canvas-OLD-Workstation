@@ -65,7 +65,7 @@ import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
-import { CanvasMessage }        from './model.systemconfiguration';
+import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
@@ -1720,11 +1720,11 @@ export class CDAL {
         return ReportUserRelationshipWorking;
     }
 
-    loadSystemConfiguration(eazlSystemConfiguration: EazlSystemConfiguration): CanvasMessage {
+    loadSystemConfiguration(eazlSystemConfiguration: EazlSystemConfiguration): SystemConfiguration {
         // Load SystemConfiguration: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadSystemConfiguration', '@Start');
 
-        let systemConfigurationWorking = new CanvasMessage();
+        let systemConfigurationWorking = new SystemConfiguration();
 
         systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.id;
         
@@ -1777,7 +1777,7 @@ export class CDAL {
         return systemConfigurationWorking;
     }
 
-    saveSystemConfiguration(systemConfiguration: CanvasMessage): EazlSystemConfiguration {
+    saveSystemConfiguration(systemConfiguration: SystemConfiguration): EazlSystemConfiguration {
         // Save SystemConfiguration: move data Canvas -> Eazl
         this.globalFunctionService.printToConsole(this.constructor.name,'saveSystemConfiguration', '@Start');
 

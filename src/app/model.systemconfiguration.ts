@@ -12,7 +12,7 @@ export class EazlSystemConfiguration {
 }
 
 // Canvas
-export class CanvasMessage {
+export class SystemConfiguration {
     systemConfigurationID: number;          // Unique DB ID
     recordID: number;                       // Our DB ID
     backendUrl: string;                     // URL for Backend (RESTi)

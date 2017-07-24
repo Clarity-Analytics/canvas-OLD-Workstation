@@ -26,7 +26,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { CanvasMessage }        from './model.systemconfiguration';
+import { SystemConfiguration }        from './model.systemconfiguration';
 
 @Component({
     selector:    'myprofile',

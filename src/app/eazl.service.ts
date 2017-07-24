@@ -113,14 +113,13 @@ import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
-import { CanvasMessage }        from './model.systemconfiguration';
+import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
-
 
 // Token for RESTi
 export interface Token {
@@ -4570,7 +4569,7 @@ export class EazlService implements OnInit {
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
-    systemConfiguration: CanvasMessage;               // System wide settings
+    systemConfiguration: SystemConfiguration;               // System wide settings
     users: User[] = [];                                     // List of Users
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
@@ -4602,7 +4601,7 @@ export class EazlService implements OnInit {
 
     }
 
-    getSystemConfiguration(): CanvasMessage {
+    getSystemConfiguration(): SystemConfiguration {
         // Returns SystemConfiguration
 
         // Report to user if dirty at the moment
@@ -4619,7 +4618,7 @@ export class EazlService implements OnInit {
         return this.systemConfiguration;
     }
 
-    updateSystemConfiguration(systemConfiguration: CanvasMessage) {
+    updateSystemConfiguration(systemConfiguration: SystemConfiguration) {
         // Updates SystemConfiguration, and also refresh (.next) global variables
         // - systemConfiguration New data
         this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
@@ -4660,7 +4659,7 @@ export class EazlService implements OnInit {
 
     }
 
-    globalVariablesSystemConfiguration(systemConfiguration: CanvasMessage) {
+    globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
         //  Refresh (.next) global variables
         // - systemConfiguration New data
         this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesSystemConfiguration', '@Start');
@@ -7107,7 +7106,7 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataCanvasMessage = true;
 
         return this.post<EazlCanvasMessage>(
-            'messages/', this.cdal.saveSystemConfiguration(canvasMessage)
+            'messages/', this.cdal.saveCanvasMessage(canvasMessage)
             )
                 .toPromise()
                 .then(eazCanvasMessage => {
@@ -8331,12 +8330,12 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataSystemConfiguration = true;
 
                 // Get all the data via API
-                let systemConfigurationWorking: CanvasMessage = null;
+                let systemConfigurationWorking: SystemConfiguration = null;
                 this.get<EazlSystemConfiguration>('system-configuration')
                     .subscribe(
                         (eazlSystemConfiguration) => {
                             for (var i = 0; i < eazlSystemConfiguration.length; i++) {
-                                let systemConfigurationSingle = new CanvasMessage();
+                                let systemConfigurationSingle = new SystemConfiguration();
                                 systemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
                                 systemConfigurationWorking = systemConfigurationSingle;
                             }
