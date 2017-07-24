@@ -14,6 +14,8 @@ import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
+import { CanvasDate }                 from './date.services';
+import { CanvasMessage }              from './model.canvasMessage';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -39,6 +41,7 @@ export class NewMessageComponent implements OnInit {
     userform: FormGroup;                        // Form Group object
 
     constructor(
+        private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
@@ -143,6 +146,9 @@ export class NewMessageComponent implements OnInit {
             });
             return;
         }
+
+
+
 
         // Trigger event emitter 'emit' method
         this.formNewMessageSubmit.emit('Submit');

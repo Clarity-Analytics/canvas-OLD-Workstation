@@ -5022,6 +5022,25 @@ export class EazlService implements OnInit {
                 })
     }
 
+    userIDfromUserName(userID: number): string {
+        // Return the username for a given userID (blank string if ID not found)
+        // - userID to search
+        this.globalFunctionService.printToConsole(this.constructor.name,'userIDfromUserName', '@Start');
+
+        let usernameWorking: string = '';
+
+        for (var i =0; i < this.users.length; i++) {
+            if (this.users[i].id == userID) {
+                usernameWorking = this.users[i].username;
+                break;
+            }
+        }
+
+        // Return answer
+        return usernameWorking;
+        
+    }
+
     globalVariablesUsers(user: User) {
         // Refresh (.next) global variables
         // - userthat has changed
