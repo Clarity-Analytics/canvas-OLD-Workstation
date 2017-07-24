@@ -169,18 +169,26 @@ export class NewMessageComponent implements OnInit {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-        
+
+        canvasMessageWorking.canvasMessageSentDateTime = null;
+        if (this.sendToTheseUsers[0] == currentUser) {
+            canvasMessageWorking.canvasMessageSentToMe = true;
+            canvasMessageWorking.canvasMessageMyStatus = 'Read';
+            canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender 
+                = true;
+        };
+
         canvasMessageWorking.canvasMessageRecipients = [
             {
             canvasMessageRecipientID: 0,
             canvasMessageRecipientMessageURL: '',
-            canvasMessageRecipientUserName: '',
+            canvasMessageRecipientUserName: this.sendToTheseUsers[0],
             canvasMessageRecipientIsSender: false,
-            canvasMessageRecipientStatus: '',
-            canvasMessageReadDateTime: ''
+            canvasMessageRecipientStatus: 'UnRead',
+            canvasMessageReadDateTime: null
         }];
         
-        for (var i = 0; i < this.sendToTheseUsers.length; i++) {
+        for (var i = 1; i < this.sendToTheseUsers.length; i++) {
 
             canvasMessageWorking.canvasMessageSentDateTime = null;
             if (this.sendToTheseUsers[i] == currentUser) {
@@ -194,8 +202,7 @@ export class NewMessageComponent implements OnInit {
                {
                 canvasMessageRecipientID: 0,
                 canvasMessageRecipientMessageURL: '',
-                canvasMessageRecipientUserName:  
-                    this.sendToTheseUsers[i],
+                canvasMessageRecipientUserName: this.sendToTheseUsers[i],
                 canvasMessageRecipientIsSender:  false,
                 canvasMessageRecipientStatus:  'UnRead',
                 canvasMessageReadDateTime: null
@@ -204,7 +211,7 @@ export class NewMessageComponent implements OnInit {
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
 
-
+console.log('canvasMessageWorking', canvasMessageWorking)
 
         // Trigger event emitter 'emit' method
         this.formNewMessageSubmit.emit('Submit');
