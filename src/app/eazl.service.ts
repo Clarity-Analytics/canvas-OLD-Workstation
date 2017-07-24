@@ -113,7 +113,7 @@ import { ReportHistory }              from './model.reportHistory';
 import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
-import { SystemConfiguration }        from './model.systemconfiguration';
+import { CanvasMessage }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
@@ -4570,7 +4570,7 @@ export class EazlService implements OnInit {
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
-    systemConfiguration: SystemConfiguration;               // System wide settings
+    systemConfiguration: CanvasMessage;               // System wide settings
     users: User[] = [];                                     // List of Users
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
@@ -4602,7 +4602,7 @@ export class EazlService implements OnInit {
 
     }
 
-    getSystemConfiguration(): SystemConfiguration {
+    getSystemConfiguration(): CanvasMessage {
         // Returns SystemConfiguration
 
         // Report to user if dirty at the moment
@@ -4619,7 +4619,7 @@ export class EazlService implements OnInit {
         return this.systemConfiguration;
     }
 
-    updateSystemConfiguration(systemConfiguration: SystemConfiguration) {
+    updateSystemConfiguration(systemConfiguration: CanvasMessage) {
         // Updates SystemConfiguration, and also refresh (.next) global variables
         // - systemConfiguration New data
         this.globalFunctionService.printToConsole(this.constructor.name,'updateSystemConfiguration', '@Start');
@@ -4660,7 +4660,7 @@ export class EazlService implements OnInit {
 
     }
 
-    globalVariablesSystemConfiguration(systemConfiguration: SystemConfiguration) {
+    globalVariablesSystemConfiguration(systemConfiguration: CanvasMessage) {
         //  Refresh (.next) global variables
         // - systemConfiguration New data
         this.globalFunctionService.printToConsole(this.constructor.name,'globalVariablesSystemConfiguration', '@Start');
@@ -7098,6 +7098,42 @@ export class EazlService implements OnInit {
         })
     }
 
+    addCanvasMessage(canvasMessage: CanvasMessage) {
+        // Adds CanvasMessage, and also refresh (.next) global variables
+        // - systemConfiguration New data
+        this.globalFunctionService.printToConsole(this.constructor.name,'addCanvasMessage', '@Start');
+
+        // Mark as dirty
+        this.globalVariableService.dirtyDataCanvasMessage = true;
+
+        return this.post<EazlCanvasMessage>(
+            'messages/', this.cdal.saveSystemConfiguration(canvasMessage)
+            )
+                .toPromise()
+                .then(eazCanvasMessage => {
+
+                    // Store in DB
+                    this.cdal.saveCanvasMessage(canvasMessage);
+
+                    // Update local array - not done, as refreshed each time
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataCanvasMessage = false;
+
+                    // Return the data
+                    return eazCanvasMessage;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Message',
+                        detail:   'Unsuccessful in updating Messages to the database'
+                    });
+                    error.message || error
+                })
+
+    }
+
     canvasMessageToggleRead(messageID: number) {
         // Updates the status of the CanvasMessage for the current user
         // - messageID message to update
@@ -8295,12 +8331,12 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataSystemConfiguration = true;
 
                 // Get all the data via API
-                let systemConfigurationWorking: SystemConfiguration = null;
+                let systemConfigurationWorking: CanvasMessage = null;
                 this.get<EazlSystemConfiguration>('system-configuration')
                     .subscribe(
                         (eazlSystemConfiguration) => {
                             for (var i = 0; i < eazlSystemConfiguration.length; i++) {
-                                let systemConfigurationSingle = new SystemConfiguration();
+                                let systemConfigurationSingle = new CanvasMessage();
                                 systemConfigurationSingle = this.cdal.loadSystemConfiguration(eazlSystemConfiguration[i]);
                                 systemConfigurationWorking = systemConfigurationSingle;
                             }

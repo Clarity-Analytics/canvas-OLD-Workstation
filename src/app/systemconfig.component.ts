@@ -18,7 +18,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { SystemConfiguration }        from './model.systemconfiguration';
+import { CanvasMessage }        from './model.systemconfiguration';
 
 @Component({
     selector:    'systemconfig',
@@ -32,7 +32,7 @@ export class SystemConfigComponent implements OnInit {
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
-    systemConfiguration: SystemConfiguration;       // System wide settings
+    systemConfiguration: CanvasMessage;       // System wide settings
 
     constructor(
         private eazlService: EazlService,
