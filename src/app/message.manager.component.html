@@ -15,12 +15,12 @@
         [responsive]="true"
         [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
-        [(selection)]="selectedGroup"
+        [(selection)]="selectedCanvasMessage"
         selectionMode="single"
         [scrollable]="false"
         [sortMode]="multiple"
         [value]="canvasMessages"
-        (click)="onClickGroupTable()"
+        (click)="onClickMessageTable()"
         >
         <p-header
             [style]="{'background-color': 'darkgray'}">

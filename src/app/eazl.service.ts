@@ -7045,7 +7045,7 @@ export class EazlService implements OnInit {
         // - reportID Optional filter, -1 = all
         // - widgetID Optional filter, -1 = all
         this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
-console.log('this.canvasMessages', this.canvasMessages)
+
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataCanvasMessage) {
             this.globalVariableService.growlGlobalMessage.next({

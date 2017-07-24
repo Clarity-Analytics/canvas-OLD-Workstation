@@ -67,15 +67,21 @@ export class MessageManagerComponent implements OnInit {
         // - canvasMessage: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
 
+console.log('this.selectedCanvasMessage', this.selectedCanvasMessage)
         this.eazlService.canvasMessageToggleRead(this.selectedCanvasMessage.canvasMessageDashboardID);
-
-        // Fix up, if for me
+        // Fix up, if for me          
         if (this.selectedCanvasMessage.canvasMessageSentToMe) {
             if (this.selectedCanvasMessage.canvasMessageMyStatus == 'Read') {
                 this.selectedCanvasMessage.canvasMessageMyStatus = 'UnRead';
             } else {
                 this.selectedCanvasMessage.canvasMessageMyStatus = 'Read';
             }
+        } else {
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'warn',
+            summary:  'Not mine',
+            detail:   'This message was not sent to you, and thus cannot be marked Read/UnRead'
+        });            
         }
     }
 
