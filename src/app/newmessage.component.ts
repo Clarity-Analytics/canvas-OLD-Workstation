@@ -147,6 +147,62 @@ export class NewMessageComponent implements OnInit {
             return;
         }
 
+        // Create a Message object, and then add it
+        let canvasMessageWorking = new CanvasMessage();
+
+        canvasMessageWorking.canvasMessageID = 0;
+
+        // TODO - fix the conversation ID properly in time
+        canvasMessageWorking.canvasMessageConversationID = 0;
+        canvasMessageWorking.canvasMessageSenderUserName = this.globalVariableService.canvasUser.getValue().username;
+        canvasMessageWorking.canvasMessageSentDateTime = this.canvasDate.now('standard');
+
+        canvasMessageWorking.canvasMessageSubject = this.userform.controls['messageSubject'].value
+        canvasMessageWorking.canvasMessageBody = this.userform.controls['messageBody'].value;
+        canvasMessageWorking.canvasMessageDashboardID = this.userform.controls['messageDashboardID'].value;
+        canvasMessageWorking.canvasMessageReportID = this.userform.controls['messageReportID'].value;
+        canvasMessageWorking.canvasMessageWidgetID = this.userform.controls['messageWidgetID'].value;
+        canvasMessageWorking.canvasMessageIsSystemGenerated = false;
+        canvasMessageWorking.canvasMessageSentToMe = false;
+        canvasMessageWorking.canvasMessageMyStatus = 'Read';
+        // TODO - add ReadDateTime field for all recipients
+
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+        
+        canvasMessageWorking.canvasMessageRecipients = [
+            {
+            canvasMessageRecipientID: 0,
+            canvasMessageRecipientMessageURL: '',
+            canvasMessageRecipientUserName: '',
+            canvasMessageRecipientIsSender: false,
+            canvasMessageRecipientStatus: '',
+            canvasMessageReadDateTime: ''
+        }];
+        
+        for (var i = 0; i < this.sendToTheseUsers.length; i++) {
+
+            canvasMessageWorking.canvasMessageSentDateTime = null;
+            if (this.sendToTheseUsers[i] == currentUser) {
+                canvasMessageWorking.canvasMessageSentToMe = true;
+                canvasMessageWorking.canvasMessageMyStatus = 'Read';
+                canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender 
+                    = true;
+            };
+           
+            canvasMessageWorking.canvasMessageRecipients.push(
+               {
+                canvasMessageRecipientID: 0,
+                canvasMessageRecipientMessageURL: '',
+                canvasMessageRecipientUserName:  
+                    this.sendToTheseUsers[i],
+                canvasMessageRecipientIsSender:  false,
+                canvasMessageRecipientStatus:  'UnRead',
+                canvasMessageReadDateTime: null
+            });
+            canvasMessageWorking.canvasMessageSentToMe = false;
+            canvasMessageWorking.canvasMessageMyStatus = '';
+        }
 
 
 

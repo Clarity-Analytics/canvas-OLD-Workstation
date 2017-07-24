@@ -5022,10 +5022,10 @@ export class EazlService implements OnInit {
                 })
     }
 
-    userIDfromUserName(userID: number): string {
+    usernameFromUserID(userID: number): string {
         // Return the username for a given userID (blank string if ID not found)
         // - userID to search
-        this.globalFunctionService.printToConsole(this.constructor.name,'userIDfromUserName', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'usernameFromUserID', '@Start');
 
         let usernameWorking: string = '';
 
@@ -5040,10 +5040,10 @@ export class EazlService implements OnInit {
         return usernameWorking;
     }
 
-    usernameFromUserID(username: string): number {
+    userIDfromUserName(username: string): number {
         // Return the userID for a given username (-1 if username not found)
         // - username to search
-        this.globalFunctionService.printToConsole(this.constructor.name,'usernameFromUserID', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userIDfromUserName', '@Start');
 
         let userIDWorking: number = -1;
 
