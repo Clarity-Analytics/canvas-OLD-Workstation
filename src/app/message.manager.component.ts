@@ -32,7 +32,7 @@ export class MessageManagerComponent implements OnInit {
     
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    canvasMessages: CanvasMessage[];                            // List of Canvas Messages
+    canvasMessages: CanvasMessage[] = [];                       // List of Canvas Messages
     selectedCanvasMessage: CanvasMessage;                       // Message that was clicked on
     popuMenuItems: MenuItem[];                                  // Items in popup
 
@@ -43,13 +43,14 @@ export class MessageManagerComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {
-    }
+        }
     
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);
+
         this.popuMenuItems = [
             {
                 label: 'Read/UnRead', 
@@ -67,7 +68,7 @@ export class MessageManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
 
         this.eazlService.canvasMessageToggleRead(this.selectedCanvasMessage.canvasMessageDashboardID);
-console.log('this.selectedCanvasMessage', this.selectedCanvasMessage)        
+
         // Fix up, if for me
         if (this.selectedCanvasMessage.canvasMessageSentToMe) {
             if (this.selectedCanvasMessage.canvasMessageMyStatus == 'Read') {

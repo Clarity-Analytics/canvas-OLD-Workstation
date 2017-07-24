@@ -1,15 +1,15 @@
 <!--Confirmation dialogue box-->
-<p-confirmDialog 
+<p-confirmDialog
     *ngIf="deleteMode"
-    header="Confirmation" 
-    icon="fa fa-question-circle" 
+    header="Confirmation"
+    icon="fa fa-question-circle"
     width="425"
     >
 </p-confirmDialog>
 
 
 <!--Popup form for a single group (Add or Edit)-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayGroupPopup"
     [header]="popupHeader"
     [closeOnEscape]=false
@@ -18,13 +18,13 @@
     width="650"
     responsive="true"
     >
-    <group-popup 
+    <group-popup
         [selectedGroup]="selectedGroup"
         [addEditMode]="addEditMode"
         [displayGroupPopup]="displayGroupPopup"
         (userPopupFormClosed)="handleGroupPopupFormClosed($event)"
         >
-    </group-popup> 
+    </group-popup>
 </p-dialog>
 
 
@@ -38,18 +38,18 @@
         columnResizeMode="expand"
         exportFilename="groups"
         [contextMenu]="cm"
-        [paginator]="true" 
-        [pageLinks]="3" 
+        [paginator]="true"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedGroup"
-        selectionMode="single" 
-        [scrollable]="false"  
+        selectionMode="single"
+        [scrollable]="false"
         [sortMode]="multiple"
-        [value]="groups"  
+        [value]="groups"
         (click)="onClickGroupTable()"
         >
         <p-header
@@ -60,45 +60,45 @@
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
+                <button
+                    type="button"
+                    pButton
+                    icon="fa-file-o"
+                    iconPos="left"
+                    label="CSV"
+                    (click)="dt.exportCSV()"
                     >
                 </button>
             </span>
-            
+
         </p-header>
-        <p-column 
-            field="groupID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="ID" 
+        <p-column
+            field="groupID"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="groupName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Name" 
+        <p-column
+            field="groupName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Name"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="groupDescription" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Description" 
+        <p-column
+            field="groupDescription"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Description"
             [sortable]="true"
-            [style]="{width: '320px', 
+            [style]="{width: '320px',
                     'text-align': 'center'}"            >
         </p-column>
     </p-dataTable>
@@ -114,25 +114,25 @@
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedGroup.groupName }} 
-        <button 
+        Group Membership for {{ selectedGroup.groupName }}
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickGroupMembershipCancel()"
             >
         </button>
     </div>
-    
+
     <!--Content-->
     <form>
 
         <div
             >
-            <p-pickList 
-                [source]="availableUserGroupMembership" 
+            <p-pickList
+                [source]="availableUserGroupMembership"
                 [target]="belongstoUserGroupMembership"
                 sourceHeader="Available Users"
                 targetHeader="Contains these Users"
@@ -141,7 +141,7 @@
                 >
                 <ng-template let-usr pTemplate="item">
                     <div class="ui-helper-clearfix">
-                        <div 
+                        <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
                             {{ usr.username }}
@@ -165,25 +165,25 @@
     <div
         class="groupMembershipHeading"
         >
-        Datasourc Acceess for {{ selectedGroup.groupName }} 
-        <button 
+        Datasourc Acceess for {{ selectedGroup.groupName }}
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickDataSourceCancel()"
             >
         </button>
     </div>
-    
+
     <!--Content-->
     <form>
 
         <div
             >
-            <p-pickList 
-                [source]="availableGroupDS" 
+            <p-pickList
+                [source]="availableGroupDS"
                 [target]="belongstoGroupDS"
                 sourceHeader="Available Datasources"
                 targetHeader="Access to these DS"
@@ -192,7 +192,7 @@
                 >
                 <ng-template let-ds pTemplate="item">
                     <div class="ui-helper-clearfix">
-                        <div 
+                        <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
                             {{ ds.datasourceName }}

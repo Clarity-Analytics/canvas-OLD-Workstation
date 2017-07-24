@@ -1,13 +1,12 @@
-
 <!--Context (popup) menu  -->
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
 
 
-<!--Table with CanvasMessage info -->
-<div class="myOverride">
+<!--Table with group info -->
+<div #dt>
     <p-dataTable  #dt
         columnResizeMode="expand"
-        exportFilename="messages"
+        exportFilename="groups"
         [contextMenu]="cm"
         [paginator]="true"
         [pageLinks]="3"
@@ -16,17 +15,17 @@
         [responsive]="true"
         [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
-        [(selection)]="selectedCanvasMessage"
+        [(selection)]="selectedGroup"
         selectionMode="single"
         [scrollable]="false"
         [sortMode]="multiple"
         [value]="canvasMessages"
-        (click)="onClickMessageTable()"
+        (click)="onClickGroupTable()"
         >
         <p-header
             [style]="{'background-color': 'darkgray'}">
             <span>
-                List of Canvas Messages
+                List of Groups
             </span>
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
@@ -43,19 +42,8 @@
             </span>
 
         </p-header>
-
         <p-column
-            field="messageConversationID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Convers. ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageID"
+            field="canvasMessageID"
             [filter]="true"
             filterMatchMode="contains"
             header="ID"
@@ -65,7 +53,27 @@
             >
         </p-column>
         <p-column
-            field="messageSenderUserName"
+            field="canvasMessageConversationID"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Convers. ID"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column
+            field="canvasMessageSenderUserName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="ID"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column
+            field="canvasMessageSentDateTime"
             [filter]="true"
             filterMatchMode="contains"
             header="Sender"
@@ -75,47 +83,7 @@
             >
         </p-column>
         <p-column
-            field="messageSentDateTime"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Sent on"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageIsSystemGenerated"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="System?"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageDashboardID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Dashboard ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageReportID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Report ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageWidgetID"
+            field="canvasMessageSubject"
             [filter]="true"
             filterMatchMode="contains"
             header="Widget ID"
@@ -125,7 +93,7 @@
             >
         </p-column>
         <p-column
-            field="messageSubject"
+            field="canvasMessageBody"
             [filter]="true"
             filterMatchMode="contains"
             header="Subject"
@@ -135,7 +103,7 @@
             >
         </p-column>
         <p-column
-            field="messageBody"
+            field="canvasMessageSentToMe"
             [filter]="true"
             filterMatchMode="contains"
             header="Body"
@@ -145,7 +113,7 @@
             >
         </p-column>
         <p-column
-            field="messageSentToMe"
+            field="canvasMessageMyStatus"
             [filter]="true"
             filterMatchMode="contains"
             header="To me?"
@@ -155,10 +123,40 @@
             >
         </p-column>
         <p-column
-            field="messageMyStatus"
+            field="canvasMessageIsSystemGenerated"
             [filter]="true"
             filterMatchMode="contains"
-            header="My Status"
+            header="Sent on"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column
+            field="canvasMessageDashboardID"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="System?"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column
+            field="canvasMessageReportID"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Dashboard ID"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column
+            field="canvasMessageWidgetID"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Report ID"
             [sortable]="true"
             [style]="{width: '80px',
                     'text-align': 'center'}"

@@ -43,7 +43,7 @@ export class UserComponent implements OnInit {
     availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
     canvasUser: CanvasUser;                             // Current user
-    canvasMessages: CanvasMessage[];                            // List of Canvas Messages
+    canvasMessages: CanvasMessage[];                    // List of Canvas Messages
     datasourcesPerUser: DatasourcesPerUser[];           // @Runtime List of Datasources per User
     dashboardsPerUser: DashboardsPerUser[];             // @Runtime List of Dashboards per User
     deleteMode: boolean = false;                        // True while busy deleting
