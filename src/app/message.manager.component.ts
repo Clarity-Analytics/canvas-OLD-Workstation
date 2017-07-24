@@ -67,7 +67,6 @@ export class MessageManagerComponent implements OnInit {
         // - canvasMessage: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
 
-console.log('this.selectedCanvasMessage', this.selectedCanvasMessage)
         this.eazlService.canvasMessageToggleRead(this.selectedCanvasMessage.canvasMessageDashboardID);
         // Fix up, if for me          
         if (this.selectedCanvasMessage.canvasMessageSentToMe) {
