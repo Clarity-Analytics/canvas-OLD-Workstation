@@ -587,17 +587,8 @@ export class CDAL {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-        
-        canvasMessageWorking.canvasMessageRecipients = [
-            {
-            canvasMessageRecipientID: 0,
-            canvasMessageRecipientMessageURL: '',
-            canvasMessageRecipientUserName: 0,
-            canvasMessageRecipientIsSender: false,
-            canvasMessageRecipientStatus: '',
-            canvasMessageReadDateTime: ''
-        }];
-        
+       
+
         for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
 
             if (eazlCanvasMessage.recipients[i].user == 
@@ -611,7 +602,22 @@ export class CDAL {
                     canvasMessageWorking.canvasMessageSentDateTime = null;
                 };
             };
-           
+        }
+
+        // TODO - there must be a cleaner way to add an array of recipients !
+        // Do the first one - NOTE 1 in for loop
+        canvasMessageWorking.canvasMessageRecipients = [
+            {
+                canvasMessageRecipientID: eazlCanvasMessage.recipients[0].id,
+                canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[0].message,
+                canvasMessageRecipientUserName: eazlCanvasMessage.recipients[0].user,
+                canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
+                canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
+                canvasMessageReadDateTime: null
+        }];
+        
+        for (var i = 1; i < eazlCanvasMessage.recipients.length; i++) {
+        
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
@@ -685,34 +691,39 @@ export class CDAL {
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
         
-        eazlCanvasMessageWorking.recipients = [
-            {
-            id: 0,
-            message: '',
-            user: 0,
-            is_sender: false,
-            status: '',
-            url: ''
-        }];
-        
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
 
             if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID == 
                     this.globalVariableService.canvasUser.getValue().id) {
                 eazlCanvasMessageWorking.recipients[i].is_sender = true;
             };
-           
-            eazlCanvasMessageWorking.recipients.push(
-               {
-                id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID,
-                message: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientMessageURL,
-                user: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserName,
-                is_sender: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientIsSender,
-                status: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus,
-                url: null
-            });
         }
 
+        // Add the first recipient - NOTE 1 in for loop
+        eazlCanvasMessageWorking.recipients = [
+            {
+                id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientID,
+                message: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientMessageURL,
+                user: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUserName,
+                is_sender: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientIsSender,
+                status: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientStatus,
+                url: null
+            }
+        ];
+           
+        for (var i = 1; i < canvasMessage.canvasMessageRecipients.length; i++) {
+            eazlCanvasMessageWorking.recipients.push(
+               {
+                    id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID,
+                    message: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientMessageURL,
+                    user: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserName,
+                    is_sender: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientIsSender,
+                    status: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus,
+                    url: null
+                }
+            );
+        }
+console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         // Return the result
         return eazlCanvasMessageWorking;
     }

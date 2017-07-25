@@ -150,9 +150,8 @@ export class NewMessageComponent implements OnInit {
         // Create a Message object, and then add it
         let canvasMessageWorking = new CanvasMessage();
 
-        canvasMessageWorking.canvasMessageID = 0;
-
         // TODO - fix the conversation ID properly in time
+        canvasMessageWorking.canvasMessageID = 0;
         canvasMessageWorking.canvasMessageConversationID = 0;
         canvasMessageWorking.canvasMessageSenderUserName = this.globalVariableService.canvasUser.getValue().username;
         canvasMessageWorking.canvasMessageSentDateTime = this.canvasDate.now('standard');
@@ -185,7 +184,7 @@ export class NewMessageComponent implements OnInit {
             canvasMessageRecipientUserName:  this.eazlService.userIDfromUserName(
                     this.sendToTheseUsers[0]),
             canvasMessageRecipientIsSender: false,
-            canvasMessageRecipientStatus: 'UnRead',
+            canvasMessageRecipientStatus: 'unread',
             canvasMessageReadDateTime: null
         }];
 console.log('this.sendToTheseUsers', this.sendToTheseUsers)

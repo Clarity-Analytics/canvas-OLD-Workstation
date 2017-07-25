@@ -7150,7 +7150,8 @@ export class EazlService implements OnInit {
                     // Store in DB
                     this.cdal.saveCanvasMessage(canvasMessage);
 
-                    // Update local array - not done, as refreshed each time
+                    // Update local array
+                    this.canvasMessages.push(canvasMessage)
 
                     // Mark as clean
                     this.globalVariableService.dirtyDataCanvasMessage = false;
