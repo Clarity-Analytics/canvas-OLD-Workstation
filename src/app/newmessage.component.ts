@@ -8,9 +8,9 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
+
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
@@ -31,11 +31,11 @@ export class NewMessageComponent implements OnInit {
     @Input() availableUsers: string[];          // List of UserNames available to share with
     @Input() sendToTheseUsers: string[];        // List of UserNames to whom message is sent
     @Input() nrUnReadMessagesForMe:number;      // Nr of UnRead messages for me
-    
+
     @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
-    
+
     // Local properties
-    errorMessageOnForm: string = '';            // Accum error message             
+    errorMessageOnForm: string = '';            // Accum error message
     formIsValid: boolean = false;               // True form passed validation
     numberErrors: number = 0;                   // Number of errors during validation
     userform: FormGroup;                        // Form Group object
@@ -47,7 +47,7 @@ export class NewMessageComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -60,7 +60,7 @@ export class NewMessageComponent implements OnInit {
             'messageSubject': new FormControl('', Validators.required),
             'messageBody': new FormControl('', Validators.required)
         });
-      
+
 
         // Load the startup form defaults
         this.userform.controls['messageSubject'].setValue('');
@@ -73,8 +73,8 @@ export class NewMessageComponent implements OnInit {
 
         for (var i = 0; i < event.items.length; i++) {
             this.availableUsers = this.availableUsers.filter( au =>
-                au != event.items[i]) 
-            
+                au != event.items[i])
+
             if (this.sendToTheseUsers.indexOf(event.items[i]) < 0) {
                 this.sendToTheseUsers.push(event.items[i]);
             }
@@ -84,7 +84,7 @@ export class NewMessageComponent implements OnInit {
     onMoveToSourceDashboardSendTo() {
         //   Remove from list of Senders
         this.globalFunctionService.printToConsole(this.constructor.name, 'onMoveToSourceDashboardSendTo', '@Start');
-        
+
     }
     onClickCancel() {
         //   User clicked Cancel
@@ -95,15 +95,15 @@ export class NewMessageComponent implements OnInit {
             summary:  'Cancel',
             detail:   'No message sent as requested'
         });
-        
+
         this.formNewMessageSubmit.emit('Cancel');
     }
 
     onClickSubmit() {
         // User clicked submit button.
-        // Note: it is assumed that 
+        // Note: it is assumed that
         // - all the fields are tested to be valid and proper in the validation.
-        //   If not, return right after validation.  
+        //   If not, return right after validation.
         // - all fields are loaded in widgetToEdit which is shared with the calling routine
         //   It is assumes is that widgetToEdit is 100% complete and accurate before return
         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickSubmit', '@Start');
@@ -114,25 +114,25 @@ export class NewMessageComponent implements OnInit {
         this.numberErrors = 0;
 
         // Validation
-        if (this.userform.controls['messageSubject'].value == ''  || 
+        if (this.userform.controls['messageSubject'].value == ''  ||
             this.userform.controls['messageSubject'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Message Subject is compulsory.';
         }
-        if (this.userform.controls['messageBody'].value == ''  || 
+        if (this.userform.controls['messageBody'].value == ''  ||
             this.userform.controls['messageBody'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Message Body is compulsory.';
         }
 
         if (this.sendToTheseUsers.length == 0) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'Add at least one recipient';
         }
 
@@ -174,7 +174,7 @@ export class NewMessageComponent implements OnInit {
         if (this.sendToTheseUsers[0] == currentUser) {
             canvasMessageWorking.canvasMessageSentToMe = true;
             canvasMessageWorking.canvasMessageMyStatus = 'Read';
-            canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender 
+            canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender
                 = true;
         };
 
@@ -182,35 +182,40 @@ export class NewMessageComponent implements OnInit {
             {
             canvasMessageRecipientID: 0,
             canvasMessageRecipientMessageURL: '',
-            canvasMessageRecipientUserName: this.sendToTheseUsers[0],
+            canvasMessageRecipientUserName:  this.eazlService.userIDfromUserName(
+                    this.sendToTheseUsers[0]),
             canvasMessageRecipientIsSender: false,
             canvasMessageRecipientStatus: 'UnRead',
             canvasMessageReadDateTime: null
         }];
-        
+console.log('this.sendToTheseUsers', this.sendToTheseUsers)
+console.log('(14 + i).toString()', (14 + i).toString())
+
         for (var i = 1; i < this.sendToTheseUsers.length; i++) {
 
             canvasMessageWorking.canvasMessageSentDateTime = null;
             if (this.sendToTheseUsers[i] == currentUser) {
                 canvasMessageWorking.canvasMessageSentToMe = true;
                 canvasMessageWorking.canvasMessageMyStatus = 'Read';
-                canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender 
+                canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender
                     = true;
             };
-           
             canvasMessageWorking.canvasMessageRecipients.push(
                {
-                canvasMessageRecipientID: 0,
-                canvasMessageRecipientMessageURL: '',
-                canvasMessageRecipientUserName: this.sendToTheseUsers[i],
+                canvasMessageRecipientID: 14 + i,
+                canvasMessageRecipientMessageURL: 
+                    'http://localhost:8000/api/message-recipients/' + (14 + i).toString() + '/',
+                canvasMessageRecipientUserName: 
+                    this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
                 canvasMessageRecipientIsSender:  false,
-                canvasMessageRecipientStatus:  'UnRead',
+                canvasMessageRecipientStatus:  'unread',
                 canvasMessageReadDateTime: null
             });
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
 
+        this.eazlService.addCanvasMessage(canvasMessageWorking)
 console.log('canvasMessageWorking', canvasMessageWorking)
 
         // Trigger event emitter 'emit' method
@@ -220,4 +225,6 @@ console.log('canvasMessageWorking', canvasMessageWorking)
         //        componenent to take effect (and thus close Dialogue)
     }
 
-} 
+}
+
+

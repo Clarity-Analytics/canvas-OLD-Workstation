@@ -4427,7 +4427,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 {
                     canvasMessageRecipientID: 0,
                     canvasMessageRecipientMessageURL: '',
-                    canvasMessageRecipientUserName: 'bradleyk',
+                    canvasMessageRecipientUserName: 3,
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: 'Read',
                     canvasMessageReadDateTime: '2017/05/01 09:11',
@@ -4451,7 +4451,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 {
                     canvasMessageRecipientID: 0,
                     canvasMessageRecipientMessageURL: '',
-                    canvasMessageRecipientUserName: 'janniei',
+                    canvasMessageRecipientUserName: 4,
                     canvasMessageRecipientStatus: 'Read',
                     canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '2017/05/01 11:50',
@@ -4475,7 +4475,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 {
                     canvasMessageRecipientID: 0,
                     canvasMessageRecipientMessageURL: '',
-                    canvasMessageRecipientUserName: 'bradleyk',
+                    canvasMessageRecipientUserName: 3,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '',
@@ -4499,7 +4499,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 {
                     canvasMessageRecipientID: 0,
                     canvasMessageRecipientMessageURL: '',
-                    canvasMessageRecipientUserName: 'jamesv',
+                    canvasMessageRecipientUserName: 0,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '',
@@ -4507,7 +4507,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 {
                     canvasMessageRecipientID: 0,
                     canvasMessageRecipientMessageURL: '',
-                    canvasMessageRecipientUserName: 'bradleyk',
+                    canvasMessageRecipientUserName: 3,
                     canvasMessageRecipientStatus: 'Read',
                    canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '2017/05/02 14:23',
@@ -4515,7 +4515,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 {
                     canvasMessageRecipientID: 1,
                     canvasMessageRecipientMessageURL: '',
-                    canvasMessageRecipientUserName: 'veronicas',
+                    canvasMessageRecipientUserName: 1,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
                     canvasMessageReadDateTime: '',
@@ -7093,9 +7093,9 @@ export class EazlService implements OnInit {
         // Return the necessary
         let found: boolean = false;
         let myStatus: string = '';
-        let username: string = '';
+        let userID: number = -1;
         if (this.globalVariableService.canvasUser.getValue() != null) {
-            username = this.globalVariableService.canvasUser.getValue().username;
+            userID = +this.globalVariableService.canvasUser.getValue().id;
         }
         return this.canvasMessages.filter(cm => {
             if (
@@ -7113,7 +7113,7 @@ export class EazlService implements OnInit {
                     for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
 
                         if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserName ==
-                            username) {
+                            userID) {
                                 found = true;
                                 myStatus = this.canvasMessages[i].canvasMessageRecipients[j].
                                     canvasMessageRecipientStatus;
@@ -7184,15 +7184,15 @@ export class EazlService implements OnInit {
         }
 
         // Return the necessary
-        let username: string = '';
+        let userID: number = -1;
         if (this.globalVariableService.canvasUser.getValue() != null) {
-            username = this.globalVariableService.canvasUser.getValue().username;
+            userID = this.globalVariableService.canvasUser.getValue().id;
         }
         for (var i = 0; i < this.canvasMessages.length; i++) {
             if (this.canvasMessages[i].canvasMessageID == messageID) {
                 for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
                     if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserName ==
-                            username) {
+                            userID) {
                                 if (this.canvasMessages[i].canvasMessageRecipients[j].
                                     canvasMessageRecipientStatus == 'Read') {
                                         this.canvasMessages[i].canvasMessageRecipients[j].

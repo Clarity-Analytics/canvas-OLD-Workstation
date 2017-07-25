@@ -12,6 +12,7 @@ import { Injectable }                 from '@angular/core';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
+// import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
@@ -80,6 +81,7 @@ export class CDAL {
 
     constructor(
         private canvasDate: CanvasDate,
+        // private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
     ){ }
@@ -554,20 +556,20 @@ export class CDAL {
             canvasMessageWorking.canvasMessageBody = '';
         }
 
-        if (eazlCanvasMessage.dashboard_id != null) {
-            canvasMessageWorking.canvasMessageDashboardID = eazlCanvasMessage.dashboard_id;
+        if (eazlCanvasMessage.dashboard != null) {
+            canvasMessageWorking.canvasMessageDashboardID = eazlCanvasMessage.dashboard;
         } else {
             canvasMessageWorking.canvasMessageDashboardID = 0;
         }
 
-        if (eazlCanvasMessage.package_id != null) {
-            canvasMessageWorking.canvasMessageReportID = eazlCanvasMessage.package_id;
+        if (eazlCanvasMessage.package != null) {
+            canvasMessageWorking.canvasMessageReportID = eazlCanvasMessage.package;
         } else {
             canvasMessageWorking.canvasMessageReportID = 0;
         }
 
-        if (eazlCanvasMessage.widget_id != null) {
-            canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget_id;
+        if (eazlCanvasMessage.widget != null) {
+            canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget;
         } else {
             canvasMessageWorking.canvasMessageWidgetID = 0;
         }
@@ -590,7 +592,7 @@ export class CDAL {
             {
             canvasMessageRecipientID: 0,
             canvasMessageRecipientMessageURL: '',
-            canvasMessageRecipientUserName: '',
+            canvasMessageRecipientUserName: 0,
             canvasMessageRecipientIsSender: false,
             canvasMessageRecipientStatus: '',
             canvasMessageReadDateTime: ''
@@ -598,13 +600,14 @@ export class CDAL {
         
         for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
 
-            if (eazlCanvasMessage.recipients[i].user == currentUser) {
+            if (eazlCanvasMessage.recipients[i].user == 
+                    this.globalVariableService.canvasUser.getValue().id) {
                 canvasMessageWorking.canvasMessageSentToMe = true;
                 canvasMessageWorking.canvasMessageMyStatus = 
                     eazlCanvasMessage.recipients[i].status;
                 if (eazlCanvasMessage.recipients[i].is_sender == true) {
                     canvasMessageWorking.canvasMessageSenderUserName =
-                        eazlCanvasMessage.recipients[i].user;
+                        'this.eazlService.usernameFromUserID(eazlCanvasMessage.recipients[i].user)';
                     canvasMessageWorking.canvasMessageSentDateTime = null;
                 };
             };
@@ -654,21 +657,21 @@ export class CDAL {
         }
 
         if (canvasMessage.canvasMessageDashboardID != null) {
-            eazlCanvasMessageWorking.dashboard_id = canvasMessage.canvasMessageDashboardID;
+            eazlCanvasMessageWorking.dashboard = canvasMessage.canvasMessageDashboardID;
         } else {
-            eazlCanvasMessageWorking.dashboard_id = 0;
+            eazlCanvasMessageWorking.dashboard = 0;
         }
 
         if (canvasMessage.canvasMessageReportID != null) {
-            eazlCanvasMessageWorking.package_id = canvasMessage.canvasMessageReportID;
+            eazlCanvasMessageWorking.package = canvasMessage.canvasMessageReportID;
         } else {
-            eazlCanvasMessageWorking.package_id = 0;
+            eazlCanvasMessageWorking.package = 0;
         }
 
         if (canvasMessage.canvasMessageWidgetID != null) {
-            eazlCanvasMessageWorking.widget_id = canvasMessage.canvasMessageWidgetID;
+            eazlCanvasMessageWorking.widget = canvasMessage.canvasMessageWidgetID;
         } else {
-            eazlCanvasMessageWorking.widget_id = 0;
+            eazlCanvasMessageWorking.widget = 0;
         }
 
         if (canvasMessage.canvasMessageIsSystemGenerated != null) {
@@ -686,7 +689,7 @@ export class CDAL {
             {
             id: 0,
             message: '',
-            user: '',
+            user: 0,
             is_sender: false,
             status: '',
             url: ''
