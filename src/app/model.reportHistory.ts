@@ -4,8 +4,10 @@
 export class EazlReportHistory {
     id: number;                                 // Unique ID
     username: string;                           // User who ran report
-    report_id: number;                          // Report ID
-    datasource_id: number;                      // Underlying Datasource for the report
+    model_name: string;                         // Model linked to: package, query
+    object_id: number;                          // Id of model-object 
+    // report_id: number;                          // Report ID
+    // datasource_id: number;                      // Underlying Datasource for the report
     start_on: string;                           // Start DateTime
     end_on: string;                             // End DateTime
     status: string;                             // Result status: Failed, Success
@@ -14,8 +16,6 @@ export class EazlReportHistory {
 
             // 'id',
             // 'username',
-            // 'object_id',
-            // 'model_name',
             // 'checksum',
             // 'run_time',
             // 'state',

@@ -1633,16 +1633,17 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             reportHistoryWorking.userName = '';
         }
 
-        if (eazlReportHistory.report_id != null) {
-            reportHistoryWorking.reportID = eazlReportHistory.report_id;
-        } else {
-            reportHistoryWorking.reportID = 0;
-        }
-
-        if (eazlReportHistory.datasource_id != null) {
-            reportHistoryWorking.datasourceID = eazlReportHistory.datasource_id;
-        } else {
-            reportHistoryWorking.datasourceID = 0;
+        if (eazlReportHistory.model_name != null  &&  eazlReportHistory.object_id != null) {
+            if (eazlReportHistory.model_name == 'package') {
+                reportHistoryWorking.datasourceID = eazlReportHistory.object_id;
+                reportHistoryWorking.reportID = 0;
+            } else if (eazlReportHistory.model_name == 'query') {
+                reportHistoryWorking.datasourceID = 0;
+                reportHistoryWorking.reportID = eazlReportHistory.object_id;
+            } else {
+                reportHistoryWorking.datasourceID = 0;
+                reportHistoryWorking.reportID = 0;
+            }
         }
 
         if (eazlReportHistory.start_on != null) {
