@@ -610,7 +610,7 @@ export class CDAL {
                 {
                     canvasMessageRecipientID: -1,
                     canvasMessageRecipientMessageURL: '',
-                    canvasMessageRecipientUserName: -1,
+                    canvasMessageRecipientUserID: -1,
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: '',
                     canvasMessageReadDateTime: null
@@ -620,7 +620,7 @@ export class CDAL {
                 {
                     canvasMessageRecipientID: eazlCanvasMessage.recipients[0].id,
                     canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[0].message,
-                    canvasMessageRecipientUserName: eazlCanvasMessage.recipients[0].user_id,
+                    canvasMessageRecipientUserID: eazlCanvasMessage.recipients[0].user_id,
                     canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
                     canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
                     canvasMessageReadDateTime: null
@@ -633,7 +633,7 @@ export class CDAL {
                {
                 canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
                 canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[i].message,
-                canvasMessageRecipientUserName: eazlCanvasMessage.recipients[i].user_id,
+                canvasMessageRecipientUserID: eazlCanvasMessage.recipients[i].user_id,
                 canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[i].is_sender,
                 canvasMessageRecipientStatus: eazlCanvasMessage.recipients[i].status,
                 canvasMessageReadDateTime: null
@@ -715,7 +715,7 @@ export class CDAL {
             {
                 id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientID,
                 message: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientMessageURL,
-                user_id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUserName,
+                user_id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUserID,
                 is_sender: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientIsSender,
                 status: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientStatus,
                 url: null
@@ -727,7 +727,7 @@ export class CDAL {
                {
                     id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID,
                     message: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientMessageURL,
-                    user_id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserName,
+                    user_id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID,
                     is_sender: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientIsSender,
                     status: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus,
                     url: null

@@ -181,7 +181,7 @@ export class NewMessageComponent implements OnInit {
             {
             canvasMessageRecipientID: 0,
             canvasMessageRecipientMessageURL: '',
-            canvasMessageRecipientUserName:  this.eazlService.userIDfromUserName(
+            canvasMessageRecipientUserID:  this.eazlService.userIDfromUserName(
                     this.sendToTheseUsers[0]),
             canvasMessageRecipientIsSender: false,
             canvasMessageRecipientStatus: 'unread',
@@ -204,7 +204,7 @@ console.log('(14 + i).toString()', (14 + i).toString())
                 canvasMessageRecipientID: 14 + i,
                 canvasMessageRecipientMessageURL: 
                     'http://localhost:8000/api/message-recipients/' + (14 + i).toString() + '/',
-                canvasMessageRecipientUserName: 
+                canvasMessageRecipientUserID: 
                     this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
                 canvasMessageRecipientIsSender:  false,
                 canvasMessageRecipientStatus:  'unread',

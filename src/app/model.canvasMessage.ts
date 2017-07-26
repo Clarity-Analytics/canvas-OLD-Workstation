@@ -23,14 +23,6 @@ export class EazlCanvasMessage {
     url: string;                                    // url of the message
 }
 
-
-
-            // 'id',
-            // 'user_id',
-            // 'is_sender',
-            // 'status',
-            // 'url')
-
 // Canvas
 export class CanvasMessage {
     canvasMessageID: number;                        // Unique DB id
@@ -48,8 +40,7 @@ export class CanvasMessage {
     canvasMessageRecipients: [                      // Aray of users to whom msg were sent
         {
             canvasMessageRecipientID: number;       // Recipient ID
-            canvasMessageRecipientMessageURL: string; // Url for message
-            canvasMessageRecipientUserName: number; // UserName to whom msg was sent (groups are collapsed)
+            canvasMessageRecipientUserID: number; // UserID to whom msg was sent (groups are collapsed)
             canvasMessageRecipientIsSender: boolean;    // True if this is the sender
             canvasMessageRecipientStatus: string;   // UnRead, Read - maybe more later
             canvasMessageReadDateTime: string;      // DateTime when msg was Read
