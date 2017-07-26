@@ -8,12 +8,12 @@ export class EazlReportHistory {
     object_id: number;                          // Id of model-object 
     checksum: string;                           // Checksum to make name & parameters unique
     date_created: string;                       // Start DateTime
-    end_on: string;                             // End DateTime
+    run_time: number;                           // End DateTime
     state: string;                              // Result status: Failed, Success
     nr_rows_returned: number;                   // Nr row returned
 }
 
-            // 'run_time',
+            // '',
             // 'state',
             // 'row_count',
             // 'error',

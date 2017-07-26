@@ -1654,15 +1654,19 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
 
         if (eazlReportHistory.date_created != null) {
             reportHistoryWorking.reportHistoryStartDateTime = eazlReportHistory.date_created;
+            if (eazlReportHistory.run_time != null) {
+                var endDate = new Date(eazlReportHistory.date_created)
+                endDate.setSeconds(endDate.getSeconds() + eazlReportHistory.run_time);
+                reportHistoryWorking.reportHistoryEndDateTime = endDate.toString();
+            } else {
+                reportHistoryWorking.reportHistoryEndDateTime = 
+                    reportHistoryWorking.reportHistoryStartDateTime
+            }
         } else {
             reportHistoryWorking.reportHistoryStartDateTime = '';
-        }
-
-        if (eazlReportHistory.end_on != null) {
-            reportHistoryWorking.reportHistoryEndDateTime = eazlReportHistory.end_on;
-        } else {
             reportHistoryWorking.reportHistoryEndDateTime = '';
         }
+
 
         if (eazlReportHistory.state != null) {
             reportHistoryWorking.reportHistoryStatus = eazlReportHistory.state;
