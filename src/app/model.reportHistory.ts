@@ -6,17 +6,13 @@ export class EazlReportHistory {
     username: string;                           // User who ran report
     model_name: string;                         // Model linked to: package, query
     object_id: number;                          // Id of model-object 
-    // report_id: number;                          // Report ID
-    // datasource_id: number;                      // Underlying Datasource for the report
+    checksum: string;                           // Checksum to make name & parameters unique
     start_on: string;                           // Start DateTime
     end_on: string;                             // End DateTime
     status: string;                             // Result status: Failed, Success
     nr_rows_returned: number;                   // Nr row returned
 }
 
-            // 'id',
-            // 'username',
-            // 'checksum',
             // 'run_time',
             // 'state',
             // 'row_count',
@@ -31,6 +27,7 @@ export class ReportHistory {
     userName: string;                           // User who ran report
     reportID: number;                           // Report ID
     datasourceID: number;                       // Underlying Datasource for the report
+    checksum: string;                           // Checksum to make name & parameters unique    
     reportHistoryStartDateTime: string;         // Start DateTime
     reportHistoryEndDateTime: string;           // End DateTime
     reportHistoryStatus: string;                // Result status: Failed, Success

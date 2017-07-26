@@ -1646,6 +1646,12 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             }
         }
 
+        if (eazlReportHistory.checksum != null) {
+            reportHistoryWorking.checksum = eazlReportHistory.checksum;
+        } else {
+            reportHistoryWorking.reportHistoryStartDateTime = '';
+        }
+
         if (eazlReportHistory.start_on != null) {
             reportHistoryWorking.reportHistoryStartDateTime = eazlReportHistory.start_on;
         } else {
