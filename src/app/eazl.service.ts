@@ -7127,6 +7127,7 @@ export class EazlService implements OnInit {
                     }
 
                 }
+console.log('EAZL cm', cm)                
                 return cm;
             }
         })

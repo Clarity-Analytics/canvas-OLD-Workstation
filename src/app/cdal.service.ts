@@ -488,7 +488,7 @@ export class CDAL {
 
         dashboardTabWorking.dashboardID = eazlDashboardTab.id;
         // TODO - replace with correct IDs
-        dashboardTabWorking.dashboardTabID = 0;
+        dashboardTabWorking.dashboardTabID = -1;
 
         if (eazlDashboardTab.name != null) {
             dashboardTabWorking.dashboardTabName = eazlDashboardTab.name;
@@ -541,7 +541,7 @@ export class CDAL {
         if (eazlCanvasMessage.conversation != null) {
             canvasMessageWorking.canvasMessageConversationID = eazlCanvasMessage.conversation;
         } else {
-            canvasMessageWorking.canvasMessageConversationID = 0;
+            canvasMessageWorking.canvasMessageConversationID = -1;
         }
 
         if (eazlCanvasMessage.subject != null) {
@@ -559,19 +559,19 @@ export class CDAL {
         if (eazlCanvasMessage.dashboard_id != null) {
             canvasMessageWorking.canvasMessageDashboardID = eazlCanvasMessage.dashboard_id;
         } else {
-            canvasMessageWorking.canvasMessageDashboardID = 0;
+            canvasMessageWorking.canvasMessageDashboardID = -1;
         }
 
         if (eazlCanvasMessage.package_id != null) {
             canvasMessageWorking.canvasMessageReportID = eazlCanvasMessage.package_id;
         } else {
-            canvasMessageWorking.canvasMessageReportID = 0;
+            canvasMessageWorking.canvasMessageReportID = -1;
         }
 
         if (eazlCanvasMessage.widget_id != null) {
             canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget_id;
         } else {
-            canvasMessageWorking.canvasMessageWidgetID = 0;
+            canvasMessageWorking.canvasMessageWidgetID = -1;
         }
 
         if (eazlCanvasMessage.is_system_generated != null) {
@@ -673,13 +673,13 @@ export class CDAL {
         if (canvasMessage.canvasMessageDashboardID != null) {
             eazlCanvasMessageWorking.dashboard_id = canvasMessage.canvasMessageDashboardID;
         } else {
-            eazlCanvasMessageWorking.dashboard_id = 0;
+            eazlCanvasMessageWorking.dashboard_id = -1;
         }
 
         if (canvasMessage.canvasMessageReportID != null) {
             eazlCanvasMessageWorking.package_id = canvasMessage.canvasMessageReportID;
         } else {
-            eazlCanvasMessageWorking.package_id = 0;
+            eazlCanvasMessageWorking.package_id = -1;
         }
 
         // TODO - add ReadDateTime field for all recipients
@@ -733,7 +733,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (eazlCanvasMessageRecipient.message_id != null) {
             canvasMessageRecipientWorking.canvasMessageID = eazlCanvasMessageRecipient.message_id;
         } else {
-            canvasMessageRecipientWorking.canvasMessageID = 0;
+            canvasMessageRecipientWorking.canvasMessageID = -1;
         }
 
         if (eazlCanvasMessageRecipient.username != null) {
@@ -821,7 +821,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             dashboardGroupMembershipWorking.dashboardID =
                 eazlDashboardGroupMembership.dashboard_id;
         } else {
-            dashboardGroupMembershipWorking.dashboardID = 0;
+            dashboardGroupMembershipWorking.dashboardID = -1;
         }
 
         if (eazlDashboardGroupMembership.updated_on != null) {
@@ -869,14 +869,14 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             DashboardGroupRelationshipWorking.dashboardID =
                 eazlDashboardGroupRelationship.dashboard_id;
         } else {
-            DashboardGroupRelationshipWorking.dashboardID = 0;
+            DashboardGroupRelationshipWorking.dashboardID = -1;
         }
 
         if (eazlDashboardGroupRelationship.group_id != null) {
             DashboardGroupRelationshipWorking.groupID =
                 eazlDashboardGroupRelationship.group_id;
         } else {
-            DashboardGroupRelationshipWorking.groupID = 0;
+            DashboardGroupRelationshipWorking.groupID = -1;
         }
 
         if (eazlDashboardGroupRelationship.type != null) {
@@ -1131,7 +1131,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             dashboardUserRelationshipWorking.dashboardID =
                 eazlDashboardUserRelationship.dashboard_id;
         } else {
-            dashboardUserRelationshipWorking.dashboardID = 0;
+            dashboardUserRelationshipWorking.dashboardID = -1;
         }
 
         if (eazlDashboardUserRelationship.username != null) {
@@ -1357,7 +1357,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             groupDatasourceAccessWorking.datasourceID =
                 eazlGroupDatasourceAccess.datasource_id;
         } else {
-            groupDatasourceAccessWorking.datasourceID = 0;
+            groupDatasourceAccessWorking.datasourceID = -1;
         }
 
         if (eazlGroupDatasourceAccess.access_type != null) {
@@ -1447,7 +1447,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (eazlPackageTask.celery_task_id != null) {
             packageTaskWorking.packageTaskCeleryTaskID = eazlPackageTask.celery_task_id;
         } else {
-            packageTaskWorking.packageTaskCeleryTaskID = 0;
+            packageTaskWorking.packageTaskCeleryTaskID = -1;
         }
 
         if (eazlPackageTask.package != null) {
@@ -1501,7 +1501,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (eazlReport.datasource_id != null) {
             ReportWorking.dataSourceID = eazlReport.datasource_id;
         } else {
-            ReportWorking.dataSourceID = 0;
+            ReportWorking.dataSourceID = -1;
         }
 
         if (eazlReport.datasource_parameters != null) {
@@ -1549,7 +1549,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (eazlReportWidgetSet.report_id != null) {
             reportWidgetSetWorking.reportID = eazlReportWidgetSet.report_id;
         } else {
-            reportWidgetSetWorking.reportID = 0;
+            reportWidgetSetWorking.reportID = -1;
         }
 
         if (eazlReportWidgetSet.name != null) {
@@ -1619,13 +1619,13 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (eazlReportHistory.model_name != null  &&  eazlReportHistory.object_id != null) {
             if (eazlReportHistory.model_name == 'package') {
                 reportHistoryWorking.reportHistoryDatasourceID = eazlReportHistory.object_id;
-                reportHistoryWorking.reportHistoryReportID = 0;
+                reportHistoryWorking.reportHistoryReportID = -1;
             } else if (eazlReportHistory.model_name == 'query') {
-                reportHistoryWorking.reportHistoryDatasourceID = 0;
+                reportHistoryWorking.reportHistoryDatasourceID = -1;
                 reportHistoryWorking.reportHistoryReportID = eazlReportHistory.object_id;
             } else {
-                reportHistoryWorking.reportHistoryDatasourceID = 0;
-                reportHistoryWorking.reportHistoryReportID = 0;
+                reportHistoryWorking.reportHistoryDatasourceID = -1;
+                reportHistoryWorking.reportHistoryReportID = -1;
             }
         }
 
@@ -1690,7 +1690,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (eazlReportUserRelationship.report_id != null) {
             ReportUserRelationshipWorking.reportID = eazlReportUserRelationship.report_id;
         } else {
-            ReportUserRelationshipWorking.reportID = 0;
+            ReportUserRelationshipWorking.reportID = -1;
         }
 
         if (eazlReportUserRelationship.type != null) {
@@ -1750,7 +1750,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (eazlSystemConfiguration.record_id != null) {
             systemConfigurationWorking.recordID = eazlSystemConfiguration.record_id;
         } else {
-            systemConfigurationWorking.recordID = 0;
+            systemConfigurationWorking.recordID = -1;
         }
 
         if (eazlSystemConfiguration.company_name != null) {
@@ -1807,7 +1807,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         if (systemConfiguration.recordID != null) {
             eazlSystemConfigurationWorking.record_id = systemConfiguration.recordID;
         } else {
-            eazlSystemConfigurationWorking.record_id = 0;
+            eazlSystemConfigurationWorking.record_id = -1;
         }
 
         if (systemConfiguration.companyName != null) {
@@ -1910,13 +1910,13 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlWidgetComment.widget_id != null) {
             widgetCommentWorking.widgetID = eazlWidgetComment.widget_id;
         } else {
-            widgetCommentWorking.widgetID = 0;
+            widgetCommentWorking.widgetID = -1;
         }
 
         if (eazlWidgetComment.thread_id != null) {
             widgetCommentWorking.widgetCommentThreadID = eazlWidgetComment.thread_id;
         } else {
-            widgetCommentWorking.widgetCommentThreadID = 0;
+            widgetCommentWorking.widgetCommentThreadID = -1;
         }
 
         if (eazlWidgetComment.created_on != null) {
@@ -2209,7 +2209,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlWidget.graph_graph_id != null) {
             widgetWorking.graph.graphID = eazlWidget.graph_graph_id;
         } else {
-            widgetWorking.graph.graphID = 0;
+            widgetWorking.graph.graphID = -1;
         }
 
         if (eazlWidget.graph_graph_left != null) {
@@ -2373,19 +2373,19 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlWidget.properties_widget_id != null) {
             widgetWorking.properties.widgetID = eazlWidget.properties_widget_id;
         } else {
-            widgetWorking.properties.widgetID = 0;
+            widgetWorking.properties.widgetID = -1;
         }
 
         if (eazlWidget.properties_dashboard_id != null) {
             widgetWorking.properties.dashboardID = eazlWidget.properties_dashboard_id;
         } else {
-            widgetWorking.properties.dashboardID = 0;
+            widgetWorking.properties.dashboardID = -1;
         }
 
         if (eazlWidget.properties_dashboard_tab_id != null) {
             widgetWorking.properties.dashboardTabID = eazlWidget.properties_dashboard_tab_id;
         } else {
-            widgetWorking.properties.dashboardTabID = 0;
+            widgetWorking.properties.dashboardTabID = -1;
         }
 
         if (eazlWidget.properties_dashboard_tab_name != null) {
@@ -2464,7 +2464,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlWidget.properties_widget_report_id != null) {
             widgetWorking.properties.widgetReportID = eazlWidget.properties_widget_report_id;
         } else {
-            widgetWorking.properties.widgetReportID = 0;
+            widgetWorking.properties.widgetReportID = -1;
         }
 
         if (eazlWidget.properties_widget_report_name != null) {
@@ -2533,7 +2533,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlWidget.properties_widget_type_id != null) {
             widgetWorking.properties.widgetTypeID = eazlWidget.properties_widget_type_id;
         } else {
-            widgetWorking.properties.widgetTypeID = 0;
+            widgetWorking.properties.widgetTypeID = -1;
         }
 
         if (eazlWidget.properties_widget_refreshed_on != null) {
@@ -2597,7 +2597,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             widgetTypesWorking.value.id = eazlAppData.record_id;
         } else {
-            widgetTypesWorking.value.id = 0;
+            widgetTypesWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2630,7 +2630,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             graphTypesWorking.value.id = eazlAppData.record_id;
         } else {
-            graphTypesWorking.value.id = 0;
+            graphTypesWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2666,7 +2666,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             borderDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
-            borderDropdownsWorking.value.id = 0;
+            borderDropdownsWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2702,7 +2702,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             boxShadowDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
-            boxShadowDropdownsWorking.value.id = 0;
+            boxShadowDropdownsWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2738,7 +2738,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             fontSizeDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
-            fontSizeDropdownsWorking.value.id = 0;
+            fontSizeDropdownsWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2774,7 +2774,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             gridSizeDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
-            gridSizeDropdownsWorking.value.id = 0;
+            gridSizeDropdownsWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2810,7 +2810,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             backgroundImageDropdownsWorking.value.id = eazlAppData.record_id;
         } else {
-            backgroundImageDropdownsWorking.value.id = 0;
+            backgroundImageDropdownsWorking.value.id = -1;
         }
 
         if (eazlAppData.code != null) {
@@ -2846,7 +2846,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             textMarginDropdownWorking.value.id = eazlAppData.record_id;
         } else {
-            textMarginDropdownWorking.value.id = 0;
+            textMarginDropdownWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2882,7 +2882,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             fontWeightDropdownDropdownWorking.value.id = eazlAppData.record_id;
         } else {
-            fontWeightDropdownDropdownWorking.value.id = 0;
+            fontWeightDropdownDropdownWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2918,7 +2918,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             fontWeightDropdownDropdownWorking.value.id = eazlAppData.record_id;
         } else {
-            fontWeightDropdownDropdownWorking.value.id = 0;
+            fontWeightDropdownDropdownWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2954,7 +2954,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             textPositionDropdownDropdownWorking.value.id = eazlAppData.record_id;
         } else {
-            textPositionDropdownDropdownWorking.value.id = 0;
+            textPositionDropdownDropdownWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -2990,7 +2990,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             textAlignDropdownDropdownWorking.value.id = eazlAppData.record_id;
         } else {
-            textAlignDropdownDropdownWorking.value.id = 0;
+            textAlignDropdownDropdownWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
@@ -3026,7 +3026,7 @@ eazlSystemConfigurationWorking.company_logo = null
         if (eazlAppData.record_id != null) {
             imageSourceDropdownDropdownWorking.value.id = eazlAppData.record_id;
         } else {
-            imageSourceDropdownDropdownWorking.value.id = 0;
+            imageSourceDropdownDropdownWorking.value.id = -1;
         }
 
         if (eazlAppData.name != null) {
