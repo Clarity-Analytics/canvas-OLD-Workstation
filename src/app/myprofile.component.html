@@ -802,13 +802,14 @@
     <p-tabPanel header="Reports I ran">
         <p-dataTable [value]="reportHistory">
             <p-column field="reportHistoryID" header="ID"></p-column>
-            <p-column field="username" header="User"></p-column>
-            <p-column field="reportID" header="ReportID"></p-column>
+            <p-column field="reportHistoryUserName" header="User"></p-column>
+            <p-column field="reportHistoryReportID" header="ReportID"></p-column>
+            <p-column field="reportHistoryDatasourceID" header="Comments"></p-column>
+            <p-column field="reportHistoryChecksum" header="Comments"></p-column>
             <p-column field="reportHistoryStartDateTime" header="Start on"></p-column>
             <p-column field="reportHistoryEndDateTime" header="End on"></p-column>
             <p-column field="reportHistoryStatus" header="Status"></p-column>
             <p-column field="reportHistoryNrRowsReturned" header="Nr Rows"></p-column>
-            <p-column field="reportHistoryComments" header="Comments"></p-column>
         </p-dataTable>
     </p-tabPanel>
 </p-tabView>
