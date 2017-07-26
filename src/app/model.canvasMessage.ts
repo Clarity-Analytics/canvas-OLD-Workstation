@@ -12,7 +12,6 @@ export class EazlCanvasMessage {
     recipients: [                                   // Array of recipients
         {
             id: number;
-            message: string;                        // url of message
             user_id: number;                           // url of user
             is_sender: boolean;                     // True if the sender
             status: string;                         // Read /UnRead
