@@ -1664,8 +1664,8 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             reportHistoryWorking.reportHistoryEndDateTime = '';
         }
 
-        if (eazlReportHistory.status != null) {
-            reportHistoryWorking.reportHistoryStatus = eazlReportHistory.status;
+        if (eazlReportHistory.state != null) {
+            reportHistoryWorking.reportHistoryStatus = eazlReportHistory.state;
         } else {
             reportHistoryWorking.reportHistoryStatus = '';
         }

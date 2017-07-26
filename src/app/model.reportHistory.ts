@@ -9,7 +9,7 @@ export class EazlReportHistory {
     checksum: string;                           // Checksum to make name & parameters unique
     date_created: string;                       // Start DateTime
     end_on: string;                             // End DateTime
-    status: string;                             // Result status: Failed, Success
+    state: string;                              // Result status: Failed, Success
     nr_rows_returned: number;                   // Nr row returned
 }
 
