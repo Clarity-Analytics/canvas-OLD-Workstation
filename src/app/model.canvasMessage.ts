@@ -13,7 +13,7 @@ export class EazlCanvasMessage {
         {
             id: number;
             message: string;                        // url of message
-            user: number;                           // url of user
+            user_id: number;                           // url of user
             is_sender: boolean;                     // True if the sender
             status: string;                         // Read /UnRead
             url: string;                            // message receipient url
