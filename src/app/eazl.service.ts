@@ -4431,7 +4431,6 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageRecipients: [
                 {
                     canvasMessageRecipientID: 0,
-                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserID: 3,
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: 'Read',
@@ -4455,7 +4454,6 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageRecipients: [
                 {
                     canvasMessageRecipientID: 0,
-                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserID: 4,
                     canvasMessageRecipientStatus: 'Read',
                     canvasMessageRecipientIsSender: false,
@@ -4479,7 +4477,6 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageRecipients: [
                 {
                     canvasMessageRecipientID: 0,
-                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserID: 3,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
@@ -4503,7 +4500,6 @@ export const CANVASMESSAGES: CanvasMessage[] =
             canvasMessageRecipients: [
                 {
                     canvasMessageRecipientID: 0,
-                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserID: 0,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
@@ -4511,7 +4507,6 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 },
                 {
                     canvasMessageRecipientID: 0,
-                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserID: 3,
                     canvasMessageRecipientStatus: 'Read',
                    canvasMessageRecipientIsSender: false,
@@ -4519,7 +4514,6 @@ export const CANVASMESSAGES: CanvasMessage[] =
                 },
                 {
                     canvasMessageRecipientID: 1,
-                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserID: 1,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,

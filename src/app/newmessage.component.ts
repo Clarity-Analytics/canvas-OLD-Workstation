@@ -180,7 +180,6 @@ export class NewMessageComponent implements OnInit {
         canvasMessageWorking.canvasMessageRecipients = [
             {
             canvasMessageRecipientID: 0,
-            canvasMessageRecipientMessageURL: '',
             canvasMessageRecipientUserID:  this.eazlService.userIDfromUserName(
                     this.sendToTheseUsers[0]),
             canvasMessageRecipientIsSender: false,
@@ -202,8 +201,6 @@ console.log('(14 + i).toString()', (14 + i).toString())
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: 14 + i,
-                canvasMessageRecipientMessageURL: 
-                    'http://localhost:8000/api/message-recipients/' + (14 + i).toString() + '/',
                 canvasMessageRecipientUserID: 
                     this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
                 canvasMessageRecipientIsSender:  false,

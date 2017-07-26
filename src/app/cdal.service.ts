@@ -568,14 +568,14 @@ export class CDAL {
             canvasMessageWorking.canvasMessageReportID = 0;
         }
 
-        if (eazlCanvasMessage.widget != null) {
-            canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget;
+        if (eazlCanvasMessage.widget_id != null) {
+            canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget_id;
         } else {
             canvasMessageWorking.canvasMessageWidgetID = 0;
         }
 
-        if (eazlCanvasMessage.issystem_generated != null) {
-            canvasMessageWorking.canvasMessageIsSystemGenerated = eazlCanvasMessage.issystem_generated;
+        if (eazlCanvasMessage.is_system_generated != null) {
+            canvasMessageWorking.canvasMessageIsSystemGenerated = eazlCanvasMessage.is_system_generated;
         } else {
             canvasMessageWorking.canvasMessageIsSystemGenerated = false;
         }
@@ -597,7 +597,7 @@ export class CDAL {
                     eazlCanvasMessage.recipients[i].status;
                 if (eazlCanvasMessage.recipients[i].is_sender == true) {
                     canvasMessageWorking.canvasMessageSenderUserName =
-                        'this.eazlService.usernameFromUserID(eazlCanvasMessage.recipients[i].user)';
+                       ' this.eazlService.usernameFromUserID(eazlCanvasMessage.recipients[i].user_id);'
                     canvasMessageWorking.canvasMessageSentDateTime = null;
                 };
             };
@@ -609,7 +609,6 @@ export class CDAL {
             canvasMessageWorking.canvasMessageRecipients = [
                 {
                     canvasMessageRecipientID: -1,
-                    canvasMessageRecipientMessageURL: '',
                     canvasMessageRecipientUserID: -1,
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: '',
@@ -619,7 +618,6 @@ export class CDAL {
             canvasMessageWorking.canvasMessageRecipients = [
                 {
                     canvasMessageRecipientID: eazlCanvasMessage.recipients[0].id,
-                    canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[0].message,
                     canvasMessageRecipientUserID: eazlCanvasMessage.recipients[0].user_id,
                     canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
                     canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
@@ -632,7 +630,6 @@ export class CDAL {
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
-                canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[i].message,
                 canvasMessageRecipientUserID: eazlCanvasMessage.recipients[i].user_id,
                 canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[i].is_sender,
                 canvasMessageRecipientStatus: eazlCanvasMessage.recipients[i].status,
@@ -685,18 +682,6 @@ export class CDAL {
             eazlCanvasMessageWorking.package_id = 0;
         }
 
-        if (canvasMessage.canvasMessageWidgetID != null) {
-            eazlCanvasMessageWorking.widget = canvasMessage.canvasMessageWidgetID;
-        } else {
-            eazlCanvasMessageWorking.widget = 0;
-        }
-
-        if (canvasMessage.canvasMessageIsSystemGenerated != null) {
-            eazlCanvasMessageWorking.issystem_generated = canvasMessage.canvasMessageIsSystemGenerated;
-        } else {
-            eazlCanvasMessageWorking.issystem_generated = false;
-        }
-
         // TODO - add ReadDateTime field for all recipients
 
         // Get current user
@@ -714,7 +699,6 @@ export class CDAL {
         eazlCanvasMessageWorking.recipients = [
             {
                 id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientID,
-                message: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientMessageURL,
                 user_id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUserID,
                 is_sender: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientIsSender,
                 status: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientStatus,
@@ -726,7 +710,6 @@ export class CDAL {
             eazlCanvasMessageWorking.recipients.push(
                {
                     id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID,
-                    message: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientMessageURL,
                     user_id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID,
                     is_sender: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientIsSender,
                     status: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus,
