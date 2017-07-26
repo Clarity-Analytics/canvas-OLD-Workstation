@@ -816,8 +816,7 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            reportHistoryComments: ''
+            reportHistoryNrRowsReturned: 12
         },
         {
             reportHistoryID: 1,
@@ -827,8 +826,7 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            reportHistoryComments: ''
+            reportHistoryNrRowsReturned: 12
         },
         {
             reportHistoryID: 2,
@@ -838,8 +836,7 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Failed',
-            reportHistoryNrRowsReturned: 12,
-            reportHistoryComments: ''
+            reportHistoryNrRowsReturned: 12
         },
         {
             reportHistoryID: 3,
@@ -849,8 +846,7 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            reportHistoryComments: 'At last'
+            reportHistoryNrRowsReturned: 12
         },
         {
             reportHistoryID: 4,
@@ -860,8 +856,7 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            reportHistoryComments: ''
+            reportHistoryNrRowsReturned: 12
         },
     ];
 
@@ -7145,7 +7140,7 @@ export class EazlService implements OnInit {
             'messages/', this.cdal.saveCanvasMessage(canvasMessage)
             )
                 .toPromise()
-                .then(eazCanvasMessage => {
+                .then(eazlCanvasMessage => {
 
                     // Store in DB
                     this.cdal.saveCanvasMessage(canvasMessage);
@@ -7157,7 +7152,7 @@ export class EazlService implements OnInit {
                     this.globalVariableService.dirtyDataCanvasMessage = false;
 
                     // Return the data
-                    return eazCanvasMessage;
+                    return eazlCanvasMessage;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({

@@ -1669,12 +1669,6 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             reportHistoryWorking.reportHistoryNrRowsReturned = 0;
         }
 
-        if (eazlReportHistory.comments != null) {
-            reportHistoryWorking.reportHistoryComments = eazlReportHistory.comments;
-        } else {
-            reportHistoryWorking.reportHistoryComments = '';
-        }
-
         // Return the result
         return reportHistoryWorking;
     }

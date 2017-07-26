@@ -10,8 +10,20 @@ export class EazlReportHistory {
     end_on: string;                             // End DateTime
     status: string;                             // Result status: Failed, Success
     nr_rows_returned: number;                   // Nr row returned
-    comments: string;                           // Optional Comments
 }
+
+            // 'id',
+            // 'username',
+            // 'object_id',
+            // 'model_name',
+            // 'checksum',
+            // 'run_time',
+            // 'state',
+            // 'row_count',
+            // 'error',
+            // 'date_created',
+            // 'url')
+// NO comments
 
 // Canvas
 export class ReportHistory {
@@ -23,5 +35,4 @@ export class ReportHistory {
     reportHistoryEndDateTime: string;           // End DateTime
     reportHistoryStatus: string;                // Result status: Failed, Success
     reportHistoryNrRowsReturned: number;        // Nr row returned
-    reportHistoryComments: string;              // Optional Comments
 }
