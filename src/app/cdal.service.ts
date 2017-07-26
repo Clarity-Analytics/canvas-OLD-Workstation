@@ -92,7 +92,7 @@ export class CDAL {
 
         let userWorking = new User();
         userWorking.id = eazlUser.id;
-        
+
         if (eazlUser.username != null) {
             userWorking.username = eazlUser.username;
         } else {
@@ -157,7 +157,7 @@ export class CDAL {
             userWorking.isSuperUser = false;
         }
 
-        userWorking.profile = 
+        userWorking.profile =
             {
                 nickName: '',
                 cellNumber: '',
@@ -272,7 +272,7 @@ export class CDAL {
 
         let eazlUserWorking = new EazlUser();
         eazlUserWorking.id = user.id;
-        
+
         if (user.username != null) {
             eazlUserWorking.username = user.username;
         } else {
@@ -337,7 +337,7 @@ export class CDAL {
             eazlUserWorking.is_superuser = false;
         }
 
-        eazlUserWorking.profile = 
+        eazlUserWorking.profile =
             {
                 nick_name: '',
                 cell_number: '',
@@ -360,7 +360,7 @@ export class CDAL {
             if (user.profile.photoPath != null) {
                 if (user.profile.photoPath == '') {
                     eazlUserWorking.profile.profile_picture = null;
-                } else {    
+                } else {
                     eazlUserWorking.profile.profile_picture = user.profile.photoPath;
                 }
             } else {
@@ -587,14 +587,13 @@ export class CDAL {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-       
 
         for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
 
-            if (eazlCanvasMessage.recipients[i].user == 
+            if (eazlCanvasMessage.recipients[i].user ==
                     this.globalVariableService.canvasUser.getValue().id) {
                 canvasMessageWorking.canvasMessageSentToMe = true;
-                canvasMessageWorking.canvasMessageMyStatus = 
+                canvasMessageWorking.canvasMessageMyStatus =
                     eazlCanvasMessage.recipients[i].status;
                 if (eazlCanvasMessage.recipients[i].is_sender == true) {
                     canvasMessageWorking.canvasMessageSenderUserName =
@@ -606,18 +605,30 @@ export class CDAL {
 
         // TODO - there must be a cleaner way to add an array of recipients !
         // Do the first one - NOTE 1 in for loop
-        canvasMessageWorking.canvasMessageRecipients = [
-            {
-                canvasMessageRecipientID: eazlCanvasMessage.recipients[0].id,
-                canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[0].message,
-                canvasMessageRecipientUserName: eazlCanvasMessage.recipients[0].user,
-                canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
-                canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
-                canvasMessageReadDateTime: null
-        }];
-        
+        if (eazlCanvasMessage.recipients[0] == undefined) {
+            canvasMessageWorking.canvasMessageRecipients = [
+                {
+                    canvasMessageRecipientID: -1,
+                    canvasMessageRecipientMessageURL: '',
+                    canvasMessageRecipientUserName: -1,
+                    canvasMessageRecipientIsSender: false,
+                    canvasMessageRecipientStatus: '',
+                    canvasMessageReadDateTime: null
+            }];
+        } else {
+            canvasMessageWorking.canvasMessageRecipients = [
+                {
+                    canvasMessageRecipientID: eazlCanvasMessage.recipients[0].id,
+                    canvasMessageRecipientMessageURL: eazlCanvasMessage.recipients[0].message,
+                    canvasMessageRecipientUserName: eazlCanvasMessage.recipients[0].user,
+                    canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
+                    canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
+                    canvasMessageReadDateTime: null
+            }];
+        }
+
         for (var i = 1; i < eazlCanvasMessage.recipients.length; i++) {
-        
+
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
@@ -637,7 +648,7 @@ export class CDAL {
     }
 
     saveCanvasMessage(canvasMessage: CanvasMessage): EazlCanvasMessage {
-        // Save Message: move data Canvas -> Eazl 
+        // Save Message: move data Canvas -> Eazl
         this.globalFunctionService.printToConsole(this.constructor.name,'saveCanvasMessage', '@Start');
 
         let eazlCanvasMessageWorking = new EazlCanvasMessage();
@@ -690,10 +701,10 @@ export class CDAL {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-        
+
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
 
-            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID == 
+            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID ==
                     this.globalVariableService.canvasUser.getValue().id) {
                 eazlCanvasMessageWorking.recipients[i].is_sender = true;
             };
@@ -710,7 +721,7 @@ export class CDAL {
                 url: null
             }
         ];
-           
+
         for (var i = 1; i < canvasMessage.canvasMessageRecipients.length; i++) {
             eazlCanvasMessageWorking.recipients.push(
                {
@@ -1741,7 +1752,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         let systemConfigurationWorking = new SystemConfiguration();
 
         systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.id;
-        
+
         if (eazlSystemConfiguration.record_id != null) {
             systemConfigurationWorking.recordID = eazlSystemConfiguration.record_id;
         } else {
@@ -1779,7 +1790,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         }
 
         // TODO - fix more better later
-        systemConfigurationWorking.maxRowsPerWidgetGraph = 
+        systemConfigurationWorking.maxRowsPerWidgetGraph =
             this.globalVariableService.maxRowsPerWidgetGraph;
         // if (eazlSystemConfiguration.max_rows_per_widget_graph != null) {
         //     systemConfigurationWorking.maxRowsPerWidgetGraph = eazlSystemConfiguration.max_rows_per_widget_graph;
@@ -1817,7 +1828,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             eazlSystemConfigurationWorking.company_logo = null;
         }
 
-// TODO - do this correctly, and better        
+// TODO - do this correctly, and better
 eazlSystemConfigurationWorking.company_logo = null
         if (systemConfiguration.backendUrl != null) {
             eazlSystemConfigurationWorking.backend_url = systemConfiguration.backendUrl;
@@ -2645,7 +2656,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let borderDropdownsWorking: SelectItem =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2681,7 +2692,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let boxShadowDropdownsWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2717,7 +2728,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let fontSizeDropdownsWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2753,7 +2764,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let gridSizeDropdownsWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2789,7 +2800,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let backgroundImageDropdownsWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2825,7 +2836,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let textMarginDropdownWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2853,7 +2864,7 @@ eazlSystemConfigurationWorking.company_logo = null
         // Return the result
         return textMarginDropdownWorking;
     }
-    
+
     loadFontWeightDropdown(eazlAppData: EazlAppData): SelectItem {
         // Load FontWeightDropdown: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFontWeightDropdown', '@Start');
@@ -2861,7 +2872,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let fontWeightDropdownDropdownWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2897,7 +2908,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let fontWeightDropdownDropdownWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2933,7 +2944,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let textPositionDropdownDropdownWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -2969,7 +2980,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let textAlignDropdownDropdownWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
@@ -3005,7 +3016,7 @@ eazlSystemConfigurationWorking.company_logo = null
         let imageSourceDropdownDropdownWorking =
             {
                 label: '',
-                value: 
+                value:
                     {
                         id: 0,
                         name: ''
