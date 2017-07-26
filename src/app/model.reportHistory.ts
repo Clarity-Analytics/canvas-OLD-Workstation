@@ -14,18 +14,13 @@ export class EazlReportHistory {
     error: string;                              // Optional Celery error message if Report failed
 }
 
-            // '',
-            // 'error',
-            // 'url')
-// NO comments
-
 // Canvas
 export class ReportHistory {
     reportHistoryID: number;                    // Unique ID
-    userName: string;                           // User who ran report
-    reportID: number;                           // Report ID
-    datasourceID: number;                       // Underlying Datasource for the report
-    checksum: string;                           // Checksum to make name & parameters unique    
+    reportHistoryUserName: string;              // User who ran report
+    reportHistoryReportID: number;              // Report ID
+    reportHistoryDatasourceID: number;          // Underlying Datasource for the report
+    reportHistoryChecksum: string;              // Checksum to make name & parameters unique    
     reportHistoryStartDateTime: string;         // Start DateTime
     reportHistoryEndDateTime: string;           // End DateTime
     reportHistoryStatus: string;                // Result status: Failed, Success

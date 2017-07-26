@@ -810,10 +810,10 @@ export const REPORTHISTORY: ReportHistory[] =
     [
         {
             reportHistoryID: 0,
-            userName: 'janniei',
-            reportID: 1,
-            checksum: '',
-            datasourceID: 0,
+            reportHistoryUserName: 'janniei',
+            reportHistoryReportID: 1,
+            reportHistoryChecksum: '',
+            reportHistoryDatasourceID: 0,
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
@@ -822,10 +822,10 @@ export const REPORTHISTORY: ReportHistory[] =
         },
         {
             reportHistoryID: 1,
-            userName: 'janniei',
-            reportID: 2,
-            datasourceID: 0,
-            checksum: '',
+            reportHistoryUserName: 'janniei',
+            reportHistoryReportID: 2,
+            reportHistoryDatasourceID: 0,
+            reportHistoryChecksum: '',
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
@@ -834,10 +834,10 @@ export const REPORTHISTORY: ReportHistory[] =
         },
         {
             reportHistoryID: 2,
-            userName: 'janniei',
-            reportID: 1,
-            datasourceID: 0,
-            checksum: '',
+            reportHistoryUserName: 'janniei',
+            reportHistoryReportID: 1,
+            reportHistoryDatasourceID: 0,
+            reportHistoryChecksum: '',
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Failed',
@@ -846,10 +846,10 @@ export const REPORTHISTORY: ReportHistory[] =
         },
         {
             reportHistoryID: 3,
-            userName: 'janniei',
-            reportID: 1,
-            datasourceID: 1,
-            checksum: '',
+            reportHistoryUserName: 'janniei',
+            reportHistoryReportID: 1,
+            reportHistoryDatasourceID: 1,
+            reportHistoryChecksum: '',
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
@@ -858,10 +858,10 @@ export const REPORTHISTORY: ReportHistory[] =
         },
         {
             reportHistoryID: 4,
-            userName: 'bradleyk',
-            reportID: 1,
-            datasourceID: 1,
-            checksum: '',
+            reportHistoryUserName: 'bradleyk',
+            reportHistoryReportID: 1,
+            reportHistoryDatasourceID: 1,
+            reportHistoryChecksum: '',
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
@@ -5846,11 +5846,11 @@ export class EazlService implements OnInit {
         }
 
         return this.reportHistory.filter(rh =>
-            (username == '*'        ||   rh.userName == username)
+            (username == '*'        ||   rh.reportHistoryUserName == username)
             &&
-            (reportID == -1         ||   rh.reportID == reportID)
+            (reportID == -1         ||   rh.reportHistoryReportID == reportID)
             &&
-            (datasourceID == -1     ||   rh.datasourceID == datasourceID)
+            (datasourceID == -1     ||   rh.reportHistoryDatasourceID == datasourceID)
         )
 
     }

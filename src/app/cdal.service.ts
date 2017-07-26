@@ -1628,26 +1628,26 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         reportHistoryWorking.reportHistoryID = eazlReportHistory.id;
 
         if (eazlReportHistory.username != null) {
-            reportHistoryWorking.userName = eazlReportHistory.username;
+            reportHistoryWorking.reportHistoryUserName = eazlReportHistory.username;
         } else {
-            reportHistoryWorking.userName = '';
+            reportHistoryWorking.reportHistoryUserName = '';
         }
 
         if (eazlReportHistory.model_name != null  &&  eazlReportHistory.object_id != null) {
             if (eazlReportHistory.model_name == 'package') {
-                reportHistoryWorking.datasourceID = eazlReportHistory.object_id;
-                reportHistoryWorking.reportID = 0;
+                reportHistoryWorking.reportHistoryDatasourceID = eazlReportHistory.object_id;
+                reportHistoryWorking.reportHistoryReportID = 0;
             } else if (eazlReportHistory.model_name == 'query') {
-                reportHistoryWorking.datasourceID = 0;
-                reportHistoryWorking.reportID = eazlReportHistory.object_id;
+                reportHistoryWorking.reportHistoryDatasourceID = 0;
+                reportHistoryWorking.reportHistoryReportID = eazlReportHistory.object_id;
             } else {
-                reportHistoryWorking.datasourceID = 0;
-                reportHistoryWorking.reportID = 0;
+                reportHistoryWorking.reportHistoryDatasourceID = 0;
+                reportHistoryWorking.reportHistoryReportID = 0;
             }
         }
 
         if (eazlReportHistory.checksum != null) {
-            reportHistoryWorking.checksum = eazlReportHistory.checksum;
+            reportHistoryWorking.reportHistoryChecksum = eazlReportHistory.checksum;
         } else {
             reportHistoryWorking.reportHistoryStartDateTime = '';
         }
