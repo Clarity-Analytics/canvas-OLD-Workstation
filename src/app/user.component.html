@@ -1,15 +1,15 @@
 <!--Confirmation dialogue box-->
-<p-confirmDialog 
+<p-confirmDialog
     *ngIf="deleteMode"
-    header="Confirmation" 
-    icon="fa fa-question-circle" 
+    header="Confirmation"
+    icon="fa fa-question-circle"
     width="425"
     >
 </p-confirmDialog>
 
 
 <!--Popup form for a single user (Add or Edit)-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayUserPopup"
     [header]="popupHeader"
     [closeOnEscape]=false
@@ -17,13 +17,13 @@
     modal="true"
     responsive="true"
     >
-    <user-popup 
+    <user-popup
         [selectedUser]="selectedUser"
         [addEditMode]="addEditMode"
         [displayUserPopup]="displayUserPopup"
         (userPopupFormClosed)="handleUserPopupFormClosed($event)"
         >
-    </user-popup> 
+    </user-popup>
 </p-dialog>
 
 
@@ -37,18 +37,18 @@
         columnResizeMode="expand"
         exportFilename="users"
         [contextMenu]="cm"
-        [paginator]="true" 
-        [pageLinks]="3" 
+        [paginator]="true"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedUser"
-        selectionMode="single" 
-        [scrollable]="false"  
+        selectionMode="single"
+        [scrollable]="false"
         [sortMode]="multiple"
-        [value]="users"  
+        [value]="users"
         (click)="onClickUserTable()"
         >
         <p-header
@@ -59,62 +59,62 @@
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
+                <button
+                    type="button"
+                    pButton
+                    icon="fa-file-o"
+                    iconPos="left"
+                    label="CSV"
+                    (click)="dt.exportCSV()"
                     >
                 </button>
             </span>
-            
+
         </p-header>
-        <p-column 
-            field="username" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="UserName" 
+        <p-column
+            field="username"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="UserName"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="firstName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="FirstName" 
+        <p-column
+            field="firstName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="FirstName"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="lastName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="LastName" 
+        <p-column
+            field="lastName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="LastName"
             [sortable]="true"
             >
         </p-column>
-        <p-column field="nickName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column field="nickName"
+            [filter]="true"
+            filterMatchMode="contains"
             header="NickName"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="photoPath" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="photoPath"
+            [filter]="true"
+            filterMatchMode="contains"
             header="PhotoPath"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
             <ng-template let-col let-user="rowData" pTemplate="body">
@@ -122,113 +122,113 @@
             </ng-template>
         </p-column>
 
-        <p-column 
-            field="lastDatetimeLoggedIn" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Last Login" 
+        <p-column
+            field="lastDatetimeLoggedIn"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Last Login"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="lastDatetimeReportWasRun" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Last Report" 
+        <p-column
+            field="lastDatetimeReportWasRun"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Last Report"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="emailAddress" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Email" 
+        <p-column
+            field="emailAddress"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Email"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="cellNumber" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Cell" 
+        <p-column
+            field="cellNumber"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Cell"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="workTelephoneNumber" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Work Tel" 
+        <p-column
+            field="workTelephoneNumber"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Work Tel"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="activeFromDate" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Active From" 
+        <p-column
+            field="activeFromDate"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Active From"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="inactiveDate" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Inactive Date" 
+        <p-column
+            field="inactiveDate"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Inactive Date"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="dateCreated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Date Created" 
+        <p-column
+            field="dateCreated"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Date Created"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="userNameLastUpdated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="UserName Last Upd" 
+        <p-column
+            field="userNameLastUpdated"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="UserName Last Upd"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="isStaff" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Is Staff" 
+        <p-column
+            field="isStaff"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Is Staff"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="isSuperUser" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Superusr" 
+        <p-column
+            field="isSuperUser"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Superusr"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
@@ -245,25 +245,25 @@
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedUser.firstName  ||   selectedUser.username }} 
-        <button 
+        Group Membership for {{ selectedUser.firstName  ||   selectedUser.username }}
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickGroupMembershipCancel()"
             >
         </button>
     </div>
-    
+
     <!--Content-->
     <form>
 
         <div
             >
-            <p-pickList 
-                [source]="availableUserGroupMembership" 
+            <p-pickList
+                [source]="availableUserGroupMembership"
                 [target]="belongstoUserGroupMembership"
                 sourceHeader="Available Groups"
                 targetHeader="Belongs to these Groups"
@@ -274,7 +274,7 @@
                 >
                 <ng-template let-grp pTemplate="item">
                     <div class="ui-helper-clearfix">
-                        <div 
+                        <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
                             {{ grp.groupName }}
@@ -298,25 +298,25 @@
     <div
         class="groupMembershipHeading"
         >
-        Datasource Access for {{ selectedUser.username }} 
-        <button 
+        Datasource Access for {{ selectedUser.username }}
+        <button
             class="panelButtonWithLabel"
-            pButton 
-            type="button" 
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickUserDatasourceCancel()"
             >
         </button>
     </div>
-    
+
     <!--Content-->
     <form>
 
         <div
             >
-            <p-pickList 
-                [source]="availableUserDatasource" 
+            <p-pickList
+                [source]="availableUserDatasource"
                 [target]="belongstoUserDatasource"
                 sourceHeader="Available Datasources"
                 targetHeader="Access to these Datasources"
@@ -325,7 +325,7 @@
                 >
                 <ng-template let-ds pTemplate="item">
                     <div class="ui-helper-clearfix">
-                        <div 
+                        <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
                             {{ ds.datasourceName }}
@@ -341,7 +341,7 @@
 
 
 <!--Popup for Data Sources per User-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayUserDatasources"
     header="Related Datasources"
     [closeOnEscape]=false
@@ -349,26 +349,26 @@
     modal="true"
     responsive="true"
     >
-    <p-dataTable 
+    <p-dataTable
         [value]="datasourcesPerUser"
         >
-        <p-column 
-            field="datasourceID"                  
+        <p-column
+            field="datasourceID"
             header="ID"
             >
         </p-column>
-        <p-column 
-            field="datasourceName"                
+        <p-column
+            field="datasourceName"
             header="Name"
             >
         </p-column>
-        <p-column 
-            field="datasourcesPerUserAccessVia"   
+        <p-column
+            field="datasourcesPerUserAccessVia"
             header="Access Via"
             >
         </p-column>
-        <p-column 
-            field="datasourcesPerUserAccessType"  
+        <p-column
+            field="datasourcesPerUserAccessType"
             header="Type"
             >
         </p-column>
@@ -377,7 +377,7 @@
 
 
 <!--Popup for Dashboards-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayUserDashboards"
     header="Related Dashboards"
     [closeOnEscape]=false
@@ -385,26 +385,26 @@
     modal="true"
     responsive="true"
     >
-    <p-dataTable 
+    <p-dataTable
         [value]="dashboardsPerUser"
         >
-        <p-column 
-            field="dashboardID"                  
+        <p-column
+            field="dashboardID"
             header="ID"
             >
         </p-column>
-        <p-column 
-            field="dashboardName"                
+        <p-column
+            field="dashboardName"
             header="Name"
             >
         </p-column>
-        <p-column 
-            field="dashboardsPerUserAccessVia"   
+        <p-column
+            field="dashboardsPerUserAccessVia"
             header="Access Via"
             >
         </p-column>
-        <p-column 
-            field="dashboardsPerUserAccessType"  
+        <p-column
+            field="dashboardsPerUserAccessType"
             header="Type"
             >
         </p-column>
@@ -414,7 +414,7 @@
 
 
 <!--Popup for CanvasMessages-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayMessages"
     header="Related Canvas Messages"
     [closeOnEscape]=false
@@ -425,18 +425,18 @@
     <p-dataTable  #dt
         columnResizeMode="expand"
         exportFilename="messages"
-        [paginator]="true" 
-        [pageLinks]="3" 
+        [paginator]="true"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedCanvasMessage"
-        selectionMode="single" 
-        [scrollable]="false"  
+        selectionMode="single"
+        [scrollable]="false"
         [sortMode]="multiple"
-        [value]="canvasMessages"  
+        [value]="canvasMessages"
         >
         <p-header
             [style]="{'background-color': 'darkgray'}">
@@ -446,152 +446,152 @@
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
+                <button
+                    type="button"
+                    pButton
+                    icon="fa-file-o"
+                    iconPos="left"
+                    label="CSV"
+                    (click)="dt.exportCSV()"
                     >
                 </button>
             </span>
-            
+
         </p-header>
 
-        <p-column 
-            field="messageConversationID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageConversationID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Convers. ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSenderUserName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSenderUserName"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Sender"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSentDateTime" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSentDateTime"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Sent on"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageIsSystemGenerated" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageIsSystemGenerated"
+            [filter]="true"
+            filterMatchMode="contains"
             header="System?"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageDashboardID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageDashboardID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Dashboard ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageReportID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageReportID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Report ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageWidgetID" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageWidgetID"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Widget ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSubject" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSubject"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Subject"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageBody" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageBody"
+            [filter]="true"
+            filterMatchMode="contains"
             header="Body"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageSentToMe" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageSentToMe"
+            [filter]="true"
+            filterMatchMode="contains"
             header="To me?"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="messageMyStatus" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column
+            field="messageMyStatus"
+            [filter]="true"
+            filterMatchMode="contains"
             header="My Status"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
-        </p-column>        
+        </p-column>
     </p-dataTable>
 </p-dialog>
 
 
 <!--Popup for Reports I ran-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayReports"
     header="Related Reports"
     [closeOnEscape]=false
     [closable]=true
     modal="true"
     responsive="true"
-    >    
+    >
     <p-dataTable [value]="reportHistory">
             <p-column field="reportHistoryID" header="ID"></p-column>
             <p-column field="reportHistoryUserName" header="User"></p-column>
@@ -607,7 +607,7 @@
 
 
 <!--Popup for Reset Password-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayResetPassword"
     header="Reset Password"
     [closeOnEscape]=false
@@ -615,9 +615,9 @@
     modal="true"
     responsive="true"
     >
-    <change-password 
+    <change-password
         [selectedUser]="selectedUser"
-        (formChangePasswordSubmit)="handleFormChangePasswordSubmit($event)" 
+        (formChangePasswordSubmit)="handleFormChangePasswordSubmit($event)"
         >
         Loading Reset Password form ...
     </change-password>
