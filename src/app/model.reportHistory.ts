@@ -7,7 +7,7 @@ export class EazlReportHistory {
     model_name: string;                         // Model linked to: package, query
     object_id: number;                          // Id of model-object 
     checksum: string;                           // Checksum to make name & parameters unique
-    start_on: string;                           // Start DateTime
+    date_created: string;                       // Start DateTime
     end_on: string;                             // End DateTime
     status: string;                             // Result status: Failed, Success
     nr_rows_returned: number;                   // Nr row returned

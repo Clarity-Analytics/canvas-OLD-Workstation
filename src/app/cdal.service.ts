@@ -1652,8 +1652,8 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             reportHistoryWorking.reportHistoryStartDateTime = '';
         }
 
-        if (eazlReportHistory.start_on != null) {
-            reportHistoryWorking.reportHistoryStartDateTime = eazlReportHistory.start_on;
+        if (eazlReportHistory.date_created != null) {
+            reportHistoryWorking.reportHistoryStartDateTime = eazlReportHistory.date_created;
         } else {
             reportHistoryWorking.reportHistoryStartDateTime = '';
         }
