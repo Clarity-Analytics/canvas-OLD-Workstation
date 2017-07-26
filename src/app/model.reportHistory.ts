@@ -10,11 +10,10 @@ export class EazlReportHistory {
     date_created: string;                       // Start DateTime
     run_time: number;                           // End DateTime
     state: string;                              // Result status: Failed, Success
-    nr_rows_returned: number;                   // Nr row returned
+    row_count: number;                          // Nr row returned
 }
 
             // '',
-            // 'state',
             // 'row_count',
             // 'error',
             // 'date_created',
