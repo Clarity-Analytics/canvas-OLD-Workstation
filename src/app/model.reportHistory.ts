@@ -11,12 +11,11 @@ export class EazlReportHistory {
     run_time: number;                           // End DateTime
     state: string;                              // Result status: Failed, Success
     row_count: number;                          // Nr row returned
+    error: string;                              // Optional Celery error message if Report failed
 }
 
             // '',
-            // 'row_count',
             // 'error',
-            // 'date_created',
             // 'url')
 // NO comments
 
@@ -31,4 +30,5 @@ export class ReportHistory {
     reportHistoryEndDateTime: string;           // End DateTime
     reportHistoryStatus: string;                // Result status: Failed, Success
     reportHistoryNrRowsReturned: number;        // Nr row returned
+    error: string;                              // Optional Celery error message if Report failed
 }

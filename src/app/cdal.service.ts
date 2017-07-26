@@ -1674,10 +1674,16 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             reportHistoryWorking.reportHistoryStatus = '';
         }
 
-        if (eazlReportHistory.nr_rows_returned != null) {
-            reportHistoryWorking.reportHistoryNrRowsReturned = eazlReportHistory.nr_rows_returned;
+        if (eazlReportHistory.row_count != null) {
+            reportHistoryWorking.reportHistoryNrRowsReturned = eazlReportHistory.row_count;
         } else {
             reportHistoryWorking.reportHistoryNrRowsReturned = 0;
+        }
+
+        if (eazlReportHistory.error != null) {
+            reportHistoryWorking.error = eazlReportHistory.error;
+        } else {
+            reportHistoryWorking.error = '';
         }
 
         // Return the result

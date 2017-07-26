@@ -817,7 +817,8 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12
+            reportHistoryNrRowsReturned: 12,
+            error: ''
         },
         {
             reportHistoryID: 1,
@@ -828,7 +829,8 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12
+            reportHistoryNrRowsReturned: 12,
+            error: ''
         },
         {
             reportHistoryID: 2,
@@ -839,7 +841,8 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Failed',
-            reportHistoryNrRowsReturned: 12
+            reportHistoryNrRowsReturned: 12,
+            error: ''
         },
         {
             reportHistoryID: 3,
@@ -850,7 +853,8 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12
+            reportHistoryNrRowsReturned: 12,
+            error: ''
         },
         {
             reportHistoryID: 4,
@@ -861,7 +865,8 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryStartDateTime: '2017/05/01 08:21',
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12
+            reportHistoryNrRowsReturned: 12,
+            error: ''
         },
     ];
 
