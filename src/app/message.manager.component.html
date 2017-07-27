@@ -2,7 +2,24 @@
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
 
 
+<p-dialog header="New Message" 
+    [(visible)]="displayNewMessage" 
+    modal="modal" 
+    width="610" 
+    responsive="true"
+    >
 
+    <newmessage 
+        [availableUsers]="availableUsers"
+        [conversionID]="conversionID"
+        [sendToTheseUsers]="sendToTheseUsers"
+        [nrUnReadMessagesForMe]="nrUnReadMessagesForMe"
+        (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)" 
+        >
+        Loading New Message form ...
+    </newmessage>
+
+</p-dialog>
 
 
 <!--Table with group info -->

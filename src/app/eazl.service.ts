@@ -4417,7 +4417,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
     [
         {
             canvasMessageID: 0,
-            canvasMessageConversationID: 0,
+            canvasMessageConversationID: '',
             canvasMessageSenderUserName: 'janniei',
             canvasMessageSentDateTime: '2017/05/01 09:10',
             canvasMessageIsSystemGenerated: false,
@@ -4439,7 +4439,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             ]
         },
         {
-            canvasMessageConversationID: 0,
+            canvasMessageConversationID: '',
             canvasMessageID: 1,
             canvasMessageSenderUserName: 'bradleyk',
             canvasMessageSentDateTime: '2017/05/01 10:17',
@@ -4462,7 +4462,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             ]
         },
         {
-            canvasMessageConversationID: 0,
+            canvasMessageConversationID: '',
             canvasMessageID: 2,
             canvasMessageSenderUserName: 'janniei',
             canvasMessageSentDateTime: '2017/05/01 11:51',
@@ -4485,7 +4485,7 @@ export const CANVASMESSAGES: CanvasMessage[] =
             ]
         },
         {
-            canvasMessageConversationID: 1,
+            canvasMessageConversationID: '',
             canvasMessageID: 3,
             canvasMessageSenderUserName: 'janniei',
             canvasMessageSentDateTime: '2017/05/02 13:47',
@@ -7127,7 +7127,6 @@ export class EazlService implements OnInit {
                     }
 
                 }
-console.log('EAZL cm', cm)                
                 return cm;
             }
         })

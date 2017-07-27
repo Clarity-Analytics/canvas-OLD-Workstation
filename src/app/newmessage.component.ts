@@ -32,7 +32,6 @@ export class NewMessageComponent implements OnInit {
     @Input() sendToTheseUsers: string[];        // List of UserNames to whom message is sent
     @Input() nrUnReadMessagesForMe:number;      // Nr of UnRead messages for me
     @Input() conversionID: string = '';  // Binds sets of messages together, '' for New one
-    
     @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
 
     // Local properties
@@ -152,7 +151,7 @@ export class NewMessageComponent implements OnInit {
         let canvasMessageWorking = new CanvasMessage();
         // TODO - fix the conversation ID properly in time
         canvasMessageWorking.canvasMessageID = 0;
-        canvasMessageWorking.canvasMessageConversationID = 0;
+        canvasMessageWorking.canvasMessageConversationID = '';
         canvasMessageWorking.canvasMessageSenderUserName = this.globalVariableService.canvasUser.getValue().username;
         canvasMessageWorking.canvasMessageSentDateTime = this.canvasDate.now('standard');
         canvasMessageWorking.canvasMessageSubject = this.userform.controls['messageSubject'].value
@@ -169,7 +168,6 @@ export class NewMessageComponent implements OnInit {
         let currentUser: string = this.globalFunctionService.currentUser();
 
         canvasMessageWorking.canvasMessageSentDateTime = null;
-console.log('6')
 
         canvasMessageWorking.canvasMessageRecipients = [
             {
@@ -182,15 +180,11 @@ console.log('6')
         }];
 
         if (this.sendToTheseUsers[0] == currentUser) {
-console.log('4')
             canvasMessageWorking.canvasMessageSentToMe = true;
             canvasMessageWorking.canvasMessageMyStatus = 'Read';
             canvasMessageWorking.canvasMessageRecipients[0].canvasMessageRecipientIsSender
                 = true;
         };
-
-console.log('this.sendToTheseUsers', this.sendToTheseUsers)
-console.log('(14 + i).toString()', (14 + i).toString())
 
         for (var i = 1; i < this.sendToTheseUsers.length; i++) {
 
@@ -215,7 +209,6 @@ console.log('(14 + i).toString()', (14 + i).toString())
         }
 
         this.eazlService.addCanvasMessage(canvasMessageWorking)
-console.log('canvasMessageWorking', canvasMessageWorking)
 
         // Trigger event emitter 'emit' method
         this.formNewMessageSubmit.emit('Submit');

@@ -3,7 +3,7 @@
 // Eazl
 export class EazlCanvasMessage {
     id: number;                                     // Unique DB id
-    conversation: number;                           // Conversation thread that joins msgs
+    conversation: string;                           // Conversation thread that joins msgs
     subject: string;                                // Message Subject
     body: string;                                   // Message Body text
     dashboard_id: number;                           // Optional Dashboard to which msg is linked, -1 = none
@@ -26,7 +26,7 @@ export class EazlCanvasMessage {
 // Canvas
 export class CanvasMessage {
     canvasMessageID: number;                        // Unique DB id
-    canvasMessageConversationID: number;            // Conversation thread that joins msgs
+    canvasMessageConversationID: string;            // Conversation thread that joins msgs
     canvasMessageSenderUserName: string;            // Created by
     canvasMessageSentDateTime: string;              // Created on
     canvasMessageIsSystemGenerated: boolean;        // True if a system message, not created by User

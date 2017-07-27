@@ -31,10 +31,15 @@ import { User }                       from './model.user';
 export class MessageManagerComponent implements OnInit {
     
     // Local properties
+    availableUsers: string[] = [];                  // List of UserNames available to share with
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    canvasMessages: CanvasMessage[] = [];                       // List of Canvas Messages
-    selectedCanvasMessage: CanvasMessage;                       // Message that was clicked on
-    popuMenuItems: MenuItem[];                                  // Items in popup
+    canvasMessages: CanvasMessage[] = [];           // List of Canvas Messages
+    conversionID: string = '';                      // Conversion ID of set of message, '' for New
+    displayNewMessage: boolean = false;             // True to display new message form
+    nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
+    selectedCanvasMessage: CanvasMessage;           // Message that was clicked on
+    sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
+    popuMenuItems: MenuItem[];                      // Items in popup
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -56,6 +61,11 @@ export class MessageManagerComponent implements OnInit {
                 label: 'Read/UnRead', 
                 icon: 'fa-thumbs-o-up', 
                 command: (event) => this.toggleMessageReadUnRead(this.selectedCanvasMessage)
+            },
+            {
+                label: 'Reply', 
+                icon: 'fa-pencil-square-o', 
+                command: (event) => this.menuActionReplyMessage(this.selectedCanvasMessage)
             }
             
         ];
@@ -84,11 +94,40 @@ export class MessageManagerComponent implements OnInit {
         }
     }
 
+    menuActionReplyMessage(canvasMessage: CanvasMessage) {
+        // Pops up for new message
+        this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
+// this.conversionID = canvasMessage.canvasMessageConversationID;
+console.log('canvasMessage.canvasMessageConversationID', canvasMessage.canvasMessageConversationID)
+        // Get the current and available user shared with
+        this.availableUsers = [];
+        this.sendToTheseUsers = [];
+
+        this.eazlService.getUsers().forEach(sglusr => {
+            this.availableUsers.push(sglusr.username)
+        })
+
+        // Count Nr of unread messages for me
+        this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
+            cm => (cm.canvasMessageSentToMe == true  &&  cm.canvasMessageMyStatus == 'UnRead')).length;
+
+        // Show the related popup form
+        this.displayNewMessage = true;
+    }
+
     onClickMessageTable() {
         // User clicked on a row - toggle Read / UnRead status for me
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickMessageTable', '@Start');
 
         // Left for later ...
+    }
+
+    handleCanvasMessageFormSubmit(event) {
+        // Is triggered after the new Message form is submitted
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCanvasMessageFormSubmit', '@Start');
+
+        // Rip away popup
+        this.displayNewMessage = false;
     }
 
 }

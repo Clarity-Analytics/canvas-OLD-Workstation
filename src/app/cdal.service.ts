@@ -541,7 +541,7 @@ export class CDAL {
         if (eazlCanvasMessage.conversation != null) {
             canvasMessageWorking.canvasMessageConversationID = eazlCanvasMessage.conversation;
         } else {
-            canvasMessageWorking.canvasMessageConversationID = -1;
+            canvasMessageWorking.canvasMessageConversationID = '';
         }
 
         if (eazlCanvasMessage.subject != null) {
@@ -655,7 +655,7 @@ export class CDAL {
         // if (canvasMessage.canvasMessageConversationID != null) {
         //     eazlCanvasMessageWorking.conversation = canvasMessage.canvasMessageConversationID;
         // } else {
-            eazlCanvasMessageWorking.conversation = 0;
+            eazlCanvasMessageWorking.conversation = '';
         // }
 
         if (canvasMessage.canvasMessageSubject != null) {
