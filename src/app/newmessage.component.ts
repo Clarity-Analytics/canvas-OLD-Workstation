@@ -31,7 +31,8 @@ export class NewMessageComponent implements OnInit {
     @Input() availableUsers: string[];          // List of UserNames available to share with
     @Input() sendToTheseUsers: string[];        // List of UserNames to whom message is sent
     @Input() nrUnReadMessagesForMe:number;      // Nr of UnRead messages for me
-
+    @Input() conversionID: string = '';  // Binds sets of messages together, '' for New one
+    
     @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
 
     // Local properties
