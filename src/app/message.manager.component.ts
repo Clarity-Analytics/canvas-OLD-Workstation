@@ -97,8 +97,9 @@ export class MessageManagerComponent implements OnInit {
     menuActionReplyMessage(canvasMessage: CanvasMessage) {
         // Pops up for new message
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
-// this.conversionID = canvasMessage.canvasMessageConversationID;
-console.log('canvasMessage.canvasMessageConversationID', canvasMessage.canvasMessageConversationID)
+        
+        this.conversionID = canvasMessage.canvasMessageConversationID;
+
         // Get the current and available user shared with
         this.availableUsers = [];
         this.sendToTheseUsers = [];
