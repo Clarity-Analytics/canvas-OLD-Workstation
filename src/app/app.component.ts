@@ -18,7 +18,7 @@ import { Message }                    from 'primeng/primeng';
 import { CanvasDate }                 from './date.services';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-import { NotificationService }        from './notification.service';
+// import { NotificationService }        from './notification.service';
 import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our Models
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private notificationService: NotificationService,
+        // private notificationService: NotificationService,
         private route: ActivatedRoute,
         private router: Router,
         private reconnectingWebSocket: ReconnectingWebSocket,
@@ -121,7 +121,7 @@ export class AppComponent implements OnInit {
             messageType: 'UserMessage',
             message: 'Your Magnum PI report has completed'
         }
-		this.notificationService.messages.next(this.notificationFromServer);
+		// this.notificationService.messages.next(this.notificationFromServer);
 		this.notificationFromServer.message = '';
 
         // Decide on type of message
