@@ -650,13 +650,13 @@ export class CDAL {
 
         let eazlCanvasMessageWorking = new EazlCanvasMessage();
 
-        eazlCanvasMessageWorking.id = canvasMessage.canvasMessageID;
+        eazlCanvasMessageWorking.id = null; //canvasMessage.canvasMessageID;
 
-        if (canvasMessage.canvasMessageConversationID != null) {
-            eazlCanvasMessageWorking.conversation = canvasMessage.canvasMessageConversationID;
-        } else {
+        // if (canvasMessage.canvasMessageConversationID != null) {
+        //     eazlCanvasMessageWorking.conversation = canvasMessage.canvasMessageConversationID;
+        // } else {
             eazlCanvasMessageWorking.conversation = 0;
-        }
+        // }
 
         if (canvasMessage.canvasMessageSubject != null) {
             eazlCanvasMessageWorking.subject = canvasMessage.canvasMessageSubject;

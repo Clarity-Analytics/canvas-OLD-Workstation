@@ -7146,10 +7146,8 @@ console.log('EAZL cm', cm)
             )
                 .toPromise()
                 .then(eazlCanvasMessage => {
-
-                    // Store in DB
-                    this.cdal.saveCanvasMessage(canvasMessage);
-
+console.log('EAZL eazlCanvasMessage', canvasMessage)
+canvasMessage.canvasMessageID = eazlCanvasMessage.id;
                     // Update local array
                     this.canvasMessages.push(canvasMessage)
 

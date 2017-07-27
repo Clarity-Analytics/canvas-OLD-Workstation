@@ -149,13 +149,11 @@ export class NewMessageComponent implements OnInit {
 
         // Create a Message object, and then add it
         let canvasMessageWorking = new CanvasMessage();
-
         // TODO - fix the conversation ID properly in time
         canvasMessageWorking.canvasMessageID = 0;
         canvasMessageWorking.canvasMessageConversationID = 0;
         canvasMessageWorking.canvasMessageSenderUserName = this.globalVariableService.canvasUser.getValue().username;
         canvasMessageWorking.canvasMessageSentDateTime = this.canvasDate.now('standard');
-
         canvasMessageWorking.canvasMessageSubject = this.userform.controls['messageSubject'].value
         canvasMessageWorking.canvasMessageBody = this.userform.controls['messageBody'].value;
         canvasMessageWorking.canvasMessageDashboardID = this.userform.controls['messageDashboardID'].value;
@@ -170,12 +168,7 @@ export class NewMessageComponent implements OnInit {
         let currentUser: string = this.globalFunctionService.currentUser();
 
         canvasMessageWorking.canvasMessageSentDateTime = null;
-        if (this.sendToTheseUsers[0] == currentUser) {
-            canvasMessageWorking.canvasMessageSentToMe = true;
-            canvasMessageWorking.canvasMessageMyStatus = 'Read';
-            canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender
-                = true;
-        };
+console.log('6')
 
         canvasMessageWorking.canvasMessageRecipients = [
             {
@@ -186,6 +179,15 @@ export class NewMessageComponent implements OnInit {
             canvasMessageRecipientStatus: 'unread',
             canvasMessageReadDateTime: null
         }];
+
+        if (this.sendToTheseUsers[0] == currentUser) {
+console.log('4')
+            canvasMessageWorking.canvasMessageSentToMe = true;
+            canvasMessageWorking.canvasMessageMyStatus = 'Read';
+            canvasMessageWorking.canvasMessageRecipients[0].canvasMessageRecipientIsSender
+                = true;
+        };
+
 console.log('this.sendToTheseUsers', this.sendToTheseUsers)
 console.log('(14 + i).toString()', (14 + i).toString())
 

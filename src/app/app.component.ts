@@ -25,6 +25,7 @@ import { ReconnectingWebSocket }      from './websocket.service';
 import { CanvasUser }                 from './model.user';
 import { EazlService }                from './eazl.service';
 import { Notification }               from './model.notification';
+import { SocketMessage }              from './model.websocket';
 import { WebSocketBasicMessage }      from './model.notification';
 import { WebSocketRefDataMessage }    from './model.notification';
 
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit {
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     routerLink:string = '';                         // RouterLink in Menu.Command
     sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
+    socketMessage: SocketMessage;                   // Django WebSocket
     notificationFromServer: Notification;           // Websocket msg (OLD TODO - remove later...)
     webSocketBasicMessage: WebSocketBasicMessage;   // Basic WS message
 
@@ -136,7 +138,14 @@ this.reconnectingWebSocket.messageWS.subscribe(
         }
 
 
+        this.socketMessage = {
+            message_type: 'Message Type !'
+        };
 
+        // this.reconnectingWebSocket.messageWS.next({
+        //     message_type: 'Message Type !'
+        // });
+        this.reconnectingWebSocket.messageWS.next(this.socketMessage);
 
         // let d = new Date();
         // console.log(d);
