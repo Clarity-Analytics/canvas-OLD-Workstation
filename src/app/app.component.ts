@@ -28,6 +28,7 @@ import { Notification }               from './model.notification';
 import { SocketMessage }              from './model.websocket';
 import { WebSocketBasicMessage }      from './model.notification';
 import { WebSocketRefDataMessage }    from './model.notification';
+import { WebSocketSystemMessage }     from './model.notification';
 
 
 @Component({
@@ -56,6 +57,7 @@ export class AppComponent implements OnInit {
     socketMessage: SocketMessage;                   // Django WebSocket
     notificationFromServer: Notification;           // Websocket msg (OLD TODO - remove later...)
     webSocketBasicMessage: WebSocketBasicMessage;   // Basic WS message
+    webSocketSystemMessage: WebSocketSystemMessage  // System WS message
 
     // Define Variables - define here if a global variable is used in html.
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
@@ -77,8 +79,13 @@ export class AppComponent implements OnInit {
         private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
             // Subscribe to Web Socket
-this.reconnectingWebSocket.messageWS.subscribe(
-    msg => console.log('msg', msg))            
+// this.reconnectingWebSocket.messageWS.subscribe(
+//     msg => console.log('msg', msg))       
+   this.reconnectingWebSocket.webSocketSystemMessage.subscribe(
+        message => console.log('WebSocketSystemMessage', message)
+    )       
+ 
+
             // handleNotificationFromWS.messages.subscribe(msg => {
 
             //     if (msg.messageType != '' ) {
@@ -95,7 +102,7 @@ this.reconnectingWebSocket.messageWS.subscribe(
 
             // Dev mode or not
             this.devMode = isDevMode();
-        }
+    }
 
     handleNotificationFromWS(message: any) {
         // Receive and act upon the notification received from the WebSocket 
@@ -145,7 +152,17 @@ this.reconnectingWebSocket.messageWS.subscribe(
         // this.reconnectingWebSocket.messageWS.next({
         //     message_type: 'Message Type !'
         // });
-        this.reconnectingWebSocket.messageWS.next(this.socketMessage);
+        // this.reconnectingWebSocket.messageWS.next(this.socketMessage);
+        this.webSocketSystemMessage = {
+            webSocketDatetime: new Date(),
+            webSocketSenderUsername: this.globalVariableService.canvasUser.getValue().username,
+            webSocketMessageType: 'WebSocketSystemMessage',
+            webSocketMessageBody:
+                {
+                    webSocketMessage: 'SystemMessage'
+                }
+        }
+        this.reconnectingWebSocket.webSocketSystemMessage.next(this.webSocketSystemMessage);
 
         // let d = new Date();
         // console.log(d);

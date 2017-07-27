@@ -1,17 +1,21 @@
 // Service to interact with a Web Socket
 
-import { Injectable } from '@angular/core';
-import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { SocketMessage } from './model.websocket';
-import { Token } from './model.token';
+import { Injectable }                 from '@angular/core';
+import { Observable }                 from 'rxjs/Observable';
+import { ReplaySubject }              from 'rxjs/ReplaySubject';
+import { WebSocketSubject }           from 'rxjs/observable/dom/WebSocketSubject';
+
+// Our Models
+import { SocketMessage }              from './model.websocket';
+import { Token }                      from './model.token';
+import { WebSocketSystemMessage }     from './model.notification';
+
 import * as Rx from 'rxjs/Rx';
 
 @Injectable()
 export class WebSocketService {
     private subject: Rx.Subject<MessageEvent>;
-
+    
     constructor() { }
 
     public connect(url): Rx.Subject<MessageEvent> {
@@ -51,13 +55,25 @@ export class ReconnectingWebSocket {
 	baseUri: string = `${window.location.protocol === 
         'http:' ? 'ws:': 'wss:'}//${window.location.hostname}:8000/sockets/`;
 	messageWS: ReplaySubject<SocketMessage> = new ReplaySubject(1);
+	webSocketSystemMessage: ReplaySubject<WebSocketSystemMessage> = new ReplaySubject(1);
+        // System msg to sent via WS
 	socket: WebSocketSubject<any>;
 
 	constructor() { }
 
 	connect(authToken: Token) {
+	    // this.socket = Observable.webSocket(`${this.baseUri}?token=${authToken.token}`);
+		// this.socket.subscribe((message: SocketMessage) => { this.messageWS.next(message); } )
+		// this.socket.next('ping');
+
 	    this.socket = Observable.webSocket(`${this.baseUri}?token=${authToken.token}`);
-		this.socket.subscribe((message: SocketMessage) => { this.messageWS.next(message); } )
+		this.socket.subscribe(
+            (
+                message: WebSocketSystemMessage) => { 
+                    this.webSocketSystemMessage.next(message); 
+                } 
+            )
 		this.socket.next('ping');
+
 	}
 }
