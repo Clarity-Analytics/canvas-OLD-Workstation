@@ -596,18 +596,18 @@ export class CDAL {
 
         for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
 
-            canvasMessageWorking[i].canvasMessageSentDateTime = 
-                eazlCanvasMessage.date_created;
+            canvasMessageWorking.canvasMessageMyStatus =
+                eazlCanvasMessage.recipients[i].status;
 
             if (eazlCanvasMessage.recipients[i].user_id ==
                     this.globalVariableService.canvasUser.getValue().id) {
                     canvasMessageWorking.canvasMessageSentToMe = true;
-                    canvasMessageWorking.canvasMessageMyStatus =
-                        eazlCanvasMessage.recipients[i].status;
             };
             if (eazlCanvasMessage.recipients[i].is_sender == true) {
                 canvasMessageWorking.canvasMessageSenderUserName =
-                    eazlCanvasMessage.recipients[i].id.toString();
+                    eazlCanvasMessage.recipients[i].user_id.toString();
+                canvasMessageWorking.canvasMessageSentDateTime = 
+                    eazlCanvasMessage.date_created.toString();
             };
         }
 
