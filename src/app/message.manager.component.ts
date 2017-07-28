@@ -34,7 +34,6 @@ export class MessageManagerComponent implements OnInit {
     availableUsers: string[] = [];                  // List of UserNames available to share with
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     canvasMessages: CanvasMessage[] = [];           // List of Canvas Messages
-    conversionID: string = '';                      // Conversion ID of set of message, '' for New
     displayNewMessage: boolean = false;             // True to display new message form
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     selectedCanvasMessage: CanvasMessage;           // Message that was clicked on
@@ -98,8 +97,6 @@ export class MessageManagerComponent implements OnInit {
         // Pops up for new message
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
         
-        this.conversionID = canvasMessage.canvasMessageConversationID;
-
         // Get the current and available user shared with
         this.availableUsers = [];
         this.sendToTheseUsers = [];

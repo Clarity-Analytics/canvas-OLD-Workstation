@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
     // Local Variables
     availableUsers: string[] = [];                  // List of UserNames available to share with
     devMode: boolean = false;
-    conversionID: string = '';                      // Conversion ID of set of message, '' for New
     displayLoginForm: boolean = false;              // True to display the Login form
     displayWhoAmIForm: boolean = false;             // True to display the WhoAmI form
     displayNewMessage: boolean = false;             // True to display new message form
