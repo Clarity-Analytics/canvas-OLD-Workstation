@@ -7146,7 +7146,7 @@ export class EazlService implements OnInit {
                 .toPromise()
                 .then(eazlCanvasMessage => {
 console.log('EAZL eazlCanvasMessage', canvasMessage)
-canvasMessage.canvasMessageID = eazlCanvasMessage.id;
+            canvasMessage.canvasMessageID = eazlCanvasMessage.id;
                     // Update local array
                     this.canvasMessages.push(canvasMessage)
 
@@ -7167,44 +7167,44 @@ canvasMessage.canvasMessageID = eazlCanvasMessage.id;
 
     }
 
-    canvasMessageToggleRead(messageID: number) {
-        // Updates the status of the CanvasMessage for the current user
-        // - messageID message to update
-        this.globalFunctionService.printToConsole(this.constructor.name,'canvasMessageToggleRead', '@Start');
+    // canvasMessageToggleRead(messageID: number) {
+    //     // Updates the status of the CanvasMessage for the current user
+    //     // - messageID message to update
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'canvasMessageToggleRead', '@Start');
 
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataCanvasMessage) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'CanvasMessages data is dirty / not up to date',
-                detail:   'The CanvasMessages data is being refreshed; request again to get the latest from the database'
-            });
-        }
+    //     // Report to user if dirty at the moment
+    //     if (this.globalVariableService.dirtyDataCanvasMessage) {
+    //         this.globalVariableService.growlGlobalMessage.next({
+    //             severity: 'warn',
+    //             summary:  'CanvasMessages data is dirty / not up to date',
+    //             detail:   'The CanvasMessages data is being refreshed; request again to get the latest from the database'
+    //         });
+    //     }
 
-        // Return the necessary
-        let userID: number = -1;
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            userID = this.globalVariableService.canvasUser.getValue().id;
-        }
-        for (var i = 0; i < this.canvasMessages.length; i++) {
-            if (this.canvasMessages[i].canvasMessageID == messageID) {
-                for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
-                    if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserID ==
-                            userID) {
-                                if (this.canvasMessages[i].canvasMessageRecipients[j].
-                                    canvasMessageRecipientStatus == 'Read') {
-                                        this.canvasMessages[i].canvasMessageRecipients[j].
-                                            canvasMessageRecipientStatus = 'UnRead';
-                                }
-                                else {
-                                    this.canvasMessages[i].canvasMessageRecipients[j].
-                                        canvasMessageRecipientStatus = 'Read';
-                                }
-                    }
-                }
-            }
-        }
-    }
+    //     // Return the necessary
+    //     let userID: number = -1;
+    //     if (this.globalVariableService.canvasUser.getValue() != null) {
+    //         userID = this.globalVariableService.canvasUser.getValue().id;
+    //     }
+    //     for (var i = 0; i < this.canvasMessages.length; i++) {
+    //         if (this.canvasMessages[i].canvasMessageID == messageID) {
+    //             for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
+    //                 if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserID ==
+    //                         userID) {
+    //                             if (this.canvasMessages[i].canvasMessageRecipients[j].
+    //                                 canvasMessageRecipientStatus == 'Read') {
+    //                                     this.canvasMessages[i].canvasMessageRecipients[j].
+    //                                         canvasMessageRecipientStatus = 'UnRead';
+    //                             }
+    //                             else {
+    //                                 this.canvasMessages[i].canvasMessageRecipients[j].
+    //                                     canvasMessageRecipientStatus = 'Read';
+    //                             }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     getWidgetTypes(): WidgetType[] {
         // Return list of Grapy Types
