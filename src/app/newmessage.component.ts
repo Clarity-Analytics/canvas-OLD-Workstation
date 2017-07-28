@@ -36,10 +36,13 @@ export class NewMessageComponent implements OnInit {
     @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
 
     // Local properties
+    displayPreviousMessage: boolean = false;    // True to display previous message info
     errorMessageOnForm: string = '';            // Accum error message
     formIsValid: boolean = false;               // True form passed validation
     numberErrors: number = 0;                   // Number of errors during validation
-    userform: FormGroup;                        // Form Group object
+    previousMessageRecipients: string = '';     // Csv list of recipients for previous message
+    userformNewMessage: FormGroup;              // Form Group object
+    userformPreviousMessage: FormGroup;         // Form Group object
 
     constructor(
         private canvasDate: CanvasDate,
@@ -53,8 +56,16 @@ export class NewMessageComponent implements OnInit {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // FormBuilder
-        this.userform = this.fb.group({
+        // Previous message form
+        this.userformPreviousMessage = this.fb.group({
+            'previousMessageSender': new FormControl(''),
+            'previousMessageSubject': new FormControl(''),
+            'previousMessageBody': new FormControl(''),
+            'previousMessageRecipients': new FormControl('')
+        });
+
+        // New message form
+        this.userformNewMessage = this.fb.group({
             'messageDashboardID': new FormControl(''),
             'messageReportID': new FormControl(''),
             'messageWidgetID': new FormControl(''),
@@ -62,10 +73,46 @@ export class NewMessageComponent implements OnInit {
             'messageBody': new FormControl('', Validators.required)
         });
 
-
         // Load the startup form defaults
-        this.userform.controls['messageSubject'].setValue('');
-        this.userform.controls['messageBody'].setValue('');
+        this.userformNewMessage.controls['messageSubject'].setValue('');
+        this.userformNewMessage.controls['messageBody'].setValue('');
+    }
+
+    ngOnChanges() {
+        // Reacts to changes in selectedGroup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
+
+        // Clear old recipients and load new ones, if there are any
+        this.previousMessageRecipients = '';
+        if (this.previousMessage != null) {
+
+            // Show previous message section
+            this.displayPreviousMessage = true;
+
+            // Load any recipients
+            if (this.previousMessage.canvasMessageRecipients != null) {
+                for (var i = 0; i < this.previousMessage.canvasMessageRecipients.length; i++) {
+                    this.previousMessageRecipients = this.previousMessageRecipients + ' ' +
+                        this.previousMessage.canvasMessageRecipients[i].
+                            canvasMessageRecipientID.toString();
+                }
+            } else {
+                this.previousMessageRecipients = '';
+            }
+
+            // Load info
+            this.userformPreviousMessage.controls['previousMessageSender'].setValue(
+                this.previousMessage.canvasMessageSenderUserName);
+            this.userformPreviousMessage.controls['previousMessageSubject'].setValue(
+                this.previousMessage.canvasMessageSubject);
+            this.userformPreviousMessage.controls['previousMessageBody'].setValue(
+                this.previousMessage.canvasMessageBody);
+            this.userformPreviousMessage.controls['previousMessageRecipients'].setValue(
+                this.previousMessageRecipients.trim());
+console.log('this.previousMessageRecipients', this.previousMessageRecipients)            
+        } else {
+            this.displayPreviousMessage = false;
+        }
     }
 
     onMoveToTargetDashboardSendTo(event) {
@@ -115,15 +162,15 @@ console.log('this.previousMessage', this.previousMessage)
         this.numberErrors = 0;
 
         // Validation
-        if (this.userform.controls['messageSubject'].value == ''  ||
-            this.userform.controls['messageSubject'].value == null) {
+        if (this.userformNewMessage.controls['messageSubject'].value == ''  ||
+            this.userformNewMessage.controls['messageSubject'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Message Subject is compulsory.';
         }
-        if (this.userform.controls['messageBody'].value == ''  ||
-            this.userform.controls['messageBody'].value == null) {
+        if (this.userformNewMessage.controls['messageBody'].value == ''  ||
+            this.userformNewMessage.controls['messageBody'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
@@ -155,11 +202,11 @@ console.log('this.previousMessage', this.previousMessage)
         canvasMessageWorking.canvasMessageConversationID = '';
         canvasMessageWorking.canvasMessageSenderUserName = this.globalVariableService.canvasUser.getValue().username;
         canvasMessageWorking.canvasMessageSentDateTime = this.canvasDate.now('standard');
-        canvasMessageWorking.canvasMessageSubject = this.userform.controls['messageSubject'].value
-        canvasMessageWorking.canvasMessageBody = this.userform.controls['messageBody'].value;
-        canvasMessageWorking.canvasMessageDashboardID = this.userform.controls['messageDashboardID'].value;
-        canvasMessageWorking.canvasMessageReportID = this.userform.controls['messageReportID'].value;
-        canvasMessageWorking.canvasMessageWidgetID = this.userform.controls['messageWidgetID'].value;
+        canvasMessageWorking.canvasMessageSubject = this.userformNewMessage.controls['messageSubject'].value
+        canvasMessageWorking.canvasMessageBody = this.userformNewMessage.controls['messageBody'].value;
+        canvasMessageWorking.canvasMessageDashboardID = this.userformNewMessage.controls['messageDashboardID'].value;
+        canvasMessageWorking.canvasMessageReportID = this.userformNewMessage.controls['messageReportID'].value;
+        canvasMessageWorking.canvasMessageWidgetID = this.userformNewMessage.controls['messageWidgetID'].value;
         canvasMessageWorking.canvasMessageIsSystemGenerated = false;
         canvasMessageWorking.canvasMessageSentToMe = false;
         canvasMessageWorking.canvasMessageMyStatus = 'Read';

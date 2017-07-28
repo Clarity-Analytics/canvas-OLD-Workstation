@@ -7,10 +7,73 @@
 </p>
 
 
+<!--Previous form-->
+<form
+    [formGroup]="userformPreviousMessage"
+    *ngIf="displayPreviousMessage"
+    >
+    <div>
+        <b>Previous message</b>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                Sender :
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                        type="text" 
+                        formControlName="previousMessageSender" 
+                        readonly
+                        >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">        
+            <div class="ui-grid-col-4">
+                Subject :
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                        type="text" 
+                        formControlName="previousMessageSubject" 
+                        readonly
+                        >
+            </div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                Body :
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                        type="text" 
+                        formControlName="previousMessageBody" 
+                        readonly
+                        >
+            </div>
+        </div>
+        
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+                Recipients :
+            </div>
+            <div class="ui-grid-col-8">
+                <input pInputText 
+                        type="text" 
+                        formControlName="previousMessageRecipients" 
+                        readonly
+                        >
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <b>Your reply</b>
+</form>
 
 <!--Form for New Message-->
 <form 
-    [formGroup]="userform" 
+    [formGroup]="userformNewMessage" 
     >
     <div 
         class="ui-grid-row"
