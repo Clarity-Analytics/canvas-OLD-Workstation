@@ -77,9 +77,9 @@ export class MessageManagerComponent implements OnInit {
 
         // Refresh to get latest messages
         if (this.globalVariableService.dirtyDataCanvasMessage) {
-this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
-        this.canvasMessages = this.eazlService.getCanvasMessages()
-this.globalVariableService.dirtyDataCanvasMessage = false;
+            this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
+            this.canvasMessages = this.eazlService.getCanvasMessages()
+            this.globalVariableService.dirtyDataCanvasMessage = false;
         }
     }
 
@@ -87,18 +87,34 @@ this.globalVariableService.dirtyDataCanvasMessage = false;
         // Toggle the message between Read and UnRead
         // - canvasMessage: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
-// this.eazlService    .cacheCanvasData('CanvasMessage', 'reset');
-//         this.canvasMessages = this.eazlService.getCanvasMessages()
-this.globalVariableService.dirtyDataCanvasMessage = true;
+    
+        
+        this.globalVariableService.dirtyDataCanvasMessage = true;
 
-        this.eazlService.canvasMessageToggleRead(this.selectedCanvasMessage.canvasMessageDashboardID);
-        // Fix up, if for me
-        if (this.selectedCanvasMessage.canvasMessageSentToMe) {
-            if (this.selectedCanvasMessage.canvasMessageMyStatus == 'Read') {
-                this.selectedCanvasMessage.canvasMessageMyStatus = 'UnRead';
-            } else {
-                this.selectedCanvasMessage.canvasMessageMyStatus = 'Read';
+        // Local vars to make things more readable, methinks
+        let recordStatus: string = '';
+
+        // Loop on recipients: if currentUser is a recipient, then toggle status
+        // If changes were made, note that recordSet is dirty
+        for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
+            
+            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID == 
+                this.globalVariableService.canvasUser.getValue().id) {
+
+                if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus
+                    .toLowerCase() == 'read') {
+                        recordStatus = 'UnRead';
+                } else {
+                        recordStatus = 'Read';
+                } 
+
+                canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus =
+                    recordStatus;
             }
+        }
+
+        if (recordStatus != '') {
+            canvasMessage.canvasMessageMyStatus = recordStatus;
         } else {
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
