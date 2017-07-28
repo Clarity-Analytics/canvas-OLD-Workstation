@@ -4413,113 +4413,113 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
         }
     ];
 
-export const CANVASMESSAGES: CanvasMessage[] =
-    [
-        {
-            canvasMessageID: 0,
-            canvasMessageConversationID: '',
-            canvasMessageSenderUserName: 'janniei',
-            canvasMessageSentDateTime: '2017/05/01 09:10',
-            canvasMessageIsSystemGenerated: false,
-            canvasMessageDashboardID: 0,
-            canvasMessageReportID: 1,
-            canvasMessageWidgetID: -1,
-            canvasMessageSubject: 'Value looks too low',
-            canvasMessageBody: 'Please look at value for May, particularly in Bonds',
-            canvasMessageSentToMe: false,
-            canvasMessageMyStatus: 'UnRead',
-            canvasMessageRecipients: [
-                {
-                    canvasMessageRecipientID: 0,
-                    canvasMessageRecipientUserID: 3,
-                    canvasMessageRecipientIsSender: false,
-                    canvasMessageRecipientStatus: 'Read',
-                }
-            ],
-            canvasMessageReadDateTime: '2017/05/01 09:11',
-        },
-        {
-            canvasMessageConversationID: '',
-            canvasMessageID: 1,
-            canvasMessageSenderUserName: 'bradleyk',
-            canvasMessageSentDateTime: '2017/05/01 10:17',
-            canvasMessageIsSystemGenerated: false,
-            canvasMessageDashboardID: 0,
-            canvasMessageReportID: 1,
-            canvasMessageWidgetID: -1,
-            canvasMessageSubject: 'Value looks too low',
-            canvasMessageBody: 'Checked, all good',
-            canvasMessageSentToMe: true,
-            canvasMessageMyStatus: 'Read',
-            canvasMessageRecipients: [
-                {
-                    canvasMessageRecipientID: 0,
-                    canvasMessageRecipientUserID: 4,
-                    canvasMessageRecipientStatus: 'Read',
-                    canvasMessageRecipientIsSender: false,
-                }
-            ],
-            canvasMessageReadDateTime: '2017/05/01 11:50',
-        },
-        {
-            canvasMessageConversationID: '',
-            canvasMessageID: 2,
-            canvasMessageSenderUserName: 'janniei',
-            canvasMessageSentDateTime: '2017/05/01 11:51',
-            canvasMessageIsSystemGenerated: false,
-            canvasMessageDashboardID: 0,
-            canvasMessageReportID: 1,
-            canvasMessageWidgetID: -1,
-            canvasMessageSubject: 'Value looks too low',
-            canvasMessageBody: 'Thank you',
-            canvasMessageSentToMe: false,
-            canvasMessageMyStatus: 'UnRead',
-            canvasMessageRecipients: [
-                {
-                    canvasMessageRecipientID: 0,
-                    canvasMessageRecipientUserID: 3,
-                    canvasMessageRecipientStatus: 'UnRead',
-                    canvasMessageRecipientIsSender: false,
-                }
-            ],
-            canvasMessageReadDateTime: '',
-        },
-        {
-            canvasMessageConversationID: '',
-            canvasMessageID: 3,
-            canvasMessageSenderUserName: 'janniei',
-            canvasMessageSentDateTime: '2017/05/02 13:47',
-            canvasMessageIsSystemGenerated: false,
-            canvasMessageDashboardID: -1,
-            canvasMessageReportID: 2,
-            canvasMessageWidgetID: 3,
-            canvasMessageSubject: 'Snacks available @ coffee machine',
-            canvasMessageBody: 'Enjoy!',
-            canvasMessageSentToMe: false,
-            canvasMessageMyStatus: 'UnRead',
-            canvasMessageRecipients: [
-                {
-                    canvasMessageRecipientID: 0,
-                    canvasMessageRecipientUserID: 0,
-                    canvasMessageRecipientStatus: 'UnRead',
-                    canvasMessageRecipientIsSender: false,
-                },
-                {
-                    canvasMessageRecipientID: 0,
-                    canvasMessageRecipientUserID: 3,
-                    canvasMessageRecipientStatus: 'Read',
-                    canvasMessageRecipientIsSender: false,
-                },
-                {
-                    canvasMessageRecipientID: 1,
-                    canvasMessageRecipientUserID: 1,
-                    canvasMessageRecipientStatus: 'UnRead',
-                    canvasMessageRecipientIsSender: false,
-                }
-            ],
-            canvasMessageReadDateTime: '2017/05/02 14:23',
-        }
-    ];
+// export const CANVASMESSAGES: CanvasMessage[] =
+//     [
+//         {
+//             canvasMessageID: 0,
+//             canvasMessageConversationID: '',
+//             canvasMessageSenderUserName: 'janniei',
+//             canvasMessageSentDateTime: '2017/05/01 09:10',
+//             canvasMessageIsSystemGenerated: false,
+//             canvasMessageDashboardID: 0,
+//             canvasMessageReportID: 1,
+//             canvasMessageWidgetID: -1,
+//             canvasMessageSubject: 'Value looks too low',
+//             canvasMessageBody: 'Please look at value for May, particularly in Bonds',
+//             canvasMessageSentToMe: false,
+//             canvasMessageMyStatus: 'UnRead',
+//             canvasMessageRecipients: [
+//                 {
+//                     canvasMessageRecipientID: 0,
+//                     canvasMessageRecipientUserID: 3,
+//                     canvasMessageRecipientIsSender: false,
+//                     canvasMessageRecipientStatus: 'Read',
+//                 }
+//             ],
+//             canvasMessageReadDateTime: '2017/05/01 09:11',
+//         },
+//         {
+//             canvasMessageConversationID: '',
+//             canvasMessageID: 1,
+//             canvasMessageSenderUserName: 'bradleyk',
+//             canvasMessageSentDateTime: '2017/05/01 10:17',
+//             canvasMessageIsSystemGenerated: false,
+//             canvasMessageDashboardID: 0,
+//             canvasMessageReportID: 1,
+//             canvasMessageWidgetID: -1,
+//             canvasMessageSubject: 'Value looks too low',
+//             canvasMessageBody: 'Checked, all good',
+//             canvasMessageSentToMe: true,
+//             canvasMessageMyStatus: 'Read',
+//             canvasMessageRecipients: [
+//                 {
+//                     canvasMessageRecipientID: 0,
+//                     canvasMessageRecipientUserID: 4,
+//                     canvasMessageRecipientStatus: 'Read',
+//                     canvasMessageRecipientIsSender: false,
+//                 }
+//             ],
+//             canvasMessageReadDateTime: '2017/05/01 11:50',
+//         },
+//         {
+//             canvasMessageConversationID: '',
+//             canvasMessageID: 2,
+//             canvasMessageSenderUserName: 'janniei',
+//             canvasMessageSentDateTime: '2017/05/01 11:51',
+//             canvasMessageIsSystemGenerated: false,
+//             canvasMessageDashboardID: 0,
+//             canvasMessageReportID: 1,
+//             canvasMessageWidgetID: -1,
+//             canvasMessageSubject: 'Value looks too low',
+//             canvasMessageBody: 'Thank you',
+//             canvasMessageSentToMe: false,
+//             canvasMessageMyStatus: 'UnRead',
+//             canvasMessageRecipients: [
+//                 {
+//                     canvasMessageRecipientID: 0,
+//                     canvasMessageRecipientUserID: 3,
+//                     canvasMessageRecipientStatus: 'UnRead',
+//                     canvasMessageRecipientIsSender: false,
+//                 }
+//             ],
+//             canvasMessageReadDateTime: '',
+//         },
+//         {
+//             canvasMessageConversationID: '',
+//             canvasMessageID: 3,
+//             canvasMessageSenderUserName: 'janniei',
+//             canvasMessageSentDateTime: '2017/05/02 13:47',
+//             canvasMessageIsSystemGenerated: false,
+//             canvasMessageDashboardID: -1,
+//             canvasMessageReportID: 2,
+//             canvasMessageWidgetID: 3,
+//             canvasMessageSubject: 'Snacks available @ coffee machine',
+//             canvasMessageBody: 'Enjoy!',
+//             canvasMessageSentToMe: false,
+//             canvasMessageMyStatus: 'UnRead',
+//             canvasMessageRecipients: [
+//                 {
+//                     canvasMessageRecipientID: 0,
+//                     canvasMessageRecipientUserID: 0,
+//                     canvasMessageRecipientStatus: 'UnRead',
+//                     canvasMessageRecipientIsSender: false,
+//                 },
+//                 {
+//                     canvasMessageRecipientID: 0,
+//                     canvasMessageRecipientUserID: 3,
+//                     canvasMessageRecipientStatus: 'Read',
+//                     canvasMessageRecipientIsSender: false,
+//                 },
+//                 {
+//                     canvasMessageRecipientID: 1,
+//                     canvasMessageRecipientUserID: 1,
+//                     canvasMessageRecipientStatus: 'UnRead',
+//                     canvasMessageRecipientIsSender: false,
+//                 }
+//             ],
+//             canvasMessageReadDateTime: '2017/05/02 14:23',
+//         }
+//     ];
 
 
 @Injectable()
@@ -4541,7 +4541,7 @@ export class EazlService implements OnInit {
     textAlignDropdowns: SelectItem[];                       // List of Text alignment options
     imageSourceDropdowns: SelectItem[];                     // List of Image Source file dropdown options
     backgroundImageDropdowns: SelectItem[];                 // List of backgrounds for dropdown options
-    canvasMessages: CanvasMessage[] = CANVASMESSAGES;       // List of CanvasMessages
+    canvasMessages: CanvasMessage[] = [];                   // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
