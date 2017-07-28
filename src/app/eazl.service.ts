@@ -7145,10 +7145,53 @@ export class EazlService implements OnInit {
             )
                 .toPromise()
                 .then(eazlCanvasMessage => {
-console.log('EAZL eazlCanvasMessage', canvasMessage)
+console.log('EAZL post eazlCanvasMessage', canvasMessage)
+
+            // Set the local ID ~ id returned by API
             canvasMessage.canvasMessageID = eazlCanvasMessage.id;
                     // Update local array
                     this.canvasMessages.push(canvasMessage)
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataCanvasMessage = false;
+
+                    // Return the data
+                    return eazlCanvasMessage;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Message',
+                        detail:   'Unsuccessful in updating Messages to the database'
+                    });
+                    error.message || error
+                })
+
+    }
+
+    updateCanvasMessage(canvasMessage: CanvasMessage) {
+        // Updates a CanvasMessage, and also refresh (.next) global variables
+        // - systemConfiguration New data
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateCanvasMessage', '@Start');
+
+        // Mark as dirty
+        this.globalVariableService.dirtyDataCanvasMessage = true;
+
+        return this.put<EazlCanvasMessage>(
+            'messages/', this.cdal.saveCanvasMessage(canvasMessage)
+            )
+                .toPromise()
+                .then(eazlCanvasMessage => {
+console.log('EAZL put eazlCanvasMessage', canvasMessage)
+            
+                    // Update local array
+                    for (var i = 0; i < this.canvasMessages.length; i++) {
+console.log('i in Eazl', i)
+                        if (this.canvasMessages[i].canvasMessageID == 
+                            canvasMessage.canvasMessageID) {
+                                this.canvasMessages[i] = canvasMessage;
+                            }
+                    }
 
                     // Mark as clean
                     this.globalVariableService.dirtyDataCanvasMessage = false;

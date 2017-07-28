@@ -114,7 +114,12 @@ export class MessageManagerComponent implements OnInit {
         }
 
         if (recordStatus != '') {
+            // Update local variabl
             canvasMessage.canvasMessageMyStatus = recordStatus;
+
+            // Update DB
+            this.eazlService.updateCanvasMessage(canvasMessage);
+            
         } else {
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
