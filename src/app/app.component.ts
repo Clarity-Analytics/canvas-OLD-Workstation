@@ -23,6 +23,7 @@ import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our Models
 import { CanvasUser }                 from './model.user';
+import { CanvasMessage }              from './model.canvasMessage';
 import { EazlService }                from './eazl.service';
 import { Notification }               from './model.notification';
 import { WebSocketBasicMessage }      from './model.notification';
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit {
     loginLabel: string = '';                        // Label on login menu
     menuItems: MenuItem[];                          // Array of menu items
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
+    previousMessage: CanvasMessage = null;          // Message to pass to new message form
     routerLink:string = '';                         // RouterLink in Menu.Command
     sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
     notificationFromServer: Notification;           // Websocket msg (OLD TODO - remove later...)

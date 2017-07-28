@@ -74,8 +74,9 @@
     >
 
     <newmessage 
-        [availableUsers]="availableUsers"
         [conversionID]="conversionID"
+        [previousMessage]="previousMessage"
+        [availableUsers]="availableUsers"
         [sendToTheseUsers]="sendToTheseUsers"
         [nrUnReadMessagesForMe]="nrUnReadMessagesForMe"
         (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)" 

@@ -32,6 +32,8 @@ export class NewMessageComponent implements OnInit {
     @Input() sendToTheseUsers: string[];        // List of UserNames to whom message is sent
     @Input() nrUnReadMessagesForMe:number;      // Nr of UnRead messages for me
     @Input() conversionID: string = '';  // Binds sets of messages together, '' for New one
+    @Input() previousMessage: CanvasMessage;    // Message to pass to new message form
+
     @Output() formNewMessageSubmit: EventEmitter<string> = new EventEmitter();
 
     // Local properties
@@ -95,7 +97,7 @@ export class NewMessageComponent implements OnInit {
             summary:  'Cancel',
             detail:   'No message sent as requested'
         });
-
+console.log('this.previousMessage', this.previousMessage)
         this.formNewMessageSubmit.emit('Cancel');
     }
 
