@@ -1,6 +1,7 @@
 // Message Manager form
 import { Component }                  from '@angular/core';
 import { OnInit }                     from '@angular/core';
+import { Router }                     from '@angular/router';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
@@ -46,6 +47,7 @@ export class MessageManagerComponent implements OnInit {
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private router: Router,
         ) {
         }
 
@@ -65,8 +67,13 @@ export class MessageManagerComponent implements OnInit {
                 label: 'Reply',
                 icon: 'fa-pencil-square-o',
                 command: (event) => this.menuActionReplyMessage(this.selectedCanvasMessage)
-            }
+            },
 
+            {
+                label: 'Go Dashboard',
+                icon: 'fa-arrow-circle-o-right',
+                command: (event) => this.menuActionJumpToDashboard(this.selectedCanvasMessage)
+            }
         ];
 
     }
@@ -87,8 +94,7 @@ export class MessageManagerComponent implements OnInit {
         // Toggle the message between Read and UnRead
         // - canvasMessage: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
-    
-        
+            
         this.globalVariableService.dirtyDataCanvasMessage = true;
 
         // Local vars to make things more readable, methinks
@@ -119,7 +125,7 @@ export class MessageManagerComponent implements OnInit {
 
             // Update DB
             this.eazlService.updateCanvasMessage(canvasMessage);
-            
+
         } else {
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
@@ -147,6 +153,16 @@ export class MessageManagerComponent implements OnInit {
 
         // Show the related popup form
         this.displayNewMessage = true;
+    }
+    
+    menuActionJumpToDashboard(canvasMessage: CanvasMessage) {
+        // Jumps to the designated Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
+
+        // Load DashboardID & Navigate
+        this.globalVariableService.sessionLoadOnOpenDashboardID = 
+            canvasMessage.canvasMessageDashboardID;
+        this.router.navigate(['dashboard']);
     }
 
     onClickMessageTable() {
