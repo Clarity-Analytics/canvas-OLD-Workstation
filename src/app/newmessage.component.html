@@ -47,6 +47,7 @@
             <textarea
                 pInputTextarea
                 formControlName="previousMessageBody"
+                readonly
                 >  
             </textarea>                      
         </div>
@@ -57,11 +58,12 @@
             Recipients :
         </div>
         <div class="ui-grid-col-8">
-            <input pInputText 
-                    type="text" 
-                    formControlName="previousMessageRecipients" 
-                    readonly
-                    >
+            <textarea
+                pInputTextarea
+                formControlName="previousMessageRecipients"
+                readonly
+                >  
+            </textarea> 
         </div>
     </div>
 

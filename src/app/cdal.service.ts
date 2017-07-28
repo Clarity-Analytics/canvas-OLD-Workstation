@@ -652,11 +652,19 @@ export class CDAL {
 
         eazlCanvasMessageWorking.id = null; //canvasMessage.canvasMessageID;
 
+        // TODO - sort out this UUID guy
         // if (canvasMessage.canvasMessageConversationID != null) {
-        //     eazlCanvasMessageWorking.conversation = canvasMessage.canvasMessageConversationID;
+        //     if(eazlCanvasMessageWorking.conversation == '') {
+        //         eazlCanvasMessageWorking.conversation = 
+        //             '00000000-0000-0000-0000-000000000000'
+        //     } else {
+        //         eazlCanvasMessageWorking.conversation = 
+        //             canvasMessage.canvasMessageConversationID;
+        //     }
         // } else {
-            eazlCanvasMessageWorking.conversation = '';
+        //     eazlCanvasMessageWorking.conversation = '00000000-0000-0000-0000-000000000000';
         // }
+        eazlCanvasMessageWorking.conversation = '00000000-0000-0000-0000-000000000000';
 
         if (canvasMessage.canvasMessageSubject != null) {
             eazlCanvasMessageWorking.subject = canvasMessage.canvasMessageSubject;
