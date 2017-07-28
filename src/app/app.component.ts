@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     displayLoginForm: boolean = false;              // True to display the Login form
     displayWhoAmIForm: boolean = false;             // True to display the WhoAmI form
     displayNewMessage: boolean = false;             // True to display new message form
-    growlGlobalMessage: Message = [];               // Msg
+    growlGlobalMessage: Message = {};               // Msg
     growlMsgs: Message[] = [];                      // Msg
     isCurrentUserAdmin: boolean = false             // True if current user is Admin
     lastSelectedMenuItemLabel: string = '';         // Last selected Menu item

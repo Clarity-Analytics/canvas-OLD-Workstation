@@ -82,6 +82,9 @@ export class NewMessageComponent implements OnInit {
         // Reacts to changes in selectedGroup
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
+        // Refresh the data from the DB
+        this.globalVariableService.dirtyDataCanvasMessage = true;
+        
         // Clear old recipients and load new ones, if there are any
         this.previousMessageRecipients = '';
         if (this.previousMessage != null) {

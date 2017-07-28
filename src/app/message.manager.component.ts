@@ -4,9 +4,9 @@ import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
-import { ConfirmationService }        from 'primeng/primeng';  
-import { MenuItem }                   from 'primeng/primeng';  
-import { Message }                    from 'primeng/primeng';  
+import { ConfirmationService }        from 'primeng/primeng';
+import { MenuItem }                   from 'primeng/primeng';
+import { Message }                    from 'primeng/primeng';
 
 // Our Components
 
@@ -29,7 +29,7 @@ import { User }                       from './model.user';
     encapsulation: ViewEncapsulation.None
 })
 export class MessageManagerComponent implements OnInit {
-    
+
     // Local properties
     availableUsers: string[] = [];                  // List of UserNames available to share with
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
@@ -48,7 +48,7 @@ export class MessageManagerComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
         ) {
         }
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -57,27 +57,42 @@ export class MessageManagerComponent implements OnInit {
 
         this.popuMenuItems = [
             {
-                label: 'Read/UnRead', 
-                icon: 'fa-thumbs-o-up', 
+                label: 'Read/UnRead',
+                icon: 'fa-thumbs-o-up',
                 command: (event) => this.toggleMessageReadUnRead(this.selectedCanvasMessage)
             },
             {
-                label: 'Reply', 
-                icon: 'fa-pencil-square-o', 
+                label: 'Reply',
+                icon: 'fa-pencil-square-o',
                 command: (event) => this.menuActionReplyMessage(this.selectedCanvasMessage)
             }
-            
+
         ];
 
+    }
+
+    ngOnChanges() {
+        // Reacts to changes in selectedGroup
+        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
+
+        // Refresh to get latest messages
+        if (this.globalVariableService.dirtyDataCanvasMessage) {
+this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
+        this.canvasMessages = this.eazlService.getCanvasMessages()
+this.globalVariableService.dirtyDataCanvasMessage = false;
+        }
     }
 
     toggleMessageReadUnRead(canvasMessage: CanvasMessage) {
         // Toggle the message between Read and UnRead
         // - canvasMessage: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
+// this.eazlService    .cacheCanvasData('CanvasMessage', 'reset');
+//         this.canvasMessages = this.eazlService.getCanvasMessages()
+this.globalVariableService.dirtyDataCanvasMessage = true;
 
         this.eazlService.canvasMessageToggleRead(this.selectedCanvasMessage.canvasMessageDashboardID);
-        // Fix up, if for me          
+        // Fix up, if for me
         if (this.selectedCanvasMessage.canvasMessageSentToMe) {
             if (this.selectedCanvasMessage.canvasMessageMyStatus == 'Read') {
                 this.selectedCanvasMessage.canvasMessageMyStatus = 'UnRead';
@@ -89,14 +104,14 @@ export class MessageManagerComponent implements OnInit {
             severity: 'warn',
             summary:  'Not mine',
             detail:   'This message was not sent to you, and thus cannot be marked Read/UnRead'
-        });            
+        });
         }
     }
 
     menuActionReplyMessage(canvasMessage: CanvasMessage) {
         // Pops up for new message
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
-        
+
         // Get the current and available user shared with
         this.availableUsers = [];
         this.sendToTheseUsers = [];
