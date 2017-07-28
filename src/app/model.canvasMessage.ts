@@ -43,8 +43,8 @@ export class CanvasMessage {
             canvasMessageRecipientUserID: number; // UserID to whom msg was sent (groups are collapsed)
             canvasMessageRecipientIsSender: boolean;    // True if this is the sender
             canvasMessageRecipientStatus: string;   // UnRead, Read - maybe more later
-            canvasMessageReadDateTime: string;      // DateTime when msg was Read
         }
     ];
+    canvasMessageReadDateTime: string;      // DateTime when msg was Read
 }
 

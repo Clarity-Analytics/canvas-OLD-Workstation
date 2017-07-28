@@ -580,6 +580,12 @@ export class CDAL {
             canvasMessageWorking.canvasMessageIsSystemGenerated = false;
         }
 
+        if (eazlCanvasMessage.date_created != null) {
+            canvasMessageWorking.canvasMessageReadDateTime = eazlCanvasMessage.date_created.toString();
+        } else {
+            canvasMessageWorking.canvasMessageReadDateTime = '';
+        }
+        
         // TODO - add ReadDateTime field for all recipients
         // Defaults
         canvasMessageWorking.canvasMessageSentToMe = false;
@@ -590,16 +596,18 @@ export class CDAL {
 
         for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
 
+            canvasMessageWorking[i].canvasMessageSentDateTime = 
+                eazlCanvasMessage.date_created;
+
             if (eazlCanvasMessage.recipients[i].user_id ==
                     this.globalVariableService.canvasUser.getValue().id) {
-                canvasMessageWorking.canvasMessageSentToMe = true;
-                canvasMessageWorking.canvasMessageMyStatus =
-                    eazlCanvasMessage.recipients[i].status;
-                if (eazlCanvasMessage.recipients[i].is_sender == true) {
-                    canvasMessageWorking.canvasMessageSenderUserName =
-                       ' this.eazlService.usernameFromUserID(eazlCanvasMessage.recipients[i].user_id);'
-                    canvasMessageWorking.canvasMessageSentDateTime = null;
-                };
+                    canvasMessageWorking.canvasMessageSentToMe = true;
+                    canvasMessageWorking.canvasMessageMyStatus =
+                        eazlCanvasMessage.recipients[i].status;
+            };
+            if (eazlCanvasMessage.recipients[i].is_sender == true) {
+                canvasMessageWorking.canvasMessageSenderUserName =
+                    eazlCanvasMessage.recipients[i].id.toString();
             };
         }
 
@@ -612,7 +620,6 @@ export class CDAL {
                     canvasMessageRecipientUserID: -1,
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: '',
-                    canvasMessageReadDateTime: null
             }];
         } else {
             canvasMessageWorking.canvasMessageRecipients = [
@@ -621,7 +628,6 @@ export class CDAL {
                     canvasMessageRecipientUserID: eazlCanvasMessage.recipients[0].user_id,
                     canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
                     canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
-                    canvasMessageReadDateTime: null
             }];
         }
 
@@ -633,7 +639,6 @@ export class CDAL {
                 canvasMessageRecipientUserID: eazlCanvasMessage.recipients[i].user_id,
                 canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[i].is_sender,
                 canvasMessageRecipientStatus: eazlCanvasMessage.recipients[i].status,
-                canvasMessageReadDateTime: null
             }
             );
             canvasMessageWorking.canvasMessageSentToMe = false;
@@ -697,7 +702,7 @@ export class CDAL {
 
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
 
-            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID ==
+            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID ==
                     this.globalVariableService.canvasUser.getValue().id) {
                 eazlCanvasMessageWorking.recipients[i].is_sender = true;
             };
@@ -756,11 +761,11 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             canvasMessageRecipientWorking.canvasMessageRecipientStatus = '';
         }
 
-        if (eazlCanvasMessageRecipient.read_datetime != null) {
-            canvasMessageRecipientWorking.canvasMessageReadDateTime = eazlCanvasMessageRecipient.read_datetime;
-        } else {
-            canvasMessageRecipientWorking.canvasMessageReadDateTime = '';
-        }
+        // if (eazlCanvasMessageRecipient.read_datetime != null) {
+        //     canvasMessageRecipientWorking.canvasMessageReadDateTime = eazlCanvasMessageRecipient.read_datetime;
+        // } else {
+        //     canvasMessageRecipientWorking.canvasMessageReadDateTime = '';
+        // }
 
         // Return the result
         return canvasMessageRecipientWorking;

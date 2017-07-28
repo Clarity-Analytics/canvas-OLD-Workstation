@@ -4434,9 +4434,9 @@ export const CANVASMESSAGES: CanvasMessage[] =
                     canvasMessageRecipientUserID: 3,
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: 'Read',
-                    canvasMessageReadDateTime: '2017/05/01 09:11',
                 }
-            ]
+            ],
+            canvasMessageReadDateTime: '2017/05/01 09:11',
         },
         {
             canvasMessageConversationID: '',
@@ -4457,9 +4457,9 @@ export const CANVASMESSAGES: CanvasMessage[] =
                     canvasMessageRecipientUserID: 4,
                     canvasMessageRecipientStatus: 'Read',
                     canvasMessageRecipientIsSender: false,
-                    canvasMessageReadDateTime: '2017/05/01 11:50',
                 }
-            ]
+            ],
+            canvasMessageReadDateTime: '2017/05/01 11:50',
         },
         {
             canvasMessageConversationID: '',
@@ -4480,9 +4480,9 @@ export const CANVASMESSAGES: CanvasMessage[] =
                     canvasMessageRecipientUserID: 3,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
-                    canvasMessageReadDateTime: '',
                 }
-            ]
+            ],
+            canvasMessageReadDateTime: '',
         },
         {
             canvasMessageConversationID: '',
@@ -4503,23 +4503,21 @@ export const CANVASMESSAGES: CanvasMessage[] =
                     canvasMessageRecipientUserID: 0,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
-                    canvasMessageReadDateTime: '',
                 },
                 {
                     canvasMessageRecipientID: 0,
                     canvasMessageRecipientUserID: 3,
                     canvasMessageRecipientStatus: 'Read',
-                   canvasMessageRecipientIsSender: false,
-                    canvasMessageReadDateTime: '2017/05/02 14:23',
+                    canvasMessageRecipientIsSender: false,
                 },
                 {
                     canvasMessageRecipientID: 1,
                     canvasMessageRecipientUserID: 1,
                     canvasMessageRecipientStatus: 'UnRead',
                     canvasMessageRecipientIsSender: false,
-                    canvasMessageReadDateTime: '',
                 }
-            ]
+            ],
+            canvasMessageReadDateTime: '2017/05/02 14:23',
         }
     ];
 

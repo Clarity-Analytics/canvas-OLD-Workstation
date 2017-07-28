@@ -227,7 +227,6 @@ console.log('this.previousMessage', this.previousMessage)
                     this.sendToTheseUsers[0]),
             canvasMessageRecipientIsSender: false,
             canvasMessageRecipientStatus: 'unread',
-            canvasMessageReadDateTime: null
         }];
 
         if (this.sendToTheseUsers[0] == currentUser) {
@@ -253,7 +252,6 @@ console.log('this.previousMessage', this.previousMessage)
                     this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
                 canvasMessageRecipientIsSender:  false,
                 canvasMessageRecipientStatus:  'unread',
-                canvasMessageReadDateTime: null
             });
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';
