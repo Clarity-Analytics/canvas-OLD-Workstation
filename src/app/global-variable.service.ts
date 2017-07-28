@@ -30,7 +30,7 @@ export class GlobalVariableService {
 
     // Current User
     canvasUser = new BehaviorSubject<CanvasUser>(null);
-    isAuthenticatedOnEazl: boolean = false;         // True if authenticated
+    isAuthenticatedOnEazl: boolean = false;        // True if authenticated
 
     // This session
     growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
@@ -39,11 +39,11 @@ export class GlobalVariableService {
     sessionDebugging = new BehaviorSubject(false);
     sessionLogging = new BehaviorSubject(false);
     sessionLoadOnOpenDashboardID: number = -1;     // Dashboard to load when form opens, 0 = none
-    sessionLoadOnOpenDashboardName = new BehaviorSubject('');   // Dashboard to load when form opens, '' = none
-
+    sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
+    
     // At startup
     startupDashboardID = new BehaviorSubject(0);                // Dashboard to load @start, 0 = none
-    startupDashboardName = new BehaviorSubject('Collection of Bar charts');  // Dashboard to load @start, '' = none
+    startupDashboardName: string = 'Collection of Bar charts';  // Dashboard to load @start, '' = none
     startupDashboardTabID = new BehaviorSubject(0);             // Tab ID to load @start, -1 = none
     startupMessageToShow = new BehaviorSubject('');
 

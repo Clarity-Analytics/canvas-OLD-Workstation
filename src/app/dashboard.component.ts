@@ -234,10 +234,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.globalVariableService.sessionLoadOnOpenDashboardID == -1) {
             if (this.globalVariableService.startupDashboardID.getValue() != -1) {
                 this.globalVariableService.sessionLoadOnOpenDashboardID = 
-                    this.globalVariableService.startupDashboardID.getValue()
-                this.globalVariableService.sessionLoadOnOpenDashboardName.next(
-                    this.globalVariableService.startupDashboardName.getValue()
-                )
+                    this.globalVariableService.startupDashboardID.getValue();
+                this.globalVariableService.sessionLoadOnOpenDashboardName = 
+                    this.globalVariableService.startupDashboardName;
             }
         }
 
@@ -246,7 +245,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.selectedDashboard =
                 {
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID,
-                    name: this.globalVariableService.sessionLoadOnOpenDashboardName.getValue()
+                    name: this.globalVariableService.sessionLoadOnOpenDashboardName
                 }
             // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID);
@@ -1875,10 +1874,9 @@ console.log('this.widgetToEdit', this.widgetToEdit)
 
         // Remember this for next time
         this.globalVariableService.sessionLoadOnOpenDashboardID = this.selectedDashboard.id;
-        this.globalVariableService.sessionLoadOnOpenDashboardName.next(
+        this.globalVariableService.sessionLoadOnOpenDashboardName = 
             this.dashboards.filter(dash =>
                 dash.dashboardID == this.selectedDashboard.id)[0].dashboardName
-        )
 
         // Load the Tabs for this Dashboard
         this.loadDashboardTabsBody(this.selectedDashboard.id);
