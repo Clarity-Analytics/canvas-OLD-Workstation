@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
             // });
 
             // Default stuffies, for now ...
-            this.globalVariableService.sessionDebugging.next(true);
+            this.globalVariableService.sessionDebugging = true;
 
             // Dev mode or not
             this.devMode = isDevMode();

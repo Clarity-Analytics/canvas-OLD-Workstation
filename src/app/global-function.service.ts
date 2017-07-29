@@ -22,7 +22,7 @@ export class GlobalFunctionService {
     printToConsole(componentName: string, functionName: string, message: string) {
 
         // Clean alerts
-        this.sessionDebugging = this.globalVariableService.sessionDebugging.getValue();
+        this.sessionDebugging = this.globalVariableService.sessionDebugging;
         this.sessionLogging = this.globalVariableService.sessionLogging.getValue();
 
         // Note: has to use Console log here !
