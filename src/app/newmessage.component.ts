@@ -41,6 +41,7 @@ export class NewMessageComponent implements OnInit {
     formIsValid: boolean = false;               // True form passed validation
     numberErrors: number = 0;                   // Number of errors during validation
     previousMessageRecipients: string = '';     // Csv list of recipients for previous message
+    dashboardDropDown: SelectItem[] = [];       // Dropdown options
     userformNewMessage: FormGroup;              // Form Group object
     userformPreviousMessage: FormGroup;         // Form Group object
 
@@ -76,6 +77,10 @@ export class NewMessageComponent implements OnInit {
         // Load the startup form defaults
         this.userformNewMessage.controls['messageSubject'].setValue('');
         this.userformNewMessage.controls['messageBody'].setValue('');
+        this.userformNewMessage.controls['messageDashboardID'].setValue('');
+
+        // Fill combos
+        this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
     }
 
     ngOnChanges() {
@@ -84,7 +89,7 @@ export class NewMessageComponent implements OnInit {
 
         // Refresh the data from the DB
         this.globalVariableService.dirtyDataCanvasMessage = true;
-        
+
         // Clear old recipients and load new ones, if there are any
         this.previousMessageRecipients = '';
         if (this.previousMessage != null) {
@@ -112,7 +117,7 @@ export class NewMessageComponent implements OnInit {
                 this.previousMessage.canvasMessageBody);
             this.userformPreviousMessage.controls['previousMessageRecipients'].setValue(
                 this.previousMessageRecipients.trim());
-console.log('this.previousMessageRecipients', this.previousMessageRecipients)            
+console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         } else {
             this.displayPreviousMessage = false;
         }
@@ -137,6 +142,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         this.globalFunctionService.printToConsole(this.constructor.name, 'onMoveToSourceDashboardSendTo', '@Start');
 
     }
+
     onClickCancel() {
         //   User clicked Cancel
         this.globalFunctionService.printToConsole(this.constructor.name, 'onClickCancel', '@Start');
@@ -197,7 +203,7 @@ console.log('this.previousMessage', this.previousMessage)
             });
             return;
         }
-
+  
         // Create a Message object, and then add it
         let canvasMessageWorking = new CanvasMessage();
         // TODO - fix the conversation ID properly in time
@@ -207,8 +213,12 @@ console.log('this.previousMessage', this.previousMessage)
         canvasMessageWorking.canvasMessageSentDateTime = this.canvasDate.now('standard');
         canvasMessageWorking.canvasMessageSubject = this.userformNewMessage.controls['messageSubject'].value
         canvasMessageWorking.canvasMessageBody = this.userformNewMessage.controls['messageBody'].value;
-        canvasMessageWorking.canvasMessageDashboardID = this.userformNewMessage.controls['messageDashboardID'].value;
-        canvasMessageWorking.canvasMessageReportID = this.userformNewMessage.controls['messageReportID'].value;
+
+        if (this.userformNewMessage.controls['messageDashboardID'].value != ''){
+            canvasMessageWorking.canvasMessageDashboardID = 
+                this.userformNewMessage.controls['messageDashboardID'].value.id;
+        }        
+            canvasMessageWorking.canvasMessageReportID = this.userformNewMessage.controls['messageReportID'].value;
         canvasMessageWorking.canvasMessageWidgetID = this.userformNewMessage.controls['messageWidgetID'].value;
         canvasMessageWorking.canvasMessageIsSystemGenerated = false;
         canvasMessageWorking.canvasMessageSentToMe = false;
@@ -248,7 +258,7 @@ console.log('this.previousMessage', this.previousMessage)
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: 14 + i,
-                canvasMessageRecipientUserID: 
+                canvasMessageRecipientUserID:
                     this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
                 canvasMessageRecipientIsSender:  false,
                 canvasMessageRecipientStatus:  'unread',
