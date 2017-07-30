@@ -379,8 +379,8 @@
             <p-pickList
                 [source]="availableDashboardTag"
                 [target]="belongstoDashboardTag"
-                sourceHeader="Available Groups"
-                targetHeader="Belongs to these Groups"
+                sourceHeader="Available Tags"
+                targetHeader="Belongs to these Tags"
                 (onMoveToTarget)="onMoveToTargetDashboardTagMembership($event)"
                 (onMoveToSource)="onMoveToSourceDashboardTagMembership($event)"
                 (onSourceReorder)="onSourceReorderDashboardTagMembership($event)"
@@ -391,7 +391,7 @@
                         <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
-                            {{ grp.dashboardGroupName }}
+                            {{ grp.dashboardTagName }}
                         </div>
                     </div>
                 </ng-template>

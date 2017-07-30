@@ -101,9 +101,9 @@ export class DashboardManagerComponent implements OnInit {
                 command: (event) => this.dashboardMenuDelete(this.selectedDashboard)
             },
             {
-                label: 'Group Membership',
+                label: 'Tag Membership',
                 icon: 'fa-users',
-                command: (event) => this.dashboardMenuGroupMembership(this.selectedDashboard)
+                command: (event) => this.dashboardMenuTagMembership(this.selectedDashboard)
             },
             {
                 label: 'Shared Users',
@@ -217,7 +217,7 @@ export class DashboardManagerComponent implements OnInit {
 
         // Update the Dashboard group membership if it is open
         if (this.displayGroupMembership) {
-            this.dashboardMenuGroupMembership(this.selectedDashboard)
+            this.dashboardMenuTagMembership(this.selectedDashboard)
         }
 
         // Update the Dashboard Shared With if it is open
@@ -230,10 +230,10 @@ export class DashboardManagerComponent implements OnInit {
 
     }
 
-    dashboardMenuGroupMembership(dashboard: Dashboard) {
+    dashboardMenuTagMembership(dashboard: Dashboard) {
         // Manage group membership for the selected Dashboard
         // - dashboard: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuTagMembership', '@Start');
 
         // Get the current and available groups
         this.belongstoDashboardTag = this.eazlService.getDashboardGroupMembership(
