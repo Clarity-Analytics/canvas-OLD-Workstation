@@ -6659,7 +6659,7 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
     }
 
-    getDashboardGroupMembership(
+    getDashboardTagMembership(
             dashboardID:number = -1,
             include:boolean = true
         ): DashboardTag[] {
@@ -6667,7 +6667,7 @@ export class EazlService implements OnInit {
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else
         //   group NOT for dashboardID
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTagMembership', '@Start');
 
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataDashboardTagMembership) {

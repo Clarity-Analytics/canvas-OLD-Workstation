@@ -236,11 +236,11 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuTagMembership', '@Start');
 
         // Get the current and available groups
-        this.belongstoDashboardTag = this.eazlService.getDashboardGroupMembership(
+        this.belongstoDashboardTag = this.eazlService.getDashboardTagMembership(
             this.selectedDashboard.dashboardID,
             true
         );
-        this.availableDashboardTag = this.eazlService.getDashboardGroupMembership(
+        this.availableDashboardTag = this.eazlService.getDashboardTagMembership(
                     this.selectedDashboard.dashboardID,
                     false
         );
