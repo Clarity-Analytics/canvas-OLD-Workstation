@@ -20,7 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardTag }             from './model.dashboardGroup';
+import { DashboardTag }               from './model.dashboardTag';
 import { DataSource }                 from './model.datasource';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
