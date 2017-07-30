@@ -14,10 +14,10 @@ export class EazlDashboardTagMembership {
 
 // Canvas
 export class DashboardTagMembership {
-    dashboardGroupID: number;
+    dashboardTagID: number;
     dashboardID: number;
-    dashboardGroupMembershipCreatedDateTime: string;          // Created on
-    dashboardGroupMembershipCreatedUserName: string;          // Created by
-    dashboardGroupMembershipUpdatedDateTime: string;          // Updated on
-    dashboardGroupMembershipUpdatedUserName: string;          // Updated by
+    dashboardTagMembershipCreatedDateTime: string;           // Created on
+    dashboardTagMembershipCreatedUserName: string;           // Created by
+    dashboardTagMembershipUpdatedDateTime: string;           // Updated on
+    dashboardTagMembershipUpdatedUserName: string;           // Updated by
 }

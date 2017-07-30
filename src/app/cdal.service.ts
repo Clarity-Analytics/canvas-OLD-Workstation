@@ -828,7 +828,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
 
         let dashboardGroupMembershipWorking = new DashboardTagMembership();
 
-        dashboardGroupMembershipWorking.dashboardGroupID = eazlDashboardGroupMembership.id;
+        dashboardGroupMembershipWorking.dashboardTagID = eazlDashboardGroupMembership.id;
 
         if (eazlDashboardGroupMembership.dashboard_id != null) {
             dashboardGroupMembershipWorking.dashboardID =
@@ -838,31 +838,31 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         }
 
         if (eazlDashboardGroupMembership.updated_on != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedDateTime =
+            dashboardGroupMembershipWorking.dashboardTagMembershipCreatedDateTime =
                 eazlDashboardGroupMembership.updated_on;
         } else {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedDateTime = '';
+            dashboardGroupMembershipWorking.dashboardTagMembershipCreatedDateTime = '';
         }
 
         if (eazlDashboardGroupMembership.updated_by != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserName =
+            dashboardGroupMembershipWorking.dashboardTagMembershipCreatedUserName =
                 eazlDashboardGroupMembership.updated_by;
         } else {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipCreatedUserName = '';
+            dashboardGroupMembershipWorking.dashboardTagMembershipCreatedUserName = '';
         }
 
         if (eazlDashboardGroupMembership.created_on != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedDateTime =
+            dashboardGroupMembershipWorking.dashboardTagMembershipUpdatedDateTime =
                 eazlDashboardGroupMembership.created_on;
         } else {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedDateTime = '';
+            dashboardGroupMembershipWorking.dashboardTagMembershipUpdatedDateTime = '';
         }
 
         if (eazlDashboardGroupMembership.created_by != null) {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserName =
+            dashboardGroupMembershipWorking.dashboardTagMembershipUpdatedUserName =
                 eazlDashboardGroupMembership.created_by;
         } else {
-            dashboardGroupMembershipWorking.dashboardGroupMembershipUpdatedUserName = '';
+            dashboardGroupMembershipWorking.dashboardTagMembershipUpdatedUserName = '';
         }
 
         // Return the result

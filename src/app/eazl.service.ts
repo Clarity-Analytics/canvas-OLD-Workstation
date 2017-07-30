@@ -1283,36 +1283,36 @@ export const DASHBOARDS: Dashboard[] =
 export const DASHBOARDGROUPMEMBERSHIP: DashboardTagMembership[] =
     [
         {
-            dashboardGroupID: 0,
+            dashboardTagID: 0,
             dashboardID: 0,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
-            dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
-            dashboardGroupMembershipUpdatedUserName: 'JamesK'
+            dashboardTagMembershipCreatedDateTime: '2017/05/01',
+            dashboardTagMembershipCreatedUserName:  'JamesK',
+            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+            dashboardTagMembershipUpdatedUserName: 'JamesK'
         },
         {
-            dashboardGroupID: 4,
+            dashboardTagID: 4,
             dashboardID: 0,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
-            dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
-            dashboardGroupMembershipUpdatedUserName: 'JamesK'
+            dashboardTagMembershipCreatedDateTime: '2017/05/01',
+            dashboardTagMembershipCreatedUserName:  'JamesK',
+            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+            dashboardTagMembershipUpdatedUserName: 'JamesK'
         },
         {
-            dashboardGroupID: 1,
+            dashboardTagID: 1,
             dashboardID: 1,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
-            dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
-            dashboardGroupMembershipUpdatedUserName: 'JamesK'
+            dashboardTagMembershipCreatedDateTime: '2017/05/01',
+            dashboardTagMembershipCreatedUserName:  'JamesK',
+            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+            dashboardTagMembershipUpdatedUserName: 'JamesK'
         },
         {
-            dashboardGroupID: 5,
+            dashboardTagID: 5,
             dashboardID: 1,
-            dashboardGroupMembershipCreatedDateTime: '2017/05/01',
-            dashboardGroupMembershipCreatedUserName:  'JamesK',
-            dashboardGroupMembershipUpdatedDateTime: '2017/05/01',
-            dashboardGroupMembershipUpdatedUserName: 'JamesK'
+            dashboardTagMembershipCreatedDateTime: '2017/05/01',
+            dashboardTagMembershipCreatedUserName:  'JamesK',
+            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+            dashboardTagMembershipUpdatedUserName: 'JamesK'
         },
     ];
 
@@ -6692,7 +6692,7 @@ export class EazlService implements OnInit {
             (dashgrp) => {
                 if (dashgrp.dashboardID == dashboardID)
                     resultDashboardGroupMembership.push(
-                        dashgrp.dashboardGroupID
+                        dashgrp.dashboardTagID
                 )
             }
         );
@@ -6720,7 +6720,7 @@ export class EazlService implements OnInit {
         let found: boolean = false;
         for (var i = 0; i < this.dashboardGroupMembership.length; i++) {
             if (this.dashboardGroupMembership[i].dashboardID == dashboardID  &&
-                this.dashboardGroupMembership[i].dashboardGroupID == dashboardGroupID) {
+                this.dashboardGroupMembership[i].dashboardTagID == dashboardGroupID) {
                     found = true;
                     break;
                 }
@@ -6734,12 +6734,12 @@ export class EazlService implements OnInit {
             this.dashboardGroupMembership.push(
                 {
 
-                    dashboardGroupID: dashboardGroupID,
+                    dashboardTagID: dashboardGroupID,
                     dashboardID: dashboardID,
-                    dashboardGroupMembershipCreatedDateTime: this.canvasDate.now('standard'),
-                    dashboardGroupMembershipCreatedUserName: currentUser,
-                    dashboardGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
-                    dashboardGroupMembershipUpdatedUserName: currentUser
+                    dashboardTagMembershipCreatedDateTime: this.canvasDate.now('standard'),
+                    dashboardTagMembershipCreatedUserName: currentUser,
+                    dashboardTagMembershipUpdatedDateTime: this.canvasDate.now('standard'),
+                    dashboardTagMembershipUpdatedUserName: currentUser
                 }
             )
         }
@@ -6757,7 +6757,7 @@ export class EazlService implements OnInit {
 
         this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
             item => (!(item.dashboardID == dashboardID  &&
-                       item.dashboardGroupID == dashboardGroupID))
+                       item.dashboardTagID == dashboardGroupID))
         );
 
         // Mark the data as clean
