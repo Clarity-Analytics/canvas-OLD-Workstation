@@ -8322,7 +8322,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let ReportHistoryWorking: ReportHistory[] = [];
-                this.get<EazlReportHistory>('report-history')
+                this.get<EazlReportHistory>('task-history')
                     .subscribe(
                         (eazlReportHistory) => {
                             for (var i = 0; i < eazlReportHistory.length; i++) {

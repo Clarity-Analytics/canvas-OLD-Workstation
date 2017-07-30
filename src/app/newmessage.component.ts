@@ -64,7 +64,6 @@ export class NewMessageComponent implements OnInit {
             'previousMessageBody': new FormControl(''),
             'previousMessageRecipients': new FormControl('')
         });
-console.log('1-0')
 
         // New message form
         this.userformNewMessage = this.fb.group({
@@ -80,9 +79,9 @@ console.log('1-0')
         this.userformNewMessage.controls['messageBody'].setValue('');
         this.userformNewMessage.controls['messageDashboardID'].setValue('');
 
+        // TODO this line cause an Angular ERROR - changed value after set.  FIX IT !!!
         // Fill combos
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
-console.log('1')
     }
 
     ngOnChanges() {
@@ -91,7 +90,6 @@ console.log('1')
 
         // Refresh the data from the DB
         this.globalVariableService.dirtyDataCanvasMessage = true;
-console.log('2-0')
 
         // Clear old recipients and load new ones, if there are any
         this.previousMessageRecipients = '';
@@ -124,7 +122,6 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         } else {
             this.displayPreviousMessage = false;
         }
-console.log('2')
     }
 
     onMoveToTargetDashboardSendTo(event) {
@@ -156,7 +153,7 @@ console.log('2')
             summary:  'Cancel',
             detail:   'No message sent as requested'
         });
-console.log('this.previousMessage', this.previousMessage)
+
         this.formNewMessageSubmit.emit('Cancel');
     }
 
