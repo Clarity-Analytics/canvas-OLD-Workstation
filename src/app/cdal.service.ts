@@ -22,7 +22,7 @@ import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
-import { DashboardGroup }             from './model.dashboardGroup';
+import { DashboardTag }             from './model.dashboardGroup';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
@@ -35,7 +35,7 @@ import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
-import { EazlDashboardGroup }         from './model.dashboardGroup';
+import { EazlDashboardTag }         from './model.dashboardGroup';
 import { EazlDashboardGroupMembership }     from './model.dashboardGroupMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
@@ -771,11 +771,11 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         return canvasMessageRecipientWorking;
     }
 
-    loadDashboardGroup(eazlDashboardGroup: EazlDashboardGroup): DashboardGroup {
+    loadDashboardGroup(eazlDashboardGroup: EazlDashboardTag): DashboardTag {
         // Load DashboardGroup: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroup', '@Start');
 
-        let dashboardGroupWorking = new DashboardGroup();
+        let dashboardGroupWorking = new DashboardTag();
 
         dashboardGroupWorking.dashboardGroupID = eazlDashboardGroup.id;
 

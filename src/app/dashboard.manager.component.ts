@@ -20,7 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardGroup }             from './model.dashboardGroup';
+import { DashboardTag }             from './model.dashboardGroup';
 import { DataSource }                 from './model.datasource';
 import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
@@ -38,10 +38,10 @@ export class DashboardManagerComponent implements OnInit {
 
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
-    availableDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard does NOT belongs to
+    availableDashboardGroup: DashboardTag[] = [];             // List of Groups Dashboard does NOT belongs to
     availableGroupSharedWith: Group[] = [];                     // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
-    belongstoDashboardGroup: DashboardGroup[] = [];             // List of Groups Dashboard already belongs to
+    belongstoDashboardGroup: DashboardTag[] = [];             // List of Groups Dashboard already belongs to
     belongstoSharedWith: string[] = [];                         // List of UserName with whom this Dashboard has been shared
     belongstoGroupsSharedWith: Group[] = [];                    // List of Groups to which Dashboard has been shared
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
@@ -58,7 +58,7 @@ export class DashboardManagerComponent implements OnInit {
     displayDataSource: boolean = false;                         // True to display table for DataSources
     displayReports: boolean = false;                            // True to display table for Reports
     displayMessages: boolean = false;                           // True to display table for Messages
-    groups: DashboardGroup[] = [];                              // List of Groups
+    groups: DashboardTag[] = [];                              // List of Groups
     popupHeader: string = 'Dashboard Editor';                   // Popup header
     popuMenuItems: MenuItem[];                                  // Items in popup
     reports: Report[];                                          // List of Reports

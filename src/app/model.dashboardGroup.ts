@@ -3,7 +3,7 @@
 // - it has NO relationship with the Groups (of users) entitry
 
 // Eazl
-export class EazlDashboardGroup {
+export class EazlDashboardTag {
     id: number;
     name: string;
     description: string;
@@ -14,7 +14,7 @@ export class EazlDashboardGroup {
 }
 
 // Canvas
-export class DashboardGroup {
+export class DashboardTag {
     dashboardGroupID: number;
     dashboardGroupName: string;
     dashboardGroupDescription: string;
