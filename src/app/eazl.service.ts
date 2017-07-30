@@ -6748,9 +6748,9 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataDashboardTagMembership = true;
     }
 
-    deleteDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
+    deleteDashboardTagMembership(dashboardID: number, dashboardGroupID: number) {
         // Deletes a Dashboard - Group record to the Dashboard Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardTagMembership', '@Start');
 
         // Mark the data as dirty
         this.globalVariableService.dirtyDataDashboardTagMembership = true;

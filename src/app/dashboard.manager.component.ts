@@ -276,7 +276,7 @@ export class DashboardManagerComponent implements OnInit {
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDashboardGroupMembership(
+            this.eazlService.deleteDashboardTagMembership(
                 this.selectedDashboard.dashboardID,
                 event.items[i].dashboardGroupID
             );
