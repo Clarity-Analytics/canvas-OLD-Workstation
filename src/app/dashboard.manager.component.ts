@@ -22,7 +22,7 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTag }               from './model.dashboardTag';
 import { DataSource }                 from './model.datasource';
-import { DashboardTagMembership }   from './model.dashboardGroupMembership';
+import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
