@@ -6712,10 +6712,10 @@ export class EazlService implements OnInit {
         )
     }
 
-    addDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
+    addDashboardTagMembership(dashboardID: number, dashboardGroupID: number) {
         // Adds a Dashboard - Group record to the User Group Membership
 
-        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardTagMembership', '@Start');
 
         let found: boolean = false;
         for (var i = 0; i < this.dashboardTagMembership.length; i++) {

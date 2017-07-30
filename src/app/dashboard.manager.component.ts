@@ -263,7 +263,7 @@ export class DashboardManagerComponent implements OnInit {
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDashboardGroupMembership(
+            this.eazlService.addDashboardTagMembership(
                 this.selectedDashboard.dashboardID,
                 event.items[i].dashboardGroupID
             );
