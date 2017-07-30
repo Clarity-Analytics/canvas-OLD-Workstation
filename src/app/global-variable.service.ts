@@ -58,7 +58,7 @@ export class GlobalVariableService {
     dirtyDataDashboardTab: boolean = true;
     dirtyDataCanvasMessage: boolean = true;
     dirtyDataCanvasMessageRecipient: boolean = true;
-    dirtyDataDashboardGroup: boolean = true;
+    dirtyDataDashboardTag: boolean = true;
     dirtyDataDashboardGroupMembership: boolean = true;
     dirtyDataDashboardGroupRelationship: boolean = true;
     dirtyDataDashboard: boolean = true;

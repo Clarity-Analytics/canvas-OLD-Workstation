@@ -7730,7 +7730,7 @@ console.log('i in Eazl', i)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroup');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroup = true;
+                this.globalVariableService.dirtyDataDashboardTag = true;
 
                 // Get all the data via API
                 let dashboardGroupWorking: DashboardTag[] = [];
@@ -7748,7 +7748,7 @@ console.log('i in Eazl', i)
                          this.dashboardGroups = dashboardGroupWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardGroup = false;
+                        this.globalVariableService.dirtyDataDashboardTag = false;
                         }
                 )
             }
@@ -7759,7 +7759,7 @@ console.log('i in Eazl', i)
                 this.dashboardGroups = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroup = true;
+                this.globalVariableService.dirtyDataDashboardTag = true;
             }
         }
 
