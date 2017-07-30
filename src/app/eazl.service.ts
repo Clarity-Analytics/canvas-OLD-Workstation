@@ -4547,7 +4547,7 @@ export class EazlService implements OnInit {
     dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardGroups: DashboardTag[];                      //List of Dashboard-Group
+    dashboardTags: DashboardTag[];                          //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
@@ -6684,7 +6684,7 @@ export class EazlService implements OnInit {
 
         // Return all if no dashboardID specified
         if (dashboardID == -1) {
-            return this.dashboardGroups;
+            return this.dashboardTags;
         }
 
         // Make an array of groupIDs to which this user belongs
@@ -6698,7 +6698,7 @@ export class EazlService implements OnInit {
         );
 
         // Return necesary groups, selectively depending on in/exclude
-        return this.dashboardGroups.filter(
+        return this.dashboardTags.filter(
             dashgrp => (
                     include  &&
                         resultDashboardGroupMembership.indexOf(
@@ -7745,7 +7745,7 @@ console.log('i in Eazl', i)
                             }
 
                         // Replace
-                         this.dashboardGroups = dashboardGroupWorking;
+                         this.dashboardTags = dashboardGroupWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataDashboardTag = false;
@@ -7756,7 +7756,7 @@ console.log('i in Eazl', i)
             // Clear all
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroup');
-                this.dashboardGroups = [];
+                this.dashboardTags = [];
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataDashboardTag = true;
