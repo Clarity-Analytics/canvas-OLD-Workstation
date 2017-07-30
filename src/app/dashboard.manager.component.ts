@@ -22,7 +22,7 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardTag }               from './model.dashboardTag';
 import { DataSource }                 from './model.datasource';
-import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
+import { DashboardTagMembership }   from './model.dashboardGroupMembership';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
@@ -46,7 +46,7 @@ export class DashboardManagerComponent implements OnInit {
     belongstoGroupsSharedWith: Group[] = [];                    // List of Groups to which Dashboard has been shared
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    dashboardGroupMembership: DashboardGroupMembership[] = [];  // List of Dashboard-Group
+    dashboardGroupMembership: DashboardTagMembership[] = [];  // List of Dashboard-Group
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources

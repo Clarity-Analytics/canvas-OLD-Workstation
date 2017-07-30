@@ -1,9 +1,9 @@
-// Schema for the Dashboard-DashboardGroup Membership classes (many - many)
+// Schema for the Dashboard-DashboardTag Membership classes (many - many)
 // - This is to group Dashboards together, like tags, that are related
 // - it has NO relationship with the Groups (of users) entitry
 
 // Eazl
-export class EazlDashboardGroupMembership {
+export class EazlDashboardTagMembership {
     id: number;
     dashboard_id: number;
     updated_on: string;                                       // Updated on
@@ -13,7 +13,7 @@ export class EazlDashboardGroupMembership {
 }
 
 // Canvas
-export class DashboardGroupMembership {
+export class DashboardTagMembership {
     dashboardGroupID: number;
     dashboardID: number;
     dashboardGroupMembershipCreatedDateTime: string;          // Created on

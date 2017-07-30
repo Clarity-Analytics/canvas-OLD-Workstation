@@ -68,7 +68,7 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTag }               from './model.dashboardTag';
-import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
+import { DashboardTagMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
@@ -82,7 +82,7 @@ import { EazlDashboard }              from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardTag }           from './model.dashboardTag';
-import { EazlDashboardGroupMembership }     from './model.dashboardGroupMembership';
+import { EazlDashboardTagMembership }     from './model.dashboardGroupMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
@@ -1280,7 +1280,7 @@ export const DASHBOARDS: Dashboard[] =
         }
     ];
 
-export const DASHBOARDGROUPMEMBERSHIP: DashboardGroupMembership[] =
+export const DASHBOARDGROUPMEMBERSHIP: DashboardTagMembership[] =
     [
         {
             dashboardGroupID: 0,
@@ -4544,7 +4544,7 @@ export class EazlService implements OnInit {
     canvasMessages: CanvasMessage[] = [];                   // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
-    dashboardGroupMembership: DashboardGroupMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
+    dashboardGroupMembership: DashboardTagMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardTags: DashboardTag[];                          //List of Dashboard-Group
@@ -7774,12 +7774,12 @@ console.log('i in Eazl', i)
                 this.globalVariableService.dirtyDataDashboardGroupMembership = true;
 
                 // Get all the data via API
-                let DashboardGroupMembershipWorking: DashboardGroupMembership[] = [];
-                this.get<EazlDashboardGroupMembership>('dashboard-group-membership')
+                let DashboardGroupMembershipWorking: DashboardTagMembership[] = [];
+                this.get<EazlDashboardTagMembership>('dashboard-group-membership')
                     .subscribe(
                         (eazlDashboardGroupMembership) => {
                             for (var i = 0; i < eazlDashboardGroupMembership.length; i++) {
-                                let DashboardGroupMembershipSingle = new DashboardGroupMembership();
+                                let DashboardGroupMembershipSingle = new DashboardTagMembership();
                                 DashboardGroupMembershipSingle = this.cdal.loadDashboardGroupMembership(eazlDashboardGroupMembership[i]);
                                 DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);
 

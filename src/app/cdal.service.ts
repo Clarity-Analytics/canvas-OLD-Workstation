@@ -23,7 +23,7 @@ import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTag }               from './model.dashboardTag';
-import { DashboardGroupMembership }   from './model.dashboardGroupMembership';
+import { DashboardTagMembership }   from './model.dashboardGroupMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
@@ -36,7 +36,7 @@ import { EazlDashboard }              from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardTag }           from './model.dashboardTag';
-import { EazlDashboardGroupMembership }     from './model.dashboardGroupMembership';
+import { EazlDashboardTagMembership }     from './model.dashboardGroupMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }            from './model.dashboardsPerUser';
@@ -821,12 +821,12 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
     }
 
     loadDashboardGroupMembership(
-        eazlDashboardGroupMembership: EazlDashboardGroupMembership
-        ): DashboardGroupMembership {
+        eazlDashboardGroupMembership: EazlDashboardTagMembership
+        ): DashboardTagMembership {
         // Load DashboardGroupMembership: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupMembership', '@Start');
 
-        let dashboardGroupMembershipWorking = new DashboardGroupMembership();
+        let dashboardGroupMembershipWorking = new DashboardTagMembership();
 
         dashboardGroupMembershipWorking.dashboardGroupID = eazlDashboardGroupMembership.id;
 
