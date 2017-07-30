@@ -6670,7 +6670,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardGroupMembership', '@Start');
 
         // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDashboardGroupMembership) {
+        if (this.globalVariableService.dirtyDataDashboardTagMembership) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'DashboardGroupMembership data is dirty / not up to date',
@@ -6745,7 +6745,7 @@ export class EazlService implements OnInit {
         }
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupMembership = true;
+        this.globalVariableService.dirtyDataDashboardTagMembership = true;
     }
 
     deleteDashboardGroupMembership(dashboardID: number, dashboardGroupID: number) {
@@ -6753,7 +6753,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupMembership', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupMembership = true;
+        this.globalVariableService.dirtyDataDashboardTagMembership = true;
 
         this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
             item => (!(item.dashboardID == dashboardID  &&
@@ -6761,7 +6761,7 @@ export class EazlService implements OnInit {
         );
 
         // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboardGroupMembership = false;
+        this.globalVariableService.dirtyDataDashboardTagMembership = false;
     }
 
     getGroupsRelatedToDashboard(
@@ -7771,7 +7771,7 @@ console.log('i in Eazl', i)
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupMembership');
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupMembership = true;
+                this.globalVariableService.dirtyDataDashboardTagMembership = true;
 
                 // Get all the data via API
                 let DashboardGroupMembershipWorking: DashboardTagMembership[] = [];
@@ -7790,7 +7790,7 @@ console.log('i in Eazl', i)
                         //  this.dashboardGroupMembership = dashboardGroupMembershipWorking;
 
                         // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardGroupMembership = false;
+                        this.globalVariableService.dirtyDataDashboardTagMembership = false;
                         }
                 )
             }
@@ -7801,7 +7801,7 @@ console.log('i in Eazl', i)
                 this.dashboardGroupMembership = [];
 
                 // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupMembership = true;
+                this.globalVariableService.dirtyDataDashboardTagMembership = true;
             }
         }
 
