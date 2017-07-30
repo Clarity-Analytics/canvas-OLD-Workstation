@@ -350,23 +350,23 @@
 </div>
 
 
-<!--Group Membership panel-->
+<!--Tag Membership panel-->
 <div
-    class="groupMembershipPanel"
+    class="tagMembershipPanel"
     *ngIf="displayGroupMembership"
     >
 
     <div
         class="groupMembershipHeading"
         >
-        Group Membership for {{ selectedDashboard.dashboardName }}
+        Tag Membership for {{ selectedDashboard.dashboardName }}
         <button
             class="panelButtonWithLabel"
             pButton
             type="button"
             label="Cancel"
             icon="fa-undo"
-            (click)="onClickGroupMembershipCancel()"
+            (click)="onClickTagMembershipCancel()"
             >
         </button>
     </div>

@@ -249,9 +249,9 @@ export class DashboardManagerComponent implements OnInit {
         this.displayGroupMembership = true;
     }
 
-    onClickGroupMembershipCancel() {
+    onClickTagMembershipCancel() {
         // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickTagMembershipCancel', '@Start');
 
         // Close popup
         this.displayGroupMembership = false;
