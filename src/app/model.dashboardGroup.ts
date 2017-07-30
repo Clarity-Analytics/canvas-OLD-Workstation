@@ -15,11 +15,11 @@ export class EazlDashboardTag {
 
 // Canvas
 export class DashboardTag {
-    dashboardGroupID: number;
-    dashboardGroupName: string;
-    dashboardGroupDescription: string;
-    dashboardGroupCreatedDateTime: string;          // Created on
-    dashboardGroupCreatedUserName: string;          // Created by
-    dashboardGroupUpdatedDateTime: string;          // Updated on
-    dashboardGroupUpdatedUserName: string;          // Updated by
+    dashboardTagID: number;
+    dashboardTagName: string;
+    dashboardTagDescription: string;
+    dashboardTagCreatedDateTime: string;            // Created on
+    dashboardTagCreatedUserName: string;            // Created by
+    dashboardTagUpdatedDateTime: string;            // Updated on
+    dashboardTagUpdatedUserName: string;            // Updated by
 }

@@ -6702,12 +6702,12 @@ export class EazlService implements OnInit {
             dashgrp => (
                     include  &&
                         resultDashboardGroupMembership.indexOf(
-                            dashgrp.dashboardGroupID) >= 0
+                            dashgrp.dashboardTagID) >= 0
                     )
                     ||
                     (!include &&
                         resultDashboardGroupMembership.indexOf(
-                            dashgrp.dashboardGroupID) < 0
+                            dashgrp.dashboardTagID) < 0
                     )
         )
     }
