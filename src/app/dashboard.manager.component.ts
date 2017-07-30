@@ -283,9 +283,9 @@ export class DashboardManagerComponent implements OnInit {
         }
     }
 
-    onSourceReorderDashboardGroupMembership(event) {
+    onSourceReorderDashboardTagMembership(event) {
         // User clicked onSourceReorder on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderDashboardGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderDashboardTagMembership', '@Start');
     }
 
     onTargetReorderDashboardGroupMembership(event) {
