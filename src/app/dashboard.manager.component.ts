@@ -270,9 +270,9 @@ export class DashboardManagerComponent implements OnInit {
         }
     }
 
-    onMoveToSourceDashboardGroupMembership(event) {
+    onMoveToSourceDashboardTagMembership(event) {
         // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardTagMembership', '@Start');
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
