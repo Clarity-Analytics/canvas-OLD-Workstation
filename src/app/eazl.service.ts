@@ -6673,14 +6673,14 @@ export class EazlService implements OnInit {
         if (this.globalVariableService.dirtyDataDashboardTagMembership) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
-                summary:  'DashboardGroupMembership data is dirty / not up to date',
-                detail:   'The DashboardGroupMembership data is being refreshed; request again to get the latest from the database'
+                summary:  'DashboardTagMembership data is dirty / not up to date',
+                detail:   'The DashboardTagMembership data is being refreshed; request again to get the latest from the database'
             });
         }
 
         // TODO - from DB
         // Get Array of groups to in or ex clude
-        let resultDashboardGroupMembership: number[] = [];
+        let resultDashboardTagMembership: number[] = [];
 
         // Return all if no dashboardID specified
         if (dashboardID == -1) {
@@ -6691,7 +6691,7 @@ export class EazlService implements OnInit {
         this.dashboardTagMembership.forEach(
             (dashgrp) => {
                 if (dashgrp.dashboardID == dashboardID)
-                    resultDashboardGroupMembership.push(
+                    resultDashboardTagMembership.push(
                         dashgrp.dashboardTagID
                 )
             }
@@ -6701,12 +6701,12 @@ export class EazlService implements OnInit {
         return this.dashboardTags.filter(
             dashgrp => (
                     include  &&
-                        resultDashboardGroupMembership.indexOf(
+                        resultDashboardTagMembership.indexOf(
                             dashgrp.dashboardTagID) >= 0
                     )
                     ||
                     (!include &&
-                        resultDashboardGroupMembership.indexOf(
+                        resultDashboardTagMembership.indexOf(
                             dashgrp.dashboardTagID) < 0
                     )
         )
