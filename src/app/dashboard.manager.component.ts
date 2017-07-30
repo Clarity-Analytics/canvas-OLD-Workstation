@@ -257,9 +257,9 @@ export class DashboardManagerComponent implements OnInit {
         this.displayGroupMembership = false;
     }
 
-    onMoveToTargetDashboardGroupMembership(event) {
+    onMoveToTargetDashboardTagMembership(event) {
         // User clicked onMoveToTarget on Group Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardGroupMembership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardTagMembership', '@Start');
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
