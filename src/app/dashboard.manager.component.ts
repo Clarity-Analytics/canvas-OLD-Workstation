@@ -41,7 +41,7 @@ export class DashboardManagerComponent implements OnInit {
     availableDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard does NOT belongs to
     availableGroupSharedWith: Group[] = [];                     // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
-    belongstoDashboardTag: DashboardTag[] = [];               // List of Groups Dashboard already belongs to
+    belongstoDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard already belongs to
     belongstoSharedWith: string[] = [];                         // List of UserName with whom this Dashboard has been shared
     belongstoGroupsSharedWith: Group[] = [];                    // List of Groups to which Dashboard has been shared
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
