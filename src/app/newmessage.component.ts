@@ -64,6 +64,7 @@ export class NewMessageComponent implements OnInit {
             'previousMessageBody': new FormControl(''),
             'previousMessageRecipients': new FormControl('')
         });
+console.log('1-0')
 
         // New message form
         this.userformNewMessage = this.fb.group({
@@ -81,6 +82,7 @@ export class NewMessageComponent implements OnInit {
 
         // Fill combos
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
+console.log('1')
     }
 
     ngOnChanges() {
@@ -89,6 +91,7 @@ export class NewMessageComponent implements OnInit {
 
         // Refresh the data from the DB
         this.globalVariableService.dirtyDataCanvasMessage = true;
+console.log('2-0')
 
         // Clear old recipients and load new ones, if there are any
         this.previousMessageRecipients = '';
@@ -121,6 +124,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         } else {
             this.displayPreviousMessage = false;
         }
+console.log('2')
     }
 
     onMoveToTargetDashboardSendTo(event) {

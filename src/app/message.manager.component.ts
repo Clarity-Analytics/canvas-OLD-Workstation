@@ -158,6 +158,17 @@ export class MessageManagerComponent implements OnInit {
     menuActionJumpToDashboard(canvasMessage: CanvasMessage) {
         // Jumps to the designated Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
+console.log('canvasMessage.canvasMessageDashboardID', canvasMessage.canvasMessageDashboardID)
+
+        if (canvasMessage.canvasMessageDashboardID < 0  ||  
+            canvasMessage.canvasMessageDashboardID == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No link',
+                detail:   'No Dashboard has been linked to this message'
+            });
+            return;
+        }
 
         // Load DashboardID & Navigate
         this.globalVariableService.sessionLoadOnOpenDashboardID = 
