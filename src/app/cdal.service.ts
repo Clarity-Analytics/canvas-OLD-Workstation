@@ -771,9 +771,9 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         return canvasMessageRecipientWorking;
     }
 
-    loadDashboardGroup(eazlDashboardTag: EazlDashboardTag): DashboardTag {
+    loadDashboardTag(eazlDashboardTag: EazlDashboardTag): DashboardTag {
         // Load DashboardGroup: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroup', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardTag', '@Start');
 
         let dashboardTagWorking = new DashboardTag();
 

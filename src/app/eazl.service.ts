@@ -7739,7 +7739,7 @@ console.log('i in Eazl', i)
                         (eazlDashboardGroup) => {
                             for (var i = 0; i < eazlDashboardGroup.length; i++) {
                                 let DashboardGroupSingle = new DashboardTag();
-                                DashboardGroupSingle = this.cdal.loadDashboardGroup(eazlDashboardGroup[i]);
+                                DashboardGroupSingle = this.cdal.loadDashboardTag(eazlDashboardGroup[i]);
                                 dashboardGroupWorking.push(DashboardGroupSingle);
 
                             }
