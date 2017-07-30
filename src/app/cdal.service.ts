@@ -775,49 +775,49 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         // Load DashboardGroup: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroup', '@Start');
 
-        let dashboardGroupWorking = new DashboardTag();
+        let dashboardTagWorking = new DashboardTag();
 
-        dashboardGroupWorking.dashboardTagID = eazlDashboardTag.id;
+        dashboardTagWorking.dashboardTagID = eazlDashboardTag.id;
 
         if (eazlDashboardTag.name != null) {
-            dashboardGroupWorking.dashboardTagName = eazlDashboardTag.name;
+            dashboardTagWorking.dashboardTagName = eazlDashboardTag.name;
         } else {
-            dashboardGroupWorking.dashboardTagName = '';
+            dashboardTagWorking.dashboardTagName = '';
         }
 
         if (eazlDashboardTag.description != null) {
-            dashboardGroupWorking.dashboardTagDescription = eazlDashboardTag.description;
+            dashboardTagWorking.dashboardTagDescription = eazlDashboardTag.description;
         } else {
-            dashboardGroupWorking.dashboardTagDescription = '';
+            dashboardTagWorking.dashboardTagDescription = '';
         }
 
         if (eazlDashboardTag.created_on != null) {
-            dashboardGroupWorking.dashboardTagCreatedDateTime = eazlDashboardTag.created_on;
+            dashboardTagWorking.dashboardTagCreatedDateTime = eazlDashboardTag.created_on;
         } else {
-            dashboardGroupWorking.dashboardTagCreatedDateTime = '';
+            dashboardTagWorking.dashboardTagCreatedDateTime = '';
         }
 
         if (eazlDashboardTag.created_by != null) {
-            dashboardGroupWorking.dashboardTagCreatedUserName = eazlDashboardTag.created_by;
+            dashboardTagWorking.dashboardTagCreatedUserName = eazlDashboardTag.created_by;
         } else {
-            dashboardGroupWorking.dashboardTagCreatedUserName = '';
+            dashboardTagWorking.dashboardTagCreatedUserName = '';
         }
 
         if (eazlDashboardTag.updated_on != null) {
-            dashboardGroupWorking.dashboardTagUpdatedDateTime = eazlDashboardTag.updated_on;
+            dashboardTagWorking.dashboardTagUpdatedDateTime = eazlDashboardTag.updated_on;
         } else {
-            dashboardGroupWorking.dashboardTagUpdatedDateTime = '';
+            dashboardTagWorking.dashboardTagUpdatedDateTime = '';
         }
 
         if (eazlDashboardTag.updated_by != null) {
-            dashboardGroupWorking.dashboardTagUpdatedUserName = eazlDashboardTag.updated_by;
+            dashboardTagWorking.dashboardTagUpdatedUserName = eazlDashboardTag.updated_by;
         } else {
-            dashboardGroupWorking.dashboardTagUpdatedUserName = '';
+            dashboardTagWorking.dashboardTagUpdatedUserName = '';
         }
 
 
         // Return the result
-        return dashboardGroupWorking;
+        return dashboardTagWorking;
     }
 
     loadDashboardGroupMembership(
