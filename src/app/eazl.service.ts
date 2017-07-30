@@ -1280,7 +1280,7 @@ export const DASHBOARDS: Dashboard[] =
         }
     ];
 
-export const DASHBOARDGROUPMEMBERSHIP: DashboardTagMembership[] =
+export const DASHBOARDTAGMEMBERSHIP: DashboardTagMembership[] =
     [
         {
             dashboardTagID: 0,
@@ -4544,7 +4544,7 @@ export class EazlService implements OnInit {
     canvasMessages: CanvasMessage[] = [];                   // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
-    dashboardGroupMembership: DashboardTagMembership[] = DASHBOARDGROUPMEMBERSHIP; //List of Dashboard-Group
+    dashboardTagMembership: DashboardTagMembership[] = DASHBOARDTAGMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardTags: DashboardTag[];                          //List of Dashboard-Group
@@ -5229,7 +5229,7 @@ export class EazlService implements OnInit {
         // Add NrGroups calculated field
         dashboardsWorking.forEach( dw => {
             dw.dashboardNrGroups = 0;
-            dw.dashboardNrGroups = this.dashboardGroupMembership.filter( dg => {
+            dw.dashboardNrGroups = this.dashboardTagMembership.filter( dg => {
                 if (dg.dashboardID == dw.dashboardID) {
                     return dg;
                 }
@@ -6688,7 +6688,7 @@ export class EazlService implements OnInit {
         }
 
         // Make an array of groupIDs to which this user belongs
-        this.dashboardGroupMembership.forEach(
+        this.dashboardTagMembership.forEach(
             (dashgrp) => {
                 if (dashgrp.dashboardID == dashboardID)
                     resultDashboardGroupMembership.push(
@@ -6718,9 +6718,9 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupMembership', '@Start');
 
         let found: boolean = false;
-        for (var i = 0; i < this.dashboardGroupMembership.length; i++) {
-            if (this.dashboardGroupMembership[i].dashboardID == dashboardID  &&
-                this.dashboardGroupMembership[i].dashboardTagID == dashboardGroupID) {
+        for (var i = 0; i < this.dashboardTagMembership.length; i++) {
+            if (this.dashboardTagMembership[i].dashboardID == dashboardID  &&
+                this.dashboardTagMembership[i].dashboardTagID == dashboardGroupID) {
                     found = true;
                     break;
                 }
@@ -6731,7 +6731,7 @@ export class EazlService implements OnInit {
 
         // Only add if not already there
         if (!found) {
-            this.dashboardGroupMembership.push(
+            this.dashboardTagMembership.push(
                 {
 
                     dashboardTagID: dashboardGroupID,
@@ -6755,7 +6755,7 @@ export class EazlService implements OnInit {
         // Mark the data as dirty
         this.globalVariableService.dirtyDataDashboardTagMembership = true;
 
-        this.dashboardGroupMembership = this.dashboardGroupMembership.filter(
+        this.dashboardTagMembership = this.dashboardTagMembership.filter(
             item => (!(item.dashboardID == dashboardID  &&
                        item.dashboardTagID == dashboardGroupID))
         );
@@ -7798,7 +7798,7 @@ console.log('i in Eazl', i)
             // Clear all
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupMembership');
-                this.dashboardGroupMembership = [];
+                this.dashboardTagMembership = [];
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataDashboardTagMembership = true;
