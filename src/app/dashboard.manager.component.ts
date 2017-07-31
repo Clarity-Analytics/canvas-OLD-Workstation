@@ -51,7 +51,7 @@ export class DashboardManagerComponent implements OnInit {
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
-    displayGroupMembership: boolean = false;                    // True to display popup for GrpMbrship
+    displayTagMembership: boolean = false;                      // True to display popup for GrpMbrship
     displaySharedWith: boolean = false;                         // True to display popup for Users Shared With (Dashboards)
     displayGroupsSharedWith: boolean = false;                   // True to display popup for Groups Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
@@ -215,7 +215,7 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDashboardTable', '@Start');
 
         // Update the Dashboard group membership if it is open
-        if (this.displayGroupMembership) {
+        if (this.displayTagMembership) {
             this.dashboardMenuTagMembership(this.selectedDashboard)
         }
 
@@ -245,7 +245,7 @@ export class DashboardManagerComponent implements OnInit {
         );
 
         // Show popup
-        this.displayGroupMembership = true;
+        this.displayTagMembership = true;
     }
 
     onClickTagMembershipCancel() {
@@ -253,7 +253,7 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickTagMembershipCancel', '@Start');
 
         // Close popup
-        this.displayGroupMembership = false;
+        this.displayTagMembership = false;
     }
 
     onMoveToTargetDashboardTagMembership(event) {

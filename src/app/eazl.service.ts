@@ -687,81 +687,81 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         snapToGrid: true
     //     };
 // const DASHBOARDGROUPS
-    // export const DASHBOARDGROUPS: DashboardGroup[] =
-    //     [
-    //         {
-    //             dashboardGroupID: 0,
-    //             dashboardGroupName: 'Admin',
-    //             dashboardGroupDescription: 'Dashboards for Admin users',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         },
-    //         {
-    //             dashboardGroupID: 1,
-    //             dashboardGroupName: 'Marketing',
-    //             dashboardGroupDescription: 'Dashboards for Marketing Team',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         },
-    //         {
-    //             dashboardGroupID: 2,
-    //             dashboardGroupName: 'BI Team',
-    //             dashboardGroupDescription: 'Dashboards for BI Team',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         },
-    //         {
-    //             dashboardGroupID: 3,
-    //             dashboardGroupName: 'HR',
-    //             dashboardGroupDescription: 'Dashboards for Human Resources Department',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         },
-    //         {
-    //             dashboardGroupID: 4,
-    //             dashboardGroupName: 'Finance',
-    //             dashboardGroupDescription: 'Dashboards for Finance Department',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         },
-    //         {
-    //             dashboardGroupID: 5,
-    //             dashboardGroupName: 'Sales',
-    //             dashboardGroupDescription: 'Dashboards for Sales Department',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         },
-    //         {
-    //             dashboardGroupID: 6,
-    //             dashboardGroupName: 'R&D',
-    //             dashboardGroupDescription: 'Dashboards for Research and Development Department',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         },
-    //         {
-    //             dashboardGroupID: 7,
-    //             dashboardGroupName: 'IT',
-    //             dashboardGroupDescription: 'Dashboards for Information Technology Department',
-    //             dashboardGroupCreatedDateTime: '2017/05/01',
-    //             dashboardGroupCreatedUserName: 'JamesK',
-    //             dashboardGroupUpdatedDateTime: '2017/05/01',
-    //             dashboardGroupUpdatedUserName: 'JamesK'
-    //         }
-    //     ];
+    export const DASHBOARDTAGS: DashboardTag[] =
+        [
+            {
+                dashboardTagID: 0,
+                dashboardTagName: 'Admin',
+                dashboardTagDescription: 'Dashboards for Admin users',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            },
+            {
+                dashboardTagID: 1,
+                dashboardTagName: 'Marketing',
+                dashboardTagDescription: 'Dashboards for Marketing Team',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            },
+            {
+                dashboardTagID: 2,
+                dashboardTagName: 'BI Team',
+                dashboardTagDescription: 'Dashboards for BI Team',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            },
+            {
+                dashboardTagID: 3,
+                dashboardTagName: 'HR',
+                dashboardTagDescription: 'Dashboards for Human Resources Department',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            },
+            {
+                dashboardTagID: 4,
+                dashboardTagName: 'Finance',
+                dashboardTagDescription: 'Dashboards for Finance Department',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            },
+            {
+                dashboardTagID: 5,
+                dashboardTagName: 'Sales',
+                dashboardTagDescription: 'Dashboards for Sales Department',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            },
+            {
+                dashboardTagID: 6,
+                dashboardTagName: 'R&D',
+                dashboardTagDescription: 'Dashboards for Research and Development Department',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            },
+            {
+                dashboardTagID: 7,
+                dashboardTagName: 'IT',
+                dashboardTagDescription: 'Dashboards for Information Technology Department',
+                dashboardTagCreatedDateTime: '2017/05/01',
+                dashboardTagCreatedUserName: 'JamesK',
+                dashboardTagUpdatedDateTime: '2017/05/01',
+                dashboardTagUpdatedUserName: 'JamesK'
+            }
+        ];
 export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
         {
@@ -4547,7 +4547,7 @@ export class EazlService implements OnInit {
     dashboardTagMembership: DashboardTagMembership[] = DASHBOARDTAGMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardTags: DashboardTag[];                          //List of Dashboard-Group
+    dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
@@ -6668,7 +6668,7 @@ export class EazlService implements OnInit {
         // - include Optional parameter, true = include all for one, else
         //   group NOT for dashboardID
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTagMembership', '@Start');
-
+console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataDashboardTagMembership) {
             this.globalVariableService.growlGlobalMessage.next({
@@ -7734,7 +7734,7 @@ console.log('i in Eazl', i)
 
                 // Get all the data via API
                 let dashboardTagWorking: DashboardTag[] = [];
-                this.get<EazlDashboardTag>('dashboard-tag')
+                this.get<EazlDashboardTag>('dashboard-tags')
                     .subscribe(
                         (eazlDashboardTag) => {
                             for (var i = 0; i < eazlDashboardTag.length; i++) {
@@ -7743,9 +7743,10 @@ console.log('i in Eazl', i)
                                 dashboardTagWorking.push(DashboardTagSingle);
 
                             }
+console.log('cache.. dashboardTagWorking',  dashboardTagWorking)
 
                         // Replace
-                         this.dashboardTags = dashboardTagWorking;
+                        //  this.dashboardTags = dashboardTagWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataDashboardTag = false;

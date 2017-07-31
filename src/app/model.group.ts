@@ -6,6 +6,10 @@ export interface EazlGroup {
     // Defines data model for User Entity
     id: number;
     name: string;
+    profile: {
+        description: string;
+        date_created: Date;
+    }
 }
 
 // Users registered to use the system
