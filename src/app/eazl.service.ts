@@ -7763,31 +7763,31 @@ console.log('i in Eazl', i)
             }
         }
 
-        // DashboardGroupMembership
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroupMembership') {
+        // DashboardTagMembership
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTagMembership') {
 
             // Reset
             if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupMembership');
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTagMembership');
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataDashboardTagMembership = true;
 
                 // Get all the data via API
-                let DashboardGroupMembershipWorking: DashboardTagMembership[] = [];
-                this.get<EazlDashboardTagMembership>('dashboard-group-membership')
+                let dashboardTagMembershipWorking: DashboardTagMembership[] = [];
+                this.get<EazlDashboardTagMembership>('dashboard-tags')
                     .subscribe(
-                        (eazlDashboardGroupMembership) => {
-                            for (var i = 0; i < eazlDashboardGroupMembership.length; i++) {
-                                let DashboardGroupMembershipSingle = new DashboardTagMembership();
-                                DashboardGroupMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardGroupMembership[i]);
-                                DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);
+                        (eazlDashboardTagMembership) => {
+                            for (var i = 0; i < eazlDashboardTagMembership.length; i++) {
+                                let DashboardTagMembershipSingle = new DashboardTagMembership();
+                                DashboardTagMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardTagMembership[i]);
+                                dashboardTagMembershipWorking.push(DashboardTagMembershipSingle);
 
                             }
 
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dashboardGroupMembership = dashboardGroupMembershipWorking;
+                         this.dashboardTagMembership = dashboardTagMembershipWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataDashboardTagMembership = false;
@@ -7797,7 +7797,7 @@ console.log('i in Eazl', i)
 
             // Clear all
             if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupMembership');
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTagMembership');
                 this.dashboardTagMembership = [];
 
                 // Mark the data as dirty
