@@ -58,7 +58,6 @@ export class DashboardManagerComponent implements OnInit {
     displayDataSource: boolean = false;                         // True to display table for DataSources
     displayReports: boolean = false;                            // True to display table for Reports
     displayMessages: boolean = false;                           // True to display table for Messages
-    groups: DashboardTag[] = [];                              // List of Groups
     popupHeader: string = 'Dashboard Editor';                   // Popup header
     popuMenuItems: MenuItem[];                                  // Items in popup
     reports: Report[];                                          // List of Reports
