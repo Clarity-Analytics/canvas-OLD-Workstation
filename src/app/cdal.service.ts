@@ -464,18 +464,29 @@ export class CDAL {
         } else {
             groupWorking.groupName = '';
         }
-
-        if (eazlGroup.name != null) {
-            groupWorking.groupDescription = eazlGroup.name;
+        
+        if (eazlGroup.profile != null) {
+            if (eazlGroup.profile.description != null) {
+                groupWorking.groupDescription = eazlGroup.profile.description;
+            } else {
+                groupWorking.groupDescription = '';            
+            }
+            if (eazlGroup.profile.date_created != null) {
+                groupWorking.groupCreatedDateTime = eazlGroup.profile.date_created.toString();
+            } else {
+                groupWorking.groupCreatedDateTime = '';
+            }
+            groupWorking.groupCreatedUserName = '';
+            groupWorking.groupUpdatedDateTime = '';
+            groupWorking.groupUpdatedUserName = '';
         } else {
             groupWorking.groupDescription = '';
+            groupWorking.groupCreatedDateTime = '';
+            groupWorking.groupCreatedUserName = '';
+            groupWorking.groupUpdatedDateTime = '';
+            groupWorking.groupUpdatedUserName = '';
         }
-
-        groupWorking.groupCreatedDateTime = '';
-        groupWorking.groupCreatedUserName = '';
-        groupWorking.groupUpdatedDateTime = '';
-        groupWorking.groupUpdatedUserName = '';
-
+console.log('CDAL groupWorking', groupWorking)
         // Return the result
         return groupWorking;
     }
