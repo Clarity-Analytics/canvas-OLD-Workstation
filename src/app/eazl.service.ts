@@ -7722,30 +7722,30 @@ console.log('i in Eazl', i)
             }
         }
 
-        // DashboardGroup
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroup') {
+        // DashboardTag
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTag') {
 
             // Reset
             if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroup');
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTag');
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataDashboardTag = true;
 
                 // Get all the data via API
-                let dashboardGroupWorking: DashboardTag[] = [];
-                this.get<EazlDashboardTag>('dashboard-group')
+                let dashboardTagWorking: DashboardTag[] = [];
+                this.get<EazlDashboardTag>('dashboard-tag')
                     .subscribe(
-                        (eazlDashboardGroup) => {
-                            for (var i = 0; i < eazlDashboardGroup.length; i++) {
-                                let DashboardGroupSingle = new DashboardTag();
-                                DashboardGroupSingle = this.cdal.loadDashboardTag(eazlDashboardGroup[i]);
-                                dashboardGroupWorking.push(DashboardGroupSingle);
+                        (eazlDashboardTag) => {
+                            for (var i = 0; i < eazlDashboardTag.length; i++) {
+                                let DashboardTagSingle = new DashboardTag();
+                                DashboardTagSingle = this.cdal.loadDashboardTag(eazlDashboardTag[i]);
+                                dashboardTagWorking.push(DashboardTagSingle);
 
                             }
 
                         // Replace
-                         this.dashboardTags = dashboardGroupWorking;
+                         this.dashboardTags = dashboardTagWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataDashboardTag = false;
@@ -7755,7 +7755,7 @@ console.log('i in Eazl', i)
 
             // Clear all
             if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroup');
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTag');
                 this.dashboardTags = [];
 
                 // Mark the data as dirty
