@@ -46,7 +46,7 @@ export class DashboardManagerComponent implements OnInit {
     belongstoGroupsSharedWith: Group[] = [];                    // List of Groups to which Dashboard has been shared
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    dashboardGroupMembership: DashboardTagMembership[] = [];  // List of Dashboard-Group
+    dashboardTagMembership: DashboardTagMembership[] = [];      // List of Dashboard-Group
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources
