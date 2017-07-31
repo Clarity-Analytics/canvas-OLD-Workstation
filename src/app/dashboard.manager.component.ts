@@ -102,12 +102,12 @@ export class DashboardManagerComponent implements OnInit {
             },
             {
                 label: 'Tag Membership',
-                icon: 'fa-users',
+                icon: 'fa-tags',
                 command: (event) => this.dashboardMenuTagMembership(this.selectedDashboard)
             },
             {
                 label: 'Shared Users',
-                icon: 'fa-database',
+                icon: 'fa-users',
                 command: (event) => this.dashboardMenuUsersSharedWith(this.selectedDashboard)
             },
             {
@@ -116,7 +116,7 @@ export class DashboardManagerComponent implements OnInit {
                 command: (event) => this.dashboardMenuGroupsSharedWith(this.selectedDashboard)
             },
             {
-                label: 'Related Data Sources',
+                label: 'Related Datasources',
                 icon: 'fa-list',
                 command: (event) => this.dashboardMenuRelatedDataSources(this.selectedDashboard)
             },

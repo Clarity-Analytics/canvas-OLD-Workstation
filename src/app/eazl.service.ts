@@ -7780,7 +7780,7 @@ console.log('i in Eazl', i)
                         (eazlDashboardGroupMembership) => {
                             for (var i = 0; i < eazlDashboardGroupMembership.length; i++) {
                                 let DashboardGroupMembershipSingle = new DashboardTagMembership();
-                                DashboardGroupMembershipSingle = this.cdal.loadDashboardGroupMembership(eazlDashboardGroupMembership[i]);
+                                DashboardGroupMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardGroupMembership[i]);
                                 DashboardGroupMembershipWorking.push(DashboardGroupMembershipSingle);
 
                             }
