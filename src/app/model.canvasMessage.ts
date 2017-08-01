@@ -40,7 +40,7 @@ export class CanvasMessage {
     canvasMessageRecipients: [                      // Aray of users to whom msg were sent
         {
             canvasMessageRecipientID: number;       // Recipient ID
-            canvasMessageRecipientUserID: string;   // UserID to whom msg was sent (groups are collapsed)
+            canvasMessageRecipientUsername: string;     // UserID to whom msg was sent (groups are collapsed)
             canvasMessageRecipientIsSender: boolean;    // True if this is the sender
             canvasMessageRecipientStatus: string;   // UnRead, Read - maybe more later
         }

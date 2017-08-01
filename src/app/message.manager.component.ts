@@ -104,7 +104,7 @@ export class MessageManagerComponent implements OnInit {
         // If changes were made, note that recordSet is dirty
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
             
-            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID == 
+            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUsername == 
                 this.globalVariableService.canvasUser.getValue().username) {
 
                 if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus

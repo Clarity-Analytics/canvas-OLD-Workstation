@@ -7105,12 +7105,14 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
 
                     for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
 
-                        if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserID ==
-                            'janniei') {
+                        if (this.canvasMessages[i].canvasMessageRecipients[j].
+                            canvasMessageRecipientUsername == 
+                            this.globalVariableService.canvasUser.getValue().username
+                        ) {
                                 found = true;
                                 myStatus = this.canvasMessages[i].canvasMessageRecipients[j].
                                     canvasMessageRecipientStatus;
-                            }
+                          }
                     };
 
                     this.canvasMessages[i].canvasMessageMyStatus = myStatus
@@ -7568,7 +7570,6 @@ console.log('i in Eazl', i)
                 this.get<EazlGroup>('groups')
                     .subscribe(
                         (eazlGroup) => {
-console.log('EAZL eazlGroup',eazlGroup)                            
                             for (var i = 0; i < eazlGroup.length; i++) {
                                 let groupSingle = new Group();
                                 groupSingle = this.cdal.loadGroup(eazlGroup[i]);

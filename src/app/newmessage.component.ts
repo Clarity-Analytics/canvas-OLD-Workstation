@@ -238,7 +238,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
             canvasMessageRecipientID: 0,
             // canvasMessageRecipientUserID:  this.eazlService.userIDfromUserName(
             //         this.sendToTheseUsers[0]),
-            canvasMessageRecipientUserID:  this.sendToTheseUsers[0],
+            canvasMessageRecipientUsername:  this.sendToTheseUsers[0],
             canvasMessageRecipientIsSender: false,
             canvasMessageRecipientStatus: 'unread',
         }];
@@ -264,7 +264,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
                 canvasMessageRecipientID: 14 + i,
                 // canvasMessageRecipientUserID:
                 //     this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
-                canvasMessageRecipientUserID: this.sendToTheseUsers[i],
+                canvasMessageRecipientUsername: this.sendToTheseUsers[i],
                 canvasMessageRecipientIsSender:  false,
                 canvasMessageRecipientStatus:  'unread',
             });

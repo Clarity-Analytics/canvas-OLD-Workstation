@@ -486,7 +486,7 @@ export class CDAL {
             groupWorking.groupUpdatedDateTime = '';
             groupWorking.groupUpdatedUserName = '';
         }
-console.log('CDAL groupWorking', groupWorking)
+
         // Return the result
         return groupWorking;
     }
@@ -628,7 +628,7 @@ console.log('CDAL groupWorking', groupWorking)
             canvasMessageWorking.canvasMessageRecipients = [
                 {
                     canvasMessageRecipientID: -1,
-                    canvasMessageRecipientUserID: '-1',
+                    canvasMessageRecipientUsername: '-1',
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: '',
             }];
@@ -636,7 +636,7 @@ console.log('CDAL groupWorking', groupWorking)
             canvasMessageWorking.canvasMessageRecipients = [
                 {
                     canvasMessageRecipientID: eazlCanvasMessage.recipients[0].id,
-                    canvasMessageRecipientUserID: eazlCanvasMessage.recipients[0].username,
+                    canvasMessageRecipientUsername: eazlCanvasMessage.recipients[0].username,
                     canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
                     canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
             }];
@@ -647,7 +647,7 @@ console.log('CDAL groupWorking', groupWorking)
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
-                canvasMessageRecipientUserID: eazlCanvasMessage.recipients[i].username,
+                canvasMessageRecipientUsername: eazlCanvasMessage.recipients[i].username,
                 canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[i].is_sender,
                 canvasMessageRecipientStatus: eazlCanvasMessage.recipients[i].status,
             }
@@ -713,7 +713,7 @@ console.log('CDAL groupWorking', groupWorking)
 
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
 
-            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID ==
+            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUsername ==
                     this.globalVariableService.canvasUser.getValue().username) {
                 eazlCanvasMessageWorking.recipients[i].is_sender = true;
             };
@@ -723,7 +723,7 @@ console.log('CDAL groupWorking', groupWorking)
         eazlCanvasMessageWorking.recipients = [
             {
                 id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientID,
-                username: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUserID,
+                username: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUsername,
                 is_sender: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientIsSender,
                 status: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientStatus,
                 url: null
@@ -734,7 +734,7 @@ console.log('CDAL groupWorking', groupWorking)
             eazlCanvasMessageWorking.recipients.push(
                {
                     id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID,
-                    username: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID,
+                    username: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUsername,
                     is_sender: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientIsSender,
                     status: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus,
                     url: null
