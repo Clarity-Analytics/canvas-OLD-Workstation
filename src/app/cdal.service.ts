@@ -740,11 +740,11 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
 
         canvasMessageRecipientWorking.canvasMessageRecipientID = eazlCanvasMessageRecipient.id;
 
-        if (eazlCanvasMessageRecipient.message_id != null) {
-            canvasMessageRecipientWorking.canvasMessageID = eazlCanvasMessageRecipient.message_id;
-        } else {
-            canvasMessageRecipientWorking.canvasMessageID = -1;
-        }
+        // if (eazlCanvasMessageRecipient.message_id != null) {
+        //     canvasMessageRecipientWorking.canvasMessageID = eazlCanvasMessageRecipient.message_id;
+        // } else {
+        //     canvasMessageRecipientWorking.canvasMessageID = -1;
+        // }
 
         if (eazlCanvasMessageRecipient.username != null) {
             canvasMessageRecipientWorking.userName = eazlCanvasMessageRecipient.username;
@@ -752,8 +752,16 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             canvasMessageRecipientWorking.userName = '';
         }
 
-        if (eazlCanvasMessageRecipient.recipient_status != null) {
-            canvasMessageRecipientWorking.canvasMessageRecipientStatus = eazlCanvasMessageRecipient.recipient_status;
+        if (eazlCanvasMessageRecipient.is_sender != null) {
+            canvasMessageRecipientWorking.canvasMessageRecipientIsSender = 
+                eazlCanvasMessageRecipient.is_sender;
+        } else {
+            canvasMessageRecipientWorking.canvasMessageRecipientIsSender = false;
+        }
+
+        if (eazlCanvasMessageRecipient.status != null) {
+            canvasMessageRecipientWorking.canvasMessageRecipientStatus = 
+                eazlCanvasMessageRecipient.status;
         } else {
             canvasMessageRecipientWorking.canvasMessageRecipientStatus = '';
         }

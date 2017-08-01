@@ -3,17 +3,19 @@
 // Eazl
 export class EazlCanvasMessageRecipient {
     id: number;                                 // Unique DB id
-    message_id: number;                         // Canvas Message id
+    // message_id: number;                      // Canvas Message id
     username: string;                           // FK: UserName to whom msg was sent (groups are collapsed)
-    recipient_status: string;                   // UnRead, Read - maybe more later
-    read_datetime: string;                      // DateTime when msg was Read
+    is_sender: boolean;                         // True is this was the sender
+    status: string;                             // UnRead, Read - maybe more later
+    // read_datetime: string;                   // DateTime when msg was Read
 }
 
-// Canvas 
+// Canvas
 export class CanvasMessageRecipient {
     canvasMessageRecipientID: number;           // Unique DB id
-    canvasMessageID: number;                    // FK: Canvas Message id
+    // canvasMessageID: number;                 // FK: Canvas Message id
     userName: string;                           // FK: UserName to whom msg was sent (groups are collapsed when sent)
+    canvasMessageRecipientIsSender: boolean;    // True is this user was the sender
     canvasMessageRecipientStatus: string;       // UnRead, Read - maybe more later
-    canvasMessageReadDateTime: string;          // DateTime when msg was Read
+    // canvasMessageReadDateTime: string;          // DateTime when msg was Read
 }

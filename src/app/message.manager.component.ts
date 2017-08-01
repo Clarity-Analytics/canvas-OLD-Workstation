@@ -158,7 +158,6 @@ console.log('Msg M this.canvasMessages', this.canvasMessages)
     menuActionJumpToDashboard(canvasMessage: CanvasMessage) {
         // Jumps to the designated Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
-console.log('canvasMessage.canvasMessageDashboardID', canvasMessage.canvasMessageDashboardID)
 
         if (canvasMessage.canvasMessageDashboardID < 0  ||
             canvasMessage.canvasMessageDashboardID == null) {

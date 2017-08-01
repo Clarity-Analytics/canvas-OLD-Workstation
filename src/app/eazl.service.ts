@@ -7690,7 +7690,7 @@ console.log('i in Eazl', i)
 
                 // Get all the data via API
                 let canvasMessageRecipientWorking: CanvasMessageRecipient[] = [];
-                this.get<EazlCanvasMessageRecipient>('canvas-message-recipients')
+                this.get<EazlCanvasMessageRecipient>('message-recipients')
                     .subscribe(
                         (eazlCanvasMessageRecipient) => {
                             for (var i = 0; i < eazlCanvasMessageRecipient.length; i++) {
