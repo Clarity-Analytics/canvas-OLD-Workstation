@@ -3,7 +3,6 @@
 // Eazl: db_table = 'api_system_configuration'
 export class EazlSystemConfiguration {
     id: number;                             // Unique DB ID
-    record_id: number;                      // Our DB ID
     backend_url: string;                    // URL for Backend (RESTi)
     company_name: string;                   // Company Name (of user)
     company_logo: string;                   // File name of Company Logo - for later use
@@ -14,7 +13,6 @@ export class EazlSystemConfiguration {
 // Canvas
 export class SystemConfiguration {
     systemConfigurationID: number;          // Unique DB ID
-    recordID: number;                       // Our DB ID
     backendUrl: string;                     // URL for Backend (RESTi)
     companyName: string;                    // Company Name (of user)
     companyLogo: string;                    // File name of Company Logo - for later use

@@ -1771,12 +1771,6 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
 
         systemConfigurationWorking.systemConfigurationID = eazlSystemConfiguration.id;
 
-        if (eazlSystemConfiguration.record_id != null) {
-            systemConfigurationWorking.recordID = eazlSystemConfiguration.record_id;
-        } else {
-            systemConfigurationWorking.recordID = -1;
-        }
-
         if (eazlSystemConfiguration.company_name != null) {
             systemConfigurationWorking.companyName = eazlSystemConfiguration.company_name;
         } else {
@@ -1827,12 +1821,6 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         let eazlSystemConfigurationWorking = new EazlSystemConfiguration();
 
         eazlSystemConfigurationWorking.id = systemConfiguration.systemConfigurationID;
-
-        if (systemConfiguration.recordID != null) {
-            eazlSystemConfigurationWorking.record_id = systemConfiguration.recordID;
-        } else {
-            eazlSystemConfigurationWorking.record_id = -1;
-        }
 
         if (systemConfiguration.companyName != null) {
             eazlSystemConfigurationWorking.company_name = systemConfiguration.companyName;

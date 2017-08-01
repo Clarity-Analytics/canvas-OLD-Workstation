@@ -4663,11 +4663,7 @@ export class EazlService implements OnInit {
 
         // Update local values that have changed
         this.globalVariableService.systemConfigurationID = systemConfiguration.systemConfigurationID;
-        this.globalVariableService.systemConfigRecordID = systemConfiguration.recordID;
-        
-        if (systemConfiguration.recordID != this.globalVariableService.systemConfigRecordID) {
-            this.globalVariableService.systemConfigRecordID = systemConfiguration.recordID;
-        }
+
         if (systemConfiguration.companyName != this.systemConfiguration.companyName) {
             this.globalVariableService.companyName = this.systemConfiguration.companyName;
         }
