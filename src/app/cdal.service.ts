@@ -592,33 +592,36 @@ export class CDAL {
         }
 
         if (eazlCanvasMessage.date_created != null) {
-            canvasMessageWorking.canvasMessageReadDateTime = eazlCanvasMessage.date_created.toString();
+            canvasMessageWorking.canvasMessageSentDateTime = eazlCanvasMessage.date_created.toString();
         } else {
-            canvasMessageWorking.canvasMessageReadDateTime = '';
+            canvasMessageWorking.canvasMessageSentDateTime = '';
         }
 
         // TODO - add ReadDateTime field for all recipients
         // Defaults
+        canvasMessageWorking.canvasMessageSenderUserName = '';
         canvasMessageWorking.canvasMessageSentToMe = false;
         canvasMessageWorking.canvasMessageMyStatus = '';
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
 
+        // Load calculated Fields
         for (var i = 0; i < eazlCanvasMessage.recipients.length; i++) {
 
-            canvasMessageWorking.canvasMessageMyStatus =
-                eazlCanvasMessage.recipients[i].status;
 
             if (eazlCanvasMessage.recipients[i].username ==
                     this.globalVariableService.canvasUser.getValue().username) {
                     canvasMessageWorking.canvasMessageSentToMe = true;
-            };
+
+                    canvasMessageWorking.canvasMessageMyStatus =
+                    eazlCanvasMessage.recipients[i].status;
+
+                };
             if (eazlCanvasMessage.recipients[i].is_sender == true) {
                 canvasMessageWorking.canvasMessageSenderUserName =
                     eazlCanvasMessage.recipients[i].username.toString();
-                canvasMessageWorking.canvasMessageSentDateTime =
-                    eazlCanvasMessage.date_created.toString();
+
             };
         }
 
@@ -628,7 +631,7 @@ export class CDAL {
             canvasMessageWorking.canvasMessageRecipients = [
                 {
                     canvasMessageRecipientID: -1,
-                    canvasMessageRecipientUsername: '-1',
+                    canvasMessageRecipientUsername: '',
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: '',
             }];
@@ -655,7 +658,7 @@ export class CDAL {
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
-
+console.log('CDAL canvasMessageWorking', canvasMessageWorking)
         // Return the result
         return canvasMessageWorking;
     }
@@ -698,7 +701,6 @@ export class CDAL {
         } else {
             eazlCanvasMessageWorking.widget_id = null;
         }
-        // TODO - add ReadDateTime field for all recipients
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
@@ -755,12 +757,6 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         } else {
             canvasMessageRecipientWorking.canvasMessageRecipientStatus = '';
         }
-
-        // if (eazlCanvasMessageRecipient.read_datetime != null) {
-        //     canvasMessageRecipientWorking.canvasMessageReadDateTime = eazlCanvasMessageRecipient.read_datetime;
-        // } else {
-        //     canvasMessageRecipientWorking.canvasMessageReadDateTime = '';
-        // }
 
         // Return the result
         return canvasMessageRecipientWorking;

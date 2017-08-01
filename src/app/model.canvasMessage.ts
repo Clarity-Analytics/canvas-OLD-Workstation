@@ -48,3 +48,9 @@ export class CanvasMessage {
     canvasMessageReadDateTime: string;      // DateTime when msg was Read
 }
 
+
+
+    
+    // canvasMessageReadDateTime ??
+
+    // canvasMessageDashboardID ~ -1 ???
