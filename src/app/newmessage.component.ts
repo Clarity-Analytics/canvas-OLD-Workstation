@@ -209,7 +209,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         let canvasMessageWorking = new CanvasMessage();
         // TODO - fix the conversation ID properly in time
         canvasMessageWorking.canvasMessageID = 0;
-        canvasMessageWorking.canvasMessageConversationID = '';
+        canvasMessageWorking.canvasMessageConversationID = null; //'00000000-0000-0000-0000-000000000000';
         canvasMessageWorking.canvasMessageSenderUserName = this.globalVariableService.canvasUser.getValue().username;
         canvasMessageWorking.canvasMessageSentDateTime = this.canvasDate.now('standard');
         canvasMessageWorking.canvasMessageSubject = this.userformNewMessage.controls['messageSubject'].value
@@ -218,9 +218,11 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         if (this.userformNewMessage.controls['messageDashboardID'].value != ''){
             canvasMessageWorking.canvasMessageDashboardID = 
                 this.userformNewMessage.controls['messageDashboardID'].value.id;
+        } else {
+            canvasMessageWorking.canvasMessageDashboardID = null;            
         }        
-            canvasMessageWorking.canvasMessageReportID = this.userformNewMessage.controls['messageReportID'].value;
-        canvasMessageWorking.canvasMessageWidgetID = this.userformNewMessage.controls['messageWidgetID'].value;
+        canvasMessageWorking.canvasMessageReportID = null; //this.userformNewMessage.controls['messageReportID'].value;
+        canvasMessageWorking.canvasMessageWidgetID = null; //this.userformNewMessage.controls['messageWidgetID'].value;
         canvasMessageWorking.canvasMessageIsSystemGenerated = false;
         canvasMessageWorking.canvasMessageSentToMe = false;
         canvasMessageWorking.canvasMessageMyStatus = 'Read';
@@ -234,8 +236,9 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         canvasMessageWorking.canvasMessageRecipients = [
             {
             canvasMessageRecipientID: 0,
-            canvasMessageRecipientUserID:  this.eazlService.userIDfromUserName(
-                    this.sendToTheseUsers[0]),
+            // canvasMessageRecipientUserID:  this.eazlService.userIDfromUserName(
+            //         this.sendToTheseUsers[0]),
+            canvasMessageRecipientUserID:  this.sendToTheseUsers[0],
             canvasMessageRecipientIsSender: false,
             canvasMessageRecipientStatus: 'unread',
         }];
@@ -259,8 +262,9 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: 14 + i,
-                canvasMessageRecipientUserID:
-                    this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
+                // canvasMessageRecipientUserID:
+                //     this.eazlService.userIDfromUserName(this.sendToTheseUsers[i]),
+                canvasMessageRecipientUserID: this.sendToTheseUsers[i],
                 canvasMessageRecipientIsSender:  false,
                 canvasMessageRecipientStatus:  'unread',
             });

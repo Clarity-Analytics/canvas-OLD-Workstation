@@ -3,7 +3,7 @@
 // Eazl
 export class EazlReportHistory {
     id: number;                                 // Unique ID
-    username: string;                           // User who ran report
+    executor: string;                           // User who ran report
     model_name: string;                         // Model linked to: package, query
     object_id: number;                          // Id of model-object 
     checksum: string;                           // Checksum to make name & parameters unique

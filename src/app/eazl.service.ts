@@ -7110,7 +7110,7 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                     for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
 
                         if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserID ==
-                            userID) {
+                            'janniei') {
                                 found = true;
                                 myStatus = this.canvasMessages[i].canvasMessageRecipients[j].
                                     canvasMessageRecipientStatus;

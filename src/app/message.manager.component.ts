@@ -105,7 +105,7 @@ export class MessageManagerComponent implements OnInit {
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
             
             if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID == 
-                this.globalVariableService.canvasUser.getValue().id) {
+                this.globalVariableService.canvasUser.getValue().username) {
 
                 if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus
                     .toLowerCase() == 'read') {

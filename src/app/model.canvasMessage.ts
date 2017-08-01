@@ -12,7 +12,7 @@ export class EazlCanvasMessage {
     recipients: [                                   // Array of recipients
         {
             id: number;
-            user_id: number;                           // url of user
+            username: string;                       // url of user
             is_sender: boolean;                     // True if the sender
             status: string;                         // Read /UnRead
             url: string;                            // message receipient url
@@ -40,7 +40,7 @@ export class CanvasMessage {
     canvasMessageRecipients: [                      // Aray of users to whom msg were sent
         {
             canvasMessageRecipientID: number;       // Recipient ID
-            canvasMessageRecipientUserID: number; // UserID to whom msg was sent (groups are collapsed)
+            canvasMessageRecipientUserID: string;   // UserID to whom msg was sent (groups are collapsed)
             canvasMessageRecipientIsSender: boolean;    // True if this is the sender
             canvasMessageRecipientStatus: string;   // UnRead, Read - maybe more later
         }

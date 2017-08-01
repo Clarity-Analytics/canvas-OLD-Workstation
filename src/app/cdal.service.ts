@@ -610,13 +610,13 @@ console.log('CDAL groupWorking', groupWorking)
             canvasMessageWorking.canvasMessageMyStatus =
                 eazlCanvasMessage.recipients[i].status;
 
-            if (eazlCanvasMessage.recipients[i].user_id ==
-                    this.globalVariableService.canvasUser.getValue().id) {
+            if (eazlCanvasMessage.recipients[i].username ==
+                    this.globalVariableService.canvasUser.getValue().username) {
                     canvasMessageWorking.canvasMessageSentToMe = true;
             };
             if (eazlCanvasMessage.recipients[i].is_sender == true) {
                 canvasMessageWorking.canvasMessageSenderUserName =
-                    eazlCanvasMessage.recipients[i].user_id.toString();
+                    eazlCanvasMessage.recipients[i].username.toString();
                 canvasMessageWorking.canvasMessageSentDateTime = 
                     eazlCanvasMessage.date_created.toString();
             };
@@ -628,7 +628,7 @@ console.log('CDAL groupWorking', groupWorking)
             canvasMessageWorking.canvasMessageRecipients = [
                 {
                     canvasMessageRecipientID: -1,
-                    canvasMessageRecipientUserID: -1,
+                    canvasMessageRecipientUserID: '-1',
                     canvasMessageRecipientIsSender: false,
                     canvasMessageRecipientStatus: '',
             }];
@@ -636,7 +636,7 @@ console.log('CDAL groupWorking', groupWorking)
             canvasMessageWorking.canvasMessageRecipients = [
                 {
                     canvasMessageRecipientID: eazlCanvasMessage.recipients[0].id,
-                    canvasMessageRecipientUserID: eazlCanvasMessage.recipients[0].user_id,
+                    canvasMessageRecipientUserID: eazlCanvasMessage.recipients[0].username,
                     canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[0].is_sender,
                     canvasMessageRecipientStatus: eazlCanvasMessage.recipients[0].status,
             }];
@@ -647,7 +647,7 @@ console.log('CDAL groupWorking', groupWorking)
             canvasMessageWorking.canvasMessageRecipients.push(
                {
                 canvasMessageRecipientID: eazlCanvasMessage.recipients[i].id,
-                canvasMessageRecipientUserID: eazlCanvasMessage.recipients[i].user_id,
+                canvasMessageRecipientUserID: eazlCanvasMessage.recipients[i].username,
                 canvasMessageRecipientIsSender: eazlCanvasMessage.recipients[i].is_sender,
                 canvasMessageRecipientStatus: eazlCanvasMessage.recipients[i].status,
             }
@@ -680,7 +680,7 @@ console.log('CDAL groupWorking', groupWorking)
         // } else {
         //     eazlCanvasMessageWorking.conversation = '00000000-0000-0000-0000-000000000000';
         // }
-        eazlCanvasMessageWorking.conversation = '00000000-0000-0000-0000-000000000000';
+        eazlCanvasMessageWorking.conversation = canvasMessage.canvasMessageConversationID;
 
         if (canvasMessage.canvasMessageSubject != null) {
             eazlCanvasMessageWorking.subject = canvasMessage.canvasMessageSubject;
@@ -697,13 +697,13 @@ console.log('CDAL groupWorking', groupWorking)
         if (canvasMessage.canvasMessageDashboardID != null) {
             eazlCanvasMessageWorking.dashboard_id = canvasMessage.canvasMessageDashboardID;
         } else {
-            eazlCanvasMessageWorking.dashboard_id = -1;
+            eazlCanvasMessageWorking.dashboard_id = null;
         }
 
         if (canvasMessage.canvasMessageReportID != null) {
             eazlCanvasMessageWorking.package_id = canvasMessage.canvasMessageReportID;
         } else {
-            eazlCanvasMessageWorking.package_id = -1;
+            eazlCanvasMessageWorking.package_id = null;
         }
 
         // TODO - add ReadDateTime field for all recipients
@@ -714,7 +714,7 @@ console.log('CDAL groupWorking', groupWorking)
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
 
             if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID ==
-                    this.globalVariableService.canvasUser.getValue().id) {
+                    this.globalVariableService.canvasUser.getValue().username) {
                 eazlCanvasMessageWorking.recipients[i].is_sender = true;
             };
         }
@@ -723,7 +723,7 @@ console.log('CDAL groupWorking', groupWorking)
         eazlCanvasMessageWorking.recipients = [
             {
                 id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientID,
-                user_id: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUserID,
+                username: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientUserID,
                 is_sender: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientIsSender,
                 status: canvasMessage.canvasMessageRecipients[0].canvasMessageRecipientStatus,
                 url: null
@@ -734,7 +734,7 @@ console.log('CDAL groupWorking', groupWorking)
             eazlCanvasMessageWorking.recipients.push(
                {
                     id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientID,
-                    user_id: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID,
+                    username: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUserID,
                     is_sender: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientIsSender,
                     status: canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus,
                     url: null
@@ -1634,8 +1634,8 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
 
         reportHistoryWorking.reportHistoryID = eazlReportHistory.id;
 
-        if (eazlReportHistory.username != null) {
-            reportHistoryWorking.reportHistoryUserName = eazlReportHistory.username;
+        if (eazlReportHistory.executor != null) {
+            reportHistoryWorking.reportHistoryUserName = eazlReportHistory.executor;
         } else {
             reportHistoryWorking.reportHistoryUserName = '';
         }
