@@ -19,7 +19,6 @@ export class GlobalVariableService {
 
     // System-wide related variables, set at Installation
     systemConfigurationID: number = -1;
-    systemConfigRecordID: number = -1;
     backendName: string = 'Eazl';
     backendUrl: string = '';                                    // RESTi url, set in SystemConfig
     defaultDaysToKeepResultSet: number = 1;                     // Optional, set in SystemConfig
