@@ -4992,7 +4992,7 @@ export class EazlService implements OnInit {
                     if (index == -1) {
                         alert ("Error - current user id in canvasUser not in users object !")
                     }
-                
+
                     // Update local array
                     this.users[i] = user;
 
@@ -7106,7 +7106,7 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                     for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
 
                         if (this.canvasMessages[i].canvasMessageRecipients[j].
-                            canvasMessageRecipientUsername == 
+                            canvasMessageRecipientUsername ==
                             this.globalVariableService.canvasUser.getValue().username
                         ) {
                                 found = true;
@@ -7179,11 +7179,11 @@ console.log('EAZL post eazlCanvasMessage', canvasMessage)
                 .toPromise()
                 .then(eazlCanvasMessage => {
 console.log('EAZL put eazlCanvasMessage', canvasMessage)
-            
+
                     // Update local array
                     for (var i = 0; i < this.canvasMessages.length; i++) {
 console.log('i in Eazl', i)
-                        if (this.canvasMessages[i].canvasMessageID == 
+                        if (this.canvasMessages[i].canvasMessageID ==
                             canvasMessage.canvasMessageID) {
                                 this.canvasMessages[i] = canvasMessage;
                             }
@@ -8451,7 +8451,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let UserGroupMembershipWorking: UserGroupMembership[] = [];
-                
+
                 this.get<EazlUserGroupMembership>('user-group-membership')
                     .subscribe(
                         (eazlUserGroupMembership) => {

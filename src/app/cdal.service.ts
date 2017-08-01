@@ -464,12 +464,12 @@ export class CDAL {
         } else {
             groupWorking.groupName = '';
         }
-        
+
         if (eazlGroup.profile != null) {
             if (eazlGroup.profile.description != null) {
                 groupWorking.groupDescription = eazlGroup.profile.description;
             } else {
-                groupWorking.groupDescription = '';            
+                groupWorking.groupDescription = '';
             }
             if (eazlGroup.profile.date_created != null) {
                 groupWorking.groupCreatedDateTime = eazlGroup.profile.date_created.toString();
@@ -596,7 +596,7 @@ export class CDAL {
         } else {
             canvasMessageWorking.canvasMessageReadDateTime = '';
         }
-        
+
         // TODO - add ReadDateTime field for all recipients
         // Defaults
         canvasMessageWorking.canvasMessageSentToMe = false;
@@ -617,7 +617,7 @@ export class CDAL {
             if (eazlCanvasMessage.recipients[i].is_sender == true) {
                 canvasMessageWorking.canvasMessageSenderUserName =
                     eazlCanvasMessage.recipients[i].username.toString();
-                canvasMessageWorking.canvasMessageSentDateTime = 
+                canvasMessageWorking.canvasMessageSentDateTime =
                     eazlCanvasMessage.date_created.toString();
             };
         }
@@ -666,20 +666,7 @@ export class CDAL {
 
         let eazlCanvasMessageWorking = new EazlCanvasMessage();
 
-        eazlCanvasMessageWorking.id = null; //canvasMessage.canvasMessageID;
-
-        // TODO - sort out this UUID guy
-        // if (canvasMessage.canvasMessageConversationID != null) {
-        //     if(eazlCanvasMessageWorking.conversation == '') {
-        //         eazlCanvasMessageWorking.conversation = 
-        //             '00000000-0000-0000-0000-000000000000'
-        //     } else {
-        //         eazlCanvasMessageWorking.conversation = 
-        //             canvasMessage.canvasMessageConversationID;
-        //     }
-        // } else {
-        //     eazlCanvasMessageWorking.conversation = '00000000-0000-0000-0000-000000000000';
-        // }
+        eazlCanvasMessageWorking.id = null; 
         eazlCanvasMessageWorking.conversation = canvasMessage.canvasMessageConversationID;
 
         if (canvasMessage.canvasMessageSubject != null) {
@@ -706,18 +693,15 @@ export class CDAL {
             eazlCanvasMessageWorking.package_id = null;
         }
 
+        if (canvasMessage.canvasMessageWidgetID != null) {
+            eazlCanvasMessageWorking.widget_id = canvasMessage.canvasMessageWidgetID;
+        } else {
+            eazlCanvasMessageWorking.widget_id = null;
+        }
         // TODO - add ReadDateTime field for all recipients
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-
-        for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
-
-            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUsername ==
-                    this.globalVariableService.canvasUser.getValue().username) {
-                eazlCanvasMessageWorking.recipients[i].is_sender = true;
-            };
-        }
 
         // Add the first recipient - NOTE 1 in for loop
         eazlCanvasMessageWorking.recipients = [
@@ -1666,7 +1650,7 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
                 endDate.setSeconds(endDate.getSeconds() + eazlReportHistory.run_time);
                 reportHistoryWorking.reportHistoryEndDateTime = endDate.toString();
             } else {
-                reportHistoryWorking.reportHistoryEndDateTime = 
+                reportHistoryWorking.reportHistoryEndDateTime =
                     reportHistoryWorking.reportHistoryStartDateTime
             }
         } else {
