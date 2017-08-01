@@ -1474,20 +1474,20 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             packageTaskWorking.packageTaskCeleryTaskID = -1;
         }
 
-        if (eazlPackageTask.package != null) {
-            packageTaskWorking.packageTaskPackage = eazlPackageTask.package;
+        if (eazlPackageTask.query != null) {
+            packageTaskWorking.packageTaskPackage = eazlPackageTask.query;
         } else {
             packageTaskWorking.packageTaskPackage = '';
         }
 
-        if (eazlPackageTask.user != null) {
-            packageTaskWorking.packageTaskUser = eazlPackageTask.user;
+        if (eazlPackageTask.executor != null) {
+            packageTaskWorking.packageTaskUser = eazlPackageTask.executor;
         } else {
             packageTaskWorking.packageTaskUser = '';
         }
 
-        if (eazlPackageTask.date_added != null) {
-            packageTaskWorking.packageTaskCreatedDateTime = eazlPackageTask.date_added.toString();
+        if (eazlPackageTask.date_created != null) {
+            packageTaskWorking.packageTaskCreatedDateTime = eazlPackageTask.date_created.toString();
         } else {
             packageTaskWorking.packageTaskCreatedDateTime = '';
         }

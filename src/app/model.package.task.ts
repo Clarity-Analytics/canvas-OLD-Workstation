@@ -4,9 +4,12 @@
 export class EazlPackageTask {
     id: number;
     celery_task_id: number;
-    package: any;  //FK
-    user: any;  //FK
-    date_added: Date;
+    query: string;  //FK
+    executor: string;  //FK
+    date_created: Date;
+    checksum: string;
+    run_time: number;
+    cache_result: boolean;
 }
 
 // Canvas
