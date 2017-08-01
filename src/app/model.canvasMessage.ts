@@ -45,12 +45,10 @@ export class CanvasMessage {
             canvasMessageRecipientStatus: string;   // UnRead, Read - maybe more later
         }
     ];
-    canvasMessageReadDateTime: string;      // DateTime when msg was Read
 }
 
 
 
-    
-    // canvasMessageReadDateTime ??
+    // TODO - consider canvasMessageReadDateTime per Recipient
 
     // canvasMessageDashboardID ~ -1 ???
