@@ -658,7 +658,7 @@ export class CDAL {
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
-console.log('CDAL canvasMessageWorking', canvasMessageWorking)
+
         // Return the result
         return canvasMessageWorking;
     }

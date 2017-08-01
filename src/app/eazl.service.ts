@@ -7662,7 +7662,7 @@ console.log('i in Eazl', i)
                         // Replace
                          this.canvasMessages = canvasMessageWorking;
 
-                        // Mark the data as clean
+                         // Mark the data as clean
                         this.globalVariableService.dirtyDataCanvasMessage = false;
                         }
                 )

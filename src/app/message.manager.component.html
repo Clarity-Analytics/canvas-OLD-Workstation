@@ -2,19 +2,19 @@
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
 
 
-<p-dialog header="Reply to Message" 
-    [(visible)]="displayNewMessage" 
-    modal="modal" 
-    width="1000" 
+<p-dialog header="Reply to Message"
+    [(visible)]="displayNewMessage"
+    modal="modal"
+    width="1000"
     responsive="true"
     >
 
-    <newmessage 
+    <newmessage
         [previousMessage]="selectedCanvasMessage"
         [availableUsers]="availableUsers"
         [sendToTheseUsers]="sendToTheseUsers"
         [nrUnReadMessagesForMe]="nrUnReadMessagesForMe"
-        (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)" 
+        (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)"
         >
         Loading New Message form ...
     </newmessage>

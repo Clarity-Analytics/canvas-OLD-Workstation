@@ -103,7 +103,7 @@ export class NewMessageComponent implements OnInit {
                 for (var i = 0; i < this.previousMessage.canvasMessageRecipients.length; i++) {
                     this.previousMessageRecipients = this.previousMessageRecipients + ' ' +
                         this.previousMessage.canvasMessageRecipients[i].
-                            canvasMessageRecipientID.toString();
+                            canvasMessageRecipientUsername;
                 }
             } else {
                 this.previousMessageRecipients = '';
@@ -204,7 +204,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
             });
             return;
         }
-  
+
         // Create a Message object, and then add it
         let canvasMessageWorking = new CanvasMessage();
         // TODO - fix the conversation ID properly in time
@@ -216,11 +216,11 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         canvasMessageWorking.canvasMessageBody = this.userformNewMessage.controls['messageBody'].value;
 
         if (this.userformNewMessage.controls['messageDashboardID'].value != ''){
-            canvasMessageWorking.canvasMessageDashboardID = 
+            canvasMessageWorking.canvasMessageDashboardID =
                 this.userformNewMessage.controls['messageDashboardID'].value.id;
         } else {
-            canvasMessageWorking.canvasMessageDashboardID = null;            
-        }        
+            canvasMessageWorking.canvasMessageDashboardID = null;
+        }
         canvasMessageWorking.canvasMessageReportID = null; //this.userformNewMessage.controls['messageReportID'].value;
         canvasMessageWorking.canvasMessageWidgetID = null; //this.userformNewMessage.controls['messageWidgetID'].value;
         canvasMessageWorking.canvasMessageIsSystemGenerated = false;

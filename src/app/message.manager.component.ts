@@ -56,7 +56,7 @@ export class MessageManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);
-
+console.log('Msg M this.canvasMessages', this.canvasMessages)
         this.popuMenuItems = [
             {
                 label: 'Read/UnRead',
@@ -94,7 +94,7 @@ export class MessageManagerComponent implements OnInit {
         // Toggle the message between Read and UnRead
         // - canvasMessage: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleMessageReadUnRead', '@Start');
-            
+
         this.globalVariableService.dirtyDataCanvasMessage = true;
 
         // Local vars to make things more readable, methinks
@@ -103,8 +103,8 @@ export class MessageManagerComponent implements OnInit {
         // Loop on recipients: if currentUser is a recipient, then toggle status
         // If changes were made, note that recordSet is dirty
         for (var i = 0; i < canvasMessage.canvasMessageRecipients.length; i++) {
-            
-            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUsername == 
+
+            if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientUsername ==
                 this.globalVariableService.canvasUser.getValue().username) {
 
                 if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus
@@ -112,7 +112,7 @@ export class MessageManagerComponent implements OnInit {
                         recordStatus = 'UnRead';
                 } else {
                         recordStatus = 'Read';
-                } 
+                }
 
                 canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus =
                     recordStatus;
@@ -154,13 +154,13 @@ export class MessageManagerComponent implements OnInit {
         // Show the related popup form
         this.displayNewMessage = true;
     }
-    
+
     menuActionJumpToDashboard(canvasMessage: CanvasMessage) {
         // Jumps to the designated Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'menuActionNewMessage', '@Start');
 console.log('canvasMessage.canvasMessageDashboardID', canvasMessage.canvasMessageDashboardID)
 
-        if (canvasMessage.canvasMessageDashboardID < 0  ||  
+        if (canvasMessage.canvasMessageDashboardID < 0  ||
             canvasMessage.canvasMessageDashboardID == null) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
@@ -171,7 +171,7 @@ console.log('canvasMessage.canvasMessageDashboardID', canvasMessage.canvasMessag
         }
 
         // Load DashboardID & Navigate
-        this.globalVariableService.sessionLoadOnOpenDashboardID = 
+        this.globalVariableService.sessionLoadOnOpenDashboardID =
             canvasMessage.canvasMessageDashboardID;
         this.router.navigate(['dashboard']);
     }
