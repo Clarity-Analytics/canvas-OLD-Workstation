@@ -47,8 +47,4 @@ export class CanvasMessage {
     ];
 }
 
-
-
-    // TODO - consider canvasMessageReadDateTime per Recipient
-
-    // canvasMessageDashboardID ~ -1 ???
+// TODO - consider canvasMessageReadDateTime per Recipient

@@ -570,19 +570,19 @@ export class CDAL {
         if (eazlCanvasMessage.dashboard_id != null) {
             canvasMessageWorking.canvasMessageDashboardID = eazlCanvasMessage.dashboard_id;
         } else {
-            canvasMessageWorking.canvasMessageDashboardID = -1;
+            canvasMessageWorking.canvasMessageDashboardID = null;
         }
 
         if (eazlCanvasMessage.package_id != null) {
             canvasMessageWorking.canvasMessageReportID = eazlCanvasMessage.package_id;
         } else {
-            canvasMessageWorking.canvasMessageReportID = -1;
+            canvasMessageWorking.canvasMessageReportID = null;
         }
 
         if (eazlCanvasMessage.widget_id != null) {
             canvasMessageWorking.canvasMessageWidgetID = eazlCanvasMessage.widget_id;
         } else {
-            canvasMessageWorking.canvasMessageWidgetID = -1;
+            canvasMessageWorking.canvasMessageWidgetID = null;
         }
 
         if (eazlCanvasMessage.is_system_generated != null) {
