@@ -129,7 +129,6 @@ import { EazlService }                from './eazl.service';
 import { GlobalErrorHandler }         from './error-handler.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-// import { NotificationService }        from './notification.service';
 import { ReconnectingWebSocket }      from './websocket.service';
 import { WebSocketService }           from './websocket.service';
 
@@ -268,7 +267,6 @@ import { routes }                     from './app.routes';
     EazlService,
     GlobalFunctionService,
     GlobalVariableService,
-    // NotificationService,
     ReconnectingWebSocket,
     WebSocketService,
 

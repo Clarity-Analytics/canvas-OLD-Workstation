@@ -1,6 +1,6 @@
 // Schema for the Notification (message layout) class
 
-// TODO - combine this with 
+// TODO - combine this with
 // TODO - merge with CanvasMessage once it has been compeleted
 // Eazl
 export class EazlNotification {
@@ -12,13 +12,13 @@ export class EazlNotification {
 }
 
 // Canvas
-export class Notification {
-    notificationID: number;
-    author: string;
-    dateSend: string;
-    messageType: string;
-    message: string;
-}
+// export class Notification {
+//     notificationID: number;
+//     author: string;
+//     dateSend: string;
+//     messageType: string;
+//     message: string;
+// }
 
 // Basic message
 export class WebSocketBasicMessage {

@@ -106,7 +106,7 @@ import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
-import { Notification }               from './model.notification';
+// import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
@@ -8142,46 +8142,46 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
         }
 
         // Notification
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Notification') {
+        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Notification') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Notification');
+        //     // Reset
+        //     if (resetAction == 'reset') {
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Notification');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataNotification = true;
+        //         // Mark the data as dirty
+        //         this.globalVariableService.dirtyDataNotification = true;
 
-                // Get all the data via API
-                let NotificationWorking: Notification[] = [];
-                this.get<EazlNotification>('notifications')
-                    .subscribe(
-                        (eazlNotification) => {
-                            for (var i = 0; i < eazlNotification.length; i++) {
-                                let NotificationSingle = new Notification();
-                                NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
-                                NotificationWorking.push(NotificationSingle);
+        //         // Get all the data via API
+        //         let NotificationWorking: Notification[] = [];
+        //         this.get<EazlNotification>('notifications')
+        //             .subscribe(
+        //                 (eazlNotification) => {
+        //                     for (var i = 0; i < eazlNotification.length; i++) {
+        //                         let NotificationSingle = new Notification();
+        //                         NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
+        //                         NotificationWorking.push(NotificationSingle);
 
-                            }
+        //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.notifications = notificationWorking;
+        //                 // Replace
+        //                 // TODO - replace local Array after Bradley's done initial upload
+        //                 //  this.notifications = notificationWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataNotification = false;
-                        }
-                )
-            }
+        //                 // Mark the data as clean
+        //                 this.globalVariableService.dirtyDataNotification = false;
+        //                 }
+        //         )
+        //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Notification');
-                this.notifications = [];
+        //     // Clear all
+        //     if (resetAction.toLowerCase() == 'clear') {
+        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Notification');
+        //         this.notifications = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataNotification = true;
-            }
-        }
+        //         // Mark the data as dirty
+        //         this.globalVariableService.dirtyDataNotification = true;
+        //     }
+        // }
 
         // PackageTask
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'PackageTask') {

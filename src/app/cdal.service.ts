@@ -59,7 +59,7 @@ import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
-import { Notification }               from './model.notification';
+// import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
@@ -1410,42 +1410,42 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         return groupDatasourceAccessWorking;
     }
 
-    loadNotification(eazlNotification: EazlNotification): Notification {
-        // Load Notification: move data Eazl -> Canvas
-        // TODO - do we really need this guy (see CanvasMessage), else add fields like id
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadNotification', '@Start');
+    // loadNotification(eazlNotification: EazlNotification): Notification {
+    //     // Load Notification: move data Eazl -> Canvas
+    //     // TODO - do we really need this guy (see CanvasMessage), else add fields like id
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadNotification', '@Start');
 
-        let notificationWorking = new Notification();
+    //     let notificationWorking = new Notification();
 
-        notificationWorking.notificationID = eazlNotification.id;
+    //     notificationWorking.notificationID = eazlNotification.id;
 
-        if (eazlNotification.author != null) {
-            notificationWorking.author = eazlNotification.author;
-        } else {
-            notificationWorking.author = '';
-        }
+    //     if (eazlNotification.author != null) {
+    //         notificationWorking.author = eazlNotification.author;
+    //     } else {
+    //         notificationWorking.author = '';
+    //     }
 
-        if (eazlNotification.date_send != null) {
-            notificationWorking.dateSend = eazlNotification.date_send;
-        } else {
-            notificationWorking.dateSend = '';
-        }
+    //     if (eazlNotification.date_send != null) {
+    //         notificationWorking.dateSend = eazlNotification.date_send;
+    //     } else {
+    //         notificationWorking.dateSend = '';
+    //     }
 
-        if (eazlNotification.message_type != null) {
-            notificationWorking.messageType = eazlNotification.message_type;
-        } else {
-            notificationWorking.messageType = '';
-        }
+    //     if (eazlNotification.message_type != null) {
+    //         notificationWorking.messageType = eazlNotification.message_type;
+    //     } else {
+    //         notificationWorking.messageType = '';
+    //     }
 
-        if (eazlNotification.message != null) {
-            notificationWorking.message = eazlNotification.message;
-        } else {
-            notificationWorking.message = '';
-        }
+    //     if (eazlNotification.message != null) {
+    //         notificationWorking.message = eazlNotification.message;
+    //     } else {
+    //         notificationWorking.message = '';
+    //     }
 
-        // Return the result
-        return notificationWorking;
-    }
+    //     // Return the result
+    //     return notificationWorking;
+    // }
 
     loadPackageTask(eazlPackageTask: EazlPackageTask): PackageTask {
         // Load PackageTask: move data Eazl -> Canvas
