@@ -79,10 +79,8 @@ export class AppComponent implements OnInit {
         private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
             // Subscribe to Web Socket
-// this.reconnectingWebSocket.messageWS.subscribe(
-//     msg => console.log('msg', msg))       
-   this.reconnectingWebSocket.webSocketSystemMessage.subscribe(
-        message => console.log('WebSocketSystemMessage', message)
+            this.reconnectingWebSocket.webSocketSystemMessage.subscribe(
+                    message => console.log('WebSocketSystemMessage', message)
     )       
  
 
