@@ -56,7 +56,6 @@ import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
-import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
@@ -1325,35 +1324,35 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         return dataSourceUserAccessWorking;
     }
 
-    loadFilter(eazlFilter: EazlFilter): Filter {
-        // Load Filter: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadFilter', '@Start');
+    // loadFilter(eazlFilter: EazlFilter): Filter {
+    //     // Load Filter: move data Eazl -> Canvas
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadFilter', '@Start');
 
-        let filterWorking = new Filter();
+    //     let filterWorking = new Filter();
 
-        filterWorking.filterID = eazlFilter.id;
+    //     filterWorking.filterID = eazlFilter.id;
 
-        if (eazlFilter.has_atleast_one_filter != null) {
-            filterWorking.hasAtLeastOneFilter = eazlFilter.has_atleast_one_filter;
-        } else {
-            filterWorking.hasAtLeastOneFilter = false;
-        }
+    //     if (eazlFilter.has_atleast_one_filter != null) {
+    //         filterWorking.hasAtLeastOneFilter = eazlFilter.has_atleast_one_filter;
+    //     } else {
+    //         filterWorking.hasAtLeastOneFilter = false;
+    //     }
 
-        if (eazlFilter.owner != null) {
-            filterWorking.ownerUserName = eazlFilter.owner;
-        } else {
-            filterWorking.ownerUserName = '';
-        }
+    //     if (eazlFilter.owner != null) {
+    //         filterWorking.ownerUserName = eazlFilter.owner;
+    //     } else {
+    //         filterWorking.ownerUserName = '';
+    //     }
 
-        if (eazlFilter.description != null) {
-            filterWorking.description = eazlFilter.description;
-        } else {
-            filterWorking.description = '';
-        }
+    //     if (eazlFilter.description != null) {
+    //         filterWorking.description = eazlFilter.description;
+    //     } else {
+    //         filterWorking.description = '';
+    //     }
 
-        // Return the result
-        return filterWorking;
-    }
+    //     // Return the result
+    //     return filterWorking;
+    // }
 
     loadGroupDatasourceAccess(
         eazlGroupDatasourceAccess: EazlGroupDatasourceAccess
