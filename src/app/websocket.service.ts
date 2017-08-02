@@ -11,8 +11,33 @@ import { WebSocketSystemMessage }     from './model.notification';
 
 import * as Rx from 'rxjs/Rx';
 
+
 @Injectable()
-export class WebSocketService {
+export class ReconnectingWebSocket {
+	baseUri: string = `${window.location.protocol === 
+        'http:' ? 'ws:': 'wss:'}//${window.location.hostname}:8000/sockets/`;
+	webSocketSystemMessage: ReplaySubject<WebSocketSystemMessage> = new ReplaySubject(1);
+        // System msg to sent via WS
+	socket: WebSocketSubject<any>;
+
+	constructor() { }
+
+	connect(authToken: Token) {
+
+	    this.socket = Observable.webSocket(`${this.baseUri}?token=${authToken.token}`);
+		this.socket.subscribe(
+            (
+                message: WebSocketSystemMessage) => { 
+                    this.webSocketSystemMessage.next(message); 
+                } 
+            )
+		this.socket.next('ping');
+
+	}
+}
+
+// TODO - physically delete this one: it give a weird Zone runtime error if I delete it !!
+export class WebSocketServiceX {
     private subject: Rx.Subject<MessageEvent>;
     
     constructor() { }
@@ -49,26 +74,3 @@ export class WebSocketService {
     }
 }
 
-@Injectable()
-export class ReconnectingWebSocket {
-	baseUri: string = `${window.location.protocol === 
-        'http:' ? 'ws:': 'wss:'}//${window.location.hostname}:8000/sockets/`;
-	webSocketSystemMessage: ReplaySubject<WebSocketSystemMessage> = new ReplaySubject(1);
-        // System msg to sent via WS
-	socket: WebSocketSubject<any>;
-
-	constructor() { }
-
-	connect(authToken: Token) {
-
-	    this.socket = Observable.webSocket(`${this.baseUri}?token=${authToken.token}`);
-		this.socket.subscribe(
-            (
-                message: WebSocketSystemMessage) => { 
-                    this.webSocketSystemMessage.next(message); 
-                } 
-            )
-		this.socket.next('ping');
-
-	}
-}

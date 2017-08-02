@@ -3,13 +3,13 @@
 // TODO - combine this with
 // TODO - merge with CanvasMessage once it has been compeleted
 // Eazl
-export class EazlNotification {
-    id: number;
-    author: string;
-    date_send: string;
-    message_type: string;
-    message: string;
-}
+// export class EazlNotification {
+//     id: number;
+//     author: string;
+//     date_send: string;
+//     message_type: string;
+//     message: string;
+// }
 
 // Canvas
 // export class Notification {

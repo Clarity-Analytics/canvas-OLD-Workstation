@@ -90,7 +90,7 @@ import { EazlDashboardUserRelationship }    from './model.dashboardUserRelations
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
-import { EazlNotification }           from './model.notification';
+// import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
