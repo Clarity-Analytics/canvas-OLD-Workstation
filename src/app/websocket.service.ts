@@ -42,16 +42,16 @@ export class WebSocketServiceX {
     
     constructor() { }
 
-    public connect(url): Rx.Subject<MessageEvent> {
-        if(!this.subject) {
-            this.subject = this.create(url);
-            console.log("Successfully connected: " + url);
-        }
+    public connectX(url): Rx.Subject<MessageEvent> {
+        // if(!this.subject) {
+        //     this.subject = this.createX(url);
+        //     console.log("Successfully connected: " + url);
+        // }
 
         return this.subject;
     }
 
-    private create(url): Rx.Subject<MessageEvent> {
+    private createX(url): Rx.Subject<MessageEvent> {
         let ws = new WebSocket(url);
 
         let observable = Rx.Observable.create((obs: Rx.Observer<MessageEvent>) => {
