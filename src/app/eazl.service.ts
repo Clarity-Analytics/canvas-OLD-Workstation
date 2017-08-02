@@ -8624,7 +8624,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let widgetTypeWorking: WidgetType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8666,7 +8666,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let graphTypeWorking: GraphType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8708,7 +8708,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 // Get all the data via API
                 let borderDropdownWorking: SelectItem[] = [];
 
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8751,7 +8751,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 // Get all the data via API
                 let boxShadowDropdownsWorking: SelectItem[] = [];
 
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8794,7 +8794,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 // Get all the data via API
                 let fontSizeDropdownsWorking: SelectItem[] = [];
 
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8837,7 +8837,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 // Get all the data via API
                 let gridSizeDropdownsWorking: SelectItem[] = [];
 
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8880,7 +8880,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 // Get all the data via API
                 let backgroundImageDropdownsWorking: SelectItem[] = [];
 
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8920,7 +8920,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let textMarginDropdownWorking: WidgetType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -8962,7 +8962,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let fontWeightDropdownWorking: WidgetType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -9004,7 +9004,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let textPaddingDropdownWorking: WidgetType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -9046,7 +9046,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let TextPositionDropdownWorking: WidgetType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -9088,7 +9088,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let TextAlignDropdownWorking: WidgetType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
@@ -9130,7 +9130,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let imageSourceDropdownWorking: WidgetType[] = [];
-                this.get<EazlAppData>('appdata')
+                this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {

@@ -6,7 +6,7 @@
 
 // Eazl
 export class EazlAppData {
-	record_id: number;
+	object_id: number;
 	entity: string;
     name: string;
     label: string;

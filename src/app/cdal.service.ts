@@ -2594,8 +2594,8 @@ eazlSystemConfigurationWorking.company_logo = null
             widgetTypesWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            widgetTypesWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            widgetTypesWorking.value.id = eazlAppData.object_id;
         } else {
             widgetTypesWorking.value.id = -1;
         }
@@ -2627,8 +2627,8 @@ eazlSystemConfigurationWorking.company_logo = null
             graphTypesWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            graphTypesWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            graphTypesWorking.value.id = eazlAppData.object_id;
         } else {
             graphTypesWorking.value.id = -1;
         }
@@ -2663,8 +2663,8 @@ eazlSystemConfigurationWorking.company_logo = null
             borderDropdownsWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            borderDropdownsWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            borderDropdownsWorking.value.id = eazlAppData.object_id;
         } else {
             borderDropdownsWorking.value.id = -1;
         }
@@ -2699,8 +2699,8 @@ eazlSystemConfigurationWorking.company_logo = null
             boxShadowDropdownsWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            boxShadowDropdownsWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            boxShadowDropdownsWorking.value.id = eazlAppData.object_id;
         } else {
             boxShadowDropdownsWorking.value.id = -1;
         }
@@ -2735,8 +2735,8 @@ eazlSystemConfigurationWorking.company_logo = null
             fontSizeDropdownsWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            fontSizeDropdownsWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            fontSizeDropdownsWorking.value.id = eazlAppData.object_id;
         } else {
             fontSizeDropdownsWorking.value.id = -1;
         }
@@ -2771,8 +2771,8 @@ eazlSystemConfigurationWorking.company_logo = null
             gridSizeDropdownsWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            gridSizeDropdownsWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            gridSizeDropdownsWorking.value.id = eazlAppData.object_id;
         } else {
             gridSizeDropdownsWorking.value.id = -1;
         }
@@ -2807,8 +2807,8 @@ eazlSystemConfigurationWorking.company_logo = null
             backgroundImageDropdownsWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            backgroundImageDropdownsWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            backgroundImageDropdownsWorking.value.id = eazlAppData.object_id;
         } else {
             backgroundImageDropdownsWorking.value.id = -1;
         }
@@ -2843,8 +2843,8 @@ eazlSystemConfigurationWorking.company_logo = null
             textMarginDropdownWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            textMarginDropdownWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            textMarginDropdownWorking.value.id = eazlAppData.object_id;
         } else {
             textMarginDropdownWorking.value.id = -1;
         }
@@ -2879,8 +2879,8 @@ eazlSystemConfigurationWorking.company_logo = null
             fontWeightDropdownDropdownWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            fontWeightDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            fontWeightDropdownDropdownWorking.value.id = eazlAppData.object_id;
         } else {
             fontWeightDropdownDropdownWorking.value.id = -1;
         }
@@ -2915,8 +2915,8 @@ eazlSystemConfigurationWorking.company_logo = null
             fontWeightDropdownDropdownWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            fontWeightDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            fontWeightDropdownDropdownWorking.value.id = eazlAppData.object_id;
         } else {
             fontWeightDropdownDropdownWorking.value.id = -1;
         }
@@ -2951,8 +2951,8 @@ eazlSystemConfigurationWorking.company_logo = null
             textPositionDropdownDropdownWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            textPositionDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            textPositionDropdownDropdownWorking.value.id = eazlAppData.object_id;
         } else {
             textPositionDropdownDropdownWorking.value.id = -1;
         }
@@ -2987,8 +2987,8 @@ eazlSystemConfigurationWorking.company_logo = null
             textAlignDropdownDropdownWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            textAlignDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            textAlignDropdownDropdownWorking.value.id = eazlAppData.object_id;
         } else {
             textAlignDropdownDropdownWorking.value.id = -1;
         }
@@ -3023,8 +3023,8 @@ eazlSystemConfigurationWorking.company_logo = null
             imageSourceDropdownDropdownWorking.label = '';
         }
 
-        if (eazlAppData.record_id != null) {
-            imageSourceDropdownDropdownWorking.value.id = eazlAppData.record_id;
+        if (eazlAppData.object_id != null) {
+            imageSourceDropdownDropdownWorking.value.id = eazlAppData.object_id;
         } else {
             imageSourceDropdownDropdownWorking.value.id = -1;
         }
