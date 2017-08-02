@@ -11,47 +11,47 @@ import { WebSocketSystemMessage }     from './model.notification';
 
 import * as Rx from 'rxjs/Rx';
 
-@Injectable()
-export class WebSocketService {
-    private subject: Rx.Subject<MessageEvent>;
-    
-    constructor() { }
+// @Injectable()
+// export class WebSocketService {
+//     private subject: Rx.Subject<MessageEvent>;
 
-    public connect(url): Rx.Subject<MessageEvent> {
-        if(!this.subject) {
-            this.subject = this.create(url);
-            console.log("Successfully connected: " + url);
-        }
+//     constructor() { }
 
-        return this.subject;
-    }
+//     public connect(url): Rx.Subject<MessageEvent> {
+//         if(!this.subject) {
+//             this.subject = this.create(url);
+//             console.log("Successfully connected: " + url);
+//         }
 
-    private create(url): Rx.Subject<MessageEvent> {
-        let ws = new WebSocket(url);
+//         return this.subject;
+//     }
 
-        let observable = Rx.Observable.create((obs: Rx.Observer<MessageEvent>) => {
-            ws.onmessage = obs.next.bind(obs);
-            ws.onerror = obs.error.bind(obs);
-            ws.onclose = obs.complete.bind(obs);
+//     private create(url): Rx.Subject<MessageEvent> {
+//         let ws = new WebSocket(url);
 
-            return ws.close.bind(ws);
-        });
+//         let observable = Rx.Observable.create((obs: Rx.Observer<MessageEvent>) => {
+//             ws.onmessage = obs.next.bind(obs);
+//             ws.onerror = obs.error.bind(obs);
+//             ws.onclose = obs.complete.bind(obs);
 
-        let observer = {
-            next: (data: Object) => {
-                if (ws.readyState === WebSocket.OPEN) {
-                    ws.send(JSON.stringify(data));
-                }
-            },
-        };
+//             return ws.close.bind(ws);
+//         });
 
-        return Rx.Subject.create(observer, observable);
-    }
-}
+//         let observer = {
+//             next: (data: Object) => {
+//                 if (ws.readyState === WebSocket.OPEN) {
+//                     ws.send(JSON.stringify(data));
+//                 }
+//             },
+//         };
+
+//         return Rx.Subject.create(observer, observable);
+//     }
+// }
 
 @Injectable()
 export class ReconnectingWebSocket {
-	baseUri: string = `${window.location.protocol === 
+	baseUri: string = `${window.location.protocol ===
         'http:' ? 'ws:': 'wss:'}//${window.location.hostname}:8000/sockets/`;
 	webSocketSystemMessage: ReplaySubject<WebSocketSystemMessage> = new ReplaySubject(1);
         // System msg to sent via WS
@@ -64,9 +64,9 @@ export class ReconnectingWebSocket {
 	    this.socket = Observable.webSocket(`${this.baseUri}?token=${authToken.token}`);
 		this.socket.subscribe(
             (
-                message: WebSocketSystemMessage) => { 
-                    this.webSocketSystemMessage.next(message); 
-                } 
+                message: WebSocketSystemMessage) => {
+                    this.webSocketSystemMessage.next(message);
+                }
             )
 		this.socket.next('ping');
 
