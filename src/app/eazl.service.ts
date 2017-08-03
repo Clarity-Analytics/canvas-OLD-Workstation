@@ -93,6 +93,7 @@ import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 // import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
+import { EazlReportX }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
@@ -8236,15 +8237,17 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let ReportWorking: Report[] = [];
-                this.get<EazlReport>('reports')
+                // this.get<EazlReport>('queries')
+                this.get<EazlReportX>('queries')
                     .subscribe(
                         (eazlReport) => {
-                            for (var i = 0; i < eazlReport.length; i++) {
-                                let ReportSingle = new Report();
-                                ReportSingle = this.cdal.loadReport(eazlReport[i]);
-                                ReportWorking.push(ReportSingle);
+console.log('EAZL eazlReport', eazlReport)
+                            // for (var i = 0; i < eazlReport.length; i++) {
+                                // let ReportSingle = new Report();
+                                // ReportSingle = this.cdal.loadReport(eazlReport[i]);
+                                // ReportWorking.push(ReportSingle);
 
-                            }
+                            // }
 
                         // Replace
                         // TODO - replace local Array after Bradley's done initial upload

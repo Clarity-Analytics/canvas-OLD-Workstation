@@ -15,6 +15,45 @@ export class EazlReport {
     created_by: string;                 // Created by
 }
 
+export class EazlReportX {
+    id: number;                         // Unique DB ID
+    name: string;                       // Name
+    package_id: number;                 // FK to DataSource
+    package_permissions: [
+        {
+            package_permission: string;
+        }
+    ];
+    specification: {
+        fields: any;
+        // [
+        //     {
+        //         name: string;
+        //         alias: string;
+        //         aggfunc: string;
+        //         scalarfunc: string;
+        //     }
+        // ];
+        parameters: any;
+        version: number;
+    };
+    fields: 
+        {
+            name: string;
+            alias: string;
+            aggfunc: string;
+            scalarfunc: string;
+        }
+    execute: string;
+    permissions: [
+        {
+            permission: string;
+        }
+    ];
+    url: string;
+
+}
+
 // Canvas
 export class Report {
     reportID: number;                   // Unique DB ID
