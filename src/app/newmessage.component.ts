@@ -243,7 +243,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
             canvasMessageRecipientID: 0,
             canvasMessageRecipientUsername:  this.sendToTheseUsers[0],
             canvasMessageRecipientIsSender: false,
-            canvasMessageRecipientStatus: 'unread',
+            canvasMessageRecipientStatus: 'UnRead',
         }];
 
         if (this.sendToTheseUsers[0] == currentUser) {
@@ -267,7 +267,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
                 canvasMessageRecipientID: null,
                 canvasMessageRecipientUsername: this.sendToTheseUsers[i],
                 canvasMessageRecipientIsSender:  false,
-                canvasMessageRecipientStatus:  'unread',
+                canvasMessageRecipientStatus:  'UnRead',
             });
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';

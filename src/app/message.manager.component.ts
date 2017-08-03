@@ -55,8 +55,13 @@ export class MessageManagerComponent implements OnInit {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);
-console.log('Msg M this.canvasMessages', this.canvasMessages)
+        this.canvasMessages = this.eazlService.getCanvasMessages()
+
+        // Refresh to get latest messages
+        if (this.globalVariableService.dirtyDataCanvasMessage) {
+            this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
+        }
+
         this.popuMenuItems = [
             {
                 label: 'Read/UnRead',
@@ -77,18 +82,17 @@ console.log('Msg M this.canvasMessages', this.canvasMessages)
         ];
 
     }
+    
+    // ngOnChanges() {
+    //     // Reacts to changes in selectedGroup
+    //     this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
-    ngOnChanges() {
-        // Reacts to changes in selectedGroup
-        this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
-
-        // Refresh to get latest messages
-        if (this.globalVariableService.dirtyDataCanvasMessage) {
-            this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
-            this.canvasMessages = this.eazlService.getCanvasMessages()
-            this.globalVariableService.dirtyDataCanvasMessage = false;
-        }
-    }
+    //     // Refresh to get latest messages
+    //     if (this.globalVariableService.dirtyDataCanvasMessage) {
+    //         this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
+    //         this.canvasMessages = this.eazlService.getCanvasMessages()
+    //     }
+    // }
 
     toggleMessageReadUnRead(canvasMessage: CanvasMessage) {
         // Toggle the message between Read and UnRead
