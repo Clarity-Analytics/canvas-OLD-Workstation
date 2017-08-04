@@ -93,7 +93,6 @@ import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 // import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
-import { EazlReportX }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
@@ -3807,54 +3806,96 @@ export const WIDGETCOMMENTS: WidgetComment[] =
 
 export const REPORTS: Report[] =
     [
-        {
-            reportID: 1,
-            reportCode: 'EDM Val',
-            reportName: 'EDM weekly Values',
-            description: 'Description ...  etc',
-            reportParameters: '',
-            dataSourceID: 0,
-            dataSourceParameters: '',
-            reportFields:
-                [ "category", "amount"],
-            reportData:
-                [
-                    {"category": "A0", "amount": 38},
-                    {"category": "B0", "amount": 45},
-                    {"category": "C0", "amount": 53},
-                    {"category": "D0", "amount": 61},
-                    {"category": "E0", "amount": 71},
-                    {"category": "F0", "amount": 83},
-                    {"category": "G0", "amount": 99},
-                    {"category": "H0", "amount": 107}
-                ],
-            reportCreatedDateTime: '2017/05/01',
-            reportCreatedUserName: 'jannie'
-        },
-        {
-            reportID: 2,
-            reportCode: 'Bond Val',
-            reportName: 'Bond monthly Values',
-            description: 'Description ...  etc',
-            reportParameters: '',
-            dataSourceID: 1,
-            dataSourceParameters: '',
-            reportFields:
-                [ "category", "amount"],
-            reportData:
-                [
-                    {"category": "A22", "amount": 108},
-                    {"category": "B22", "amount": 115},
-                    {"category": "C22", "amount": 123},
-                    {"category": "D22", "amount": 131},
-                    {"category": "E22", "amount": 144},
-                    {"category": "F22", "amount": 153},
-                    {"category": "G22", "amount": 169},
-                    {"category": "H22", "amount": 177}
-                ],
-            reportCreatedDateTime: '2017/05/01',
-            reportCreatedUserName: 'jannie'
-        }
+    {
+        "reportID": 2,
+        "reportName": "Sales by Date",
+        "dataSourceID": 3,
+        "reportPackagePermissions": [
+            {"package_permission": "add_package"},
+            {"package_permission": "assign_permission_package"},
+            {"package_permission": "change_package"},
+            {"package_permission": "delete_package"},
+            {"package_permission": "execute_package"},
+            {"package_permission": "package_owned_access"},
+            {"package_permission": "package_shared_access"},
+            {"package_permission": "remove_permission_package"},
+            {"package_permission": "view_package"}
+        ],
+        "reportSpecification": '',
+        "reportFields": [
+            {
+                "name": "InvoiceDate",
+                "alias": "Date",
+                "aggfunc": null,
+                "scalarfunc": null
+            },
+            {
+                "name": "Total",
+                "alias": "sum(Total)",
+                "aggfunc": "sum",
+                "scalarfunc": null
+            }
+        ],
+        "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
+        "reportPermissions": [
+            {"permission": "add_query"},
+            {"permission": "assign_permission_query"},
+            {"permission": "change_query"},
+            {"permission": "delete_query"},
+            {"permission": "remove_permission_query"},
+            {"permission": "view_query"}
+        ],
+        "reportUrl": "http://localhost:8000/api/queries/2/",
+        "reportData": null
+    }      
+        // {
+        //     reportID: 1,
+        //     reportCode: 'EDM Val',
+        //     reportName: 'EDM weekly Values',
+        //     description: 'Description ...  etc',
+        //     reportParameters: '',
+        //     dataSourceID: 0,
+        //     dataSourceParameters: '',
+        //     reportFields:
+        //         [ "category", "amount"],
+        //     reportData:
+        //         [
+        //             {"category": "A0", "amount": 38},
+        //             {"category": "B0", "amount": 45},
+        //             {"category": "C0", "amount": 53},
+        //             {"category": "D0", "amount": 61},
+        //             {"category": "E0", "amount": 71},
+        //             {"category": "F0", "amount": 83},
+        //             {"category": "G0", "amount": 99},
+        //             {"category": "H0", "amount": 107}
+        //         ],
+        //     reportCreatedDateTime: '2017/05/01',
+        //     reportCreatedUserName: 'jannie'
+        // },
+        // {
+        //     reportID: 2,
+        //     reportCode: 'Bond Val',
+        //     reportName: 'Bond monthly Values',
+        //     description: 'Description ...  etc',
+        //     reportParameters: '',
+        //     dataSourceID: 1,
+        //     dataSourceParameters: '',
+        //     reportFields:
+        //         [ "category", "amount"],
+        //     reportData:
+        //         [
+        //             {"category": "A22", "amount": 108},
+        //             {"category": "B22", "amount": 115},
+        //             {"category": "C22", "amount": 123},
+        //             {"category": "D22", "amount": 131},
+        //             {"category": "E22", "amount": 144},
+        //             {"category": "F22", "amount": 153},
+        //             {"category": "G22", "amount": 169},
+        //             {"category": "H22", "amount": 177}
+        //         ],
+        //     reportCreatedDateTime: '2017/05/01',
+        //     reportCreatedUserName: 'jannie'
+        // }
     ];
 
 export const WIDGETTEMPLATES: WidgetTemplate[] =
@@ -5734,6 +5775,8 @@ export class EazlService implements OnInit {
         // Return a list of Reports
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFields', '@Start');
 
+        let fieldsWorking: string[] = [];
+
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataReport) {
             this.globalVariableService.growlGlobalMessage.next({
@@ -5745,9 +5788,15 @@ export class EazlService implements OnInit {
 
         for (var i = 0; i < this.reports.length; i++) {
             if (this.reports[i].reportID == reportID) {
-                return this.reports[i].reportFields;
+    
+                for (var j = 0; j < this.reports.length; j++) {
+                    fieldsWorking.push(this.reports[i].reportFields[j].name)
+                }
             }
         }
+
+        // Done
+        return fieldsWorking;
     }
 
     getReportFieldSelectedItems(reportID: number): SelectItem[] {
@@ -5769,10 +5818,10 @@ export class EazlService implements OnInit {
         let reportFieldsSelectItemsWorking: SelectItem[] = [];
         for (var i = 0; i < reportWorking.reportFields.length; i++) {
             reportFieldsSelectItemsWorking.push({
-                label: reportWorking.reportFields[i],
+                label: reportWorking.reportFields[i].alias,
                 value: {
                     id: i,
-                    name: reportWorking.reportFields[i]
+                    name: reportWorking.reportFields[i].name
                 }
             });
         }
@@ -8238,7 +8287,7 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 // Get all the data via API
                 let ReportWorking: Report[] = [];
                 // this.get<EazlReport>('queries')
-                this.get<EazlReportX>('queries')
+                this.get<EazlReport>('queries')
                     .subscribe(
                         (eazlReport) => {
 console.log('EAZL eazlReport', eazlReport)

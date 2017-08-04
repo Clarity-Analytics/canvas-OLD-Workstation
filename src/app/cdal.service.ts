@@ -1503,46 +1503,82 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         //     ReportWorking.description = '';
         // }
 
-        if (eazlReport.parameters != null) {
-            ReportWorking.reportParameters = eazlReport.parameters;
+        // if (eazlReport.parameters != null) {
+        //     ReportWorking.reportParameters = eazlReport.parameters;
+        // } else {
+        //     ReportWorking.reportParameters = '';
+        // }
+
+        // if (eazlReport.datasource_id != null) {
+        //     ReportWorking.dataSourceID = eazlReport.datasource_id;
+        // } else {
+        //     ReportWorking.dataSourceID = -1;
+        // }
+
+        // if (eazlReport.datasource_parameters != null) {
+        //     ReportWorking.dataSourceParameters = eazlReport.datasource_parameters;
+        // } else {
+        //     ReportWorking.dataSourceParameters = '';
+        // }
+
+        // if (eazlReport.report_fields != null) {
+        //     ReportWorking.reportFields = eazlReport.report_fields;
+        // } else {
+        //     ReportWorking.reportFields = [];
+        // }
+
+        // if (eazlReport.report_data != null) {
+        //     ReportWorking.reportData = eazlReport.report_data;
+        // } else {
+        //     ReportWorking.reportData = [];
+        // }
+
+        // if (eazlReport.created_on != null) {
+        //     ReportWorking.reportCreatedDateTime = eazlReport.created_on;
+        // } else {
+        //     ReportWorking.reportCreatedDateTime = '';
+        // }
+
+        // if (eazlReport.created_by != null) {
+        //     ReportWorking.reportCreatedUserName = eazlReport.created_by;
+        // } else {
+        //     ReportWorking.reportCreatedUserName = '';
+        // }
+
+        if (eazlReport.package_permissions != null) {
+            ReportWorking.reportPackagePermissions = eazlReport.package_permissions;
         } else {
-            ReportWorking.reportParameters = '';
+            ReportWorking.reportPackagePermissions = null;
         }
 
-        if (eazlReport.datasource_id != null) {
-            ReportWorking.dataSourceID = eazlReport.datasource_id;
+        if (eazlReport.specification != null) {
+            ReportWorking.reportSpecification = eazlReport.specification;
         } else {
-            ReportWorking.dataSourceID = -1;
+            ReportWorking.reportSpecification = null;
         }
 
-        if (eazlReport.datasource_parameters != null) {
-            ReportWorking.dataSourceParameters = eazlReport.datasource_parameters;
+        if (eazlReport.fields != null) {
+            ReportWorking.reportFields = eazlReport.fields;
         } else {
-            ReportWorking.dataSourceParameters = '';
+            ReportWorking.reportFields = null;
         }
 
-        if (eazlReport.report_fields != null) {
-            ReportWorking.reportFields = eazlReport.report_fields;
+        if (eazlReport.execute != null) {
+            ReportWorking.reportExecute = eazlReport.execute;
         } else {
-            ReportWorking.reportFields = [];
+            ReportWorking.reportExecute = '';
         }
 
-        if (eazlReport.report_data != null) {
-            ReportWorking.reportData = eazlReport.report_data;
+        if (eazlReport.permissions != null) {
+            ReportWorking.reportPermissions = eazlReport.permissions;
         } else {
-            ReportWorking.reportData = [];
+            ReportWorking.reportPermissions = null;
         }
 
-        if (eazlReport.created_on != null) {
-            ReportWorking.reportCreatedDateTime = eazlReport.created_on;
+        if (eazlReport.url != null) {
+            ReportWorking.reportUrl = eazlReport.url;
         } else {
-            ReportWorking.reportCreatedDateTime = '';
-        }
-
-        if (eazlReport.created_by != null) {
-            ReportWorking.reportCreatedUserName = eazlReport.created_by;
-        } else {
-            ReportWorking.reportCreatedUserName = '';
+            ReportWorking.reportUrl = '';
         }
 
         // Return the result

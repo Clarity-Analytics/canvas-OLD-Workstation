@@ -1,7 +1,7 @@
 // Schema for the Report class
 
 // Eazl
-export class EazlReport {
+export class EazlReportOLD {
     id: number;                         // Unique DB ID
     code: string;                       // Code
     name: string;                       // Name
@@ -15,7 +15,7 @@ export class EazlReport {
     created_by: string;                 // Created by
 }
 
-export class EazlReportX {
+export class EazlReport {
     id: number;                         // Unique DB ID
     name: string;                       // Name
     package_id: number;                 // FK to DataSource
@@ -24,18 +24,16 @@ export class EazlReportX {
             package_permission: string;
         }
     ];
-    specification: {
-        fields: any;
-        parameters: any;
-        version: number;
-    };
+    specification: any;
     fields: 
+        [
         {
             name: string;
             alias: string;
             aggfunc: string;
             scalarfunc: string;
         }
+        ]
     execute: string;
     permissions: [
         {
@@ -52,35 +50,33 @@ export class Report {
     // reportCode: string;                 // Code
     reportName: string;                 // Name
     // description: string;                // Description
-    reportParameters: string;           // Parameters (optional)
+    // reportParameters: string;           // Parameters (optional)
     dataSourceID: number;               // FK to DataSource
-    dataSourceParameters: string;       // Data Source Parameters
-    reportFields: string[];             // Array of report fields, obtained from DB
-    package_permissions: [
+    // dataSourceParameters: string;       // Data Source Parameters
+    // reportFields: string[];             // Array of report fields, obtained from DB
+    reportPackagePermissions: [
         {
             package_permission: string;
         }
     ];
-    specification: {
-        fields: any;
-        parameters: any;
-        version: number;
-    };
-    fields: 
+    reportSpecification: any;
+    reportFields: 
+        [
         {
             name: string;
             alias: string;
             aggfunc: string;
             scalarfunc: string;
         }
-    execute: string;
-    permissions: [
+        ]
+    reportExecute: string;
+    reportPermissions: [
         {
             permission: string;
         }
     ];
-    url: string;
+    reportUrl: string;
     reportData: any[];                  // Array (json) of data rows
-    reportCreatedDateTime: string;      // Date time of creation
-    reportCreatedUserName: string;      // UserName who created record
+    // reportCreatedDateTime: string;      // Date time of creation
+    // reportCreatedUserName: string;      // UserName who created record
 }
