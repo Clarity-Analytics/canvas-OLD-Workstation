@@ -1497,11 +1497,11 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             ReportWorking.reportName = '';
         }
 
-        if (eazlReport.description != null) {
-            ReportWorking.description = eazlReport.description;
-        } else {
-            ReportWorking.description = '';
-        }
+        // if (eazlReport.description != null) {
+        //     ReportWorking.description = eazlReport.description;
+        // } else {
+        //     ReportWorking.description = '';
+        // }
 
         if (eazlReport.parameters != null) {
             ReportWorking.reportParameters = eazlReport.parameters;

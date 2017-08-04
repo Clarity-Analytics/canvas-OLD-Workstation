@@ -26,14 +26,6 @@ export class EazlReportX {
     ];
     specification: {
         fields: any;
-        // [
-        //     {
-        //         name: string;
-        //         alias: string;
-        //         aggfunc: string;
-        //         scalarfunc: string;
-        //     }
-        // ];
         parameters: any;
         version: number;
     };
@@ -57,13 +49,37 @@ export class EazlReportX {
 // Canvas
 export class Report {
     reportID: number;                   // Unique DB ID
-    reportCode: string;                 // Code
+    // reportCode: string;                 // Code
     reportName: string;                 // Name
-    description: string;                // Description
+    // description: string;                // Description
     reportParameters: string;           // Parameters (optional)
     dataSourceID: number;               // FK to DataSource
     dataSourceParameters: string;       // Data Source Parameters
     reportFields: string[];             // Array of report fields, obtained from DB
+    package_permissions: [
+        {
+            package_permission: string;
+        }
+    ];
+    specification: {
+        fields: any;
+        parameters: any;
+        version: number;
+    };
+    fields: 
+        {
+            name: string;
+            alias: string;
+            aggfunc: string;
+            scalarfunc: string;
+        }
+    execute: string;
+    permissions: [
+        {
+            permission: string;
+        }
+    ];
+    url: string;
     reportData: any[];                  // Array (json) of data rows
     reportCreatedDateTime: string;      // Date time of creation
     reportCreatedUserName: string;      // UserName who created record

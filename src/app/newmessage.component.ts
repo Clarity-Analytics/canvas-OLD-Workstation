@@ -20,6 +20,11 @@ import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
+// TODO - delete
+import { WebSocketBasicMessage } from './model.notification';
+import { WebSocketRefDataMessage } from './model.notification';
+
+
 @Component({
     selector:    'newmessage',
     templateUrl: 'newmessage.component.html',
@@ -87,6 +92,29 @@ export class NewMessageComponent implements OnInit {
     ngOnChanges() {
         // Reacts to changes in selectedGroup
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
+
+// TODO - delete
+let basic = new WebSocketBasicMessage();
+
+basic =  {
+	webSocketDatetime: new Date,
+	webSocketSenderUsername: 'JohnDoe',
+	webSocketMessageType: 'WebSocketRefDataMessage',
+	webSocketMessageBody: 					
+		{
+			webSocketTableName: 'Table that was amended',
+			webSocketAction: 'What was done at one of two levels:',
+			webSocketRecordID: 5,
+			webSocketMessage: 'Optional message'
+		}
+}
+    
+let ref: WebSocketRefDataMessage = basic;
+console.log(basic, ref)
+
+
+
+
 
         // Refresh the data from the DB
         this.globalVariableService.dirtyDataCanvasMessage = true;

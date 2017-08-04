@@ -22,7 +22,7 @@
 
 // Basic message
 export class WebSocketBasicMessage {
-	webSocketDatetime: string;			// DateTime when the WS server sent the message
+	webSocketDatetime: Date;			// DateTime when the WS server sent the message
 	webSocketSenderUsername: string;	// Sender / originator of the message
 	webSocketMessageType: string;		// Type that determines the body content:
 										// - WebSocketCanvasMessage
