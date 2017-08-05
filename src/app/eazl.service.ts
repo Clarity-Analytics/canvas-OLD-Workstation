@@ -8288,22 +8288,20 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataReport = true;
 
                 // Get all the data via API
-                let ReportWorking: Report[] = [];
+                let reportWorking: Report[] = [];
                 // this.get<EazlReport>('queries')
                 this.get<EazlReport>('queries')
                     .subscribe(
                         (eazlReport) => {
-console.log('EAZL eazlReport', eazlReport)
-                            // for (var i = 0; i < eazlReport.length; i++) {
-                                // let ReportSingle = new Report();
-                                // ReportSingle = this.cdal.loadReport(eazlReport[i]);
-                                // ReportWorking.push(ReportSingle);
+                            for (var i = 0; i < eazlReport.length; i++) {
+                                let ReportSingle = new Report();
+                                ReportSingle = this.cdal.loadReport(eazlReport[i]);
+                                reportWorking.push(ReportSingle);
 
-                            // }
+                            }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.reports = reportWorking;
+                         this.reports = reportWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataReport = false;
