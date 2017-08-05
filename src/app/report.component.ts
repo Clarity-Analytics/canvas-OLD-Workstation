@@ -155,7 +155,7 @@ export class ReportComponent implements OnInit {
 
         this.displayNewWidgetForm = true;
     }
- 
+
     reportMenuReportBuilder(selectedReport: Report) {
         // Show popup to build a report = query
         // - selectedReport: currently selected row

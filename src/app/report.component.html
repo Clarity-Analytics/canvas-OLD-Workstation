@@ -1,22 +1,22 @@
-<p-dataTable 
+<p-dataTable
   #dt
         columnResizeMode="expand"
         exportFilename="reports"
         [contextMenu]="cm"
-        [paginator]="true" 
-        [pageLinks]="3" 
+        [paginator]="true"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedReport"
-        selectionMode="single" 
-        [scrollable]="false"  
+        selectionMode="single"
+        [scrollable]="false"
         [sortMode]="multiple"
-        [value]="reports"  
+        [value]="reports"
         (click)="onClickReportTable()"
-        >    
+        >
     <p-column field="reportID" header="ID"></p-column>
     <p-column field="reportCode" header="Code"></p-column>
     <p-column field="reportName" header="Name"></p-column>
@@ -33,7 +33,7 @@
 
 
 <!--Popup for User Access-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayUserAccess"
     header="Users with access"
     [closeOnEscape]=false
@@ -45,18 +45,18 @@
         columnResizeMode="expand"
         exportFilename="users"
         [contextMenu]="cm"
-        [paginator]="true" 
-        [pageLinks]="3" 
+        [paginator]="true"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedReport"
-        selectionMode="single" 
-        [scrollable]="false"  
+        selectionMode="single"
+        [scrollable]="false"
         [sortMode]="multiple"
-        [value]="users"  
+        [value]="users"
         >
         <p-header
             [style]="{'background-color': 'darkgray'}">
@@ -66,122 +66,122 @@
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
+                <button
+                    type="button"
+                    pButton
+                    icon="fa-file-o"
+                    iconPos="left"
+                    label="CSV"
+                    (click)="dt.exportCSV()"
                     >
                 </button>
             </span>
-            
+
         </p-header>
-        <p-column 
-            field="username" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="UserName" 
+        <p-column
+            field="username"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="UserName"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="firstName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="FirstName" 
+        <p-column
+            field="firstName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="FirstName"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="lastName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="LastName" 
+        <p-column
+            field="lastName"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="LastName"
             [sortable]="true"
             >
         </p-column>
-        <p-column field="nickName" 
-            [filter]="true" 
-            filterMatchMode="contains" 
+        <p-column field="nickName"
+            [filter]="true"
+            filterMatchMode="contains"
             header="NickName"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="lastDatetimeLoggedIn" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Last Login" 
+        <p-column
+            field="lastDatetimeLoggedIn"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Last Login"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="emailAddress" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Email" 
+        <p-column
+            field="emailAddress"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Email"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="cellNumber" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Cell" 
+        <p-column
+            field="cellNumber"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Cell"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="workTelephoneNumber" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Work Tel" 
+        <p-column
+            field="workTelephoneNumber"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Work Tel"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="activeFromDate" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Active From" 
+        <p-column
+            field="activeFromDate"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Active From"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="inactiveDate" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Inactive Date" 
+        <p-column
+            field="inactiveDate"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Inactive Date"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="isStaff" 
-            [filter]="true" 
-            filterMatchMode="contains" 
-            header="Is Staff" 
+        <p-column
+            field="isStaff"
+            [filter]="true"
+            filterMatchMode="contains"
+            header="Is Staff"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
@@ -190,7 +190,7 @@
 
 
 <!--Popup for Group Access-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayGroupAccess"
     header="Groups with access"
     [closeOnEscape]=false
@@ -201,18 +201,18 @@
     <p-dataTable  #dt
         columnResizeMode="expand"
         exportFilename="groups"
-        [paginator]="false" 
-        [pageLinks]="3" 
+        [paginator]="false"
+        [pageLinks]="3"
         [reorderableColumns]="true"
         [resizableColumns]="true"
         [responsive]="true"
-        [rows]="10" 
+        [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
         [(selection)]="selectedReport"
-        selectionMode="single" 
-        [scrollable]="true"  
+        selectionMode="single"
+        [scrollable]="true"
         [sortMode]="multiple"
-        [value]="groups"  
+        [value]="groups"
         >
         <p-header
             [style]="{'background-color': 'darkgray'}">
@@ -222,45 +222,45 @@
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
                 >
-                <button 
-                    type="button" 
-                    pButton 
-                    icon="fa-file-o" 
-                    iconPos="left" 
-                    label="CSV" 
-                    (click)="dt.exportCSV()" 
+                <button
+                    type="button"
+                    pButton
+                    icon="fa-file-o"
+                    iconPos="left"
+                    label="CSV"
+                    (click)="dt.exportCSV()"
                     >
                 </button>
             </span>
-            
+
         </p-header>
-        <p-column 
-            field="groupID" 
-            [filter]="false" 
-            filterMatchMode="contains" 
-            header="ID" 
+        <p-column
+            field="groupID"
+            [filter]="false"
+            filterMatchMode="contains"
+            header="ID"
             [sortable]="true"
-            [style]="{width: '80px', 
+            [style]="{width: '80px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="groupName" 
-            [filter]="false" 
-            filterMatchMode="contains" 
-            header="Name" 
+        <p-column
+            field="groupName"
+            [filter]="false"
+            filterMatchMode="contains"
+            header="Name"
             [sortable]="true"
-            [style]="{width: '120px', 
+            [style]="{width: '120px',
                     'text-align': 'center'}"
             >
         </p-column>
-        <p-column 
-            field="groupDescription" 
-            [filter]="false" 
-            filterMatchMode="contains" 
-            header="Description" 
+        <p-column
+            field="groupDescription"
+            [filter]="false"
+            filterMatchMode="contains"
+            header="Description"
             [sortable]="true"
-            [style]="{width: '320px', 
+            [style]="{width: '320px',
                     'text-align': 'center'}"            >
         </p-column>
     </p-dataTable>
@@ -268,7 +268,7 @@
 
 
 <!--Popup for Report History-->
-<p-dialog 
+<p-dialog
     [(visible)]="displayReportHistory"
     header="Report History"
     [closeOnEscape]=false
@@ -291,17 +291,17 @@
 
 
 <!--Popup for New Widget-->
-<p-dialog header="New Widget" 
-    [(visible)]="displayNewWidgetForm" 
-    modal="modal" 
+<p-dialog header="New Widget"
+    [(visible)]="displayNewWidgetForm"
+    modal="modal"
     height="450"
-    width="600" 
+    width="600"
     responsive="true"
     >
 
-    <widget-new 
+    <widget-new
         [selectedReport]="selectedReport"
-        (formSubmit)="handleNewWidgetFormSubmit($event)" 
+        (formSubmit)="handleNewWidgetFormSubmit($event)"
         >
         Loading New Widget form ...
     </widget-new>
@@ -310,17 +310,17 @@
 
 
 <!--Popup for Report Builder-->
-<p-dialog header="New Widget" 
-    [(visible)]="displayReportBuilderForm" 
-    modal="modal" 
+<p-dialog header="New Widget"
+    [(visible)]="displayReportBuilderForm"
+    modal="modal"
     height="450"
-    width="600" 
+    width="600"
     responsive="true"
     >
 
-    <report-builder 
+    <report-builder
         [selectedReport]="selectedReport"
-        (formSubmit)="handleReportBuilderFormSubmit($event)" 
+        (formSubmit)="handleReportBuilderFormSubmit($event)"
         >
         Loading Report Builder form ...
     </report-builder>
