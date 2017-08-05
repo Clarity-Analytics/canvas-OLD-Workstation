@@ -90,7 +90,6 @@ import { EazlDashboardUserRelationship }    from './model.dashboardUserRelations
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
-// import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
@@ -106,7 +105,6 @@ import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
 import { GroupDatasourceAccess }      from './model.groupDSaccess';
-// import { Notification }               from './model.notification';
 import { PackageTask }                from './model.package.task';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
@@ -7193,7 +7191,6 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
             )
                 .toPromise()
                 .then(eazlCanvasMessage => {
-console.log('EAZL post eazlCanvasMessage', canvasMessage)
 
             // Set the local ID ~ id returned by API
             canvasMessage.canvasMessageID = eazlCanvasMessage.id;
@@ -7230,11 +7227,9 @@ console.log('EAZL post eazlCanvasMessage', canvasMessage)
             )
                 .toPromise()
                 .then(eazlCanvasMessage => {
-console.log('EAZL put eazlCanvasMessage', canvasMessage)
 
                     // Update local array
                     for (var i = 0; i < this.canvasMessages.length; i++) {
-console.log('i in Eazl', i)
                         if (this.canvasMessages[i].canvasMessageID ==
                             canvasMessage.canvasMessageID) {
                                 this.canvasMessages[i] = canvasMessage;
@@ -7257,45 +7252,6 @@ console.log('i in Eazl', i)
                 })
 
     }
-
-    // canvasMessageToggleRead(messageID: number) {
-    //     // Updates the status of the CanvasMessage for the current user
-    //     // - messageID message to update
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'canvasMessageToggleRead', '@Start');
-
-    //     // Report to user if dirty at the moment
-    //     if (this.globalVariableService.dirtyDataCanvasMessage) {
-    //         this.globalVariableService.growlGlobalMessage.next({
-    //             severity: 'warn',
-    //             summary:  'CanvasMessages data is dirty / not up to date',
-    //             detail:   'The CanvasMessages data is being refreshed; request again to get the latest from the database'
-    //         });
-    //     }
-
-    //     // Return the necessary
-    //     let userID: number = -1;
-    //     if (this.globalVariableService.canvasUser.getValue() != null) {
-    //         userID = this.globalVariableService.canvasUser.getValue().id;
-    //     }
-    //     for (var i = 0; i < this.canvasMessages.length; i++) {
-    //         if (this.canvasMessages[i].canvasMessageID == messageID) {
-    //             for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
-    //                 if (this.canvasMessages[i].canvasMessageRecipients[j].canvasMessageRecipientUserID ==
-    //                         userID) {
-    //                             if (this.canvasMessages[i].canvasMessageRecipients[j].
-    //                                 canvasMessageRecipientStatus == 'Read') {
-    //                                     this.canvasMessages[i].canvasMessageRecipients[j].
-    //                                         canvasMessageRecipientStatus = 'UnRead';
-    //                             }
-    //                             else {
-    //                                 this.canvasMessages[i].canvasMessageRecipients[j].
-    //                                     canvasMessageRecipientStatus = 'Read';
-    //                             }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 
     getWidgetTypes(): WidgetType[] {
         // Return list of Grapy Types
@@ -8110,48 +8066,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
 
-        // // Filter
-        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Filter') {
-
-        //     // Reset
-        //     if (resetAction == 'reset') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Filter');
-
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataFilter = true;
-
-        //         // Get all the data via API
-        //         let FilterWorking: Filter[] = [];
-        //         this.get<EazlFilter>('filters')
-        //             .subscribe(
-        //                 (eazlFilter) => {
-        //                     for (var i = 0; i < eazlFilter.length; i++) {
-        //                         let FilterSingle = new Filter();
-        //                         FilterSingle = this.cdal.loadFilter(eazlFilter[i]);
-        //                         FilterWorking.push(FilterSingle);
-
-        //                     }
-
-        //                 // Replace
-        //                 // TODO - replace local Array after Bradley's done initial upload
-        //                 //  this.filters = filterWorking;
-
-        //                 // Mark the data as clean
-        //                 this.globalVariableService.dirtyDataFilter = false;
-        //                 }
-        //         )
-        //     }
-
-        //     // Clear all
-        //     if (resetAction.toLowerCase() == 'clear') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Filter');
-        //         this.filters = [];
-
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataFilter = true;
-        //     }
-        // }
-
         // GroupDatasourceAccess
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GroupDatasourceAccess') {
 
@@ -8193,48 +8107,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
             }
         }
-
-        // Notification
-        // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Notification') {
-
-        //     // Reset
-        //     if (resetAction == 'reset') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Notification');
-
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataNotification = true;
-
-        //         // Get all the data via API
-        //         let NotificationWorking: Notification[] = [];
-        //         this.get<EazlNotification>('notifications')
-        //             .subscribe(
-        //                 (eazlNotification) => {
-        //                     for (var i = 0; i < eazlNotification.length; i++) {
-        //                         let NotificationSingle = new Notification();
-        //                         NotificationSingle = this.cdal.loadNotification(eazlNotification[i]);
-        //                         NotificationWorking.push(NotificationSingle);
-
-        //                     }
-
-        //                 // Replace
-        //                 // TODO - replace local Array after Bradley's done initial upload
-        //                 //  this.notifications = notificationWorking;
-
-        //                 // Mark the data as clean
-        //                 this.globalVariableService.dirtyDataNotification = false;
-        //                 }
-        //         )
-        //     }
-
-        //     // Clear all
-        //     if (resetAction.toLowerCase() == 'clear') {
-        //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Notification');
-        //         this.notifications = [];
-
-        //         // Mark the data as dirty
-        //         this.globalVariableService.dirtyDataNotification = true;
-        //     }
-        // }
 
         // PackageTask
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'PackageTask') {
