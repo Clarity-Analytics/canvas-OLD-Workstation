@@ -2007,6 +2007,18 @@ eazlSystemConfigurationWorking.company_logo = null
             widgetTemplateWorking.widgetTemplateDescription = '';
         }
 
+        // Create an empty sub-group
+        widgetTemplateWorking.vegaParameters = {
+            vegaGraphHeight: null,
+            vegaGraphWidth: null,
+            vegaGraphPadding: null,
+            vegaHasSignals: null,
+            vegaXcolumn: null,
+            vegaYcolumn: null,
+            vegaFillColor: null,
+            vegaHoverColor: null
+        } 
+
         if (eazlWidgetTemplate.vega_chart_height != null) {
             widgetTemplateWorking.vegaParameters.vegaGraphHeight = eazlWidgetTemplate.vega_chart_height;
         } else {

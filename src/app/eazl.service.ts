@@ -8587,20 +8587,19 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataWidgetTemplate = true;
 
                 // Get all the data via API
-                let WidgetTemplateWorking: WidgetTemplate[] = [];
+                let widgetTemplateWorking: WidgetTemplate[] = [];
                 this.get<EazlWidgetTemplate>('widget-templates')
                     .subscribe(
                         (eazlWidgetTemplate) => {
                             for (var i = 0; i < eazlWidgetTemplate.length; i++) {
                                 let WidgetTemplateSingle = new WidgetTemplate();
                                 WidgetTemplateSingle = this.cdal.loadWidgetTemplate(eazlWidgetTemplate[i]);
-                                WidgetTemplateWorking.push(WidgetTemplateSingle);
+                                widgetTemplateWorking.push(WidgetTemplateSingle);
 
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.widgetTemplates = widgetTemplateWorking;
+                         this.widgetTemplates = widgetTemplateWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataWidgetTemplate = false;
