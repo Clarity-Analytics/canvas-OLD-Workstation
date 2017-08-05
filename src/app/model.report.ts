@@ -47,9 +47,9 @@ export class EazlReport {
 // Canvas
 export class Report {
     reportID: number;                   // Unique DB ID
-    // reportCode: string;                 // Code
+    reportCode: string;                 // Code
     reportName: string;                 // Name
-    // description: string;                // Description
+    reportDescription: string;                // Description
     // reportParameters: string;           // Parameters (optional)
     dataSourceID: number;               // FK to DataSource
     // dataSourceParameters: string;       // Data Source Parameters
@@ -69,6 +69,7 @@ export class Report {
             scalarfunc: string;
         }
         ]
+    reportFieldsString: string;                 // Stringified list of fields
     reportExecute: string;
     reportPermissions: [
         {

@@ -3808,7 +3808,9 @@ export const REPORTS: Report[] =
     [
     {
         "reportID": 2,
+        "reportCode": 'Sales',
         "reportName": "Sales by Date",
+        "reportDescription": 'Sales of products arranged by Date',
         "dataSourceID": 3,
         "reportPackagePermissions": [
             {"package_permission": "add_package"},
@@ -3836,6 +3838,7 @@ export const REPORTS: Report[] =
                 "scalarfunc": null
             }
         ],
+        "reportFieldsString": "InvoiceDate Total ",
         "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
         "reportPermissions": [
             {"permission": "add_query"},

@@ -1559,8 +1559,13 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
 
         if (eazlReport.fields != null) {
             ReportWorking.reportFields = eazlReport.fields;
+            for (var i = 0; i < eazlReport.fields.length; i++) {
+                ReportWorking.reportFieldsString = ReportWorking.reportFieldsString + ' ' +
+                    eazlReport.fields[i].name;
+            }
         } else {
             ReportWorking.reportFields = null;
+            ReportWorking.reportFieldsString = '';
         }
 
         if (eazlReport.execute != null) {
