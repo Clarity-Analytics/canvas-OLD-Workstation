@@ -5567,7 +5567,7 @@ export class EazlService implements OnInit {
         // Set default config for a new Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'getDefaultWidgetConfig', '@Start');
 
-        let DefaultWidgetConfig: Widget = {
+        let defaultWidgetConfig: Widget = {
             container: {
                 backgroundColor: this.globalVariableService.lastBackgroundColor.getValue().name,
                 border: this.globalVariableService.lastBorder.getValue().name,
@@ -5679,7 +5679,7 @@ export class EazlService implements OnInit {
             }
         }
 
-        return DefaultWidgetConfig;
+        return defaultWidgetConfig;
     }
 
     getReports(
@@ -7788,9 +7788,9 @@ console.log('i in Eazl', i)
                     .subscribe(
                         (eazlDashboardTag) => {
                             for (var i = 0; i < eazlDashboardTag.length; i++) {
-                                let DashboardTagSingle = new DashboardTag();
-                                DashboardTagSingle = this.cdal.loadDashboardTag(eazlDashboardTag[i]);
-                                dashboardTagWorking.push(DashboardTagSingle);
+                                let dashboardTagSingle = new DashboardTag();
+                                dashboardTagSingle = this.cdal.loadDashboardTag(eazlDashboardTag[i]);
+                                dashboardTagWorking.push(dashboardTagSingle);
 
                             }
 console.log('cache.. dashboardTagWorking',  dashboardTagWorking)
@@ -7830,9 +7830,9 @@ console.log('cache.. dashboardTagWorking',  dashboardTagWorking)
                     .subscribe(
                         (eazlDashboardTagMembership) => {
                             for (var i = 0; i < eazlDashboardTagMembership.length; i++) {
-                                let DashboardTagMembershipSingle = new DashboardTagMembership();
-                                DashboardTagMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardTagMembership[i]);
-                                dashboardTagMembershipWorking.push(DashboardTagMembershipSingle);
+                                let dashboardTagMembershipSingle = new DashboardTagMembership();
+                                dashboardTagMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardTagMembership[i]);
+                                dashboardTagMembershipWorking.push(dashboardTagMembershipSingle);
 
                             }
 
@@ -7867,14 +7867,14 @@ console.log('cache.. dashboardTagWorking',  dashboardTagWorking)
                 this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
 
                 // Get all the data via API
-                let DashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
+                let dashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
                 this.get<EazlDashboardGroupRelationship>('dashboard-group-relationship')
                     .subscribe(
                         (eazlDashboardGroupRelationship) => {
                             for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
-                                let DashboardGroupRelationshipSingle = new DashboardGroupRelationship();
-                                DashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
-                                DashboardGroupRelationshipWorking.push(DashboardGroupRelationshipSingle);
+                                let dashboardGroupRelationshipSingle = new DashboardGroupRelationship();
+                                dashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
+                                dashboardGroupRelationshipWorking.push(dashboardGroupRelationshipSingle);
 
                             }
 
@@ -7952,14 +7952,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataDashboardsPerUser = true;
 
                 // Get all the data via API
-                let DashboardsPerUserWorking: DashboardsPerUser[] = [];
+                let dashboardsPerUserWorking: DashboardsPerUser[] = [];
                 this.get<EazlDashboardsPerUser>('dashboards-per-user')
                     .subscribe(
                         (eazlDashboardsPerUser) => {
                             for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
-                                let DashboardsPerUserSingle = new DashboardsPerUser();
-                                DashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
-                                DashboardsPerUserWorking.push(DashboardsPerUserSingle);
+                                let dashboardsPerUserSingle = new DashboardsPerUser();
+                                dashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
+                                dashboardsPerUserWorking.push(dashboardsPerUserSingle);
 
                             }
 
@@ -7994,14 +7994,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataDashboardUserRelationship = true;
 
                 // Get all the data via API
-                let DashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
+                let dashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
                 this.get<EazlDashboardUserRelationship>('dashboard-user-relationships')
                     .subscribe(
                         (eazlDashboardUserRelationship) => {
                             for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
-                                let DashboardUserRelationshipSingle = new DashboardUserRelationship();
-                                DashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
-                                DashboardUserRelationshipWorking.push(DashboardUserRelationshipSingle);
+                                let dashboardUserRelationshipSingle = new DashboardUserRelationship();
+                                dashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
+                                dashboardUserRelationshipWorking.push(dashboardUserRelationshipSingle);
 
                             }
 
@@ -8036,14 +8036,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataDatasourcesPerUser = true;
 
                 // Get all the data via API
-                let DatasourcesPerUserWorking: DatasourcesPerUser[] = [];
+                let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
                 this.get<EazlDatasourcesPerUser>('datasources-per-user')
                     .subscribe(
                         (eazlDatasourcesPerUser) => {
                             for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
-                                let DatasourcesPerUserSingle = new DatasourcesPerUser();
-                                DatasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
-                                DatasourcesPerUserWorking.push(DatasourcesPerUserSingle);
+                                let datasourcesPerUserSingle = new DatasourcesPerUser();
+                                datasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
+                                datasourcesPerUserWorking.push(datasourcesPerUserSingle);
 
                             }
 
@@ -8078,15 +8078,15 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataDataSourceUserAccess = true;
 
                 // Get all the data via API
-                let DataSourceUserAccessWorking: DataSourceUserAccess[] = [];
+                let dataSourceUserAccessWorking: DataSourceUserAccess[] = [];
                 this.get<EazlDataSourceUserAccess>('datasource-user-accesss')
                     .subscribe(
                         (eazlDataSourceUserAccess) => {
                             for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
-                                let DataSourceUserAccessSingle = new DataSourceUserAccess();
-                                DataSourceUserAccessSingle =
+                                let dataSourceUserAccessSingle = new DataSourceUserAccess();
+                                dataSourceUserAccessSingle =
                                     this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
-                                DataSourceUserAccessWorking.push(DataSourceUserAccessSingle);
+                                dataSourceUserAccessWorking.push(dataSourceUserAccessSingle);
 
                             }
 
@@ -8163,14 +8163,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
 
                 // Get all the data via API
-                let GroupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
+                let groupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
                 this.get<EazlGroupDatasourceAccess>('group-datasource-accesss')
                     .subscribe(
                         (eazlGroupDatasourceAccess) => {
                             for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
-                                let GroupDatasourceAccessSingle = new GroupDatasourceAccess();
-                                GroupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
-                                GroupDatasourceAccessWorking.push(GroupDatasourceAccessSingle);
+                                let groupDatasourceAccessSingle = new GroupDatasourceAccess();
+                                groupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
+                                groupDatasourceAccessWorking.push(groupDatasourceAccessSingle);
 
                             }
 
@@ -8294,9 +8294,9 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                     .subscribe(
                         (eazlReport) => {
                             for (var i = 0; i < eazlReport.length; i++) {
-                                let ReportSingle = new Report();
-                                ReportSingle = this.cdal.loadReport(eazlReport[i]);
-                                reportWorking.push(ReportSingle);
+                                let reportSingle = new Report();
+                                reportSingle = this.cdal.loadReport(eazlReport[i]);
+                                reportWorking.push(reportSingle);
 
                             }
 
@@ -8330,14 +8330,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataReportWidgetSet = true;
 
                 // Get all the data via API
-                let ReportWidgetSetWorking: ReportWidgetSet[] = [];
+                let reportWidgetSetWorking: ReportWidgetSet[] = [];
                 this.get<EazlReportWidgetSet>('report-widget-sets')
                     .subscribe(
                         (eazlReportWidgetSet) => {
                             for (var i = 0; i < eazlReportWidgetSet.length; i++) {
-                                let ReportWidgetSetSingle = new ReportWidgetSet();
-                                ReportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
-                                ReportWidgetSetWorking.push(ReportWidgetSetSingle);
+                                let reportWidgetSetSingle = new ReportWidgetSet();
+                                reportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
+                                reportWidgetSetWorking.push(reportWidgetSetSingle);
 
                             }
 
@@ -8372,14 +8372,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataReportHistory = true;
 
                 // Get all the data via API
-                let ReportHistoryWorking: ReportHistory[] = [];
+                let reportHistoryWorking: ReportHistory[] = [];
                 this.get<EazlReportHistory>('task-history')
                     .subscribe(
                         (eazlReportHistory) => {
                             for (var i = 0; i < eazlReportHistory.length; i++) {
-                                let ReportHistorySingle = new ReportHistory();
-                                ReportHistorySingle = this.cdal.loadReportHistory(eazlReportHistory[i]);
-                                ReportHistoryWorking.push(ReportHistorySingle);
+                                let reportHistorySingle = new ReportHistory();
+                                reportHistorySingle = this.cdal.loadReportHistory(eazlReportHistory[i]);
+                                reportHistoryWorking.push(reportHistorySingle);
 
                             }
 
@@ -8414,14 +8414,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataReportUserRelationship = true;
 
                 // Get all the data via API
-                let ReportUserRelationshipWorking: ReportUserRelationship[] = [];
+                let reportUserRelationshipWorking: ReportUserRelationship[] = [];
                 this.get<EazlReportUserRelationship>('report-user-relationships')
                     .subscribe(
                         (eazlReportUserRelationship) => {
                             for (var i = 0; i < eazlReportUserRelationship.length; i++) {
-                                let ReportUserRelationshipSingle = new ReportUserRelationship();
-                                ReportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
-                                ReportUserRelationshipWorking.push(ReportUserRelationshipSingle);
+                                let reportUserRelationshipSingle = new ReportUserRelationship();
+                                reportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
+                                reportUserRelationshipWorking.push(reportUserRelationshipSingle);
 
                             }
 
@@ -8502,15 +8502,15 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataUserGroupMembership = true;
 
                 // Get all the data via API
-                let UserGroupMembershipWorking: UserGroupMembership[] = [];
+                let userGroupMembershipWorking: UserGroupMembership[] = [];
 
                 this.get<EazlUserGroupMembership>('user-group-membership')
                     .subscribe(
                         (eazlUserGroupMembership) => {
                             for (var i = 0; i < eazlUserGroupMembership.length; i++) {
-                                let UserGroupMembershipSingle = new UserGroupMembership();
-                                UserGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
-                                UserGroupMembershipWorking.push(UserGroupMembershipSingle);
+                                let userGroupMembershipSingle = new UserGroupMembership();
+                                userGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
+                                userGroupMembershipWorking.push(userGroupMembershipSingle);
 
                             }
 
@@ -8545,14 +8545,14 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataWidgetComment = true;
 
                 // Get all the data via API
-                let WidgetCommentWorking: WidgetComment[] = [];
+                let widgetCommentWorking: WidgetComment[] = [];
                 this.get<EazlWidgetComment>('widget-comments')
                     .subscribe(
                         (eazlWidgetComment) => {
                             for (var i = 0; i < eazlWidgetComment.length; i++) {
-                                let WidgetCommentSingle = new WidgetComment();
-                                WidgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
-                                WidgetCommentWorking.push(WidgetCommentSingle);
+                                let widgetCommentSingle = new WidgetComment();
+                                widgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
+                                widgetCommentWorking.push(widgetCommentSingle);
 
                             }
 
@@ -8592,9 +8592,9 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                     .subscribe(
                         (eazlWidgetTemplate) => {
                             for (var i = 0; i < eazlWidgetTemplate.length; i++) {
-                                let WidgetTemplateSingle = new WidgetTemplate();
-                                WidgetTemplateSingle = this.cdal.loadWidgetTemplate(eazlWidgetTemplate[i]);
-                                widgetTemplateWorking.push(WidgetTemplateSingle);
+                                let widgetTemplateSingle = new WidgetTemplate();
+                                widgetTemplateSingle = this.cdal.loadWidgetTemplate(eazlWidgetTemplate[i]);
+                                widgetTemplateWorking.push(widgetTemplateSingle);
 
                             }
 
@@ -9138,20 +9138,20 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
                 this.globalVariableService.dirtyDataTextAlignDropdown = true;
 
                 // Get all the data via API
-                let TextAlignDropdownWorking: WidgetType[] = [];
+                let textAlignDropdownWorking: WidgetType[] = [];
                 this.get<EazlAppData>('canvas-application-data')
                     .subscribe(
                         (eazlAppData) => {
                             for (var i = 0; i < eazlAppData.length; i++) {
                                 if (eazlAppData[i].entity == 'TextAlignDropdown') {
-                                    TextAlignDropdownWorking.push(
+                                    textAlignDropdownWorking.push(
                                         this.cdal.loadTextAlignDropdown(eazlAppData[i])
                                     );
                                 }
                             }
 
                         // Replace
-                        this.textAlignDropdowns = TextAlignDropdownWorking;
+                        this.textAlignDropdowns = textAlignDropdownWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataTextAlignDropdown = false;
