@@ -669,6 +669,231 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //             }
     //         }
     //     ];
+
+// const WIDGETTEMPLATES
+    // export const WIDGETTEMPLATES: WidgetTemplate[] =
+    // [
+    //     {
+    //         widgetTemplateID: 0,
+    //         widgetTemplateName: 'BarChart',
+    //         widgetTemplateDescription: 'Template for the Vega spec of a Bar Chart',
+    //         vegaParameters: {
+    //             vegaGraphHeight: 200,
+    //             vegaGraphWidth: 180,
+    //             vegaGraphPadding: 10,
+    //             vegaHasSignals: true,
+    //             vegaXcolumn: 'category',
+    //             vegaYcolumn: 'amount',
+    //             vegaFillColor: 'pink',
+    //             vegaHoverColor: 'lightgray'
+    //         },
+    //         vegaSpec:
+    //             {
+    //                 "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+    //                 "width": 400,
+    //                 "height": 200,
+    //                 "padding": 5,
+
+    //                 "data": [
+    //                     {
+    //                     "name": "table",
+    //                     "values": [
+    //                         {"category": "A", "amount": 28},
+    //                         {"category": "B", "amount": 55},
+    //                         {"category": "C", "amount": 43},
+    //                         {"category": "D", "amount": 91},
+    //                         {"category": "E", "amount": 81},
+    //                         {"category": "F", "amount": 53},
+    //                         {"category": "G", "amount": 19},
+    //                         {"category": "H", "amount": 87}
+    //                     ]
+    //                     }
+    //                 ],
+
+    //                 "signals": [
+    //                     {
+    //                     "name": "tooltip",
+    //                     "value": {},
+    //                     "on": [
+    //                         {"events": "rect:mouseover", "update": "datum"},
+    //                         {"events": "rect:mouseout",  "update": "{}"}
+    //                     ]
+    //                     }
+    //                 ],
+
+    //                 "scales": [
+    //                     {
+    //                     "name": "xscale",
+    //                     "type": "band",
+    //                     "domain": {"data": "table", "field": "category"},
+    //                     "range": "width"
+    //                     },
+    //                     {
+    //                     "name": "yscale",
+    //                     "domain": {"data": "table", "field": "amount"},
+    //                     "nice": true,
+    //                     "range": "height"
+    //                     }
+    //                 ],
+
+    //                 "axes": [
+    //                     { "orient": "bottom", "scale": "xscale" },
+    //                     { "orient": "left", "scale": "yscale" }
+    //                 ],
+
+    //                 "marks": [
+    //                     {
+    //                     "type": "rect",
+    //                     "from": {"data":"table"},
+    //                     "encode": {
+    //                         "enter": {
+    //                         "x": {"scale": "xscale", "field": "category", "offset": 1},
+    //                         "width": {"scale": "xscale", "band": 1, "offset": -1},
+    //                         "y": {"scale": "yscale", "field": "amount"},
+    //                         "y2": {"scale": "yscale", "value": 0}
+    //                         },
+    //                         "update": {
+    //                         "fill": {"value": "steelblue"}
+    //                         },
+    //                         "hover": {
+    //                         "fill": {"value": "red"}
+    //                         }
+    //                     }
+    //                     },
+    //                     {
+    //                     "type": "text",
+    //                     "encode": {
+    //                         "enter": {
+    //                         "align": {"value": "center"},
+    //                         "baseline": {"value": "bottom"},
+    //                         "fill": {"value": "#333"}
+    //                         },
+    //                         "update": {
+    //                         "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+    //                         "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
+    //                         "text": {"signal": "tooltip.amount"},
+    //                         "fillOpacity": [
+    //                             {"test": "datum === tooltip", "value": 0},
+    //                             {"value": 1}
+    //                         ]
+    //                         }
+    //                     }
+    //                     }
+    //                 ]
+    //                 },
+    //         widgetTemplateCreatedDateTime: '2017/05/01',
+    //         widgetTemplateCreatedUserName: 'janniei',
+    //         widgetTemplateUpdatedDateTime: '2017/05/01',
+    //         widgetTemplateUpdatedUserName: 'janniei'
+    //     }
+    // ];
+    // export const CANVASMESSAGES: CanvasMessage[] =
+    //     [
+    //         {
+    //             canvasMessageID: 0,
+    //             canvasMessageConversationID: '',
+    //             canvasMessageSenderUserName: 'janniei',
+    //             canvasMessageSentDateTime: '2017/05/01 09:10',
+    //             canvasMessageIsSystemGenerated: false,
+    //             canvasMessageDashboardID: 0,
+    //             canvasMessageReportID: 1,
+    //             canvasMessageWidgetID: -1,
+    //             canvasMessageSubject: 'Value looks too low',
+    //             canvasMessageBody: 'Please look at value for May, particularly in Bonds',
+    //             canvasMessageSentToMe: false,
+    //             canvasMessageMyStatus: 'UnRead',
+    //             canvasMessageRecipients: [
+    //                 {
+    //                     canvasMessageRecipientID: 0,
+    //                     canvasMessageRecipientUserID: 3,
+    //                     canvasMessageRecipientIsSender: false,
+    //                     canvasMessageRecipientStatus: 'Read',
+    //                 }
+    //             ],
+    //             canvasMessageReadDateTime: '2017/05/01 09:11',
+    //         },
+    //         {
+    //             canvasMessageConversationID: '',
+    //             canvasMessageID: 1,
+    //             canvasMessageSenderUserName: 'bradleyk',
+    //             canvasMessageSentDateTime: '2017/05/01 10:17',
+    //             canvasMessageIsSystemGenerated: false,
+    //             canvasMessageDashboardID: 0,
+    //             canvasMessageReportID: 1,
+    //             canvasMessageWidgetID: -1,
+    //             canvasMessageSubject: 'Value looks too low',
+    //             canvasMessageBody: 'Checked, all good',
+    //             canvasMessageSentToMe: true,
+    //             canvasMessageMyStatus: 'Read',
+    //             canvasMessageRecipients: [
+    //                 {
+    //                     canvasMessageRecipientID: 0,
+    //                     canvasMessageRecipientUserID: 4,
+    //                     canvasMessageRecipientStatus: 'Read',
+    //                     canvasMessageRecipientIsSender: false,
+    //                 }
+    //             ],
+    //             canvasMessageReadDateTime: '2017/05/01 11:50',
+    //         },
+    //         {
+    //             canvasMessageConversationID: '',
+    //             canvasMessageID: 2,
+    //             canvasMessageSenderUserName: 'janniei',
+    //             canvasMessageSentDateTime: '2017/05/01 11:51',
+    //             canvasMessageIsSystemGenerated: false,
+    //             canvasMessageDashboardID: 0,
+    //             canvasMessageReportID: 1,
+    //             canvasMessageWidgetID: -1,
+    //             canvasMessageSubject: 'Value looks too low',
+    //             canvasMessageBody: 'Thank you',
+    //             canvasMessageSentToMe: false,
+    //             canvasMessageMyStatus: 'UnRead',
+    //             canvasMessageRecipients: [
+    //                 {
+    //                     canvasMessageRecipientID: 0,
+    //                     canvasMessageRecipientUserID: 3,
+    //                     canvasMessageRecipientStatus: 'UnRead',
+    //                     canvasMessageRecipientIsSender: false,
+    //                 }
+    //             ],
+    //             canvasMessageReadDateTime: '',
+    //         },
+    //         {
+    //             canvasMessageConversationID: '',
+    //             canvasMessageID: 3,
+    //             canvasMessageSenderUserName: 'janniei',
+    //             canvasMessageSentDateTime: '2017/05/02 13:47',
+    //             canvasMessageIsSystemGenerated: false,
+    //             canvasMessageDashboardID: -1,
+    //             canvasMessageReportID: 2,
+    //             canvasMessageWidgetID: 3,
+    //             canvasMessageSubject: 'Snacks available @ coffee machine',
+    //             canvasMessageBody: 'Enjoy!',
+    //             canvasMessageSentToMe: false,
+    //             canvasMessageMyStatus: 'UnRead',
+    //             canvasMessageRecipients: [
+    //                 {
+    //                     canvasMessageRecipientID: 0,
+    //                     canvasMessageRecipientUserID: 0,
+    //                     canvasMessageRecipientStatus: 'UnRead',
+    //                     canvasMessageRecipientIsSender: false,
+    //                 },
+    //                 {
+    //                     canvasMessageRecipientID: 0,
+    //                     canvasMessageRecipientUserID: 3,
+    //                     canvasMessageRecipientStatus: 'Read',
+    //                     canvasMessageRecipientIsSender: false,
+    //                 },
+    //                 {
+    //                     canvasMessageRecipientID: 1,
+    //                     canvasMessageRecipientUserID: 1,
+    //                     canvasMessageRecipientStatus: 'UnRead',
+    //                     canvasMessageRecipientIsSender: false,
+    //                 }
+    //             ],
+    //             canvasMessageReadDateTime: '2017/05/02 14:23',
+    //         }
+    //     ];
 // const PERSONALISATION
     // export const PERSONALISATION: Personalisation =
     //     {
@@ -683,8 +908,9 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         growlLife: 3,
     //         growlSticky: false,
     //         snapToGrid: true
-    //     };
-// const DASHBOARDGROUPS
+    //     };    
+
+// const DASHBOARDTAGS
     export const DASHBOARDTAGS: DashboardTag[] =
         [
             {
@@ -760,7 +986,9 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
                 dashboardTagUpdatedUserName: 'JamesK'
             }
         ];
-export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
+
+
+        export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
         {
             datasourceID: 0,
@@ -3899,122 +4127,6 @@ export const REPORTS: Report[] =
         // }
     ];
 
-export const WIDGETTEMPLATES: WidgetTemplate[] =
-    [
-        {
-            widgetTemplateID: 0,
-            widgetTemplateName: 'BarChart',
-            widgetTemplateDescription: 'Template for the Vega spec of a Bar Chart',
-            vegaParameters: {
-                vegaGraphHeight: 200,
-                vegaGraphWidth: 180,
-                vegaGraphPadding: 10,
-                vegaHasSignals: true,
-                vegaXcolumn: 'category',
-                vegaYcolumn: 'amount',
-                vegaFillColor: 'pink',
-                vegaHoverColor: 'lightgray'
-            },
-            vegaSpec:
-                {
-                    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
-                    "width": 400,
-                    "height": 200,
-                    "padding": 5,
-
-                    "data": [
-                        {
-                        "name": "table",
-                        "values": [
-                            {"category": "A", "amount": 28},
-                            {"category": "B", "amount": 55},
-                            {"category": "C", "amount": 43},
-                            {"category": "D", "amount": 91},
-                            {"category": "E", "amount": 81},
-                            {"category": "F", "amount": 53},
-                            {"category": "G", "amount": 19},
-                            {"category": "H", "amount": 87}
-                        ]
-                        }
-                    ],
-
-                    "signals": [
-                        {
-                        "name": "tooltip",
-                        "value": {},
-                        "on": [
-                            {"events": "rect:mouseover", "update": "datum"},
-                            {"events": "rect:mouseout",  "update": "{}"}
-                        ]
-                        }
-                    ],
-
-                    "scales": [
-                        {
-                        "name": "xscale",
-                        "type": "band",
-                        "domain": {"data": "table", "field": "category"},
-                        "range": "width"
-                        },
-                        {
-                        "name": "yscale",
-                        "domain": {"data": "table", "field": "amount"},
-                        "nice": true,
-                        "range": "height"
-                        }
-                    ],
-
-                    "axes": [
-                        { "orient": "bottom", "scale": "xscale" },
-                        { "orient": "left", "scale": "yscale" }
-                    ],
-
-                    "marks": [
-                        {
-                        "type": "rect",
-                        "from": {"data":"table"},
-                        "encode": {
-                            "enter": {
-                            "x": {"scale": "xscale", "field": "category", "offset": 1},
-                            "width": {"scale": "xscale", "band": 1, "offset": -1},
-                            "y": {"scale": "yscale", "field": "amount"},
-                            "y2": {"scale": "yscale", "value": 0}
-                            },
-                            "update": {
-                            "fill": {"value": "steelblue"}
-                            },
-                            "hover": {
-                            "fill": {"value": "red"}
-                            }
-                        }
-                        },
-                        {
-                        "type": "text",
-                        "encode": {
-                            "enter": {
-                            "align": {"value": "center"},
-                            "baseline": {"value": "bottom"},
-                            "fill": {"value": "#333"}
-                            },
-                            "update": {
-                            "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
-                            "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
-                            "text": {"signal": "tooltip.amount"},
-                            "fillOpacity": [
-                                {"test": "datum === tooltip", "value": 0},
-                                {"value": 1}
-                            ]
-                            }
-                        }
-                        }
-                    ]
-                    },
-            widgetTemplateCreatedDateTime: '2017/05/01',
-            widgetTemplateCreatedUserName: 'janniei',
-            widgetTemplateUpdatedDateTime: '2017/05/01',
-            widgetTemplateUpdatedUserName: 'janniei'
-        }
-    ];
 
 export const GROUPS: Group[] =
     [
@@ -4456,114 +4568,6 @@ export const REPORTWIDGETSET: ReportWidgetSet[] =
         }
     ];
 
-// export const CANVASMESSAGES: CanvasMessage[] =
-//     [
-//         {
-//             canvasMessageID: 0,
-//             canvasMessageConversationID: '',
-//             canvasMessageSenderUserName: 'janniei',
-//             canvasMessageSentDateTime: '2017/05/01 09:10',
-//             canvasMessageIsSystemGenerated: false,
-//             canvasMessageDashboardID: 0,
-//             canvasMessageReportID: 1,
-//             canvasMessageWidgetID: -1,
-//             canvasMessageSubject: 'Value looks too low',
-//             canvasMessageBody: 'Please look at value for May, particularly in Bonds',
-//             canvasMessageSentToMe: false,
-//             canvasMessageMyStatus: 'UnRead',
-//             canvasMessageRecipients: [
-//                 {
-//                     canvasMessageRecipientID: 0,
-//                     canvasMessageRecipientUserID: 3,
-//                     canvasMessageRecipientIsSender: false,
-//                     canvasMessageRecipientStatus: 'Read',
-//                 }
-//             ],
-//             canvasMessageReadDateTime: '2017/05/01 09:11',
-//         },
-//         {
-//             canvasMessageConversationID: '',
-//             canvasMessageID: 1,
-//             canvasMessageSenderUserName: 'bradleyk',
-//             canvasMessageSentDateTime: '2017/05/01 10:17',
-//             canvasMessageIsSystemGenerated: false,
-//             canvasMessageDashboardID: 0,
-//             canvasMessageReportID: 1,
-//             canvasMessageWidgetID: -1,
-//             canvasMessageSubject: 'Value looks too low',
-//             canvasMessageBody: 'Checked, all good',
-//             canvasMessageSentToMe: true,
-//             canvasMessageMyStatus: 'Read',
-//             canvasMessageRecipients: [
-//                 {
-//                     canvasMessageRecipientID: 0,
-//                     canvasMessageRecipientUserID: 4,
-//                     canvasMessageRecipientStatus: 'Read',
-//                     canvasMessageRecipientIsSender: false,
-//                 }
-//             ],
-//             canvasMessageReadDateTime: '2017/05/01 11:50',
-//         },
-//         {
-//             canvasMessageConversationID: '',
-//             canvasMessageID: 2,
-//             canvasMessageSenderUserName: 'janniei',
-//             canvasMessageSentDateTime: '2017/05/01 11:51',
-//             canvasMessageIsSystemGenerated: false,
-//             canvasMessageDashboardID: 0,
-//             canvasMessageReportID: 1,
-//             canvasMessageWidgetID: -1,
-//             canvasMessageSubject: 'Value looks too low',
-//             canvasMessageBody: 'Thank you',
-//             canvasMessageSentToMe: false,
-//             canvasMessageMyStatus: 'UnRead',
-//             canvasMessageRecipients: [
-//                 {
-//                     canvasMessageRecipientID: 0,
-//                     canvasMessageRecipientUserID: 3,
-//                     canvasMessageRecipientStatus: 'UnRead',
-//                     canvasMessageRecipientIsSender: false,
-//                 }
-//             ],
-//             canvasMessageReadDateTime: '',
-//         },
-//         {
-//             canvasMessageConversationID: '',
-//             canvasMessageID: 3,
-//             canvasMessageSenderUserName: 'janniei',
-//             canvasMessageSentDateTime: '2017/05/02 13:47',
-//             canvasMessageIsSystemGenerated: false,
-//             canvasMessageDashboardID: -1,
-//             canvasMessageReportID: 2,
-//             canvasMessageWidgetID: 3,
-//             canvasMessageSubject: 'Snacks available @ coffee machine',
-//             canvasMessageBody: 'Enjoy!',
-//             canvasMessageSentToMe: false,
-//             canvasMessageMyStatus: 'UnRead',
-//             canvasMessageRecipients: [
-//                 {
-//                     canvasMessageRecipientID: 0,
-//                     canvasMessageRecipientUserID: 0,
-//                     canvasMessageRecipientStatus: 'UnRead',
-//                     canvasMessageRecipientIsSender: false,
-//                 },
-//                 {
-//                     canvasMessageRecipientID: 0,
-//                     canvasMessageRecipientUserID: 3,
-//                     canvasMessageRecipientStatus: 'Read',
-//                     canvasMessageRecipientIsSender: false,
-//                 },
-//                 {
-//                     canvasMessageRecipientID: 1,
-//                     canvasMessageRecipientUserID: 1,
-//                     canvasMessageRecipientStatus: 'UnRead',
-//                     canvasMessageRecipientIsSender: false,
-//                 }
-//             ],
-//             canvasMessageReadDateTime: '2017/05/02 14:23',
-//         }
-//     ];
-
 
 @Injectable()
 export class EazlService implements OnInit {
@@ -4613,7 +4617,7 @@ export class EazlService implements OnInit {
     userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
-    widgetTemplates: WidgetTemplate[] = WIDGETTEMPLATES     // List of Widget Templates
+    widgetTemplates: WidgetTemplate[] = []                  // List of Widget Templates
     widgetTypes: WidgetType[];                              // List of Widget types
 
     constructor(
