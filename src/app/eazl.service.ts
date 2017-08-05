@@ -787,6 +787,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         widgetTemplateUpdatedUserName: 'janniei'
     //     }
     // ];
+// const CANVASMESSAGES    
     // export const CANVASMESSAGES: CanvasMessage[] =
     //     [
     //         {
@@ -4075,7 +4076,18 @@ export const REPORTS: Report[] =
             {"permission": "view_query"}
         ],
         "reportUrl": "http://localhost:8000/api/queries/2/",
-        "reportData": null
+        // "reportData": null
+            "reportData":
+                [
+                    {"category": "A0", "amount": 38},
+                    {"category": "B0", "amount": 45},
+                    {"category": "C0", "amount": 53},
+                    {"category": "D0", "amount": 61},
+                    {"category": "E0", "amount": 71},
+                    {"category": "F0", "amount": 83},
+                    {"category": "G0", "amount": 99},
+                    {"category": "H0", "amount": 107}
+                ],
     }      
         // {
         //     reportID: 1,
@@ -5779,7 +5791,7 @@ export class EazlService implements OnInit {
     getReportFields(reportID: number): string[] {
         // Return a list of Reports
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFields', '@Start');
-
+console.log('ERROR name of undefined !')
         let fieldsWorking: string[] = [];
 
         // Report to user if dirty at the moment
@@ -5795,7 +5807,9 @@ export class EazlService implements OnInit {
             if (this.reports[i].reportID == reportID) {
     
                 for (var j = 0; j < this.reports.length; j++) {
-                    fieldsWorking.push(this.reports[i].reportFields[j].name)
+                    if (this.reports[i].reportFields[j] != null) {
+                        fieldsWorking.push(this.reports[i].reportFields[j].name)
+                    }
                 }
             }
         }
@@ -7817,46 +7831,47 @@ console.log('cache.. dashboardTagWorking',  dashboardTagWorking)
         }
 
         // DashboardGroupRelationship
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroupRelationship') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroupRelationship') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupRelationship');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupRelationship');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
 
-                // Get all the data via API
-                let dashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
-                this.get<EazlDashboardGroupRelationship>('dashboard-group-relationship')
-                    .subscribe(
-                        (eazlDashboardGroupRelationship) => {
-                            for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
-                                let dashboardGroupRelationshipSingle = new DashboardGroupRelationship();
-                                dashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
-                                dashboardGroupRelationshipWorking.push(dashboardGroupRelationshipSingle);
+            //         // Get all the data via API
+            //         let dashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
+            //         this.get<EazlDashboardGroupRelationship>('dashboard-group-relationship')
+            //             .subscribe(
+            //                 (eazlDashboardGroupRelationship) => {
+            //                     for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
+            //                         let dashboardGroupRelationshipSingle = new DashboardGroupRelationship();
+            //                         dashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
+            //                         dashboardGroupRelationshipWorking.push(dashboardGroupRelationshipSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardGroupRelationship = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataDashboardGroupRelationship = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupRelationship');
-                this.dashboardGroupRelationship = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupRelationship');
+            //         this.dashboardGroupRelationship = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
+            //     }
+            // }
+        // Done
 
         // Dashboard
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Dashboard') {
@@ -7902,215 +7917,220 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
         }
 
         // DashboardsPerUser
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardsPerUser') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardsPerUser') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardsPerUser');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardsPerUser');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardsPerUser = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardsPerUser = true;
 
-                // Get all the data via API
-                let dashboardsPerUserWorking: DashboardsPerUser[] = [];
-                this.get<EazlDashboardsPerUser>('dashboards-per-user')
-                    .subscribe(
-                        (eazlDashboardsPerUser) => {
-                            for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
-                                let dashboardsPerUserSingle = new DashboardsPerUser();
-                                dashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
-                                dashboardsPerUserWorking.push(dashboardsPerUserSingle);
+            //         // Get all the data via API
+            //         let dashboardsPerUserWorking: DashboardsPerUser[] = [];
+            //         this.get<EazlDashboardsPerUser>('dashboards-per-user')
+            //             .subscribe(
+            //                 (eazlDashboardsPerUser) => {
+            //                     for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
+            //                         let dashboardsPerUserSingle = new DashboardsPerUser();
+            //                         dashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
+            //                         dashboardsPerUserWorking.push(dashboardsPerUserSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dashboardsPerUser = dashboardsPerUserWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.dashboardsPerUser = dashboardsPerUserWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardsPerUser = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataDashboardsPerUser = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardsPerUser');
-                this.dashboardsPerUser = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardsPerUser');
+            //         this.dashboardsPerUser = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardsPerUser = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardsPerUser = true;
+            //     }
+            // }
+        // Done
 
         // DashboardUserRelationship
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardUserRelationship') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardUserRelationship') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardUserRelationship');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardUserRelationship');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardUserRelationship = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardUserRelationship = true;
 
-                // Get all the data via API
-                let dashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
-                this.get<EazlDashboardUserRelationship>('dashboard-user-relationships')
-                    .subscribe(
-                        (eazlDashboardUserRelationship) => {
-                            for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
-                                let dashboardUserRelationshipSingle = new DashboardUserRelationship();
-                                dashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
-                                dashboardUserRelationshipWorking.push(dashboardUserRelationshipSingle);
+            //         // Get all the data via API
+            //         let dashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
+            //         this.get<EazlDashboardUserRelationship>('dashboard-user-relationships')
+            //             .subscribe(
+            //                 (eazlDashboardUserRelationship) => {
+            //                     for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
+            //                         let dashboardUserRelationshipSingle = new DashboardUserRelationship();
+            //                         dashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
+            //                         dashboardUserRelationshipWorking.push(dashboardUserRelationshipSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardUserRelationship = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataDashboardUserRelationship = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardUserRelationship');
-                this.dashboardUserRelationship = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardUserRelationship');
+            //         this.dashboardUserRelationship = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardUserRelationship = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardUserRelationship = true;
+            //     }
+            // }
+        // Done
 
         // DatasourcesPerUser
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DatasourcesPerUser') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DatasourcesPerUser') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DatasourcesPerUser');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DatasourcesPerUser');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDatasourcesPerUser = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDatasourcesPerUser = true;
 
-                // Get all the data via API
-                let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
-                this.get<EazlDatasourcesPerUser>('datasources-per-user')
-                    .subscribe(
-                        (eazlDatasourcesPerUser) => {
-                            for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
-                                let datasourcesPerUserSingle = new DatasourcesPerUser();
-                                datasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
-                                datasourcesPerUserWorking.push(datasourcesPerUserSingle);
+            //         // Get all the data via API
+            //         let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
+            //         this.get<EazlDatasourcesPerUser>('datasources-per-user')
+            //             .subscribe(
+            //                 (eazlDatasourcesPerUser) => {
+            //                     for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
+            //                         let datasourcesPerUserSingle = new DatasourcesPerUser();
+            //                         datasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
+            //                         datasourcesPerUserWorking.push(datasourcesPerUserSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.datasourcesPerUser = datasourcesPerUserWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.datasourcesPerUser = datasourcesPerUserWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDatasourcesPerUser = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataDatasourcesPerUser = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DatasourcesPerUser');
-                this.datasourcesPerUser = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DatasourcesPerUser');
+            //         this.datasourcesPerUser = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDatasourcesPerUser = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDatasourcesPerUser = true;
+            //     }
+            // }
+        // Done
 
         // DataSourceUserAccess
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DataSourceUserAccess') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DataSourceUserAccess') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DataSourceUserAccess');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DataSourceUserAccess');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDataSourceUserAccess = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDataSourceUserAccess = true;
 
-                // Get all the data via API
-                let dataSourceUserAccessWorking: DataSourceUserAccess[] = [];
-                this.get<EazlDataSourceUserAccess>('datasource-user-accesss')
-                    .subscribe(
-                        (eazlDataSourceUserAccess) => {
-                            for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
-                                let dataSourceUserAccessSingle = new DataSourceUserAccess();
-                                dataSourceUserAccessSingle =
-                                    this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
-                                dataSourceUserAccessWorking.push(dataSourceUserAccessSingle);
+            //         // Get all the data via API
+            //         let dataSourceUserAccessWorking: DataSourceUserAccess[] = [];
+            //         this.get<EazlDataSourceUserAccess>('datasource-user-accesss')
+            //             .subscribe(
+            //                 (eazlDataSourceUserAccess) => {
+            //                     for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
+            //                         let dataSourceUserAccessSingle = new DataSourceUserAccess();
+            //                         dataSourceUserAccessSingle =
+            //                             this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
+            //                         dataSourceUserAccessWorking.push(dataSourceUserAccessSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDataSourceUserAccess = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataDataSourceUserAccess = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DataSourceUserAccess');
-                this.dataSourceUserAccess = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DataSourceUserAccess');
+            //         this.dataSourceUserAccess = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDataSourceUserAccess = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDataSourceUserAccess = true;
+            //     }
+            // }
+        // Done
 
         // GroupDatasourceAccess
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GroupDatasourceAccess') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GroupDatasourceAccess') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GroupDatasourceAccess');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GroupDatasourceAccess');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
 
-                // Get all the data via API
-                let groupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
-                this.get<EazlGroupDatasourceAccess>('group-datasource-accesss')
-                    .subscribe(
-                        (eazlGroupDatasourceAccess) => {
-                            for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
-                                let groupDatasourceAccessSingle = new GroupDatasourceAccess();
-                                groupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
-                                groupDatasourceAccessWorking.push(groupDatasourceAccessSingle);
+            //         // Get all the data via API
+            //         let groupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
+            //         this.get<EazlGroupDatasourceAccess>('group-datasource-accesss')
+            //             .subscribe(
+            //                 (eazlGroupDatasourceAccess) => {
+            //                     for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
+            //                         let groupDatasourceAccessSingle = new GroupDatasourceAccess();
+            //                         groupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
+            //                         groupDatasourceAccessWorking.push(groupDatasourceAccessSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear GroupDatasourceAccess');
-                this.groupDatasourceAccess = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear GroupDatasourceAccess');
+            //         this.groupDatasourceAccess = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
+            //     }
+            // }
+        // Done
 
         // PackageTask
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'PackageTask') {
@@ -8196,46 +8216,47 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
         }
 
         // ReportWidgetSet
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportWidgetSet') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportWidgetSet') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportWidgetSet');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportWidgetSet');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportWidgetSet = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataReportWidgetSet = true;
 
-                // Get all the data via API
-                let reportWidgetSetWorking: ReportWidgetSet[] = [];
-                this.get<EazlReportWidgetSet>('report-widget-sets')
-                    .subscribe(
-                        (eazlReportWidgetSet) => {
-                            for (var i = 0; i < eazlReportWidgetSet.length; i++) {
-                                let reportWidgetSetSingle = new ReportWidgetSet();
-                                reportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
-                                reportWidgetSetWorking.push(reportWidgetSetSingle);
+            //         // Get all the data via API
+            //         let reportWidgetSetWorking: ReportWidgetSet[] = [];
+            //         this.get<EazlReportWidgetSet>('report-widget-sets')
+            //             .subscribe(
+            //                 (eazlReportWidgetSet) => {
+            //                     for (var i = 0; i < eazlReportWidgetSet.length; i++) {
+            //                         let reportWidgetSetSingle = new ReportWidgetSet();
+            //                         reportWidgetSetSingle = this.cdal.loadReportWidgetSet(eazlReportWidgetSet[i]);
+            //                         reportWidgetSetWorking.push(reportWidgetSetSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.reportWidgetSet = ReportWidgetSetWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.reportWidgetSet = ReportWidgetSetWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataReportWidgetSet = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataReportWidgetSet = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportWidgetSet');
-                this.reportWidgetSet = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportWidgetSet');
+            //         this.reportWidgetSet = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportWidgetSet = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataReportWidgetSet = true;
+            //     }
+            // }
+        // Done
 
         // ReportHistory
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportHistory') {
@@ -8280,46 +8301,47 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
         }
 
         // ReportUserRelationship
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportUserRelationship') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportUserRelationship') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportUserRelationship');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportUserRelationship');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportUserRelationship = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataReportUserRelationship = true;
 
-                // Get all the data via API
-                let reportUserRelationshipWorking: ReportUserRelationship[] = [];
-                this.get<EazlReportUserRelationship>('report-user-relationships')
-                    .subscribe(
-                        (eazlReportUserRelationship) => {
-                            for (var i = 0; i < eazlReportUserRelationship.length; i++) {
-                                let reportUserRelationshipSingle = new ReportUserRelationship();
-                                reportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
-                                reportUserRelationshipWorking.push(reportUserRelationshipSingle);
+            //         // Get all the data via API
+            //         let reportUserRelationshipWorking: ReportUserRelationship[] = [];
+            //         this.get<EazlReportUserRelationship>('report-user-relationships')
+            //             .subscribe(
+            //                 (eazlReportUserRelationship) => {
+            //                     for (var i = 0; i < eazlReportUserRelationship.length; i++) {
+            //                         let reportUserRelationshipSingle = new ReportUserRelationship();
+            //                         reportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
+            //                         reportUserRelationshipWorking.push(reportUserRelationshipSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.reportUserRelationship = reportUserRelationshipWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.reportUserRelationship = reportUserRelationshipWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataReportUserRelationship = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataReportUserRelationship = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportUserRelationship');
-                this.reportUserRelationship = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportUserRelationship');
+            //         this.reportUserRelationship = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataReportUserRelationship = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataReportUserRelationship = true;
+            //     }
+            // }
+        // Done
 
         // SystemConfiguration
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'SystemConfiguration') {
@@ -8368,89 +8390,91 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
         }
 
         // UserGroupMembership
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'UserGroupMembership') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'UserGroupMembership') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset UserGroupMembership');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset UserGroupMembership');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataUserGroupMembership = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataUserGroupMembership = true;
 
-                // Get all the data via API
-                let userGroupMembershipWorking: UserGroupMembership[] = [];
+            //         // Get all the data via API
+            //         let userGroupMembershipWorking: UserGroupMembership[] = [];
 
-                this.get<EazlUserGroupMembership>('user-group-membership')
-                    .subscribe(
-                        (eazlUserGroupMembership) => {
-                            for (var i = 0; i < eazlUserGroupMembership.length; i++) {
-                                let userGroupMembershipSingle = new UserGroupMembership();
-                                userGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
-                                userGroupMembershipWorking.push(userGroupMembershipSingle);
+            //         this.get<EazlUserGroupMembership>('user-group-membership')
+            //             .subscribe(
+            //                 (eazlUserGroupMembership) => {
+            //                     for (var i = 0; i < eazlUserGroupMembership.length; i++) {
+            //                         let userGroupMembershipSingle = new UserGroupMembership();
+            //                         userGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
+            //                         userGroupMembershipWorking.push(userGroupMembershipSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.userGroupMembership = userGroupMembershipWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.userGroupMembership = userGroupMembershipWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataUserGroupMembership = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataUserGroupMembership = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear UserGroupMembership');
-                this.userGroupMembership = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear UserGroupMembership');
+            //         this.userGroupMembership = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataUserGroupMembership = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataUserGroupMembership = true;
+            //     }
+            // }
+        // Done
 
         // WidgetComment
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetComment') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetComment') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetComment');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetComment');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetComment = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataWidgetComment = true;
 
-                // Get all the data via API
-                let widgetCommentWorking: WidgetComment[] = [];
-                this.get<EazlWidgetComment>('widget-comments')
-                    .subscribe(
-                        (eazlWidgetComment) => {
-                            for (var i = 0; i < eazlWidgetComment.length; i++) {
-                                let widgetCommentSingle = new WidgetComment();
-                                widgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
-                                widgetCommentWorking.push(widgetCommentSingle);
+            //         // Get all the data via API
+            //         let widgetCommentWorking: WidgetComment[] = [];
+            //         this.get<EazlWidgetComment>('widget-comments')
+            //             .subscribe(
+            //                 (eazlWidgetComment) => {
+            //                     for (var i = 0; i < eazlWidgetComment.length; i++) {
+            //                         let widgetCommentSingle = new WidgetComment();
+            //                         widgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
+            //                         widgetCommentWorking.push(widgetCommentSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.widgetComments = widgetCommentWorking;
+            //                 // Replace
+            //                 // TODO - replace local Array after Bradley's done initial upload
+            //                 //  this.widgetComments = widgetCommentWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataWidgetComment = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataWidgetComment = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetComment');
-                this.widgetComments = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetComment');
+            //         this.widgetComments = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataWidgetComment = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataWidgetComment = true;
+            //     }
+            // }
+        // Done
 
         // WidgetTemplate
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetTemplate') {

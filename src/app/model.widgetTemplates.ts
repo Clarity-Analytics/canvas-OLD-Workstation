@@ -5,20 +5,20 @@ export class EazlWidgetTemplate {
     id: number;                                 // Unique DB ID
     name: string;                               // Name
     description: string;                        // Description
-    vega_chart_height: number;  // Height of graph
-    vega_chart_width: number;   // Width of graph
-    vega_chart_padding: number; // Padding around graph
-    vega_chart_has_signals: boolean;  // True/False to include Signals section
-    vega_chart_x_column: string;       // Column (field) used as X
-    vega_chart_y_column: string;       // Column (field) used as Y
-    vega_chart_fill_color: string;    // Fill color of mark (of ie bars)
-    vega_chart_hover_color: string;   // Color of mark when hovers over it
-    vega_chart_specification: any;                             // Vega spec (layout varies)
-    creator: string;                         // Created by
-    date_created: string;                         // Created on
-    editor: string;                         // Updated by
-    date_edited: string;                         // Updated on
-    url: string;                            // URL for record, in Django
+    vega_chart_height: number;                  // Height of graph
+    vega_chart_width: number;                   // Width of graph
+    vega_chart_padding: number;                 // Padding around graph
+    vega_chart_has_signals: boolean;            // True/False to include Signals section
+    vega_chart_x_column: string;                // Column (field) used as X
+    vega_chart_y_column: string;                // Column (field) used as Y
+    vega_chart_fill_color: string;              // Fill color of mark (of ie bars)
+    vega_chart_hover_color: string;             // Color of mark when hovers over it
+    vega_chart_specification: any;              // Vega spec (layout varies)
+    creator: string;                            // Created by
+    date_created: string;                       // Created on
+    editor: string;                             // Updated by
+    date_edited: string;                        // Updated on
+    url: string;                                // URL for record, in Django
 }
 
 // Canvas

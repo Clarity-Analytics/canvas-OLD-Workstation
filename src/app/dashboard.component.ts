@@ -2226,9 +2226,11 @@ console.log('this.widgetToEdit', this.widgetToEdit)
                                 this.reports[j].reportID) {
 
                                     for (var k = 0; k < this.reports.length; k++) {
-                                        reportFields.push(
-                                            this.reports[j].reportFields[k].name
+                                        if (this.reports[j].reportFields[k] != null) {
+                                            reportFields.push(
+                                                this.reports[j].reportFields[k].name
                                         );
+                                        }
                                     }
                                     reportData = this.reports[j].reportData;
                             }
@@ -2272,9 +2274,11 @@ console.log('this.widgetToEdit', this.widgetToEdit)
                         if (this.widgets[i].properties.widgetReportID ==
                             this.reports[j].reportID) {
                                 for (var k = 0; k < this.reports.length; k++) {
+                                    if (this.reports[j].reportFields[k] != null) {
                                         reportFields.push(
                                             this.reports[j].reportFields[k].name
                                         );
+                                    }
                                 // reportFields = this.reports[j].reportFields;
                                 }
                                 reportData = this.reports[j].reportData;
