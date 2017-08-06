@@ -787,7 +787,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         widgetTemplateUpdatedUserName: 'janniei'
     //     }
     // ];
-// const CANVASMESSAGES    
+// const CANVASMESSAGES
     // export const CANVASMESSAGES: CanvasMessage[] =
     //     [
     //         {
@@ -909,7 +909,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         growlLife: 3,
     //         growlSticky: false,
     //         snapToGrid: true
-    //     };    
+    //     };
 
 // const DASHBOARDTAGS
     export const DASHBOARDTAGS: DashboardTag[] =
@@ -4033,62 +4033,119 @@ export const WIDGETCOMMENTS: WidgetComment[] =
 
 export const REPORTS: Report[] =
     [
-    {
-        "reportID": 2,
-        "reportCode": 'Sales',
-        "reportName": "Sales by Date",
-        "reportDescription": 'Sales of products arranged by Date',
-        "dataSourceID": 3,
-        "reportPackagePermissions": [
-            {"package_permission": "add_package"},
-            {"package_permission": "assign_permission_package"},
-            {"package_permission": "change_package"},
-            {"package_permission": "delete_package"},
-            {"package_permission": "execute_package"},
-            {"package_permission": "package_owned_access"},
-            {"package_permission": "package_shared_access"},
-            {"package_permission": "remove_permission_package"},
-            {"package_permission": "view_package"}
-        ],
-        "reportSpecification": '',
-        "reportFields": [
-            {
-                "name": "InvoiceDate",
-                "alias": "Date",
-                "aggfunc": null,
-                "scalarfunc": null
-            },
-            {
-                "name": "Total",
-                "alias": "sum(Total)",
-                "aggfunc": "sum",
-                "scalarfunc": null
-            }
-        ],
-        "reportFieldsString": "InvoiceDate Total ",
-        "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
-        "reportPermissions": [
-            {"permission": "add_query"},
-            {"permission": "assign_permission_query"},
-            {"permission": "change_query"},
-            {"permission": "delete_query"},
-            {"permission": "remove_permission_query"},
-            {"permission": "view_query"}
-        ],
-        "reportUrl": "http://localhost:8000/api/queries/2/",
-        // "reportData": null
-            "reportData":
-                [
-                    {"category": "A0", "amount": 38},
-                    {"category": "B0", "amount": 45},
-                    {"category": "C0", "amount": 53},
-                    {"category": "D0", "amount": 61},
-                    {"category": "E0", "amount": 71},
-                    {"category": "F0", "amount": 83},
-                    {"category": "G0", "amount": 99},
-                    {"category": "H0", "amount": 107}
-                ],
-    }      
+        {
+            "reportID": 1,
+            "reportCode": 'EDM Val',
+            "reportName": "EDM weekly Values",
+            "reportDescription": 'Description ...  etc arranged by Date',
+            "dataSourceID": 0,
+            "reportPackagePermissions": [
+                {"package_permission": "add_package"},
+                {"package_permission": "assign_permission_package"},
+                {"package_permission": "change_package"},
+                {"package_permission": "delete_package"},
+                {"package_permission": "execute_package"},
+                {"package_permission": "package_owned_access"},
+                {"package_permission": "package_shared_access"},
+                {"package_permission": "remove_permission_package"},
+                {"package_permission": "view_package"}
+            ],
+            "reportSpecification": '',
+            "reportFields": [
+                {
+                    "name": "category",
+                    "alias": "category",
+                    "aggfunc": null,
+                    "scalarfunc": null
+                },
+                {
+                    "name": "amount",
+                    "alias": "amount",
+                    "aggfunc": "sum",
+                    "scalarfunc": null
+                }
+            ],
+            "reportFieldsString": "InvoiceDate Total ",
+            "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
+            "reportPermissions": [
+                {"permission": "add_query"},
+                {"permission": "assign_permission_query"},
+                {"permission": "change_query"},
+                {"permission": "delete_query"},
+                {"permission": "remove_permission_query"},
+                {"permission": "view_query"}
+            ],
+            "reportUrl": "http://localhost:8000/api/queries/2/",
+            // "reportData": null
+                "reportData":
+                    [
+                        {"category": "A0", "amount": 38},
+                        {"category": "B0", "amount": 45},
+                        {"category": "C0", "amount": 53},
+                        {"category": "D0", "amount": 61},
+                        {"category": "E0", "amount": 71},
+                        {"category": "F0", "amount": 83},
+                        {"category": "G0", "amount": 99},
+                        {"category": "H0", "amount": 107}
+                    ],
+        },
+        {
+            "reportID": 2,
+            "reportCode": 'Bond Val',
+            "reportName": "Bond monthly Values",
+            "reportDescription": 'Description ...  etc arranged by Date',
+            "dataSourceID": 1,
+            "reportPackagePermissions": [
+                {"package_permission": "add_package"},
+                {"package_permission": "assign_permission_package"},
+                {"package_permission": "change_package"},
+                {"package_permission": "delete_package"},
+                {"package_permission": "execute_package"},
+                {"package_permission": "package_owned_access"},
+                {"package_permission": "package_shared_access"},
+                {"package_permission": "remove_permission_package"},
+                {"package_permission": "view_package"}
+            ],
+            "reportSpecification": '',
+            "reportFields": [
+                {
+                    "name": "category",
+                    "alias": "category",
+                    "aggfunc": null,
+                    "scalarfunc": null
+                },
+                {
+                    "name": "amount",
+                    "alias": "amount",
+                    "aggfunc": "sum",
+                    "scalarfunc": null
+                }
+            ],
+            "reportFieldsString": "InvoiceDate Total ",
+            "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
+            "reportPermissions": [
+                {"permission": "add_query"},
+                {"permission": "assign_permission_query"},
+                {"permission": "change_query"},
+                {"permission": "delete_query"},
+                {"permission": "remove_permission_query"},
+                {"permission": "view_query"}
+            ],
+            "reportUrl": "http://localhost:8000/api/queries/2/",
+            // "reportData": null
+                "reportData":
+                    [
+                        {"category": "A0", "amount": 38},
+                        {"category": "B0", "amount": 45},
+                        {"category": "C0", "amount": 53},
+                        {"category": "D0", "amount": 61},
+                        {"category": "E0", "amount": 71},
+                        {"category": "F0", "amount": 83},
+                        {"category": "G0", "amount": 99},
+                        {"category": "H0", "amount": 107}
+                    ],
+        }
+                
         // {
         //     reportID: 1,
         //     reportCode: 'EDM Val',
@@ -5805,7 +5862,7 @@ console.log('ERROR name of undefined !')
 
         for (var i = 0; i < this.reports.length; i++) {
             if (this.reports[i].reportID == reportID) {
-    
+
                 for (var j = 0; j < this.reports.length; j++) {
                     if (this.reports[i].reportFields[j] != null) {
                         fieldsWorking.push(this.reports[i].reportFields[j].name)

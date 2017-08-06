@@ -212,13 +212,14 @@ export class AppComponent implements OnInit {
                     this.growlMsgs = [];
                 }
 
-                if (newgrowlmsg.detail != '') {
-                    this.growlMsgs.push({
-                        severity: newgrowlmsg.severity,
-                        summary:  newgrowlmsg.summary,
-                        detail:   newgrowlmsg.detail
-                    });
-                }
+// TODO - uncomment                
+                // if (newgrowlmsg.detail != '') {
+                //     this.growlMsgs.push({
+                //         severity: newgrowlmsg.severity,
+                //         summary:  newgrowlmsg.summary,
+                //         detail:   newgrowlmsg.detail
+                //     });
+                // }
             }
         );
 

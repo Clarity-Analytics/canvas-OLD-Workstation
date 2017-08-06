@@ -16,7 +16,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error) {
       // Reacts to and Logs errors globally
       this.globalFunctionService.printToConsole(this.constructor.name, 'handleError', 'Error Handler');
-
+console.log('ERROR IN ---------------- handleError ------------- ERROR --------------- ERROR', error)
       // ErrorTypes:
 
         // EvalError --- Creates an instance representing an error that occurs regarding the global function eval().

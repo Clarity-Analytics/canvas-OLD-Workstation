@@ -485,7 +485,6 @@ export class CDAL {
             groupWorking.groupUpdatedDateTime = '';
             groupWorking.groupUpdatedUserName = '';
         }
-console.log('group ends')
 
         // Return the result
         return groupWorking;
@@ -814,7 +813,6 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             dashboardTagWorking.dashboardTagUpdatedUserName = '';
         }
 
-console.log('dashboard tag ends')
         // Return the result
         return dashboardTagWorking;
     }
@@ -1479,7 +1477,6 @@ console.log('dashboard tag ends')
         } else {
             packageTaskWorking.packageTaskCreatedDateTime = '';
         }
-console.log('task ends')
 
         // Return the result
         return packageTaskWorking;
@@ -1722,7 +1719,6 @@ console.log('task ends')
         } else {
             reportHistoryWorking.error = '';
         }
-console.log('rpt history ends')
 
         // Return the result
         return reportHistoryWorking;
@@ -1840,7 +1836,6 @@ console.log('rpt history ends')
         // } else {
         //     systemConfigurationWorking.maxRowsPerWidgetGraph = 0;
         // }
-console.log('sysconf ends')
 
         // Return the result
         return systemConfigurationWorking;
