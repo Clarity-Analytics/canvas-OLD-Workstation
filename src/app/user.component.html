@@ -267,8 +267,8 @@
                 [target]="belongstoUserGroupMembership"
                 sourceHeader="Available Groups"
                 targetHeader="Belongs to these Groups"
-                (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
-                (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
+                (onMoveToTarget)="onMoveUpdateUserGroupMembership($event)"
+                (onMoveToSource)="onMoveUpdateUserGroupMembership($event)"
                 (onSourceReorder)="onSourceReorderUserGroupMembership($event)"
                 (onTargetReorder)="onTargetReorderUserGroupMembership($event)"
                 >
@@ -277,7 +277,8 @@
                         <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
-                            {{ grp.groupName }}
+                            <!-- {{ grp.groupName }} -->
+                            {{ grp }}
                         </div>
                     </div>
                 </ng-template>

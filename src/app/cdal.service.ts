@@ -124,7 +124,7 @@ export class CDAL {
                 userWorking.groups.push(eazlUser.groups[i]);
             } 
         } else {
-            userWorking.groups = null;
+            userWorking.groups = [];
         }
 
         if (eazlUser.email != null) {
@@ -313,7 +313,7 @@ export class CDAL {
                 eazlUserWorking.groups.push(user.groups[i]);
             } 
         } else {
-            eazlUserWorking.groups = null;
+            eazlUserWorking.groups = [];
         }
 
         if (user.emailAddress != null) {
@@ -462,7 +462,7 @@ export class CDAL {
                 eazlUserWorking.profile.snap_to_grid = false;
             }
         }
-console.log('CDAL eazlUserWorking', eazlUserWorking)
+
         // Return the User
         return eazlUserWorking;
     }

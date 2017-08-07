@@ -37,8 +37,9 @@ export class UserComponent implements OnInit {
 
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
-    availableUserGroupMembership: Group[] = [];         // List of Groups user does NOT belongs to
-    belongstoUserGroupMembership: Group[] = [];         // List of Groups user already belongs to
+
+    availableUserGroupMembership: string[] = [];        // List of Groups user does NOT belongs to
+    belongstoUserGroupMembership: string[] = [];        // List of Groups user already belongs to
     availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
     canvasUser: CanvasUser;                             // Current user
@@ -217,15 +218,8 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
-        // Get the current and available groups
-        this.belongstoUserGroupMembership = this.eazlService.getGroupsPerUser(
-            this.selectedUser.username,
-            true
-        );
-        this.availableUserGroupMembership = this.eazlService.getGroupsPerUser(
-            this.selectedUser.username,
-            false
-        );
+        this.belongstoUserGroupMembership = this.selectedUser.groups;
+        this.availableUserGroupMembership = this.eazlService.getGroupsList(this.selectedUser.groups);
 
         // Show popup
         this.displayGroupMembership = true;
@@ -239,30 +233,12 @@ export class UserComponent implements OnInit {
         this.displayGroupMembership = false;
     }
 
-    onMoveToTargetUserGroupMembership(event) {
+    onMoveUpdateUserGroupMembership(event) {
         // User clicked onMoveToTarget on Group Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
-console.log('selectedUser', this.selectedUser)
-        // Add this / these makker(s) - array if multi select
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addUserGroupMembership(
-                this.selectedUser.username,
-                event.items[i].groupID
-            );
-        }
-    }
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveUpdateUserGroupMembership', '@Start');
 
-    onMoveToSourceUserGroupMembership(event) {
-        // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
-
-        // Remove the makker(s)
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteUserGroupMembership(
-                this.selectedUser.username,
-                event.items[i].groupID
-            );
-        }
+        this.selectedUser.groups = this.belongstoUserGroupMembership;
+        this.eazlService.updateUser(this.selectedUser)
     }
 
     onSourceReorderUserGroupMembership(event) {

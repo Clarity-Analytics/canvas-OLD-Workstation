@@ -5861,7 +5861,7 @@ export class EazlService implements OnInit {
     getReportFields(reportID: number): string[] {
         // Return a list of Reports
         this.globalFunctionService.printToConsole(this.constructor.name,'getReportFields', '@Start');
-console.log('ERROR name of undefined !')
+
         let fieldsWorking: string[] = [];
 
         // Report to user if dirty at the moment
@@ -6190,6 +6190,25 @@ console.log('ERROR name of undefined !')
 
         // Mark the data as dirty
         this.globalVariableService.dirtyDataGroup = false;
+    }
+
+    getGroupsList(exclude: string[] = []): string[] {
+        // Return all groups taking into account parameters.  If exclude =['HR'],
+        // a string array of all groups except HR will be returned.
+        // - exclude: list of groups that must be EXCLUDED from the result
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsList', '@Start');
+
+        let groupsWorking: string[] = [];
+
+        // Loop end return
+        for (var i = 0; i < this.groups.length; i++) {
+            if (exclude.indexOf(this.groups[i].groupName) < 0) {
+                groupsWorking.push(this.groups[i].groupName);
+            };
+        }
+
+        // Return
+        return groupsWorking;
     }
 
     getUsersWhoCanAccessDatasource(
@@ -7623,7 +7642,6 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                 this.get<EazlUser>(`${this.route}`)
                     .subscribe(
                         (eazlUser) => {
-console.log('EAZL eazlUser', eazlUser)
                             // Loop on Array returned, convert to Canvas format into local Array
                             for (var i = 0; i < eazlUser.length; i++) {
                                 let userSingle = new User;
