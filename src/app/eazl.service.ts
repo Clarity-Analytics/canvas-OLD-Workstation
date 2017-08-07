@@ -4912,6 +4912,7 @@ export class EazlService implements OnInit {
                             is_staff: eazlUser.is_staff,
                             is_active: eazlUser.is_active,
                             date_joined: eazlUser.date_joined,
+                            group: [ {name: ''}],
                             last_login: eazlUser.last_login,
                             profile:
                                 {
@@ -7622,7 +7623,7 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                 this.get<EazlUser>(`${this.route}`)
                     .subscribe(
                         (eazlUser) => {
-
+console.log('EAZL eazlUser', eazlUser)
                             // Loop on Array returned, convert to Canvas format into local Array
                             for (var i = 0; i < eazlUser.length; i++) {
                                 let userSingle = new User;

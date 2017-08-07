@@ -1,41 +1,46 @@
 // Schema for the User class
 
 // Eazl
-export class EazlUser 
+export class EazlUser
     {
         // Defines data model for User Entity
-        id: number;
-        username: string;
-        first_name: string;
-        last_name: string;
+        date_joined: Date;
         email: string;
-        password: string;
+        first_name: string;
+        group: [
+            {
+                name: string;
+            }
+        ];
+        id: number;
+        is_active: boolean;
         is_superuser: boolean;
         is_staff: boolean;
-        is_active: boolean;
-        date_joined: Date;
         last_login: Date;
-        profile: 
+        last_name: string;
+        password: string;
+        username: string;
+        profile:
             {
-                nick_name: string;
                 cell_number: string;
-                work_number: string;
-                profile_picture: string;
-                query_runtime_warning: number;          // Minutes: Warn user if a report is known to run longer
-                dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
-                environment: string;                    // Live, Test-Environment-Name
                 color_scheme: string;                   // Color scheme for Canvas - for later use
+                dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
+                environment: string;                    // Live, Test-Environment-Name
                 grid_size: number;                      // Size of Grid on Dashboard in px
                 growl_life: number;                     // Life is seconds of Growls
                 growl_sticky: boolean;                  // True: Growls are sticky
+                nick_name: string;
+                profile_picture: string;
+                query_runtime_warning: number;          // Minutes: Warn user if a report is known to run longer
                 snap_to_grid: boolean;                  // True: snap Widgets to the grid points on Dashboard
+                work_number: string;
             }
     }
 
 // Canvas
-export class User 
+export class User
     {
         id: number;
         username: string;
@@ -50,7 +55,7 @@ export class User
         userNameLastUpdated: string;
         isStaff: boolean;
         isSuperUser: boolean;
-        profile: 
+        profile:
             {
                 nickName: string;
                 cellNumber: string;
@@ -70,35 +75,40 @@ export class User
     }
 
 // Current user info in Canvas
-export class CanvasUser implements EazlUser 
+export class CanvasUser implements EazlUser
     {
-        id: number;
-        username: string;
-        first_name: string;
-        last_name: string;
+        date_joined: Date;
         email: string;
-        password: string;
+        first_name: string;
+        group: [
+            {
+                name: string;
+            }
+        ];
+        id: number;
         is_superuser: boolean;
         is_staff: boolean;
         is_active: boolean;
-        date_joined: Date;
         last_login: Date;
-        profile: 
+        last_name: string;
+        password: string;
+        username: string;
+        profile:
             {
-                nick_name: string;
                 cell_number: string;
-                work_number: string;
-                profile_picture: string;
-                query_runtime_warning: number;          // Minutes: Warn user if a report is known to run longer
-                dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
-                environment: string;                    // Live, Test-Environment-Name
                 color_scheme: string;                   // Color scheme for Canvas - for later use
+                dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
                 grid_size: number;                      // Size of Grid on Dashboard in px
+                environment: string;                    // Live, Test-Environment-Name
                 growl_life: number;                     // Life is seconds of Growls
                 growl_sticky: boolean;                  // True: Growls are sticky
+                profile_picture: string;
+                query_runtime_warning: number;          // Minutes: Warn user if a report is known to run longer
                 snap_to_grid: boolean;                  // True: snap Widgets to the grid points on Dashboard
+                nick_name: string;
+                work_number: string;
             }
     }
 
