@@ -42,35 +42,40 @@ export class EazlUser
 // Canvas
 export class User
     {
-        id: number;
-        username: string;
+        activeFromDate: string;
+        dateCreated: string;
+        emailAddress: string;
         firstName: string;
+        group: [
+            {
+                groupName: string;
+            }
+        ];
+        id: number;
+        inactiveDate: string;
+        isStaff: boolean;
+        isSuperUser: boolean;
         lastName: string;
         lastDatetimeLoggedIn: string;
         lastDatetimeReportWasRun: string;
-        emailAddress: string;
-        activeFromDate: string;
-        inactiveDate: string;
-        dateCreated: string;
+        username: string;
         userNameLastUpdated: string;
-        isStaff: boolean;
-        isSuperUser: boolean;
         profile:
             {
-                nickName: string;
-                cellNumber: string;
-                workTelephoneNumber: string;
-                photoPath: string;
                 averageWarningRuntime: number;          // Minutes: Warn user if a report is known to run longer
+                cellNumber: string;
                 dashboardIDStartup: number;             // Optional Dashboard ID to show at startup
-                environment: string;                    // Live, Test-Environment-Name
-                frontendColorScheme: string;            // Color scheme for Canvas - for later use
                 defaultReportFilters: string;           // Default Report filters - for later use
                 defaultWidgetConfiguration: string;     // Default Widget configuration - for later use
+                environment: string;                    // Live, Test-Environment-Name
+                frontendColorScheme: string;            // Color scheme for Canvas - for later use
                 gridSize: number;                       // Size of Grid on Dashboard in px
                 growlLife: number;                      // Life is seconds of Growls
                 growlSticky: boolean;                   // True: Growls are sticky
+                nickName: string;
+                photoPath: string;
                 snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
+                workTelephoneNumber: string;
             }
     }
 
