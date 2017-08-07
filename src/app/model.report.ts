@@ -61,8 +61,6 @@ export class Report {
     reportDescription: string;                // Description
     // reportParameters: string;           // Parameters (optional)
     dataSourceID: number;               // FK to DataSource
-    // dataSourceParameters: string;       // Data Source Parameters
-    // reportFields: string[];             // Array of report fields, obtained from DB
     reportPackagePermissions: [
         {
             package_permission: string;
@@ -85,8 +83,13 @@ export class Report {
             permission: string;
         }
     ];
+    reportChecksum: string;                   // Checksum with query parameters (unique)
+    reportVersion: string;                    // Version of query
+    reportFetch: string;                      // To get resultset
+    reportCreatedUserName: string;      // UserName who created record
+    reportCreatedDateTime: string;      // Date time of creation
+    reportUpdatedUserName: string;      // UserName who created record
+    reportUpdatedDateTime: string;      // Date time of creation
     reportUrl: string;
     reportData: any[];                  // Array (json) of data rows
-    // reportCreatedDateTime: string;      // Date time of creation
-    // reportCreatedUserName: string;      // UserName who created record
 }
