@@ -58,7 +58,7 @@ export class Report {
     reportID: number;                   // Unique DB ID
     reportCode: string;                 // Code
     reportName: string;                 // Name
-    reportDescription: string;                // Description
+    reportDescription: string;          // Description
     // reportParameters: string;           // Parameters (optional)
     dataSourceID: number;               // FK to DataSource
     reportPackagePermissions: [
@@ -76,20 +76,20 @@ export class Report {
             scalarfunc: string;
         }
         ]
-    reportFieldsString: string;                 // Stringified list of fields
+    reportFieldsString: string;         // Stringified list of fields
     reportExecute: string;
     reportPermissions: [
         {
             permission: string;
         }
     ];
-    reportChecksum: string;                   // Checksum with query parameters (unique)
-    reportVersion: string;                    // Version of query
-    reportFetch: string;                      // To get resultset
+    reportChecksum: string;             // Checksum with query parameters (unique)
+    reportVersion: string;              // Version of query
+    reportFetch: string;                // To get resultset
     reportCreatedUserName: string;      // UserName who created record
     reportCreatedDateTime: string;      // Date time of creation
     reportUpdatedUserName: string;      // UserName who created record
     reportUpdatedDateTime: string;      // Date time of creation
-    reportUrl: string;
+    reportUrl: string;                  // url for DRF
     reportData: any[];                  // Array (json) of data rows
 }

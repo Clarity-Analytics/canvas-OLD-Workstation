@@ -4075,9 +4075,15 @@ export const REPORTS: Report[] =
                 {"permission": "remove_permission_query"},
                 {"permission": "view_query"}
             ],
+            "reportChecksum": '',
+            "reportVersion": '',
+            "reportFetch": '',
+            "reportCreatedUserName": 'janniei',
+            "reportCreatedDateTime": '2017/05/01',
+            "reportUpdatedUserName": 'janniei',
+            "reportUpdatedDateTime": '2017/05/01',
             "reportUrl": "http://localhost:8000/api/queries/2/",
-            // "reportData": null
-                "reportData":
+            "reportData":
                     [
                         {"category": "A0", "amount": 38},
                         {"category": "B0", "amount": 45},
@@ -4131,9 +4137,15 @@ export const REPORTS: Report[] =
                 {"permission": "remove_permission_query"},
                 {"permission": "view_query"}
             ],
+            "reportChecksum": '',
+            "reportVersion": '',
+            "reportFetch": '',
+            "reportCreatedUserName": 'janniei',
+            "reportCreatedDateTime": '2017/05/01',
+            "reportUpdatedUserName": 'janniei',
+            "reportUpdatedDateTime": '2017/05/01',
             "reportUrl": "http://localhost:8000/api/queries/2/",
-            // "reportData": null
-                "reportData":
+            "reportData":
                     [
                         {"category": "A0", "amount": 38},
                         {"category": "B0", "amount": 45},
@@ -8242,7 +8254,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
 
                 // Get all the data via API
                 let reportWorking: Report[] = [];
-                // this.get<EazlReport>('queries')
                 this.get<EazlReport>('queries')
                     .subscribe(
                         (eazlReport) => {

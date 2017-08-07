@@ -1490,17 +1490,23 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
 
         ReportWorking.reportID = eazlReport.id;
 
+        if (eazlReport.code != null) {
+            ReportWorking.reportCode = eazlReport.code;
+        } else {
+            ReportWorking.reportCode = '';
+        }
+
         if (eazlReport.name != null) {
             ReportWorking.reportName = eazlReport.name;
         } else {
             ReportWorking.reportName = '';
         }
 
-        // if (eazlReport.description != null) {
-        //     ReportWorking.description = eazlReport.description;
-        // } else {
-        //     ReportWorking.description = '';
-        // }
+        if (eazlReport.description != null) {
+            ReportWorking.reportDescription = eazlReport.description;
+        } else {
+            ReportWorking.reportDescription = '';
+        }
 
         // if (eazlReport.parameters != null) {
         //     ReportWorking.reportParameters = eazlReport.parameters;
@@ -1508,41 +1514,35 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
         //     ReportWorking.reportParameters = '';
         // }
 
-        // if (eazlReport.datasource_id != null) {
-        //     ReportWorking.dataSourceID = eazlReport.datasource_id;
-        // } else {
-        //     ReportWorking.dataSourceID = -1;
-        // }
+        if (eazlReport.package_id != null) {
+            ReportWorking.dataSourceID = eazlReport.package_id;
+        } else {
+            ReportWorking.dataSourceID = -1;
+        }
 
-        // if (eazlReport.datasource_parameters != null) {
-        //     ReportWorking.dataSourceParameters = eazlReport.datasource_parameters;
-        // } else {
-        //     ReportWorking.dataSourceParameters = '';
-        // }
+        if (eazlReport.date_created != null) {
+            ReportWorking.reportCreatedDateTime = eazlReport.date_created;
+        } else {
+            ReportWorking.reportCreatedDateTime = '';
+        }
 
-        // if (eazlReport.report_fields != null) {
-        //     ReportWorking.reportFields = eazlReport.report_fields;
-        // } else {
-        //     ReportWorking.reportFields = [];
-        // }
+        if (eazlReport.creator != null) {
+            ReportWorking.reportCreatedUserName = eazlReport.creator;
+        } else {
+            ReportWorking.reportCreatedUserName = '';
+        }
 
-        // if (eazlReport.report_data != null) {
-        //     ReportWorking.reportData = eazlReport.report_data;
-        // } else {
-        //     ReportWorking.reportData = [];
-        // }
+        if (eazlReport.date_edited != null) {
+            ReportWorking.reportUpdatedDateTime = eazlReport.date_edited;
+        } else {
+            ReportWorking.reportUpdatedDateTime = '';
+        }
 
-        // if (eazlReport.created_on != null) {
-        //     ReportWorking.reportCreatedDateTime = eazlReport.created_on;
-        // } else {
-        //     ReportWorking.reportCreatedDateTime = '';
-        // }
-
-        // if (eazlReport.created_by != null) {
-        //     ReportWorking.reportCreatedUserName = eazlReport.created_by;
-        // } else {
-        //     ReportWorking.reportCreatedUserName = '';
-        // }
+        if (eazlReport.editor != null) {
+            ReportWorking.reportUpdatedUserName = eazlReport.editor;
+        } else {
+            ReportWorking.reportUpdatedUserName = '';
+        }
 
         if (eazlReport.package_permissions != null) {
             ReportWorking.reportPackagePermissions = eazlReport.package_permissions;
@@ -1583,6 +1583,24 @@ console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
             ReportWorking.reportUrl = eazlReport.url;
         } else {
             ReportWorking.reportUrl = '';
+        }
+
+        if (eazlReport.checksum != null) {
+            ReportWorking.reportChecksum = eazlReport.checksum;
+        } else {
+            ReportWorking.reportChecksum = '';
+        }
+
+        if (eazlReport.version != null) {
+            ReportWorking.reportVersion = eazlReport.version;
+        } else {
+            ReportWorking.reportVersion = '';
+        }
+
+        if (eazlReport.fetch != null) {
+            ReportWorking.reportFetch = eazlReport.fetch;
+        } else {
+            ReportWorking.reportFetch = '';
         }
 
         // Return the result
