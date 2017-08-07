@@ -17,7 +17,9 @@ export class EazlReportOLD {
 
 export class EazlReport {
     id: number;                         // Unique DB ID
+    code: string;                       // Short Code
     name: string;                       // Name
+    description: string;                // Long description
     package_id: number;                 // FK to DataSource
     package_permissions: [
         {
@@ -40,7 +42,14 @@ export class EazlReport {
             permission: string;
         }
     ];
-    url: string;
+    checksum: string;                   // Checksum with query parameters (unique)
+    version: string;                    // Version of query
+    fetch: string;                      // To get resultset
+    creator: string;                    // User who created record
+    date_created: string;               // Date created
+    editor: string;                     // User who made last change
+    date_edited: string;                // Date last changed
+    url: string;                        // RESTi url
 
 }
 

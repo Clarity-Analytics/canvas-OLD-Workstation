@@ -209,17 +209,17 @@ export class AppComponent implements OnInit {
 
                 // Kill old message if not sticky (else user have to delete them each time)
                 if (!this.growlSticky) {
-                    this.growlMsgs = [];
+                    // this.growlMsgs = [];
                 }
-
-// TODO - uncomment                
-                // if (newgrowlmsg.detail != '') {
-                //     this.growlMsgs.push({
-                //         severity: newgrowlmsg.severity,
-                //         summary:  newgrowlmsg.summary,
-                //         detail:   newgrowlmsg.detail
-                //     });
-                // }
+console.log('dirtiness', this.globalVariableService.growlGlobalMessage)
+// TODO - uncomment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                if (newgrowlmsg.detail != '') {
+                    this.growlMsgs.push({
+                        severity: newgrowlmsg.severity,
+                        summary:  newgrowlmsg.summary,
+                        detail:   newgrowlmsg.detail
+                    });
+                }
             }
         );
 

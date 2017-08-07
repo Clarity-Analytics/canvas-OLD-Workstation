@@ -84,7 +84,6 @@ export class NewMessageComponent implements OnInit {
         this.userformNewMessage.controls['messageBody'].setValue('');
         this.userformNewMessage.controls['messageDashboardID'].setValue('');
 
-        // TODO this line cause an Angular ERROR - changed value after set.  FIX IT !!!
         // Fill combos
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
     }
