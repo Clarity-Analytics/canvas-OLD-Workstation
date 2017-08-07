@@ -4912,7 +4912,7 @@ export class EazlService implements OnInit {
                             is_staff: eazlUser.is_staff,
                             is_active: eazlUser.is_active,
                             date_joined: eazlUser.date_joined,
-                            group: [ {name: ''}],
+                            groups: null,
                             last_login: eazlUser.last_login,
                             profile:
                                 {

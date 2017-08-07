@@ -7,11 +7,11 @@ export class EazlUser
         date_joined: Date;
         email: string;
         first_name: string;
-        group: [
-            {
-                name: string;
-            }
-        ];
+        groups: string[];
+        //     {
+        //         name: string;
+        //     }
+        // ];
         id: number;
         is_active: boolean;
         is_superuser: boolean;
@@ -46,11 +46,11 @@ export class User
         dateCreated: string;
         emailAddress: string;
         firstName: string;
-        group: [
-            {
-                groupName: string;
-            }
-        ];
+        groups: string[];
+        //     {
+        //         name: string;
+        //     }
+        // ];
         id: number;
         inactiveDate: string;
         isStaff: boolean;
@@ -85,11 +85,11 @@ export class CanvasUser implements EazlUser
         date_joined: Date;
         email: string;
         first_name: string;
-        group: [
-            {
-                name: string;
-            }
-        ];
+        groups: string[];
+        //     {
+        //         name: string;
+        //     }
+        // ];
         id: number;
         is_superuser: boolean;
         is_staff: boolean;

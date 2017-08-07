@@ -242,7 +242,7 @@ export class UserComponent implements OnInit {
     onMoveToTargetUserGroupMembership(event) {
         // User clicked onMoveToTarget on Group Membership: add grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
-
+console.log('users', this.users)
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(

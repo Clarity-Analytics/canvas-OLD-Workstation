@@ -117,17 +117,13 @@ export class CDAL {
         }
 
         userWorking.lastDatetimeReportWasRun = '';
-
-        if (eazlUser.group != null) {
-            for (var i; i < eazlUser.group.length; i++) {
-                userWorking.group.push(
-                    {
-                        groupName: eazlUser.group[i].name
-                    }
-                );
+        if (eazlUser.groups.length > 0) {
+            userWorking.groups = [ eazlUser.groups[0] ]
+            for (var i = 1; i < eazlUser.groups.length; i++) {
+                userWorking.groups.push(eazlUser.groups[i]);
             } 
         } else {
-            userWorking.group = null;
+            userWorking.groups = null;
         }
 
         if (eazlUser.email != null) {
@@ -272,7 +268,7 @@ export class CDAL {
                 userWorking.profile.snapToGrid = false;
             }
         }
-
+console.log('userWorking', userWorking)
         // Return the User
         return userWorking;
     }
