@@ -118,6 +118,18 @@ export class CDAL {
 
         userWorking.lastDatetimeReportWasRun = '';
 
+        if (eazlUser.group != null) {
+            for (var i; i < eazlUser.group.length; i++) {
+                userWorking.group.push(
+                    {
+                        groupName: eazlUser.group[i].name
+                    }
+                );
+            } 
+        } else {
+            userWorking.group = null;
+        }
+
         if (eazlUser.email != null) {
             userWorking.emailAddress = eazlUser.email;
         } else {
