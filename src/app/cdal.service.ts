@@ -117,6 +117,7 @@ export class CDAL {
         }
 
         userWorking.lastDatetimeReportWasRun = '';
+
         if (eazlUser.groups.length > 0) {
             userWorking.groups = [ eazlUser.groups[0] ]
             for (var i = 1; i < eazlUser.groups.length; i++) {
@@ -268,7 +269,7 @@ export class CDAL {
                 userWorking.profile.snapToGrid = false;
             }
         }
-console.log('userWorking', userWorking)
+
         // Return the User
         return userWorking;
     }
@@ -305,6 +306,15 @@ console.log('userWorking', userWorking)
         }
 
         // user.lastDatetimeReportWasRun = '';
+        
+        if (user.groups.length > 0) {
+            eazlUserWorking.groups = [ user.groups[0] ]
+            for (var i = 1; i < user.groups.length; i++) {
+                eazlUserWorking.groups.push(user.groups[i]);
+            } 
+        } else {
+            eazlUserWorking.groups = null;
+        }
 
         if (user.emailAddress != null) {
             eazlUserWorking.email = user.emailAddress;
@@ -452,7 +462,7 @@ console.log('userWorking', userWorking)
                 eazlUserWorking.profile.snap_to_grid = false;
             }
         }
-
+console.log('CDAL eazlUserWorking', eazlUserWorking)
         // Return the User
         return eazlUserWorking;
     }
@@ -734,7 +744,7 @@ console.log('userWorking', userWorking)
                 }
             );
         }
-console.log('CDAL eazlCanvasMessageWorking', eazlCanvasMessageWorking)
+
         // Return the result
         return eazlCanvasMessageWorking;
     }
