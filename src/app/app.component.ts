@@ -206,13 +206,12 @@ export class AppComponent implements OnInit {
         // growlGlobalMessage = observable new (single) message
         this.globalVariableService.growlGlobalMessage.subscribe (
             newgrowlmsg => {
-console.log('growlSticky', this.growlSticky, this.globalVariableService.growlSticky)
+
                 // Kill old message if not sticky (else user have to delete them each time)
                 if (!this.growlSticky) {
                     // this.growlMsgs = [];
                 }
-console.log('dirtiness', this.globalVariableService.growlGlobalMessage)
-// TODO - uncomment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+
                 if (newgrowlmsg.detail != '') {
                     this.growlMsgs.push({
                         severity: newgrowlmsg.severity,

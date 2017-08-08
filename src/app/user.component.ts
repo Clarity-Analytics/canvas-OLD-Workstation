@@ -188,6 +188,7 @@ export class UserComponent implements OnInit {
                 this.users.splice(index, 1);
                 this.deleteMode = false;
 
+                // Tell user
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info',
                     summary:  'User deleted',

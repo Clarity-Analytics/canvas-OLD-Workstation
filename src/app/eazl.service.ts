@@ -5045,6 +5045,15 @@ export class EazlService implements OnInit {
             .catch(this.handleError);
     }
 
+    delete<T>(route: string): Observable<any> {
+        // Post to http
+        this.globalFunctionService.printToConsole(this.constructor.name,'delete-http', '@Start');
+
+        return this.http.delete(this.prepareRoute(route), this.httpOptions)
+            .map(this.parseResponse)
+            .catch(this.handleError);
+    }
+
     addUser(user: User) {
         // Adds a new User to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'addUser', '@Start');
@@ -5137,6 +5146,57 @@ export class EazlService implements OnInit {
                         severity: 'warn',
                         summary:  'User',
                         detail:   'Unsuccessful in updating your User info to the database'
+                    });
+                    error.message || error
+                })
+    }
+
+
+
+        deleteUser(user: User) {
+        // Deletes a User, and also refresh (.next) global variables
+        // - user = user to delete
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteUser', '@Start');
+
+        // TODO - finalise this
+        // // Mark as dirty
+        // // this.globalVariableService.dirtyU... = true;
+
+        return this.delete<EazlUser>(
+            'users/' + user.id.toString() + '/'
+            )
+                .toPromise()
+                .then(eazlUser => {
+console.log('EAZL delete eazlUser', eazlUser)
+        //             // Get the index in the users array for the current user
+        //             let index: number = -1;
+        //             for (var i = 0; i < this.users.length; i++) {
+        //                 if (user.id == this.users[i].id) {
+        //                     index = i;
+        //                     break;
+        //                 }
+        //             }
+        //             if (index == -1) {
+        //                 alert ("Error - current user id in canvasUser not in users object !")
+        //             }
+
+        //             // Update local array
+        //             this.users[i] = user;
+
+        //             // Refresh global variables
+        //             this.globalVariablesUsers(user);
+
+        //             // Mark as clean
+        //             // this.globalVariableService.dirtyU... = false;
+
+        //             // Return the data
+        //             return eazlUser;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'User',
+                        detail:   'Unsuccessful in deleting your User info to the database'
                     });
                     error.message || error
                 })
