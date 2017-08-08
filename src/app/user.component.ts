@@ -177,19 +177,22 @@ export class UserComponent implements OnInit {
             },
             accept: () => {
 
-                // - User: currently selected row
-                let index = -1;
-                for(let i = 0; i < this.users.length; i++) {
-                    if(this.users[i].username == user.firstName) {
-                        index = i;
-                        break;
-                    }
-                }
-                this.users.splice(index, 1);
+                // // - User: currently selected row
+                // let index = -1;
+                // for(let i = 0; i < this.users.length; i++) {
+                //     if(this.users[i].username == user.firstName) {
+                //         index = i;
+                //         break;
+                //     }
+                // }
+                // this.users.splice(index, 1);
                 this.deleteMode = false;
 
                 // Update DB
                 this.eazlService.deleteUser(this.selectedUser);
+
+                // Refresh local variable
+                this.users = this.eazlService.getUsers();
 
                 // Tell user
                 this.globalVariableService.growlGlobalMessage.next({

@@ -5163,46 +5163,24 @@ export class EazlService implements OnInit {
         // Mark as dirty
         this.globalVariableService.dirtyDataUser = true;
 
-        // // - User: currently selected row
-        // let index = -1;
-        // for(let i = 0; i < this.users.length; i++) {
-        //     if(this.users[i].username == user.firstName) {
-        //         index = i;
-        //         break;
-        //     }
-        // }
-        // this.users.splice(index, 1);
-
-
         return this.delete<EazlUser>(
             'users/' + user.id.toString() + '/'
             )
                 .toPromise()
-                .then(eazlUser => {
-console.log('EAZL delete eazlUser', eazlUser)
-        //             // Get the index in the users array for the current user
-        //             let index: number = -1;
-        //             for (var i = 0; i < this.users.length; i++) {
-        //                 if (user.id == this.users[i].id) {
-        //                     index = i;
-        //                     break;
-        //                 }
-        //             }
-        //             if (index == -1) {
-        //                 alert ("Error - current user id in canvasUser not in users object !")
-        //             }
+                .then(response => {
+console.log('EAZL delete response', response)
+                    // - User: currently selected row
+                    let index = -1;
+                    for(let i = 0; i < this.users.length; i++) {
+                        if(this.users[i].username == user.firstName) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    this.users.splice(index, 1);
 
-        //             // Update local array
-        //             this.users[i] = user;
-
-        //             // Refresh global variables
-        //             this.globalVariablesUsers(user);
-
-                        // Mark as dirty
-                        this.globalVariableService.dirtyDataUser = false;
-
-        //             // Return the data
-        //             return eazlUser;
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataUser = false;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
