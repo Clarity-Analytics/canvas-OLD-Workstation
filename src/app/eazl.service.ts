@@ -4157,7 +4157,7 @@ export const REPORTS: Report[] =
                         {"category": "H0", "amount": 107}
                     ],
         }
-                
+
         // {
         //     reportID: 1,
         //     reportCode: 'EDM Val',
@@ -4854,7 +4854,6 @@ export class EazlService implements OnInit {
                 .toPromise()
                 .then(
                     eazlUser => {
-
                         let nick_name: string = '';
                         let cell_number: string = '';
                         let work_number: string = '';

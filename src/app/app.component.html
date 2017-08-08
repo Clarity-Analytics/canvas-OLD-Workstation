@@ -4,10 +4,11 @@
 
 
 
-<p-growl 
-    [value]="growlMsgs" 
-    [sticky]="growlSticky" 
-    [life]="growlLife">
+<p-growl
+    [value]="growlMsgs"
+    [sticky]="growlSticky"
+    [life]="growlLife"
+    >
 </p-growl>
 
 
@@ -15,7 +16,7 @@
     <p-menubar [model]="menuItems"> </p-menubar>
 </div>
 
-<div 
+<div
     *ngIf="devMode"
     class="devMode"
     >
@@ -23,24 +24,24 @@
 </div>
 
 <div class="router-outlet">
-    <router-outlet 
+    <router-outlet
         (formSubmit)="handleFormSubmit($event)">
     </router-outlet>
 </div>
 
- 
+
 <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
 
 
-<p-dialog header="Login" 
-    [(visible)]="displayLoginForm" 
-    modal="modal" 
-    width="450" 
+<p-dialog header="Login"
+    [(visible)]="displayLoginForm"
+    modal="modal"
+    width="450"
     responsive="true"
     >
 
-    <login 
-        (formSubmit)="handleFormSubmit($event)" 
+    <login
+        (formSubmit)="handleFormSubmit($event)"
         >
         Loading Login form ...
     </login>
@@ -48,16 +49,16 @@
 </p-dialog>
 
 
-<p-dialog header="Who am I" 
-    [(visible)]="displayWhoAmIForm" 
-    modal="modal" 
-    width="450" 
+<p-dialog header="Who am I"
+    [(visible)]="displayWhoAmIForm"
+    modal="modal"
+    width="450"
     responsive="true"
     >
 
-    <whoami 
+    <whoami
         [displayWhoAmIForm]="displayWhoAmIForm"
-        (handleWhoAmISubmit)="handleWhoAmISubmit($event)" 
+        (handleWhoAmISubmit)="handleWhoAmISubmit($event)"
         >
         Loading Who Am I form ...
     </whoami>
@@ -66,19 +67,19 @@
 
 
 
-<p-dialog header="New Message" 
-    [(visible)]="displayNewMessage" 
-    modal="modal" 
-    width="610" 
+<p-dialog header="New Message"
+    [(visible)]="displayNewMessage"
+    modal="modal"
+    width="610"
     responsive="true"
     >
 
-    <newmessage 
+    <newmessage
         [previousMessage]="previousMessage"
         [availableUsers]="availableUsers"
         [sendToTheseUsers]="sendToTheseUsers"
         [nrUnReadMessagesForMe]="nrUnReadMessagesForMe"
-        (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)" 
+        (formNewMessageSubmit)="handleCanvasMessageFormSubmit($event)"
         >
         Loading New Message form ...
     </newmessage>

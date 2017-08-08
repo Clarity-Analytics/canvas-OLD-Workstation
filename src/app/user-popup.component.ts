@@ -347,6 +347,10 @@ export class UserPopupComponent implements OnInit {
                 this.selectedUser.userNameLastUpdated = this.userformActivity.controls['userNameLastUpdated'].value;
             }
 
+            // Update DB
+            this.eazlService.updateUser(this.selectedUser);
+
+            // Tell user
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
                 summary:  'Success',

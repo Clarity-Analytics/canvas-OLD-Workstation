@@ -25,7 +25,6 @@ import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { ReportHistory }              from './model.reportHistory';
 import { User }                       from './model.user';
-import { UserGroupMembership }        from './model.userGroupMembership';
 
 @Component({
     selector:    'user',
@@ -61,7 +60,6 @@ export class UserComponent implements OnInit {
     reportHistory: ReportHistory[];                     // List of Report History (ran)
     selectedUser: User;                                 // User that was clicked on
     users: User[];
-    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group
 
     constructor(
         private confirmationService: ConfirmationService,
