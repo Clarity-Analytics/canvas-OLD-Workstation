@@ -5058,6 +5058,9 @@ export class EazlService implements OnInit {
         // Adds a new User to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'addUser', '@Start');
 
+        // Mark as dirty
+        this.globalVariableService.dirtyDataUser = true;
+
         // TODO - remove this hack once Users in separate DB
         let today = new Date();
         let workingUser: any = {
@@ -5108,7 +5111,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'updateUser', '@Start');
 
         // Mark as dirty
-        // this.globalVariableService.dirtyU... = true;
+        this.globalVariableService.dirtyDataUser = true;
 
         return this.put<EazlUser>(
             'users/' + user.id.toString() + '/',
@@ -5136,7 +5139,7 @@ export class EazlService implements OnInit {
                     this.globalVariablesUsers(user);
 
                     // Mark as clean
-                    // this.globalVariableService.dirtyU... = false;
+                    this.globalVariableService.dirtyDataUser = false;
 
                     // Return the data
                     return eazlUser;
@@ -5151,16 +5154,25 @@ export class EazlService implements OnInit {
                 })
     }
 
-
-
-        deleteUser(user: User) {
+    deleteUser(user: User) {
         // Deletes a User, and also refresh (.next) global variables
         // - user = user to delete
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUser', '@Start');
 
         // TODO - finalise this
-        // // Mark as dirty
-        // // this.globalVariableService.dirtyU... = true;
+        // Mark as dirty
+        this.globalVariableService.dirtyDataUser = true;
+
+        // // - User: currently selected row
+        // let index = -1;
+        // for(let i = 0; i < this.users.length; i++) {
+        //     if(this.users[i].username == user.firstName) {
+        //         index = i;
+        //         break;
+        //     }
+        // }
+        // this.users.splice(index, 1);
+
 
         return this.delete<EazlUser>(
             'users/' + user.id.toString() + '/'
@@ -5186,8 +5198,8 @@ console.log('EAZL delete eazlUser', eazlUser)
         //             // Refresh global variables
         //             this.globalVariablesUsers(user);
 
-        //             // Mark as clean
-        //             // this.globalVariableService.dirtyU... = false;
+                        // Mark as dirty
+                        this.globalVariableService.dirtyDataUser = false;
 
         //             // Return the data
         //             return eazlUser;
