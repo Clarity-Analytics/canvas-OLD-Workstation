@@ -188,6 +188,9 @@ export class UserComponent implements OnInit {
                 this.users.splice(index, 1);
                 this.deleteMode = false;
 
+                // Update DB
+                this.eazlService.deleteUser(this.selectedUser);
+
                 // Tell user
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info',
