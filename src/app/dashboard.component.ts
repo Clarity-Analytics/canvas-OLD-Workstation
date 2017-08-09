@@ -99,8 +99,10 @@ selectedCanvasMessage: string;
 availableUsers: string[];
 sendToTheseUsers: string[];
 nrUnReadMessagesForMe: string;
-displayNewMessage: boolean = false;
+// displayNewMessage: boolean = false;
 displayMessageManager: boolean = false;
+selectedDashboardID: number = -1;
+selectedWidgetID: number = -1;
 
 
     // Currently selected stuffies
@@ -161,7 +163,7 @@ displayMessageManager: boolean = false;
     // Popup forms stuffies
     addEditModeWidgetEditor: string = '';       // Add or Edit was called
     deleteMode: boolean = false;                // True while busy deleting
-    displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
+    // displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayTabDetails: boolean = false;         // T/F to show Tab Details form
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)

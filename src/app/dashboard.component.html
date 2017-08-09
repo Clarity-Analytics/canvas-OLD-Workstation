@@ -1,3 +1,23 @@
+<!--Form to show Messages pertaining to THIS Widget only-->
+<div *ngIf="displayMessageManager">
+    <p-dialog
+        header="Messages"
+        [(visible)]="displayMessageManager"
+        modal="modal"
+        width="100%"
+        responsive="true"
+        >
+        <messageManager
+            allowPopupMenu="false"
+            selectedDashboardID="selectedDashboardID"
+            selectedWidgetID="12"
+        >
+            Loading Message Manager ...
+        </messageManager>
+    </p-dialog>
+</div>
+
+
 <!--Detail for selected Tab-->
 <div
     *ngIf="displayTabDetails"
@@ -1400,7 +1420,7 @@
 
 
 <!--Form to show / add Widget Comments-->
-<div *ngIf="displayCommentsPopup">
+<!-- <div *ngIf="displayCommentsPopup">
     <p-dialog
         header="Comments"
         [(visible)]="displayCommentsPopup"
@@ -1414,29 +1434,13 @@
             Loading Widget Comments ...
         </widget-comment>
     </p-dialog>
-</div>
+</div> -->
 
 
 
 
 
 
-
-
-<!--Form to show / add Widget Comments-->
-<div *ngIf="displayMessageManager">
-    <p-dialog
-        header="Messages"
-        [(visible)]="displayMessageManager"
-        modal="modal"
-        width="100%"
-        responsive="true"
-        >
-        <messageManager>
-            Loading Message Manager ...
-        </messageManager>
-    </p-dialog>
-</div>
 
 
 

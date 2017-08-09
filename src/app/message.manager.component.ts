@@ -1,5 +1,6 @@
 // Message Manager form
 import { Component }                  from '@angular/core';
+import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewEncapsulation }          from '@angular/core';
@@ -31,6 +32,11 @@ import { User }                       from './model.user';
 })
 export class MessageManagerComponent implements OnInit {
 
+    // Input variables, with default if this form is opened by the Angular Router 
+    @Input() allowPopupMenu: boolean = true;
+    @Input() selectedDashboardID: number = -1;
+    @Input() selectedWidgetID: number = -1;
+
     // Local properties
     availableUsers: string[] = [];                  // List of UserNames available to share with
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
@@ -61,7 +67,7 @@ export class MessageManagerComponent implements OnInit {
         if (this.globalVariableService.dirtyDataCanvasMessage) {
             this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
         }
-
+console.log('selectedWidgetID', this.selectedWidgetID)
         this.popuMenuItems = [
             {
                 label: 'Read/UnRead',
@@ -82,7 +88,7 @@ export class MessageManagerComponent implements OnInit {
         ];
 
     }
-    
+
     // ngOnChanges() {
     //     // Reacts to changes in selectedGroup
     //     this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
