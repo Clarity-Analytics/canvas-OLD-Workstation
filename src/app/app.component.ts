@@ -78,10 +78,6 @@ export class AppComponent implements OnInit {
         private router: Router,
         private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
-            // Subscribe to Web Socket
-            this.reconnectingWebSocket.webSocketSystemMessage.subscribe(
-                    message => console.log('WebSocketSystemMessage', message)
-    )       
 
 // class Foo {
 //     foo = 123;
@@ -128,8 +124,64 @@ export class AppComponent implements OnInit {
             this.devMode = isDevMode();
     }
 
+    ngOnInit() {
+        //   Form initialisation
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Dev mode stuffies
+        if (isDevMode()) {
+            // Login, get back eazlUser from RESTi and set currentUser if successful
+            this.eazlService.login('janniei', 'canvas100*')
+                .then(eazlUser => {
+                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
+
+                    // Load menu array
+                    this.menuItems = this.loadMenu()
+
+                    // Subscribe to Web Socket
+                    this.reconnectingWebSocket.webSocketSystemMessage.subscribe(
+                            message => console.log('WebSocketSystemMessage', message)
+                    )
+
+                    // Subscribe to the global alerts (that are growled)
+                    this.globalVariableService.growlGlobalMessage.subscribe (
+                        newgrowlmsg => {
+
+                            // Kill old message if not sticky (else user have to delete them each time)
+                            if (!this.growlSticky) {
+                                // this.growlMsgs = [];
+                            }
+
+                            if (newgrowlmsg.detail != '') {
+                                this.growlMsgs.push({
+                                    severity: newgrowlmsg.severity,
+                                    summary:  newgrowlmsg.summary,
+                                    detail:   newgrowlmsg.detail
+                                });
+                            }
+                        }
+                    );
+
+                }
+                )
+                .catch(err => {
+                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Auto login failed!!');
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Login Failed',
+                        detail:   'Auto login for janniei failed'
+                    });
+
+                    // Set the menu items
+                    this.menuItems = this.loadMenu()
+                    console.log('Error in app.component.ts @ fakeLogin', err)
+                    }
+                )
+        }
+    }
+
     handleNotificationFromWS(message: any) {
-        // Receive and act upon the notification received from the WebSocket 
+        // Receive and act upon the notification received from the WebSocket
         // - message can be of any type, see model.notification.ts for detail
         this.globalFunctionService.printToConsole(this.constructor.name,'handleNotificationFromWS', '@Start');
 
@@ -154,7 +206,7 @@ export class AppComponent implements OnInit {
         if (message.webSocketMessageType == 'WebSocketRefDataMessage') {
             let webSocketRefDataMessage: WebSocketRefDataMessage = message;
          this.eazlService.cacheCanvasData(
-             webSocketRefDataMessage.webSocketMessageBody.webSocketTableName, 
+             webSocketRefDataMessage.webSocketMessageBody.webSocketTableName,
              'reset'
         );
         }
@@ -197,56 +249,6 @@ export class AppComponent implements OnInit {
         // console.log(this.canvasDate.curMeridiem(d));
         // console.log(this.canvasDate.today('locale'));
         // console.log(this.canvasDate.today('standard'));
-    }
-
-    ngOnInit() {
-        //   Form initialisation
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        // Subscribe to the global alerts (that are growled)
-        // growlGlobalMessage = observable new (single) message
-        this.globalVariableService.growlGlobalMessage.subscribe (
-            newgrowlmsg => {
-
-                // Kill old message if not sticky (else user have to delete them each time)
-                if (!this.growlSticky) {
-                    // this.growlMsgs = [];
-                }
-
-                if (newgrowlmsg.detail != '') {
-                    this.growlMsgs.push({
-                        severity: newgrowlmsg.severity,
-                        summary:  newgrowlmsg.summary,
-                        detail:   newgrowlmsg.detail
-                    });
-                }
-            }
-        );
-
-        // Dev mode stuffies
-        if (isDevMode()) {
-            // Login, get back eazlUser from RESTi and set currentUser if successful
-            this.eazlService.login('janniei', 'canvas100*')
-                .then(eazlUser => {
-                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Setted fake username janniei & preferences for Testing');
-
-                    // Load menu array
-                    this.menuItems = this.loadMenu()
-                    }
-                )
-                .catch(err => {
-                    this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '  Auto login failed!!');
-                    this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'warn',
-                        summary:  'Login Failed',
-                        detail:   'Auto login for janniei failed'
-                    });
-        
-                    // Set the menu items
-                    this.menuItems = this.loadMenu()
-                    console.log('Error in app.component.ts @ fakeLogin', err)
-                    }
-                )
-        }
     }
 
     menuActionNewMessage() {
@@ -349,7 +351,7 @@ export class AppComponent implements OnInit {
                 webSocketRecordID: 14,
                 webSocketMessage: ''
             }
-        }        
+        }
         if (event == 'Submit') {
             this.handleNotificationFromWS(this.webSocketBasicMessage);
         }
