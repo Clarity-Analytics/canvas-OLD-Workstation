@@ -94,6 +94,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     radioLabelval1: number;
     refreshDashboard: boolean = false;
 
+// TODO - fix up, or delete
+selectedCanvasMessage: string;
+availableUsers: string[];
+sendToTheseUsers: string[];
+nrUnReadMessagesForMe: string;
+displayNewMessage: boolean = false;
+displayMessageManager: boolean = false;
+
+
     // Currently selected stuffies
     currentFilter: Filter;
     numberUntitledDashboards: number = 0;           // Suffix in naming new dashboards, Untitled + n
@@ -828,7 +837,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         let widgetComment: string = this.widgets.filter(
                     widget => widget.properties.widgetID === idWidget)[0].properties.widgetComments;
         this.selectedCommentWidgetID = idWidget;
-        this.displayCommentsPopup = true;
+        // this.displayCommentsPopup = true;
+this.displayMessageManager = true;
+// this.displayNewMessage = true;
+
+
     }
 
     onWidgetDistanceChange(property: string) {

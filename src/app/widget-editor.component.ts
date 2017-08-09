@@ -28,7 +28,6 @@ import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
 import { SelectedItemColor }          from './model.selectedItemColor';
 import { Widget }                     from './model.widget';
-import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
 

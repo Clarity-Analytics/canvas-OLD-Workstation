@@ -1416,3 +1416,31 @@
     </p-dialog>
 </div>
 
+
+
+
+
+
+
+
+<!--Form to show / add Widget Comments-->
+<div *ngIf="displayMessageManager">
+    <p-dialog
+        header="Messages"
+        [(visible)]="displayMessageManager"
+        modal="modal"
+        width="100%"
+        responsive="true"
+        >
+        <messageManager>
+            Loading Message Manager ...
+        </messageManager>
+    </p-dialog>
+</div>
+
+
+
+
+
+
+

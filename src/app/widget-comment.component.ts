@@ -79,7 +79,7 @@ export class WidgetCommentComponent implements OnInit {
 
         // Load some detail for the lastest Comment
         if (this.widgetComments.length > 0 ) {
-            this.lastWidgetComment = 
+            this.lastWidgetComment =
                 this.widgetComments[this.widgetComments.length - 1].widgetCommentHeading;
             this.lastWidgetCommentID =
                 this.widgetComments[this.widgetComments.length - 1].widgetCommentID;
@@ -128,8 +128,8 @@ export class WidgetCommentComponent implements OnInit {
             this.lastWidgetCommentThreadID = 1;
         }
 
-        this.eazlService.addWidgetsComments( 
-                this.lastWidgetCommentID, 
+        this.eazlService.addWidgetsComments(
+                this.lastWidgetCommentID,
                 this.selectedWidgetID,
                 this.lastWidgetCommentThreadID,
                 this.canvasDate.now('standard'),

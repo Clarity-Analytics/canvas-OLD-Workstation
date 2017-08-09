@@ -3,7 +3,7 @@
 // Eazl
 export class EazlWidgetComment {
     id: number;                                     // Unique DB ID
-    widget_id: number;                              // FK to Widget ID 
+    widget_id: number;                              // FK to Widget ID
     thread_id: number;                              // Thread ID (for 1 or more comments)
     created_on: string;                             // Date time of creation
     created_by: string;                             // UserName who created record
@@ -14,11 +14,10 @@ export class EazlWidgetComment {
 // Canvas
 export class WidgetComment {
     widgetCommentID: number;                        // Unique DB ID
-    widgetID: number;                               // FK to Widget ID 
+    widgetID: number;                               // FK to Widget ID
     widgetCommentThreadID: number;                  // Thread ID (for 1 or more comments)
     widgetCommentCreatedDateTime: string;           // Date time of creation
     widgetCommentCreatedUserName: string;           // UserName who created record
     widgetCommentHeading: string;                   // Short message heading
     widgetCommentBody: string;                      // Message body
 }
- 

@@ -97,7 +97,7 @@ let basic = new WebSocketBasicMessage();
 
 basic =  {
 	webSocketDatetime: new Date,
-	webSocketSenderUsername: 'JohnDoe',
+	webSocketSenderUsername: 'TESTING in newmessage component',
 	webSocketMessageType: 'WebSocketRefDataMessage',
 	webSocketMessageBody: 					
 		{

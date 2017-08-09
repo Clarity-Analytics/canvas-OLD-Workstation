@@ -22,11 +22,11 @@
 </p-dialog>
 
 
-<!--Table with group info -->
+<!--Table with Messages info -->
 <div #dt>
     <p-dataTable  #dt
         columnResizeMode="expand"
-        exportFilename="groups"
+        exportFilename="messages"
         [contextMenu]="cm"
         [paginator]="true"
         [pageLinks]="3"
@@ -45,7 +45,7 @@
         <p-header
             [style]="{'background-color': 'darkgray'}">
             <span>
-                List of Groups
+                List of Messages
             </span>
             <span style="float:right"
                 class="ui-helper-clearfix csvButton"
