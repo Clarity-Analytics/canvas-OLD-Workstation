@@ -94,23 +94,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     radioLabelval1: number;
     refreshDashboard: boolean = false;
 
-// TODO - fix up, or delete
-selectedCanvasMessage: string;
-availableUsers: string[];
-sendToTheseUsers: string[];
-nrUnReadMessagesForMe: string;
-// displayNewMessage: boolean = false;
-displayMessageManager: boolean = false;
-selectedDashboardID: number = -1;
-selectedWidgetID: number = -1;
-
+    displayMessageManager: boolean = false;
+selectedWidgetName: string;
 
     // Currently selected stuffies
     currentFilter: Filter;
     numberUntitledDashboards: number = 0;           // Suffix in naming new dashboards, Untitled + n
     numberUntitledTabs: number = 0;                 // Suffix in naming new tabs, Untitled + n
-    selectedCommentWidgetID: number;                // Current WidgetID for Comment
-    selectedDashboard: SelectedItem;                 // Selected Dashboard
+    selectedMessageWidgetID: number;                // Current WidgetID for Messages
+    selectedDashboard: SelectedItem;                // Selected Dashboard
     selectedDashboardTab: SelectedItem;             // Current DashboardTab
     selectedWidget: Widget = null;                  // Selected widget during dragging
     selectedWidgetIDs: number[] = [];               // Array of WidgetIDs selected with mouse
@@ -163,7 +155,6 @@ selectedWidgetID: number = -1;
     // Popup forms stuffies
     addEditModeWidgetEditor: string = '';       // Add or Edit was called
     deleteMode: boolean = false;                // True while busy deleting
-    // displayCommentsPopup:boolean = false;       // T/F to show Comments Popup form
     displayDashboardDetails: boolean = false;   // T/F to show Dashboard Details form
     displayTabDetails: boolean = false;         // T/F to show Tab Details form
     widgetIDtoEdit: number;                     // ID of Widget being Editted (need to in *ngFor)
@@ -832,18 +823,13 @@ selectedWidgetID: number = -1;
         }
     }
 
-    showWidgetComment (idWidget: number) {
-        // Show the Comment popup window
-        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetComment', '@Start');
+    showWidgetMessages (idWidget: number, widgetName: string) {
+        // Show the Messages popup that belongs to the selected Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetMessages', '@Start');
 
-        let widgetComment: string = this.widgets.filter(
-                    widget => widget.properties.widgetID === idWidget)[0].properties.widgetComments;
-        this.selectedCommentWidgetID = idWidget;
-        // this.displayCommentsPopup = true;
-this.displayMessageManager = true;
-// this.displayNewMessage = true;
-
-
+        this.selectedMessageWidgetID = idWidget;
+        this.selectedWidgetName = "Messages for Widget " + widgetName;
+        this.displayMessageManager = true;
     }
 
     onWidgetDistanceChange(property: string) {

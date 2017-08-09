@@ -1,16 +1,15 @@
 <!--Form to show Messages pertaining to THIS Widget only-->
 <div *ngIf="displayMessageManager">
     <p-dialog
-        header="Messages"
+        [header]="selectedWidgetName"
         [(visible)]="displayMessageManager"
         modal="modal"
         width="100%"
         responsive="true"
         >
         <messageManager
-            allowPopupMenu="false"
-            selectedDashboardID="selectedDashboardID"
-            selectedWidgetID="12"
+            [selectedDashboardID]="selectedDashboard.id"
+            [selectedWidgetID]="selectedMessageWidgetID"
         >
             Loading Message Manager ...
         </messageManager>
@@ -1302,7 +1301,7 @@
             >
         </button>
 
-        <!--Widget Comment button-->
+        <!--Widget Messages button-->
         <button
             *ngIf="w.properties.widgetComments  &&  showContainerHeader"
             [style.color]="isContainerHeaderDark ? 'black' : 'lightgray'"
@@ -1313,7 +1312,7 @@
             pTooltip="This widget has a comment"
             tooltipPosition="right"
             tooltipEvent="hover"
-            (click)="showWidgetComment(w.properties.widgetID)"
+            (click)="showWidgetMessages(w.properties.widgetID, w.properties.widgetName)"
             >
         </button>
         <button
@@ -1326,7 +1325,7 @@
             pTooltip="This widget has a comment"
             tooltipPosition="right"
             tooltipEvent="hover"
-            (click)="showWidgetComment(w.properties.widgetID)"
+            (click)="showWidgetMessages(w.properties.widgetID)"
             >
         </button>
     <div>
@@ -1417,34 +1416,4 @@
         <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
     </p-footer>
 </p-confirmDialog>
-
-
-<!--Form to show / add Widget Comments-->
-<!-- <div *ngIf="displayCommentsPopup">
-    <p-dialog
-        header="Comments"
-        [(visible)]="displayCommentsPopup"
-        modal="modal"
-        width="450"
-        responsive="true"
-        >
-        <widget-comment
-            [selectedWidgetID]="selectedCommentWidgetID"
-            >
-            Loading Widget Comments ...
-        </widget-comment>
-    </p-dialog>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
 

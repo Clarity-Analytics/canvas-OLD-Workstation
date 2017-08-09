@@ -1,6 +1,9 @@
 <!--Context (popup) menu  -->
-<p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
-
+<p-contextMenu 
+    #cm 
+    [model]="popupMenuItems"
+    >
+</p-contextMenu>
 
 <p-dialog header="Reply to Message"
     [(visible)]="displayNewMessage"
@@ -8,7 +11,6 @@
     width="1000"
     responsive="true"
     >
-
     <newmessage
         [previousMessage]="selectedCanvasMessage"
         [availableUsers]="availableUsers"
@@ -23,7 +25,7 @@
 
 
 <!--Table with Messages info -->
-<div #dt>
+<div>
     <p-dataTable  #dt
         columnResizeMode="expand"
         exportFilename="messages"

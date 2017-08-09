@@ -33,9 +33,8 @@ import { User }                       from './model.user';
 export class MessageManagerComponent implements OnInit {
 
     // Input variables, with default if this form is opened by the Angular Router 
-    @Input() allowPopupMenu: boolean = true;
-    @Input() selectedDashboardID: number = -1;
-    @Input() selectedWidgetID: number = -1;
+    @Input() selectedDashboardID: number;
+    @Input() selectedWidgetID: number;
 
     // Local properties
     availableUsers: string[] = [];                  // List of UserNames available to share with
@@ -45,8 +44,8 @@ export class MessageManagerComponent implements OnInit {
     nrUnReadMessagesForMe: number = 0;              // Nr of unread messages
     selectedCanvasMessage: CanvasMessage;           // Message that was clicked on
     sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
-    popuMenuItems: MenuItem[];                      // Items in popup
-
+    popupMenuItems: MenuItem[];                     // Items in popup
+    popupMenuOriginal: MenuItem[];                  // Used to reset the popup menu
     constructor(
         private confirmationService: ConfirmationService,
         private canvasDate: CanvasDate,
@@ -55,20 +54,9 @@ export class MessageManagerComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
         private router: Router,
         ) {
-        }
 
-    ngOnInit() {
-        //   Form initialisation
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        this.canvasMessages = this.eazlService.getCanvasMessages()
-
-        // Refresh to get latest messages
-        if (this.globalVariableService.dirtyDataCanvasMessage) {
-            this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
-        }
-console.log('selectedWidgetID', this.selectedWidgetID)
-        this.popuMenuItems = [
+        // Set popup menu selectively, depending on who is the calling routine
+        this.popupMenuItems = [
             {
                 label: 'Read/UnRead',
                 icon: 'fa-thumbs-o-up',
@@ -86,7 +74,23 @@ console.log('selectedWidgetID', this.selectedWidgetID)
                 command: (event) => this.menuActionJumpToDashboard(this.selectedCanvasMessage)
             }
         ];
+        this.popupMenuOriginal = this.popupMenuItems;
+    }
 
+    ngOnInit() {
+        //   Form initialisation
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.canvasMessages = this.eazlService.getCanvasMessages(
+            this.selectedDashboardID,
+            -1,
+            this.selectedWidgetID
+        )
+
+        // Refresh to get latest messages
+        if (this.globalVariableService.dirtyDataCanvasMessage) {
+            this.eazlService.cacheCanvasData('CanvasMessage', 'reset');
+        }
     }
 
     // ngOnChanges() {
@@ -189,7 +193,13 @@ console.log('selectedWidgetID', this.selectedWidgetID)
         // User clicked on a row - toggle Read / UnRead status for me
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickMessageTable', '@Start');
 
-        // Left for later ...
+        // Change the popup menu content based on who called: Router (main menu),
+        // Dashboard or Widget
+        if (this.selectedWidgetID == -1) {
+            this.popupMenuItems = this.popupMenuOriginal;
+        } else {
+            this.popupMenuItems = null;
+        }
     }
 
     handleCanvasMessageFormSubmit(event) {
