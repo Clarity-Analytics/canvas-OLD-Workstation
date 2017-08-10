@@ -4,9 +4,9 @@ import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
-import { ConfirmationService }        from 'primeng/primeng';  
-import { MenuItem }                   from 'primeng/primeng';  
-import { Message }                    from 'primeng/primeng';  
+import { ConfirmationService }        from 'primeng/primeng';
+import { MenuItem }                   from 'primeng/primeng';
+import { Message }                    from 'primeng/primeng';
 
 // Our Components
 
@@ -30,21 +30,21 @@ import { UserGroupMembership }        from './model.userGroupMembership';
 })
 
 export class GroupComponent implements OnInit {
-    
+
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
     availableGroupDS: DataSource[];                     // List of DS Group NOT have access
     availableUserGroupMembership: User[] = [];          // List of Users NOT belonging to Group
-    belongstoGroupDS: DataSource[];                     // List of DS to which Group has access 
-    belongstoUserGroupMembership: User[] = [];          // List of Users already in Group   
+    belongstoGroupDS: DataSource[];                     // List of DS to which Group has access
+    belongstoUserGroupMembership: User[] = [];          // List of Users already in Group
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
-    displayDatasourceAccess: boolean = false;           // True to display popup for Datasources 
+    displayDatasourceAccess: boolean = false;           // True to display popup for Datasources
     displayGroupPopup: boolean = false;                 // True to display single User
     groups: Group[] = [];                               // List of Groups
     popupHeader: string = 'Group Maintenance';          // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedGroup: Group;                               // User that was clicked on
-    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group   
+    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -53,46 +53,46 @@ export class GroupComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
         ) {
     }
-    
+
     ngOnInit() {
         // Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
- 
+
         // Initialise variables
         this.groups = this.eazlService.getGroups();
 
         this.popuMenuItems = [
             {
-                label: 'Add', 
-                icon: 'fa-plus', 
+                label: 'Add',
+                icon: 'fa-plus',
                 command: (event) => this.groupMenuAdd(this.selectedGroup)
             },
             {
-                label: '______________________', 
+                label: '______________________',
                 icon: '',
-                disabled: true 
+                disabled: true
             },
             {
-                label: 'Edit', 
-                icon: 'fa-pencil', 
+                label: 'Edit',
+                icon: 'fa-pencil',
                 command: (event) => this.groupMenuEdit(this.selectedGroup)
             },
             {
-                label: 'Delete', 
-                icon: 'fa-minus', 
+                label: 'Delete',
+                icon: 'fa-minus',
                 command: (event) => this.groupMenuDelete(this.selectedGroup)
             },
             {
-                label: 'Users in Group', 
-                icon: 'fa-users', 
+                label: 'Users in Group',
+                icon: 'fa-users',
                 command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
             },
             {
-                label: 'Related Data Sources', 
-                icon: 'fa-list', 
+                label: 'Related Data Sources',
+                icon: 'fa-list',
                 command: (event) => this.groupMenuRelatedDataSources(this.selectedGroup)
             },
-            
+
         ];
 
     }
@@ -104,20 +104,20 @@ export class GroupComponent implements OnInit {
         this.addEditMode = 'Add';
         this.displayGroupPopup = true;
     }
-    
+
     groupMenuEdit(group: Group) {
         // Edit selected group on a popup form
         // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuEdit', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info', 
-            summary:  'Selected group', 
+            severity: 'info',
+            summary:  'Selected group',
             detail:   group.groupName
         });
 
         this.addEditMode = 'Edit';
-        this.displayGroupPopup = true;    
+        this.displayGroupPopup = true;
     }
 
     groupMenuDelete(group: Group) {
@@ -127,17 +127,17 @@ export class GroupComponent implements OnInit {
 
         this.confirmationService.confirm({
             message: 'Are you sure that you want to delete this record?',
-            reject: () => { 
+            reject: () => {
                 return;
             },
             accept: () => {
-                
+
                 this.eazlService.deleteGroup(this.selectedGroup.groupID);
 
                 this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'info', 
-                    summary:  'Group deleted', 
-                    detail:   group.groupName 
+                    severity: 'info',
+                    summary:  'Group deleted',
+                    detail:   group.groupName
                 });
             }
         })
@@ -149,11 +149,11 @@ export class GroupComponent implements OnInit {
 
         // Update the group group membership if it is open
         if (this.displayGroupMembership) {
-            this.groupMenuGroupMembership(this.selectedGroup) 
+            this.groupMenuGroupMembership(this.selectedGroup)
         }
 
         if (this.displayDatasourceAccess) {
-            this.groupMenuRelatedDataSources(this.selectedGroup) 
+            this.groupMenuRelatedDataSources(this.selectedGroup)
         }
     }
 
@@ -164,16 +164,16 @@ export class GroupComponent implements OnInit {
 
         // Get the current and available groups
         this.belongstoUserGroupMembership = this.eazlService.getUsersPerGroup(
-            this.selectedGroup.groupID, 
+            this.selectedGroup.groupID,
             true
         );
         this.availableUserGroupMembership = this.eazlService.getUsersPerGroup(
-            this.selectedGroup.groupID, 
+            this.selectedGroup.groupID,
             false
         );
 
         // Show popup
-        this.displayGroupMembership = true; 
+        this.displayGroupMembership = true;
     }
 
     onClickGroupMembershipCancel() {
@@ -181,7 +181,7 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
 
         // Close popup
-        this.displayGroupMembership = false;        
+        this.displayGroupMembership = false;
     }
 
 
@@ -190,7 +190,7 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDataSourceCancel', '@Start');
 
         // Close popup
-        this.displayDatasourceAccess = false;        
+        this.displayDatasourceAccess = false;
     }
 
     onMoveToTargetUserGroupMembership(event) {
@@ -201,11 +201,11 @@ export class GroupComponent implements OnInit {
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addUserGroupMembership(
                 event.items[i].username,
-                this.selectedGroup.groupID 
+                this.selectedGroup.groupID
             );
         }
     }
-    
+
     onMoveToSourceUserGroupMembership(event) {
         // User clicked onMoveToSource on Group Membership - remove grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
@@ -230,7 +230,7 @@ export class GroupComponent implements OnInit {
         // Show popup
         this.displayDatasourceAccess = true;
     }
- 
+
     onMoveToTargetDatasourceGroup(event) {
         // User clicked onMoveToTarget: add Datasource access
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDatasourceGroup', '@Start');
@@ -239,11 +239,11 @@ export class GroupComponent implements OnInit {
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addGroupDatasourceAccess(
                 event.items[i].datasourceID,
-                this.selectedGroup.groupID 
+                this.selectedGroup.groupID
             );
         }
     }
-    
+
     onMoveToSourceDatasourceGroup(event) {
         // User clicked onMoveToSource: remove Datasource access
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDatasourceGroup', '@Start');
@@ -266,9 +266,9 @@ export class GroupComponent implements OnInit {
 }
 
 // Notes for PrimeNG p-table newbees:
-//  Filtering is enabled by setting the filter property as true in column object. 
+//  Filtering is enabled by setting the filter property as true in column object.
 //  Default match mode is "startsWith" and this can be configured
-//  using filterMatchMode property of column object that also accepts "contains", "endsWith", 
+//  using filterMatchMode property of column object that also accepts "contains", "endsWith",
 //  "equals" and "in". An optional global filter feature is available to search all fields with a keyword.
-//  By default input fields are generated as filter elements and using templating any component 
+//  By default input fields are generated as filter elements and using templating any component
 //  can be used as a filter.

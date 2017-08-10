@@ -7733,6 +7733,7 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                 this.get<EazlGroup>('groups')
                     .subscribe(
                         (eazlGroup) => {
+console.log('EAZL eazlGroup', eazlGroup)                            
                             for (var i = 0; i < eazlGroup.length; i++) {
                                 let groupSingle = new Group();
                                 groupSingle = this.cdal.loadGroup(eazlGroup[i]);

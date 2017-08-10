@@ -9,7 +9,9 @@ export interface EazlGroup {
     profile: {
         description: string;
         date_created: Date;
-    }
+    };
+    users: string[];
+    url: string;
 }
 
 // Users registered to use the system
