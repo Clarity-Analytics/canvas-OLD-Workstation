@@ -6494,6 +6494,7 @@ export class EazlService implements OnInit {
             };
         }
 
+
         // Add the DS that those groups have access to
         // TODO - eliminate duplicates (already in User above)
         let groupWorking: Group[] = [];
@@ -6531,10 +6532,12 @@ export class EazlService implements OnInit {
         return datasourcesPerUserWorking;
     }
 
-    getDashboardsPerUser(username: string): DashboardsPerUser[] {
+    getDashboardsPerUser(user: User): DashboardsPerUser[] {
         // Return list of Dashboards for a given user (via Username & Groups)
         // - username filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardsPerUser', '@Start');
+
+        let username: string = user.username;
 
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataDashboardUserRelationship) {
@@ -6576,6 +6579,11 @@ export class EazlService implements OnInit {
                 groupIDs.push(usrgrp.groupID)
             }
         )
+        // for (var i = 0; i < this.groups.length; i++) {
+        //     if (user.groups.indexOf(this.groups[i].groupName) >= 0) {
+        //         groupIDs.push(this.groups[i].groupID);
+        //     };
+        // }
 
         // Add the DS that those groups have access to
         // TODO - eliminate duplicates (already in User above)

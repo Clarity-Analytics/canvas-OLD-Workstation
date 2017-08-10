@@ -329,7 +329,7 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
 
-        this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user.username);
+        this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user);
 
         // Show the popup
         this.displayUserDashboards = true;
