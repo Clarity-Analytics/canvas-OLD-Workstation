@@ -20,7 +20,6 @@ import { DataSource }                 from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { User }                       from './model.user';
-import { UserGroupMembership }        from './model.userGroupMembership';
 
 @Component({
     selector:    'group',
@@ -44,7 +43,6 @@ export class GroupComponent implements OnInit {
     popupHeader: string = 'Group Maintenance';          // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
     selectedGroup: Group;                               // User that was clicked on
-    usergroupMembership: UserGroupMembership[] = [];    // List of User-Group
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -195,32 +193,6 @@ export class GroupComponent implements OnInit {
         // Close popup
         this.displayDatasourceAccess = false;
     }
-
-    // onMoveToTargetUserGroupMembership(event) {
-    //     // User clicked onMoveToTarget on Group Membership: add grp membership
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
-
-    //     // Add this / these makker(s) - array if multi select
-    //     for (var i = 0; i < event.items.length; i++) {
-    //         this.eazlService.addUserGroupMembership(
-    //             event.items[i].username,
-    //             this.selectedGroup.groupID
-    //         );
-    //     }
-    // }
-
-    // onMoveToSourceUserGroupMembership(event) {
-    //     // User clicked onMoveToSource on Group Membership - remove grp membership
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
-
-    //     // Remove the makker(s)
-    //     for (var i = 0; i < event.items.length; i++) {
-    //         this.eazlService.deleteUserGroupMembership(
-    //             event.items[i].username,
-    //             this.selectedGroup.groupID
-    //         );
-    //     }
-    // }
 
     groupMenuRelatedDataSources(group: Group) {
         // Manage related Data Sources (owned, given rights and received rights)
