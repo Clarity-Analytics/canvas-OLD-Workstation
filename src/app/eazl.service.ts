@@ -6173,9 +6173,11 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataWidget = false;
     }
 
-    getGroups(groupID: number = -1): Group[] {
+    getGroups(groupID: number = -1, include: string[] = []): Group[] {
         // Return a list of Groups
-        // - groupID Optional parameter to select ONE, else select ALL (if >= 0)
+        // - groupID Optional parameter to select ONE, else 
+        //   IF include = [], select ALL (if >= 0)
+        //   IF include = ['admin','HR'], select two group objects
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroups', '@Start');
 
         // Report to user if dirty at the moment
@@ -6187,15 +6189,30 @@ export class EazlService implements OnInit {
             });
         }
 
-        // TODO - from DB
+        let groupsWorking: Group[] = [];
+
+        // If no groupID, then filter on include
         if (groupID == -1) {
-            return this.groups;
-        }
-        else {
-            return this.groups.filter(
+            if (include = []) {
+                groupsWorking = this.groups;
+            } else {
+
+                // Loop and add IF included
+                for (var i = 0; i < this.groups.length; i++) {
+                    if (include.indexOf(this.groups[i].groupName) >= 0) {
+                        groupsWorking.push(this.groups[i]);
+                    };
+                }
+            }
+        } else {
+            // Return single group
+            groupsWorking = this.groups.filter(
                 grp => grp.groupID == groupID
             )
         }
+
+        // Return
+        return groupsWorking;
     }
 
     // addGroup(groupName: string, groupDescription: string) {
@@ -6871,47 +6888,6 @@ export class EazlService implements OnInit {
                     ||
                     (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0)
         )
-    }
-
-    getUsersPerGroup(groupID: number = -1, include: boolean = true): User[] {
-        // Return a list of Users that belongs to a group
-        // - groupID Optional parameter, -1 = include all
-        // - include, True means to which belongs, False means complements (NOT)
-        this.globalFunctionService.printToConsole(this.constructor.name,'getUsersPerGroup', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUserGroupMembership) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'UserGroupMembership data is dirty / not up to date',
-                detail:   'The UserGroupMembership data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        // TODO - from DB
-        // Get Array of users to in or ex clude
-        let resultUsergroupMembership: string[] = [];
-
-        // Return all if no username specified
-        if (groupID == -1) {
-            return this.users;
-        }
-
-        // Make an array of username that belongs to the Group
-        this.userGroupMembership.forEach(
-            (usrgrp) => {
-                        if (usrgrp.groupID == groupID)
-                        resultUsergroupMembership.push(usrgrp.userName)
-                    }
-        )
-
-        // Return necesary groups, selectively depending on in/exclude
-
-        return this.users.filter(
-            u => (include  &&  resultUsergroupMembership.indexOf(u.username) >= 0)
-                  ||
-                 (!include &&  resultUsergroupMembership.indexOf(u.username) < 0)
-        );
     }
 
     addGroupDatasourceAccess(datasourceID: number, groupID: number) {
