@@ -80,7 +80,7 @@ export class MyProfileComponent implements OnInit {
         }
 
         // My Groups
-        this.groups = this.eazlService.getGroupsPerUser(this.canvasUser.username, true)
+        this.groups = this.eazlService.getGroups(-1, this.canvasUser.groups);
 
         // My Datasources
         // TODO - filter on me?
