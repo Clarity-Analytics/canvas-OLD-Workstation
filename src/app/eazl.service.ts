@@ -6914,18 +6914,6 @@ export class EazlService implements OnInit {
         );
     }
 
-    deleteUserGroupMembership(username: string, groupID: number) {
-        // Deletes a User - Group record to the User Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
-
-        this.userGroupMembership = this.userGroupMembership.filter(
-            item => (!(item.userName == username  &&  item.groupID == groupID))
-        );
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataUserGroupMembership = true;
-    }
-
     addGroupDatasourceAccess(datasourceID: number, groupID: number) {
         // Adds a Datasource - Group record to the DB
 
