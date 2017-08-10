@@ -8630,50 +8630,6 @@ console.log('CDAL testing dashboardWorking', dashboardWorking)
             }
         }
 
-        // UserGroupMembership
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'UserGroupMembership') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset UserGroupMembership');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataUserGroupMembership = true;
-
-            //         // Get all the data via API
-            //         let userGroupMembershipWorking: UserGroupMembership[] = [];
-
-            //         this.get<EazlUserGroupMembership>('user-group-membership')
-            //             .subscribe(
-            //                 (eazlUserGroupMembership) => {
-            //                     for (var i = 0; i < eazlUserGroupMembership.length; i++) {
-            //                         let userGroupMembershipSingle = new UserGroupMembership();
-            //                         userGroupMembershipSingle = this.cdal.loadUserGroupMembership(eazlUserGroupMembership[i]);
-            //                         userGroupMembershipWorking.push(userGroupMembershipSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.userGroupMembership = userGroupMembershipWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataUserGroupMembership = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear UserGroupMembership');
-            //         this.userGroupMembership = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataUserGroupMembership = true;
-            //     }
-            // }
-        // Done
-
         // WidgetComment
             // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetComment') {
 
