@@ -140,6 +140,8 @@ export class GroupPopupComponent implements OnInit {
                 }
                 if (this.selectedGroup.groupDescription) {
                     this.groupForm.controls['groupDescription'].setValue(this.selectedGroup.groupDescription);
+                } else {
+                    this.groupForm.controls['groupDescription'].setValue('')
                 }
 
                 // Indicate we are done loading form

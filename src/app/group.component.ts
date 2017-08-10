@@ -34,9 +34,9 @@ export class GroupComponent implements OnInit {
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
     availableGroupDS: DataSource[];                     // List of DS Group NOT have access
-    availableUserGroupMembership: User[] = [];          // List of Users NOT belonging to Group
+    availableUserGroupMembership: string[] = [];          // List of Users NOT belonging to Group
     belongstoGroupDS: DataSource[];                     // List of DS to which Group has access
-    belongstoUserGroupMembership: User[] = [];          // List of Users already in Group
+    belongstoUserGroupMembership: string[] = [];          // List of Users already in Group
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayDatasourceAccess: boolean = false;           // True to display popup for Datasources
     displayGroupPopup: boolean = false;                 // True to display single User
@@ -163,17 +163,29 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuGroupMembership', '@Start');
 
         // Get the current and available groups
-        this.belongstoUserGroupMembership = this.eazlService.getUsersPerGroup(
-            this.selectedGroup.groupID,
-            true
-        );
-        this.availableUserGroupMembership = this.eazlService.getUsersPerGroup(
-            this.selectedGroup.groupID,
-            false
+        // this.belongstoUserGroupMembership = this.eazlService.getUsersPerGroup(
+        //     this.selectedGroup.groupID,
+        //     true
+        // );
+        // this.availableUserGroupMembership = this.eazlService.getUsersPerGroup(
+        //     this.selectedGroup.groupID,
+        //     false
+        // );
+        this.belongstoUserGroupMembership = this.selectedGroup.users;
+        this.availableUserGroupMembership = this.eazlService.getUsersListComplement(
+            this.selectedGroup.users
         );
 
         // Show popup
         this.displayGroupMembership = true;
+    }
+
+    onMoveUpdateUserGroupMembership(event) {
+        // User clicked onMoveToTarget on Group Membership: add grp membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveUpdateUserGroupMembership', '@Start');
+
+        this.selectedGroup.users = this.belongstoUserGroupMembership;
+        this.eazlService.updateGroup(this.selectedGroup)
     }
 
     onClickGroupMembershipCancel() {
@@ -193,31 +205,31 @@ export class GroupComponent implements OnInit {
         this.displayDatasourceAccess = false;
     }
 
-    onMoveToTargetUserGroupMembership(event) {
-        // User clicked onMoveToTarget on Group Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
+    // onMoveToTargetUserGroupMembership(event) {
+    //     // User clicked onMoveToTarget on Group Membership: add grp membership
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetUserGroupMembership', '@Start');
 
-        // Add this / these makker(s) - array if multi select
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addUserGroupMembership(
-                event.items[i].username,
-                this.selectedGroup.groupID
-            );
-        }
-    }
+    //     // Add this / these makker(s) - array if multi select
+    //     for (var i = 0; i < event.items.length; i++) {
+    //         this.eazlService.addUserGroupMembership(
+    //             event.items[i].username,
+    //             this.selectedGroup.groupID
+    //         );
+    //     }
+    // }
 
-    onMoveToSourceUserGroupMembership(event) {
-        // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
+    // onMoveToSourceUserGroupMembership(event) {
+    //     // User clicked onMoveToSource on Group Membership - remove grp membership
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
 
-        // Remove the makker(s)
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteUserGroupMembership(
-                event.items[i].username,
-                this.selectedGroup.groupID
-            );
-        }
-    }
+    //     // Remove the makker(s)
+    //     for (var i = 0; i < event.items.length; i++) {
+    //         this.eazlService.deleteUserGroupMembership(
+    //             event.items[i].username,
+    //             this.selectedGroup.groupID
+    //         );
+    //     }
+    // }
 
     groupMenuRelatedDataSources(group: Group) {
         // Manage related Data Sources (owned, given rights and received rights)

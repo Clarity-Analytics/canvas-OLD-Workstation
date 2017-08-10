@@ -136,15 +136,15 @@
                 [target]="belongstoUserGroupMembership"
                 sourceHeader="Available Users"
                 targetHeader="Contains these Users"
-                (onMoveToTarget)="onMoveToTargetUserGroupMembership($event)"
-                (onMoveToSource)="onMoveToSourceUserGroupMembership($event)"
+                (onMoveToTarget)="onMoveUpdateUserGroupMembership($event)"
+                (onMoveToSource)="onMoveUpdateUserGroupMembership($event)"
                 >
                 <ng-template let-usr pTemplate="item">
                     <div class="ui-helper-clearfix">
                         <div
                             style="font-size:14px;float:left;margin:15px 5px 0 0"
                             >
-                            {{ usr.username }}
+                            {{ usr }}
                         </div>
                     </div>
                 </ng-template>

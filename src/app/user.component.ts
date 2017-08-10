@@ -224,7 +224,9 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
         this.belongstoUserGroupMembership = this.selectedUser.groups;
-        this.availableUserGroupMembership = this.eazlService.getGroupsListComplement(this.selectedUser.groups);
+        this.availableUserGroupMembership = this.eazlService.getGroupsListComplement(
+            this.selectedUser.groups
+        );
 
         // Show popup
         this.displayGroupMembership = true;
