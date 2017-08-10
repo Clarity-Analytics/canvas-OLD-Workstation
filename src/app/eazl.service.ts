@@ -6373,11 +6373,11 @@ export class EazlService implements OnInit {
                 })
     }
 
-    getGroupsList(exclude: string[] = []): string[] {
+    getGroupsListComplement(exclude: string[] = []): string[] {
         // Return all groups taking into account parameters.  If exclude =['HR'],
         // a string array of all groups except HR will be returned.
         // - exclude: list of groups that must be EXCLUDED from the result
-        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsList', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsListComplement', '@Start');
 
         let groupsWorking: string[] = [];
 
