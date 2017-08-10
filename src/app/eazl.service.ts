@@ -6829,46 +6829,6 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataDataSourceUserAccess = true;
     }
 
-    getGroupsPerUser(username: string = '', include: boolean = true): Group[] {
-        // Return a list of Groups to which a user belongs
-        // - username Optional parameter to select ONE, else select ALL (if >= 0)
-        // - include Optional parameter, true = include all for user, else group NOT for username
-        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerUser', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataUserGroupMembership) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'UserGroupMembership data is dirty / not up to date',
-                detail:   'The UserGroupMembership data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        // TODO - from DB
-        // Get Array of groups to in or ex clude
-        let resultUsergroupMembership: number[] = [];
-
-        // Return all if no username specified
-        if (username == '') {
-            return this.groups;
-        }
-
-        // Make an array of groupIDs to which this user belongs
-        this.userGroupMembership.forEach(
-            (usrgrp) => {
-                            if (usrgrp.userName == username)
-                            resultUsergroupMembership.push(usrgrp.groupID)
-                        }
-        )
-
-        // Return necesary groups, selectively depending on in/exclude
-        return this.groups.filter(
-            grp => (include  &&  resultUsergroupMembership.indexOf(grp.groupID) >= 0)
-                    ||
-                    (!include && resultUsergroupMembership.indexOf(grp.groupID) < 0)
-        )
-    }
-
     addGroupDatasourceAccess(datasourceID: number, groupID: number) {
         // Adds a Datasource - Group record to the DB
 
