@@ -5186,7 +5186,7 @@ export class EazlService implements OnInit {
             )
                 .toPromise()
                 .then(response => {
-console.log('EAZL delete response', response)
+
                     // - User: currently selected row
                     let index = -1;
                     for(let i = 0; i < this.users.length; i++) {
@@ -6322,22 +6322,55 @@ console.log('EAZL delete response', response)
                 })
     }
 
-    deleteGroup(groupID: number) {
+    // deleteGroup(groupID: number) {
+    //     // Delete a given Group
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroup', '@Start');
+
+    //     // Mark the data as dirty
+    //     this.globalVariableService.dirtyDataGroup = true;
+
+    //     // Delete the data
+    //     for (var i = 0; i < this.groups.length; i++) {
+    //         if (this.groups[i].groupID == groupID) {
+    //             this.groups.splice(i,1);
+    //         }
+    //     };
+
+    //     // Mark the data as dirty
+    //     this.globalVariableService.dirtyDataGroup = false;
+    // }
+
+    deleteGroup(group: Group) {
         // Delete a given Group
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroup', '@Start');
 
         // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup = true;
-
-        // Delete the data
-        for (var i = 0; i < this.groups.length; i++) {
-            if (this.groups[i].groupID == groupID) {
-                this.groups.splice(i,1);
-            }
-        };
-
-        // Mark the data as dirty
         this.globalVariableService.dirtyDataGroup = false;
+
+        return this.delete<EazlGroup>(
+            'groups/' + group.groupID.toString() + '/'
+            )
+                .toPromise()
+                .then(response => {
+
+                    // Update local data
+                    for (var i = 0; i < this.groups.length; i++) {
+                        if (this.groups[i].groupID == group.groupID) {
+                            this.groups.splice(i,1);
+                        }
+                    };
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataGroup = false;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Group',
+                        detail:   'Unsuccessful in deleting your Group info to the database'
+                    });
+                    error.message || error
+                })
     }
 
     getGroupsList(exclude: string[] = []): string[] {

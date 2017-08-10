@@ -132,7 +132,7 @@ export class GroupComponent implements OnInit {
             },
             accept: () => {
 
-                this.eazlService.deleteGroup(this.selectedGroup.groupID);
+                this.eazlService.deleteGroup(this.selectedGroup);
 
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info',
