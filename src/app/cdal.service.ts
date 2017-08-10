@@ -1993,52 +1993,6 @@ eazlSystemConfigurationWorking.company_logo = null
         return eazlSystemConfigurationWorking;
     }
 
-    loadUserGroupMembership(eazlUserGroupMembership: EazlUserGroupMembership): UserGroupMembership {
-        // Load UserGroupMembership: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadUserGroupMembership', '@Start');
-
-        let userGroupMembershipWorking = new UserGroupMembership();
-
-        userGroupMembershipWorking.groupID = eazlUserGroupMembership.id;
-
-        if (eazlUserGroupMembership.username != null) {
-            userGroupMembershipWorking.userName = eazlUserGroupMembership.username;
-        } else {
-            userGroupMembershipWorking.userName = '';
-        }
-
-        if (eazlUserGroupMembership.created_on != null) {
-            userGroupMembershipWorking.userGroupMembershipCreatedDateTime =
-                eazlUserGroupMembership.created_on;
-        } else {
-            userGroupMembershipWorking.userGroupMembershipCreatedDateTime = '';
-        }
-
-        if (eazlUserGroupMembership.created_by != null) {
-            userGroupMembershipWorking.userGroupMembershipCreatedUserName =
-                eazlUserGroupMembership.created_by;
-        } else {
-            userGroupMembershipWorking.userGroupMembershipCreatedUserName = '';
-        }
-
-        if (eazlUserGroupMembership.updated_on != null) {
-            userGroupMembershipWorking.userGroupMembershipUpdatedDateTime =
-                eazlUserGroupMembership.updated_on;
-        } else {
-            userGroupMembershipWorking.userGroupMembershipUpdatedDateTime = '';
-        }
-
-        if (eazlUserGroupMembership.updated_by != null) {
-            userGroupMembershipWorking.userGroupMembershipUpdatedUserName =
-                eazlUserGroupMembership.updated_by;
-        } else {
-            userGroupMembershipWorking.userGroupMembershipUpdatedUserName = '';
-        }
-
-        // Return the result
-        return userGroupMembershipWorking;
-    }      systemConfigurationID
-
     loadWidgetComment(eazlWidgetComment: EazlWidgetComment): WidgetComment {
         // Load WidgetComment: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetComment', '@Start');
