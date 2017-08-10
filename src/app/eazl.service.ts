@@ -6440,10 +6440,12 @@ export class EazlService implements OnInit {
             );
     }
 
-    getDatasourcesPerUser(username: string): DatasourcesPerUser[] {
+    getDatasourcesPerUser(user: User): DatasourcesPerUser[] {
         // Return list of DataSource for a given user (via Username & Groups)
-        // - username filter
+        // - user filter
         this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerUser', '@Start');
+
+        let username: string = user.username;
 
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataDatasourcesPerUser) {
@@ -6486,11 +6488,11 @@ export class EazlService implements OnInit {
 
         // Get list of GroupIDs that the User belongs to
         let groupIDs: number[] = [];
-        this.userGroupMembership.forEach((usrgrp) => {
-            if (usrgrp.userName == username)
-                groupIDs.push(usrgrp.groupID)
-            }
-        )
+        for (var i = 0; i < this.groups.length; i++) {
+            if (user.groups.indexOf(this.groups[i].groupName) >= 0) {
+                groupIDs.push(this.groups[i].groupID);
+            };
+        }
 
         // Add the DS that those groups have access to
         // TODO - eliminate duplicates (already in User above)

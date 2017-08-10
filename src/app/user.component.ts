@@ -318,7 +318,7 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
 
-        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user.username);
+        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user);
 
         // Show the popup
         this.displayUserDatasources = true;
