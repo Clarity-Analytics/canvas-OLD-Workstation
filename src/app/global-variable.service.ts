@@ -89,7 +89,7 @@ export class GlobalVariableService {
     dirtyDataWidgetTemplate: boolean = true;
     dirtyDataWidgetType: boolean = true;
     dirtyDataUser: boolean = true;
-    dirtyDataUserGroupMembership: boolean = true;
+    // dirtyDataUserGroupMembership: boolean = true;
 
     // System & operation config
     averageWarningRuntime: number = 0;
