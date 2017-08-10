@@ -82,8 +82,6 @@ export class MyProfileComponent implements OnInit {
         // My Groups
         if (this.canvasUser.groups != null) {
             this.groups = this.eazlService.getGroups(-1, this.canvasUser.groups);
-console.log('this.canvasUser.groups', this.canvasUser.groups)
-console.log('this.groups', this.groups)
         }
 
         // My Datasources

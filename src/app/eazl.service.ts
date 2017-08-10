@@ -6175,7 +6175,7 @@ export class EazlService implements OnInit {
 
     getGroups(groupID: number = -1, include: string[] = []): Group[] {
         // Return a list of Groups
-        // - groupID Optional parameter to select ONE, else 
+        // - groupID Optional parameter to select ONE, else
         //   IF include = [], select ALL (if >= 0)
         //   IF include = ['admin','HR'], select two group objects
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroups', '@Start');
@@ -6193,7 +6193,7 @@ export class EazlService implements OnInit {
 
         // If no groupID, then filter on include
         if (groupID == -1) {
-            if (include = []) {
+            if (include.length == 0) {
                 groupsWorking = this.groups;
             } else {
 
@@ -6205,6 +6205,7 @@ export class EazlService implements OnInit {
                 }
             }
         } else {
+
             // Return single group
             groupsWorking = this.groups.filter(
                 grp => grp.groupID == groupID
@@ -6215,28 +6216,6 @@ export class EazlService implements OnInit {
         return groupsWorking;
     }
 
-    // addGroup(groupName: string, groupDescription: string) {
-    //     // Add a new Group
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'addGroup', '@Start');
-
-    //     let currentUser: string = this.globalFunctionService.currentUser();
-
-    //     this.groups.push({
-    //         groupID: 0,
-    //         groupName: groupName,
-    //         groupDescription: groupDescription,
-    //         users: [],
-    //         url: '',
-    //         groupCreatedDateTime: this.canvasDate.now('standard'),
-    //         groupCreatedUserName: currentUser,
-    //         groupUpdatedDateTime:this.canvasDate.now('standard'),
-    //         groupUpdatedUserName: currentUser
-    //     })
-
-    //     // Mark the data as dirty
-    //     this.globalVariableService.dirtyDataGroup = true;
-    // }
-
     addGroup(group: Group) {
         // Add a new Group
         this.globalFunctionService.printToConsole(this.constructor.name,'addGroup', '@Start');
@@ -6245,7 +6224,7 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataGroup = true;
 
         let currentUser: string = this.globalFunctionService.currentUser();
-          
+
         return this.post<EazlGroup>('groups',this.cdal.saveGroup(group))
                 .toPromise()
                 .then( eazlGroup => {
@@ -6410,7 +6389,7 @@ export class EazlService implements OnInit {
     }
 
         getUsersListComplement(exclude: string[] = []): string[] {
-        // Return string array of users excluding those given in the parameters.  
+        // Return string array of users excluding those given in the parameters.
         // If exclude =['janniei'], an array of all users except janniei will be returned.
         // - exclude: list of users that must be EXCLUDED from the result
         this.globalFunctionService.printToConsole(this.constructor.name,'getUsersListComplement', '@Start');
