@@ -6226,30 +6226,28 @@ console.log('EAZL delete response', response)
         this.globalVariableService.dirtyDataGroup = true;
 
         let currentUser: string = this.globalFunctionService.currentUser();
-
-        this.groups.push(group);
           
-        // return this.post<EazlGroup>('groups',this.cdal.saveGroup(group)
-        //         .toPromise()
-        //         .then( eazlUser => {
-        //             // Update local store
-        //             this.users.push(user);
+        return this.post<EazlGroup>('groups',this.cdal.saveGroup(group))
+                .toPromise()
+                .then( eazlGroup => {
+                    // Update local store
+                    this.groups.push(group);
 
-        //             // TODO - reGet the local => always in sync
-        //             // Not dirty any longer
-        //             this.globalVariableService.dirtyDataUser = false;
+                    // TODO - reGet the local => always in sync
+                    // Not dirty any longer
+                    this.globalVariableService.dirtyDataGroup = false;
 
-        //             // Return the data
-        //             return this.users;
-        //         } )
-        //         .catch(error => {
-        //             this.globalVariableService.growlGlobalMessage.next({
-        //                 severity: 'warn',
-        //                 summary:  'AddUsers',
-        //                 detail:   'Unsuccessful in adding user to the database'
-        //             });
-        //             error.message || error
-        //         })
+                    // Return the data
+                    return this.groups;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'AddGroups',
+                        detail:   'Unsuccessful in adding group to the database'
+                    });
+                    error.message || error
+                })
     }
 
     updateGroup(groupID: number, groupName: string, groupDescription: string) {
