@@ -6914,41 +6914,6 @@ export class EazlService implements OnInit {
         );
     }
 
-    addUserGroupMembership(username: string, groupID: number) {
-        // Adds a User - Group record to the User Group Membership
-
-        this.globalFunctionService.printToConsole(this.constructor.name,'addUserGroupMembership', '@Start');
-
-        let found: boolean = false;
-        for (var i = 0; i < this.userGroupMembership.length; i++) {
-            if (this.userGroupMembership[i].userName == username  &&
-                this.userGroupMembership[i].groupID == groupID) {
-                    found = true;
-                    break;
-                }
-        }
-
-        // Get current user
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        // Only add if not already there
-        if (!found) {
-            this.userGroupMembership.push(
-                {
-                    groupID: groupID,
-                    userName: username,
-                    userGroupMembershipCreatedDateTime: this.canvasDate.now('standard'),
-                    userGroupMembershipCreatedUserName: currentUser,
-                    userGroupMembershipUpdatedDateTime: this.canvasDate.now('standard'),
-                    userGroupMembershipUpdatedUserName: currentUser
-                }
-            )
-        }
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataUserGroupMembership = true;
-    }
-
     deleteUserGroupMembership(username: string, groupID: number) {
         // Deletes a User - Group record to the User Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUserGroupMembership', '@Start');
