@@ -2,7 +2,7 @@
 
 // TODO - we need more fields in DB - sort out somehow
 // Eazl
-export interface EazlGroup {
+export class EazlGroup {
     // Defines data model for User Entity
     id: number;
     name: string;

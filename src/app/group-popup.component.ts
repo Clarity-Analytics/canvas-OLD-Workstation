@@ -16,6 +16,7 @@ import { SelectItem }                 from 'primeng/primeng';
 // Our Componenets
 
 // Our Services
+import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -47,10 +48,11 @@ export class GroupPopupComponent implements OnInit {
     numberErrors: number = 0;
 
     constructor(
+        private canvasDate: CanvasDate,
         private eazlService: EazlService,
         private fb: FormBuilder,
         private globalVariableService: GlobalVariableService,
-        private globalFunctionService: GlobalFunctionService, 
+        private globalFunctionService: GlobalFunctionService,
         ) {
 
         // FormBuilder - must be before subscribeToValue ...
@@ -104,7 +106,7 @@ export class GroupPopupComponent implements OnInit {
             //     this.selectedGroup.inactiveDate = formContent['inactiveDate'];
             //     this.selectedGroup.dateCreated = formContent['dateCreated'];
             //     this.selectedGroup.UserNameLastUpdated = formContent['UserNameLastUpdated'];
-            // }    
+            // }
         });
     }
 
@@ -157,7 +159,7 @@ export class GroupPopupComponent implements OnInit {
             summary:  'Cancel',
             detail:   'No changes as requested'
         });
-        
+
         this.userPopupFormClosed.emit('Cancel');
     }
 
@@ -169,7 +171,7 @@ export class GroupPopupComponent implements OnInit {
         this.formIsValid = false;
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
-        if (this.groupForm.controls['groupName'].value == ''  || 
+        if (this.groupForm.controls['groupName'].value == ''  ||
             this.groupForm.controls['groupName'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
@@ -192,19 +194,30 @@ export class GroupPopupComponent implements OnInit {
             });
             return;
         }
- 
+
         // Adding new user
         if (this.addEditMode == 'Add' && this.displayGroupPopup) {
-            this.eazlService.addGroup(
-                this.groupForm.controls['groupName'].value,
-                this.groupForm.controls['groupDescription'].value
-            );
+            let currentUser: string = this.globalFunctionService.currentUser();
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Success',
-            detail:   'Group added'
-        });
+            let groupWorking: Group = {
+                groupID: 0,
+                groupName: this.groupForm.controls['groupName'].value,
+                groupDescription: this.groupForm.controls['groupDescription'].value,
+                users: [],
+                url: '',
+                groupCreatedDateTime: this.canvasDate.now('standard'),
+                groupCreatedUserName: currentUser,
+                groupUpdatedDateTime:this.canvasDate.now('standard'),
+                groupUpdatedUserName: currentUser
+            };              
+            
+            this.eazlService.addGroup(groupWorking);
+
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Success',
+                detail:   'Group added'
+            });
         }
 
         // Editing existing user

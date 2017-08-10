@@ -520,8 +520,57 @@ export class CDAL {
         }
         
         // Return the result
-console.log('CDAL groupWorking', groupWorking)        
         return groupWorking;
+    }
+
+    saveGroup(group: Group): EazlGroup {
+        // Save Group: move data Canvas -> Eazl
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveGroup', '@Start');
+
+        let eazlGroupWorking = new EazlGroup();
+
+        eazlGroupWorking.id = group.groupID;
+
+        if (group.groupName != null) {
+            eazlGroupWorking.name = group.groupName;
+        } else {
+            eazlGroupWorking.name = '';
+        }
+
+        eazlGroupWorking.profile = {
+            description: '',
+            date_created: null
+        };
+
+        if (group.groupDescription != null) {
+            eazlGroupWorking.profile.description = group.groupDescription;
+        } else {
+            eazlGroupWorking.profile.description = '';
+        }
+
+        if (group.groupCreatedDateTime != null) {
+            eazlGroupWorking.profile.date_created = new Date(group.groupCreatedDateTime);
+        } else {
+            eazlGroupWorking.profile.date_created = null;
+        }
+
+        if (group.users.length > 0) {
+            eazlGroupWorking.users = [ group.users[0] ]
+            for (var i = 1; i < group.users.length; i++) {
+                eazlGroupWorking.users.push(group.users[i]);
+            } 
+        } else {
+            eazlGroupWorking.users = [];
+        }
+
+        if (group.url != null) {
+            eazlGroupWorking.url = group.url;
+        } else {
+            eazlGroupWorking.url = '';
+        }
+        
+        // Return the result
+        return eazlGroupWorking;
     }
 
     loadDashboardTab(eazlDashboardTab: EazlDashboardTab): DashboardTab {

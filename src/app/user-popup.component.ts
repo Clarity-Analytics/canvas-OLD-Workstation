@@ -295,7 +295,7 @@ export class UserPopupComponent implements OnInit {
                 isStaff:                    this.userformID.controls['isStaff'].valuel,
                 isSuperUser:                this.userformID.controls['isSuperUser'].valuel,
                 groups: null,
-                profile: 
+                profile:
                     {
                         nickName: this.userformID.controls['nickName'].value,
                         cellNumber: this.userformID.controls['cellNumber'].value,

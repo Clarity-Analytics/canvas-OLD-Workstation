@@ -6196,26 +6196,60 @@ console.log('EAZL delete response', response)
         }
     }
 
-    addGroup(groupName: string, groupDescription: string) {
+    // addGroup(groupName: string, groupDescription: string) {
+    //     // Add a new Group
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'addGroup', '@Start');
+
+    //     let currentUser: string = this.globalFunctionService.currentUser();
+
+    //     this.groups.push({
+    //         groupID: 0,
+    //         groupName: groupName,
+    //         groupDescription: groupDescription,
+    //         users: [],
+    //         url: '',
+    //         groupCreatedDateTime: this.canvasDate.now('standard'),
+    //         groupCreatedUserName: currentUser,
+    //         groupUpdatedDateTime:this.canvasDate.now('standard'),
+    //         groupUpdatedUserName: currentUser
+    //     })
+
+    //     // Mark the data as dirty
+    //     this.globalVariableService.dirtyDataGroup = true;
+    // }
+
+    addGroup(group: Group) {
         // Add a new Group
         this.globalFunctionService.printToConsole(this.constructor.name,'addGroup', '@Start');
 
+        // Mark as dirty
+        this.globalVariableService.dirtyDataGroup = true;
+
         let currentUser: string = this.globalFunctionService.currentUser();
 
-        this.groups.push({
-            groupID: 0,
-            groupName: groupName,
-            groupDescription: groupDescription,
-            users: [],
-            url: '',
-            groupCreatedDateTime: this.canvasDate.now('standard'),
-            groupCreatedUserName: currentUser,
-            groupUpdatedDateTime:this.canvasDate.now('standard'),
-            groupUpdatedUserName: currentUser
-        })
+        this.groups.push(group);
+          
+        // return this.post<EazlGroup>('groups',this.cdal.saveGroup(group)
+        //         .toPromise()
+        //         .then( eazlUser => {
+        //             // Update local store
+        //             this.users.push(user);
 
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup = true;
+        //             // TODO - reGet the local => always in sync
+        //             // Not dirty any longer
+        //             this.globalVariableService.dirtyDataUser = false;
+
+        //             // Return the data
+        //             return this.users;
+        //         } )
+        //         .catch(error => {
+        //             this.globalVariableService.growlGlobalMessage.next({
+        //                 severity: 'warn',
+        //                 summary:  'AddUsers',
+        //                 detail:   'Unsuccessful in adding user to the database'
+        //             });
+        //             error.message || error
+        //         })
     }
 
     updateGroup(groupID: number, groupName: string, groupDescription: string) {
@@ -7751,7 +7785,7 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                 this.get<EazlGroup>('groups')
                     .subscribe(
                         (eazlGroup) => {
-console.log('EAZL eazlGroup', eazlGroup)                            
+console.log('EAZL eazlGroup', eazlGroup)
                             for (var i = 0; i < eazlGroup.length; i++) {
                                 let groupSingle = new Group();
                                 groupSingle = this.cdal.loadGroup(eazlGroup[i]);
