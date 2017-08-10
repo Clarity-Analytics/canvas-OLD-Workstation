@@ -6230,7 +6230,9 @@ console.log('EAZL delete response', response)
         return this.post<EazlGroup>('groups',this.cdal.saveGroup(group))
                 .toPromise()
                 .then( eazlGroup => {
+
                     // Update local store
+                    group.groupID = eazlGroup.id;
                     this.groups.push(group);
 
                     // TODO - reGet the local => always in sync
