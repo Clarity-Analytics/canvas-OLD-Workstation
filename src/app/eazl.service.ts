@@ -5101,7 +5101,9 @@ export class EazlService implements OnInit {
         return this.post<EazlUser>('users',workingUser)
                 .toPromise()
                 .then( eazlUser => {
+
                     // Update local store
+                    user.id = eazlUser.id
                     this.users.push(user);
 
                     // TODO - reGet the local => always in sync
@@ -6252,27 +6254,72 @@ console.log('EAZL delete response', response)
                 })
     }
 
-    updateGroup(groupID: number, groupName: string, groupDescription: string) {
+    // updateGroup(groupID: number, groupName: string, groupDescription: string) {
+    //     // Update a given Group
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
+
+    //     // Mark the data as dirty
+    //     this.globalVariableService.dirtyDataGroup = true;
+
+    //     let currentUser: string = this.globalFunctionService.currentUser();
+
+    //     // Update data
+    //     for (var i = 0; i < this.groups.length; i++) {
+    //         if (this.groups[i].groupID == groupID) {
+    //             this.groups[i].groupName = groupName;
+    //             this.groups[i].groupDescription = groupDescription;
+    //             this.groups[i].groupUpdatedDateTime = this.canvasDate.now('standard'),
+    //             this.groups[i].groupUpdatedUserName = currentUser
+    //         }
+    //     };
+
+    //     // Mark the data as dirty
+    //     this.globalVariableService.dirtyDataGroup = false;
+    // }
+
+        updateGroup(group: Group) {
         // Update a given Group
         this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
 
         // Mark the data as dirty
         this.globalVariableService.dirtyDataGroup = true;
 
-        let currentUser: string = this.globalFunctionService.currentUser();
+        return this.put<EazlGroup>(
+            'groups/' + group.groupID.toString() + '/',
+            this.cdal.saveGroup(group)
+            )
+                .toPromise()
+                .then(eazlGroup => {
 
-        // Update data
-        for (var i = 0; i < this.groups.length; i++) {
-            if (this.groups[i].groupID == groupID) {
-                this.groups[i].groupName = groupName;
-                this.groups[i].groupDescription = groupDescription;
-                this.groups[i].groupUpdatedDateTime = this.canvasDate.now('standard'),
-                this.groups[i].groupUpdatedUserName = currentUser
-            }
-        };
+                    // Get the index in the groups array
+                    let index: number = -1;
+                    for (var i = 0; i < this.groups.length; i++) {
+                        if (group.groupID == this.groups[i].groupID) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index == -1) {
+                        alert ("Error - group id does not exist in the local groups object !")
+                    }
 
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataGroup = false;
+                    // Update local array
+                    this.groups[i] = group;
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataGroup = false;
+
+                    // Return the data
+                    return eazlGroup;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Group',
+                        detail:   'Unsuccessful in updating your Group info to the database'
+                    });
+                    error.message || error
+                })
     }
 
     deleteGroup(groupID: number) {
