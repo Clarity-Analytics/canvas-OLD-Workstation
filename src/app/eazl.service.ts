@@ -6374,7 +6374,7 @@ export class EazlService implements OnInit {
     }
 
     getGroupsListComplement(exclude: string[] = []): string[] {
-        // Return all groups taking into account parameters.  If exclude =['HR'],
+        // Return array of groups excluding those given parameters.  If exclude =['HR'],
         // a string array of all groups except HR will be returned.
         // - exclude: list of groups that must be EXCLUDED from the result
         this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsListComplement', '@Start');
@@ -6390,6 +6390,25 @@ export class EazlService implements OnInit {
 
         // Return
         return groupsWorking;
+    }
+
+        getUsersListComplement(exclude: string[] = []): string[] {
+        // Return string array of users excluding those given in the parameters.  
+        // If exclude =['janniei'], an array of all users except janniei will be returned.
+        // - exclude: list of users that must be EXCLUDED from the result
+        this.globalFunctionService.printToConsole(this.constructor.name,'getUsersListComplement', '@Start');
+
+        let usersWorking: string[] = [];
+
+        // Loop end return
+        for (var i = 0; i < this.users.length; i++) {
+            if (exclude.indexOf(this.users[i].username) < 0) {
+                usersWorking.push(this.users[i].username);
+            };
+        }
+
+        // Return
+        return usersWorking;
     }
 
     getUsersWhoCanAccessDatasource(
