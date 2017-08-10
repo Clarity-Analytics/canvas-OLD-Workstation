@@ -896,7 +896,99 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ];
 // const PERSONALISATION
-    // export const PERSONALISATION: Personalisation =
+// const GROUPS
+    // export const GROUPS: Group[] =
+    // [
+    //     {
+    //         groupID: 0,
+    //         groupName: 'Admin',
+    //         users: [],
+    //         url: '',
+    //         groupDescription: 'Admin group has full rights to the whole system',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     },
+    //     {
+    //         groupID: 1,
+    //         groupName: 'Guest',
+    //         users: [],
+    //         url: '',
+    //         groupDescription: 'Guest group has no rights',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     },
+    //     {
+    //         groupID: 2,
+    //         groupName: 'BI Team',
+    //         groupDescription: 'BI Team',
+    //         users: [],
+    //         url: '',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     },
+    //     {
+    //         groupID: 3,
+    //         groupName: 'HR',
+    //         users: [],
+    //         url: '',
+    //         groupDescription: 'Human Resources Department',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     },
+    //     {
+    //         groupID: 4,
+    //         groupName: 'Finance',
+    //         groupDescription: 'Finance Department',
+    //         users: [],
+    //         url: '',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     },
+    //     {
+    //         groupID: 5,
+    //         groupName: 'Sales',
+    //         groupDescription: 'Sales Department',
+    //         users: [],
+    //         url: '',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     },
+    //     {
+    //         groupID: 6,
+    //         groupName: 'R&D',
+    //         groupDescription: 'Research and Development Department',
+    //         users: [],
+    //         url: '',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     },
+    //     {
+    //         groupID: 7,
+    //         groupName: 'IT',
+    //         groupDescription: 'Information Technology Department',
+    //         users: [],
+    //         url: '',
+    //         groupCreatedDateTime: '2017/05/01',
+    //         groupCreatedUserName: 'JamesK',
+    //         groupUpdatedDateTime: '2017/05/01',
+    //         groupUpdatedUserName: 'JamesK'
+    //     }
+    // ];
+// export const PERSONALISATION: Personalisation =
     //     {
     //         personalisationID: 0,
     //         averageWarningRuntime: 3,
@@ -4209,98 +4301,6 @@ export const REPORTS: Report[] =
     ];
 
 
-export const GROUPS: Group[] =
-    [
-        {
-            groupID: 0,
-            groupName: 'Admin',
-            users: [],
-            url: '',
-            groupDescription: 'Admin group has full rights to the whole system',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 1,
-            groupName: 'Guest',
-            users: [],
-            url: '',
-            groupDescription: 'Guest group has no rights',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 2,
-            groupName: 'BI Team',
-            groupDescription: 'BI Team',
-            users: [],
-            url: '',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 3,
-            groupName: 'HR',
-            users: [],
-            url: '',
-            groupDescription: 'Human Resources Department',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 4,
-            groupName: 'Finance',
-            groupDescription: 'Finance Department',
-            users: [],
-            url: '',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 5,
-            groupName: 'Sales',
-            groupDescription: 'Sales Department',
-            users: [],
-            url: '',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 6,
-            groupName: 'R&D',
-            groupDescription: 'Research and Development Department',
-            users: [],
-            url: '',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 7,
-            groupName: 'IT',
-            groupDescription: 'Information Technology Department',
-            users: [],
-            url: '',
-            groupCreatedDateTime: '2017/05/01',
-            groupCreatedUserName: 'JamesK',
-            groupUpdatedDateTime: '2017/05/01',
-            groupUpdatedUserName: 'JamesK'
-        }
-    ];
-
 export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
     [
         {
@@ -4698,7 +4698,7 @@ export class EazlService implements OnInit {
     datasourcesPerUser: DatasourcesPerUser[] = [];          // List of DatasourcesPerUser
     dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
     graphTypes: GraphType[];                                // List of Graph Types
-    groups: Group[] = GROUPS;                               // List of Groups
+    groups: Group[];                                        // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     isStaffDropdown: SelectItem[] = ISSTAFFDROPDOWN;        // List of IsStaff dropdown options
     notifications: Notification[] = [];                     // List of Notifications
