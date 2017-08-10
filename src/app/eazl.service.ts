@@ -97,7 +97,7 @@ import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
-import { EazlUserGroupMembership }    from './model.userGroupMembership';
+// import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
@@ -113,7 +113,7 @@ import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
-import { UserGroupMembership }        from './model.userGroupMembership';
+// import { UserGroupMembership }        from './model.userGroupMembership';
 import { Widget }                     from './model.widget';
 import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
@@ -1002,6 +1002,42 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         growlSticky: false,
     //         snapToGrid: true
     //     };
+// const USERGROUPMEMBERSHIP 
+    // export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
+    //     [
+    //         {
+    //             groupID: 0,
+    //             userName: 'janniei',
+    //             userGroupMembershipCreatedDateTime: '2017/05/01',
+    //             userGroupMembershipCreatedUserName:  'JamesK',
+    //             userGroupMembershipUpdatedDateTime: '2017/05/01',
+    //             userGroupMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             groupID: 4,
+    //             userName: 'janniei',
+    //             userGroupMembershipCreatedDateTime: '2017/05/01',
+    //             userGroupMembershipCreatedUserName:  'JamesK',
+    //             userGroupMembershipUpdatedDateTime: '2017/05/01',
+    //             userGroupMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             groupID: 1,
+    //             userName: 'bradleyk',
+    //             userGroupMembershipCreatedDateTime: '2017/05/01',
+    //             userGroupMembershipCreatedUserName:  'JamesK',
+    //             userGroupMembershipUpdatedDateTime: '2017/05/01',
+    //             userGroupMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             groupID: 5,
+    //             userName: 'bradleyk',
+    //             userGroupMembershipCreatedDateTime: '2017/05/01',
+    //             userGroupMembershipCreatedUserName:  'JamesK',
+    //             userGroupMembershipUpdatedDateTime: '2017/05/01',
+    //             userGroupMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //     ];
 
 // const DASHBOARDTAGS
     export const DASHBOARDTAGS: DashboardTag[] =
@@ -4314,42 +4350,6 @@ export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
         }
     ];
 
-export const USERGROUPMEMBERSHIP: UserGroupMembership[] =
-    [
-        {
-            groupID: 0,
-            userName: 'janniei',
-            userGroupMembershipCreatedDateTime: '2017/05/01',
-            userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01',
-            userGroupMembershipUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 4,
-            userName: 'janniei',
-            userGroupMembershipCreatedDateTime: '2017/05/01',
-            userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01',
-            userGroupMembershipUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 1,
-            userName: 'bradleyk',
-            userGroupMembershipCreatedDateTime: '2017/05/01',
-            userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01',
-            userGroupMembershipUpdatedUserName: 'JamesK'
-        },
-        {
-            groupID: 5,
-            userName: 'bradleyk',
-            userGroupMembershipCreatedDateTime: '2017/05/01',
-            userGroupMembershipCreatedUserName:  'JamesK',
-            userGroupMembershipUpdatedDateTime: '2017/05/01',
-            userGroupMembershipUpdatedUserName: 'JamesK'
-        },
-    ];
-
 export const REPORTWIDGETSET: ReportWidgetSet[] =
     [
         {
@@ -4711,7 +4711,7 @@ export class EazlService implements OnInit {
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
     systemConfiguration: SystemConfiguration;               // System wide settings
     users: User[] = [];                                     // List of Users
-    userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
+    // userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
     widgetTemplates: WidgetTemplate[] = []                  // List of Widget Templates
