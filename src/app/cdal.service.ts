@@ -504,7 +504,23 @@ export class CDAL {
             groupWorking.groupUpdatedUserName = '';
         }
 
+        if (eazlGroup.users.length > 0) {
+            groupWorking.users = [ eazlGroup.users[0] ]
+            for (var i = 1; i < eazlGroup.users.length; i++) {
+                groupWorking.users.push(eazlGroup.users[i]);
+            } 
+        } else {
+            groupWorking.users = [];
+        }
+
+        if (eazlGroup.url != null) {
+            groupWorking.url = eazlGroup.url;
+        } else {
+            groupWorking.url = '';
+        }
+        
         // Return the result
+console.log('CDAL groupWorking', groupWorking)        
         return groupWorking;
     }
 
