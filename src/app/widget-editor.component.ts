@@ -983,7 +983,7 @@ export class WidgetEditorComponent implements OnInit {
             this.widgetToEdit.container.color =
                 this.globalVariableService.lastColor.getValue().name;
             this.widgetToEdit.container.fontSize =
-                +this.globalVariableService.lastContainerFontSize.getValue().name;
+                +this.globalVariableService.lastContainerFontSize.name;
             this.widgetToEdit.container.height =
                 this.globalVariableService.lastWidgetHeight;
             this.widgetToEdit.container.width =

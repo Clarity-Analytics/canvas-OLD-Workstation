@@ -103,12 +103,11 @@ export class GlobalVariableService {
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
-    lastContainerFontSize = new BehaviorSubject<SelectedItem>(
+    lastContainerFontSize: SelectedItem =
         {
             id: 1,
             name: '1'
-        }
-    );
+        };
     lastColor = new BehaviorSubject<SelectedItemColor>(
         {
             id: 'black',

@@ -174,7 +174,7 @@ export class ReportBuilderComponent implements OnInit {
                     border: this.globalVariableService.lastBorder.getValue().name,
                     boxShadow: this.globalVariableService.lastBoxShadow.getValue().name,
                     color: this.globalVariableService.lastColor.getValue().name,
-                    fontSize: +this.globalVariableService.lastContainerFontSize.getValue().name,
+                    fontSize: +this.globalVariableService.lastContainerFontSize.name,
                     height: this.globalVariableService.lastWidgetHeight,
                     left: 240,
                     widgetTitle: this.selectedReport.reportName,
