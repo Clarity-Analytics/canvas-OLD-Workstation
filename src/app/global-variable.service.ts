@@ -43,7 +43,7 @@ export class GlobalVariableService {
     // At startup
     startupDashboardID = new BehaviorSubject(0);                // Dashboard to load @start, 0 = none
     startupDashboardName: string = 'Collection of Bar charts';  // Dashboard to load @start, '' = none
-    startupDashboardTabID = new BehaviorSubject(0);             // Tab ID to load @start, -1 = none
+    startupDashboardTabID: number = 0;                          // Tab ID to load @start, -1 = none
     startupMessageToShow = new BehaviorSubject('');
 
     // Environment
@@ -74,7 +74,6 @@ export class GlobalVariableService {
     dirtyDataGroup: boolean = true;
     dirtyDataGroupDatasourceAccess: boolean = true;
     dirtyDataImageSourceDropdown: boolean = true;
-    // dirtyDataNotification: boolean = true;
     dirtyDataPackageTask: boolean = true;
     dirtyDataReport: boolean = true;
     dirtyDataReportWidgetSet: boolean = true;
@@ -89,7 +88,6 @@ export class GlobalVariableService {
     dirtyDataWidgetTemplate: boolean = true;
     dirtyDataWidgetType: boolean = true;
     dirtyDataUser: boolean = true;
-    // dirtyDataUserGroupMembership: boolean = true;
 
     // System & operation config
     averageWarningRuntime: number = 0;

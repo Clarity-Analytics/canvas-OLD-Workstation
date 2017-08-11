@@ -6278,30 +6278,7 @@ export class EazlService implements OnInit {
                 })
     }
 
-    // updateGroup(groupID: number, groupName: string, groupDescription: string) {
-    //     // Update a given Group
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
-
-    //     // Mark the data as dirty
-    //     this.globalVariableService.dirtyDataGroup = true;
-
-    //     let currentUser: string = this.globalFunctionService.currentUser();
-
-    //     // Update data
-    //     for (var i = 0; i < this.groups.length; i++) {
-    //         if (this.groups[i].groupID == groupID) {
-    //             this.groups[i].groupName = groupName;
-    //             this.groups[i].groupDescription = groupDescription;
-    //             this.groups[i].groupUpdatedDateTime = this.canvasDate.now('standard'),
-    //             this.groups[i].groupUpdatedUserName = currentUser
-    //         }
-    //     };
-
-    //     // Mark the data as dirty
-    //     this.globalVariableService.dirtyDataGroup = false;
-    // }
-
-        updateGroup(group: Group) {
+    updateGroup(group: Group) {
         // Update a given Group
         this.globalFunctionService.printToConsole(this.constructor.name,'updateGroup', '@Start');
 
@@ -6351,24 +6328,6 @@ export class EazlService implements OnInit {
                     error.message || error
                 })
     }
-
-    // deleteGroup(groupID: number) {
-    //     // Delete a given Group
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'deleteGroup', '@Start');
-
-    //     // Mark the data as dirty
-    //     this.globalVariableService.dirtyDataGroup = true;
-
-    //     // Delete the data
-    //     for (var i = 0; i < this.groups.length; i++) {
-    //         if (this.groups[i].groupID == groupID) {
-    //             this.groups.splice(i,1);
-    //         }
-    //     };
-
-    //     // Mark the data as dirty
-    //     this.globalVariableService.dirtyDataGroup = false;
-    // }
 
     deleteGroup(group: Group) {
         // Delete a given Group

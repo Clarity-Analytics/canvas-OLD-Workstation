@@ -254,9 +254,9 @@ selectedWidgetName: string;
 
             // Use startup Dashboard Tab ID at the very beginning
             if (this.globalVariableService.sessionDashboardTabID == -1) {
-                if (this.globalVariableService.startupDashboardTabID.getValue() != -1) {
+                if (this.globalVariableService.startupDashboardTabID != -1) {
                     this.globalVariableService.sessionDashboardTabID =
-                        this.globalVariableService.startupDashboardTabID.getValue()
+                        this.globalVariableService.startupDashboardTabID
                 }
             }
 
