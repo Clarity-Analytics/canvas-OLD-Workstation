@@ -5647,6 +5647,45 @@ export class EazlService implements OnInit {
         }
     }
 
+    addDashboardTab(dashboardTab: DashboardTab) {
+        // Add a new DashboardTab
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardTab', '@Start');
+
+        // Mark as dirty
+        this.globalVariableService.dirtyDataDashboardTab = true;
+
+        return this.post<EazlDashboardTab>('dashboard-tabs',
+        this.cdal.saveDashboardTab(dashboardTab))
+                .toPromise()
+                .then( eazlDashboardTab => {
+
+                    // Update local store
+                    dashboardTab.dashboardID = eazlDashboardTab.id;
+                    this.dashboardTabs.push(dashboardTab);
+
+                    // TODO - reGet the local => always in sync
+                    // Not dirty any longer
+                    this.globalVariableService.dirtyDataDashboardTab = false;
+
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Add Dashboard Tab',
+                        detail:   'successfully added dashboard tab to the database'
+                    });
+
+                    // Return the data
+                    return this.dashboardTabs;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Add Dashboard Tab',
+                        detail:   'Unsuccessful in adding dashboard tab to the database'
+                    });
+                    error.message || error
+                })
+    }
+
     getWidgetLastWidgetID(): number {
         // Return the last (biggest) WidgetID
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
@@ -6270,8 +6309,6 @@ export class EazlService implements OnInit {
 
         // Mark as dirty
         this.globalVariableService.dirtyDataGroup = true;
-
-        let currentUser: string = this.globalFunctionService.currentUser();
 
         return this.post<EazlGroup>('groups',this.cdal.saveGroup(group))
                 .toPromise()
