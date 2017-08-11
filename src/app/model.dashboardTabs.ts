@@ -5,7 +5,7 @@
 // Eazl
 export class EazlDashboardTab {
     id: number;
-    dashboard: string;
+    dashboard_id: number;
     name: string;
     description: string;
     createdDateTime: string;
@@ -16,12 +16,12 @@ export class EazlDashboardTab {
 
 // Canvas
 export class DashboardTab {
-    dashboardID: number;                        // FK to Unique DB ID
     dashboardTabID: number;                     // Unique DB key
+    dashboardID: number;                        // FK to Unique DB ID
     dashboardTabName: string;                   // Tab Name inside
     dashboardTabDescription: string;            // Tab Description
     dashboardTabCreatedDateTime: string;        // Updated on
     dashboardTabCreatedUserName: string;        // Updated by
     dashboardTabUpdatedDateTime: string;        // Created on
     dashboardTabUpdatedUserName: string;        // Created by
-} 
+}

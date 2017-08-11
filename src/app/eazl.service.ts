@@ -67,10 +67,10 @@ import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
+import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
-import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
@@ -1373,7 +1373,7 @@ export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
     [
         {
             dashboardGroupRelationshipID: 0,
-            dashboardID: 1,
+            dashboardID: 0,
             groupID: 0,
             dashboardGroupRelationshipType: 'SharedWith',
             dashboardGroupRelationshipRating: 0,
@@ -1410,7 +1410,7 @@ export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
         },
         {
             dashboardUserRelationshipID: 2,
-            dashboardID: 1,
+            dashboardID: 2,
             userName: 'bradleyk',
             dashboardUserRelationshipType: 'Likes',
             dashboardUserRelationshipRating: 0,
@@ -1487,7 +1487,7 @@ export const DASHBOARDS: Dashboard[] =
             dashboardNrGroupsSharedWith: 0,
         },
         {
-            dashboardID: 1,
+            dashboardID: 2,
             dashboardCode: 'Pie charts',
             dashboardName: 'Collection of Pie charts',
             isContainerHeaderDark: false,
@@ -1653,7 +1653,7 @@ export const DASHBOARDTAGMEMBERSHIP: DashboardTagMembership[] =
         },
         {
             dashboardTagID: 1,
-            dashboardID: 1,
+            dashboardID: 2,
             dashboardTagMembershipCreatedDateTime: '2017/05/01',
             dashboardTagMembershipCreatedUserName:  'JamesK',
             dashboardTagMembershipUpdatedDateTime: '2017/05/01',
@@ -1661,7 +1661,7 @@ export const DASHBOARDTAGMEMBERSHIP: DashboardTagMembership[] =
         },
         {
             dashboardTagID: 5,
-            dashboardID: 1,
+            dashboardID: 2,
             dashboardTagMembershipCreatedDateTime: '2017/05/01',
             dashboardTagMembershipCreatedUserName:  'JamesK',
             dashboardTagMembershipUpdatedDateTime: '2017/05/01',
@@ -1692,7 +1692,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
         {
-            dashboardID: 1,
+            dashboardID: 2,
             dashboardTabID: 2,
             dashboardTabName: 'Value',
             dashboardTabDescription: 'Full and detailed desription of tab - purpose',
@@ -1702,7 +1702,7 @@ export const DASHBOARDTABS: DashboardTab[] =
             dashboardTabUpdatedUserName: 'Leonard Cohen'
         },
         {
-            dashboardID: 1,
+            dashboardID: 2,
             dashboardTabID: 3,
             dashboardTabName: 'Volume',
             dashboardTabDescription: '1-Value: Full and detailed desription of tab - purpose',
@@ -2995,7 +2995,7 @@ export const WIDGETS: Widget[] =
             },
             properties: {
                 widgetID: 11,
-                dashboardID: 1,
+                dashboardID: 2,
                 dashboardName: 'Collection of Pie charts',
                 dashboardTabID: 2,
                 dashboardTabName: "Value",
@@ -3190,7 +3190,7 @@ export const WIDGETS: Widget[] =
             },
             properties: {
                 widgetID: 12,
-                dashboardID: 1,
+                dashboardID: 2,
                 dashboardName: 'Collection of Pie charts',
                 dashboardTabID: 3,
                 dashboardTabName: "Volume",
@@ -6388,7 +6388,7 @@ export class EazlService implements OnInit {
         return groupsWorking;
     }
 
-        getUsersListComplement(exclude: string[] = []): string[] {
+    getUsersListComplement(exclude: string[] = []): string[] {
         // Return string array of users excluding those given in the parameters.
         // If exclude =['janniei'], an array of all users except janniei will be returned.
         // - exclude: list of users that must be EXCLUDED from the result
@@ -7808,24 +7808,24 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                 let dashboardTabWorking: DashboardTab[] = [];
                 this.get<EazlDashboardTab>('dashboard-tabs')
                     .subscribe(
-                        (eazlDasboardTab) => {
-                            for (var i = 0; i < eazlDasboardTab.length; i++) {
+                        (eazlDashboardTab) => {
+console.log('eazlDashboardTab', eazlDashboardTab)                            
+                            for (var i = 0; i < eazlDashboardTab.length; i++) {
                                 let dashboardTabSingle = new DashboardTab();
-                                dashboardTabSingle = this.cdal.loadDashboardTab(eazlDasboardTab[i]);
+                                dashboardTabSingle = this.cdal.loadDashboardTab(eazlDashboardTab[i]);
                                 dashboardTabWorking.push(dashboardTabSingle);
 
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dashboardTabs = groupsWorking;
+                        this.dashboardTabs = dashboardTabWorking;
 
                 // Mark the data as clean
                 this.globalVariableService.dirtyDataDashboardTab = false;
+console.log('this.dashboardTabs',this.dashboardTabs)
                         }
                 )
             }
-
             // Clear all
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTab');
