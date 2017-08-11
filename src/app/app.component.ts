@@ -18,14 +18,12 @@ import { Message }                    from 'primeng/primeng';
 import { CanvasDate }                 from './date.services';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-// import { NotificationService }        from './notification.service';
 import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our Models
 import { CanvasUser }                 from './model.user';
 import { CanvasMessage }              from './model.canvasMessage';
 import { EazlService }                from './eazl.service';
-// import { Notification }               from './model.notification';
 import { WebSocketBasicMessage }      from './model.notification';
 import { WebSocketRefDataMessage }    from './model.notification';
 import { WebSocketSystemMessage }     from './model.notification';
@@ -55,7 +53,6 @@ export class AppComponent implements OnInit {
     previousMessage: CanvasMessage = null;          // Message to pass to new message form
     routerLink:string = '';                         // RouterLink in Menu.Command
     sendToTheseUsers: string[] = [];                // List of UserNames to whom message is sent
-    // notificationFromServer: Notification;           // Websocket msg (OLD TODO - remove later...)
     webSocketBasicMessage: WebSocketBasicMessage;   // Basic WS message
     webSocketSystemMessage: WebSocketSystemMessage  // System WS message
 
@@ -73,7 +70,6 @@ export class AppComponent implements OnInit {
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        // private notificationService: NotificationService,
         private route: ActivatedRoute,
         private router: Router,
         private reconnectingWebSocket: ReconnectingWebSocket,

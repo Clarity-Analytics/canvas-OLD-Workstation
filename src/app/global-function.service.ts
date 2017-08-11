@@ -23,7 +23,7 @@ export class GlobalFunctionService {
 
         // Clean alerts
         this.sessionDebugging = this.globalVariableService.sessionDebugging;
-        this.sessionLogging = this.globalVariableService.sessionLogging.getValue();
+        this.sessionLogging = this.globalVariableService.sessionLogging;
 
         // Note: has to use Console log here !
         if (this.sessionDebugging === true) {

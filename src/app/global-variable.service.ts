@@ -36,7 +36,7 @@ export class GlobalVariableService {
     sessionDateTimeLoggedin: string = '';
     sessionDashboardTabID: number = -1;            // Tab ID to load when form opens, -1 = none
     sessionDebugging: boolean = false;
-    sessionLogging = new BehaviorSubject(false);
+    sessionLogging: boolean = false;
     sessionLoadOnOpenDashboardID: number = -1;     // Dashboard to load when form opens, 0 = none
     sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
     
