@@ -5686,6 +5686,45 @@ export class EazlService implements OnInit {
                 })
     }
 
+    deleteDashboardTab(dashboardTab: DashboardTab) {
+        // Delete a given DashboardTab
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardTab', '@Start');
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboardTab = false;
+
+        return this.delete<EazlDashboardTab>(
+            'dashboard-tabs/' + dashboardTab.dashboardID.toString() + '/'
+            )
+                .toPromise()
+                .then(response => {
+
+                    // Update local data
+                    for (var i = 0; i < this.dashboardTabs.length; i++) {
+                        if (this.dashboardTabs[i].dashboardID == dashboardTab.dashboardID) {
+                            this.dashboardTabs.splice(i,1);
+                        }
+                    };
+
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Delete Dashboard Tab',
+                        detail:   'Successfully deleting dashboard tab from the database'
+                    });
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataDashboardTab = false;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Delete Dashboard Tab',
+                        detail:   'Unsuccessful in deleting your dashboard tab info to the database'
+                    });
+                    error.message || error
+                })
+    }
+
     getWidgetLastWidgetID(): number {
         // Return the last (biggest) WidgetID
         this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsForDashboard', '@Start');
@@ -6425,7 +6464,7 @@ export class EazlService implements OnInit {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
                         summary:  'Delete Group',
-                        detail:   'Unsuccessful in deleting your Group info to the database'
+                        detail:   'Unsuccessful in deleting your group info to the database'
                     });
                     error.message || error
                 })
