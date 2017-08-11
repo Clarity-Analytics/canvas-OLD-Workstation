@@ -975,7 +975,7 @@ export class WidgetEditorComponent implements OnInit {
 
             // Load container fields from previously used values
             this.widgetToEdit.container.backgroundColor =
-                this.globalVariableService.lastBackgroundColor.getValue().name;
+                this.globalVariableService.lastBackgroundColor.name;
             this.widgetToEdit.container.border =
                 this.globalVariableService.lastBorder.getValue().name;
             this.widgetToEdit.container.boxShadow =

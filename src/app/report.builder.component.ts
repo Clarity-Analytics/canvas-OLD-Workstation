@@ -170,7 +170,7 @@ export class ReportBuilderComponent implements OnInit {
         this.eazlService.addWidget( 
             {
                 container: {
-                    backgroundColor: this.globalVariableService.lastBackgroundColor.getValue().name,
+                    backgroundColor: this.globalVariableService.lastBackgroundColor.name,
                     border: this.globalVariableService.lastBorder.getValue().name,
                     boxShadow: this.globalVariableService.lastBoxShadow.name,
                     color: this.globalVariableService.lastColor.name,

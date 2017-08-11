@@ -125,13 +125,12 @@ export class GlobalVariableService {
             name: '1px solid black'
         }
     );
-    lastBackgroundColor = new BehaviorSubject<SelectedItemColor>(
+    lastBackgroundColor: SelectedItemColor =
         {
             id: 'white',
             name: 'white',
             code: '#FFFFFF'
-        }
-    );
+        };
     lastWidgetHeight: number = 300;
     lastWidgetWidth: number = 400;
     lastWidgetLeft: number = 25;

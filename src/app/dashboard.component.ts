@@ -223,7 +223,7 @@ selectedWidgetName: string;
         //      - and maintained when they change via WebSocket messages
         this.snapToGrid = this.globalVariableService.snapToGrid;
         this.gridSize = this.globalVariableService.gridSize;
-        this.selectedBackgroundColor = this.globalVariableService.lastBackgroundColor.getValue();
+        this.selectedBackgroundColor = this.globalVariableService.lastBackgroundColor;
         this.selectedBorder = this.globalVariableService.lastBorder.getValue();
         this.selectedBoxShadow = this.globalVariableService.lastBoxShadow;
         this.selectedColor = this.globalVariableService.lastColor;
@@ -540,7 +540,7 @@ selectedWidgetName: string;
                                 this.selectedBackgroundColor['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.lastBackgroundColor.next(this.selectedBackgroundColor);
+                    this.globalVariableService.lastBackgroundColor = this.selectedBackgroundColor;
                 }
 
                 // Border
