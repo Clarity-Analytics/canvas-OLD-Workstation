@@ -5612,14 +5612,38 @@ export class EazlService implements OnInit {
 
         // Update detail
         if (workingDashboardTabs.length > 0) {
-            workingDashboardTabs[0].dashboardTabDescription = dashboardTabDescription;
 
-            // Mark the data as clean
-            this.globalVariableService.dirtyDataDashboardTab = false;
+            return this.put<EazlDashboardTab>(
+                'dashboard-tabs/' + workingDashboardTabs[0].dashboardTabID.toString() + '/',
+                this.cdal.saveDashboardTab(workingDashboardTabs[0])
+                )
+                    .toPromise()
+                    .then(eazlDashboardTab => {
 
-            return true;
-        } else {
-            return false;
+                        // Update local array
+                        workingDashboardTabs[0].dashboardTabDescription = 
+                            dashboardTabDescription;
+
+                        // Mark as clean
+                        this.globalVariableService.dirtyDataDashboardTab = false;
+
+                        this.globalVariableService.growlGlobalMessage.next({
+                            severity: 'info',
+                            summary:  'Update Dashboard Tab',
+                            detail:   'Successfully updated dashboard tab in the database'
+                        });
+
+                        // Return the data
+                        return eazlDashboardTab;
+                    } )
+                    .catch(error => {
+                        this.globalVariableService.growlGlobalMessage.next({
+                            severity: 'warn',
+                            summary:  'Update Group',
+                            detail:   'Unsuccessful in updating your Group info to the database'
+                        });
+                        error.message || error
+                    })
         }
     }
 
