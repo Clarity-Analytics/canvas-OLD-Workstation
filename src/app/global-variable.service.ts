@@ -114,12 +114,11 @@ export class GlobalVariableService {
             name: 'black',
             code: '#000000'
         };
-    lastBoxShadow = new BehaviorSubject<SelectedItem>(
+    lastBoxShadow: SelectedItem =
         {
             id:1,
             name: ''
-        }
-    );
+        };
     lastBorder = new BehaviorSubject<SelectedItem>(
         {
             id:1,
