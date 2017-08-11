@@ -1991,53 +1991,53 @@ eazlSystemConfigurationWorking.company_logo = null
         return eazlSystemConfigurationWorking;
     }
 
-    loadWidgetComment(eazlWidgetComment: EazlWidgetComment): WidgetComment {
-        // Load WidgetComment: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetComment', '@Start');
+    // loadWidgetComment(eazlWidgetComment: EazlWidgetComment): WidgetComment {
+    //     // Load WidgetComment: move data Eazl -> Canvas
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetComment', '@Start');
 
-        let widgetCommentWorking = new WidgetComment();
+    //     let widgetCommentWorking = new WidgetComment();
 
-        widgetCommentWorking.widgetCommentID = eazlWidgetComment.id;
+    //     widgetCommentWorking.widgetCommentID = eazlWidgetComment.id;
 
-        if (eazlWidgetComment.widget_id != null) {
-            widgetCommentWorking.widgetID = eazlWidgetComment.widget_id;
-        } else {
-            widgetCommentWorking.widgetID = -1;
-        }
+    //     if (eazlWidgetComment.widget_id != null) {
+    //         widgetCommentWorking.widgetID = eazlWidgetComment.widget_id;
+    //     } else {
+    //         widgetCommentWorking.widgetID = -1;
+    //     }
 
-        if (eazlWidgetComment.thread_id != null) {
-            widgetCommentWorking.widgetCommentThreadID = eazlWidgetComment.thread_id;
-        } else {
-            widgetCommentWorking.widgetCommentThreadID = -1;
-        }
+    //     if (eazlWidgetComment.thread_id != null) {
+    //         widgetCommentWorking.widgetCommentThreadID = eazlWidgetComment.thread_id;
+    //     } else {
+    //         widgetCommentWorking.widgetCommentThreadID = -1;
+    //     }
 
-        if (eazlWidgetComment.created_on != null) {
-            widgetCommentWorking.widgetCommentCreatedDateTime = eazlWidgetComment.created_on;
-        } else {
-            widgetCommentWorking.widgetCommentCreatedDateTime = '';
-        }
+    //     if (eazlWidgetComment.created_on != null) {
+    //         widgetCommentWorking.widgetCommentCreatedDateTime = eazlWidgetComment.created_on;
+    //     } else {
+    //         widgetCommentWorking.widgetCommentCreatedDateTime = '';
+    //     }
 
-        if (eazlWidgetComment.created_by != null) {
-            widgetCommentWorking.widgetCommentCreatedUserName = eazlWidgetComment.created_by;
-        } else {
-            widgetCommentWorking.widgetCommentCreatedUserName = '';
-        }
+    //     if (eazlWidgetComment.created_by != null) {
+    //         widgetCommentWorking.widgetCommentCreatedUserName = eazlWidgetComment.created_by;
+    //     } else {
+    //         widgetCommentWorking.widgetCommentCreatedUserName = '';
+    //     }
 
-        if (eazlWidgetComment.heading != null) {
-            widgetCommentWorking.widgetCommentHeading = eazlWidgetComment.heading;
-        } else {
-            widgetCommentWorking.widgetCommentHeading = '';
-        }
+    //     if (eazlWidgetComment.heading != null) {
+    //         widgetCommentWorking.widgetCommentHeading = eazlWidgetComment.heading;
+    //     } else {
+    //         widgetCommentWorking.widgetCommentHeading = '';
+    //     }
 
-        if (eazlWidgetComment.body != null) {
-            widgetCommentWorking.widgetCommentBody = eazlWidgetComment.body;
-        } else {
-            widgetCommentWorking.widgetCommentBody = '';
-        }
+    //     if (eazlWidgetComment.body != null) {
+    //         widgetCommentWorking.widgetCommentBody = eazlWidgetComment.body;
+    //     } else {
+    //         widgetCommentWorking.widgetCommentBody = '';
+    //     }
 
-        // Return the result
-        return widgetCommentWorking;
-    }
+    //     // Return the result
+    //     return widgetCommentWorking;
+    // }
 
     loadWidgetTemplate(eazlWidgetTemplate: EazlWidgetTemplate): WidgetTemplate {
         // Load WidgetTemplate: move data Eazl -> Canvas
