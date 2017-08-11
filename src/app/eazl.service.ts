@@ -1669,79 +1669,80 @@ export const DASHBOARDTAGMEMBERSHIP: DashboardTagMembership[] =
         },
     ];
 
-export const DASHBOARDTABS: DashboardTab[] =
-    [
-        {
-            dashboardID: 0,
-            dashboardTabID: 0,
-            dashboardTabName: 'Value',
-            dashboardTabDescription: '0-Value: Full and detailed desription of tab - purpose',
-            dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserName: 'John Doe',
-            dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'
-        },
-        {
-            dashboardID: 0,
-            dashboardTabID: 1,
-            dashboardTabName: 'Volume',
-            dashboardTabDescription: '0-Volume: Full and detailed desription of tab - purpose',
-            dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserName: 'John Doe',
-            dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'
-        },
-        {
-            dashboardID: 2,
-            dashboardTabID: 2,
-            dashboardTabName: 'Value',
-            dashboardTabDescription: 'Full and detailed desription of tab - purpose',
-            dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserName: 'John Doe',
-            dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'
-        },
-        {
-            dashboardID: 2,
-            dashboardTabID: 3,
-            dashboardTabName: 'Volume',
-            dashboardTabDescription: '1-Value: Full and detailed desription of tab - purpose',
-            dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserName: 'John Doe',
-            dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'
-        },
-        {
-            dashboardID: 3,
-            dashboardTabID: 4,
-            dashboardTabName: 'Value',
-            dashboardTabDescription: '3-Value: Full and detailed desription of tab - purpose',
-            dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserName: 'John Doe',
-            dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'
-        },
-        {
-            dashboardID: 4,
-            dashboardTabID: 5,
-            dashboardTabName: 'Value',
-            dashboardTabDescription: '4-Value: Full and detailed desription of tab - purpose',
-            dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserName: 'John Doe',
-            dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'
-        },
-        {
-            dashboardID: 5,
-            dashboardTabID: 6,
-            dashboardTabName: 'Value',
-            dashboardTabDescription: '5-Value: Full and detailed desription of tab - purpose',
-            dashboardTabCreatedDateTime: '2017/05/01',
-            dashboardTabCreatedUserName: 'John Doe',
-            dashboardTabUpdatedDateTime: '2017/05/01',
-            dashboardTabUpdatedUserName: 'Leonard Cohen'
-        },
-    ];
+//const DASHBOARDTABS
+    // export const DASHBOARDTABS: DashboardTab[] =
+    //     [
+    //         {
+    //             dashboardID: 0,
+    //             dashboardTabID: 0,
+    //             dashboardTabName: 'Value',
+    //             dashboardTabDescription: '0-Value: Full and detailed desription of tab - purpose',
+    //             dashboardTabCreatedDateTime: '2017/05/01',
+    //             dashboardTabCreatedUserName: 'John Doe',
+    //             dashboardTabUpdatedDateTime: '2017/05/01',
+    //             dashboardTabUpdatedUserName: 'Leonard Cohen'
+    //         },
+    //         {
+    //             dashboardID: 0,
+    //             dashboardTabID: 1,
+    //             dashboardTabName: 'Volume',
+    //             dashboardTabDescription: '0-Volume: Full and detailed desription of tab - purpose',
+    //             dashboardTabCreatedDateTime: '2017/05/01',
+    //             dashboardTabCreatedUserName: 'John Doe',
+    //             dashboardTabUpdatedDateTime: '2017/05/01',
+    //             dashboardTabUpdatedUserName: 'Leonard Cohen'
+    //         },
+    //         {
+    //             dashboardID: 2,
+    //             dashboardTabID: 2,
+    //             dashboardTabName: 'Value',
+    //             dashboardTabDescription: 'Full and detailed desription of tab - purpose',
+    //             dashboardTabCreatedDateTime: '2017/05/01',
+    //             dashboardTabCreatedUserName: 'John Doe',
+    //             dashboardTabUpdatedDateTime: '2017/05/01',
+    //             dashboardTabUpdatedUserName: 'Leonard Cohen'
+    //         },
+    //         {
+    //             dashboardID: 2,
+    //             dashboardTabID: 3,
+    //             dashboardTabName: 'Volume',
+    //             dashboardTabDescription: '1-Value: Full and detailed desription of tab - purpose',
+    //             dashboardTabCreatedDateTime: '2017/05/01',
+    //             dashboardTabCreatedUserName: 'John Doe',
+    //             dashboardTabUpdatedDateTime: '2017/05/01',
+    //             dashboardTabUpdatedUserName: 'Leonard Cohen'
+    //         },
+    //         {
+    //             dashboardID: 3,
+    //             dashboardTabID: 4,
+    //             dashboardTabName: 'Value',
+    //             dashboardTabDescription: '3-Value: Full and detailed desription of tab - purpose',
+    //             dashboardTabCreatedDateTime: '2017/05/01',
+    //             dashboardTabCreatedUserName: 'John Doe',
+    //             dashboardTabUpdatedDateTime: '2017/05/01',
+    //             dashboardTabUpdatedUserName: 'Leonard Cohen'
+    //         },
+    //         {
+    //             dashboardID: 4,
+    //             dashboardTabID: 5,
+    //             dashboardTabName: 'Value',
+    //             dashboardTabDescription: '4-Value: Full and detailed desription of tab - purpose',
+    //             dashboardTabCreatedDateTime: '2017/05/01',
+    //             dashboardTabCreatedUserName: 'John Doe',
+    //             dashboardTabUpdatedDateTime: '2017/05/01',
+    //             dashboardTabUpdatedUserName: 'Leonard Cohen'
+    //         },
+    //         {
+    //             dashboardID: 5,
+    //             dashboardTabID: 6,
+    //             dashboardTabName: 'Value',
+    //             dashboardTabDescription: '5-Value: Full and detailed desription of tab - purpose',
+    //             dashboardTabCreatedDateTime: '2017/05/01',
+    //             dashboardTabCreatedUserName: 'John Doe',
+    //             dashboardTabUpdatedDateTime: '2017/05/01',
+    //             dashboardTabUpdatedUserName: 'Leonard Cohen'
+    //         },
+    //     ];
 
 export const WIDGETS: Widget[] =
     [
@@ -4692,7 +4693,7 @@ export class EazlService implements OnInit {
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
-    dashboardTabs: DashboardTab[] = DASHBOARDTABS;          // List of Dashboard Tabs
+    dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
     datasourcesPerUser: DatasourcesPerUser[] = [];          // List of DatasourcesPerUser
     dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
@@ -7809,7 +7810,6 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                 this.get<EazlDashboardTab>('dashboard-tabs')
                     .subscribe(
                         (eazlDashboardTab) => {
-console.log('eazlDashboardTab', eazlDashboardTab)                            
                             for (var i = 0; i < eazlDashboardTab.length; i++) {
                                 let dashboardTabSingle = new DashboardTab();
                                 dashboardTabSingle = this.cdal.loadDashboardTab(eazlDashboardTab[i]);
@@ -7820,10 +7820,9 @@ console.log('eazlDashboardTab', eazlDashboardTab)
                         // Replace
                         this.dashboardTabs = dashboardTabWorking;
 
-                // Mark the data as clean
-                this.globalVariableService.dirtyDataDashboardTab = false;
-console.log('this.dashboardTabs',this.dashboardTabs)
-                        }
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDashboardTab = false;
+                    }
                 )
             }
             // Clear all
