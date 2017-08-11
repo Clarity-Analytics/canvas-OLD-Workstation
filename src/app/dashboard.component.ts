@@ -224,7 +224,7 @@ selectedWidgetName: string;
         this.snapToGrid = this.globalVariableService.snapToGrid;
         this.gridSize = this.globalVariableService.gridSize;
         this.selectedBackgroundColor = this.globalVariableService.lastBackgroundColor;
-        this.selectedBorder = this.globalVariableService.lastBorder.getValue();
+        this.selectedBorder = this.globalVariableService.lastBorder;
         this.selectedBoxShadow = this.globalVariableService.lastBoxShadow;
         this.selectedColor = this.globalVariableService.lastColor;
         this.selectedContainerFontSize = this.globalVariableService.lastContainerFontSize;
@@ -557,7 +557,7 @@ selectedWidgetName: string;
                                 this.selectedBorder['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.lastBorder.next(this.selectedBorder);
+                    this.globalVariableService.lastBorder = this.selectedBorder;
                 }
 
                 // BoxShadow

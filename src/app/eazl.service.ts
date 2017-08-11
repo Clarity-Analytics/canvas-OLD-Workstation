@@ -5743,7 +5743,7 @@ export class EazlService implements OnInit {
         let defaultWidgetConfig: Widget = {
             container: {
                 backgroundColor: this.globalVariableService.lastBackgroundColor.name,
-                border: this.globalVariableService.lastBorder.getValue().name,
+                border: this.globalVariableService.lastBorder.name,
                 boxShadow: this.globalVariableService.lastBoxShadow.name,
                 color: this.globalVariableService.lastColor.name,
                 fontSize: +this.globalVariableService.lastContainerFontSize.name,

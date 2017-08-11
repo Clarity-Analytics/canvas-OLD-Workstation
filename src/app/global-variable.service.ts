@@ -119,12 +119,11 @@ export class GlobalVariableService {
             id:1,
             name: ''
         };
-    lastBorder = new BehaviorSubject<SelectedItem>(
+    lastBorder: SelectedItem =
         {
             id:1,
             name: '1px solid black'
-        }
-    );
+        };
     lastBackgroundColor: SelectedItemColor =
         {
             id: 'white',
