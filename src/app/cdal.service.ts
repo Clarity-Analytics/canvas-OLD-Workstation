@@ -54,7 +54,7 @@ import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
 // import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
-import { EazlWidgetComment }          from './model.widget.comment';
+// import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
@@ -67,7 +67,7 @@ import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { Widget }                     from './model.widget';
-import { WidgetComment }              from './model.widget.comment';
+// import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
 

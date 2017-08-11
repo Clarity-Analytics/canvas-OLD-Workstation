@@ -98,7 +98,7 @@ import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
 import { EazlWidget }                 from './model.widget';
-import { EazlWidgetComment }          from './model.widget.comment';
+// import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
@@ -113,7 +113,7 @@ import { SelectedItem }               from './model.selectedItem';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { Widget }                     from './model.widget';
-import { WidgetComment }              from './model.widget.comment';
+// import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
 
@@ -4107,55 +4107,56 @@ export const WIDGETS: Widget[] =
             }
         }
     ];
-
-export const WIDGETCOMMENTS: WidgetComment[] =
-    [
-        {
-            widgetCommentID: 1,
-            widgetID: 1,
-            widgetCommentThreadID: 1,
-            widgetCommentCreatedDateTime: '2017/02/14 13:01',
-            widgetCommentCreatedUserName: 'JohnS',
-            widgetCommentHeading: 'Data Accuracy',
-            widgetCommentBody: 'Is the Nov data correct?'
-        },
-        {
-            widgetCommentID: 2,
-            widgetID: 1,
-            widgetCommentThreadID: 1,
-            widgetCommentCreatedDateTime: '2017/02/14 13:15',
-            widgetCommentCreatedUserName: 'SandyB',
-            widgetCommentHeading: 'Data Accuracy',
-            widgetCommentBody: 'Yip, checked against external source'
-        },
-        {
-            widgetCommentID: 3,
-            widgetID: 1,
-            widgetCommentThreadID: 1,
-            widgetCommentCreatedDateTime: '2017/02/14 14:03',
-            widgetCommentCreatedUserName: 'JohnS',
-            widgetCommentHeading: 'Data Accuracy',
-            widgetCommentBody: 'Thanx'
-        },
-        {
-            widgetCommentID: 4,
-            widgetID: 1,
-            widgetCommentThreadID: 2,
-            widgetCommentCreatedDateTime: '2017/02/17 07:50',
-            widgetCommentCreatedUserName: 'DonnaD',
-            widgetCommentHeading: 'Congrats',
-            widgetCommentBody: 'Excellent sales, keep going!'
-        },
-        {
-            widgetCommentID: 5,
-            widgetID: 1,
-            widgetCommentThreadID: 14,
-            widgetCommentCreatedDateTime: '2017/04/14',
-            widgetCommentCreatedUserName: 'HenriD',
-            widgetCommentHeading: 'More research required on incidents',
-            widgetCommentBody: ''
-        },
-    ];
+// const WIDGETCOMMENTS
+    // export const WIDGETCOMMENTS: WidgetComment[] =
+    //     [
+    //         {
+    //             widgetCommentID: 1,
+    //             widgetID: 1,
+    //             widgetCommentThreadID: 1,
+    //             widgetCommentCreatedDateTime: '2017/02/14 13:01',
+    //             widgetCommentCreatedUserName: 'JohnS',
+    //             widgetCommentHeading: 'Data Accuracy',
+    //             widgetCommentBody: 'Is the Nov data correct?'
+    //         },
+    //         {
+    //             widgetCommentID: 2,
+    //             widgetID: 1,
+    //             widgetCommentThreadID: 1,
+    //             widgetCommentCreatedDateTime: '2017/02/14 13:15',
+    //             widgetCommentCreatedUserName: 'SandyB',
+    //             widgetCommentHeading: 'Data Accuracy',
+    //             widgetCommentBody: 'Yip, checked against external source'
+    //         },
+    //         {
+    //             widgetCommentID: 3,
+    //             widgetID: 1,
+    //             widgetCommentThreadID: 1,
+    //             widgetCommentCreatedDateTime: '2017/02/14 14:03',
+    //             widgetCommentCreatedUserName: 'JohnS',
+    //             widgetCommentHeading: 'Data Accuracy',
+    //             widgetCommentBody: 'Thanx'
+    //         },
+    //         {
+    //             widgetCommentID: 4,
+    //             widgetID: 1,
+    //             widgetCommentThreadID: 2,
+    //             widgetCommentCreatedDateTime: '2017/02/17 07:50',
+    //             widgetCommentCreatedUserName: 'DonnaD',
+    //             widgetCommentHeading: 'Congrats',
+    //             widgetCommentBody: 'Excellent sales, keep going!'
+    //         },
+    //         {
+    //             widgetCommentID: 5,
+    //             widgetID: 1,
+    //             widgetCommentThreadID: 14,
+    //             widgetCommentCreatedDateTime: '2017/04/14',
+    //             widgetCommentCreatedUserName: 'HenriD',
+    //             widgetCommentHeading: 'More research required on incidents',
+    //             widgetCommentBody: ''
+    //         },
+    //     ];
+// Done
 
 export const REPORTS: Report[] =
     [
@@ -4710,7 +4711,7 @@ export class EazlService implements OnInit {
     systemConfiguration: SystemConfiguration;               // System wide settings
     users: User[] = [];                                     // List of Users
     // userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
-    widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
+    // widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
     widgetTemplates: WidgetTemplate[] = []                  // List of Widget Templates
     widgetTypes: WidgetType[];                              // List of Widget types
