@@ -5681,33 +5681,33 @@ export class EazlService implements OnInit {
 
     }
 
-    addWidgetsComments(
-        inputWidgetCommentID: number,
-        inputWidgetID: number,
-        inputWidgetCommentThreadID: number,
-        inputWidgetCommentCreatedDateTime: string,
-        inputWidgetCommentCreatedUserName: string,
-        inputWidgetCommentHeading: string,
-        inputWidgetCommentBody: string
-        ) {
-        // Add a Widget Comment to the DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'addWidgetsComments', '@Start');
+    // addWidgetsComments(
+    //     inputWidgetCommentID: number,
+    //     inputWidgetID: number,
+    //     inputWidgetCommentThreadID: number,
+    //     inputWidgetCommentCreatedDateTime: string,
+    //     inputWidgetCommentCreatedUserName: string,
+    //     inputWidgetCommentHeading: string,
+    //     inputWidgetCommentBody: string
+    //     ) {
+    //     // Add a Widget Comment to the DB
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'addWidgetsComments', '@Start');
 
-        this.widgetComments.push(
-            {
-                widgetCommentID: inputWidgetCommentID,
-                widgetID: inputWidgetID,
-                widgetCommentThreadID: inputWidgetCommentThreadID,
-                widgetCommentCreatedDateTime: inputWidgetCommentCreatedDateTime,
-                widgetCommentCreatedUserName: inputWidgetCommentCreatedUserName,
-                widgetCommentHeading: inputWidgetCommentHeading,
-                widgetCommentBody: inputWidgetCommentBody
-            }
-        )
+    //     this.widgetComments.push(
+    //         {
+    //             widgetCommentID: inputWidgetCommentID,
+    //             widgetID: inputWidgetID,
+    //             widgetCommentThreadID: inputWidgetCommentThreadID,
+    //             widgetCommentCreatedDateTime: inputWidgetCommentCreatedDateTime,
+    //             widgetCommentCreatedUserName: inputWidgetCommentCreatedUserName,
+    //             widgetCommentHeading: inputWidgetCommentHeading,
+    //             widgetCommentBody: inputWidgetCommentBody
+    //         }
+    //     )
 
-        // Mark as dirty
-        this.globalVariableService.dirtyDataWidgetComment = false;
-    }
+    //     // Mark as dirty
+    //     this.globalVariableService.dirtyDataWidgetComment = false;
+    // }
 
     // getWidgetsComments(selectedWidgetID: number): WidgetComment[] {
     //     // Return a list of Widget Comments
