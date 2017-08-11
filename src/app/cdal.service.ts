@@ -620,6 +620,55 @@ export class CDAL {
         return dashboardTabWorking;
     }
 
+    saveDashboardTab(dashboardTab: DashboardTab): EazlDashboardTab {
+        // Save DashboardTab: move data Canvas -> Eazl
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveDashboardTab', '@Start');
+
+        let eazlDashboardTabWorking = new EazlDashboardTab();
+
+        eazlDashboardTabWorking.id = dashboardTab.dashboardTabID;
+        eazlDashboardTabWorking.dashboard_id = dashboardTab.dashboardID;
+
+        if (dashboardTab.dashboardTabName != null) {
+            eazlDashboardTabWorking.name = dashboardTab.dashboardTabName;
+        } else {
+            eazlDashboardTabWorking.name = '';
+        }
+
+        if (dashboardTab.dashboardTabDescription != null) {
+            eazlDashboardTabWorking.description = dashboardTab.dashboardTabDescription;
+        } else {
+            eazlDashboardTabWorking.description = '';
+        }
+
+        if (dashboardTab.dashboardTabCreatedDateTime != null) {
+            eazlDashboardTabWorking.createdDateTime = dashboardTab.dashboardTabCreatedDateTime;
+        } else {
+            eazlDashboardTabWorking.createdDateTime = '';
+        }
+
+        if (dashboardTab.dashboardTabCreatedUserName != null) {
+            eazlDashboardTabWorking.createdUserName = dashboardTab.dashboardTabCreatedUserName;
+        } else {
+            eazlDashboardTabWorking.createdUserName = '';
+        }
+
+        if (dashboardTab.dashboardTabUpdatedDateTime != null) {
+            eazlDashboardTabWorking.updatedDateTime = dashboardTab.dashboardTabUpdatedDateTime;
+        } else {
+            eazlDashboardTabWorking.updatedDateTime = '';
+        }
+
+        if (dashboardTab.dashboardTabUpdatedUserName != null) {
+            eazlDashboardTabWorking.updatedUserName = dashboardTab.dashboardTabUpdatedUserName;
+        } else {
+            eazlDashboardTabWorking.updatedUserName = '';
+        }
+
+        // Return the result
+        return eazlDashboardTabWorking;
+    }
+
     loadCanvasMessage(eazlCanvasMessage: EazlCanvasMessage): CanvasMessage {
         // Load Message: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadCanvasMessage', '@Start');
