@@ -1115,7 +1115,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
         ];
 
 
-        export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
+    export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
         {
             datasourceID: 0,
@@ -7768,7 +7768,6 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                 this.get<EazlGroup>('groups')
                     .subscribe(
                         (eazlGroup) => {
-console.log('EAZL eazlGroup', eazlGroup)
                             for (var i = 0; i < eazlGroup.length; i++) {
                                 let groupSingle = new Group();
                                 groupSingle = this.cdal.loadGroup(eazlGroup[i]);
@@ -7943,8 +7942,8 @@ console.log('EAZL eazlGroup', eazlGroup)
 console.log('cache.. dashboardTagWorking',  dashboardTagWorking)
 
                         // Replace
-                        //  this.dashboardTags = dashboardTagWorking;
-
+                         this.dashboardTags = dashboardTagWorking;
+console.log('this.dashboardTags', this.dashboardTags)
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataDashboardTag = false;
                         }
@@ -7984,7 +7983,6 @@ console.log('cache.. dashboardTagWorking',  dashboardTagWorking)
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
                          this.dashboardTagMembership = dashboardTagMembershipWorking;
 
                         // Mark the data as clean
