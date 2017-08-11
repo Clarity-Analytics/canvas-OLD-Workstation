@@ -5748,7 +5748,7 @@ export class EazlService implements OnInit {
                 color: this.globalVariableService.lastColor.getValue().name,
                 fontSize: +this.globalVariableService.lastContainerFontSize.getValue().name,
                 height: this.globalVariableService.lastWidgetHeight,
-                left: this.globalVariableService.lastWidgetLeft.getValue(),
+                left: this.globalVariableService.lastWidgetLeft,
                 widgetTitle: 'Untitled',
                 top: this.globalVariableService.lastWidgetTop.getValue(),
                 width: this.globalVariableService.lastWidgetWidth,
