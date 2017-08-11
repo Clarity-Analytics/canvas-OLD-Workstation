@@ -47,7 +47,7 @@ export class GlobalVariableService {
     startupMessageToShow: string = '';                          // Message to show at start
 
     // Environment
-    testEnvironmentName = new BehaviorSubject('');   // Spaces = in PROD
+    testEnvironmentName: string = '';                           // Spaces = in PROD
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     dirtyDataTextAlignDropdown: boolean = true;

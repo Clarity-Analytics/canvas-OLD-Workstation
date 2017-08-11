@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
     growlLife: number = this.globalVariableService.growlLife;
     growlSticky: boolean = false; //this.globalVariableService.growlSticky;
     systemTitle: string = this.globalVariableService.systemTitle;
-    testEnvironmentName: string = this.globalVariableService.testEnvironmentName.getValue();
+    testEnvironmentName: string = this.globalVariableService.testEnvironmentName;
 
     constructor(
         private canvasDate: CanvasDate,
@@ -381,7 +381,7 @@ export class AppComponent implements OnInit {
         }
         else {
 
-            if (this.globalVariableService.startupDashboardID.getValue() != 0) {
+            if (this.globalVariableService.startupDashboardID != 0) {
                 this.router.navigate(['pagenotfound']);
             }
             else {
