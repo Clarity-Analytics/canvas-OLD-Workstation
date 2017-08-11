@@ -115,7 +115,6 @@ import { SystemConfigComponent }      from './systemconfig.component';
 import { UserComponent}               from './user.component';
 import { UserPopupComponent }         from './user-popup.component';
 import { WhoAmIComponent }            from './whoami.component';
-// import { WidgetCommentComponent }     from './widget-comment.component';
 import { WidgetEditorComponent }      from './widget-editor.component';
 import { WidgetNewComponent }         from './widget.new.component';
 
@@ -165,7 +164,6 @@ import { routes }                     from './app.routes';
     UserComponent,
     UserPopupComponent,
     WhoAmIComponent,
-    // WidgetCommentComponent,
     WidgetEditorComponent,
     WidgetNewComponent,
     // BarCharBuilder,

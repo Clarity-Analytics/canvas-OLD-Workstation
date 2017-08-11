@@ -5709,23 +5709,23 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataWidgetComment = false;
     }
 
-    getWidgetsComments(selectedWidgetID: number): WidgetComment[] {
-        // Return a list of Widget Comments
-        this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsComments', '@Start');
+    // getWidgetsComments(selectedWidgetID: number): WidgetComment[] {
+    //     // Return a list of Widget Comments
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getWidgetsComments', '@Start');
 
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataWidgetComment) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'WidgetComment data is dirty / not up to date',
-                detail:   'The WidgetComment data is being refreshed; request again to get the latest from the database'
-            });
-        }
+    //     // Report to user if dirty at the moment
+    //     if (this.globalVariableService.dirtyDataWidgetComment) {
+    //         this.globalVariableService.growlGlobalMessage.next({
+    //             severity: 'warn',
+    //             summary:  'WidgetComment data is dirty / not up to date',
+    //             detail:   'The WidgetComment data is being refreshed; request again to get the latest from the database'
+    //         });
+    //     }
 
-        return this.widgetComments.filter(widgetComment =>
-            widgetComment.widgetID == selectedWidgetID
-        );
-    }
+    //     return this.widgetComments.filter(widgetComment =>
+    //         widgetComment.widgetID == selectedWidgetID
+    //     );
+    // }
 
     addWidget (widget: Widget) {
         // Add a new Widget
