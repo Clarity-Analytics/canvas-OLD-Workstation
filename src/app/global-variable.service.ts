@@ -135,7 +135,7 @@ export class GlobalVariableService {
             code: '#FFFFFF'
         }
     );
-    lastWidgetHeight = new BehaviorSubject(300);
+    lastWidgetHeight: number = 300;
     lastWidgetWidth = new BehaviorSubject(400);
     lastWidgetLeft = new BehaviorSubject(250);
     lastWidgetTop = new BehaviorSubject(80);

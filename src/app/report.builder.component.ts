@@ -175,7 +175,7 @@ export class ReportBuilderComponent implements OnInit {
                     boxShadow: this.globalVariableService.lastBoxShadow.getValue().name,
                     color: this.globalVariableService.lastColor.getValue().name,
                     fontSize: +this.globalVariableService.lastContainerFontSize.getValue().name,
-                    height: this.globalVariableService.lastWidgetHeight.getValue(),
+                    height: this.globalVariableService.lastWidgetHeight,
                     left: 240,
                     widgetTitle: this.selectedReport.reportName,
                     top: 80,

@@ -985,7 +985,7 @@ export class WidgetEditorComponent implements OnInit {
             this.widgetToEdit.container.fontSize =
                 +this.globalVariableService.lastContainerFontSize.getValue().name;
             this.widgetToEdit.container.height =
-                this.globalVariableService.lastWidgetHeight.getValue();
+                this.globalVariableService.lastWidgetHeight;
             this.widgetToEdit.container.width =
                 this.globalVariableService.lastWidgetWidth.getValue();
 
