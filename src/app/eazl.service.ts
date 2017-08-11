@@ -5751,7 +5751,7 @@ export class EazlService implements OnInit {
                 left: this.globalVariableService.lastWidgetLeft.getValue(),
                 widgetTitle: 'Untitled',
                 top: this.globalVariableService.lastWidgetTop.getValue(),
-                width: this.globalVariableService.lastWidgetWidth.getValue(),
+                width: this.globalVariableService.lastWidgetWidth,
             },
             areas: {
                 showWidgetText: false,

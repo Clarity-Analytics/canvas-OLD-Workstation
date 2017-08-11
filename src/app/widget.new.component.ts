@@ -179,7 +179,7 @@ export class WidgetNewComponent implements OnInit {
                     left: 240,
                     widgetTitle: this.selectedReport.reportName,
                     top: 80,
-                    width: this.globalVariableService.lastWidgetWidth.getValue(),
+                    width: this.globalVariableService.lastWidgetWidth,
                 },
                 areas: 
                     {

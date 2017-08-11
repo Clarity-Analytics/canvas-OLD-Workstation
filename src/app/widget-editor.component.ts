@@ -987,7 +987,7 @@ export class WidgetEditorComponent implements OnInit {
             this.widgetToEdit.container.height =
                 this.globalVariableService.lastWidgetHeight;
             this.widgetToEdit.container.width =
-                this.globalVariableService.lastWidgetWidth.getValue();
+                this.globalVariableService.lastWidgetWidth;
 
             // Defaults
             this.widgetToEdit.properties.widgetIsLocked = false;
