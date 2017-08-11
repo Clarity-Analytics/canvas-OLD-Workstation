@@ -86,7 +86,7 @@ export class GroupComponent implements OnInit {
                 command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
             },
             {
-                label: 'Related Data Sources',
+                label: 'Related Datasources',
                 icon: 'fa-list',
                 command: (event) => this.groupMenuRelatedDataSources(this.selectedGroup)
             },
@@ -96,7 +96,7 @@ export class GroupComponent implements OnInit {
     }
 
     groupMenuAdd(group: Group) {
-        // Popup form to add a new group
+        // Popup form to add a new gUserGroupMembershiproup
         // - group: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuAdd', '@Start');
         this.addEditMode = 'Add';
@@ -131,12 +131,6 @@ export class GroupComponent implements OnInit {
             accept: () => {
 
                 this.eazlService.deleteGroup(this.selectedGroup);
-
-                this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'info',
-                    summary:  'Group deleted',
-                    detail:   group.groupName
-                });
             }
         })
     }

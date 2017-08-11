@@ -194,12 +194,6 @@ export class UserComponent implements OnInit {
                 // Refresh local variable
                 this.users = this.eazlService.getUsers();
 
-                // Tell user
-                this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'info',
-                    summary:  'User deleted',
-                    detail:   user.firstName + ' - ' + user.lastName
-                });
             }
         })
     }

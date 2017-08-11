@@ -214,12 +214,6 @@ export class GroupPopupComponent implements OnInit {
             };              
             
             this.eazlService.addGroup(groupWorking);
-
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'info',
-                summary:  'Success',
-                detail:   'Group added'
-            });
         }
 
         // Editing existing user
@@ -231,12 +225,6 @@ export class GroupPopupComponent implements OnInit {
                 this.selectedGroup.groupDescription = this.groupForm.controls['groupDescription'].value;
             }
             this.eazlService.updateGroup(this.selectedGroup);
-
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'info',
-                summary:  'Success',
-                detail:   'Group updated'
-            });
         }
 
         // Trigger event emitter 'emit' method

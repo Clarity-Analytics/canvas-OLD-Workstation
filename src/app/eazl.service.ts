@@ -4783,13 +4783,19 @@ export class EazlService implements OnInit {
                     // Mark as clean
                     this.globalVariableService.dirtyDataSystemConfiguration = false;
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Update SystemConfig',
+                        detail:   'Successfully updated SystemConfiguration in the database'
+                    });
+
                     // Return the data
                     return this.systemConfiguration;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'SystemConfiguration',
+                        summary:  'Update SystemConfig',
                         detail:   'Unsuccessful in updating SystemConfiguration to the database'
                     });
                     error.message || error
@@ -5108,13 +5114,19 @@ export class EazlService implements OnInit {
                     // Not dirty any longer
                     this.globalVariableService.dirtyDataUser = false;
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Add User',
+                        detail:   'Successfully added user to the database'
+                    });
+
                     // Return the data
                     return this.users;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'AddUsers',
+                        summary:  'Add User',
                         detail:   'Unsuccessful in adding user to the database'
                     });
                     error.message || error
@@ -5157,13 +5169,19 @@ export class EazlService implements OnInit {
                     // Mark as clean
                     this.globalVariableService.dirtyDataUser = false;
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Update User',
+                        detail:   'Successfully updated user in the database'
+                    });
+
                     // Return the data
                     return eazlUser;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'User',
+                        summary:  'Update User',
                         detail:   'Unsuccessful in updating your User info to the database'
                     });
                     error.message || error
@@ -5195,13 +5213,19 @@ export class EazlService implements OnInit {
                     }
                     this.users.splice(index, 1);
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Delete User',
+                        detail:   'Successfully deleted user from the database'
+                    });
+
                     // Mark as clean
                     this.globalVariableService.dirtyDataUser = false;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'User',
+                        summary:  'Delete User',
                         detail:   'Unsuccessful in deleting your User info to the database'
                     });
                     error.message || error
@@ -6235,13 +6259,19 @@ export class EazlService implements OnInit {
                     // Not dirty any longer
                     this.globalVariableService.dirtyDataGroup = false;
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Add Group',
+                        detail:   'successfully added group to the database'
+                    });
+
                     // Return the data
                     return this.groups;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'AddGroups',
+                        summary:  'Add Group',
                         detail:   'Unsuccessful in adding group to the database'
                     });
                     error.message || error
@@ -6303,13 +6333,19 @@ export class EazlService implements OnInit {
                     // Mark as clean
                     this.globalVariableService.dirtyDataGroup = false;
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Update Group',
+                        detail:   'Successfully updated group in the database'
+                    });
+
                     // Return the data
                     return eazlGroup;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'Group',
+                        summary:  'Update Group',
                         detail:   'Unsuccessful in updating your Group info to the database'
                     });
                     error.message || error
@@ -6354,13 +6390,19 @@ export class EazlService implements OnInit {
                         }
                     };
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Delete Group',
+                        detail:   'Successfully deleting group from the database'
+                    });
+
                     // Mark as clean
                     this.globalVariableService.dirtyDataGroup = false;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'Group',
+                        summary:  'Delete Group',
                         detail:   'Unsuccessful in deleting your Group info to the database'
                     });
                     error.message || error
@@ -7378,14 +7420,20 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                     // Mark as clean
                     this.globalVariableService.dirtyDataCanvasMessage = false;
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Add Message',
+                        detail:   'successfully added message to the database'
+                    });
+
                     // Return the data
                     return eazlCanvasMessage;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'Message',
-                        detail:   'Unsuccessful in updating Messages to the database'
+                        summary:  'Add Message',
+                        detail:   'Unsuccessful in adding message to the database'
                     });
                     error.message || error
                 })
@@ -7417,14 +7465,20 @@ console.log('getDashboardTagMembership this.dashboardTags',  this.dashboardTags)
                     // Mark as clean
                     this.globalVariableService.dirtyDataCanvasMessage = false;
 
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Update Message',
+                        detail:   'Successfully updated message in the database'
+                    });
+
                     // Return the data
                     return eazlCanvasMessage;
                 } )
                 .catch(error => {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'warn',
-                        summary:  'Message',
-                        detail:   'Unsuccessful in updating Messages to the database'
+                        summary:  'Update Message',
+                        detail:   'Unsuccessful in updating message in the database'
                     });
                     error.message || error
                 })

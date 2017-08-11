@@ -313,12 +313,6 @@ export class UserPopupComponent implements OnInit {
                         snapToGrid: false
                     }
             });
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Success',
-            detail:   'User added'
-        });
         }
 
         // Editing existing user
@@ -349,13 +343,6 @@ export class UserPopupComponent implements OnInit {
 
             // Update DB
             this.eazlService.updateUser(this.selectedUser);
-
-            // Tell user
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'info',
-                summary:  'Success',
-                detail:   'User updated'
-            });
         }
 
         // Trigger event emitter 'emit' method

@@ -169,12 +169,5 @@ export class SystemConfigComponent implements OnInit {
                 maxRowsPerWidgetGraph: this.configForm.controls['maxRowsPerWidgetGraph'].value,
             }
         )
-
-        // Tell user
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Updated',
-            detail:   'The information has been updated'
-        });
     }
 } 
