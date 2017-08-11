@@ -108,13 +108,12 @@ export class GlobalVariableService {
             id: 1,
             name: '1'
         };
-    lastColor = new BehaviorSubject<SelectedItemColor>(
+    lastColor: SelectedItemColor =
         {
             id: 'black',
             name: 'black',
             code: '#000000'
-        }
-    );
+        };
     lastBoxShadow = new BehaviorSubject<SelectedItem>(
         {
             id:1,

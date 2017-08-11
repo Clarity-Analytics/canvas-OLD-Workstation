@@ -981,7 +981,7 @@ export class WidgetEditorComponent implements OnInit {
             this.widgetToEdit.container.boxShadow =
                 this.globalVariableService.lastBoxShadow.getValue().name;
             this.widgetToEdit.container.color =
-                this.globalVariableService.lastColor.getValue().name;
+                this.globalVariableService.lastColor.name;
             this.widgetToEdit.container.fontSize =
                 +this.globalVariableService.lastContainerFontSize.name;
             this.widgetToEdit.container.height =

@@ -226,7 +226,7 @@ selectedWidgetName: string;
         this.selectedBackgroundColor = this.globalVariableService.lastBackgroundColor.getValue();
         this.selectedBorder = this.globalVariableService.lastBorder.getValue();
         this.selectedBoxShadow = this.globalVariableService.lastBoxShadow.getValue();
-        this.selectedColor = this.globalVariableService.lastColor.getValue();
+        this.selectedColor = this.globalVariableService.lastColor;
         this.selectedContainerFontSize = this.globalVariableService.lastContainerFontSize;
 
         // Get the list of dashboards from the DB
@@ -591,7 +591,7 @@ selectedWidgetName: string;
                                 this.selectedColor['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.lastColor.next(this.selectedColor);
+                    this.globalVariableService.lastColor = this.selectedColor;
                 }
 
                 // Font Size
