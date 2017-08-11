@@ -41,7 +41,7 @@ export class GlobalVariableService {
     sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
     
     // At startup
-    startupDashboardID = new BehaviorSubject(0);                // Dashboard to load @start, 0 = none
+    startupDashboardID: number = 0;                             // Dashboard to load @start, 0 = none
     startupDashboardName: string = 'Collection of Bar charts';  // Dashboard to load @start, '' = none
     startupDashboardTabID: number = 0;                          // Tab ID to load @start, -1 = none
     startupMessageToShow: string = '';                          // Message to show at start

@@ -234,9 +234,9 @@ selectedWidgetName: string;
 
         // Set the Dashboard ID to load on Init
         if (this.globalVariableService.sessionLoadOnOpenDashboardID == -1) {
-            if (this.globalVariableService.startupDashboardID.getValue() != -1) {
+            if (this.globalVariableService.startupDashboardID != -1) {
                 this.globalVariableService.sessionLoadOnOpenDashboardID =
-                    this.globalVariableService.startupDashboardID.getValue();
+                    this.globalVariableService.startupDashboardID;
                 this.globalVariableService.sessionLoadOnOpenDashboardName =
                     this.globalVariableService.startupDashboardName;
             }
