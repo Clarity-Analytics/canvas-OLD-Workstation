@@ -78,7 +78,7 @@ export class DashboardTabEditorComponent implements OnInit {
         this.currentDashboardTab = this.eazlService.getDashboardTabs(
             this.selectedDashboardID, this.selectedDashboardTab.id)[0];
 
-            // First ngOnChanges runs before the OnInit
+        // First ngOnChanges runs before the OnInit
         if (this.dashboardTabForm != undefined) {
 
             // Clear the form 
@@ -128,26 +128,36 @@ export class DashboardTabEditorComponent implements OnInit {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickSubmit', '@Start');
 
-        // Validation
-        // if (this.identificationForm.controls['widgetType'].value == ''  || 
-        //     this.identificationForm.controls['widgetType'].value == null) {
-        //         this.formIsValid = false;
-        //         this.numberErrors = this.numberErrors + 1;
-        //         this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
-        //             'The Widget Type is compulsory.';
-        // }
+        // Validation: note that == null tests for undefined as well
+        this.formIsValid = false;
+        this.errorMessageOnForm = '';
+        this.numberErrors = 0;
 
+        if (this.dashboardTabForm.controls['dashboardTabName'].value == ''  || 
+            this.dashboardTabForm.controls['dashboardTabName'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Tab Name is compulsory.';
+        }
+        if (this.dashboardTabForm.controls['dashboardTabDescription'].value == ''  || 
+            this.dashboardTabForm.controls['dashboardTabDescription'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                    'The Tab Description is compulsory.';
+        }
 
         // Oi, something is not right
-        // if (this.errorMessageOnForm != '') {
-        //     this.formIsValid = true;
-        //     this.globalVariableService.growlGlobalMessage.next({
-        //         severity: 'error',
-        //         summary: 'Error',
-        //         detail: this.numberErrors.toString() + ' error(s) encountered'
-        //     });
-        //     return;
-        // }
+        if (this.errorMessageOnForm != '') {
+            this.formIsValid = true;
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'error',
+                summary: 'Error',
+                detail: this.numberErrors.toString() + ' error(s) encountered'
+            });
+            return;
+        }
 
         // Update DB
         this.eazlService.updateDashboardTab(
