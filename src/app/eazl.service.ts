@@ -4696,7 +4696,7 @@ export class EazlService implements OnInit {
                 })
     }
 
-    deleteDashboardTab(dashboardTab: DashboardTab) {
+    deleteDashboardTab(dashboardTabID: number) {
         // Delete a given DashboardTab
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardTab', '@Start');
 
@@ -4704,14 +4704,14 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataDashboardTab = false;
 
         return this.delete<EazlDashboardTab>(
-            'dashboard-tabs/' + dashboardTab.dashboardID.toString() + '/'
+            'dashboard-tabs/' + dashboardTabID.toString() + '/'
             )
                 .toPromise()
                 .then(response => {
 
                     // Update local data
                     for (var i = 0; i < this.dashboardTabs.length; i++) {
-                        if (this.dashboardTabs[i].dashboardID == dashboardTab.dashboardID) {
+                        if (this.dashboardTabs[i].dashboardID == dashboardTabID) {
                             this.dashboardTabs.splice(i,1);
                         }
                     };
