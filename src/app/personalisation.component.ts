@@ -65,7 +65,7 @@ export class PersonalisationComponent implements OnInit {
         this.configForm = this.fb.group({
             'averageWarningRuntime':        new FormControl('', Validators.pattern('^[0-9]*$')),
             'dashboardStartupName':         new FormControl(''),
-            'startupDashboardTabID':        new FormControl(''),
+            'startupDashboardTab':          new FormControl(''),
             'environment':                  new FormControl(''),
             'frontendColorScheme':          new FormControl(''),
             'defaultReportFilters':         new FormControl(''),
@@ -225,6 +225,11 @@ export class PersonalisationComponent implements OnInit {
             dashboardIDWorking = this.configForm.controls['dashboardStartupName'].value.id;
         }
 
+        let dashboardTabIDWorking: number = -1;
+        if (this.configForm.controls['startupDashboardTab'].value != undefined) {
+            dashboardTabIDWorking = this.configForm.controls['startupDashboardTab'].value.id;
+        }
+
         // Only the name is stored in the DB
         let textColorWorking: string = '';
         if (this.selectedFrontendColorScheme != undefined) {
@@ -246,6 +251,7 @@ export class PersonalisationComponent implements OnInit {
         // Update the user info
         this.users[i].profile.averageWarningRuntime = this.configForm.controls['averageWarningRuntime'].value;
         this.users[i].profile.dashboardIDStartup = dashboardIDWorking;
+        // this.users[i].profile.dashboardTabIDStartup = dashboardTabIDWorking;
         this.users[i].profile.environment = this.configForm.controls['environment'].value;
         this.users[i].profile.frontendColorScheme = textColorWorking;
         this.users[i].profile.defaultReportFilters = this.configForm.controls['defaultReportFilters'].value;
@@ -268,10 +274,10 @@ export class PersonalisationComponent implements OnInit {
     onChangeLoadDashboardTabs(event) {
         // Called from HTML with ID to load
         this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
-console.log('onChg event.id', event.id)
+
         // Remember this for next time
         this.dashboardTabsDropDown = [];
-        this.dashboardTabs = this.eazlService.getDashboardTabs(event.id);
+        this.dashboardTabs = this.eazlService.getDashboardTabs(event.value.id);
 
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {
@@ -283,7 +289,6 @@ console.log('onChg event.id', event.id)
                 }
             });
         }
-
     }
 
 }
