@@ -1338,20 +1338,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         let currentUser: string = this.globalFunctionService.currentUser();
 
         // Add
-        // TODO - do via DB RESTi
-        // TODO - do ID properly
-        this.dashboardTabs.push (
-            {
+        let dashboardTabWorking: DashboardTab = {
                 dashboardID: this.selectedDashboard.id,
                 dashboardTabID: maxID,
                 dashboardTabName: newdashboardTabName,
-                dashboardTabDescription: '',
+                dashboardTabDescription: 'Untitled',
                 dashboardTabCreatedDateTime: this.canvasDate.now('standard'),
                 dashboardTabCreatedUserName: currentUser,
                 dashboardTabUpdatedDateTime: this.canvasDate.now('standard'),
                 dashboardTabUpdatedUserName: currentUser
-            }
-        );
+            };
+        this.eazlService.addDashboardTab(dashboardTabWorking);
 
         // Refresh the Array of Dashboards IF no current filter
         this.dashboardTabsDropDown.push({
@@ -1360,14 +1357,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 id: this.selectedDashboard.id,
                 name: newdashboardTabName
             }
-        });
-
-        // Tell the user
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Tab added',
-            detail:   'A new, empty Tab has been added: ' + 'Untitled - ' +
-                this.numberUntitledDashboards.toLocaleString()
         });
     }
 

@@ -1,17 +1,17 @@
 <!--Errors-->
-<p 
-    class="iserror" 
-    *ngIf="formIsValid"> 
+<p
+    class="iserror"
+    *ngIf="formIsValid">
     {{ errorMessageOnForm }}
 </p>
 
 
 <!--Form with selected Dashboard-->
-<form 
-    [formGroup]="dashboardTabForm"    
+<form
+    [formGroup]="dashboardTabForm"
     >
-    <div 
-        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+    <div
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
         style="margin: 10px 0px"
         >
 
@@ -20,10 +20,10 @@
                 DashboardID:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
+                <input pInputText
                        readonly
-                       type="text" 
-                       formControlName="dashboardID" 
+                       type="text"
+                       formControlName="dashboardID"
                        placeholder="(info)"
                        autofocus
                        autocomplete="on"
@@ -34,10 +34,10 @@
                 Dashb.TabID :
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
+                <input pInputText
                        readonly
-                       type="text" 
-                       formControlName="dashboardTabID" 
+                       type="text"
+                       formControlName="dashboardTabID"
                        placeholder="Required"
                        />
             </div>
@@ -48,10 +48,10 @@
                Tab Name :
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
+                <input pInputText
                        readonly
-                       type="text" 
-                       formControlName="dashboardTabName" 
+                       type="text"
+                       formControlName="dashboardTabName"
                        placeholder="Required"
                        />
             </div>
@@ -60,9 +60,9 @@
                 Description:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="dashboardTabDescription" 
+                <input pInputText
+                       type="text"
+                       formControlName="dashboardTabDescription"
                        placeholder="(Optional)"
                        />
             </div>
@@ -73,10 +73,10 @@
                 Created on:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
+                <input pInputText
                        readonly
-                       type="text" 
-                       formControlName="dashboardTabCreatedDateTime" 
+                       type="text"
+                       formControlName="dashboardTabCreatedDateTime"
                        placeholder="(Optional)"
                        />
             </div>
@@ -85,24 +85,24 @@
                 Created by:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
+                <input pInputText
                        readonly
-                       type="text" 
-                       formControlName="dashboardTabCreatedUserName" 
+                       type="text"
+                       formControlName="dashboardTabCreatedUserName"
                        placeholder="(Optional)"
                        />
             </div>
         </div>
-        
+
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 Updated on:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
+                <input pInputText
                        readonly
-                       type="text" 
-                       formControlName="dashboardTabUpdatedDateTime" 
+                       type="text"
+                       formControlName="dashboardTabUpdatedDateTime"
                        placeholder="(Optional)"
                        />
             </div>
@@ -111,43 +111,51 @@
                 Updated by:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
+                <input pInputText
                        readonly
-                       type="text" 
-                       formControlName="dashboardTabUpdatedUserName" 
+                       type="text"
+                       formControlName="dashboardTabUpdatedUserName"
                        placeholder="(Optional)"
                        />
             </div>
         </div>
-    </div>   
 
+        <!--Buttons-->
+        <div class="ui-grid-row ">
+            <div class="ui-grid-col-1">
+            </div>
+            
+            <div class="ui-grid-col-3">
+                <button
+                    class="ui-grid-col-2 panelButtonWithLabel"
+                    pButton
+                    type="button"
+                    label="Cancel"
+                    icon="fa-undo"
+                    (click)="onClickCancel()"
+                    >
+                </button>
+            </div>
 
-    <!--Buttons-->
-    <div class="ui-grid-row "
-        class=""
-        > 
-        <div class="ui-grid-col-2"></div>
-        <button 
-            class="ui-grid-col-2 panelButtonWithLabel"
-            pButton 
-            type="button" 
-            label="Cancel"
-            icon="fa-undo"
-            (click)="onClickCancel()"
-            >
-        </button>
-        <div class="ui-grid-col-4"></div>
-        <button 
-            class="ui-grid-col-2 panelButtonWithLabel"
-            pButton 
-            type="submit" 
-            label="Submit" 
-            icon="fa-refresh"
-            (click)="onClickSubmit()"
-            >
-        </button>
-        <div class="ui-grid-col-2"></div>
+            <div class="ui-grid-col-4">
+            </div>
+
+            <div class="ui-grid-col-3">
+                <button
+                    class="ui-grid-col-2 panelButtonWithLabel"
+                    pButton
+                    type="submit"
+                    label="Submit"
+                    icon="fa-refresh"
+                    (click)="onClickSubmit()"
+                    >
+                </button>
+            </div>
+
+            <div class="ui-grid-col-1">    
+            </div>
+        </div>
     </div>
 
-</form> 
+</form>
 

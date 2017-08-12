@@ -4680,7 +4680,7 @@ export class EazlService implements OnInit {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'info',
                         summary:  'Add Dashboard Tab',
-                        detail:   'successfully added dashboard tab to the database'
+                        detail:   'Successfully added dashboard tab to the database'
                     });
 
                     // Return the data
@@ -5328,7 +5328,7 @@ export class EazlService implements OnInit {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'info',
                         summary:  'Add Group',
-                        detail:   'successfully added group to the database'
+                        detail:   'Successfully added group to the database'
                     });
 
                     // Return the data
@@ -6448,7 +6448,7 @@ export class EazlService implements OnInit {
                     this.globalVariableService.growlGlobalMessage.next({
                         severity: 'info',
                         summary:  'Add Message',
-                        detail:   'successfully added message to the database'
+                        detail:   'Successfully added message to the database'
                     });
 
                     // Return the data
