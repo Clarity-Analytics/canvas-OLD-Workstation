@@ -121,6 +121,17 @@ export class PersonalisationComponent implements OnInit {
             }
         }
 
+        // if (this.users[index].profile.dashboardTabIDStartup != -1) {
+        //     let dashboardTabID: string = '';
+        //     dashboardTabID = this.eazlService.getdashboardName(this.users[index].profile.dashboardIDStartup);
+        //     if (dashboardName != null) {
+        //         this.selectedDashboard = {
+        //             id: this.users[index].profile.dashboardIDStartup,
+        //             name: dashboardName
+        //         };
+        //     }
+        // }
+
         this.configForm.controls['environment'].setValue(
             this.users[index].profile.environment);
         this.configForm.controls['averageWarningRuntime'].setValue(
@@ -251,7 +262,7 @@ export class PersonalisationComponent implements OnInit {
         // Update the user info
         this.users[i].profile.averageWarningRuntime = this.configForm.controls['averageWarningRuntime'].value;
         this.users[i].profile.dashboardIDStartup = dashboardIDWorking;
-        // this.users[i].profile.dashboardTabIDStartup = dashboardTabIDWorking;
+        this.users[i].profile.dashboardTabIDStartup = dashboardTabIDWorking;
         this.users[i].profile.environment = this.configForm.controls['environment'].value;
         this.users[i].profile.frontendColorScheme = textColorWorking;
         this.users[i].profile.defaultReportFilters = this.configForm.controls['defaultReportFilters'].value;

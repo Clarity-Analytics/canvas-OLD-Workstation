@@ -5568,6 +5568,22 @@ console.log('EZ end', workingDashboardTabs)
         return workingDashboardTabs;
     }
 
+    getdashboardTabName(dashboardTabID: number): string {
+        // Returns Tab Name of a given dashboardTabID
+        this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardTabName', '@Start');
+
+        let dashboardTabNameWorking: string = null;
+        for (var i = 0; i < this.dashboardTabs.length; i++) {
+            if (this.dashboardTabs[i].dashboardTabID == dashboardTabID) {
+                dashboardTabNameWorking = this.dashboardTabs[i].dashboardTabName;
+            }
+        }
+
+        // Return
+        return dashboardTabNameWorking;
+    }
+
+
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
         // Return a list of Dashboard Tabs for a given DashboardID as SelectItem Array
         // - selectedDashboardID = filter

@@ -220,6 +220,12 @@ export class CDAL {
                 userWorking.profile.dashboardIDStartup = -1;
             }
 
+            if (eazlUser.profile.dashboard_tab_id_at_startup != null) {
+                userWorking.profile.dashboardTabIDStartup = eazlUser.profile.dashboard_tab_id_at_startup;
+            } else {
+                userWorking.profile.dashboardTabIDStartup = -1;
+            }
+
             if (eazlUser.profile.environment != null) {
                 userWorking.profile.environment = eazlUser.profile.environment;
             } else {
@@ -412,6 +418,12 @@ export class CDAL {
                 eazlUserWorking.profile.dashboard_id_at_startup = user.profile.dashboardIDStartup;
             } else {
                 eazlUserWorking.profile.dashboard_id_at_startup = -1;
+            }
+
+            if (user.profile.dashboardTabIDStartup != null) {
+                eazlUserWorking.profile.dashboard_tab_id_at_startup = user.profile.dashboardTabIDStartup;
+            } else {
+                eazlUserWorking.profile.dashboard_tab_id_at_startup = -1;
             }
 
             if (user.profile.environment != null) {

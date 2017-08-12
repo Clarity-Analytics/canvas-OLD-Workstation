@@ -303,6 +303,7 @@ export class UserPopupComponent implements OnInit {
                         photoPath: this.userformID.controls['photoPath'].value,
                         averageWarningRuntime: 0,
                         dashboardIDStartup: -1,
+                        dashboardTabIDStartup: -1,
                         environment: '',
                         frontendColorScheme: '',
                         defaultReportFilters: '',
