@@ -1402,25 +1402,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             return;
             }
 
-            // // Travers
-            // for (var i = 0; i < this.dashboardTabs.length; i++ ) {
-            //     if (this.dashboardTabs[i].dashboardTabID == this.selectedDashboardTab.id) {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt',
-            //             'Deleting ' + this.selectedDashboardTab.name + ' ...');
-            //         this.dashboardTabs.splice(i, 1);
-
-            //         // Tell the user
-            //         this.globalVariableService.growlGlobalMessage.next({
-            //             severity: 'info',
-            //             summary:  'Tab deleted',
-            //             detail:   'The Tab has been deleted: ' +
-            //                       this.selectedDashboardTab.name
-            //         });
-
-            //         break;
-            //     }
-            // }
-
             // Delete
             this.eazlService.deleteDashboardTab(this.selectedDashboardTab.id);
 
