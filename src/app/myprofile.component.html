@@ -1,18 +1,18 @@
 <!--Error message, IF any-->
-<p 
-    class="iserror" 
-    *ngIf="formIsValid"> 
+<p
+    class="iserror"
+    *ngIf="formIsValid">
     {{ errorMessageOnForm }}
 </p>
 
 
 <!--Individual User fields-->
-<form 
+<form
     class="formBody"
-    [formGroup]="configForm" 
+    [formGroup]="configForm"
     >
-    <div 
-        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+    <div
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
         style="margin: 10px 0px">
 
         <div class="ui-grid-row">
@@ -20,9 +20,9 @@
                 User Name:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="username" 
+                <input pInputText
+                       type="text"
+                       formControlName="username"
                        placeholder="Required"
                        readonly
                        >
@@ -32,9 +32,9 @@
                 First Name:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="first_name" 
+                <input pInputText
+                       type="text"
+                       formControlName="first_name"
                        readonly
                        >
             </div>
@@ -45,9 +45,9 @@
                 Last Name:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="last_name" 
+                <input pInputText
+                       type="text"
+                       formControlName="last_name"
                        readonly
                        >
             </div>
@@ -56,37 +56,37 @@
                 Email:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="email" 
+                <input pInputText
+                       type="text"
+                       formControlName="email"
                        readonly
                        >
             </div>
         </div>
     </div>
-</form> 
+</form>
 
 
 <!--Tabview with tables-->
 <p-tabView>
     <!--Tables-->
     <p-tabPanel header="My Groups">
-        <div class="myOverride">
+        <div>
             <p-dataTable  #dt
                 columnResizeMode="expand"
                 exportFilename="groups"
-                [paginator]="false" 
-                [pageLinks]="3" 
+                [paginator]="false"
+                [pageLinks]="3"
                 [reorderableColumns]="true"
                 [resizableColumns]="true"
                 [responsive]="true"
-                [rows]="10" 
+                [rows]="10"
                 [rowsPerPageOptions]="[5,10,20]"
                 [(selection)]="selectedGroup"
-                selectionMode="single" 
-                [scrollable]="true"  
+                selectionMode="single"
+                [scrollable]="true"
                 [sortMode]="multiple"
-                [value]="groups"  
+                [value]="groups"
                 >
                 <p-header
                     [style]="{'background-color': 'darkgray'}">
@@ -96,45 +96,45 @@
                     <span style="float:right"
                         class="ui-helper-clearfix csvButton"
                         >
-                        <button 
-                            type="button" 
-                            pButton 
-                            icon="fa-file-o" 
-                            iconPos="left" 
-                            label="CSV" 
-                            (click)="dt.exportCSV()" 
+                        <button
+                            type="button"
+                            pButton
+                            icon="fa-file-o"
+                            iconPos="left"
+                            label="CSV"
+                            (click)="dt.exportCSV()"
                             >
                         </button>
                     </span>
-                    
+
                 </p-header>
-                <p-column 
-                    field="groupID" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="ID" 
+                <p-column
+                    field="groupID"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="ID"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="groupName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Name" 
+                <p-column
+                    field="groupName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Name"
                     [sortable]="true"
-                    [style]="{width: '120px', 
+                    [style]="{width: '120px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="groupDescription" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Description" 
+                <p-column
+                    field="groupDescription"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Description"
                     [sortable]="true"
-                    [style]="{width: '320px', 
+                    [style]="{width: '320px',
                             'text-align': 'center'}"            >
                 </p-column>
             </p-dataTable>
@@ -167,22 +167,22 @@
     <p-tabPanel header="Dashboards I own">
 
         <!--Table with Dashboard info -->
-        <div class="myOverride">
+        <div>
             <p-dataTable  #dt
                 columnResizeMode="expand"
                 exportFilename="dashboards"
                 [contextMenu]="cm"
-                [paginator]="true" 
-                [pageLinks]="3" 
+                [paginator]="true"
+                [pageLinks]="3"
                 [reorderableColumns]="true"
                 [resizableColumns]="true"
                 [responsive]="true"
-                [rows]="10" 
+                [rows]="10"
                 [rowsPerPageOptions]="[5,10,20]"
-                selectionMode="single" 
-                [scrollable]="false"  
+                selectionMode="single"
+                [scrollable]="false"
                 [sortMode]="multiple"
-                [value]="dashboardsIown"  
+                [value]="dashboardsIown"
                 >
                 <p-header
                     [style]="{'background-color': 'darkgray'}">
@@ -192,286 +192,286 @@
                     <span style="float:right"
                         class="ui-helper-clearfix csvButton"
                         >
-                        <button 
-                            type="button" 
-                            pButton 
-                            icon="fa-file-o" 
-                            iconPos="left" 
-                            label="CSV" 
-                            (click)="dt.exportCSV()" 
+                        <button
+                            type="button"
+                            pButton
+                            icon="fa-file-o"
+                            iconPos="left"
+                            label="CSV"
+                            (click)="dt.exportCSV()"
                             >
                         </button>
                     </span>
-                    
+
                 </p-header>
 
-                <p-column 
-                    field="dashboardID" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="ID" 
+                <p-column
+                    field="dashboardID"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="ID"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardCode" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Code" 
+                <p-column
+                    field="dashboardCode"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Code"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Name" 
+                <p-column
+                    field="dashboardName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Name"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="isContainerHeaderDark" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Dark Hdr?" 
+                <p-column
+                    field="isContainerHeaderDark"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Dark Hdr?"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="showContainerHeader" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Show Hdr" 
+                <p-column
+                    field="showContainerHeader"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Show Hdr"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardBackgroundColor" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Bg Color" 
+                <p-column
+                    field="dashboardBackgroundColor"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Bg Color"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardBackgroundImageSrc" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Bg Image" 
+                <p-column
+                    field="dashboardBackgroundImageSrc"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Bg Image"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardComments" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Comments" 
+                <p-column
+                    field="dashboardComments"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Comments"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardDefaultExportFileType" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Export FType" 
+                <p-column
+                    field="dashboardDefaultExportFileType"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Export FType"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardDescription" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Description" 
+                <p-column
+                    field="dashboardDescription"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Description"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardNrGroups" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Nr Groups" 
+                <p-column
+                    field="dashboardNrGroups"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Nr Groups"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardIsLocked" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Locked?" 
+                <p-column
+                    field="dashboardIsLocked"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Locked?"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardIsLiked" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Liked?" 
+                <p-column
+                    field="dashboardIsLiked"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Liked?"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardOpenTabNr" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Open TabNr" 
+                <p-column
+                    field="dashboardOpenTabNr"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Open TabNr"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardOwners" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Owner" 
+                <p-column
+                    field="dashboardOwners"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Owner"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardPassword" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Password" 
+                <p-column
+                    field="dashboardPassword"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Password"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshMode" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="RefreshMode" 
+                <p-column
+                    field="dashboardRefreshMode"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="RefreshMode"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshFrequency" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="RefreshFreq" 
+                <p-column
+                    field="dashboardRefreshFrequency"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="RefreshFreq"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardNrUsersSharedWith" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="#Usr SharedWith" 
+                <p-column
+                    field="dashboardNrUsersSharedWith"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="#Usr SharedWith"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardNrGroupsSharedWith" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="#Grp SharedWith" 
+                <p-column
+                    field="dashboardNrGroupsSharedWith"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="#Grp SharedWith"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardSystemMessage" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="SystemMessage" 
+                <p-column
+                    field="dashboardSystemMessage"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="SystemMessage"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshedDateTime" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Refreshed on" 
+                <p-column
+                    field="dashboardRefreshedDateTime"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Refreshed on"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshedUserName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Refreshed by" 
+                <p-column
+                    field="dashboardRefreshedUserName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Refreshed by"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardUpdatedDateTime" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Updated on" 
+                <p-column
+                    field="dashboardUpdatedDateTime"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Updated on"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardUpdatedUserName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Updated by" 
+                <p-column
+                    field="dashboardUpdatedUserName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Updated by"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardCreatedDateTime" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Created on" 
+                <p-column
+                    field="dashboardCreatedDateTime"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Created on"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardCreatedUserName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Created by" 
+                <p-column
+                    field="dashboardCreatedUserName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Created by"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
@@ -484,22 +484,22 @@
     <p-tabPanel header="Dashboards shared with me">
 
         <!--Table with Dashboards shared with me-->
-        <div class="myOverride">
+        <div>
             <p-dataTable  #dt
                 columnResizeMode="expand"
                 exportFilename="dashboards"
                 [contextMenu]="cm"
-                [paginator]="true" 
-                [pageLinks]="3" 
+                [paginator]="true"
+                [pageLinks]="3"
                 [reorderableColumns]="true"
                 [resizableColumns]="true"
                 [responsive]="true"
-                [rows]="10" 
+                [rows]="10"
                 [rowsPerPageOptions]="[5,10,20]"
-                selectionMode="single" 
-                [scrollable]="false"  
+                selectionMode="single"
+                [scrollable]="false"
                 [sortMode]="multiple"
-                [value]="dashboardsSharedWithMe"  
+                [value]="dashboardsSharedWithMe"
                 >
                 <p-header
                     [style]="{'background-color': 'darkgray'}">
@@ -509,286 +509,286 @@
                     <span style="float:right"
                         class="ui-helper-clearfix csvButton"
                         >
-                        <button 
-                            type="button" 
-                            pButton 
-                            icon="fa-file-o" 
-                            iconPos="left" 
-                            label="CSV" 
-                            (click)="dt.exportCSV()" 
+                        <button
+                            type="button"
+                            pButton
+                            icon="fa-file-o"
+                            iconPos="left"
+                            label="CSV"
+                            (click)="dt.exportCSV()"
                             >
                         </button>
                     </span>
-                    
+
                 </p-header>
 
-                <p-column 
-                    field="dashboardID" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="ID" 
+                <p-column
+                    field="dashboardID"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="ID"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardCode" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Code" 
+                <p-column
+                    field="dashboardCode"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Code"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Name" 
+                <p-column
+                    field="dashboardName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Name"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="isContainerHeaderDark" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Dark Hdr?" 
+                <p-column
+                    field="isContainerHeaderDark"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Dark Hdr?"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="showContainerHeader" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Show Hdr" 
+                <p-column
+                    field="showContainerHeader"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Show Hdr"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardBackgroundColor" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Bg Color" 
+                <p-column
+                    field="dashboardBackgroundColor"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Bg Color"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardBackgroundImageSrc" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Bg Image" 
+                <p-column
+                    field="dashboardBackgroundImageSrc"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Bg Image"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardComments" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Comments" 
+                <p-column
+                    field="dashboardComments"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Comments"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardDefaultExportFileType" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Export FType" 
+                <p-column
+                    field="dashboardDefaultExportFileType"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Export FType"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardDescription" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Description" 
+                <p-column
+                    field="dashboardDescription"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Description"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardNrGroups" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Nr Groups" 
+                <p-column
+                    field="dashboardNrGroups"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Nr Groups"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardIsLocked" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Locked?" 
+                <p-column
+                    field="dashboardIsLocked"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Locked?"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardIsLiked" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Liked?" 
+                <p-column
+                    field="dashboardIsLiked"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Liked?"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardOpenTabNr" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Open TabNr" 
+                <p-column
+                    field="dashboardOpenTabNr"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Open TabNr"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardOwners" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Owner" 
+                <p-column
+                    field="dashboardOwners"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Owner"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardPassword" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Password" 
+                <p-column
+                    field="dashboardPassword"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Password"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshMode" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="RefreshMode" 
+                <p-column
+                    field="dashboardRefreshMode"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="RefreshMode"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshFrequency" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="RefreshFreq" 
+                <p-column
+                    field="dashboardRefreshFrequency"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="RefreshFreq"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardNrUsersSharedWith" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="#Usr SharedWith" 
+                <p-column
+                    field="dashboardNrUsersSharedWith"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="#Usr SharedWith"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardNrGroupsSharedWith" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="#Grp SharedWith" 
+                <p-column
+                    field="dashboardNrGroupsSharedWith"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="#Grp SharedWith"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardSystemMessage" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="SystemMessage" 
+                <p-column
+                    field="dashboardSystemMessage"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="SystemMessage"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshedDateTime" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Refreshed on" 
+                <p-column
+                    field="dashboardRefreshedDateTime"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Refreshed on"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardRefreshedUserName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Refreshed by" 
+                <p-column
+                    field="dashboardRefreshedUserName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Refreshed by"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardUpdatedDateTime" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Updated on" 
+                <p-column
+                    field="dashboardUpdatedDateTime"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Updated on"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardUpdatedUserName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Updated by" 
+                <p-column
+                    field="dashboardUpdatedUserName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Updated by"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardCreatedDateTime" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Created on" 
+                <p-column
+                    field="dashboardCreatedDateTime"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Created on"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>
-                <p-column 
-                    field="dashboardCreatedUserName" 
-                    [filter]="false" 
-                    filterMatchMode="contains" 
-                    header="Created by" 
+                <p-column
+                    field="dashboardCreatedUserName"
+                    [filter]="false"
+                    filterMatchMode="contains"
+                    header="Created by"
                     [sortable]="true"
-                    [style]="{width: '80px', 
+                    [style]="{width: '80px',
                             'text-align': 'center'}"
                     >
                 </p-column>

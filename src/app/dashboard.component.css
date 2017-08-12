@@ -60,10 +60,8 @@
             margin-bottom: 3px;
             margin-right: 3px;
             padding: 0;
-            
-        }
 
-    /*END Dashboard*/
+        }
 
 
     /*Widgets (on palette)*/
@@ -112,11 +110,6 @@
             font-size: 0.85em;
             margin: 10px 6px 4px 6px;
         }
-        
-    /*END Widgets (on palette)*/
-
-
-/*END Dashboard*/
 
 
 /*Widgets - shown on Canvas ~ graphs*/
@@ -135,7 +128,7 @@
         position: absolute;
         resize: both;
         top: 4.5em;
-        width: 200px;            
+        width: 200px;
     }
 
     .widgetContainerHeader {
@@ -272,7 +265,7 @@
     .widgetShiftSelected {
         background-color: transparent;
         border: transparent;
-        color: red;    
+        color: red;
         float: right;
         font-size: 0.85em;
         height: 1em;
@@ -300,8 +293,6 @@
         font-size: 1em;
     }
 
-/*END Palette*/
-
 
 /*Dashboard Settings Form*/
     .changeDashboardSettings {
@@ -316,14 +307,7 @@
             margin: 10px;
             padding: auto;
             width: 80px;
-    }                   
-/*END Dashboard Settings Form*/
-
-
-        /*background-color:   white;
-        border: 1px solid   #669999;
-        border-radius: 4px;
-        display: block;*/
+    }
 
 
 /*Widget Editor*/
