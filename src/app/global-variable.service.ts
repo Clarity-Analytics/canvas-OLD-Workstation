@@ -92,7 +92,7 @@ export class GlobalVariableService {
     // System & operation config
     averageWarningRuntime: number = 0;
     defaultWidgetConfiguration: string = '';
-    dashboardIDStartup: number = -1;
+    // dashboardIDStartup: number = -1;
     defaultReportFilters: string = '';
     environment: string = '';
     frontendColorScheme: string = '';

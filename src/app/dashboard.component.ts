@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     refreshDashboard: boolean = false;
 
     displayMessageManager: boolean = false;
-selectedWidgetName: string;
+    selectedWidgetName: string;
 
     // Currently selected stuffies
     currentFilter: Filter;
@@ -251,7 +251,9 @@ selectedWidgetName: string;
                 }
             // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID);
-
+console.log('this.dashboardTabsDropDown', this.dashboardTabsDropDown)
+console.log('this.globalVariableService.sessionDashboardTabID ', this.globalVariableService.sessionDashboardTabID )
+console.log('this.globalVariableService.startupDashboardTabID ', this.globalVariableService.startupDashboardTabID )
             // Use startup Dashboard Tab ID at the very beginning
             if (this.globalVariableService.sessionDashboardTabID == -1) {
                 if (this.globalVariableService.startupDashboardTabID != -1) {

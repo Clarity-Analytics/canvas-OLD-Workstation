@@ -276,6 +276,7 @@ export class CDAL {
         }
 
         // Return the User
+console.log('CDAL userWorking', userWorking)
         return userWorking;
     }
 
