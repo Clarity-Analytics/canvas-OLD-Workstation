@@ -24,8 +24,8 @@ export class EazlUser
             {
                 cell_number: string;
                 color_scheme: string;                   // Color scheme for Canvas - for later use
-                dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
-                dashboard_tab_id_at_startup: number;    // Optional Dashboard Tab ID to show at startup
+                startup_dashboard_id: number;           // Optional Dashboard ID to show at startup
+                startup_dashboard_tab_id: number;       // Optional Dashboard Tab ID to show at startup
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
                 environment: string;                    // Live, Test-Environment-Name
@@ -96,8 +96,8 @@ export class CanvasUser implements EazlUser
             {
                 cell_number: string;
                 color_scheme: string;                   // Color scheme for Canvas - for later use
-                dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
-                dashboard_tab_id_at_startup: number;    // Optional Dashboard Tab ID to show at startup
+                startup_dashboard_id: number;        // Optional Dashboard ID to show at startup
+                startup_dashboard_tab_id: number;    // Optional Dashboard Tab ID to show at startup
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
                 grid_size: number;                      // Size of Grid on Dashboard in px

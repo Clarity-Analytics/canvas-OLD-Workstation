@@ -165,11 +165,6 @@ export class DashboardTabEditorComponent implements OnInit {
             this.currentDashboardTab.dashboardTabID,
             this.dashboardTabForm.controls['dashboardTabDescription'].value
         );
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Success',
-            detail:   'Tab details changed'
-        });
 
         // Trigger event emitter 'emit' method
         this.formDashboarTabSubmit.emit(true);

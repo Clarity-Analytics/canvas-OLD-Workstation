@@ -3937,8 +3937,8 @@ export class EazlService implements OnInit {
                                     work_number: work_number,
                                     profile_picture: profile_picture,
                                     query_runtime_warning : average_warning_runtime,
-                                    dashboard_id_at_startup : dashboard_id_at_startup,
-                                    dashboard_tab_id_at_startup: dashboard_tab_id_at_startup,
+                                    startup_dashboard_id : dashboard_id_at_startup,
+                                    startup_dashboard_tab_id: dashboard_tab_id_at_startup,
                                     environment : environment,
                                     color_scheme : frontend_color_scheme,
                                     default_report_filters : default_report_filters,
@@ -4619,6 +4619,9 @@ export class EazlService implements OnInit {
 
         // Update detail
         if (workingDashboardTabs.length > 0) {
+
+            // Replace description
+            workingDashboardTabs[0].dashboardTabDescription = dashboardTabDescription;
 
             return this.put<EazlDashboardTab>(
                 'dashboard-tabs/' + workingDashboardTabs[0].dashboardTabID.toString() + '/',

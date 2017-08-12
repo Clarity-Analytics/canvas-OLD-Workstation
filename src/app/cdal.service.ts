@@ -214,14 +214,14 @@ export class CDAL {
                 userWorking.profile.averageWarningRuntime = 3;
             }
 
-            if (eazlUser.profile.dashboard_id_at_startup != null) {
-                userWorking.profile.dashboardIDStartup = eazlUser.profile.dashboard_id_at_startup;
+            if (eazlUser.profile.startup_dashboard_id != null) {
+                userWorking.profile.dashboardIDStartup = eazlUser.profile.startup_dashboard_id;
             } else {
                 userWorking.profile.dashboardIDStartup = -1;
             }
 
-            if (eazlUser.profile.dashboard_tab_id_at_startup != null) {
-                userWorking.profile.dashboardTabIDStartup = eazlUser.profile.dashboard_tab_id_at_startup;
+            if (eazlUser.profile.startup_dashboard_tab_id != null) {
+                userWorking.profile.dashboardTabIDStartup = eazlUser.profile.startup_dashboard_tab_id;
             } else {
                 userWorking.profile.dashboardTabIDStartup = -1;
             }
@@ -367,8 +367,8 @@ console.log('CDAL userWorking', userWorking)
                 work_number: '',
                 profile_picture: '',
                 query_runtime_warning: 0,
-                dashboard_id_at_startup: -1,
-                dashboard_tab_id_at_startup: -1,
+                startup_dashboard_id: -1,
+                startup_dashboard_tab_id: -1,
                 environment: '',
                 color_scheme: '',
                 default_report_filters: '',
@@ -416,15 +416,15 @@ console.log('CDAL userWorking', userWorking)
             }
 
             if (user.profile.dashboardIDStartup != null) {
-                eazlUserWorking.profile.dashboard_id_at_startup = user.profile.dashboardIDStartup;
+                eazlUserWorking.profile.startup_dashboard_id = user.profile.dashboardIDStartup;
             } else {
-                eazlUserWorking.profile.dashboard_id_at_startup = -1;
+                eazlUserWorking.profile.startup_dashboard_id = -1;
             }
 
             if (user.profile.dashboardTabIDStartup != null) {
-                eazlUserWorking.profile.dashboard_tab_id_at_startup = user.profile.dashboardTabIDStartup;
+                eazlUserWorking.profile.startup_dashboard_tab_id = user.profile.dashboardTabIDStartup;
             } else {
-                eazlUserWorking.profile.dashboard_tab_id_at_startup = -1;
+                eazlUserWorking.profile.startup_dashboard_tab_id = -1;
             }
 
             if (user.profile.environment != null) {
