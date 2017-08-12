@@ -43,7 +43,7 @@
 
                 <p-dropdown
                     [options]="dashboardTabsDropDown"
-                    [(ngModel)]="startupDashboardTab"
+                    [(ngModel)]="selectedDashboardTab"
                     [style]="{
                             'autofocus':'true',
                             'border':'1px solid lightgray',
@@ -53,7 +53,7 @@
                             'width':'300px'
                             }"
                     placeholder="Tab to open"
-                    formControlName="startupDashboardTabID"
+                    formControlName="startupDashboardTab"
                     filter="true"
                     >
                 </p-dropdown>

@@ -47,6 +47,7 @@ export class PersonalisationComponent implements OnInit {
     selectedItemColor: SelectedItemColor;       // Selected Object: note ANY to cater for ID number, string
     selectedFrontendColorScheme: SelectedItem;  // Selected option for Text Color
     selectedDashboard: SelectedItem;            // Selected in DropDown
+    selectedDashboardTab: SelectedItem;         // Selected in DropDown
     snapToGrid: boolean = false;                // True if widgets must snap to the grid
 
     constructor(
@@ -118,19 +119,23 @@ export class PersonalisationComponent implements OnInit {
                     id: this.users[index].profile.dashboardIDStartup,
                     name: dashboardName
                 };
+
+                this.changeLoadDashboardTabs(this.users[index].profile.dashboardIDStartup);
             }
         }
 
-        // if (this.users[index].profile.dashboardTabIDStartup != -1) {
-        //     let dashboardTabID: string = '';
-        //     dashboardTabID = this.eazlService.getdashboardName(this.users[index].profile.dashboardIDStartup);
-        //     if (dashboardName != null) {
-        //         this.selectedDashboard = {
-        //             id: this.users[index].profile.dashboardIDStartup,
-        //             name: dashboardName
-        //         };
-        //     }
-        // }
+        if (this.users[index].profile.dashboardTabIDStartup != -1) {
+            let dashboardTabName: string = '';
+            dashboardTabName = this.eazlService.getdashboardTabName(
+                this.users[index].profile.dashboardTabIDStartup
+            );
+            if (dashboardTabName != null) {
+                this.selectedDashboardTab = {
+                    id: this.users[index].profile.dashboardTabIDStartup,
+                    name: dashboardTabName
+                };
+            }
+        }
 
         this.configForm.controls['environment'].setValue(
             this.users[index].profile.environment);
@@ -286,9 +291,17 @@ export class PersonalisationComponent implements OnInit {
         // Called from HTML with ID to load
         this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
 
+        // Do the work
+        this.changeLoadDashboardTabs(event.value.id);
+    }
+
+    changeLoadDashboardTabs(dashboardTabID: number) {
+        // Change the selection for the Tabs dropdown, for selected Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name, 'changeLoadDashboardTabs', '@Start');
+
         // Remember this for next time
         this.dashboardTabsDropDown = [];
-        this.dashboardTabs = this.eazlService.getDashboardTabs(event.value.id);
+        this.dashboardTabs = this.eazlService.getDashboardTabs(dashboardTabID);
 
         // Fill the dropdown on the form
         for (var i = 0; i < this.dashboardTabs.length; i++) {
