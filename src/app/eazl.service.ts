@@ -4882,6 +4882,7 @@ export class EazlService implements OnInit {
                         let profile_picture: string = '';
                         let average_warning_runtime: number = 0;
                         let dashboard_id_at_startup: number = -1;
+                        let dashboard_tab_id_at_startup: number = -1;
                         let environment: string = '';
                         let frontend_color_scheme: string = '';
                         let default_report_filters: string = '';
@@ -4898,6 +4899,7 @@ export class EazlService implements OnInit {
                             profile_picture = eazlUser.profile.profile_picture;
                             average_warning_runtime = eazlUser.average_warning_runtime;
                             dashboard_id_at_startup = eazlUser.dashboard_id_at_startup;
+                            dashboard_tab_id_at_startup = eazlUser.dashboard_tab_id_at_startup;
                             environment = eazlUser.environment;
                             frontend_color_scheme = eazlUser.frontend_color_scheme;
                             default_report_filters = eazlUser.default_report_filters;
@@ -4913,6 +4915,7 @@ export class EazlService implements OnInit {
                             profile_picture = '';
                             average_warning_runtime = 3;
                             dashboard_id_at_startup = -1;
+                            dashboard_tab_id_at_startup = -1;
                             environment = '';
                             frontend_color_scheme = '';
                             default_report_filters = '';
@@ -4943,6 +4946,7 @@ export class EazlService implements OnInit {
                                     profile_picture: profile_picture,
                                     query_runtime_warning : average_warning_runtime,
                                     dashboard_id_at_startup : dashboard_id_at_startup,
+                                    dashboard_tab_id_at_startup: dashboard_tab_id_at_startup,
                                     environment : environment,
                                     color_scheme : frontend_color_scheme,
                                     default_report_filters : default_report_filters,

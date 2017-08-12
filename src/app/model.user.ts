@@ -25,6 +25,7 @@ export class EazlUser
                 cell_number: string;
                 color_scheme: string;                   // Color scheme for Canvas - for later use
                 dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
+                dashboard_tab_id_at_startup: number;    // Optional Dashboard Tab ID to show at startup
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
                 environment: string;                    // Live, Test-Environment-Name
@@ -47,10 +48,6 @@ export class User
         emailAddress: string;
         firstName: string;
         groups: string[];
-        //     {
-        //         name: string;
-        //     }
-        // ];
         id: number;
         inactiveDate: string;
         isStaff: boolean;
@@ -65,6 +62,7 @@ export class User
                 averageWarningRuntime: number;          // Minutes: Warn user if a report is known to run longer
                 cellNumber: string;
                 dashboardIDStartup: number;             // Optional Dashboard ID to show at startup
+                dashboardTabIDStartup: number;          // Optional Dashboard Tab ID to show at startup
                 defaultReportFilters: string;           // Default Report filters - for later use
                 defaultWidgetConfiguration: string;     // Default Widget configuration - for later use
                 environment: string;                    // Live, Test-Environment-Name
@@ -86,10 +84,6 @@ export class CanvasUser implements EazlUser
         email: string;
         first_name: string;
         groups: string[];
-        //     {
-        //         name: string;
-        //     }
-        // ];
         id: number;
         is_superuser: boolean;
         is_staff: boolean;
@@ -103,6 +97,7 @@ export class CanvasUser implements EazlUser
                 cell_number: string;
                 color_scheme: string;                   // Color scheme for Canvas - for later use
                 dashboard_id_at_startup: number;        // Optional Dashboard ID to show at startup
+                dashboard_tab_id_at_startup: number;    // Optional Dashboard Tab ID to show at startup
                 default_report_filters: string;         // Default Report filters - for later use
                 default_widget_configuration: string;   // Default Widget configuration - for later use
                 grid_size: number;                      // Size of Grid on Dashboard in px
