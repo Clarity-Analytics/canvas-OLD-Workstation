@@ -5282,6 +5282,7 @@ export class EazlService implements OnInit {
         // Update local values that have changed
         this.globalVariableService.averageWarningRuntime = user.profile.averageWarningRuntime;
         this.globalVariableService.startupDashboardID = user.profile.dashboardIDStartup;
+        this.globalVariableService.startupDashboardTabID = user.profile.dashboardTabIDStartup;
         this.globalVariableService.environment = user.profile.environment;
         this.globalVariableService.frontendColorScheme = user.profile.frontendColorScheme;
         this.globalVariableService.defaultWidgetConfiguration = user.profile.defaultWidgetConfiguration;

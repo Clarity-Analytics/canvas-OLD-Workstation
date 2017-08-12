@@ -251,9 +251,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
             // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID);
-console.log('this.dashboardTabsDropDown', this.dashboardTabsDropDown)
-console.log('this.globalVariableService.sessionDashboardTabID ', this.globalVariableService.sessionDashboardTabID )
-console.log('this.globalVariableService.startupDashboardTabID ', this.globalVariableService.startupDashboardTabID )
             // Use startup Dashboard Tab ID at the very beginning
             if (this.globalVariableService.sessionDashboardTabID == -1) {
                 if (this.globalVariableService.startupDashboardTabID != -1) {
@@ -261,8 +258,6 @@ console.log('this.globalVariableService.startupDashboardTabID ', this.globalVari
                         this.globalVariableService.startupDashboardTabID
                 }
             }
-console.log('ngonit this.globalVariableService.sessionDashboardTabID', this.globalVariableService.sessionDashboardTabID)
-console.log('oninit this.globalVariableService.sessionLoadOnOpenDashboardID', this.globalVariableService.sessionLoadOnOpenDashboardID)
             // Load the session's Dashboard Tab
             if (this.globalVariableService.sessionDashboardTabID != -1) {
 
@@ -278,10 +273,9 @@ console.log('oninit this.globalVariableService.sessionLoadOnOpenDashboardID', th
                 }
 
                 this.selectedDashboardTab = {
-                    id: this.globalVariableService.sessionLoadOnOpenDashboardID,
+                    id: this.globalVariableService.sessionDashboardTabID,
                     name: sessionDashboardTabName
                 }
-console.log('ngoninit this.selectedDashboardTab', this.selectedDashboardTab)
                 this.loadDashboard();
             }
         }
@@ -1401,7 +1395,7 @@ console.log('ngoninit this.selectedDashboardTab', this.selectedDashboardTab)
     TabDeleteIt() {
         // Delete Dashboard button
         this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', '@Start');
-console.log('del tab this.selectedDashboardTab', this.selectedDashboardTab)
+
         // If something was selected, loop and find the right one
         if (this.selectedDashboardTab != undefined) {
 
@@ -1455,7 +1449,7 @@ console.log('del tab this.selectedDashboardTab', this.selectedDashboardTab)
     detailTab() {
         // Show form with properties for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'detailTab', '@Start');
-console.log('detail this.selectedDashboardTab', this.selectedDashboardTab)
+
         if (this.selectedDashboardTab != undefined) {
             this.displayTabDetails = true;
         } else {
@@ -1955,7 +1949,6 @@ console.log('this.widgetToEdit', this.widgetToEdit)
                     id: this.dashboardTabsDropDown[0].value.id,
                     name: this.dashboardTabsDropDown[0].value.name
                 }
-console.log('loadDashboardTabsBody 1 this.selectedDashboardTab', this.selectedDashboardTab)
 
             // Fill the Dashboard
             this.loadDashboard()
@@ -1970,7 +1963,6 @@ console.log('loadDashboardTabsBody 1 this.selectedDashboardTab', this.selectedDa
                     id: -1,
                     name: ''
                 }
-console.log('loadDashboardTabsBody 2 this.selectedDashboardTab', this.selectedDashboardTab)
         }
     }
 
