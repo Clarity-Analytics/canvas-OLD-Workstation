@@ -5560,6 +5560,7 @@ export class EazlService implements OnInit {
                 tab => tab.dashboardTabID == selectedDashboardTabID
             );
         }
+console.log('EZ end', workingDashboardTabs)
         return workingDashboardTabs;
     }
 

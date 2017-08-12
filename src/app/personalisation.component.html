@@ -14,8 +14,6 @@
         style="margin: 10px 0px">
 
         <div class="ui-grid-row">
-
-            <!--Dashboard Name-->
             <div class="ui-grid-col-2">
                 StartupDash :
             </div>
@@ -33,11 +31,37 @@
                             }"
                     placeholder="(Optional)"
                     formControlName="dashboardStartupName"
+                    (onChange)="onChangeLoadDashboardTabs($event)"
+                    filter="true"
+                    >
+                </p-dropdown>
+            </div>
+            <div class="ui-grid-col-2">
+                Startup Tab :
+            </div>
+            <div class="ui-grid-col-4">
+
+                <p-dropdown
+                    [options]="dashboardTabsDropDown"
+                    [(ngModel)]="selectedDashboardTab"
+                    [style]="{
+                            'autofocus':'true',
+                            'border':'1px solid lightgray',
+                            'border-radius':'2px',
+                            'margin':'-2px 5px 0 0',
+                            'padding':'0',
+                            'width':'300px'
+                            }"
+                    placeholder="Tab to open"
+                    formControlName="startupDashboardTabID"
                     filter="true"
                     >
                 </p-dropdown>
             </div>
 
+        </div>
+
+        <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 Environment:
             </div>
@@ -50,9 +74,7 @@
                         tooltipPosition="top"
                         />
             </div>
-        </div>
 
-        <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 Avg Runtime:
             </div>
@@ -66,6 +88,9 @@
                         >
             </div>
 
+        </div>
+
+        <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 ColorScheme :
             </div>
@@ -87,9 +112,6 @@
                     >
                 </p-dropdown>
             </div>
-        </div>
-
-        <div class="ui-grid-row">
 
             <div class="ui-grid-col-2">
                 Widget Config:
@@ -103,7 +125,9 @@
                         tooltipPosition="top"
                         >
             </div>
+        </div>
 
+        <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 RptFilters:
             </div>
@@ -116,9 +140,6 @@
                         tooltipPosition="top"
                         >
             </div>
-        </div>
-
-        <div class="ui-grid-row">
 
             <div class="ui-grid-col-2">
                 growlSticky:
@@ -133,8 +154,9 @@
                     >
                 </p-checkbox>
             </div>
+        </div>
 
-
+        <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 GrowlLife:
             </div>
@@ -147,9 +169,6 @@
                         tooltipPosition="top"
                         >
             </div>
-        </div>
-
-        <div class="ui-grid-row">
 
             <div class="ui-grid-col-2">
                 Grid Size:
@@ -163,6 +182,9 @@
                         tooltipPosition="top"
                         >
             </div>
+        </div>
+
+        <div class="ui-grid-row">
 
             <div class="ui-grid-col-2">
                 SnapToGrid?:

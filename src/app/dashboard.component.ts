@@ -259,7 +259,8 @@ selectedWidgetName: string;
                         this.globalVariableService.startupDashboardTabID
                 }
             }
-
+console.log('ngonit this.globalVariableService.sessionDashboardTabID', this.globalVariableService.sessionDashboardTabID)
+console.log('oninit this.globalVariableService.sessionLoadOnOpenDashboardID', this.globalVariableService.sessionLoadOnOpenDashboardID)
             // Load the session's Dashboard Tab
             if (this.globalVariableService.sessionDashboardTabID != -1) {
 
@@ -278,7 +279,7 @@ selectedWidgetName: string;
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID,
                     name: sessionDashboardTabName
                 }
-
+console.log('ngoninit this.selectedDashboardTab', this.selectedDashboardTab)
                 this.loadDashboard();
             }
         }
@@ -1398,7 +1399,7 @@ selectedWidgetName: string;
     TabDeleteIt() {
         // Delete Dashboard button
         this.globalFunctionService.printToConsole(this.constructor.name,'TabDeleteIt', '@Start');
-
+console.log('del tab this.selectedDashboardTab', this.selectedDashboardTab)
         // If something was selected, loop and find the right one
         if (this.selectedDashboardTab != undefined) {
 
@@ -1452,7 +1453,7 @@ selectedWidgetName: string;
     detailTab() {
         // Show form with properties for the selected Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'detailTab', '@Start');
-
+console.log('detail this.selectedDashboardTab', this.selectedDashboardTab)
         if (this.selectedDashboardTab != undefined) {
             this.displayTabDetails = true;
         } else {
@@ -1952,6 +1953,7 @@ console.log('this.widgetToEdit', this.widgetToEdit)
                     id: this.dashboardTabsDropDown[0].value.id,
                     name: this.dashboardTabsDropDown[0].value.name
                 }
+console.log('loadDashboardTabsBody 1 this.selectedDashboardTab', this.selectedDashboardTab)
 
             // Fill the Dashboard
             this.loadDashboard()
@@ -1966,6 +1968,7 @@ console.log('this.widgetToEdit', this.widgetToEdit)
                     id: -1,
                     name: ''
                 }
+console.log('loadDashboardTabsBody 2 this.selectedDashboardTab', this.selectedDashboardTab)
         }
     }
 

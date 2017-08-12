@@ -73,12 +73,12 @@ export class DashboardTabEditorComponent implements OnInit {
     refreshForm() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'refreshForm', '@Start');
-
+     
         // Get the selected Dashboard
         this.currentDashboardTab = this.eazlService.getDashboardTabs(
             this.selectedDashboardID, this.selectedDashboardTab.id)[0];
 
-        // First ngOnChanges runs before the OnInit
+            // First ngOnChanges runs before the OnInit
         if (this.dashboardTabForm != undefined) {
 
             // Clear the form 

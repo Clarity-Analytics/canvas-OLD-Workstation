@@ -20,6 +20,7 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { CanvasColors }               from './chartcolors.data';
 import { CanvasUser }                 from './model.user';
+import { DashboardTab }               from './model.dashboardTabs';
 import { SelectedItemColor }          from './model.selectedItemColor';
 import { SelectedItem }               from './model.selectedItem';
 import { User }                       from './model.user';
@@ -36,7 +37,9 @@ export class PersonalisationComponent implements OnInit {
     users: User[];                              // Current users 
     chartColor: SelectItem[];                   // Options for Backgroun-dColor DropDown
     configForm: FormGroup;
+    dashboardTabs: DashboardTab[];
     dashboardDropDown: SelectItem[];            // Drop Down options
+    dashboardTabsDropDown:  SelectItem[];
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     growlSticky: boolean = false;               // True if the Growl must be sticky
@@ -62,6 +65,7 @@ export class PersonalisationComponent implements OnInit {
         this.configForm = this.fb.group({
             'averageWarningRuntime':        new FormControl('', Validators.pattern('^[0-9]*$')),
             'dashboardStartupName':         new FormControl(''),
+            'startupDashboardTabID':        new FormControl(''),
             'environment':                  new FormControl(''),
             'frontendColorScheme':          new FormControl(''),
             'defaultReportFilters':         new FormControl(''),
@@ -260,4 +264,26 @@ export class PersonalisationComponent implements OnInit {
             detail:   'The information has been updated'
         });
     }
+
+    onChangeLoadDashboardTabs(event) {
+        // Called from HTML with ID to load
+        this.globalFunctionService.printToConsole(this.constructor.name, 'onChangeLoadDashboardTabs', '@Start');
+console.log('onChg event.id', event.id)
+        // Remember this for next time
+        this.dashboardTabsDropDown = [];
+        this.dashboardTabs = this.eazlService.getDashboardTabs(event.id);
+
+        // Fill the dropdown on the form
+        for (var i = 0; i < this.dashboardTabs.length; i++) {
+            this.dashboardTabsDropDown.push({
+                label: this.dashboardTabs[i].dashboardTabName,
+                value: {
+                    id: this.dashboardTabs[i].dashboardTabID,
+                    name: this.dashboardTabs[i].dashboardTabName
+                }
+            });
+        }
+
+    }
+
 }
