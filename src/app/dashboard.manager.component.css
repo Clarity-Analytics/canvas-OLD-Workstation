@@ -36,6 +36,12 @@
     }
 
     .addTag {
-        color: pink;
         margin: 2em 0 0 0;
+        width: 100%;
+    }
+
+    .tagButtons{
+        float: left;
+        margin: 2em 0 0 0;
+        
     }

@@ -921,41 +921,28 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
 
         dashboardTagWorking.dashboardTagID = eazlDashboardTag.id;
 
-        if (eazlDashboardTag.name != null) {
-            dashboardTagWorking.dashboardTagName = eazlDashboardTag.name;
+        if (eazlDashboardTag.tag != null) {
+            dashboardTagWorking.dashboardTagName = eazlDashboardTag.tag;
         } else {
             dashboardTagWorking.dashboardTagName = '';
         }
 
-        if (eazlDashboardTag.description != null) {
-            dashboardTagWorking.dashboardTagDescription = eazlDashboardTag.description;
+        if (eazlDashboardTag.dashboard_id != null) {
+            dashboardTagWorking.dashboardID = eazlDashboardTag.dashboard_id;
         } else {
-            dashboardTagWorking.dashboardTagDescription = '';
+            dashboardTagWorking.dashboardID = 0;
         }
 
-        if (eazlDashboardTag.created_on != null) {
-            dashboardTagWorking.dashboardTagCreatedDateTime = eazlDashboardTag.created_on;
+        if (eazlDashboardTag.url != null) {
+            dashboardTagWorking.dasbhoardURL = eazlDashboardTag.url;
         } else {
-            dashboardTagWorking.dashboardTagCreatedDateTime = '';
+            dashboardTagWorking.dasbhoardURL = '';
         }
-
-        if (eazlDashboardTag.created_by != null) {
-            dashboardTagWorking.dashboardTagCreatedUserName = eazlDashboardTag.created_by;
-        } else {
-            dashboardTagWorking.dashboardTagCreatedUserName = '';
-        }
-
-        if (eazlDashboardTag.updated_on != null) {
-            dashboardTagWorking.dashboardTagUpdatedDateTime = eazlDashboardTag.updated_on;
-        } else {
-            dashboardTagWorking.dashboardTagUpdatedDateTime = '';
-        }
-
-        if (eazlDashboardTag.updated_by != null) {
-            dashboardTagWorking.dashboardTagUpdatedUserName = eazlDashboardTag.updated_by;
-        } else {
-            dashboardTagWorking.dashboardTagUpdatedUserName = '';
-        }
+    
+        dashboardTagWorking.dashboardTagCreatedDateTime = '';
+        dashboardTagWorking.dashboardTagCreatedUserName = '';
+        dashboardTagWorking.dashboardTagUpdatedDateTime = '';
+        dashboardTagWorking.dashboardTagUpdatedUserName = '';
 
         // Return the result
         return dashboardTagWorking;

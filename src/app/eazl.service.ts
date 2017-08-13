@@ -161,7 +161,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 0,
                 dashboardTagName: 'Admin',
-                dashboardTagDescription: 'Dashboards for Admin users',
+                dashboardID: 'Dashboards for Admin users',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -170,7 +170,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 1,
                 dashboardTagName: 'Marketing',
-                dashboardTagDescription: 'Dashboards for Marketing Team',
+                dashboardID: 'Dashboards for Marketing Team',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -179,7 +179,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 2,
                 dashboardTagName: 'BI Team',
-                dashboardTagDescription: 'Dashboards for BI Team',
+                dashboardID: 'Dashboards for BI Team',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -188,7 +188,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 3,
                 dashboardTagName: 'HR',
-                dashboardTagDescription: 'Dashboards for Human Resources Department',
+                dashboardID: 'Dashboards for Human Resources Department',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -197,7 +197,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 4,
                 dashboardTagName: 'Finance',
-                dashboardTagDescription: 'Dashboards for Finance Department',
+                dashboardID: 'Dashboards for Finance Department',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -206,7 +206,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 5,
                 dashboardTagName: 'Sales',
-                dashboardTagDescription: 'Dashboards for Sales Department',
+                dashboardID: 'Dashboards for Sales Department',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -215,7 +215,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 6,
                 dashboardTagName: 'R&D',
-                dashboardTagDescription: 'Dashboards for Research and Development Department',
+                dashboardID: 'Dashboards for Research and Development Department',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -224,7 +224,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 7,
                 dashboardTagName: 'IT',
-                dashboardTagDescription: 'Dashboards for Information Technology Department',
+                dashboardID: 'Dashboards for Information Technology Department',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',

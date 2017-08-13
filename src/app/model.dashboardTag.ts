@@ -4,20 +4,18 @@
 
 // Eazl
 export class EazlDashboardTag {
-    id: number;
-    name: string;
-    description: string;
-    created_on: string;                             // Created on
-    created_by: string;                             // Created by
-    updated_on: string;                             // Updated on
-    updated_by: string;                             // Updated by
+    id: number;                                     // Unique ID
+    tag: string;                                    // Name of the tag
+    dashboard_id: number;                           // Dashboard which is tagged
+    url: string;                                    // Django url
 }
 
 // Canvas
 export class DashboardTag {
     dashboardTagID: number;
     dashboardTagName: string;
-    dashboardTagDescription: string;
+    dashboardID: number;
+    dasbhoardURL: string;
     dashboardTagCreatedDateTime: string;            // Created on
     dashboardTagCreatedUserName: string;            // Created by
     dashboardTagUpdatedDateTime: string;            // Updated on

@@ -383,33 +383,39 @@
     <div
         class="addTag"
         >
-        <input pInputText
-            type="text"
-            [(ngModel)]="tagname"
-            placeholder="Required"
-            pTooltip="Tag name to add to this dashboard"
-            tooltipPosition="top"
-            />
+        <div>
+            Tag Name
+            <input pInputText
+                type="text"
+                [(ngModel)]="tagname"
+                placeholder="Required"
+                pTooltip="Tag name to add to this dashboard"
+                tooltipPosition="top"
+                />
+        </div>
+        <div
+            class="tagButtons"
+            >
+            <button
+                class="panelButtonWithLabel"
+                pButton
+                type="button"
+                label="Delete"
+                icon="fa-minus"
+                (click)="onMoveToTargetDashboardTagMembership()"
+                >
+            </button>
 
             <button
-            class="panelButtonWithLabel"
-            pButton
-            type="button"
-            label="Delete"
-            icon="fa-minus"
-            (click)="onMoveToTargetDashboardTagMembership()"
-            >
-        </button>
-
-        <button
-            class="panelButtonWithLabel"
-            pButton
-            type="button"
-            label="Add"
-            icon="fa-plus"
-            (click)="onMoveToSourceDashboardTagMembership()"
-            >
-        </button>
+                class="panelButtonWithLabel"
+                pButton
+                type="button"
+                label="Add"
+                icon="fa-plus"
+                (click)="onMoveToSourceDashboardTagMembership()"
+                >
+            </button>
+        </div>
     </div>
     
 </div>
