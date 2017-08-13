@@ -20,7 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardTag }               from './model.dashboardTag';
+import { EazlDashboardTag }               from './model.dashboardTag';
 import { DataSource }                 from './model.datasource';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { EazlUser }                   from './model.user';
@@ -38,10 +38,10 @@ export class DashboardManagerComponent implements OnInit {
 
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
-    availableDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard does NOT belongs to
+    availableDashboardTag: EazlDashboardTag[] = [];                 // List of Groups Dashboard does NOT belongs to
     availableGroupSharedWith: Group[] = [];                     // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
-    belongstoDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard already belongs to
+    belongstoDashboardTag: EazlDashboardTag[] = [];                 // List of Groups Dashboard already belongs to
     belongstoSharedWith: string[] = [];                         // List of UserName with whom this Dashboard has been shared
     belongstoGroupsSharedWith: Group[] = [];                    // List of Groups to which Dashboard has been shared
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages

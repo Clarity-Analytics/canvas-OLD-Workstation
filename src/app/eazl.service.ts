@@ -68,7 +68,7 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTab }               from './model.dashboardTabs';
-import { DashboardTag }               from './model.dashboardTag';
+import { EazlDashboardTag }               from './model.dashboardTag';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
@@ -156,7 +156,7 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     ]
 
 // const DASHBOARDTAGS
-    export const DASHBOARDTAGS: DashboardTag[] =
+    export const DASHBOARDTAGS: EazlDashboardTag[] =
         [
             {
                 dashboardTagID: 0,
@@ -3683,7 +3683,7 @@ export class EazlService implements OnInit {
     dashboardTagMembership: DashboardTagMembership[] = DASHBOARDTAGMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
+    dashboardTags: EazlDashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
@@ -5953,7 +5953,7 @@ export class EazlService implements OnInit {
     getDashboardTagMembership(
             dashboardID:number = -1,
             include:boolean = true
-        ): DashboardTag[] {
+        ): EazlDashboardTag[] {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else
@@ -6993,12 +6993,12 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataDashboardTag = true;
 
                 // Get all the data via API
-                let dashboardTagWorking: DashboardTag[] = [];
+                let dashboardTagWorking: EazlDashboardTag[] = [];
                 this.get<EazlDashboardTag>('dashboard-tags')
                     .subscribe(
                         (eazlDashboardTag) => {
                             for (var i = 0; i < eazlDashboardTag.length; i++) {
-                                let dashboardTagSingle = new DashboardTag();
+                                let dashboardTagSingle = new EazlDashboardTag();
                                 dashboardTagSingle = this.cdal.loadDashboardTag(eazlDashboardTag[i]);
                                 dashboardTagWorking.push(dashboardTagSingle);
 

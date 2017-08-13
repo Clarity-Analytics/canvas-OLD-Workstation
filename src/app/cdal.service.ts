@@ -948,6 +948,36 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
         return dashboardTagWorking;
     }
 
+    saveDashboardTag(dashboardTag: DashboardTag): EazlDashboardTag {
+        // Save DashboardTag: move data Canvas -> Eazl
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveDashboardTag', '@Start');
+
+        let eazlDashboardTagWorking = new EazlDashboardTag();
+
+        eazlDashboardTagWorking.id = dashboardTag.dashboardTagID;
+
+        if (dashboardTag.dashboardTagName != null) {
+            eazlDashboardTagWorking.tag = dashboardTag.dashboardTagName;
+        } else {
+            eazlDashboardTagWorking.tag = '';
+        }
+
+        if (dashboardTag.dashboardID != null) {
+            eazlDashboardTagWorking.dashboard_id = dashboardTag.dashboardID;
+        } else {
+            eazlDashboardTagWorking.dashboard_id = 0;
+        }
+
+        if (dashboardTag.dasbhoardURL != null) {
+            eazlDashboardTagWorking.url = dashboardTag.dasbhoardURL;
+        } else {
+            eazlDashboardTagWorking.url = '';
+        }
+    
+        // Return the result
+        return eazlDashboardTagWorking;
+    }
+
     loadDashboardTagMembership(
         eazlDashboardTagMembership: EazlDashboardTagMembership
         ): DashboardTagMembership {
