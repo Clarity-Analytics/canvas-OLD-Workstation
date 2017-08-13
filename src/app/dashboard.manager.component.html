@@ -371,35 +371,47 @@
         </button>
     </div>
 
-    <!--Content-->
-    <form>
+    <div>
+        <p-dataTable [value]="datasources">
+            <p-column field="datasourceID" header="ID"></p-column>
+            <p-column field="datasourceName" header="Name"></p-column>
+            <p-column field="datasourceDescription" header="Description"></p-column>
+        </p-dataTable>
 
-        <div
+    </div>
+
+    <div
+        class="addTag"
+        >
+        <input pInputText
+            type="text"
+            [(ngModel)]="tagname"
+            placeholder="Required"
+            pTooltip="Tag name to add to this dashboard"
+            tooltipPosition="top"
+            />
+
+            <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
+            label="Delete"
+            icon="fa-minus"
+            (click)="onMoveToTargetDashboardTagMembership()"
             >
-            <p-pickList
-                [source]="availableDashboardTag"
-                [target]="belongstoDashboardTag"
-                sourceHeader="Available Tags"
-                targetHeader="Belongs to these Tags"
-                (onMoveToTarget)="onMoveToTargetDashboardTagMembership($event)"
-                (onMoveToSource)="onMoveToSourceDashboardTagMembership($event)"
-                (onSourceReorder)="onSourceReorderDashboardTagMembership($event)"
-                (onTargetReorder)="onTargetReorderDashboardTagMembership($event)"
-                >
-                <ng-template let-grp pTemplate="item">
-                    <div class="ui-helper-clearfix">
-                        <div
-                            style="font-size:14px;float:left;margin:15px 5px 0 0"
-                            >
-                            {{ grp.dashboardTagName }}
-                        </div>
-                    </div>
-                </ng-template>
-            </p-pickList>
+        </button>
 
-        </div>
-
-    </form>
+        <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
+            label="Add"
+            icon="fa-plus"
+            (click)="onMoveToSourceDashboardTagMembership()"
+            >
+        </button>
+    </div>
+    
 </div>
 
 

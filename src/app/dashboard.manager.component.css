@@ -1,17 +1,3 @@
-.ui-datatable tbody {
-    font-size: 0.9em !important;
-}
-
-/*ui-datatable-footer {
-    margin: 20px 20px 0 0;
-    padding: 20px 20px 0 0;
-    background: darkorange;
-}*/
-
-.csvButton {
-    margin: -5px 20px 0 20px;
-}
-
 /*Group Membership Panel*/
     .groupMembershipPanel {
         background-color: white;
@@ -47,4 +33,9 @@
         margin: -6px 0 0 15px;
         padding: 1px;
         width: 90px;
+    }
+
+    .addTag {
+        color: pink;
+        margin: 2em 0 0 0;
     }

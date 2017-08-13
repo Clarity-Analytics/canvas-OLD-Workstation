@@ -48,6 +48,7 @@ export class DashboardManagerComponent implements OnInit {
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     dashboardTagMembership: DashboardTagMembership[] = [];      // List of Dashboard-Group
     dashboards: Dashboard[];                                    // List of Dashboards
+    dashboardTags: string[];                                    // DataList of tags
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
@@ -62,7 +63,8 @@ export class DashboardManagerComponent implements OnInit {
     popuMenuItems: MenuItem[];                                  // Items in popup
     reports: Report[];                                          // List of Reports
     selectedDashboard: Dashboard;                               // Dashboard that was clicked on
-
+    tagname: string;                                            // Input tag name on form
+    
     constructor(
         private confirmationService: ConfirmationService,
         private canvasDate: CanvasDate,
@@ -77,7 +79,9 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.eazlService.getDashboards();
-
+this.dashboardTags=['a','b'];
+console.log('dashboardTags', this.dashboardTags)
+this.datasources = this.eazlService.getDataSources(-1);
         this.popuMenuItems = [
             {
                 label: 'Add',
