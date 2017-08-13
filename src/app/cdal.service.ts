@@ -1096,7 +1096,6 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
         return dashboardGroupRelationshipWorking;
     }
 
-    // loadDashboard(eazlDashboard: EazlDashboard): Dashboard {
     loadDashboard(eazlDashboard: EazlDashboard): Dashboard {
         // Load dDashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboard', '@Start');

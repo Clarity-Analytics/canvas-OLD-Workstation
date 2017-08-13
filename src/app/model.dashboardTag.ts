@@ -11,7 +11,7 @@ export class EazlDashboardTag {
 }
 
 // Canvas
-export class EazlDashboardTag {
+export class DashboardTag {
     dashboardTagID: number;
     dashboardTagName: string;
     dashboardID: number;

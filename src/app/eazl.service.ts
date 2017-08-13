@@ -68,7 +68,7 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTab }               from './model.dashboardTabs';
-import { EazlDashboardTag }               from './model.dashboardTag';
+import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
@@ -156,12 +156,13 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     ]
 
 // const DASHBOARDTAGS
-    export const DASHBOARDTAGS: EazlDashboardTag[] =
+    export const DASHBOARDTAGS: DashboardTag[] =
         [
             {
                 dashboardTagID: 0,
                 dashboardTagName: 'Admin',
-                dashboardID: 'Dashboards for Admin users',
+                dashboardID: 0,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -170,7 +171,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 1,
                 dashboardTagName: 'Marketing',
-                dashboardID: 'Dashboards for Marketing Team',
+                dashboardID: 2,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -179,7 +181,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 2,
                 dashboardTagName: 'BI Team',
-                dashboardID: 'Dashboards for BI Team',
+                dashboardID: 0,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -188,7 +191,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 3,
                 dashboardTagName: 'HR',
-                dashboardID: 'Dashboards for Human Resources Department',
+                dashboardID: 3,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -197,7 +201,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 4,
                 dashboardTagName: 'Finance',
-                dashboardID: 'Dashboards for Finance Department',
+                dashboardID: 2,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -206,7 +211,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 5,
                 dashboardTagName: 'Sales',
-                dashboardID: 'Dashboards for Sales Department',
+                dashboardID: 0,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -215,7 +221,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 6,
                 dashboardTagName: 'R&D',
-                dashboardID: 'Dashboards for Research and Development Department',
+                dashboardID: 1,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -224,7 +231,8 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
             {
                 dashboardTagID: 7,
                 dashboardTagName: 'IT',
-                dashboardID: 'Dashboards for Information Technology Department',
+                dashboardID: 2,
+                dasbhoardURL: '',
                 dashboardTagCreatedDateTime: '2017/05/01',
                 dashboardTagCreatedUserName: 'JamesK',
                 dashboardTagUpdatedDateTime: '2017/05/01',
@@ -3683,7 +3691,7 @@ export class EazlService implements OnInit {
     dashboardTagMembership: DashboardTagMembership[] = DASHBOARDTAGMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardTags: EazlDashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
+    dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
@@ -5953,7 +5961,7 @@ export class EazlService implements OnInit {
     getDashboardTagMembership(
             dashboardID:number = -1,
             include:boolean = true
-        ): EazlDashboardTag[] {
+        ): DashboardTag[] {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else
@@ -6993,12 +7001,12 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataDashboardTag = true;
 
                 // Get all the data via API
-                let dashboardTagWorking: EazlDashboardTag[] = [];
+                let dashboardTagWorking: DashboardTag[] = [];
                 this.get<EazlDashboardTag>('dashboard-tags')
                     .subscribe(
                         (eazlDashboardTag) => {
                             for (var i = 0; i < eazlDashboardTag.length; i++) {
-                                let dashboardTagSingle = new EazlDashboardTag();
+                                let dashboardTagSingle = new DashboardTag();
                                 dashboardTagSingle = this.cdal.loadDashboardTag(eazlDashboardTag[i]);
                                 dashboardTagWorking.push(dashboardTagSingle);
 
