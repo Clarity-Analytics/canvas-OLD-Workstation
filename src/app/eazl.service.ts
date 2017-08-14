@@ -68,7 +68,7 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTab }               from './model.dashboardTabs';
-import { DashboardTag }               from './model.dashboardTag';
+// import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
@@ -81,7 +81,7 @@ import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
-import { EazlDashboardTag }           from './model.dashboardTag';
+// import { EazlDashboardTag }           from './model.dashboardTag';
 import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
@@ -240,6 +240,42 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         }
     //     ];
 
+// const DASHBOARDTAGMEMBERSHIP
+    // export const DASHBOARDTAGMEMBERSHIP: DashboardTagMembership[] =
+    //     [
+    //         {
+    //             dashboardTagID: 0,
+    //             dashboardID: 0,
+    //             dashboardTagMembershipCreatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipCreatedUserName:  'JamesK',
+    //             dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 4,
+    //             dashboardID: 0,
+    //             dashboardTagMembershipCreatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipCreatedUserName:  'JamesK',
+    //             dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 1,
+    //             dashboardID: 2,
+    //             dashboardTagMembershipCreatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipCreatedUserName:  'JamesK',
+    //             dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 5,
+    //             dashboardID: 2,
+    //             dashboardTagMembershipCreatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipCreatedUserName:  'JamesK',
+    //             dashboardTagMembershipUpdatedDateTime: '2017/05/01',
+    //             dashboardTagMembershipUpdatedUserName: 'JamesK'
+    //         },
+    //     ];
 
     export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
@@ -759,41 +795,6 @@ export const DASHBOARDS: Dashboard[] =
         }
     ];
 
-export const DASHBOARDTAGMEMBERSHIP: DashboardTagMembership[] =
-    [
-        {
-            dashboardTagID: 0,
-            dashboardID: 0,
-            dashboardTagMembershipCreatedDateTime: '2017/05/01',
-            dashboardTagMembershipCreatedUserName:  'JamesK',
-            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
-            dashboardTagMembershipUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardTagID: 4,
-            dashboardID: 0,
-            dashboardTagMembershipCreatedDateTime: '2017/05/01',
-            dashboardTagMembershipCreatedUserName:  'JamesK',
-            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
-            dashboardTagMembershipUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardTagID: 1,
-            dashboardID: 2,
-            dashboardTagMembershipCreatedDateTime: '2017/05/01',
-            dashboardTagMembershipCreatedUserName:  'JamesK',
-            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
-            dashboardTagMembershipUpdatedUserName: 'JamesK'
-        },
-        {
-            dashboardTagID: 5,
-            dashboardID: 2,
-            dashboardTagMembershipCreatedDateTime: '2017/05/01',
-            dashboardTagMembershipCreatedUserName:  'JamesK',
-            dashboardTagMembershipUpdatedDateTime: '2017/05/01',
-            dashboardTagMembershipUpdatedUserName: 'JamesK'
-        },
-    ];
 
 export const WIDGETS: Widget[] =
     [
@@ -3688,7 +3689,7 @@ export class EazlService implements OnInit {
     canvasMessages: CanvasMessage[] = [];                   // List of CanvasMessages
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[] = DASHBOARDS;                   // List of Dashboards
-    dashboardTagMembership: DashboardTagMembership[] = DASHBOARDTAGMEMBERSHIP; //List of Dashboard-Group
+    dashboardTagMembership: DashboardTagMembership[];       //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     // dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
