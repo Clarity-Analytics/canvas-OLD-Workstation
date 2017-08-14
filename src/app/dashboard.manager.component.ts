@@ -260,9 +260,9 @@ this.datasources = this.eazlService.getDataSources(-1);
         this.displayTagMembership = false;
     }
 
-    onMoveToTargetDashboardTagMembership(event) {
-        // User clicked onMoveToTarget on Group Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardTagMembership', '@Start');
+    onClickAddDashboardTagMembership(event) {
+        // Add tag membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickAddDashboardTagMembership', '@Start');
 
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
