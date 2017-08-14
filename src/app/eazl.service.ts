@@ -7095,7 +7095,12 @@ export class EazlService implements OnInit {
             // }
         // Done
 
-        // Dashboard
+        // Dashboard: this is a nested get, using Promises
+        // - first get Dashboards
+        // - then DashboardTabs
+        // - then DashboardTags
+        // The reason is to ensure the info is in sync: the array of tabs in a Dasbhoard
+        // object will now match the info in the Tabs array, and so on.
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Dashboard') {
 
             // Reset
@@ -7113,6 +7118,55 @@ export class EazlService implements OnInit {
                     .then(
                         (eazlDashboard) => {
 
+                            // Mark the data as dirty
+                            this.globalVariableService.dirtyDataDashboardTab = true;
+
+                            // Get all the data via API
+                            let dashboardTabWorking: DashboardTab[] = [];
+                            this.get<EazlDashboardTab>('dashboard-tabs')
+                                .toPromise()
+                                .then(
+                                    (eazlDashboardTab) => {
+
+                                        // Mark the data as dirty
+                                        this.globalVariableService.dirtyDataDashboardTagMembership = true;
+
+                                        // Get all the data via API
+                                        let dashboardTagMembershipWorking: DashboardTagMembership[] = [];
+                                        this.get<EazlDashboardTagMembership>('dashboard-tags')
+                                            .toPromise()
+                                            .then(
+                                                (eazlDashboardTagMembership) => {
+                                                    for (var i = 0; i < eazlDashboardTagMembership.length; i++) {
+                                                        let dashboardTagMembershipSingle = new DashboardTagMembership();
+                                                        dashboardTagMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardTagMembership[i]);
+                                                        dashboardTagMembershipWorking.push(dashboardTagMembershipSingle);
+
+                                                    }
+
+                                                // Replace
+                                                this.dashboardTagMembership = dashboardTagMembershipWorking;
+
+                                                // Mark the data as clean
+                                                this.globalVariableService.dirtyDataDashboardTagMembership = false;
+                                                }
+                                        )
+
+                                        for (var i = 0; i < eazlDashboardTab.length; i++) {
+                                            let dashboardTabSingle = new DashboardTab();
+                                            dashboardTabSingle = this.cdal.loadDashboardTab(eazlDashboardTab[i]);
+                                            dashboardTabWorking.push(dashboardTabSingle);
+
+                                        }
+
+                                    // Replace
+                                    this.dashboardTabs = dashboardTabWorking;
+
+                                    // Mark the data as clean
+                                    this.globalVariableService.dirtyDataDashboardTab = false;
+                                }
+                            )
+
                             for (var i = 0; i < eazlDashboard.length; i++) {
                                 let dashboardSingle = new Dashboard();
                                 dashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
@@ -7121,16 +7175,11 @@ export class EazlService implements OnInit {
                             }
 
                             // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.dashboards = dashboardWorking;
-console.log('get end')
-console.log('END this.dashboards', this.dashboards)
-// console.log('END this.dashboardTabs',this.dashboardTabs)
+                            // TODO - replace local Array after Bradley's done initial upload
+                            //  this.dashboards = dashboardWorking;
 
-
-
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboard = false;
+                            // Mark the data as clean
+                            this.globalVariableService.dirtyDataDashboard = false;
                         }
                 )
             }
@@ -7139,9 +7188,14 @@ console.log('END this.dashboards', this.dashboards)
             if (resetAction.toLowerCase() == 'clear') {
                 this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Dashboard');
                 this.dashboards = [];
+                this.dashboardTabs = [];
+                this.dashboardTagMembership = [];
 
                 // Mark the data as dirty
                 this.globalVariableService.dirtyDataDashboard = true;
+                this.globalVariableService.dirtyDataDashboardTab = true;
+                this.globalVariableService.dirtyDataDashboardTagMembership = true;
+
             }
         }
 
