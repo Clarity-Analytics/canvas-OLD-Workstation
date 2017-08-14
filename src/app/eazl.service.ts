@@ -7109,8 +7109,10 @@ export class EazlService implements OnInit {
                 let dashboardWorking: Dashboard[] = [];
 
                 this.get<EazlDashboard>('dashboards')
-                    .subscribe(
+                    .toPromise()
+                    .then(
                         (eazlDashboard) => {
+
                             for (var i = 0; i < eazlDashboard.length; i++) {
                                 let dashboardSingle = new Dashboard();
                                 dashboardSingle = this.cdal.loadDashboard(eazlDashboard[i]);
@@ -7121,6 +7123,11 @@ export class EazlService implements OnInit {
                             // Replace
                         // TODO - replace local Array after Bradley's done initial upload
                         //  this.dashboards = dashboardWorking;
+console.log('get end')
+console.log('END this.dashboards', this.dashboards)
+// console.log('END this.dashboardTabs',this.dashboardTabs)
+
+
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataDashboard = false;
