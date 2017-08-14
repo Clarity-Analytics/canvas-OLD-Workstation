@@ -156,89 +156,89 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     ]
 
 // const DASHBOARDTAGS
-    export const DASHBOARDTAGS: DashboardTag[] =
-        [
-            {
-                dashboardTagID: 0,
-                dashboardTagName: 'Admin',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            },
-            {
-                dashboardTagID: 1,
-                dashboardTagName: 'Marketing',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            },
-            {
-                dashboardTagID: 2,
-                dashboardTagName: 'BI Team',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            },
-            {
-                dashboardTagID: 3,
-                dashboardTagName: 'HR',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            },
-            {
-                dashboardTagID: 4,
-                dashboardTagName: 'Finance',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            },
-            {
-                dashboardTagID: 5,
-                dashboardTagName: 'Sales',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            },
-            {
-                dashboardTagID: 6,
-                dashboardTagName: 'R&D',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            },
-            {
-                dashboardTagID: 7,
-                dashboardTagName: 'IT',
-                dashboardTagDescription: '',
-                dasbhoardURL: '',
-                dashboardTagCreatedDateTime: '2017/05/01',
-                dashboardTagCreatedUserName: 'JamesK',
-                dashboardTagUpdatedDateTime: '2017/05/01',
-                dashboardTagUpdatedUserName: 'JamesK'
-            }
-        ];
+    // export const DASHBOARDTAGS: DashboardTag[] =
+    //     [
+    //         {
+    //             dashboardTagID: 0,
+    //             dashboardTagName: 'Admin',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 1,
+    //             dashboardTagName: 'Marketing',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 2,
+    //             dashboardTagName: 'BI Team',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 3,
+    //             dashboardTagName: 'HR',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 4,
+    //             dashboardTagName: 'Finance',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 5,
+    //             dashboardTagName: 'Sales',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 6,
+    //             dashboardTagName: 'R&D',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         },
+    //         {
+    //             dashboardTagID: 7,
+    //             dashboardTagName: 'IT',
+    //             dashboardTagDescription: '',
+    //             dasbhoardURL: '',
+    //             dashboardTagCreatedDateTime: '2017/05/01',
+    //             dashboardTagCreatedUserName: 'JamesK',
+    //             dashboardTagUpdatedDateTime: '2017/05/01',
+    //             dashboardTagUpdatedUserName: 'JamesK'
+    //         }
+    //     ];
 
 
     export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
@@ -3691,7 +3691,7 @@ export class EazlService implements OnInit {
     dashboardTagMembership: DashboardTagMembership[] = DASHBOARDTAGMEMBERSHIP; //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
+    // dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
