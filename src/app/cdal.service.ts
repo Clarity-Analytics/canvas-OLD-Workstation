@@ -1027,6 +1027,55 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
         return dashboardTagMembershipWorking;
     }
 
+    saveDashboardTagMembership(
+        dashboardTagMembership: DashboardTagMembership
+        ): EazlDashboardTagMembership {
+        // Save DashboardTagMembership: move data Canvas -> Eazl
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveDashboardTagMembership', '@Start');
+
+        let eazlDashboardTagMembershipWorking = new EazlDashboardTagMembership();
+
+        eazlDashboardTagMembershipWorking.id = dashboardTagMembership.dashboardTagID;
+
+        if (dashboardTagMembership.dashboardID != null) {
+            eazlDashboardTagMembershipWorking.dashboard_id =
+                dashboardTagMembership.dashboardID;
+        } else {
+            eazlDashboardTagMembershipWorking.dashboard_id = -1;
+        }
+
+        if (dashboardTagMembership.dashboardTagMembershipCreatedDateTime != null) {
+            eazlDashboardTagMembershipWorking.updated_on =
+                dashboardTagMembership.dashboardTagMembershipCreatedDateTime;
+        } else {
+            eazlDashboardTagMembershipWorking.updated_on = '';
+        }
+
+        if (dashboardTagMembership.dashboardTagMembershipCreatedUserName != null) {
+            eazlDashboardTagMembershipWorking.updated_by =
+                dashboardTagMembership.dashboardTagMembershipCreatedUserName;
+        } else {
+            eazlDashboardTagMembershipWorking.updated_by = '';
+        }
+
+        if (dashboardTagMembership.dashboardTagMembershipUpdatedDateTime != null) {
+            eazlDashboardTagMembershipWorking.created_on =
+                dashboardTagMembership.dashboardTagMembershipUpdatedDateTime;
+        } else {
+            eazlDashboardTagMembershipWorking.created_on = '';
+        }
+
+        if (dashboardTagMembership.dashboardTagMembershipUpdatedUserName != null) {
+            eazlDashboardTagMembershipWorking.created_by =
+                dashboardTagMembership.dashboardTagMembershipUpdatedUserName;
+        } else {
+            eazlDashboardTagMembershipWorking.created_by = '';
+        }
+
+        // Return the result
+        return eazlDashboardTagMembershipWorking;
+    }
+
     loadDashboardGroupRelationship(eazlDashboardGroupRelationship: EazlDashboardGroupRelationship): DashboardGroupRelationship {
         // Load DashboardGroupRelationship: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupRelationship', '@Start');

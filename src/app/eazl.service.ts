@@ -6991,48 +6991,6 @@ export class EazlService implements OnInit {
             }
         }
 
-        // TODO - keep for later, in case we start using it
-            // // DashboardTag
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTag') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTag');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardTag = true;
-
-            //         // Get all the data via API
-            //         let dashboardTagWorking: DashboardTag[] = [];
-            //         this.get<EazlDashboardTag>('dashboard-tags')
-            //             .subscribe(
-            //                 (eazlDashboardTag) => {
-            //                     for (var i = 0; i < eazlDashboardTag.length; i++) {
-            //                         let dashboardTagSingle = new DashboardTag();
-            //                         dashboardTagSingle = this.cdal.loadDashboardTag(eazlDashboardTag[i]);
-            //                         dashboardTagWorking.push(dashboardTagSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 this.dashboardTags = dashboardTagWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDashboardTag = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTag');
-            //         this.dashboardTags = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardTag = true;
-            //     }
-            // }
-
         // DashboardTagMembership
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTagMembership') {
 
