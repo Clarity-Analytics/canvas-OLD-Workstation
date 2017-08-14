@@ -273,9 +273,9 @@ this.datasources = this.eazlService.getDataSources(-1);
         }
     }
 
-    onMoveToSourceDashboardTagMembership(event) {
-        // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardTagMembership', '@Start');
+    onClickDeleteDashboardTagMembership(event) {
+        // Delete tag membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDeleteDashboardTagMembership', '@Start');
 
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
