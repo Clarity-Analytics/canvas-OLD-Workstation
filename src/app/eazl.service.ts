@@ -4422,6 +4422,9 @@ export class EazlService implements OnInit {
 
         // Start with all
         let dashboardsWorking: Dashboard[] = this.dashboards;
+        if (this.dashboardTagMembership == null) {
+            this.dashboardTagMembership = [];
+        }
 
         // Filter on related ones, IF so requested
         if (relatedUsername != '*') {
