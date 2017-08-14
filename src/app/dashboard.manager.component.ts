@@ -38,7 +38,7 @@ export class DashboardManagerComponent implements OnInit {
 
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
-    availableDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard does NOT belongs to
+    // availableDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard does NOT belongs to
     availableGroupSharedWith: Group[] = [];                     // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
     // belongstoDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard already belongs to
@@ -243,10 +243,10 @@ this.datasources = this.eazlService.getDataSources(-1);
         //     this.selectedDashboard.dashboardID,
         //     true
         // );
-        this.availableDashboardTag = this.eazlService.getDashboardTagMembership(
-                    this.selectedDashboard.dashboardID,
-                    false
-        );
+        // this.availableDashboardTag = this.eazlService.getDashboardTagMembership(
+        //             this.selectedDashboard.dashboardID,
+        //             false
+        // );
 
         // Show popup
         this.displayTagMembership = true;
