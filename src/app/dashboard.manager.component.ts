@@ -20,7 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardTag }               from './model.dashboardTag';
+// import { DashboardTag }               from './model.dashboardTag';
 import { DataSource }                 from './model.datasource';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { EazlUser }                   from './model.user';
@@ -286,10 +286,10 @@ this.datasources = this.eazlService.getDataSources(-1);
         }
     }
 
-    onSourceReorderDashboardTagMembership(event) {
-        // User clicked onSourceReorder on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderDashboardTagMembership', '@Start');
-    }
+    // onSourceReorderDashboardTagMembership(event) {
+    //     // User clicked onSourceReorder on Group Membership
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderDashboardTagMembership', '@Start');
+    // }
 
     onTargetReorderDashboardTagMembership(event) {
         // User clicked onTargetReorder on Group Membership
