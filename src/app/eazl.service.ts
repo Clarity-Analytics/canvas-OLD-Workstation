@@ -7012,45 +7012,46 @@ export class EazlService implements OnInit {
         }
 
         // DashboardTagMembership
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTagMembership') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTagMembership') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTagMembership');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTagMembership');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardTagMembership = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardTagMembership = true;
 
-                // Get all the data via API
-                let dashboardTagMembershipWorking: DashboardTagMembership[] = [];
-                this.get<EazlDashboardTagMembership>('dashboard-tags')
-                    .subscribe(
-                        (eazlDashboardTagMembership) => {
-                            for (var i = 0; i < eazlDashboardTagMembership.length; i++) {
-                                let dashboardTagMembershipSingle = new DashboardTagMembership();
-                                dashboardTagMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardTagMembership[i]);
-                                dashboardTagMembershipWorking.push(dashboardTagMembershipSingle);
+            //         // Get all the data via API
+            //         let dashboardTagMembershipWorking: DashboardTagMembership[] = [];
+            //         this.get<EazlDashboardTagMembership>('dashboard-tags')
+            //             .subscribe(
+            //                 (eazlDashboardTagMembership) => {
+            //                     for (var i = 0; i < eazlDashboardTagMembership.length; i++) {
+            //                         let dashboardTagMembershipSingle = new DashboardTagMembership();
+            //                         dashboardTagMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardTagMembership[i]);
+            //                         dashboardTagMembershipWorking.push(dashboardTagMembershipSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                         this.dashboardTagMembership = dashboardTagMembershipWorking;
+            //                 // Replace
+            //                 this.dashboardTagMembership = dashboardTagMembershipWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardTagMembership = false;
-                        }
-                )
-            }
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataDashboardTagMembership = false;
+            //                 }
+            //         )
+            //     }
 
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTagMembership');
-                this.dashboardTagMembership = [];
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTagMembership');
+            //         this.dashboardTagMembership = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardTagMembership = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardTagMembership = true;
+            //     }
+            // }
+        // Done
 
         // DashboardGroupRelationship
             // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroupRelationship') {
