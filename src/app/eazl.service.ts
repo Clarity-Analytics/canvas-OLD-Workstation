@@ -6889,44 +6889,45 @@ export class EazlService implements OnInit {
         }
 
         // DashboardTab
-        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTab') {
+            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTab') {
 
-            // Reset
-            if (resetAction == 'reset') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTab');
+            //     // Reset
+            //     if (resetAction == 'reset') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTab');
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardTab = true;
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardTab = true;
 
-                // Get all the data via API
-                let dashboardTabWorking: DashboardTab[] = [];
-                this.get<EazlDashboardTab>('dashboard-tabs')
-                    .subscribe(
-                        (eazlDashboardTab) => {
-                            for (var i = 0; i < eazlDashboardTab.length; i++) {
-                                let dashboardTabSingle = new DashboardTab();
-                                dashboardTabSingle = this.cdal.loadDashboardTab(eazlDashboardTab[i]);
-                                dashboardTabWorking.push(dashboardTabSingle);
+            //         // Get all the data via API
+            //         let dashboardTabWorking: DashboardTab[] = [];
+            //         this.get<EazlDashboardTab>('dashboard-tabs')
+            //             .subscribe(
+            //                 (eazlDashboardTab) => {
+            //                     for (var i = 0; i < eazlDashboardTab.length; i++) {
+            //                         let dashboardTabSingle = new DashboardTab();
+            //                         dashboardTabSingle = this.cdal.loadDashboardTab(eazlDashboardTab[i]);
+            //                         dashboardTabWorking.push(dashboardTabSingle);
 
-                            }
+            //                     }
 
-                        // Replace
-                        this.dashboardTabs = dashboardTabWorking;
+            //                 // Replace
+            //                 this.dashboardTabs = dashboardTabWorking;
 
-                        // Mark the data as clean
-                        this.globalVariableService.dirtyDataDashboardTab = false;
-                    }
-                )
-            }
-            // Clear all
-            if (resetAction.toLowerCase() == 'clear') {
-                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTab');
-                this.dashboardTabs = [];
+            //                 // Mark the data as clean
+            //                 this.globalVariableService.dirtyDataDashboardTab = false;
+            //             }
+            //         )
+            //     }
+            //     // Clear all
+            //     if (resetAction.toLowerCase() == 'clear') {
+            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTab');
+            //         this.dashboardTabs = [];
 
-                // Mark the data as dirty
-                this.globalVariableService.dirtyDataDashboardTab = true;
-            }
-        }
+            //         // Mark the data as dirty
+            //         this.globalVariableService.dirtyDataDashboardTab = true;
+            //     }
+            // }
+        // Done
 
         // CanvasMessage
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'CanvasMessage') {
