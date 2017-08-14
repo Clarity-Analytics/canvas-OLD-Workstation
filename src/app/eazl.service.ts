@@ -5961,7 +5961,7 @@ export class EazlService implements OnInit {
     getDashboardTagMembership(
             dashboardID:number = -1,
             include:boolean = true
-        ): DashboardTag[] {
+        ): DashboardTagMembership[] {
         // Return a list of Dashboard - Group memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
         // - include Optional parameter, true = include all for one, else
@@ -5983,7 +5983,7 @@ export class EazlService implements OnInit {
 
         // Return all if no dashboardID specified
         if (dashboardID == -1) {
-            return this.dashboardTags;
+            return this.dashboardTagMembership;
         }
 
         // Make an array of groupIDs to which this user belongs
@@ -5997,7 +5997,7 @@ export class EazlService implements OnInit {
         );
 
         // Return necesary groups, selectively depending on in/exclude
-        return this.dashboardTags.filter(
+        return this.dashboardTagMembership.filter(
             dashgrp => (
                     include  &&
                         resultDashboardTagMembership.indexOf(
