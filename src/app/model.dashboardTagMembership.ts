@@ -6,18 +6,20 @@
 export class EazlDashboardTagMembership {
     id: number;
     dashboard_id: number;
-    updated_on: string;                                       // Updated on
-    updated_by: string;                                       // Updated by
-    created_on: string;                                       // Created on
-    created_by: string;                                       // Created by
+    tag: string;
+    updated_on: string;                                     // Updated on
+    updated_by: string;                                     // Updated by
+    created_on: string;                                     // Created on
+    created_by: string;                                     // Created by
 }
 
 // Canvas
 export class DashboardTagMembership {
-    dashboardTagID: number;
-    dashboardID: number;
-    dashboardTagMembershipCreatedDateTime: string;           // Created on
-    dashboardTagMembershipCreatedUserName: string;           // Created by
-    dashboardTagMembershipUpdatedDateTime: string;           // Updated on
-    dashboardTagMembershipUpdatedUserName: string;           // Updated by
+    dashboardTagID: number;                                 // Unique DB ID
+    dashboardID: number;                                    // FK to Dashboard
+    dashboardTagName;                                       // Name of tag linked    
+    dashboardTagMembershipCreatedDateTime: string;          // Created on
+    dashboardTagMembershipCreatedUserName: string;          // Created by
+    dashboardTagMembershipUpdatedDateTime: string;          // Updated on
+    dashboardTagMembershipUpdatedUserName: string;          // Updated by
 }

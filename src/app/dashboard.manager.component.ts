@@ -78,9 +78,8 @@ export class DashboardManagerComponent implements OnInit {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.eazlService.getDashboards();
-this.dashboardTags=['a','b'];
-console.log('dashboardTags', this.dashboardTags)
+        this.dashboardTagMembership = this.eazlService.getDashboardTagMembership();
+console.log('dashboardTagMembership', this.dashboardTagMembership)
 this.datasources = this.eazlService.getDataSources(-1);
         this.popuMenuItems = [
             {

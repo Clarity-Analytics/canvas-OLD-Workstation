@@ -5961,12 +5961,11 @@ export class EazlService implements OnInit {
 
     getDashboardTagMembership(
             dashboardID:number = -1,
-            include:boolean = true
+            dashboardTagName: string = ''
         ): DashboardTagMembership[] {
-        // Return a list of Dashboard - Group memberships
-        // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = 0)
-        // - include Optional parameter, true = include all for one, else
-        //   group NOT for dashboardID
+        // Return a list of Dashboard - Tag memberships
+        // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = -1)
+        // - dashboardTagName Optional parameter to filter on ('' means no filter)
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTagMembership', '@Start');
 
         // Report to user if dirty at the moment
@@ -5978,38 +5977,16 @@ export class EazlService implements OnInit {
             });
         }
 
-        // TODO - from DB
-        // Get Array of groups to in or ex clude
-        let resultDashboardTagMembership: number[] = [];
-
-        // Return all if no dashboardID specified
-        if (dashboardID == -1) {
-            return this.dashboardTagMembership;
-        }
-
-        // Make an array of groupIDs to which this user belongs
-        this.dashboardTagMembership.forEach(
-            (dashgrp) => {
-                if (dashgrp.dashboardID == dashboardID)
-                    resultDashboardTagMembership.push(
-                        dashgrp.dashboardTagID
-                )
+        // Return according to filters specified
+        return this.dashboardTagMembership.filter(
+            dashgrp => {
+                (dashboardID == -1  ||  dashgrp.dashboardID == dashboardID)  
+                
+                &&
+                
+                (dashboardTagName == ''  ||  dashgrp.dashboardTagName == dashboardTagName)
             }
         );
-
-        // Return necesary groups, selectively depending on in/exclude
-        return this.dashboardTagMembership.filter(
-            dashgrp => (
-                    include  &&
-                        resultDashboardTagMembership.indexOf(
-                            dashgrp.dashboardTagID) >= 0
-                    )
-                    ||
-                    (!include &&
-                        resultDashboardTagMembership.indexOf(
-                            dashgrp.dashboardTagID) < 0
-                    )
-        )
     }
 
     addDashboardTagMembership(dashboardID: number, dashboardGroupID: number) {
@@ -6036,6 +6013,7 @@ export class EazlService implements OnInit {
 
                     dashboardTagID: dashboardGroupID,
                     dashboardID: dashboardID,
+                    dashboardTagName: '',
                     dashboardTagMembershipCreatedDateTime: this.canvasDate.now('standard'),
                     dashboardTagMembershipCreatedUserName: currentUser,
                     dashboardTagMembershipUpdatedDateTime: this.canvasDate.now('standard'),
