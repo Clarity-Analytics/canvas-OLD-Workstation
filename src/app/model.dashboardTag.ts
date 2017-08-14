@@ -6,7 +6,7 @@
 export class EazlDashboardTag {
     id: number;                                     // Unique ID
     tag: string;                                    // Name of the tag
-    dashboard_id: number;                           // Dashboard which is tagged
+    description: string;                            // Description
     url: string;                                    // Django url
 }
 
@@ -14,7 +14,7 @@ export class EazlDashboardTag {
 export class DashboardTag {
     dashboardTagID: number;
     dashboardTagName: string;
-    dashboardID: number;
+    dashboardTagDescription: string;
     dasbhoardURL: string;
     dashboardTagCreatedDateTime: string;            // Created on
     dashboardTagCreatedUserName: string;            // Created by

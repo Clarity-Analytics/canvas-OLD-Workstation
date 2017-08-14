@@ -927,10 +927,10 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
             dashboardTagWorking.dashboardTagName = '';
         }
 
-        if (eazlDashboardTag.dashboard_id != null) {
-            dashboardTagWorking.dashboardID = eazlDashboardTag.dashboard_id;
+        if (eazlDashboardTag.description != null) {
+            dashboardTagWorking.dashboardTagDescription = eazlDashboardTag.description;
         } else {
-            dashboardTagWorking.dashboardID = 0;
+            dashboardTagWorking.dashboardTagDescription = '';
         }
 
         if (eazlDashboardTag.url != null) {
@@ -962,10 +962,10 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
             eazlDashboardTagWorking.tag = '';
         }
 
-        if (dashboardTag.dashboardID != null) {
-            eazlDashboardTagWorking.dashboard_id = dashboardTag.dashboardID;
+        if (dashboardTag.dashboardTagDescription != null) {
+            eazlDashboardTagWorking.description = dashboardTag.dashboardTagDescription;
         } else {
-            eazlDashboardTagWorking.dashboard_id = 0;
+            eazlDashboardTagWorking.description = '';
         }
 
         if (dashboardTag.dasbhoardURL != null) {
