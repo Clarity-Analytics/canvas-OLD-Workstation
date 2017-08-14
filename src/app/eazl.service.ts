@@ -4640,7 +4640,7 @@ export class EazlService implements OnInit {
                     .then(eazlDashboardTab => {
 
                         // Update local array
-                        workingDashboardTabs[0].dashboardTabDescription = 
+                        workingDashboardTabs[0].dashboardTabDescription =
                             dashboardTabDescription;
 
                         // Mark as clean
@@ -5980,66 +5980,105 @@ export class EazlService implements OnInit {
         // Return according to filters specified
         return this.dashboardTagMembership.filter(
             dashgrp => {
-                (dashboardID == -1  ||  dashgrp.dashboardID == dashboardID)  
-                
+                (dashboardID == -1  ||  dashgrp.dashboardID == dashboardID)
+
                 &&
-                
+
                 (dashboardTagName == ''  ||  dashgrp.dashboardTagName == dashboardTagName)
             }
         );
     }
 
-    addDashboardTagMembership(dashboardID: number, dashboardGroupID: number) {
-        // Adds a Dashboard - Group record to the User Group Membership
+    addDashboardTagMembership(dashboardID: number, dashboardTagName: string) {
+        // Adds a Dashboard - Tag record to the TagMembership
 
         this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardTagMembership', '@Start');
 
-        let found: boolean = false;
-        for (var i = 0; i < this.dashboardTagMembership.length; i++) {
-            if (this.dashboardTagMembership[i].dashboardID == dashboardID  &&
-                this.dashboardTagMembership[i].dashboardTagID == dashboardGroupID) {
-                    found = true;
-                    break;
-                }
-        }
-
-        // Get current Dashboard
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        // Only add if not already there
-        if (!found) {
-            this.dashboardTagMembership.push(
-                {
-
-                    dashboardTagID: dashboardGroupID,
-                    dashboardID: dashboardID,
-                    dashboardTagName: '',
-                    dashboardTagMembershipCreatedDateTime: this.canvasDate.now('standard'),
-                    dashboardTagMembershipCreatedUserName: currentUser,
-                    dashboardTagMembershipUpdatedDateTime: this.canvasDate.now('standard'),
-                    dashboardTagMembershipUpdatedUserName: currentUser
-                }
-            )
-        }
-
         // Mark the data as dirty
         this.globalVariableService.dirtyDataDashboardTagMembership = true;
+        let currentUser: string = this.globalFunctionService.currentUser();
+
+        let dashboardTagMembership: DashboardTagMembership = {
+            dashboardTagID: null,
+            dashboardID: dashboardID,
+            dashboardTagName: dashboardTagName,
+            dashboardTagMembershipCreatedDateTime: this.canvasDate.now('standard'),
+            dashboardTagMembershipCreatedUserName: currentUser,
+            dashboardTagMembershipUpdatedDateTime: this.canvasDate.now('standard'),
+            dashboardTagMembershipUpdatedUserName: currentUser
+        };
+
+        return this.post<EazlDashboardTagMembership>(
+            'dashboard-tags',
+            this.cdal.saveDashboardTagMembership(dashboardTagMembership))
+                .toPromise()
+                .then( eazlDashboardTagMembership => {
+
+                    // Update local store
+                    dashboardTagMembership.dashboardID = eazlDashboardTagMembership.id;
+                    this.dashboardTagMembership.push(dashboardTagMembership);
+
+                    // TODO - reGet the local => always in sync
+                    // Not dirty any longer
+                    this.globalVariableService.dirtyDataDashboardTagMembership = false;
+
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Add Tag Membership',
+                        detail:   'Successfully added tag membership to the database'
+                    });
+
+                    // Return the data
+                    return this.groups;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Add Tag Membership',
+                        detail:   'Unsuccessful in adding tag membership to the database'
+                    });
+                    error.message || error
+                })
+
     }
 
-    deleteDashboardTagMembership(dashboardID: number, dashboardGroupID: number) {
-        // Deletes a Dashboard - Group record to the Dashboard Group Membership
+    deleteDashboardTagMembership(dashboardTagID: number) {
+        // Deletes a Dashboard Tag Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardTagMembership', '@Start');
 
         // Mark the data as dirty
         this.globalVariableService.dirtyDataDashboardTagMembership = true;
 
-        this.dashboardTagMembership = this.dashboardTagMembership.filter(
-            item => (!(item.dashboardID == dashboardID  &&
-                       item.dashboardTagID == dashboardGroupID))
-        );
+        return this.delete<EazlGroup>(
+            'groups/' + dashboardTagID.toString() + '/'
+            )
+                .toPromise()
+                .then(response => {
 
-        // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboardTagMembership = false;
+                    // Update local data
+                    for (var i = 0; i < this.dashboardTagMembership.length; i++) {
+                        if (this.dashboardTagMembership[i].dashboardTagID == dashboardTagID) {
+                            this.dashboardTagMembership.splice(i,1);
+                        }
+                    };
+
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Delete Tag Membership',
+                        detail:   'Successfully deleting tag membership from the database'
+                    });
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataDashboardTagMembership = false;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Delete Tag Membership',
+                        detail:   'Unsuccessful in deleting your tag membership info to the database'
+                    });
+                    error.message || error
+                })
     }
 
     getGroupsRelatedToDashboard(

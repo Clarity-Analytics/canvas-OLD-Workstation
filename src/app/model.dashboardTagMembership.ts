@@ -17,7 +17,7 @@ export class EazlDashboardTagMembership {
 export class DashboardTagMembership {
     dashboardTagID: number;                                 // Unique DB ID
     dashboardID: number;                                    // FK to Dashboard
-    dashboardTagName;                                       // Name of tag linked    
+    dashboardTagName: string;                               // Name of tag linked    
     dashboardTagMembershipCreatedDateTime: string;          // Created on
     dashboardTagMembershipCreatedUserName: string;          // Created by
     dashboardTagMembershipUpdatedDateTime: string;          // Updated on

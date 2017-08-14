@@ -267,7 +267,7 @@ this.datasources = this.eazlService.getDataSources(-1);
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addDashboardTagMembership(
                 this.selectedDashboard.dashboardID,
-                event.items[i].dashboardGroupID
+                'New Tag Name'
             );
         }
     }
@@ -279,8 +279,7 @@ this.datasources = this.eazlService.getDataSources(-1);
         // Remove the makker(s)
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteDashboardTagMembership(
-                this.selectedDashboard.dashboardID,
-                event.items[i].dashboardGroupID
+                event.items[i].dashboardTagID
             );
         }
     }
