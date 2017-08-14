@@ -291,10 +291,10 @@ this.datasources = this.eazlService.getDataSources(-1);
     //     this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderDashboardTagMembership', '@Start');
     // }
 
-    onTargetReorderDashboardTagMembership(event) {
-        // User clicked onTargetReorder on Group Membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardTagMembership', '@Start');
-    }
+    // onTargetReorderDashboardTagMembership(event) {
+    //     // User clicked onTargetReorder on Group Membership
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardTagMembership', '@Start');
+    // }
 
     dashboardMenuGroupsSharedWith(dashboard: Dashboard) {
         // Groups with which the selected Dashboard is shared
