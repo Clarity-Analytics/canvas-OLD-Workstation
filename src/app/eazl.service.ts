@@ -5979,7 +5979,7 @@ export class EazlService implements OnInit {
                 detail:   'The DashboardTagMembership data is being refreshed; request again to get the latest from the database'
             });
         }
-
+console.log('EAZL getdT this.dashboardTagMembership', dashboardID, dashboardTagName, this.dashboardTagMembership)
         // Return according to filters specified
         return this.dashboardTagMembership.filter(
             dashgrp => {

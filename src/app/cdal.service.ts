@@ -120,7 +120,7 @@ export class CDAL {
             userWorking.groups = [ eazlUser.groups[0] ]
             for (var i = 1; i < eazlUser.groups.length; i++) {
                 userWorking.groups.push(eazlUser.groups[i]);
-            } 
+            }
         } else {
             userWorking.groups = [];
         }
@@ -276,7 +276,6 @@ export class CDAL {
         }
 
         // Return the User
-console.log('CDAL userWorking', userWorking)
         return userWorking;
     }
 
@@ -312,12 +311,12 @@ console.log('CDAL userWorking', userWorking)
         }
 
         // user.lastDatetimeReportWasRun = '';
-        
+
         if (user.groups.length > 0) {
             eazlUserWorking.groups = [ user.groups[0] ]
             for (var i = 1; i < user.groups.length; i++) {
                 eazlUserWorking.groups.push(user.groups[i]);
-            } 
+            }
         } else {
             eazlUserWorking.groups = [];
         }
@@ -521,7 +520,7 @@ console.log('CDAL userWorking', userWorking)
             groupWorking.users = [ eazlGroup.users[0] ]
             for (var i = 1; i < eazlGroup.users.length; i++) {
                 groupWorking.users.push(eazlGroup.users[i]);
-            } 
+            }
         } else {
             groupWorking.users = [];
         }
@@ -531,7 +530,7 @@ console.log('CDAL userWorking', userWorking)
         } else {
             groupWorking.url = '';
         }
-        
+
         // Return the result
         return groupWorking;
     }
@@ -571,7 +570,7 @@ console.log('CDAL userWorking', userWorking)
             eazlGroupWorking.users = [ group.users[0] ]
             for (var i = 1; i < group.users.length; i++) {
                 eazlGroupWorking.users.push(group.users[i]);
-            } 
+            }
         } else {
             eazlGroupWorking.users = [];
         }
@@ -581,7 +580,7 @@ console.log('CDAL userWorking', userWorking)
         } else {
             eazlGroupWorking.url = '';
         }
-        
+
         // Return the result
         return eazlGroupWorking;
     }
@@ -812,7 +811,7 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
 
         let eazlCanvasMessageWorking = new EazlCanvasMessage();
 
-        eazlCanvasMessageWorking.id = null; 
+        eazlCanvasMessageWorking.id = null;
         eazlCanvasMessageWorking.conversation = canvasMessage.canvasMessageConversationID;
 
         if (canvasMessage.canvasMessageSubject != null) {
@@ -896,14 +895,14 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
         }
 
         if (eazlCanvasMessageRecipient.is_sender != null) {
-            canvasMessageRecipientWorking.canvasMessageRecipientIsSender = 
+            canvasMessageRecipientWorking.canvasMessageRecipientIsSender =
                 eazlCanvasMessageRecipient.is_sender;
         } else {
             canvasMessageRecipientWorking.canvasMessageRecipientIsSender = false;
         }
 
         if (eazlCanvasMessageRecipient.status != null) {
-            canvasMessageRecipientWorking.canvasMessageRecipientStatus = 
+            canvasMessageRecipientWorking.canvasMessageRecipientStatus =
                 eazlCanvasMessageRecipient.status;
         } else {
             canvasMessageRecipientWorking.canvasMessageRecipientStatus = '';
@@ -938,7 +937,7 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
         } else {
             dashboardTagWorking.dasbhoardURL = '';
         }
-    
+
         dashboardTagWorking.dashboardTagCreatedDateTime = '';
         dashboardTagWorking.dashboardTagCreatedUserName = '';
         dashboardTagWorking.dashboardTagUpdatedDateTime = '';
@@ -973,7 +972,7 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
         } else {
             eazlDashboardTagWorking.url = '';
         }
-    
+
         // Return the result
         return eazlDashboardTagWorking;
     }
@@ -2197,7 +2196,7 @@ eazlSystemConfigurationWorking.company_logo = null
             vegaYcolumn: null,
             vegaFillColor: null,
             vegaHoverColor: null
-        } 
+        }
 
         if (eazlWidgetTemplate.vega_chart_height != null) {
             widgetTemplateWorking.vegaParameters.vegaGraphHeight = eazlWidgetTemplate.vega_chart_height;
