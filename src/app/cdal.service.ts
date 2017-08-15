@@ -994,6 +994,13 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
             dashboardTagMembershipWorking.dashboardID = -1;
         }
 
+        if (eazlDashboardTagMembership.tag != null) {
+            dashboardTagMembershipWorking.dashboardTagName =
+                eazlDashboardTagMembership.tag;
+        } else {
+            dashboardTagMembershipWorking.dashboardTagName = '';
+        }
+
         if (eazlDashboardTagMembership.updated_on != null) {
             dashboardTagMembershipWorking.dashboardTagMembershipCreatedDateTime =
                 eazlDashboardTagMembership.updated_on;
@@ -1041,6 +1048,12 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
                 dashboardTagMembership.dashboardID;
         } else {
             eazlDashboardTagMembershipWorking.dashboard_id = -1;
+        }
+
+        if (dashboardTagMembership.dashboardTagName != null) {
+             eazlDashboardTagMembershipWorking.tag = dashboardTagMembership.dashboardTagName;
+        } else {
+            eazlDashboardTagMembershipWorking.tag = '';
         }
 
         if (dashboardTagMembership.dashboardTagMembershipCreatedDateTime != null) {
