@@ -65,7 +65,7 @@ export class DashboardManagerComponent implements OnInit {
     selectedDashboard: Dashboard;                               // Dashboard that was clicked on
     selectedMembershipTag: DashboardTagMembership;              // Item clicked on in table
     tagname: string;                                            // Input tag name on form
-    
+
     constructor(
         private confirmationService: ConfirmationService,
         private canvasDate: CanvasDate,
@@ -238,15 +238,10 @@ export class DashboardManagerComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuTagMembership', '@Start');
 
-        // Get the current and available groups
-        // this.belongstoDashboardTag = this.eazlService.getDashboardTagMembership(
-        //     this.selectedDashboard.dashboardID,
-        //     true
-        // );
-        // this.availableDashboardTag = this.eazlService.getDashboardTagMembership(
-        //             this.selectedDashboard.dashboardID,
-        //             false
-        // );
+        // Get the current tags
+        this.dashboardTagMembership = this.eazlService.getDashboardTagMembership(
+            this.selectedDashboard.dashboardID
+        );
 
         // Show popup
         this.displayTagMembership = true;

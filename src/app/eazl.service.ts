@@ -7180,8 +7180,7 @@ export class EazlService implements OnInit {
                             }
 
                             // Replace
-                            // TODO - replace local Array after Bradley's done initial upload
-                            //  this.dashboards = dashboardWorking;
+                            this.dashboards = dashboardWorking;
 
                             // Mark the data as clean
                             this.globalVariableService.dirtyDataDashboard = false;

@@ -9,6 +9,7 @@ export class EazlDashboard {
     refresh_mode: string;
     refresh_timer: number;
     tabs: any;
+    tags: any;
     comments: string;
     system_message: string;
     is_locked: false;
@@ -17,6 +18,7 @@ export class EazlDashboard {
     background_color: string;
     background_image: string;
     default_export_file_type: string;
+    permissions: any;
     creator: string;
     date_created: string;
     editor: string;
