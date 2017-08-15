@@ -5964,11 +5964,11 @@ export class EazlService implements OnInit {
 
     getDashboardTagMembership(
             dashboardID:number = -1,
-            dashboardTagName: string = ''
+            dashboardTagName: string = '*'
         ): DashboardTagMembership[] {
         // Return a list of Dashboard - Tag memberships
         // - dashboardID Optional parameter to select ONE (if >= 0), else select ALL (if = -1)
-        // - dashboardTagName Optional parameter to filter on ('' means no filter)
+        // - dashboardTagName Optional parameter to filter on ('*' means no filter)
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboardTagMembership', '@Start');
 
         // Report to user if dirty at the moment
@@ -5979,17 +5979,20 @@ export class EazlService implements OnInit {
                 detail:   'The DashboardTagMembership data is being refreshed; request again to get the latest from the database'
             });
         }
-console.log('EAZL getdT this.dashboardTagMembership', dashboardID, dashboardTagName, this.dashboardTagMembership)
+
         // Return according to filters specified
-        return this.dashboardTagMembership.filter(
-            dashgrp => {
-                (dashboardID == -1  ||  dashgrp.dashboardID == dashboardID)
+        let dashboardTagMembershipWorking = this.dashboardTagMembership.filter(
+            dashtag => {
+                if (
+                    (dashboardID == -1  ||  dashtag.dashboardID == dashboardID)
 
-                &&
+                    &&
 
-                (dashboardTagName == ''  ||  dashgrp.dashboardTagName == dashboardTagName)
+                    (dashboardTagName == '*'  ||  dashtag.dashboardTagName == dashboardTagName)
+                ) { return dashtag };
             }
         );
+        return dashboardTagMembershipWorking;
     }
 
     addDashboardTagMembership(dashboardID: number, dashboardTagName: string) {

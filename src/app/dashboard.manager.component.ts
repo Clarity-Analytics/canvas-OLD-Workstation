@@ -80,8 +80,7 @@ export class DashboardManagerComponent implements OnInit {
 
         this.dashboards = this.eazlService.getDashboards();
         this.dashboardTagMembership = this.eazlService.getDashboardTagMembership();
-console.log('dashboardTagMembership', this.dashboardTagMembership)
-this.datasources = this.eazlService.getDataSources(-1);
+        this.datasources = this.eazlService.getDataSources(-1);
         this.popuMenuItems = [
             {
                 label: 'Add',
