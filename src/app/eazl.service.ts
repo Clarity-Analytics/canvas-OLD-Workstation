@@ -6055,8 +6055,8 @@ export class EazlService implements OnInit {
         // Mark the data as dirty
         this.globalVariableService.dirtyDataDashboardTagMembership = true;
 
-        return this.delete<EazlGroup>(
-            'groups/' + dashboardTagID.toString() + '/'
+        return this.delete<EazlDashboardTagMembership>(
+            'dashboard-tags/' + dashboardTagID.toString() + '/'
             )
                 .toPromise()
                 .then(response => {

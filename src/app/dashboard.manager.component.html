@@ -372,7 +372,11 @@
     </div>
 
     <div>
-        <p-dataTable [value]="dashboardTagMembership">
+        <p-dataTable 
+            [value]="dashboardTagMembership"
+            selectionMode="single"
+            [(selection)]="selectedMembershipTag"
+            >
             <p-column field="dashboardTagID" header="ID"></p-column>
             <p-column field="dashboardTagName" header="Name"></p-column>
             <p-column field="dashboardTagMembershipCreatedDateTime" header="Created"></p-column>

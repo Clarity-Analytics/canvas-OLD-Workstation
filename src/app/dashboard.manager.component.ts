@@ -63,6 +63,7 @@ export class DashboardManagerComponent implements OnInit {
     popuMenuItems: MenuItem[];                                  // Items in popup
     reports: Report[];                                          // List of Reports
     selectedDashboard: Dashboard;                               // Dashboard that was clicked on
+    selectedMembershipTag: DashboardTagMembership;              // Item clicked on in table
     tagname: string;                                            // Input tag name on form
     
     constructor(
@@ -275,11 +276,9 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDeleteDashboardTagMembership', '@Start');
 
         // Remove the makker(s)
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDashboardTagMembership(
-                event.items[i].dashboardTagID
-            );
-        }
+        this.eazlService.deleteDashboardTagMembership(
+            this.selectedMembershipTag.dashboardTagID
+        );
     }
 
     // onSourceReorderDashboardTagMembership(event) {
