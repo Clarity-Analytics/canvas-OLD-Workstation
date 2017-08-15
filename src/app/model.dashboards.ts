@@ -36,10 +36,12 @@ export class Dashboard {
     dashboardCode: string;                      // Code or ShortName
     dashboardName: string;                      // Descriptive name
     dashboardDescription: string;               // User description
+    dashboardPassword: string;                  // Optional password to open
     dashboardRefreshMode: string;               // Manual, onOpen
     dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard in seconds
-    // dashboardTabs: 
-    // dashboardTags: 
+    dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
+    dashboardTabs: number[]; 
+    dashboardTags: string[];
     dashboardComments: string;                  // Optional comments
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
     dashboardIsLocked: boolean;                 // If true, then cannot be modified
@@ -48,18 +50,17 @@ export class Dashboard {
     dashboardBackgroundColor: string;           // Optional color of the whole Dashboard
     dashboardBackgroundImageSrc: string;        // Optional picture to show in background
     dashboardDefaultExportFileType: string;     // Excel, JSON, PDF, PowerPoint, Jupyter or csv
-    // dashboardPermissions:
+    dashboardPermissions: string[];
     dashboardCreatedUserName: string;           // Created by
     dashboardCreatedDateTime: string;           // Created on
     dashboardUpdatedUserName: string;           // Updated by
     dashboardUpdatedDateTime: string;           // Updated on
     dashboardRefreshedDateTime: string;         // Data Refreshed on
     dashboardRefreshedUserName: string;         // Data Refreshed by
+    dashboardUrl: string;                       // URL used by RESTi
     dashboardNrGroups: number;                  // @Runtime: # of groups this dashboard belongs to
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
-    dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
     dashboardOwners: string;                    // CSV of UserNames of owners
-    dashboardPassword: string;                  // Optional password to open
     dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserNames shared with
     dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
 }
