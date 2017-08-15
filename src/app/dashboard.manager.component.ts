@@ -264,12 +264,10 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickAddDashboardTagMembership', '@Start');
 
         // Add this / these makker(s) - array if multi select
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDashboardTagMembership(
-                this.selectedDashboard.dashboardID,
-                'New Tag Name'
-            );
-        }
+        this.eazlService.addDashboardTagMembership(
+            this.selectedDashboard.dashboardID,
+            this.tagname
+        );
     }
 
     onClickDeleteDashboardTagMembership(event) {

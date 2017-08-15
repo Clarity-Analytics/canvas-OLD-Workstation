@@ -372,12 +372,14 @@
     </div>
 
     <div>
-        <p-dataTable [value]="datasources">
-            <p-column field="datasourceID" header="ID"></p-column>
-            <p-column field="datasourceName" header="Name"></p-column>
-            <p-column field="datasourceDescription" header="Description"></p-column>
+        <p-dataTable [value]="dashboardTagMembership">
+            <p-column field="dashboardTagID" header="ID"></p-column>
+            <p-column field="dashboardTagName" header="Name"></p-column>
+            <p-column field="dashboardTagMembershipCreatedDateTime" header="Created"></p-column>
+            <p-column field="dashboardTagMembershipCreatedUserName" header="Creator"></p-column>
+            <p-column field="dashboardTagMembershipUpdatedDateTime" header="Updated"></p-column>
+            <p-column field="dashboardTagMembershipUpdatedUserName" header="Updator"></p-column>
         </p-dataTable>
-
     </div>
 
     <div
