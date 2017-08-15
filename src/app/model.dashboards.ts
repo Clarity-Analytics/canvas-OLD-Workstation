@@ -6,10 +6,12 @@ export class EazlDashboard {
     code: string; 
     name: string;
     description: string;
+    password: string;
     refresh_mode: string;
     refresh_timer: number;
-    tabs: any;
-    tags: any;
+    default_tab_id: number;
+    tabs: number[];
+    tags: string[];
     comments: string;
     system_message: string;
     is_locked: false;
@@ -18,15 +20,13 @@ export class EazlDashboard {
     background_color: string;
     background_image: string;
     default_export_file_type: string;
-    permissions: any;
+    permissions: string[];
     creator: string;
     date_created: string;
     editor: string;
     date_edited: string;
-    open_tab_nr: number; 
-    password: string;
-    date_refreshed: string; 
     refresher: string; 
+    date_refreshed: string; 
     url: string;
 }
 
@@ -35,30 +35,33 @@ export class Dashboard {
     dashboardID: number;                        // Unique DB ID
     dashboardCode: string;                      // Code or ShortName
     dashboardName: string;                      // Descriptive name
+    dashboardDescription: string;               // User description
+    dashboardRefreshMode: string;               // Manual, onOpen
+    dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard in seconds
+    // dashboardTabs: 
+    // dashboardTags: 
+    dashboardComments: string;                  // Optional comments
+    dashboardSystemMessage: string;             // Optional for Canvas to say something to user
+    dashboardIsLocked: boolean;                 // If true, then cannot be modified
     isContainerHeaderDark: boolean;             // True if container header widgets dark (else light)
     showContainerHeader: boolean;               // True to show Container Header
     dashboardBackgroundColor: string;           // Optional color of the whole Dashboard
     dashboardBackgroundImageSrc: string;        // Optional picture to show in background
-    dashboardComments: string;                  // Optional comments
     dashboardDefaultExportFileType: string;     // Excel, JSON, PDF, PowerPoint, Jupyter or csv
-    dashboardDescription: string;               // User description
+    // dashboardPermissions:
+    dashboardCreatedUserName: string;           // Created by
+    dashboardCreatedDateTime: string;           // Created on
+    dashboardUpdatedUserName: string;           // Updated by
+    dashboardUpdatedDateTime: string;           // Updated on
+    dashboardRefreshedDateTime: string;         // Data Refreshed on
+    dashboardRefreshedUserName: string;         // Data Refreshed by
     dashboardNrGroups: number;                  // @Runtime: # of groups this dashboard belongs to
-    dashboardIsLocked: boolean;                 // If true, then cannot be modified
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
     dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
     dashboardOwners: string;                    // CSV of UserNames of owners
     dashboardPassword: string;                  // Optional password to open
-    dashboardRefreshMode: string;               // Manual, onOpen
-    dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard in seconds
     dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserNames shared with
     dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
-    dashboardSystemMessage: string;             // Optional for Canvas to say something to user
-    dashboardRefreshedDateTime: string;         // Data Refreshed on
-    dashboardRefreshedUserName: string;         // Data Refreshed by
-    dashboardUpdatedDateTime: string;           // Updated on
-    dashboardUpdatedUserName: string;           // Updated by
-    dashboardCreatedDateTime: string;           // Created on
-    dashboardCreatedUserName: string;           // Created by
 }
 
     

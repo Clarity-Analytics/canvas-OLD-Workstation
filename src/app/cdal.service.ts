@@ -1177,6 +1177,39 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
             dashboardWorking.dashboardName = '';
         }
 
+        if (eazlDashboard.description != null) {
+            dashboardWorking.dashboardDescription = eazlDashboard.description;
+        } else {
+            dashboardWorking.dashboardDescription = '';
+        }
+
+        if (eazlDashboard.refresh_mode != null) {
+            dashboardWorking.dashboardRefreshMode = eazlDashboard.refresh_mode;
+        } else {
+            dashboardWorking.dashboardRefreshMode = '';
+        }
+
+        if (eazlDashboard.refresh_timer != null) {
+            dashboardWorking.dashboardRefreshFrequency = eazlDashboard.refresh_timer;
+        } else {
+            dashboardWorking.dashboardRefreshFrequency = 0;
+        }
+
+        // if (eazlDashboard.refresh_timer != null) {
+        //     dashboardWorking.dashboardRefreshFrequency = eazlDashboard.refresh_timer;
+        // } else {
+        //     dashboardWorking.dashboardRefreshFrequency = 0;
+        // }
+
+        // if (eazlDashboard.refresh_timer != null) {
+        //     dashboardWorking.dashboardRefreshFrequency = eazlDashboard.refresh_timer;
+        // } else {
+        //     dashboardWorking.dashboardRefreshFrequency = 0;
+        // }
+
+
+
+        
         if (eazlDashboard.is_container_header_dark != null) {
             dashboardWorking.isContainerHeaderDark = eazlDashboard.is_container_header_dark;
         } else {
@@ -1213,20 +1246,14 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
             dashboardWorking.dashboardDefaultExportFileType = '';
         }
 
-        if (eazlDashboard.description != null) {
-            dashboardWorking.dashboardDescription = eazlDashboard.description;
-        } else {
-            dashboardWorking.dashboardDescription = '';
-        }
-
         if (eazlDashboard.is_locked != null) {
             dashboardWorking.dashboardIsLocked = eazlDashboard.is_locked;
         } else {
             dashboardWorking.dashboardIsLocked = false;
         }
 
-        if (eazlDashboard.open_tab_nr != null) {
-            dashboardWorking.dashboardOpenTabNr = eazlDashboard.open_tab_nr;
+        if (eazlDashboard.default_tab_id != null) {
+            dashboardWorking.dashboardOpenTabNr = eazlDashboard.default_tab_id;
         } else {
             dashboardWorking.dashboardOpenTabNr = 0;
         }
@@ -1235,18 +1262,6 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
             dashboardWorking.dashboardPassword = eazlDashboard.password;
         } else {
             dashboardWorking.dashboardPassword = '';
-        }
-
-        if (eazlDashboard.refresh_mode != null) {
-            dashboardWorking.dashboardRefreshMode = eazlDashboard.refresh_mode;
-        } else {
-            dashboardWorking.dashboardRefreshMode = '';
-        }
-
-        if (eazlDashboard.refresh_timer != null) {
-            dashboardWorking.dashboardRefreshFrequency = eazlDashboard.refresh_timer;
-        } else {
-            dashboardWorking.dashboardRefreshFrequency = 0;
         }
 
         if (eazlDashboard.system_message != null) {
