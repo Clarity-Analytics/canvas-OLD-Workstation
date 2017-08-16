@@ -1,4 +1,4 @@
-// Schema for Datasource per User, both via User & via Group membership
+// Schema for Dashboards per User, both via User & via Group membership
 
 // Eazl
 export class EazlDashboardsPerUser {

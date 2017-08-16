@@ -1,20 +1,6 @@
 // Schema for the Report class
 
 // Eazl
-export class EazlReportOLD {
-    id: number;                         // Unique DB ID
-    code: string;                       // Code
-    name: string;                       // Name
-    description: string;                // Description
-    parameters: string;                 // Parameters (optional)
-    datasource_id: number;              // FK to DataSource
-    datasource_parameters: string;      // Data Source Parameters
-    report_fields: string[];            // Array of report fields, obtained from DB
-    report_data: any[];                 // Array (json) of data rows
-    created_on: string;                 // Created on
-    created_by: string;                 // Created by
-}
-
 export class EazlReport {
     id: number;                         // Unique DB ID
     code: string;                       // Short Code
@@ -27,7 +13,7 @@ export class EazlReport {
         }
     ];
     specification: any;
-    fields: 
+    fields:
         [
         {
             name: string;
@@ -67,7 +53,7 @@ export class Report {
         }
     ];
     reportSpecification: any;
-    reportFields: 
+    reportFields:
         [
         {
             name: string;

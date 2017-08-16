@@ -427,6 +427,95 @@
 </div>
 
 
+
+
+
+
+
+
+
+
+
+<!--User permissions panel-->
+<div
+    class="userPermissionsPanel"
+    *ngIf="displayUserPermission"
+    >
+
+    <div
+        class="userPermissionsHeading"
+        >
+        User permissions for {{ selectedDashboard.dashboardName }}
+        <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
+            label="Cancel"
+            icon="fa-undo"
+            (click)="onClickUserPermissionCancel()"
+            >
+        </button>
+    </div>
+
+    <div>
+        <p-dataTable 
+            [value]="dashboardUserPermissions"
+            selectionMode="single"
+            [(selection)]="selectedUserPermission"
+            >
+            <p-column field="username" header="ID"></p-column>
+            <p-column field="permissions" header="Name"></p-column>
+        </p-dataTable>
+    </div>
+
+    <div
+        class="addUserPermission"
+        >
+        <div>
+            Tag Name
+            <input pInputText
+                type="text"
+                [(ngModel)]="tagname"
+                placeholder="Required"
+                pTooltip="Permission to add to this dashboard"
+                tooltipPosition="top"
+                />
+        </div>
+        <div
+            class="userPermissionButtons"
+            >
+            <button
+                class="panelButtonWithLabel"
+                pButton
+                type="button"
+                label="Delete"
+                icon="fa-minus"
+                (click)="onClickDeleteDashboardUserPermission()"
+                >
+            </button>
+
+            <button
+                class="panelButtonWithLabel"
+                pButton
+                type="button"
+                label="Add"
+                icon="fa-plus"
+                (click)="onClickAddDashboardUserPermission()"
+                >
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
 <!--Shared Users panel-->
 <div
     class="groupMembershipPanel"

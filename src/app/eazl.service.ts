@@ -68,7 +68,6 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTab }               from './model.dashboardTabs';
-// import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
@@ -81,7 +80,6 @@ import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
-// import { EazlDashboardTag }           from './model.dashboardTag';
 import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
@@ -4411,7 +4409,7 @@ export class EazlService implements OnInit {
                 detail:   'The Dashboard data is being refreshed; request again to get the latest from the database'
             });
         }
-
+console.log('1')
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
 
@@ -4424,6 +4422,7 @@ export class EazlService implements OnInit {
         if (this.dashboardTagMembership == null) {
             this.dashboardTagMembership = [];
         }
+console.log('2')
 
         // Filter on related ones, IF so requested
         if (relatedUsername != '*') {
@@ -4439,6 +4438,7 @@ export class EazlService implements OnInit {
             dashboardsWorking = dashboardsWorking.filter( dw =>
                 (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
+console.log('3')
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
@@ -4452,6 +4452,7 @@ export class EazlService implements OnInit {
                 }
             }).length;
         });
+console.log('4')
 
         // Add dashboardIsLiked calculated field
         dashboardsWorking.forEach( dw => {
@@ -4468,6 +4469,7 @@ export class EazlService implements OnInit {
                 dw.dashboardIsLiked = true;
             }
         });
+console.log('5')
 
         // Add TOTAL dashboardNrUsersSharedWith calculated field
         dashboardsWorking.forEach( dw => {
@@ -4480,6 +4482,7 @@ export class EazlService implements OnInit {
                 )
             ).length
         });
+console.log('6')
 
         // Add TOTAL dashboardNrGroupsSharedWith calculated field
         dashboardsWorking.forEach( dw => {
@@ -4492,6 +4495,7 @@ export class EazlService implements OnInit {
                 )
             ).length;
         });
+console.log('7')
 
         // Return the filtered result
         return dashboardsWorking.filter(d =>
