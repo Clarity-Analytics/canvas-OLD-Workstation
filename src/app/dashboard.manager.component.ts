@@ -20,13 +20,38 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
-// import { DashboardTag }               from './model.dashboardTag';
 import { DataSource }                 from './model.datasource';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
 import { User }                       from './model.user';
+
+export interface userPermissions {
+    username: string;
+    firstName: string;
+    lastName: string;
+    canExecute: boolean;
+    canDelete: boolean;
+}
+
+const USERPERMISSIONS: userPermissions[] = 
+[
+    {
+    username: 'janniei',
+    firstName: 'Jann',
+    lastName: 'Immels',
+    canExecute: true,
+    canDelete: false
+    },
+    {
+        username: 'bradleyk',
+        firstName: 'Jann',
+        lastName: 'Immels',
+        canExecute: false,
+        canDelete: true
+        }
+    ]
 
 @Component({
     selector:    'dashboardManager',
@@ -35,6 +60,10 @@ import { User }                       from './model.user';
     encapsulation: ViewEncapsulation.None
 })
 export class DashboardManagerComponent implements OnInit {
+
+    dashboardUserPermissions: userPermissions[] = USERPERMISSIONS;  // Array of permissions
+    displayUserPermissions: boolean = false;                      // True to show permissions panel
+
 
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
@@ -255,6 +284,15 @@ export class DashboardManagerComponent implements OnInit {
         this.displayTagMembership = false;
     }
 
+    onClickUserPermissionCancel() {
+        // Close User Permissions panel
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
+
+        // Close popup
+        this.displayUserPermissions = false;
+    }
+
+
     onClickAddDashboardTagMembership(event) {
         // Add tag membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickAddDashboardTagMembership', '@Start');
@@ -356,26 +394,28 @@ export class DashboardManagerComponent implements OnInit {
         this.availableSharedWith = [];
 
         // Get the related Users
-        this.eazlService.getUsersRelatedToDashboard
-            (this.selectedDashboard.dashboardID,
-             'SharedWith'
-             ).forEach(sglusr => {
-                this.belongstoSharedWith.push(sglusr.username);
-            }
-        )
+        // this.eazlService.getUsersRelatedToDashboard
+        //     (this.selectedDashboard.dashboardID,
+        //      'SharedWith'
+        //      ).forEach(sglusr => {
+        //         this.belongstoSharedWith.push(sglusr.username);
+        //     }
+        // )
 
         // Get the complement (NOT related Users)
-        this.eazlService.getUsersRelatedToDashboard
-            (this.selectedDashboard.dashboardID,
-            'SharedWith',
-            false
-            ).forEach(sglusr => {
-                this.availableSharedWith.push(sglusr.username);
-            }
-        )
+        // this.eazlService.getUsersRelatedToDashboard
+        //     (this.selectedDashboard.dashboardID,
+        //     'SharedWith',
+        //     false
+        //     ).forEach(sglusr => {
+        //         this.availableSharedWith.push(sglusr.username);
+        //     }
+        // )
 
         // Show popup
-        this.displaySharedWith = true;
+        // this.displaySharedWith = true;
+this.displayUserPermissions = true
+console.log('this.displayUserPermissions', this.displayUserPermissions)
     }
 
     onClickUsersSharedWithCancel() {

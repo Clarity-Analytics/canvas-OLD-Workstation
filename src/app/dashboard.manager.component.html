@@ -432,14 +432,10 @@
 
 
 
-
-
-
-
 <!--User permissions panel-->
 <div
-    class="userPermissionsPanel"
-    *ngIf="displayUserPermission"
+    class="groupMembershipPanel"
+    *ngIf="displayUserPermissions"
     >
 
     <div
@@ -460,52 +456,17 @@
     <div>
         <p-dataTable 
             [value]="dashboardUserPermissions"
-            selectionMode="single"
             [(selection)]="selectedUserPermission"
+            dataKey="username"
             >
-            <p-column field="username" header="ID"></p-column>
-            <p-column field="permissions" header="Name"></p-column>
+            <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+            <p-column field="username" header="username"></p-column>
+            <p-column field="firstName" header="firstName"></p-column>
+            <p-column field="lastName" header="lastName"></p-column>
+            <p-column field="canExecute" header="canExecute"></p-column>
+            <p-column field="canDelete" header="canDelete"></p-column>
         </p-dataTable>
     </div>
-
-    <div
-        class="addUserPermission"
-        >
-        <div>
-            Tag Name
-            <input pInputText
-                type="text"
-                [(ngModel)]="tagname"
-                placeholder="Required"
-                pTooltip="Permission to add to this dashboard"
-                tooltipPosition="top"
-                />
-        </div>
-        <div
-            class="userPermissionButtons"
-            >
-            <button
-                class="panelButtonWithLabel"
-                pButton
-                type="button"
-                label="Delete"
-                icon="fa-minus"
-                (click)="onClickDeleteDashboardUserPermission()"
-                >
-            </button>
-
-            <button
-                class="panelButtonWithLabel"
-                pButton
-                type="button"
-                label="Add"
-                icon="fa-plus"
-                (click)="onClickAddDashboardUserPermission()"
-                >
-            </button>
-        </div>
-    </div>
-
 </div>
 
 
