@@ -74,9 +74,12 @@ export class Dashboard {
 
 export class DashboardUserPermissions {
     username: string;
-    permissions: string[];                      // Permissions at model level per dashboard: 
-            // add_dashboard, assign_permission_dashboard, change_dashboard,
-            // delete_dashboard, remove_permission_dashboard, view_dashboard
+    canAddDashboard: boolean;
+    canAssignPermissionDashboard: boolean;
+    canChangeDashboard: boolean;
+    canDeleteDashboard: boolean;
+    canRemovePermissionDashboard: boolean;
+    canViewDashboard: boolean;
 }
     
 

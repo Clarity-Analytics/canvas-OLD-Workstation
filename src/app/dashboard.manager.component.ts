@@ -20,6 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
+import { DashboardUserPermissions }   from './model.dashboards';
 import { DataSource }                 from './model.datasource';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { EazlUser }                   from './model.user';
@@ -27,31 +28,6 @@ import { Group }                      from './model.group';
 import { Report }                     from './model.report';
 import { User }                       from './model.user';
 
-export interface userPermissions {
-    username: string;
-    firstName: string;
-    lastName: string;
-    canExecute: boolean;
-    canDelete: boolean;
-}
-
-const USERPERMISSIONS: userPermissions[] = 
-[
-    {
-    username: 'janniei',
-    firstName: 'Jann',
-    lastName: 'Immels',
-    canExecute: true,
-    canDelete: false
-    },
-    {
-        username: 'bradleyk',
-        firstName: 'Jann',
-        lastName: 'Immels',
-        canExecute: false,
-        canDelete: true
-        }
-    ]
 
 @Component({
     selector:    'dashboardManager',
@@ -290,7 +266,7 @@ export class DashboardManagerComponent implements OnInit {
 
 console.log('this.dashboardUserPermissions', this.dashboardUserPermissions)        
 console.log('selectedUserPermission', this.selectedUserPermission)
-// Close popup
+        // Close popup
         this.displayUserPermissions = false;
     }
 

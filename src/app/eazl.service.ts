@@ -4605,7 +4605,12 @@ export class EazlService implements OnInit {
         )
             .subscribe(
                 (eazlUsrPerm) => {
-                    dashboardUserPermissionsWorking = eazlUsrPerm;
+
+                    for (var i = 0; i < eazlUsrPerm.length; i++) {
+                        dashboardUserPermissionsWorking.push( 
+                            this.cdal.loadDashboardUserPermissions(eazlUsrPerm[i])
+                        );
+                    };
                 }
             )
 
