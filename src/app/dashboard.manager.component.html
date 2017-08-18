@@ -462,16 +462,67 @@
             (onRowUnselect)="onRowSelectUserPermission($event)"
             >
             <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-            <p-column field="username" header="username"></p-column>
-            <p-column field="firstName" header="firstName"></p-column>
-            <p-column field="lastName" header="lastName"></p-column>
-            <p-column field="canExecute" header="canExecute">
+            <p-column field="username" header="username">
                 <ng-template let-col let-user="rowData" pTemplate="body">
-                    <span >{{user[col.field]}}</span>
+                    <p-checkbox 
+                        name="groupname" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        >
+                    </p-checkbox>
                 </ng-template>
             </p-column>
-
-            <p-column field="canDelete" header="canDelete">
+            <p-column field="canAddDashboard" header="Add?">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="groupname" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column field="canAssignPermissionDashboard" header="Assign?">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="groupname" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column field="canChangeDashboard" header="Change?">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="groupname" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column field="canDeleteDashboard" header="Delete?">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="groupname" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column field="canRemovePermissionDashboard" header="Remove?">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="groupname" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column field="canViewDashboard" header="View?">
                 <ng-template let-col let-user="rowData" pTemplate="body">
                     <p-checkbox 
                         name="groupname" 

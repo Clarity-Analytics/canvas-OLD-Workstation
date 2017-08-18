@@ -49,6 +49,9 @@ export class GlobalVariableService {
     // Environment
     testEnvironmentName: string = '';                           // Spaces = in PROD
 
+    // Checkers for async results
+    isReadyDashboardUserPermissions: boolean = false;           // True when results ready
+    
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     dirtyDataTextAlignDropdown: boolean = true;
     dirtyDataBorderDropdown: boolean = true;

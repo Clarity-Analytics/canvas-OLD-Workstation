@@ -36,17 +36,11 @@ import { User }                       from './model.user';
     encapsulation: ViewEncapsulation.None
 })
 export class DashboardManagerComponent implements OnInit {
-
-    dashboardUserPermissions: userPermissions[] = USERPERMISSIONS;  // Array of permissions
-    displayUserPermissions: boolean = false;                      // True to show permissions panel
-    selectedUserPermission: userPermissions[];
-
+    
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
-    // availableDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard does NOT belongs to
     availableGroupSharedWith: Group[] = [];                     // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
-    // belongstoDashboardTag: DashboardTag[] = [];                 // List of Groups Dashboard already belongs to
     belongstoSharedWith: string[] = [];                         // List of UserName with whom this Dashboard has been shared
     belongstoGroupsSharedWith: Group[] = [];                    // List of Groups to which Dashboard has been shared
     canvasMessages: CanvasMessage[];                            // List of Canvas Messages
@@ -55,6 +49,8 @@ export class DashboardManagerComponent implements OnInit {
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardTags: string[];                                    // DataList of tags
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
+    dashboardUserPermissions: DashboardUserPermissions[];       // User of permissions
+    displayUserPermissions: boolean = false;                    // True to show permissions panel
     datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
     displayTagMembership: boolean = false;                      // True to display popup for GrpMbrship
@@ -69,6 +65,7 @@ export class DashboardManagerComponent implements OnInit {
     reports: Report[];                                          // List of Reports
     selectedDashboard: Dashboard;                               // Dashboard that was clicked on
     selectedMembershipTag: DashboardTagMembership;              // Item clicked on in table
+    selectedUserPermission: DashboardUserPermissions[];         // Selected in table
     tagname: string;                                            // Input tag name on form
 
     constructor(
@@ -264,7 +261,6 @@ export class DashboardManagerComponent implements OnInit {
         // Close User Permissions panel
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
-console.log('this.dashboardUserPermissions', this.dashboardUserPermissions)        
 console.log('selectedUserPermission', this.selectedUserPermission)
         // Close popup
         this.displayUserPermissions = false;
@@ -295,16 +291,6 @@ console.log('selectedUserPermission', this.selectedUserPermission)
             this.selectedMembershipTag.dashboardTagID
         );
     }
-
-    // onSourceReorderDashboardTagMembership(event) {
-    //     // User clicked onSourceReorder on Group Membership
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'onSourceReorderDashboardTagMembership', '@Start');
-    // }
-
-    // onTargetReorderDashboardTagMembership(event) {
-    //     // User clicked onTargetReorder on Group Membership
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderDashboardTagMembership', '@Start');
-    // }
 
     dashboardMenuGroupsSharedWith(dashboard: Dashboard) {
         // Groups with which the selected Dashboard is shared
@@ -366,14 +352,51 @@ console.log('selectedUserPermission', this.selectedUserPermission)
         }
     }
 
+    sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+          if ((new Date().getTime() - start) > milliseconds){
+            break;
+          }
+        }
+      }
+
     dashboardMenuUsersSharedWith(dashboard: Dashboard) {
         // Users with whom the selected Dashboard is shared
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuUsersSharedWith', '@Start');
+console.log('START this.displayUserPermissions', this.displayUserPermissions,this.dashboardUserPermissions)
 
-        // Get the current and available user shared with
-        this.belongstoSharedWith = [];
-        this.availableSharedWith = [];
+        // Get the current and available user shared with; as a Promise to cater for Async
+        this.eazlService.getdashboardUserPermissions(
+            dashboard.dashboardID
+        )
+            .then(dashUsrPer => {
+                this.dashboardUserPermissions = dashUsrPer;
+                this.displayUserPermissions = true;
+            })
+            .catch(err => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Login Failed',
+                    detail:   'Auto login for janniei failed'
+                });
+            });
+
+
+console.log('END this.displayUserPermissions', this.displayUserPermissions, this.dashboardUserPermissions)
+        
+//         for (var i = 0; i < 26; i++) {
+// console.log('this.globalVariableService.isReadyDashboardUserPermissions', this.globalVariableService.isReadyDashboardUserPermissions)            
+//             if (this.globalVariableService.isReadyDashboardUserPermissions) {
+//                 // Show popup
+//                 this.displayUserPermissions = true;
+// console.log('this.displayUserPermissions', this.displayUserPermissions)
+//                 break;
+//             }
+//             this.sleep(1000);
+// console.log('i', i)            
+        // }
 
         // Get the related Users
         // this.eazlService.getUsersRelatedToDashboard
@@ -396,8 +419,8 @@ console.log('selectedUserPermission', this.selectedUserPermission)
 
         // Show popup
         // this.displaySharedWith = true;
-this.displayUserPermissions = true
-console.log('this.displayUserPermissions', this.displayUserPermissions)
+// this.displayUserPermissions = true
+// console.log('this.displayUserPermissions', this.displayUserPermissions)
     }
 
     onClickUsersSharedWithCancel() {

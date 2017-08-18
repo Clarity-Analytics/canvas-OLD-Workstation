@@ -3863,7 +3863,7 @@ export class EazlService implements OnInit {
 
         this.globalFunctionService.printToConsole(this.constructor.name, 'login', '@Start');
 
-    		return this.post<Token>(
+        return this.post<Token>(
                 'auth-token',
                 {username: username, password: password}
                 )
@@ -4595,27 +4595,38 @@ export class EazlService implements OnInit {
         return dashboardTabNameWorking;
     }
 
-    getdashboardUserPermissions(dashboardID: number): DashboardUserPermissions[] {
+    getdashboardUserPermissions(dashboardID: number): Promise<any> {
         // Returns the users & their permissions for a given dashboardID
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
 
+        this.globalVariableService.isReadyDashboardUserPermissions = false;
         let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
-        this.get<EazlDashboardUserPermissions>(
+        return this.get<EazlDashboardUserPermissions>(
             'dashboards/' + dashboardID.toString() + '/user-permissions/'
         )
-            .subscribe(
-                (eazlUsrPerm) => {
+            .toPromise()
+            .then(eazlUsrPerm => {
 
                     for (var i = 0; i < eazlUsrPerm.length; i++) {
                         dashboardUserPermissionsWorking.push( 
                             this.cdal.loadDashboardUserPermissions(eazlUsrPerm[i])
                         );
                     };
-                }
-            )
+                this.globalVariableService.isReadyDashboardUserPermissions = true;
+console.log('EAZL done')                
 
-        // Return
-        return dashboardUserPermissionsWorking;
+                // Return
+                return dashboardUserPermissionsWorking;
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Update Group',
+                    detail:   'Unsuccessful in updating your Group info to the database'
+                });
+                error.message || error
+            })
+            
     }
 
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
