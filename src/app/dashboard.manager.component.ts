@@ -63,7 +63,7 @@ export class DashboardManagerComponent implements OnInit {
 
     dashboardUserPermissions: userPermissions[] = USERPERMISSIONS;  // Array of permissions
     displayUserPermissions: boolean = false;                      // True to show permissions panel
-
+    selectedUserPermission: userPermissions[];
 
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
@@ -288,10 +288,16 @@ export class DashboardManagerComponent implements OnInit {
         // Close User Permissions panel
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
-        // Close popup
+console.log('this.dashboardUserPermissions', this.dashboardUserPermissions)        
+console.log('selectedUserPermission', this.selectedUserPermission)
+// Close popup
         this.displayUserPermissions = false;
     }
 
+    onRowSelectUserPermission(event) {
+console.log('onRowSelectUserPermission', event.type, event.data, event.originalEvent.checked, event)        
+console.log('selectedUserPermission', this.selectedUserPermission)
+    }
 
     onClickAddDashboardTagMembership(event) {
         // Add tag membership

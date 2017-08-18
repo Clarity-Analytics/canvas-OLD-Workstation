@@ -458,13 +458,29 @@
             [value]="dashboardUserPermissions"
             [(selection)]="selectedUserPermission"
             dataKey="username"
+            (onRowSelect)="onRowSelectUserPermission($event)"
+            (onRowUnselect)="onRowSelectUserPermission($event)"
             >
             <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
             <p-column field="username" header="username"></p-column>
             <p-column field="firstName" header="firstName"></p-column>
             <p-column field="lastName" header="lastName"></p-column>
-            <p-column field="canExecute" header="canExecute"></p-column>
-            <p-column field="canDelete" header="canDelete"></p-column>
+            <p-column field="canExecute" header="canExecute">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <span >{{user[col.field]}}</span>
+                </ng-template>
+            </p-column>
+
+            <p-column field="canDelete" header="canDelete">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="groupname" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
         </p-dataTable>
     </div>
 </div>

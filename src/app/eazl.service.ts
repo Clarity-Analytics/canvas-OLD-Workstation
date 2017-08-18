@@ -4409,7 +4409,7 @@ export class EazlService implements OnInit {
                 detail:   'The Dashboard data is being refreshed; request again to get the latest from the database'
             });
         }
-console.log('1')
+
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
 
@@ -4422,7 +4422,6 @@ console.log('1')
         if (this.dashboardTagMembership == null) {
             this.dashboardTagMembership = [];
         }
-console.log('2')
 
         // Filter on related ones, IF so requested
         if (relatedUsername != '*') {
@@ -4438,68 +4437,75 @@ console.log('2')
             dashboardsWorking = dashboardsWorking.filter( dw =>
                 (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
-console.log('3')
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
 
         // Add NrGroups calculated field
-        dashboardsWorking.forEach( dw => {
-            dw.dashboardNrGroups = 0;
-            dw.dashboardNrGroups = this.dashboardTagMembership.filter( dg => {
-                if (dg.dashboardID == dw.dashboardID) {
-                    return dg;
-                }
-            }).length;
-        });
-console.log('4')
+        if (dashboardsWorking != null) {
+            dashboardsWorking.forEach( dw => {
+                dw.dashboardNrGroups = 0;
+                dw.dashboardNrGroups = this.dashboardTagMembership.filter( dg => {
+                    if (dg.dashboardID == dw.dashboardID) {
+                        return dg;
+                    }
+                }).length;
+            });
+        };
 
         // Add dashboardIsLiked calculated field
-        dashboardsWorking.forEach( dw => {
-            dw.dashboardIsLiked = false;
-            if (this.dashboardUserRelationship.filter(dur =>
-                (
-                    dur.dashboardID == dw.dashboardID
-                    &&
-                    dur.userName == currentUser
-                    &&
-                    dur.dashboardUserRelationshipType == 'Likes'
-                )
-            ).length > 0) {
-                dw.dashboardIsLiked = true;
-            }
-        });
-console.log('5')
+        if (dashboardsWorking != null) {            
+            dashboardsWorking.forEach( dw => {
+                dw.dashboardIsLiked = false;
+                if (this.dashboardUserRelationship.filter(dur =>
+                    (
+                        dur.dashboardID == dw.dashboardID
+                        &&
+                        dur.userName == currentUser
+                        &&
+                        dur.dashboardUserRelationshipType == 'Likes'
+                    )
+                ).length > 0) {
+                    dw.dashboardIsLiked = true;
+                }
+            });
+        };
 
         // Add TOTAL dashboardNrUsersSharedWith calculated field
-        dashboardsWorking.forEach( dw => {
-            dw.dashboardNrUsersSharedWith = 0;
-            dw.dashboardNrUsersSharedWith = this.dashboardUserRelationship.filter(dur =>
-                (
-                    dur.dashboardID == dw.dashboardID
-                    &&
-                    dur.dashboardUserRelationshipType == 'SharedWith'
-                )
-            ).length
-        });
-console.log('6')
+        if (dashboardsWorking != null) {
+            dashboardsWorking.forEach( dw => {
+                dw.dashboardNrUsersSharedWith = 0;
+                dw.dashboardNrUsersSharedWith = this.dashboardUserRelationship.filter(dur =>
+                    (
+                        dur.dashboardID == dw.dashboardID
+                        &&
+                        dur.dashboardUserRelationshipType == 'SharedWith'
+                    )
+                ).length
+            });
+        };
 
         // Add TOTAL dashboardNrGroupsSharedWith calculated field
-        dashboardsWorking.forEach( dw => {
-            dw.dashboardNrGroupsSharedWith = 0;
-            dw.dashboardNrGroupsSharedWith = this.dashboardGroupRelationship.filter(dgr =>
-                (
-                    dgr.dashboardID == dw.dashboardID
-                    &&
-                    dgr.dashboardGroupRelationshipType == 'SharedWith'
-                )
-            ).length;
-        });
-console.log('7')
+        if (dashboardsWorking != null) {
+            dashboardsWorking.forEach( dw => {
+                dw.dashboardNrGroupsSharedWith = 0;
+                dw.dashboardNrGroupsSharedWith = this.dashboardGroupRelationship.filter(dgr =>
+                    (
+                        dgr.dashboardID == dw.dashboardID
+                        &&
+                        dgr.dashboardGroupRelationshipType == 'SharedWith'
+                    )
+                ).length;
+            });
+        };
 
         // Return the filtered result
-        return dashboardsWorking.filter(d =>
-            (dashboardID == -1  ||  d.dashboardID == dashboardID));
+        if (dashboardsWorking != null) {
+            return dashboardsWorking.filter(d =>
+                (dashboardID == -1  ||  d.dashboardID == dashboardID))
+        } else {
+            return dashboardsWorking
+        };
     }
 
     getDashboardSelectionItems(
@@ -4530,15 +4536,18 @@ console.log('7')
 
         // Fill the dropdown format
         let dashboardsSelectItemsWorking: SelectItem[] = [];
-        for (var i = 0; i < dashboardsWorking.length; i++) {
-            dashboardsSelectItemsWorking.push({
-                label: dashboardsWorking[i].dashboardName,
-                value: {
-                    id: dashboardsWorking[i].dashboardID,
-                    name: dashboardsWorking[i].dashboardName
-                }
-            });
-        }
+        if (dashboardsWorking != null) {
+            for (var i = 0; i < dashboardsWorking.length; i++) {
+                dashboardsSelectItemsWorking.push({
+                    label: dashboardsWorking[i].dashboardName,
+                    value: {
+                        id: dashboardsWorking[i].dashboardID,
+                        name: dashboardsWorking[i].dashboardName
+                    }
+                });
+            };
+        };
+
         return dashboardsSelectItemsWorking;
     }
 
