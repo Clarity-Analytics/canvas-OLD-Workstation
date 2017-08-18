@@ -65,6 +65,7 @@ import { ReconnectingWebSocket }      from './websocket.service';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { CanvasUser }                 from './model.user';
+import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTab }               from './model.dashboardTabs';
@@ -75,12 +76,13 @@ import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlAppData }                from './model.appdata';
+import { EazlCanvasMessage }          from './model.canvasMessage';
+import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
-import { EazlCanvasMessage }          from './model.canvasMessage';
-import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
-import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
+import { DashboardUserPermissions }   from './model.dashboards';
+import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
@@ -4593,6 +4595,23 @@ export class EazlService implements OnInit {
         return dashboardTabNameWorking;
     }
 
+    getdashboardUserPermissions(dashboardID: number): DashboardUserPermissions[] {
+        // Returns the users & their permissions for a given dashboardID
+        this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
+
+        let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
+        this.get<EazlDashboardUserPermissions>(
+            'dashboards/' + dashboardID.toString() + '/user-permissions/'
+        )
+            .subscribe(
+                (eazlUsrPerm) => {
+                    dashboardUserPermissionsWorking = eazlUsrPerm;
+                }
+            )
+
+        // Return
+        return dashboardUserPermissionsWorking;
+    }
 
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
         // Return a list of Dashboard Tabs for a given DashboardID as SelectItem Array

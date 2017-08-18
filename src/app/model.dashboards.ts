@@ -1,4 +1,4 @@
-// Schema for Dashboard class
+// Schema for Dashboard-related classes
 
 // Eazl
 export class EazlDashboard {
@@ -28,6 +28,13 @@ export class EazlDashboard {
     refresher: string; 
     date_refreshed: string; 
     url: string;
+}
+
+export class EazlDashboardUserPermissions {
+    username: string;
+    permissions: string[];                      // Permissions at model level per dashboard: 
+            // add_dashboard, assign_permission_dashboard, change_dashboard,
+            // delete_dashboard, remove_permission_dashboard, view_dashboard
 }
 
 // Canvas
@@ -65,5 +72,11 @@ export class Dashboard {
     dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
 }
 
+export class DashboardUserPermissions {
+    username: string;
+    permissions: string[];                      // Permissions at model level per dashboard: 
+            // add_dashboard, assign_permission_dashboard, change_dashboard,
+            // delete_dashboard, remove_permission_dashboard, view_dashboard
+}
     
 
