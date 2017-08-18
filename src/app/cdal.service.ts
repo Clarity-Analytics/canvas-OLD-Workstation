@@ -21,6 +21,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { Dashboard }                  from './model.dashboards';
+import { DashboardUserPermissions }   from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
@@ -33,6 +34,7 @@ import { EazlAppData }                from './model.appdata';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
+import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardTag }           from './model.dashboardTag';
@@ -1322,6 +1324,28 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
 console.log('CDAL dashboardWorking',dashboardWorking)
         // Return the result
         return dashboardWorking;
+    }
+
+    loadDashboardUserPermissions(eazlDashboardUserPermissions): DashboardUserPermissions {
+        // Load User Permissions for a given Dashboard: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserPermissions', '@Start');
+        
+        let dashboardUserPermissionsWorking = new DashboardUserPermissions();
+        
+        if (eazlDashboardUserPermissions.username != null) {
+            dashboardUserPermissionsWorking.username = eazlDashboardUserPermissions.username;
+        } else {
+            dashboardUserPermissionsWorking.username = '';
+        }
+
+        if (eazlDashboardUserPermissions.permissions != null) {
+            dashboardUserPermissionsWorking.permissions = eazlDashboardUserPermissions.permissions;
+        } else {
+            dashboardUserPermissionsWorking.permissions = [];
+        }
+
+        // Return
+        return dashboardUserPermissionsWorking;
     }
 
     loadDashboardsPerUser(eazlDashboardsPerUser: EazlDashboardsPerUser): DashboardsPerUser {
