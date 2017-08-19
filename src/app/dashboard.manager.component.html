@@ -446,6 +446,15 @@
             class="panelButtonWithLabel"
             pButton
             type="button"
+            label="Save"
+            icon="fa-save"
+            (click)="onClickUserPermissionSave()"
+            >
+        </button>
+    <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickUserPermissionCancel()"
@@ -459,7 +468,7 @@
             [(selection)]="selectedUserPermission"
             dataKey="username"
             (onRowSelect)="onRowSelectUserPermission($event)"
-            (onRowUnselect)="onRowSelectUserPermission($event)"
+            (onRowUnselect)="onRowUnSelectUserPermission($event)"
             >
             <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
             <p-column field="username" header="username">

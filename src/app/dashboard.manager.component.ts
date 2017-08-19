@@ -257,17 +257,43 @@ export class DashboardManagerComponent implements OnInit {
         this.displayTagMembership = false;
     }
 
-    onClickUserPermissionCancel() {
-        // Close User Permissions panel
+    onClickUserPermissionSave() {
+        // Close User Permissions panel, and update DB
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
-console.log('selectedUserPermission', this.selectedUserPermission)
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'info',
+            summary:  'Saved',
+            detail:   'Records updated in database'
+        });
+
         // Close popup
         this.displayUserPermissions = false;
     }
 
+    onClickUserPermissionCancel() {
+        // Close User Permissions panel, and update DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
+
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'warn',
+            summary:  'Cancel',
+            detail:   'As requested, no changes were applied'
+        });
+
+        // Close popup
+        this.displayUserPermissions = false;
+    }
+
+    onRowUnSelectUserPermission(event) {
+        // Unselect a row in User Permissions
+        this.globalFunctionService.printToConsole(this.constructor.name,'onRowUnSelectUserPermission', '@Start');
+console.log('selectedUserPermission', this.selectedUserPermission)
+    }
+
     onRowSelectUserPermission(event) {
-console.log('onRowSelectUserPermission', event.type, event.data, event.originalEvent.checked, event)
+        // Select a row in User Permissions
+        this.globalFunctionService.printToConsole(this.constructor.name,'onRowSelectUserPermission', '@Start');
 console.log('selectedUserPermission', this.selectedUserPermission)
     }
 
@@ -351,15 +377,6 @@ console.log('selectedUserPermission', this.selectedUserPermission)
             );
         }
     }
-
-    sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-          if ((new Date().getTime() - start) > milliseconds){
-            break;
-          }
-        }
-      }
 
     dashboardMenuUsersSharedWith(dashboard: Dashboard) {
         // Users with whom the selected Dashboard is shared
