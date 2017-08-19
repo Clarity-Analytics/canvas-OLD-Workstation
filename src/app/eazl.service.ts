@@ -4613,7 +4613,6 @@ export class EazlService implements OnInit {
                         );
                     };
                 this.globalVariableService.isReadyDashboardUserPermissions = true;
-console.log('EAZL done')                
 
                 // Return
                 return dashboardUserPermissionsWorking;
@@ -4629,6 +4628,27 @@ console.log('EAZL done')
             
     }
 
+    updatedashboardModelPermissions(
+        id: number,
+        name: string,
+        model_name: string,
+        permissions: string[]) {
+        // Updates permissions for a given model
+        //  id - DB id for record / object to add share, ie 0
+        //  name - user or group name, ie Admin
+        //  model_name - model name, ie group
+        //  permissions - list of allowed ones, ie ['view_package', 'execute_package']
+        this.globalFunctionService.printToConsole(this.constructor.name,'updatedashboardModelPermissions', '@Start');
+
+        return this.put<any>(
+            name + '/' + id.toString() + '/share/',
+            { 
+                name: name,
+                model_name: model_name,
+                permissions: permissions
+            });
+    }
+    
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
         // Return a list of Dashboard Tabs for a given DashboardID as SelectItem Array
         // - selectedDashboardID = filter

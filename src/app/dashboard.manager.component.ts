@@ -261,6 +261,8 @@ export class DashboardManagerComponent implements OnInit {
         // Close User Permissions panel, and update DB
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
+        // Getting user permissions
+
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'info',
             summary:  'Saved',
@@ -288,13 +290,11 @@ export class DashboardManagerComponent implements OnInit {
     onRowUnSelectUserPermission(event) {
         // Unselect a row in User Permissions
         this.globalFunctionService.printToConsole(this.constructor.name,'onRowUnSelectUserPermission', '@Start');
-console.log('selectedUserPermission', this.selectedUserPermission)
     }
 
     onRowSelectUserPermission(event) {
         // Select a row in User Permissions
         this.globalFunctionService.printToConsole(this.constructor.name,'onRowSelectUserPermission', '@Start');
-console.log('selectedUserPermission', this.selectedUserPermission)
     }
 
     onClickAddDashboardTagMembership(event) {
@@ -419,8 +419,8 @@ console.log('selectedUserPermission', this.selectedUserPermission)
             .catch(err => {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
-                    summary:  'Login Failed',
-                    detail:   'Auto login for janniei failed'
+                    summary:  'User permissions',
+                    detail:   'Getting user permissions failed'
                 });
             });
 
