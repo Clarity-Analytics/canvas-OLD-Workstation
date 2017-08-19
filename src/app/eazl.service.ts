@@ -4629,24 +4629,48 @@ export class EazlService implements OnInit {
     }
 
     updatedashboardModelPermissions(
+        url: string,
         id: number,
         name: string,
         model_name: string,
         permissions: string[]) {
         // Updates permissions for a given model
+        //  url - url of model to add share to
         //  id - DB id for record / object to add share, ie 0
         //  name - user or group name, ie Admin
-        //  model_name - model name, ie group
+        //  model_name - user or group, ie group
         //  permissions - list of allowed ones, ie ['view_package', 'execute_package']
         this.globalFunctionService.printToConsole(this.constructor.name,'updatedashboardModelPermissions', '@Start');
-
-        return this.put<any>(
-            name + '/' + id.toString() + '/share/',
+console.log('EAZL url ...', url + '/' + id.toString() + '/share/')
+        this.post<any>(
+            url + '/' + id.toString() + '/share/',
             { 
                 name: name,
                 model_name: model_name,
                 permissions: permissions
-            });
+            })
+            .toPromise()
+            .then(element => {
+console.log('EAZL then ...', element)
+                
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'info',
+                    summary:  'Update Permisionss Tab',
+                    detail:   'Successfully updated permissions in the database'
+                });
+
+                // Return the data
+                return element;
+            } )
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Update Permisionss Tab',
+                    detail:   'Unsuccessful in updating permissions info to the database'
+                });
+                error.message || error
+            })
+    
     }
     
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {

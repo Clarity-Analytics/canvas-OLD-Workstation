@@ -261,13 +261,44 @@ export class DashboardManagerComponent implements OnInit {
         // Close User Permissions panel, and update DB
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
-        // Getting user permissions
+        this.eazlService.updatedashboardModelPermissions(
+            'packages',
+            3,
+            'Admin',
+            'group',
+            ['view_package', 'execute_package'])
+        this.eazlService.updatedashboardModelPermissions(
+            'dashboards',
+            0,
+            'Admin',
+            'group',
+            ['view_dashboard']
+        );
 
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'info',
-            summary:  'Saved',
-            detail:   'Records updated in database'
-        });
+
+        // Update the user permissions
+        if (this.selectedUserPermission.length > 0) {
+            this.selectedUserPermission.forEach( uP => {
+
+                // Build permissions array
+                let permissions:string[] = [];
+                if (uP.canAddDashboard) {permissions.push('add_dashboard')};
+                if (uP.canAssignPermissionDashboard) {permissions.push('assign_permission_dashboard')};
+                if (uP.canChangeDashboard) {permissions.push('change_dashboard')};
+                if (uP.canDeleteDashboard) {permissions.push('delete_dashboard')};
+                if (uP.canRemovePermissionDashboard) {permissions.push('remove_permission_dashboard')};
+                if (uP.canViewDashboard) {permissions.push('view_dashboard')};
+            
+                this.eazlService.updatedashboardModelPermissions(
+                    'dashboards',
+                    0,
+                    uP.username,
+                    'user',
+                    permissions
+                );
+            });
+        };                
+
 
         // Close popup
         this.displayUserPermissions = false;
