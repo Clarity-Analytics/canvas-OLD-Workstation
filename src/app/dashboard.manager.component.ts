@@ -36,7 +36,7 @@ import { User }                       from './model.user';
     encapsulation: ViewEncapsulation.None
 })
 export class DashboardManagerComponent implements OnInit {
-    
+
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
     availableGroupSharedWith: Group[] = [];                     // List of Groups groups available for sharing
@@ -267,7 +267,7 @@ console.log('selectedUserPermission', this.selectedUserPermission)
     }
 
     onRowSelectUserPermission(event) {
-console.log('onRowSelectUserPermission', event.type, event.data, event.originalEvent.checked, event)        
+console.log('onRowSelectUserPermission', event.type, event.data, event.originalEvent.checked, event)
 console.log('selectedUserPermission', this.selectedUserPermission)
     }
 
@@ -365,14 +365,38 @@ console.log('selectedUserPermission', this.selectedUserPermission)
         // Users with whom the selected Dashboard is shared
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuUsersSharedWith', '@Start');
-console.log('START this.displayUserPermissions', this.displayUserPermissions,this.dashboardUserPermissions)
 
         // Get the current and available user shared with; as a Promise to cater for Async
         this.eazlService.getdashboardUserPermissions(
             dashboard.dashboardID
         )
             .then(dashUsrPer => {
-                this.dashboardUserPermissions = dashUsrPer;
+                this.selectedUserPermission = dashUsrPer;
+                // this.dashboardUserPermissions = this.selectedUserPermission
+                let usersSelectedList: string[] = [];
+                this.dashboardUserPermissions = [];
+                this.selectedUserPermission.forEach( sUp => {
+                    this.dashboardUserPermissions.push(sUp);
+                    usersSelectedList.push(sUp.username);
+                });
+                
+                // Add the rest of the users
+                let users: User[] = this.eazlService.getUsers();
+                // this.selectedUserPermission.forEach(usr => usersSelectedList.push(usr.username));
+                users.forEach(usr => {
+                    if (usersSelectedList.indexOf(usr.username) < 0) {
+                        this.dashboardUserPermissions.push(
+                            {   username: usr.username,
+                                canAddDashboard: false,
+                                canAssignPermissionDashboard: false,
+                                canChangeDashboard: false,
+                                canDeleteDashboard: false,
+                                canRemovePermissionDashboard: false,
+                                canViewDashboard: false
+                            }
+                        )
+                    }
+                })
                 this.displayUserPermissions = true;
             })
             .catch(err => {
@@ -383,44 +407,6 @@ console.log('START this.displayUserPermissions', this.displayUserPermissions,thi
                 });
             });
 
-
-console.log('END this.displayUserPermissions', this.displayUserPermissions, this.dashboardUserPermissions)
-        
-//         for (var i = 0; i < 26; i++) {
-// console.log('this.globalVariableService.isReadyDashboardUserPermissions', this.globalVariableService.isReadyDashboardUserPermissions)            
-//             if (this.globalVariableService.isReadyDashboardUserPermissions) {
-//                 // Show popup
-//                 this.displayUserPermissions = true;
-// console.log('this.displayUserPermissions', this.displayUserPermissions)
-//                 break;
-//             }
-//             this.sleep(1000);
-// console.log('i', i)            
-        // }
-
-        // Get the related Users
-        // this.eazlService.getUsersRelatedToDashboard
-        //     (this.selectedDashboard.dashboardID,
-        //      'SharedWith'
-        //      ).forEach(sglusr => {
-        //         this.belongstoSharedWith.push(sglusr.username);
-        //     }
-        // )
-
-        // Get the complement (NOT related Users)
-        // this.eazlService.getUsersRelatedToDashboard
-        //     (this.selectedDashboard.dashboardID,
-        //     'SharedWith',
-        //     false
-        //     ).forEach(sglusr => {
-        //         this.availableSharedWith.push(sglusr.username);
-        //     }
-        // )
-
-        // Show popup
-        // this.displaySharedWith = true;
-// this.displayUserPermissions = true
-// console.log('this.displayUserPermissions', this.displayUserPermissions)
     }
 
     onClickUsersSharedWithCancel() {
