@@ -301,8 +301,52 @@ export class DashboardManagerComponent implements OnInit {
 
     }
 
-    onClickUserPermissionSave() {
+    onChangeAddUserPermission(event) {
+        // User changed  user permission
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAddUserPermission', '@Start');
+console.log('event', event, this.selectedDashboard )
+    }
+
+    onChangeAssignUserPermission(event) {
+        // User changed  user permission
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAssignUserPermission', '@Start');
+console.log('event', event, this.selectedDashboard )
+    }
+
+    onChangeChangeUserPermission(event) {
+        // User changed  user permission
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeChangeUserPermission', '@Start');
+console.log('event', event, this.selectedDashboard )
+    }
+
+    onChangeDeleteUserPermission(event) {
+        // User changed  user permission
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDeleteUserPermission', '@Start');
+console.log('event', event, this.selectedDashboard )
+    }
+
+    onChangeRemoveUserPermission(event) {
+        // User changed  user permission
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveUserPermission', '@Start');
+console.log('event', event, this.selectedDashboard )
+    }
+
+    onChangeViewUserPermission(event) {
+        // User changed  user permission
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewUserPermission', '@Start');
+console.log('event', event, this.selectedDashboard )
+    }
+
+    onClickUserPermissionSave(dashboardID: number, permission: string, newValue: boolean) {
         // Close User Permissions panel, and update DB
+        //  - dashboardID
+        //  - newValue to setTrue / False
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
         // Update the user permissions
@@ -346,13 +390,6 @@ export class DashboardManagerComponent implements OnInit {
 
         // Close popup
         this.displayUserPermissions = false;
-    }
-
-    onChangeUpdateUserPermission(event) {
-        // Update user permission when a box was checked
-        // - dashboard: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeUpdateUserPermission', '@Start');
-console.log('event', event )
     }
 
     dashboardMenuGroupsSharedWith(dashboard: Dashboard) {

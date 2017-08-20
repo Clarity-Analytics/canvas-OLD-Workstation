@@ -479,7 +479,7 @@
                         name="canAddDashboard" 
                         binary="true" 
                         [(ngModel)]="user[col.field]"
-                        (onChange)="onChangeUpdateUserPermission($event)"
+                        (onChange)="onChangeAddUserPermission($event)"
                         >
                     </p-checkbox>
                 </ng-template>
@@ -494,6 +494,7 @@
                         name="canAssignPermissionDashboard" 
                         binary="true" 
                         [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeAssignUserPermission($event)"
                         >
                     </p-checkbox>
                 </ng-template>
@@ -508,6 +509,7 @@
                         name="canChangeDashboard" 
                         binary="true" 
                         [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeChangeUserPermission($event)"
                         >
                     </p-checkbox>
                 </ng-template>
@@ -522,6 +524,7 @@
                         name="canDeleteDashboard" 
                         binary="true" 
                         [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeDeleteUserPermission($event)"
                         >
                     </p-checkbox>
                 </ng-template>
@@ -536,6 +539,7 @@
                         name="canRemovePermissionDashboard" 
                         binary="true" 
                         [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeRemoveUserPermission($event)"
                         >
                     </p-checkbox>
                 </ng-template>
@@ -550,6 +554,7 @@
                         name="canViewDashboard" 
                         binary="true" 
                         [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeViewUserPermission($event)"
                         >
                     </p-checkbox>
                 </ng-template>
