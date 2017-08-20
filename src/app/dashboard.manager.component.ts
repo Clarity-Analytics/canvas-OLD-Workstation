@@ -54,7 +54,6 @@ export class DashboardManagerComponent implements OnInit {
     datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
     displayTagMembership: boolean = false;                      // True to display popup for GrpMbrship
-    displaySharedWith: boolean = false;                         // True to display popup for Users Shared With (Dashboards)
     displayGroupsSharedWith: boolean = false;                   // True to display popup for Groups Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
     displayDataSource: boolean = false;                         // True to display table for DataSources
@@ -226,7 +225,7 @@ export class DashboardManagerComponent implements OnInit {
         }
 
         // Update the Dashboard Shared With if it is open
-        if (this.displaySharedWith) {
+        if (this.displayUserPermissions) {
             this.dashboardMenuUsersSharedWith(this.selectedDashboard)
         }
         if (this.displayGroupsSharedWith) {
@@ -456,21 +455,6 @@ export class DashboardManagerComponent implements OnInit {
                 });
             });
 
-    }
-
-
-    onMoveToTargetDashboardSharedWith(event) {
-        // User clicked onMoveToTarget - add to SharedWith
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardSharedWith', '@Start');
-
-        // Add this / these makker(s) - array if multi select
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDashboardUserRelationship(
-                this.selectedDashboard.dashboardID,
-                event.items[i],
-                'SharedWith'
-            );
-        }
     }
 
     onMoveToSourceDashboardSharedWith(event) {
