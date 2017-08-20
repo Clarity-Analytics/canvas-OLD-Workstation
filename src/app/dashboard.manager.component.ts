@@ -113,7 +113,7 @@ export class DashboardManagerComponent implements OnInit {
             {
                 label: 'Shared Users',
                 icon: 'fa-users',
-                command: (event) => this.dashboardMenuUserPermissionsX(this.selectedDashboard)
+                command: (event) => this.dashboardMenuUserPermissions(this.selectedDashboard)
             },
             {
                 label: 'Shared Groups',
@@ -279,54 +279,6 @@ export class DashboardManagerComponent implements OnInit {
     }
 
     dashboardMenuUserPermissions(dashboard: Dashboard) {
-        // Users with whom the selected Dashboard is shared
-        // - dashboard: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuUserPermissions', '@Start');
-
-        // Get the current and available user shared with; as a Promise to cater for Async
-        this.eazlService.getdashboardUserPermissionsX(
-            dashboard.dashboardID
-        )
-            .then(dashUsrPer => {
-                this.selectedUserPermission = dashUsrPer;
-                // this.dashboardUserPermissions = this.selectedUserPermission
-                let usersSelectedList: string[] = [];
-                this.dashboardUserPermissions = [];
-                this.selectedUserPermission.forEach( sUp => {
-                    this.dashboardUserPermissions.push(sUp);
-                    usersSelectedList.push(sUp.username);
-                });
-                
-                // Add the rest of the users
-                let users: User[] = this.eazlService.getUsers();
-                // this.selectedUserPermission.forEach(usr => usersSelectedList.push(usr.username));
-                users.forEach(usr => {
-                    if (usersSelectedList.indexOf(usr.username) < 0) {
-                        this.dashboardUserPermissions.push(
-                            {   username: usr.username,
-                                canAddDashboard: false,
-                                canAssignPermissionDashboard: false,
-                                canChangeDashboard: false,
-                                canDeleteDashboard: false,
-                                canRemovePermissionDashboard: false,
-                                canViewDashboard: false
-                            }
-                        )
-                    }
-                })
-                this.displayUserPermissions = true;
-            })
-            .catch(err => {
-                this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'warn',
-                    summary:  'User permissions',
-                    detail:   'Getting user permissions failed'
-                });
-            });
-
-    }
-
-    dashboardMenuUserPermissionsX(dashboard: Dashboard) {
         // Users with their permissions for the selected Dashboard
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuUserPermissions', '@Start');
@@ -399,11 +351,6 @@ export class DashboardManagerComponent implements OnInit {
     onRowUnSelectUserPermission(event) {
         // Unselect a row in User Permissions
         this.globalFunctionService.printToConsole(this.constructor.name,'onRowUnSelectUserPermission', '@Start');
-    }
-
-    onRowSelectUserPermission(event) {
-        // Select a row in User Permissions
-        this.globalFunctionService.printToConsole(this.constructor.name,'onRowSelectUserPermission', '@Start');
     }
 
     onChangeUpdateUserPermission(event) {
