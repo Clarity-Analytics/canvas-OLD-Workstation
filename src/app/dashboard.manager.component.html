@@ -463,9 +463,17 @@
             [(selection)]="selectedUserPermission"
             dataKey="username"
             >
-            <p-column field="username" header="username">
+            <p-column 
+                field="username" 
+                header="username"
+                [filter]="true"
+                >
             </p-column>
-            <p-column field="canAddDashboard" header="Add?">
+            <p-column 
+                field="canAddDashboard" 
+                header="Add?"
+                [filter]="true"
+                >
                 <ng-template let-col let-user="rowData" pTemplate="body">
                     <p-checkbox 
                         name="canAddDashboard" 
@@ -476,7 +484,11 @@
                     </p-checkbox>
                 </ng-template>
             </p-column>
-            <p-column field="canAssignPermissionDashboard" header="Assign?">
+            <p-column 
+                field="canAssignPermissionDashboard" 
+                header="Assign?"
+                [filter]="true"
+                >
                 <ng-template let-col let-user="rowData" pTemplate="body">
                     <p-checkbox 
                         name="canAssignPermissionDashboard" 
@@ -486,7 +498,11 @@
                     </p-checkbox>
                 </ng-template>
             </p-column>
-            <p-column field="canChangeDashboard" header="Change?">
+            <p-column 
+                field="canChangeDashboard" 
+                header="Change?"
+                [filter]="true"
+                >
                 <ng-template let-col let-user="rowData" pTemplate="body">
                     <p-checkbox 
                         name="canChangeDashboard" 
@@ -496,7 +512,11 @@
                     </p-checkbox>
                 </ng-template>
             </p-column>
-            <p-column field="canDeleteDashboard" header="Delete?">
+            <p-column 
+                field="canDeleteDashboard" 
+                header="Delete?"
+                [filter]="true"
+                >
                 <ng-template let-col let-user="rowData" pTemplate="body">
                     <p-checkbox 
                         name="canDeleteDashboard" 
@@ -506,7 +526,11 @@
                     </p-checkbox>
                 </ng-template>
             </p-column>
-            <p-column field="canRemovePermissionDashboard" header="Remove?">
+            <p-column 
+                field="canRemovePermissionDashboard" 
+                header="Remove?"
+                [filter]="true"
+                >
                 <ng-template let-col let-user="rowData" pTemplate="body">
                     <p-checkbox 
                         name="canRemovePermissionDashboard" 
@@ -516,7 +540,11 @@
                     </p-checkbox>
                 </ng-template>
             </p-column>
-            <p-column field="canViewDashboard" header="View?">
+            <p-column 
+                field="canViewDashboard" 
+                header="View?"
+                [filter]="true"
+                >
                 <ng-template let-col let-user="rowData" pTemplate="body">
                     <p-checkbox 
                         name="canViewDashboard" 
