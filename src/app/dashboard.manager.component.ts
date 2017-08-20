@@ -64,8 +64,7 @@ export class DashboardManagerComponent implements OnInit {
     reports: Report[];                                          // List of Reports
     selectedDashboard: Dashboard;                               // Dashboard that was clicked on
     selectedMembershipTag: DashboardTagMembership;              // Item clicked on in table
-    selectedUserPermission: DashboardUserPermissions[];         // Selected in table
-    selectedUserPermissionX: DashboardUserPermissions;           // Selected in table
+    selectedUserPermission: DashboardUserPermissions;           // Selected in table
     tagname: string;                                            // Input tag name on form
 
     constructor(
@@ -305,74 +304,145 @@ export class DashboardManagerComponent implements OnInit {
         // User changed  user permission
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAddUserPermission', '@Start');
-console.log('event', event, this.selectedDashboard )
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let permissions:string[] = [];
+        permissions.push('add_dashboard');
+
     }
 
     onChangeAssignUserPermission(event) {
         // User changed  user permission
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAssignUserPermission', '@Start');
-console.log('event', event, this.selectedDashboard )
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let permissions:string[] = [];
+        permissions.push('assign_permission_dashboard');
     }
 
     onChangeChangeUserPermission(event) {
         // User changed  user permission
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeChangeUserPermission', '@Start');
-console.log('event', event, this.selectedDashboard )
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let permissions:string[] = [];
+        permissions.push('change_dashboard');
     }
 
     onChangeDeleteUserPermission(event) {
         // User changed  user permission
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDeleteUserPermission', '@Start');
-console.log('event', event, this.selectedDashboard )
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let permissions:string[] = [];
+        permissions.push('delete_dashboard');
+
     }
 
     onChangeRemoveUserPermission(event) {
         // User changed  user permission
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveUserPermission', '@Start');
-console.log('event', event, this.selectedDashboard )
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let permissions:string[] = [];
+        permissions.push('remove_permission_dashboard');
+
     }
 
     onChangeViewUserPermission(event) {
         // User changed  user permission
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewUserPermission', '@Start');
-console.log('event', event, this.selectedDashboard )
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let permissions:string[] = [];
+        permissions.push('view_dashboard');
+
     }
 
-    onClickUserPermissionSave(dashboardID: number, permission: string, newValue: boolean) {
-        // Close User Permissions panel, and update DB
+    onClickUserPermissionSave(dashboardID: number, permission: string[], newValue: boolean) {
+        // Saves changed permission to the DB
         //  - dashboardID
         //  - newValue to setTrue / False
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
-        // Update the user permissions
-        if (this.selectedUserPermission.length > 0) {
-            this.selectedUserPermission.forEach( uP => {
-
-                // Build permissions array
-                let permissions:string[] = [];
-        // TODO - uncomment rest of permissions once DB allows it        
-        //         if (uP.canAddDashboard) {permissions.push('add_dashboard')};
-                if (uP.canAssignPermissionDashboard) {permissions.push('assign_permission_dashboard')};
-        //         if (uP.canChangeDashboard) {permissions.push('change_dashboard')};
-        //         if (uP.canDeleteDashboard) {permissions.push('delete_dashboard')};
-                if (uP.canRemovePermissionDashboard) {permissions.push('remove_permission_dashboard')};
-                if (uP.canViewDashboard) {permissions.push('view_dashboard')};
-            
-                this.eazlService.updatedashboardModelPermissions(
-                    'dashboards',
-                    0,
-                    uP.username,
-                    'user',
-                    permissions
-                );
-            });
-        };                
-
+        if (event) {
+            // Add
+            this.eazlService.updateDashboardModelPermissions(
+                'dashboards',
+                this.selectedDashboard.dashboardID,
+                this.selectedUserPermission.username,
+                'user',
+                permission
+            );
+        } else {
+            // Delete
+            this.eazlService.deleteDashboardModelPermissions(
+                'dashboards',
+                0,
+                this.selectedUserPermission.username,
+                'user',
+                permission
+            );
+        }        
 
         // Close popup
         this.displayUserPermissions = false;

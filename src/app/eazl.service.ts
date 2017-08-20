@@ -4680,20 +4680,20 @@ export class EazlService implements OnInit {
             
     }
 
-    updatedashboardModelPermissions(
+    updateDashboardModelPermissions(
         url: string,
         id: number,
         name: string,
         model_name: string,
         permissions: string[]) {
-        // Updates permissions for a given model
+        // Adds permissions for a given model
         //  url - url of model to add share to
         //  id - DB id for record / object to add share, ie 0
         //  name - user or group name, ie Admin
         //  model_name - user or group, ie group
         //  permissions - list of allowed ones, ie ['view_package', 'execute_package']
-        this.globalFunctionService.printToConsole(this.constructor.name,'updatedashboardModelPermissions', '@Start');
-console.log('EAZL url ...', url + '/' + id.toString() + '/share/')
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardModelPermissions', '@Start');
+console.log('EAZL ADD url ...', url + '/' + id.toString() + '/share/')
         this.post<any>(
             url + '/' + id.toString() + '/share/',
             { 
@@ -4703,12 +4703,12 @@ console.log('EAZL url ...', url + '/' + id.toString() + '/share/')
             })
             .toPromise()
             .then(element => {
-console.log('EAZL then ...', element)
+console.log('EAZL ADD then ...', element)
                 
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info',
-                    summary:  'Update Permisionss Tab',
-                    detail:   'Successfully updated permissions in the database'
+                    summary:  'Add Permisionss',
+                    detail:   'Successfully added permission to the database'
                 });
 
                 // Return the data
@@ -4717,14 +4717,54 @@ console.log('EAZL then ...', element)
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
-                    summary:  'Update Permisionss Tab',
-                    detail:   'Unsuccessful in updating permissions info to the database'
+                    summary:  'Add Permisionss',
+                    detail:   'Unsuccessful in add permissions info to the database'
                 });
                 error.message || error
             })
     
     }
+
+    deleteDashboardModelPermissions(
+        url: string,
+        id: number,
+        name: string,
+        model_name: string,
+        permissions: string[]) {
+        // Deletes permissions from a given model
+        //  url - url of model to add share to
+        //  id - DB id for record / object to add share, ie 0
+        //  name - user or group name, ie Admin
+        //  model_name - user or group, ie group
+        //  permissions - list of allowed ones, ie ['view_package', 'execute_package']
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardModelPermissions', '@Start');
+console.log('EAZL DELETE url ...', url + '/' + id.toString() + '/share/')
+        this.delete<any>(
+            url + '/' + id.toString() + '/share/')
+            .toPromise()
+            .then(element => {
+console.log('EAZL DELETE then ...', element)
+                
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'info',
+                    summary:  'Delete Permisions',
+                    detail:   'Successfully deleted permission from the database'
+                });
+
+                // Return the data
+                return element;
+            } )
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Delete Permisions',
+                    detail:   'Unsuccessful in deleting permission info from the database'
+                });
+                error.message || error
+            })
     
+    }
+
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
         // Return a list of Dashboard Tabs for a given DashboardID as SelectItem Array
         // - selectedDashboardID = filter

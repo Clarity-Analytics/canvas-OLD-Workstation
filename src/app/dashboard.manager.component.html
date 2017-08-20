@@ -441,16 +441,7 @@
             class="panelButtonWithLabel"
             pButton
             type="button"
-            label="Save"
-            icon="fa-save"
-            (click)="onClickUserPermissionSave()"
-            >
-        </button>
-    <button
-            class="panelButtonWithLabel"
-            pButton
-            type="button"
-            label="Cancel"
+            label="Close"
             icon="fa-undo"
             (click)="onClickUserPermissionCancel()"
             >
@@ -462,6 +453,7 @@
             [value]="dashboardUserPermissions"
             [(selection)]="selectedUserPermission"
             dataKey="username"
+            selectionMode="single"
             >
             <p-column 
                 field="username" 
