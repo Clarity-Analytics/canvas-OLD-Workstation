@@ -457,20 +457,6 @@ export class DashboardManagerComponent implements OnInit {
 
     }
 
-    onMoveToSourceDashboardSharedWith(event) {
-        // User clicked onMoveToSource - remove from SharedWith
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardSharedWith', '@Start');
-
-        // Remove the makker(s)
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDashboardUserRelationship(
-                this.selectedDashboard.dashboardID,
-                event.items[i],
-                'SharedWith'
-            );
-        }
-    }
-
     dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - dashboard: currently selected row
