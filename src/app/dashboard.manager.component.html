@@ -533,64 +533,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-<!--Shared Users panel-->
-<div
-    class="groupMembershipPanel"
-    *ngIf="displaySharedWith"
-    >
-
-    <div
-        class="groupMembershipHeading"
-        >
-        Users this Dashboard is Shared with
-        <button
-            class="panelButtonWithLabel"
-            pButton
-            type="button"
-            label="Cancel"
-            icon="fa-undo"
-            (click)="onClickUsersSharedWithCancel()"
-            >
-        </button>
-    </div>
-
-    <!--Content-->
-    <form>
-
-        <div
-            >
-            <p-pickList
-                [source]="availableSharedWith"
-                [target]="belongstoSharedWith"
-                sourceHeader="Available Users"
-                targetHeader="Shared with these Users"
-                (onMoveToTarget)="onMoveToTargetDashboardSharedWith($event)"
-                (onMoveToSource)="onMoveToSourceDashboardSharedWith($event)"
-                >
-                <ng-template let-grp pTemplate="item">
-                    <div class="ui-helper-clearfix">
-                        <div
-                            style="font-size:14px;float:left;margin:15px 5px 0 0"
-                            >
-                            {{ grp }}
-                        </div>
-                    </div>
-                </ng-template>
-            </p-pickList>
-
-        </div>
-
-    </form>
-</div>
-
-
 <!--Shared Groups panel-->
 <div
     class="groupMembershipPanel"
