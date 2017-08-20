@@ -4652,18 +4652,18 @@ export class EazlService implements OnInit {
                     }
                     
                     if (!found) {
-                            dashboardUserPermissionsWorking.push( 
-                                {
-                                    username: this.users[i].username,
-                                    canAddDashboard: false,
-                                    canAssignPermissionDashboard: false,
-                                    canChangeDashboard: false,
-                                    canDeleteDashboard: false,
-                                    canRemovePermissionDashboard: false,
-                                    canViewDashboard: false
-                                }
-                            )
-                        }
+                        dashboardUserPermissionsWorking.push( 
+                            {
+                                username: this.users[i].username,
+                                canAddDashboard: false,
+                                canAssignPermissionDashboard: false,
+                                canChangeDashboard: false,
+                                canDeleteDashboard: false,
+                                canRemovePermissionDashboard: false,
+                                canViewDashboard: false
+                            }
+                        )
+                    }
                 };
                 
                 // Return
