@@ -4599,7 +4599,6 @@ export class EazlService implements OnInit {
         // Returns the users & their permissions for a given dashboardID
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
 
-        this.globalVariableService.isReadyDashboardUserPermissions = false;
         let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
         return this.get<EazlDashboardUserPermissions>(
             'dashboards/' + dashboardID.toString() + '/user-permissions/'
@@ -4612,8 +4611,61 @@ export class EazlService implements OnInit {
                             this.cdal.loadDashboardUserPermissions(eazlUsrPerm[i])
                         );
                     };
-                this.globalVariableService.isReadyDashboardUserPermissions = true;
 
+                // Return
+                return dashboardUserPermissionsWorking;
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Update Group',
+                    detail:   'Unsuccessful in updating your Group info to the database'
+                });
+                error.message || error
+            })
+            
+    }
+
+    getdashboardUserPermissionsX(dashboardID: number): Promise<any> {
+        // Returns an array of ALL users.  Each row shows booleans (T/F) wrt each permission
+        // that the user has.  So, a user with no permissions with have a row of False 
+        this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
+
+        let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
+        return this.get<EazlDashboardUserPermissions>(
+            'dashboards/' + dashboardID.toString() + '/user-permissions/'
+        )
+            .toPromise()
+            .then(eazlUsrPerm => {
+
+                let found: boolean = false;
+                for (var i = 0; i < this.users.length; i++) {
+
+                    found = false;
+                    for (var j = 0; j < eazlUsrPerm.length; j++) {
+                        if (eazlUsrPerm[j].username == this.users[i].username) {
+                            dashboardUserPermissionsWorking.push( 
+                                this.cdal.loadDashboardUserPermissions(eazlUsrPerm[j])
+                            );
+                            found = true;
+                        }
+                    }
+                    
+                    if (!found) {
+                            dashboardUserPermissionsWorking.push( 
+                                {
+                                    username: this.users[i].username,
+                                    canAddDashboard: false,
+                                    canAssignPermissionDashboard: false,
+                                    canChangeDashboard: false,
+                                    canDeleteDashboard: false,
+                                    canRemovePermissionDashboard: false,
+                                    canViewDashboard: false
+                                }
+                            )
+                        }
+                };
+                
                 // Return
                 return dashboardUserPermissionsWorking;
             })

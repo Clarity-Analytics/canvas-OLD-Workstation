@@ -474,6 +474,7 @@
                         name="canAddDashboard" 
                         binary="true" 
                         [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeUpdateUserPermission($event)"
                         >
                     </p-checkbox>
                 </ng-template>

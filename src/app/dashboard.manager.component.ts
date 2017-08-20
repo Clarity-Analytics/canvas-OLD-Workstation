@@ -256,6 +256,27 @@ export class DashboardManagerComponent implements OnInit {
         this.displayTagMembership = false;
     }
 
+    onClickAddDashboardTagMembership(event) {
+        // Add tag membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickAddDashboardTagMembership', '@Start');
+
+        // Add this / these makker(s) - array if multi select
+        this.eazlService.addDashboardTagMembership(
+            this.selectedDashboard.dashboardID,
+            this.tagname
+        );
+    }
+
+    onClickDeleteDashboardTagMembership(event) {
+        // Delete tag membership
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDeleteDashboardTagMembership', '@Start');
+
+        // Remove the makker(s)
+        this.eazlService.deleteDashboardTagMembership(
+            this.selectedMembershipTag.dashboardTagID
+        );
+    }
+
     dashboardMenuUserPermissions(dashboard: Dashboard) {
         // Users with whom the selected Dashboard is shared
         // - dashboard: currently selected row
@@ -361,25 +382,11 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onRowSelectUserPermission', '@Start');
     }
 
-    onClickAddDashboardTagMembership(event) {
-        // Add tag membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickAddDashboardTagMembership', '@Start');
-
-        // Add this / these makker(s) - array if multi select
-        this.eazlService.addDashboardTagMembership(
-            this.selectedDashboard.dashboardID,
-            this.tagname
-        );
-    }
-
-    onClickDeleteDashboardTagMembership(event) {
-        // Delete tag membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDeleteDashboardTagMembership', '@Start');
-
-        // Remove the makker(s)
-        this.eazlService.deleteDashboardTagMembership(
-            this.selectedMembershipTag.dashboardTagID
-        );
+    onChangeUpdateUserPermission(event) {
+        // Update user permission when a box was checked
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeUpdateUserPermission', '@Start');
+console.log('event', event )
     }
 
     dashboardMenuGroupsSharedWith(dashboard: Dashboard) {
