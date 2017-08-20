@@ -318,6 +318,10 @@ export class DashboardManagerComponent implements OnInit {
         let permissions:string[] = [];
         permissions.push('add_dashboard');
 
+        this.saveUserPermissionSave(
+            this.selectedDashboard.dashboardID, 
+            permissions, 
+            event);
     }
 
     onChangeAssignUserPermission(event) {
@@ -337,6 +341,11 @@ export class DashboardManagerComponent implements OnInit {
 
         let permissions:string[] = [];
         permissions.push('assign_permission_dashboard');
+
+        this.saveUserPermissionSave(
+            this.selectedDashboard.dashboardID, 
+            permissions, 
+            event);
     }
 
     onChangeChangeUserPermission(event) {
@@ -356,6 +365,11 @@ export class DashboardManagerComponent implements OnInit {
 
         let permissions:string[] = [];
         permissions.push('change_dashboard');
+
+        this.saveUserPermissionSave(
+            this.selectedDashboard.dashboardID, 
+            permissions, 
+            event);
     }
 
     onChangeDeleteUserPermission(event) {
@@ -376,6 +390,10 @@ export class DashboardManagerComponent implements OnInit {
         let permissions:string[] = [];
         permissions.push('delete_dashboard');
 
+        this.saveUserPermissionSave(
+            this.selectedDashboard.dashboardID, 
+            permissions, 
+            event);
     }
 
     onChangeRemoveUserPermission(event) {
@@ -396,6 +414,10 @@ export class DashboardManagerComponent implements OnInit {
         let permissions:string[] = [];
         permissions.push('remove_permission_dashboard');
 
+        this.saveUserPermissionSave(
+            this.selectedDashboard.dashboardID, 
+            permissions, 
+            event);
     }
 
     onChangeViewUserPermission(event) {
@@ -416,13 +438,17 @@ export class DashboardManagerComponent implements OnInit {
         let permissions:string[] = [];
         permissions.push('view_dashboard');
 
+        this.saveUserPermissionSave(
+            this.selectedDashboard.dashboardID, 
+            permissions, 
+            event);
     }
 
-    onClickUserPermissionSave(dashboardID: number, permission: string[], newValue: boolean) {
+    saveUserPermissionSave(dashboardID: number, permissions: string[], newValue: boolean) {
         // Saves changed permission to the DB
         //  - dashboardID
         //  - newValue to setTrue / False
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveUserPermissionSave', '@Start');
 
         if (event) {
             // Add
@@ -431,7 +457,7 @@ export class DashboardManagerComponent implements OnInit {
                 this.selectedDashboard.dashboardID,
                 this.selectedUserPermission.username,
                 'user',
-                permission
+                permissions
             );
         } else {
             // Delete
@@ -440,7 +466,7 @@ export class DashboardManagerComponent implements OnInit {
                 0,
                 this.selectedUserPermission.username,
                 'user',
-                permission
+                permissions
             );
         }        
 
