@@ -458,13 +458,6 @@ export class DashboardManagerComponent implements OnInit {
 
     }
 
-    onClickUsersSharedWithCancel() {
-        // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUsersSharedWithCancel', '@Start');
-
-        // Close popup
-        this.displaySharedWith = false;
-    }
 
     onMoveToTargetDashboardSharedWith(event) {
         // User clicked onMoveToTarget - add to SharedWith
