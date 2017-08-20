@@ -260,19 +260,19 @@ export class DashboardManagerComponent implements OnInit {
     onClickUserPermissionSave() {
         // Close User Permissions panel, and update DB
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
-
+// TODO - remove Testingzz
         this.eazlService.updatedashboardModelPermissions(
             'packages',
             3,
             'Admin',
             'group',
-            ['view_package', 'execute_package'])
+            ['view_package', 'execute_package', 'assign_permission_package', 'remove_permission_package'])
         this.eazlService.updatedashboardModelPermissions(
             'dashboards',
             0,
             'Admin',
             'group',
-            ['view_dashboard']
+            ['view_dashboard', 'assign_permission_dashboard', 'remove_permission_dashboard']
         );
 
 
@@ -282,10 +282,11 @@ export class DashboardManagerComponent implements OnInit {
 
                 // Build permissions array
                 let permissions:string[] = [];
-                if (uP.canAddDashboard) {permissions.push('add_dashboard')};
+        // TODO - uncomment rest of permissions once DB allows it        
+        //         if (uP.canAddDashboard) {permissions.push('add_dashboard')};
                 if (uP.canAssignPermissionDashboard) {permissions.push('assign_permission_dashboard')};
-                if (uP.canChangeDashboard) {permissions.push('change_dashboard')};
-                if (uP.canDeleteDashboard) {permissions.push('delete_dashboard')};
+        //         if (uP.canChangeDashboard) {permissions.push('change_dashboard')};
+        //         if (uP.canDeleteDashboard) {permissions.push('delete_dashboard')};
                 if (uP.canRemovePermissionDashboard) {permissions.push('remove_permission_dashboard')};
                 if (uP.canViewDashboard) {permissions.push('view_dashboard')};
             
