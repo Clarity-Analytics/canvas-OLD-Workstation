@@ -348,11 +348,6 @@ export class DashboardManagerComponent implements OnInit {
         this.displayUserPermissions = false;
     }
 
-    onRowUnSelectUserPermission(event) {
-        // Unselect a row in User Permissions
-        this.globalFunctionService.printToConsole(this.constructor.name,'onRowUnSelectUserPermission', '@Start');
-    }
-
     onChangeUpdateUserPermission(event) {
         // Update user permission when a box was checked
         // - dashboard: currently selected row
