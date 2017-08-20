@@ -498,29 +498,6 @@ export class DashboardManagerComponent implements OnInit {
         );
     }
 
-    saveUserPermissionSave(
-        dashboardID: number, 
-        newValue: boolean,
-        assignPermissions: string[] = [],
-        removePermissions: string[] = []) {
-        // Saves changed permission to the DB
-        //  - dashboardID
-        //  - newValue to setTrue / False
-        this.globalFunctionService.printToConsole(this.constructor.name,'saveUserPermissionSave', '@Start');
-
-        if (newValue) {
-            // Add
-            this.eazlService.updateDashboardModelPermissions(
-                'dashboards',
-                this.selectedDashboard.dashboardID,
-                this.selectedUserPermission.username,
-                'user',
-                assignPermissions,
-                removePermissions
-            );
-        }        
-    }
-
     onClickUserPermissionCancel() {
         // Close User Permissions panel, and update DB
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
