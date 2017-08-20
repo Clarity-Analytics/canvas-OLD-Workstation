@@ -315,13 +315,22 @@ export class DashboardManagerComponent implements OnInit {
             return;
         }
 
-        let permissions:string[] = [];
-        permissions.push('add_dashboard');
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_dashboard');
+        } else {
+            removePermissions.push('add_dashboard');
+        }
 
-        this.saveUserPermissionSave(
-            this.selectedDashboard.dashboardID, 
-            permissions, 
-            event);
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
     }
 
     onChangeAssignUserPermission(event) {
@@ -339,13 +348,22 @@ export class DashboardManagerComponent implements OnInit {
             return;
         }
 
-        let permissions:string[] = [];
-        permissions.push('assign_permission_dashboard');
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('assign_permission_dashboard');
+        } else {
+            removePermissions.push('assign_permission_dashboard');
+        }
 
-        this.saveUserPermissionSave(
-            this.selectedDashboard.dashboardID, 
-            permissions, 
-            event);
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
     }
 
     onChangeChangeUserPermission(event) {
@@ -363,13 +381,22 @@ export class DashboardManagerComponent implements OnInit {
             return;
         }
 
-        let permissions:string[] = [];
-        permissions.push('change_dashboard');
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('change_dashboard');
+        } else {
+            removePermissions.push('change_dashboard');
+        }
 
-        this.saveUserPermissionSave(
-            this.selectedDashboard.dashboardID, 
-            permissions, 
-            event);
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
     }
 
     onChangeDeleteUserPermission(event) {
@@ -386,14 +413,23 @@ export class DashboardManagerComponent implements OnInit {
                 
             return;
         }
+        
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('delete_dashboard');
+        } else {
+            removePermissions.push('delete_dashboard');
+        }
 
-        let permissions:string[] = [];
-        permissions.push('delete_dashboard');
-
-        this.saveUserPermissionSave(
-            this.selectedDashboard.dashboardID, 
-            permissions, 
-            event);
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
     }
 
     onChangeRemoveUserPermission(event) {
@@ -410,14 +446,23 @@ export class DashboardManagerComponent implements OnInit {
                 
             return;
         }
+        
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('remove_permission_dashboard');
+        } else {
+            removePermissions.push('remove_permission_dashboard');
+        }
 
-        let permissions:string[] = [];
-        permissions.push('remove_permission_dashboard');
-
-        this.saveUserPermissionSave(
-            this.selectedDashboard.dashboardID, 
-            permissions, 
-            event);
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
     }
 
     onChangeViewUserPermission(event) {
@@ -434,44 +479,46 @@ export class DashboardManagerComponent implements OnInit {
                 
             return;
         }
+        
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('view_dashboard');
+        } else {
+            removePermissions.push('view_dashboard');
+        }
 
-        let permissions:string[] = [];
-        permissions.push('view_dashboard');
-
-        this.saveUserPermissionSave(
-            this.selectedDashboard.dashboardID, 
-            permissions, 
-            event);
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
     }
 
-    saveUserPermissionSave(dashboardID: number, permissions: string[], newValue: boolean) {
+    saveUserPermissionSave(
+        dashboardID: number, 
+        newValue: boolean,
+        assignPermissions: string[] = [],
+        removePermissions: string[] = []) {
         // Saves changed permission to the DB
         //  - dashboardID
         //  - newValue to setTrue / False
         this.globalFunctionService.printToConsole(this.constructor.name,'saveUserPermissionSave', '@Start');
 
-        if (event) {
+        if (newValue) {
             // Add
             this.eazlService.updateDashboardModelPermissions(
                 'dashboards',
                 this.selectedDashboard.dashboardID,
                 this.selectedUserPermission.username,
                 'user',
-                permissions
-            );
-        } else {
-            // Delete
-            this.eazlService.deleteDashboardModelPermissions(
-                'dashboards',
-                0,
-                this.selectedUserPermission.username,
-                'user',
-                permissions
+                assignPermissions,
+                removePermissions
             );
         }        
-
-        // Close popup
-        this.displayUserPermissions = false;
     }
 
     onClickUserPermissionCancel() {

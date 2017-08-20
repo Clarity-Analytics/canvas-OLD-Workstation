@@ -4685,30 +4685,34 @@ export class EazlService implements OnInit {
         id: number,
         name: string,
         model_name: string,
-        permissions: string[]) {
+        assignPermissions: string[],
+        removePermissions: string[]) {
         // Adds permissions for a given model
         //  url - url of model to add share to
         //  id - DB id for record / object to add share, ie 0
         //  name - user or group name, ie Admin
         //  model_name - user or group, ie group
-        //  permissions - list of allowed ones, ie ['view_package', 'execute_package']
+        //  assignPermissions - list of permissions to add, ie ['view_package', 'execute_package']
+        //  removePermissions - list of permissions to remove, ie ['view_package']
         this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardModelPermissions', '@Start');
-console.log('EAZL ADD url ...', url + '/' + id.toString() + '/share/')
+console.log('EAZL update url ...', url + '/' + id.toString() + '/share/')
         this.post<any>(
             url + '/' + id.toString() + '/share/',
             { 
                 name: name,
                 model_name: model_name,
-                permissions: permissions
+                assign:assignPermissions,
+                remove: removePermissions
             })
+
             .toPromise()
             .then(element => {
-console.log('EAZL ADD then ...', element)
+console.log('EAZL update then ...', element)
                 
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info',
-                    summary:  'Add Permisionss',
-                    detail:   'Successfully added permission to the database'
+                    summary:  'Update Permisions',
+                    detail:   'Successfully updated permission to the database'
                 });
 
                 // Return the data
@@ -4717,13 +4721,58 @@ console.log('EAZL ADD then ...', element)
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
-                    summary:  'Add Permisionss',
-                    detail:   'Unsuccessful in add permissions info to the database'
+                    summary:  'Update Permisions',
+                    detail:   'Unsuccessful in updating permissions info to the database'
                 });
                 error.message || error
             })
     
     }
+
+//     updateDashboardModelPermissions(
+//         url: string,
+//         id: number,
+//         name: string,
+//         model_name: string,
+//         permissions: string[]) {
+//         // Adds permissions for a given model
+//         //  url - url of model to add share to
+//         //  id - DB id for record / object to add share, ie 0
+//         //  name - user or group name, ie Admin
+//         //  model_name - user or group, ie group
+//         //  permissions - list of allowed ones, ie ['view_package', 'execute_package']
+//         this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardModelPermissions', '@Start');
+// console.log('EAZL ADD url ...', url + '/' + id.toString() + '/share/')
+//         this.post<any>(
+//             url + '/' + id.toString() + '/share/',
+//             { 
+//                 name: name,
+//                 model_name: model_name,
+//                 permissions: permissions
+//             })
+//             .toPromise()
+//             .then(element => {
+// console.log('EAZL ADD then ...', element)
+                
+//                 this.globalVariableService.growlGlobalMessage.next({
+//                     severity: 'info',
+//                     summary:  'Add Permisionss',
+//                     detail:   'Successfully added permission to the database'
+//                 });
+
+//                 // Return the data
+//                 return element;
+//             } )
+//             .catch(error => {
+//                 this.globalVariableService.growlGlobalMessage.next({
+//                     severity: 'warn',
+//                     summary:  'Add Permisionss',
+//                     detail:   'Unsuccessful in add permissions info to the database'
+//                 });
+//                 error.message || error
+//             })
+    
+//     }
 
     deleteDashboardModelPermissions(
         url: string,
