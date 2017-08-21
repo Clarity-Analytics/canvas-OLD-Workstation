@@ -514,28 +514,6 @@ export class DashboardManagerComponent implements OnInit {
         this.displayUserPermissions = false;
     }
 
-    dashboardMenuGroupsSharedWith(dashboard: Dashboard) {
-        // Groups with which the selected Dashboard is shared
-        // - dashboard: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupsSharedWith', '@Start');
-
-        // Get the related Groups
-
-        this.eazlService.getGroupsRelatedToDashboard(
-            this.selectedDashboard.dashboardID,
-            'SharedWith'
-        ).forEach( g => this.belongstoGroupsSharedWith.push(g));
-
-        this.eazlService.getGroupsRelatedToDashboard(
-            this.selectedDashboard.dashboardID,
-            'SharedWith',
-            false
-        ).forEach( g => this.availableGroupSharedWith.push(g));;
-
-        // Show popup
-        this.displayGroupsPermissions = true;
-    }
-
     dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - dashboard: currently selected row
