@@ -4595,38 +4595,38 @@ export class EazlService implements OnInit {
         return dashboardTabNameWorking;
     }
 
-    getdashboardUserPermissions(dashboardID: number): Promise<any> {
-        // Returns the users & their permissions for a given dashboardID
-        this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
+    // getdashboardUserPermissions(dashboardID: number): Promise<any> {
+    //     // Returns the users & their permissions for a given dashboardID
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
 
-        let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
-        return this.get<EazlDashboardUserPermissions>(
-            'dashboards/' + dashboardID.toString() + '/user-permissions/'
-        )
-            .toPromise()
-            .then(eazlUsrPerm => {
+    //     let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
+    //     return this.get<EazlDashboardUserPermissions>(
+    //         'dashboards/' + dashboardID.toString() + '/user-permissions/'
+    //     )
+    //         .toPromise()
+    //         .then(eazlUsrPerm => {
 
-                    for (var i = 0; i < eazlUsrPerm.length; i++) {
-                        dashboardUserPermissionsWorking.push( 
-                            this.cdal.loadDashboardUserPermissions(eazlUsrPerm[i])
-                        );
-                    };
+    //                 for (var i = 0; i < eazlUsrPerm.length; i++) {
+    //                     dashboardUserPermissionsWorking.push( 
+    //                         this.cdal.loadDashboardUserPermissions(eazlUsrPerm[i])
+    //                     );
+    //                 };
 
-                // Return
-                return dashboardUserPermissionsWorking;
-            })
-            .catch(error => {
-                this.globalVariableService.growlGlobalMessage.next({
-                    severity: 'warn',
-                    summary:  'Update Group',
-                    detail:   'Unsuccessful in updating your Group info to the database'
-                });
-                error.message || error
-            })
+    //             // Return
+    //             return dashboardUserPermissionsWorking;
+    //         })
+    //         .catch(error => {
+    //             this.globalVariableService.growlGlobalMessage.next({
+    //                 severity: 'warn',
+    //                 summary:  'Update Group',
+    //                 detail:   'Unsuccessful in updating your Group info to the database'
+    //             });
+    //             error.message || error
+    //         })
             
-    }
+    // }
 
-    getdashboardUserPermissionsX(
+    getdashboardUserPermissions(
         dashboardID: number, 
         includeGroup:string = 'true'
         ): Promise<any> {

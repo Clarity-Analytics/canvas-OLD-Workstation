@@ -281,7 +281,7 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuUserPermissions', '@Start');
 
         // Get the current and available user shared with; as a Promise to cater for Async
-        this.eazlService.getdashboardUserPermissionsX(
+        this.eazlService.getdashboardUserPermissions(
             dashboard.dashboardID
         )
             .then(dashUsrPer => {
@@ -529,7 +529,7 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupPermissions', '@Start');
 
         // Get the current and available user shared with; as a Promise to cater for Async
-        this.eazlService.getdashboardUserPermissionsX(
+        this.eazlService.getdashboardUserPermissions(
             dashboard.dashboardID
         )
             .then(dashUsrPer => {
