@@ -115,7 +115,7 @@ export class DashboardManagerComponent implements OnInit {
             {
                 label: 'Shared Groups',
                 icon: 'fa-database',
-                command: (event) => this.dashboardMenuGroupsSharedWith(this.selectedDashboard)
+                command: (event) => this.dashboardMenuGroupPermissions(this.selectedDashboard)
             },
             {
                 label: 'Related Datasources',
@@ -514,6 +514,264 @@ export class DashboardManagerComponent implements OnInit {
         this.displayUserPermissions = false;
     }
 
+
+
+
+
+
+
+
+
+
+    dashboardMenuGroupPermissions(dashboard: Dashboard) {
+        // Groups with their permissions for the selected Dashboard
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupPermissions', '@Start');
+
+        // Get the current and available user shared with; as a Promise to cater for Async
+        this.eazlService.getdashboardUserPermissionsX(
+            dashboard.dashboardID
+        )
+            .then(dashUsrPer => {
+                this.dashboardUserPermissions = dashUsrPer;
+                if (this.dashboardUserPermissions.length > 0) {
+                    this.selectedUserPermission = this.dashboardUserPermissions[0];
+                };
+                
+                this.displayUserPermissions = true;
+            })
+            .catch(err => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'User permissions',
+                    detail:   'Getting user permissions failed'
+                });
+            });
+
+    }
+
+    onChangeAddUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAddUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_dashboard');
+        } else {
+            removePermissions.push('add_dashboard');
+        }
+
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeAssignUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAssignUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('assign_permission_dashboard');
+        } else {
+            removePermissions.push('assign_permission_dashboard');
+        }
+
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeChangeUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeChangeUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('change_dashboard');
+        } else {
+            removePermissions.push('change_dashboard');
+        }
+
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeDeleteUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDeleteUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+        
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('delete_dashboard');
+        } else {
+            removePermissions.push('delete_dashboard');
+        }
+
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeRemoveUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+        
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('remove_permission_dashboard');
+        } else {
+            removePermissions.push('remove_permission_dashboard');
+        }
+
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeViewUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+                
+            return;
+        }
+        
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('view_dashboard');
+        } else {
+            removePermissions.push('view_dashboard');
+        }
+
+        this.eazlService.updateDashboardModelPermissions(
+            'dashboards',
+            this.selectedDashboard.dashboardID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onClickUserPermissionCancel() {
+        // Close User Permissions panel, and update DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
+
+        this.globalVariableService.growlGlobalMessage.next({
+            severity: 'warn',
+            summary:  'Cancel',
+            detail:   'As requested, no changes were applied'
+        });
+
+        // Close popup
+        this.displayUserPermissions = false;
+    }
+
+
+
+
+
+
+
+
+
+
+
     dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - dashboard: currently selected row
@@ -522,7 +780,6 @@ export class DashboardManagerComponent implements OnInit {
         this.datasources = this.eazlService.getDataSources(dashboard.dashboardID);
         this.displayDataSource = true;
     }
-
 
     dashboardMenuMessageHistory(dashboard: Dashboard) {
         // Show history of messages for the selected Dashboard
