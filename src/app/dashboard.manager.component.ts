@@ -20,6 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
+import { DashboardGroupPermissions }  from './model.dashboards';
 import { DashboardUserPermissions }   from './model.dashboards';
 import { DataSource }                 from './model.datasource';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
@@ -47,13 +48,14 @@ export class DashboardManagerComponent implements OnInit {
     dashboards: Dashboard[];                                    // List of Dashboards
     dashboardTags: string[];                                    // DataList of tags
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
-    dashboardUserPermissions: DashboardUserPermissions[];       // User of permissions
+    dashboardGroupPermissions: DashboardGroupPermissions[];     // Group permissions
+    dashboardUserPermissions: DashboardUserPermissions[];       // User permissions
     datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
     displayTagMembership: boolean = false;                      // True to display popup for GrpMbrship
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
     displayDataSource: boolean = false;                         // True to display table for DataSources
-    displayGroupsPermissions: boolean = false;                  // True to display popup for Groups Shared With (Dashboards)
+    displayGroupPermissions: boolean = false;                   // True to display popup for Groups Shared With (Dashboards)
     displayMessages: boolean = false;                           // True to display table for Messages
     displayReports: boolean = false;                            // True to display table for Reports
     displayUserPermissions: boolean = false;                    // True to show permissions panel
@@ -62,6 +64,7 @@ export class DashboardManagerComponent implements OnInit {
     reports: Report[];                                          // List of Reports
     selectedDashboard: Dashboard;                               // Dashboard that was clicked on
     selectedMembershipTag: DashboardTagMembership;              // Item clicked on in table
+    selectedGroupPermission: DashboardGroupPermissions;         // Selected in table
     selectedUserPermission: DashboardUserPermissions;           // Selected in table
     tagname: string;                                            // Input tag name on form
 
@@ -226,7 +229,7 @@ export class DashboardManagerComponent implements OnInit {
         if (this.displayUserPermissions) {
             this.dashboardMenuUserPermissions(this.selectedDashboard)
         }
-        if (this.displayGroupsPermissions) {
+        if (this.displayGroupPermissions) {
             this.dashboardMenuGroupPermissions(this.selectedDashboard)
         }
 
@@ -528,23 +531,23 @@ export class DashboardManagerComponent implements OnInit {
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupPermissions', '@Start');
 
-        // Get the current and available user shared with; as a Promise to cater for Async
-        this.eazlService.getdashboardUserPermissions(
+        // Get the current and available groups shared with; as a Promise to cater for Async
+        this.eazlService.getdashboardGroupPermissions(
             dashboard.dashboardID
         )
-            .then(dashUsrPer => {
-                this.dashboardUserPermissions = dashUsrPer;
-                if (this.dashboardUserPermissions.length > 0) {
-                    this.selectedUserPermission = this.dashboardUserPermissions[0];
+            .then(dashGrpPer => {
+                this.dashboardGroupPermissions = dashGrpPer;
+                if (this.dashboardGroupPermissions.length > 0) {
+                    this.selectedGroupPermission = this.dashboardGroupPermissions[0];
                 };
                 
-                this.displayUserPermissions = true;
+                this.displayGroupPermissions = true;
             })
             .catch(err => {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
-                    summary:  'User permissions',
-                    detail:   'Getting user permissions failed'
+                    summary:  'Group permissions',
+                    detail:   'Getting group permissions failed'
                 });
             });
 
