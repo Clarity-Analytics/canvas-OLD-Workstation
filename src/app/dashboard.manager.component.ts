@@ -39,7 +39,6 @@ export class DashboardManagerComponent implements OnInit {
 
     // Local properties
     addEditMode: string;                                        // Add/Edit to indicate mode
-    availableGroupSharedWith: Group[] = [];                     // List of Groups groups available for sharing
     availableSharedWith: string[] = [];                         // List of UserNames available to share with
     belongstoSharedWith: string[] = [];                         // List of UserName with whom this Dashboard has been shared
     belongstoGroupsSharedWith: Group[] = [];                    // List of Groups to which Dashboard has been shared
@@ -522,8 +521,6 @@ export class DashboardManagerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardMenuGroupsSharedWith', '@Start');
 
         // Get the related Groups
-        this.availableGroupSharedWith = [];
-        this.belongstoGroupsSharedWith = [];
 
         this.eazlService.getGroupsRelatedToDashboard(
             this.selectedDashboard.dashboardID,
