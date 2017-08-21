@@ -558,130 +558,129 @@
 
 <!--Group permissions panel-->
 <div
-class="groupMembershipPanel"
-*ngIf="displayGroupsPermissions"
->
-
-<div
-    class="userPermissionsHeading"
+    class="groupMembershipPanel"
+    *ngIf="displayGroupPermissions"
     >
-    Group permissions for {{ selectedDashboard.dashboardName }}
-    <button
-        class="panelButtonWithLabel"
-        pButton
-        type="button"
-        label="Close"
-        icon="fa-undo"
-        (click)="onClickGroupPermissionCancel()"
-        >
-    </button>
-</div>
 
-<div>
-    <p-dataTable 
-        [value]="dashboardUserPermissions"
-        [(selection)]="selectedUserPermission"
-        dataKey="username"
-        selectionMode="single"
+    <div
+        class="userPermissionsHeading"
         >
-        <p-column 
-            field="username" 
-            header="username"
-            [filter]="true"
+        Group permissions for {{ selectedDashboard.dashboardName }}
+        <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
+            label="Close"
+            icon="fa-undo"
+            (click)="onClickGroupPermissionCancel()"
             >
-        </p-column>
-        <p-column 
-            field="canAddDashboard" 
-            header="Add?"
-            [filter]="true"
+        </button>
+    </div>
+
+    <div>
+        <p-dataTable 
+            [value]="dashboardGroupPermissions"
+            [(selection)]="selectedGroupPermission"
+            selectionMode="single"
             >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox 
-                    name="canAddDashboard" 
-                    binary="true" 
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeAddGroupPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column 
-            field="canAssignPermissionDashboard" 
-            header="Assign?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox 
-                    name="canAssignPermissionDashboard" 
-                    binary="true" 
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeAssignGroupPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column 
-            field="canChangeDashboard" 
-            header="Change?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox 
-                    name="canChangeDashboard" 
-                    binary="true" 
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeChangeGroupPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column 
-            field="canDeleteDashboard" 
-            header="Delete?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox 
-                    name="canDeleteDashboard" 
-                    binary="true" 
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeDeleteGroupPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column 
-            field="canRemovePermissionDashboard" 
-            header="Remove?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox 
-                    name="canRemovePermissionDashboard" 
-                    binary="true" 
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeRemoveGroupPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column 
-            field="canViewDashboard" 
-            header="View?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox 
-                    name="canViewDashboard" 
-                    binary="true" 
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeViewGroupPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-    </p-dataTable>
-</div>
+            <p-column 
+                field="groupName" 
+                header="groupName"
+                [filter]="true"
+                >
+            </p-column>
+            <p-column 
+                field="canAddDashboard" 
+                header="Add?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="canAddDashboard" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeAddGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column 
+                field="canAssignPermissionDashboard" 
+                header="Assign?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="canAssignPermissionDashboard" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeAssignGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column 
+                field="canChangeDashboard" 
+                header="Change?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="canChangeDashboard" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeChangeGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column 
+                field="canDeleteDashboard" 
+                header="Delete?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="canDeleteDashboard" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeDeleteGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column 
+                field="canRemovePermissionDashboard" 
+                header="Remove?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="canRemovePermissionDashboard" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeRemoveGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column 
+                field="canViewDashboard" 
+                header="View?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox 
+                        name="canViewDashboard" 
+                        binary="true" 
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeViewGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
 </div>
 
 

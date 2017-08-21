@@ -517,15 +517,6 @@ export class DashboardManagerComponent implements OnInit {
         this.displayUserPermissions = false;
     }
 
-
-
-
-
-
-
-
-
-
     dashboardMenuGroupPermissions(dashboard: Dashboard) {
         // Groups with their permissions for the selected Dashboard
         // - dashboard: currently selected row
@@ -740,7 +731,7 @@ export class DashboardManagerComponent implements OnInit {
         } else {
             removePermissions.push('view_dashboard');
         }
-
+console.log('hier', event, this.selectedDashboard.dashboardID, this.selectedGroupPermission.groupName, this.selectedDashboard, this.selectedGroupPermission)
         this.eazlService.updateDashboardModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
