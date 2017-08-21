@@ -4682,15 +4682,12 @@ export class EazlService implements OnInit {
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
-                    summary:  'Update Group',
-                    detail:   'Unsuccessful in updating your Group info to the database'
+                    summary:  'User Permissions',
+                    detail:   'Unsuccessful in reading user permissions from the database'
                 });
                 error.message || error
             })
-            
     }
-
-
 
     getdashboardGroupPermissions(dashboardID: number): Promise<any> {
         // Returns an array of ALL groups.  Each row shows booleans (T/F) wrt each permission
@@ -4698,7 +4695,7 @@ export class EazlService implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardGroupPermissions', '@Start');
 
         let dashboardUserPermissionsWorking: DashboardGroupPermissions[] = [];
-        return this.get<EazlDashboardUserPermissions>(
+        return this.get<EazlDashboardGroupPermissions>(
             'dashboards/' + dashboardID.toString() + '/group-permissions/'
         )
             .toPromise()
@@ -4708,9 +4705,9 @@ export class EazlService implements OnInit {
 
                     found = false;
                     for (var j = 0; j < eazlGrpPerm.length; j++) {
-                        if (eazlGrpPerm[j].username == this.users[i].username) {
+                        if (eazlGrpPerm[j].groupName == this.groups[i].groupName) {
                             dashboardUserPermissionsWorking.push( 
-                                this.cdal.loadDashboardUserPermissions(eazlGrpPerm[j])
+                                this.cdal.loadDashboardGroupPermissions(eazlGrpPerm[j])
                             );
                             found = true;
                         }
@@ -4719,7 +4716,7 @@ export class EazlService implements OnInit {
                     if (!found) {
                         dashboardUserPermissionsWorking.push( 
                             {
-                                username: this.users[i].username,
+                                groupName: this.groups[i].groupName,
                                 canAddDashboard: false,
                                 canAssignPermissionDashboard: false,
                                 canChangeDashboard: false,
@@ -4737,8 +4734,8 @@ export class EazlService implements OnInit {
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
-                    summary:  'Update Group',
-                    detail:   'Unsuccessful in updating your Group info to the database'
+                    summary:  'Group permissions',
+                    detail:   'Unsuccessful in reading group permissions from the database'
                 });
                 error.message || error
             })
