@@ -536,20 +536,6 @@ export class DashboardManagerComponent implements OnInit {
         this.displayGroupsPermissions = true;
     }
 
-    onMoveToSourceDashboardGroupSharedWith(event) {
-        // User clicked onMoveToSource - remove from SharedWith
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupSharedWith', '@Start');
-
-        // Remove the makker(s)
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDashboardGroupRelationship(
-                this.selectedDashboard.dashboardID,
-                event.items[i].groupID,
-                'SharedWith'
-            );
-        }
-    }
-
     dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
         // - dashboard: currently selected row
