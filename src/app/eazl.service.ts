@@ -6905,47 +6905,6 @@ export class EazlService implements OnInit {
             }
         }
 
-        // DashboardTab
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTab') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTab');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardTab = true;
-
-            //         // Get all the data via API
-            //         let dashboardTabWorking: DashboardTab[] = [];
-            //         this.get<EazlDashboardTab>('dashboard-tabs')
-            //             .subscribe(
-            //                 (eazlDashboardTab) => {
-            //                     for (var i = 0; i < eazlDashboardTab.length; i++) {
-            //                         let dashboardTabSingle = new DashboardTab();
-            //                         dashboardTabSingle = this.cdal.loadDashboardTab(eazlDashboardTab[i]);
-            //                         dashboardTabWorking.push(dashboardTabSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 this.dashboardTabs = dashboardTabWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDashboardTab = false;
-            //             }
-            //         )
-            //     }
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTab');
-            //         this.dashboardTabs = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardTab = true;
-            //     }
-            // }
-        // Done
-
         // CanvasMessage
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'CanvasMessage') {
 
@@ -7028,49 +6987,6 @@ export class EazlService implements OnInit {
                 this.globalVariableService.dirtyDataCanvasMessageRecipient = true;
             }
         }
-
-        // DashboardTagMembership
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardTagMembership') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardTagMembership');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardTagMembership = true;
-
-            //         // Get all the data via API
-            //         let dashboardTagMembershipWorking: DashboardTagMembership[] = [];
-            //         this.get<EazlDashboardTagMembership>('dashboard-tags')
-            //             .subscribe(
-            //                 (eazlDashboardTagMembership) => {
-            //                     for (var i = 0; i < eazlDashboardTagMembership.length; i++) {
-            //                         let dashboardTagMembershipSingle = new DashboardTagMembership();
-            //                         dashboardTagMembershipSingle = this.cdal.loadDashboardTagMembership(eazlDashboardTagMembership[i]);
-            //                         dashboardTagMembershipWorking.push(dashboardTagMembershipSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 this.dashboardTagMembership = dashboardTagMembershipWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDashboardTagMembership = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardTagMembership');
-            //         this.dashboardTagMembership = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardTagMembership = true;
-            //     }
-            // }
-        // Done
-
 
         // Dashboard: this is a nested get, using Promises
         // - first get Dashboards
