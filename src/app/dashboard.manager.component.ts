@@ -685,16 +685,16 @@ export class DashboardManagerComponent implements OnInit {
         );
     }
 
-    onChangeRemoveUserPermission(event) {
-        // User changed  user permission
+    onChangeRemoveGroupPermission(event) {
+        // Change Group permissions
         // - event is the new value of the checkbox
-        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveUserPermission', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveGroupPermission', '@Start');
 
-        if (this.selectedUserPermission == null) {
+        if (this.selectedGroupPermission == null) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the group name'
             });
                 
             return;
@@ -711,8 +711,8 @@ export class DashboardManagerComponent implements OnInit {
         this.eazlService.updateDashboardModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
-            this.selectedUserPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
