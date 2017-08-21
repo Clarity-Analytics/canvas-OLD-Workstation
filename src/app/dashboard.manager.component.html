@@ -556,6 +556,133 @@
 </div>
 
 
+<!--Group permissions panel-->
+<div
+class="groupMembershipPanel"
+*ngIf="displayGroupsPermissions"
+>
+
+<div
+    class="userPermissionsHeading"
+    >
+    Group permissions for {{ selectedDashboard.dashboardName }}
+    <button
+        class="panelButtonWithLabel"
+        pButton
+        type="button"
+        label="Close"
+        icon="fa-undo"
+        (click)="onClickUserPermissionCancel()"
+        >
+    </button>
+</div>
+
+<div>
+    <p-dataTable 
+        [value]="dashboardUserPermissions"
+        [(selection)]="selectedUserPermission"
+        dataKey="username"
+        selectionMode="single"
+        >
+        <p-column 
+            field="username" 
+            header="username"
+            [filter]="true"
+            >
+        </p-column>
+        <p-column 
+            field="canAddDashboard" 
+            header="Add?"
+            [filter]="true"
+            >
+            <ng-template let-col let-user="rowData" pTemplate="body">
+                <p-checkbox 
+                    name="canAddDashboard" 
+                    binary="true" 
+                    [(ngModel)]="user[col.field]"
+                    (onChange)="onChangeAddUserPermission($event)"
+                    >
+                </p-checkbox>
+            </ng-template>
+        </p-column>
+        <p-column 
+            field="canAssignPermissionDashboard" 
+            header="Assign?"
+            [filter]="true"
+            >
+            <ng-template let-col let-user="rowData" pTemplate="body">
+                <p-checkbox 
+                    name="canAssignPermissionDashboard" 
+                    binary="true" 
+                    [(ngModel)]="user[col.field]"
+                    (onChange)="onChangeAssignUserPermission($event)"
+                    >
+                </p-checkbox>
+            </ng-template>
+        </p-column>
+        <p-column 
+            field="canChangeDashboard" 
+            header="Change?"
+            [filter]="true"
+            >
+            <ng-template let-col let-user="rowData" pTemplate="body">
+                <p-checkbox 
+                    name="canChangeDashboard" 
+                    binary="true" 
+                    [(ngModel)]="user[col.field]"
+                    (onChange)="onChangeChangeUserPermission($event)"
+                    >
+                </p-checkbox>
+            </ng-template>
+        </p-column>
+        <p-column 
+            field="canDeleteDashboard" 
+            header="Delete?"
+            [filter]="true"
+            >
+            <ng-template let-col let-user="rowData" pTemplate="body">
+                <p-checkbox 
+                    name="canDeleteDashboard" 
+                    binary="true" 
+                    [(ngModel)]="user[col.field]"
+                    (onChange)="onChangeDeleteUserPermission($event)"
+                    >
+                </p-checkbox>
+            </ng-template>
+        </p-column>
+        <p-column 
+            field="canRemovePermissionDashboard" 
+            header="Remove?"
+            [filter]="true"
+            >
+            <ng-template let-col let-user="rowData" pTemplate="body">
+                <p-checkbox 
+                    name="canRemovePermissionDashboard" 
+                    binary="true" 
+                    [(ngModel)]="user[col.field]"
+                    (onChange)="onChangeRemoveUserPermission($event)"
+                    >
+                </p-checkbox>
+            </ng-template>
+        </p-column>
+        <p-column 
+            field="canViewDashboard" 
+            header="View?"
+            [filter]="true"
+            >
+            <ng-template let-col let-user="rowData" pTemplate="body">
+                <p-checkbox 
+                    name="canViewDashboard" 
+                    binary="true" 
+                    [(ngModel)]="user[col.field]"
+                    (onChange)="onChangeViewUserPermission($event)"
+                    >
+                </p-checkbox>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+</div>
+</div>
 
 
 <!--Popup form for Data Source table-->

@@ -227,7 +227,7 @@ export class DashboardManagerComponent implements OnInit {
             this.dashboardMenuUserPermissions(this.selectedDashboard)
         }
         if (this.displayGroupsPermissions) {
-            this.dashboardMenuGroupsSharedWith(this.selectedDashboard)
+            this.dashboardMenuGroupPermissions(this.selectedDashboard)
         }
 
     }
