@@ -4490,20 +4490,6 @@ export class EazlService implements OnInit {
             });
         };
 
-        // Add TOTAL dashboardNrGroupsSharedWith calculated field
-        if (dashboardsWorking != null) {
-            dashboardsWorking.forEach( dw => {
-                dw.dashboardNrGroupsSharedWith = 0;
-                dw.dashboardNrGroupsSharedWith = this.dashboardGroupRelationship.filter(dgr =>
-                    (
-                        dgr.dashboardID == dw.dashboardID
-                        &&
-                        dgr.dashboardGroupRelationshipType == 'SharedWith'
-                    )
-                ).length;
-            });
-        };
-
         // Return the filtered result
         if (dashboardsWorking != null) {
             return dashboardsWorking.filter(d =>
@@ -7130,49 +7116,6 @@ export class EazlService implements OnInit {
 
             //         // Mark the data as dirty
             //         this.globalVariableService.dirtyDataDashboardsPerUser = true;
-            //     }
-            // }
-        // Done
-
-        // DashboardUserRelationship
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardUserRelationship') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardUserRelationship');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardUserRelationship = true;
-
-            //         // Get all the data via API
-            //         let dashboardUserRelationshipWorking: DashboardUserRelationship[] = [];
-            //         this.get<EazlDashboardUserRelationship>('dashboard-user-relationships')
-            //             .subscribe(
-            //                 (eazlDashboardUserRelationship) => {
-            //                     for (var i = 0; i < eazlDashboardUserRelationship.length; i++) {
-            //                         let dashboardUserRelationshipSingle = new DashboardUserRelationship();
-            //                         dashboardUserRelationshipSingle = this.cdal.loadDashboardUserRelationship(eazlDashboardUserRelationship[i]);
-            //                         dashboardUserRelationshipWorking.push(dashboardUserRelationshipSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.dashboardUserRelationship = dashboardUserRelationshipWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDashboardUserRelationship = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardUserRelationship');
-            //         this.dashboardUserRelationship = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardUserRelationship = true;
             //     }
             // }
         // Done

@@ -1251,7 +1251,6 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
 
         //     dashboardWorking.dashboardNrUsersSharedWith = 0;
 
-        //     dashboardWorking.dashboardNrGroupsSharedWith = eazlDashboard.nr_groups_shared_with;
 console.log('CDAL dashboardWorking',dashboardWorking)
         // Return the result
         return dashboardWorking;

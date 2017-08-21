@@ -76,7 +76,6 @@ export class Dashboard {
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
     dashboardOwners: string;                    // CSV of UserNames of owners
     dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserNames shared with
-    dashboardNrGroupsSharedWith: number;        // @RunTime: @ of Groups shared with
 }
 
 export class DashboardUserPermissions {
