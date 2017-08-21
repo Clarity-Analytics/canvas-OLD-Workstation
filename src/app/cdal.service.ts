@@ -1338,33 +1338,35 @@ console.log('CDAL dashboardWorking',dashboardWorking)
             dashboardUserPermissionsWorking.username = '';
         }
 
+        // Set default to false
+        dashboardUserPermissionsWorking.canAddDashboard = false;
+        dashboardUserPermissionsWorking.canAssignPermissionDashboard = false;
+        dashboardUserPermissionsWorking.canChangeDashboard = false;
+        dashboardUserPermissionsWorking.canDeleteDashboard = false;
+        dashboardUserPermissionsWorking.canRemovePermissionDashboard = false;
+        dashboardUserPermissionsWorking.canViewDashboard = false;
+
         if (eazlDashboardUserPermissions.permissions != null) {
 
             // Loop on those assigned
             for (var i = 0; i < eazlDashboardUserPermissions.permissions.length; i++) {
-                dashboardUserPermissionsWorking.canAddDashboard = false;
-                dashboardUserPermissionsWorking.canAssignPermissionDashboard = false;
-                dashboardUserPermissionsWorking.canChangeDashboard = false;
-                dashboardUserPermissionsWorking.canDeleteDashboard = false;
-                dashboardUserPermissionsWorking.canRemovePermissionDashboard = false;
-                dashboardUserPermissionsWorking.canViewDashboard = false;
 
-                if (eazlDashboardUserPermissions.permissions[i] = 'add_dashboard') {
+                if (eazlDashboardUserPermissions.permissions[i] == 'add_dashboard') {
                     dashboardUserPermissionsWorking.canAddDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] = 'assign_permission_dashboard') {
+                if (eazlDashboardUserPermissions.permissions[i] == 'assign_permission_dashboard') {
                     dashboardUserPermissionsWorking.canAssignPermissionDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] = 'change_dashboard') {
+                if (eazlDashboardUserPermissions.permissions[i] == 'change_dashboard') {
                     dashboardUserPermissionsWorking.canChangeDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] = 'delete_dashboard') {
+                if (eazlDashboardUserPermissions.permissions[i] == 'delete_dashboard') {
                     dashboardUserPermissionsWorking.canDeleteDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] = 'remove_permission_dashboard') {
+                if (eazlDashboardUserPermissions.permissions[i] == 'remove_permission_dashboard') {
                     dashboardUserPermissionsWorking.canRemovePermissionDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] = 'view_dashboard') {
+                if (eazlDashboardUserPermissions.permissions[i] == 'view_dashboard') {
                     dashboardUserPermissionsWorking.canViewDashboard = true;
                 }
             }
