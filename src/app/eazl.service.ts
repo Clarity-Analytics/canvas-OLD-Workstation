@@ -712,20 +712,20 @@ export const DATASOURCES: DataSource[] =
         }
     ];
 
-export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
-    [
-        {
-            dashboardGroupRelationshipID: 0,
-            dashboardID: 0,
-            groupID: 0,
-            dashboardGroupRelationshipType: 'SharedWith',
-            dashboardGroupRelationshipRating: 0,
-            dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
-            dashboardGroupRelationshipCreatedUserName: 'janniei',
-            dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
-            dashboardGroupRelationshipUpdatedUserName: 'janniei'
-        }
-    ];
+// export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
+//     [
+//         {
+//             dashboardGroupRelationshipID: 0,
+//             dashboardID: 0,
+//             groupID: 0,
+//             dashboardGroupRelationshipType: 'SharedWith',
+//             dashboardGroupRelationshipRating: 0,
+//             dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
+//             dashboardGroupRelationshipCreatedUserName: 'janniei',
+//             dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
+//             dashboardGroupRelationshipUpdatedUserName: 'janniei'
+//         }
+//     ];
 
 export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
     [
