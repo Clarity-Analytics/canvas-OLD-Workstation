@@ -731,7 +731,7 @@ export class DashboardManagerComponent implements OnInit {
         } else {
             removePermissions.push('view_dashboard');
         }
-console.log('hier', event, this.selectedDashboard.dashboardID, this.selectedGroupPermission.groupName, this.selectedDashboard, this.selectedGroupPermission)
+
         this.eazlService.updateDashboardModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
@@ -755,16 +755,6 @@ console.log('hier', event, this.selectedDashboard.dashboardID, this.selectedGrou
         // Close popup
         this.displayGroupPermissions = false;
     }
-
-
-
-
-
-
-
-
-
-
 
     dashboardMenuRelatedDataSources(dashboard: Dashboard) {
         // Manage related Data Sources (owned, given rights and received rights)
