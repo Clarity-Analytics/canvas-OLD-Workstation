@@ -21,27 +21,29 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardUserPermissions }   from './model.dashboards';
+import { DashboardGroupPermissions }   from './model.dashboards';
+import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTag }               from './model.dashboardTag';
-import { DashboardTagMembership }     from './model.dashboardTagMembership';
-import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardTab }               from './model.dashboardTabs';
+import { DashboardTagMembership }     from './model.dashboardTagMembership';
+import { DashboardUserPermissions }   from './model.dashboards';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlAppData }                from './model.appdata';
+import { EazlCanvasMessage }          from './model.canvasMessage';
+import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
-import { EazlDashboardUserPermissions }     from './model.dashboards';
-import { EazlCanvasMessage }          from './model.canvasMessage';
-import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
+import { EazlDashboardGroupPermissions }    from './model.dashboards';
+import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
+import { EazlDashboardsPerUser }            from './model.dashboardsPerUser';
+import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardTag }           from './model.dashboardTag';
 import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
-import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
-import { EazlDashboardTab }           from './model.dashboardTabs';
-import { EazlDashboardsPerUser }            from './model.dashboardsPerUser';
+import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { EazlDashboardUserRelationship }    from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
@@ -1374,6 +1376,56 @@ console.log('CDAL dashboardWorking',dashboardWorking)
 
         // Return
         return dashboardUserPermissionsWorking;
+    }
+
+    loadDashboardGroupPermissions(eazlDashboardGroupPermissions): DashboardGroupPermissions {
+        // Load Group Permissions for a given Dashboard: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupPermissions', '@Start');
+        
+        let dashboardGroupPermissionsWorking = new DashboardGroupPermissions();
+        
+        if (eazlDashboardGroupPermissions.groupName != null) {
+            dashboardGroupPermissionsWorking.groupName = eazlDashboardGroupPermissions.groupName;
+        } else {
+            dashboardGroupPermissionsWorking.groupName = '';
+        }
+
+        // Set default to false
+        dashboardGroupPermissionsWorking.canAddDashboard = false;
+        dashboardGroupPermissionsWorking.canAssignPermissionDashboard = false;
+        dashboardGroupPermissionsWorking.canChangeDashboard = false;
+        dashboardGroupPermissionsWorking.canDeleteDashboard = false;
+        dashboardGroupPermissionsWorking.canRemovePermissionDashboard = false;
+        dashboardGroupPermissionsWorking.canViewDashboard = false;
+
+        if (eazlDashboardGroupPermissions.permissions != null) {
+
+            // Loop on those assigned
+            for (var i = 0; i < eazlDashboardGroupPermissions.permissions.length; i++) {
+
+                if (eazlDashboardGroupPermissions.permissions[i] == 'add_dashboard') {
+                    dashboardGroupPermissionsWorking.canAddDashboard = true;
+                }
+                if (eazlDashboardGroupPermissions.permissions[i] == 'assign_permission_dashboard') {
+                    dashboardGroupPermissionsWorking.canAssignPermissionDashboard = true;
+                }
+                if (eazlDashboardGroupPermissions.permissions[i] == 'change_dashboard') {
+                    dashboardGroupPermissionsWorking.canChangeDashboard = true;
+                }
+                if (eazlDashboardGroupPermissions.permissions[i] == 'delete_dashboard') {
+                    dashboardGroupPermissionsWorking.canDeleteDashboard = true;
+                }
+                if (eazlDashboardGroupPermissions.permissions[i] == 'remove_permission_dashboard') {
+                    dashboardGroupPermissionsWorking.canRemovePermissionDashboard = true;
+                }
+                if (eazlDashboardGroupPermissions.permissions[i] == 'view_dashboard') {
+                    dashboardGroupPermissionsWorking.canViewDashboard = true;
+                }
+            }
+        }
+
+        // Return
+        return dashboardGroupPermissionsWorking;
     }
 
     loadDashboardsPerUser(eazlDashboardsPerUser: EazlDashboardsPerUser): DashboardsPerUser {

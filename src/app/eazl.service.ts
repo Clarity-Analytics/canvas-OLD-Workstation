@@ -65,12 +65,13 @@ import { ReconnectingWebSocket }      from './websocket.service';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { CanvasUser }                 from './model.user';
-import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardsPerUser }          from './model.dashboardsPerUser';
-import { DashboardTab }               from './model.dashboardTabs';
-import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
+import { DashboardGroupPermissions }  from './model.dashboards';
+import { DashboardsPerUser }          from './model.dashboardsPerUser';
+import { DashboardTagMembership }     from './model.dashboardTagMembership';
+import { DashboardTab }               from './model.dashboardTabs';
+import { DashboardUserPermissions }   from './model.dashboards';
 import { DashboardUserRelationship }  from './model.dashboardUserRelationship';
 import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
@@ -78,10 +79,11 @@ import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlAppData }                from './model.appdata';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
+import { EazlDashboardGroupPermissions }    from './model.dashboards';
+import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
-import { DashboardUserPermissions }   from './model.dashboards';
 import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
@@ -4690,23 +4692,14 @@ export class EazlService implements OnInit {
 
 
 
-    getdashboardGroupPermissions(
-        dashboardID: number, 
-        includeGroup:string = 'true'
-        ): Promise<any> {
+    getdashboardGroupPermissions(dashboardID: number): Promise<any> {
         // Returns an array of ALL groups.  Each row shows booleans (T/F) wrt each permission
         // that the group has.  So, a user with no permissions with have a row of False 
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardGroupPermissions', '@Start');
-        
-        // Default to true if not correctly set to false
-        if (includeGroup != 'false') { 
-            includeGroup = 'true';
-        };
 
-        let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
+        let dashboardUserPermissionsWorking: DashboardGroupPermissions[] = [];
         return this.get<EazlDashboardUserPermissions>(
-            'dashboards/' + dashboardID.toString() + 
-                '/group-permissions/?include-group-permissions=' + includeGroup
+            'dashboards/' + dashboardID.toString() + '/group-permissions/'
         )
             .toPromise()
             .then(eazlGrpPerm => {
