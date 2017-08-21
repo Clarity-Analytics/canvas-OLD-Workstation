@@ -3691,7 +3691,7 @@ export class EazlService implements OnInit {
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[];                                // List of Dashboards
     dashboardTagMembership: DashboardTagMembership[];       //List of Dashboard-Group
-    dashboardGroupRelationship: DashboardGroupRelationship[] = DASHBOARDGROUPRELATIONSHIP; // Dashboard-Group relationships
+    dashboardGroupRelationship: DashboardGroupRelationship[]; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     // dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
     dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
