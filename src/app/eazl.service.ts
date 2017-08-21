@@ -6298,34 +6298,6 @@ console.log('EAZL update then ...', element)
                 })
     }
 
-    deleteDashboardGroupRelationship(
-        dashboardID: number,
-        groupID: number,
-        relationshipType: string) {
-        // Removes Group from a Dashboard Relationship
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardGroupRelationship', '@Start');
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
-
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
-            if (this.dashboardGroupRelationship[i].dashboardID == dashboardID
-               &&
-               this.dashboardGroupRelationship[i].groupID == groupID
-               &&
-               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType ==
-                relationshipType) {
-                this.dashboardGroupRelationship =
-                    this.dashboardGroupRelationship.splice(i, 1);
-                }
-        }
-
-        // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboardGroupRelationship = false;
-    }
-
     addDashboardUserRelationship(
         dashboardID: number,
         username: string,
