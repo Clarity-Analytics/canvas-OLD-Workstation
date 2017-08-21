@@ -50,15 +50,15 @@ export class DashboardManagerComponent implements OnInit {
     dashboardTags: string[];                                    // DataList of tags
     dashboardToEdit: Dashboard;                                 // Dashboard to edit in popup
     dashboardUserPermissions: DashboardUserPermissions[];       // User of permissions
-    displayUserPermissions: boolean = false;                    // True to show permissions panel
     datasources: DataSource[];                                  // List of DataSources
     deleteMode: boolean = false;                                // True while busy deleting
     displayTagMembership: boolean = false;                      // True to display popup for GrpMbrship
-    displayGroupsSharedWith: boolean = false;                   // True to display popup for Groups Shared With (Dashboards)
     displayDashboardPopup: boolean = false;                     // True to display single Dashboard
     displayDataSource: boolean = false;                         // True to display table for DataSources
-    displayReports: boolean = false;                            // True to display table for Reports
+    displayGroupsPermissions: boolean = false;                  // True to display popup for Groups Shared With (Dashboards)
     displayMessages: boolean = false;                           // True to display table for Messages
+    displayReports: boolean = false;                            // True to display table for Reports
+    displayUserPermissions: boolean = false;                    // True to show permissions panel
     popupHeader: string = 'Dashboard Editor';                   // Popup header
     popuMenuItems: MenuItem[];                                  // Items in popup
     reports: Report[];                                          // List of Reports
@@ -228,7 +228,7 @@ export class DashboardManagerComponent implements OnInit {
         if (this.displayUserPermissions) {
             this.dashboardMenuUserPermissions(this.selectedDashboard)
         }
-        if (this.displayGroupsSharedWith) {
+        if (this.displayGroupsPermissions) {
             this.dashboardMenuGroupsSharedWith(this.selectedDashboard)
         }
 
@@ -306,7 +306,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onChangeAddUserPermission(event) {
         // User changed  user permission
-        // - dashboard: currently selected row
+        // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAddUserPermission', '@Start');
 
         if (this.selectedUserPermission == null) {
@@ -339,7 +339,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onChangeAssignUserPermission(event) {
         // User changed  user permission
-        // - dashboard: currently selected row
+        // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAssignUserPermission', '@Start');
 
         if (this.selectedUserPermission == null) {
@@ -372,7 +372,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onChangeChangeUserPermission(event) {
         // User changed  user permission
-        // - dashboard: currently selected row
+        // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeChangeUserPermission', '@Start');
 
         if (this.selectedUserPermission == null) {
@@ -405,7 +405,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onChangeDeleteUserPermission(event) {
         // User changed  user permission
-        // - dashboard: currently selected row
+        // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDeleteUserPermission', '@Start');
 
         if (this.selectedUserPermission == null) {
@@ -438,7 +438,7 @@ export class DashboardManagerComponent implements OnInit {
 
     onChangeRemoveUserPermission(event) {
         // User changed  user permission
-        // - dashboard: currently selected row
+        // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveUserPermission', '@Start');
 
         if (this.selectedUserPermission == null) {
@@ -471,9 +471,9 @@ export class DashboardManagerComponent implements OnInit {
 
     onChangeViewUserPermission(event) {
         // User changed  user permission
-        // - dashboard: currently selected row
+        // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewUserPermission', '@Start');
-console.log('this.selectedUserPermission', this.selectedUserPermission)
+
         if (this.selectedUserPermission == null) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
@@ -537,15 +537,7 @@ console.log('this.selectedUserPermission', this.selectedUserPermission)
         ).forEach( g => this.availableGroupSharedWith.push(g));;
 
         // Show popup
-        this.displayGroupsSharedWith = true;
-    }
-
-    onClickGroupsSharedWithCancel() {
-        // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupsSharedWithCancel', '@Start');
-
-        // Close popup
-        this.displayGroupsSharedWith = false;
+        this.displayGroupsPermissions = true;
     }
 
     onMoveToTargetDashboardGroupSharedWith(event) {
