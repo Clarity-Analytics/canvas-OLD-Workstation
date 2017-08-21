@@ -504,7 +504,7 @@ export class DashboardManagerComponent implements OnInit {
     }
 
     onClickUserPermissionCancel() {
-        // Close User Permissions panel, and update DB
+        // Close User Permissions panel
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
@@ -751,9 +751,9 @@ export class DashboardManagerComponent implements OnInit {
         );
     }
 
-    onClickUserPermissionCancel() {
-        // Close User Permissions panel, and update DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
+    onClickGroupPermissionCancel() {
+        // Close Group Permissions panel
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupPermissionCancel', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
@@ -762,7 +762,7 @@ export class DashboardManagerComponent implements OnInit {
         });
 
         // Close popup
-        this.displayUserPermissions = false;
+        this.displayGroupPermissions = false;
     }
 
 
