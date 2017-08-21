@@ -4688,6 +4688,72 @@ export class EazlService implements OnInit {
             
     }
 
+
+
+    getdashboardGroupPermissions(
+        dashboardID: number, 
+        includeGroup:string = 'true'
+        ): Promise<any> {
+        // Returns an array of ALL groups.  Each row shows booleans (T/F) wrt each permission
+        // that the group has.  So, a user with no permissions with have a row of False 
+        this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardGroupPermissions', '@Start');
+        
+        // Default to true if not correctly set to false
+        if (includeGroup != 'false') { 
+            includeGroup = 'true';
+        };
+
+        let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
+        return this.get<EazlDashboardUserPermissions>(
+            'dashboards/' + dashboardID.toString() + 
+                '/group-permissions/?include-group-permissions=' + includeGroup
+        )
+            .toPromise()
+            .then(eazlGrpPerm => {
+                let found: boolean = false;
+                for (var i = 0; i < this.groups.length; i++) {
+
+                    found = false;
+                    for (var j = 0; j < eazlGrpPerm.length; j++) {
+                        if (eazlGrpPerm[j].username == this.users[i].username) {
+                            dashboardUserPermissionsWorking.push( 
+                                this.cdal.loadDashboardUserPermissions(eazlGrpPerm[j])
+                            );
+                            found = true;
+                        }
+                    }
+                    
+                    if (!found) {
+                        dashboardUserPermissionsWorking.push( 
+                            {
+                                username: this.users[i].username,
+                                canAddDashboard: false,
+                                canAssignPermissionDashboard: false,
+                                canChangeDashboard: false,
+                                canDeleteDashboard: false,
+                                canRemovePermissionDashboard: false,
+                                canViewDashboard: false
+                            }
+                        )
+                    }
+                };
+                
+                // Return
+                return dashboardUserPermissionsWorking;
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Update Group',
+                    detail:   'Unsuccessful in updating your Group info to the database'
+                });
+                error.message || error
+            })
+            
+    }
+
+
+
     updateDashboardModelPermissions(
         url: string,
         id: number,

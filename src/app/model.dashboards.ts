@@ -37,6 +37,13 @@ export class EazlDashboardUserPermissions {
             // delete_dashboard, remove_permission_dashboard, view_dashboard
 }
 
+export class EazlDashboardGroupPermissions {
+    username: string;
+    permissions: string[];                      // Permissions at model level per dashboard: 
+            // add_dashboard, assign_permission_dashboard, change_dashboard,
+            // delete_dashboard, remove_permission_dashboard, view_dashboard
+}
+
 // Canvas
 export class Dashboard {
     dashboardID: number;                        // Unique DB ID
@@ -74,6 +81,17 @@ export class Dashboard {
 
 export class DashboardUserPermissions {
     username: string;
+    canAddDashboard: boolean;
+    canAssignPermissionDashboard: boolean;
+    canChangeDashboard: boolean;
+    canDeleteDashboard: boolean;
+    canRemovePermissionDashboard: boolean;
+    canViewDashboard: boolean;
+}
+    
+
+export class DashboardGroupPermissions {
+    groupName: string;
     canAddDashboard: boolean;
     canAssignPermissionDashboard: boolean;
     canChangeDashboard: boolean;
