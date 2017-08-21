@@ -288,6 +288,10 @@ export class DashboardManagerComponent implements OnInit {
         )
             .then(dashUsrPer => {
                 this.dashboardUserPermissions = dashUsrPer;
+                if (this.dashboardUserPermissions.length > 0) {
+                    this.selectedUserPermission = this.dashboardUserPermissions[0];
+                };
+                
                 this.displayUserPermissions = true;
             })
             .catch(err => {
@@ -469,7 +473,7 @@ export class DashboardManagerComponent implements OnInit {
         // User changed  user permission
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewUserPermission', '@Start');
-
+console.log('this.selectedUserPermission', this.selectedUserPermission)
         if (this.selectedUserPermission == null) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',

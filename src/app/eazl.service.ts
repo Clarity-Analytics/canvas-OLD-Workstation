@@ -4628,17 +4628,17 @@ export class EazlService implements OnInit {
 
     getdashboardUserPermissionsX(
         dashboardID: number, 
-        includeGroup:string = 'false'
+        includeGroup:string = 'true'
         ): Promise<any> {
         // Returns an array of ALL users.  Each row shows booleans (T/F) wrt each permission
         // that the user has.  So, a user with no permissions with have a row of False 
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
         
-        // TODO - this guy returns view_dashboard for all permissions!  Fix ...
+        // Default to true if not correctly set to false
         if (includeGroup != 'false') { 
             includeGroup = 'true';
         };
-console.log('EAZL route', 'dashboards/' + dashboardID.toString() + '/user-permissions/?include-group-permissions=' + includeGroup)
+
         let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
         return this.get<EazlDashboardUserPermissions>(
             'dashboards/' + dashboardID.toString() + 
@@ -4646,7 +4646,6 @@ console.log('EAZL route', 'dashboards/' + dashboardID.toString() + '/user-permis
         )
             .toPromise()
             .then(eazlUsrPerm => {
-console.log('EAZL eazlUsrPerm', eazlUsrPerm)
                 let found: boolean = false;
                 for (var i = 0; i < this.users.length; i++) {
 
