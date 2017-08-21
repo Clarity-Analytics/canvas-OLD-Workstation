@@ -536,20 +536,6 @@ export class DashboardManagerComponent implements OnInit {
         this.displayGroupsPermissions = true;
     }
 
-    onMoveToTargetDashboardGroupSharedWith(event) {
-        // User clicked onMoveToTarget - add to SharedWith
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDashboardGroupSharedWith', '@Start');
-
-        // Add this / these makker(s) - array if multi select
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDashboardGroupRelationship(
-                this.selectedDashboard.dashboardID,
-                event.items[i].groupID,
-                'SharedWith'
-            );
-        }
-    }
-
     onMoveToSourceDashboardGroupSharedWith(event) {
         // User clicked onMoveToSource - remove from SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDashboardGroupSharedWith', '@Start');
