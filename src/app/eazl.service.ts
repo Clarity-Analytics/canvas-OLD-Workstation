@@ -457,6 +457,22 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardUpdatedUserName: 'JerimiaA'
     //     }
     // ];
+// const DASHBOARDGROUPRELATIONSHIP
+    // export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
+    //     [
+    //         {
+    //             dashboardGroupRelationshipID: 0,
+    //             dashboardID: 0,
+    //             groupID: 0,
+    //             dashboardGroupRelationshipType: 'SharedWith',
+    //             dashboardGroupRelationshipRating: 0,
+    //             dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
+    //             dashboardGroupRelationshipCreatedUserName: 'janniei',
+    //             dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
+    //             dashboardGroupRelationshipUpdatedUserName: 'janniei'
+    //         }
+    //     ];
+// Dead ones
 // End of const comments
     export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
     [
@@ -711,21 +727,6 @@ export const DATASOURCES: DataSource[] =
             datasourceUpdatedUserName: ''
         }
     ];
-
-// export const DASHBOARDGROUPRELATIONSHIP: DashboardGroupRelationship[] =
-//     [
-//         {
-//             dashboardGroupRelationshipID: 0,
-//             dashboardID: 0,
-//             groupID: 0,
-//             dashboardGroupRelationshipType: 'SharedWith',
-//             dashboardGroupRelationshipRating: 0,
-//             dashboardGroupRelationshipCreatedDateTime: '2017/05/01 16:01',
-//             dashboardGroupRelationshipCreatedUserName: 'janniei',
-//             dashboardGroupRelationshipUpdatedDateTime: '2017/05/01 16:01',
-//             dashboardGroupRelationshipUpdatedUserName: 'janniei'
-//         }
-//     ];
 
 export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
     [
@@ -4597,37 +4598,6 @@ export class EazlService implements OnInit {
         return dashboardTabNameWorking;
     }
 
-    // getdashboardUserPermissions(dashboardID: number): Promise<any> {
-    //     // Returns the users & their permissions for a given dashboardID
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
-
-    //     let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
-    //     return this.get<EazlDashboardUserPermissions>(
-    //         'dashboards/' + dashboardID.toString() + '/user-permissions/'
-    //     )
-    //         .toPromise()
-    //         .then(eazlUsrPerm => {
-
-    //                 for (var i = 0; i < eazlUsrPerm.length; i++) {
-    //                     dashboardUserPermissionsWorking.push( 
-    //                         this.cdal.loadDashboardUserPermissions(eazlUsrPerm[i])
-    //                     );
-    //                 };
-
-    //             // Return
-    //             return dashboardUserPermissionsWorking;
-    //         })
-    //         .catch(error => {
-    //             this.globalVariableService.growlGlobalMessage.next({
-    //                 severity: 'warn',
-    //                 summary:  'Update Group',
-    //                 detail:   'Unsuccessful in updating your Group info to the database'
-    //             });
-    //             error.message || error
-    //         })
-            
-    // }
-
     getdashboardUserPermissions(
         dashboardID: number, 
         includeGroup:string = 'true'
@@ -4694,7 +4664,7 @@ export class EazlService implements OnInit {
         // that the group has.  So, a user with no permissions with have a row of False 
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardGroupPermissions', '@Start');
 
-        let dashboardUserPermissionsWorking: DashboardGroupPermissions[] = [];
+        let dashboardGroupPermissionsWorking: DashboardGroupPermissions[] = [];
         return this.get<EazlDashboardGroupPermissions>(
             'dashboards/' + dashboardID.toString() + '/group-permissions/'
         )
@@ -4706,7 +4676,7 @@ export class EazlService implements OnInit {
                     found = false;
                     for (var j = 0; j < eazlGrpPerm.length; j++) {
                         if (eazlGrpPerm[j].groupName == this.groups[i].groupName) {
-                            dashboardUserPermissionsWorking.push( 
+                            dashboardGroupPermissionsWorking.push( 
                                 this.cdal.loadDashboardGroupPermissions(eazlGrpPerm[j])
                             );
                             found = true;
@@ -4714,7 +4684,7 @@ export class EazlService implements OnInit {
                     }
                     
                     if (!found) {
-                        dashboardUserPermissionsWorking.push( 
+                        dashboardGroupPermissionsWorking.push( 
                             {
                                 groupName: this.groups[i].groupName,
                                 canAddDashboard: false,
@@ -4729,7 +4699,7 @@ export class EazlService implements OnInit {
                 };
                 
                 // Return
-                return dashboardUserPermissionsWorking;
+                return dashboardGroupPermissionsWorking;
             })
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
@@ -4741,8 +4711,6 @@ export class EazlService implements OnInit {
             })
             
     }
-
-
 
     updateDashboardModelPermissions(
         url: string,
@@ -4759,7 +4727,7 @@ export class EazlService implements OnInit {
         //  assignPermissions - list of permissions to add, ie ['view_package', 'execute_package']
         //  removePermissions - list of permissions to remove, ie ['view_package']
         this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardModelPermissions', '@Start');
-console.log('EAZL update url ...', url + '/' + id.toString() + '/share/')
+
         this.post<any>(
             url + '/' + id.toString() + '/share/',
             { 
@@ -4771,7 +4739,6 @@ console.log('EAZL update url ...', url + '/' + id.toString() + '/share/')
 
             .toPromise()
             .then(element => {
-console.log('EAZL update then ...', element)
                 
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info',
@@ -7104,48 +7071,6 @@ console.log('EAZL update then ...', element)
             // }
         // Done
 
-        // DashboardGroupRelationship
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardGroupRelationship') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardGroupRelationship');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
-
-            //         // Get all the data via API
-            //         let dashboardGroupRelationshipWorking: DashboardGroupRelationship[] = [];
-            //         this.get<EazlDashboardGroupRelationship>('dashboard-group-relationship')
-            //             .subscribe(
-            //                 (eazlDashboardGroupRelationship) => {
-            //                     for (var i = 0; i < eazlDashboardGroupRelationship.length; i++) {
-            //                         let dashboardGroupRelationshipSingle = new DashboardGroupRelationship();
-            //                         dashboardGroupRelationshipSingle = this.cdal.loadDashboardGroupRelationship(eazlDashboardGroupRelationship[i]);
-            //                         dashboardGroupRelationshipWorking.push(dashboardGroupRelationshipSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.dashboardGroupRelationship = dashboardGroupRelationshipWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDashboardGroupRelationship = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardGroupRelationship');
-            //         this.dashboardGroupRelationship = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
-            //     }
-            // }
-        // Done
 
         // Dashboard: this is a nested get, using Promises
         // - first get Dashboards
