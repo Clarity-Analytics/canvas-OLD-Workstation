@@ -6298,51 +6298,6 @@ console.log('EAZL update then ...', element)
                 })
     }
 
-    addDashboardGroupRelationship(
-        dashboardID: number,
-        groupID: number,
-        relationshipType: string) {
-        // Removes user from a Dashboard Relationship
-        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardGroupRelationship', '@Start');
-
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        let found: boolean = false;
-        for (var i = 0; i < this.dashboardGroupRelationship.length; i++) {
-            if (this.dashboardGroupRelationship[i].dashboardID == dashboardID
-               &&
-               this.dashboardGroupRelationship[i].groupID == groupID
-               &&
-               this.dashboardGroupRelationship[i].dashboardGroupRelationshipType ==
-                relationshipType) {
-                    found = true;
-                    break;
-                }
-        }
-
-        if (!found) {
-            let currentUser: string = this.globalFunctionService.currentUser();
-
-            this.dashboardGroupRelationship.push(
-                {
-                    dashboardGroupRelationshipID: 0,
-                    dashboardID: dashboardID,
-                    groupID: groupID,
-                    dashboardGroupRelationshipType: relationshipType,
-                    dashboardGroupRelationshipRating: 0,
-                    dashboardGroupRelationshipCreatedDateTime:
-                        this.canvasDate.now('standard'),
-                    dashboardGroupRelationshipCreatedUserName: currentUser,
-                    dashboardGroupRelationshipUpdatedDateTime:
-                        this.canvasDate.now('standard'),
-                    dashboardGroupRelationshipUpdatedUserName: currentUser
-                });
-        }
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardGroupRelationship = true;
-    }
-
     deleteDashboardGroupRelationship(
         dashboardID: number,
         groupID: number,
