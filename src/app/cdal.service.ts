@@ -1603,12 +1603,6 @@ console.log('CDAL dashboardWorking',dashboardWorking)
     //         filterWorking.hasAtLeastOneFilter = false;
     //     }
 
-    //     if (eazlFilter.owner != null) {
-    //         filterWorking.ownerUserName = eazlFilter.owner;
-    //     } else {
-    //         filterWorking.ownerUserName = '';
-    //     }
-
     //     if (eazlFilter.description != null) {
     //         filterWorking.description = eazlFilter.description;
     //     } else {

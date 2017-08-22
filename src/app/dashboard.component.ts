@@ -2441,12 +2441,6 @@ console.log('this.widgetToEdit', this.widgetToEdit)
             // Filter, IF we have specified something
             recordPassesFilter = true;
             if (inputFilter != null) {
-                if (inputFilter.ownerUserName != '') {
-                    if (this.dashboards[i].dashboardOwners.toLocaleLowerCase().indexOf(inputFilter.ownerUserName.toLocaleLowerCase())
-                        == -1) {
-                            recordPassesFilter = false
-                    }
-                }
                 if (inputFilter.description != '') {
                     if (this.dashboards[i].dashboardDescription.toLocaleLowerCase().indexOf(inputFilter.description.toLocaleLowerCase())
                         == -1) {
