@@ -1247,8 +1247,6 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
 
         //     dashboardWorking.dashboardIsLiked = false;
 
-        //     dashboardWorking.dashboardOwners = '';
-
         //     dashboardWorking.dashboardNrUsersSharedWith = 0;
 
 console.log('CDAL dashboardWorking',dashboardWorking)

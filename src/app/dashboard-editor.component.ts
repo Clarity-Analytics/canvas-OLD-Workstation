@@ -80,7 +80,6 @@ export class DashboardEditorComponent implements OnInit {
             'dashboardDescription':             new FormControl(''),
             'dashboardIsLocked':                new FormControl(''),
             'dashboardOpenTabNr':               new FormControl(''),
-            'dashboardOwners':                  new FormControl(''),
             'dashboardPassword':                new FormControl(''),
             'dashboardRefreshMode':             new FormControl(''),
             'dashboardRefreshFrequency':        new FormControl(''),
@@ -142,9 +141,6 @@ export class DashboardEditorComponent implements OnInit {
             );
             this.dashboardForm.controls['dashboardOpenTabNr'].setValue(
                 this.selectedDashboard.dashboardOpenTabNr
-            );
-            this.dashboardForm.controls['dashboardOwners'].setValue(
-                this.selectedDashboard.dashboardOwners
             );
             this.dashboardForm.controls['dashboardPassword'].setValue(
                 this.selectedDashboard.dashboardPassword
@@ -304,8 +300,6 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['dashboardIsLocked'].value;
         this.dashboardToEdit.dashboardOpenTabNr = 
             this.dashboardForm.controls['dashboardOpenTabNr'].value;
-        this.dashboardToEdit.dashboardOwners = 
-            this.dashboardForm.controls['dashboardOwners'].value;
         this.dashboardToEdit.dashboardPassword = 
             this.dashboardForm.controls['dashboardPassword'].value;
         this.dashboardToEdit.dashboardRefreshMode = 

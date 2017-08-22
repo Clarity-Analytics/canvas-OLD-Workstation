@@ -884,8 +884,6 @@ export class DashboardManagerComponent implements OnInit {
                             this.dashboardToEdit.dashboardIsLocked;
                         this.dashboards[i].dashboardOpenTabNr =
                             this.dashboardToEdit.dashboardOpenTabNr;
-                        this.dashboards[i].dashboardOwners =
-                            this.dashboardToEdit.dashboardOwners;
                         this.dashboards[i].dashboardPassword =
                             this.dashboardToEdit.dashboardPassword;
                         this.dashboards[i].dashboardRefreshMode =

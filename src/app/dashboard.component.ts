@@ -1482,7 +1482,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardUrl: '',
                 dashboardNrGroups: 0,
                 dashboardIsLiked: false,
-                dashboardOwners: '',
                 dashboardNrUsersSharedWith: 0,
             }
         );
