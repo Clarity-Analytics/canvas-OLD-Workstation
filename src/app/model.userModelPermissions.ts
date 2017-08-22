@@ -56,6 +56,11 @@ export class EazlUserModelPermission {
 // Canvas
 export class UserModelPermission {
     model: string;
-    model_permissions: string[];
-    object_permissions: any;
+    modelPermissions: string[];
+    objectPermissions: [
+        {
+            permission: string;
+            objectID: number[]
+        }
+    ];
 }
