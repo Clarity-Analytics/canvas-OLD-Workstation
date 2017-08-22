@@ -30,7 +30,6 @@ export class DashboardAdvFilterComponent implements OnInit {
     @Output() formAdvancedFilterSubmit: EventEmitter<Filter> = new EventEmitter();
     
     // Local properties
-    filterOwner: string = '';
     filterDescription: string = ''
     submitted: boolean;
     userform: FormGroup;
@@ -47,7 +46,6 @@ export class DashboardAdvFilterComponent implements OnInit {
 
         // FormBuilder
         this.userform = this.fb.group({
-            'owner': new FormControl(''),
             'description': new FormControl(''),
         });
     }
@@ -55,7 +53,6 @@ export class DashboardAdvFilterComponent implements OnInit {
     onClickClearForm() {
         // Clear the whole damn form
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickClearForm', '@Start');
-         this.userform.controls['owner'].setValue('');
          this.userform.controls['description'].setValue('');
     }
 
@@ -63,12 +60,11 @@ export class DashboardAdvFilterComponent implements OnInit {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
-        this.filterOwner = this.userform.get('owner').value;
         this.filterDescription = this.userform.get('description').value;
 
         // Set hasAtLeastOneFilter = true if anything was entered.
         // TODO - make this a loop on formValues or this.userform
-        let totalFilters: string  = this.filterOwner + this.filterDescription;
+        let totalFilters: string  = this.filterDescription;
         let hasAtLeastOneFilter: boolean = false;
         if ( totalFilters != '') { 
             hasAtLeastOneFilter = true; 
