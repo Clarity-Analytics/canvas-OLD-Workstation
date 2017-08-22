@@ -302,12 +302,10 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardUpdatedUserName: 'GordenJ',
     //         dashboardUpdatedDateTime: '2017/07/08',
     //         dashboardOpenTabNr: 1,
-    //         dashboardNrGroups: 0,
     //         dashboardRefreshedDateTime: '',
     //         dashboardRefreshedUserName: '',
 
     //         dashboardIsLiked: false,
-    //         dashboardNrGroupsSharedWith: 0,
     //     },
     //     {
     //         dashboardID: 2,
@@ -322,7 +320,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardCreatedUserName: 'GranalN',
     //         dashboardDefaultExportFileType: 'Excel',
     //         dashboardDescription: 'Just another Dashboard',
-    //         dashboardNrGroups: 0,
     //         dashboardIsLocked: false,
     //         dashboardIsLiked: false,
     //         dashboardOpenTabNr: 0,
@@ -331,7 +328,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
     //         dashboardUpdatedUserName: 'JerimiaA'
@@ -349,7 +345,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardCreatedUserName: 'GranalN',
     //         dashboardDefaultExportFileType: 'Excel',
     //         dashboardDescription: 'Just another Dashboard',
-    //         dashboardNrGroups: 0,
     //         dashboardIsLocked: false,
     //         dashboardIsLiked: false,
     //         dashboardOpenTabNr: 0,
@@ -358,7 +353,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
     //         dashboardUpdatedUserName: 'JerimiaA'
@@ -376,7 +370,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardCreatedUserName: 'GranalN',
     //         dashboardDefaultExportFileType: 'Excel',
     //         dashboardDescription: 'Just another Dashboard',
-    //         dashboardNrGroups: 0,
     //         dashboardIsLocked: false,
     //         dashboardIsLiked: false,
     //         dashboardOpenTabNr: 0,
@@ -386,7 +379,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
     //         dashboardUpdatedUserName: 'JerimiaA'
@@ -404,7 +396,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardCreatedUserName: 'GranalN',
     //         dashboardDefaultExportFileType: 'Excel',
     //         dashboardDescription: 'Just another Dashboard',
-    //         dashboardNrGroups: 0,
     //         dashboardIsLocked: false,
     //         dashboardIsLiked: false,
     //         dashboardOpenTabNr: 0,
@@ -413,7 +404,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
     //         dashboardUpdatedUserName: 'JerimiaA'
@@ -431,7 +421,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardCreatedUserName: 'GranalN',
     //         dashboardDefaultExportFileType: 'Excel',
     //         dashboardDescription: 'Just another Dashboard',
-    //         dashboardNrGroups: 0,
     //         dashboardIsLocked: false,
     //         dashboardIsLiked: false,
     //         dashboardOpenTabNr: 0,
@@ -440,7 +429,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
     //         dashboardUpdatedUserName: 'JerimiaA'
@@ -4434,18 +4422,6 @@ export class EazlService implements OnInit {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-
-        // Add NrGroups calculated field
-        if (dashboardsWorking != null) {
-            dashboardsWorking.forEach( dw => {
-                dw.dashboardNrGroups = 0;
-                dw.dashboardNrGroups = this.dashboardTagMembership.filter( dg => {
-                    if (dg.dashboardID == dw.dashboardID) {
-                        return dg;
-                    }
-                }).length;
-            });
-        };
 
         // Add dashboardIsLiked calculated field
         if (dashboardsWorking != null) {            

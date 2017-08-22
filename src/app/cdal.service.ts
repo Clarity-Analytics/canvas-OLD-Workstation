@@ -1243,8 +1243,6 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
         // Calculated fields
         // -----------------
 
-        //     dashboardWorking.dashboardNrGroups = 0;
-
         //     dashboardWorking.dashboardIsLiked = false;
 
 console.log('CDAL dashboardWorking',dashboardWorking)

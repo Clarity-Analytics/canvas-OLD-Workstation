@@ -72,7 +72,6 @@ export class Dashboard {
     dashboardRefreshedDateTime: string;         // Data Refreshed on
     dashboardRefreshedUserName: string;         // Data Refreshed by
     dashboardUrl: string;                       // URL used by RESTi
-    dashboardNrGroups: number;                  // @Runtime: # of groups this dashboard belongs to
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
 }
 

@@ -1480,7 +1480,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 dashboardRefreshedUserName: '',
                 dashboardRefreshedDateTime: '',
                 dashboardUrl: '',
-                dashboardNrGroups: 0,
                 dashboardIsLiked: false,
             }
         );

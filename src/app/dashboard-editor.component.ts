@@ -73,7 +73,6 @@ export class DashboardEditorComponent implements OnInit {
             'isContainerHeaderDark':            new FormControl(''),
             'showContainerHeader':              new FormControl(''),
             'dashboardBackgroundColor':         new FormControl(''),
-            'dashboardNrGroups':                new FormControl(''),
             'dashboardIsLiked':                 new FormControl(''),
             'dashboardDefaultExportFileType':   new FormControl(''),
             'dashboardDescription':             new FormControl(''),
@@ -183,12 +182,6 @@ export class DashboardEditorComponent implements OnInit {
                 this.selectedItemColor
             );
             this.selectedTextBackground = this.selectedItemColor;
-
-
-
-            this.dashboardForm.controls['dashboardNrGroups'].setValue(
-                this.selectedDashboard.dashboardNrGroups
-            );
             this.dashboardForm.controls['dashboardIsLiked'].setValue(
                 this.selectedDashboard.dashboardIsLiked
             );
@@ -275,15 +268,8 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['isContainerHeaderDark'].value;
         this.dashboardToEdit.showContainerHeader = 
             this.dashboardForm.controls['showContainerHeader'].value;
-        // this.dashboardToEdit.dashboardBackgroundColor = 
-        //     this.dashboardForm.controls['dashboardBackgroundColor'].value;
-
         this.dashboardToEdit.dashboardBackgroundColor = 
             this.selectedTextBackground.name;
-
-
-        this.dashboardToEdit.dashboardNrGroups = 
-            this.dashboardForm.controls['dashboardNrGroups'].value;
         this.dashboardToEdit.dashboardIsLiked = 
             this.dashboardForm.controls['dashboardIsLiked'].value;
         this.dashboardToEdit.dashboardDefaultExportFileType = 
