@@ -307,7 +307,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
 
     //         dashboardIsLiked: false,
-    //         dashboardNrUsersSharedWith: 0,
     //         dashboardNrGroupsSharedWith: 0,
     //     },
     //     {
@@ -332,7 +331,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrUsersSharedWith: 0,
     //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
@@ -360,7 +358,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrUsersSharedWith: 0,
     //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
@@ -389,7 +386,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrUsersSharedWith: 0,
     //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
@@ -417,7 +413,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrUsersSharedWith: 0,
     //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
@@ -445,7 +440,6 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         dashboardRefreshedUserName: '',
     //         dashboardRefreshMode: 'Manual',
     //         dashboardRefreshFrequency: 0,
-    //         dashboardNrUsersSharedWith: 0,
     //         dashboardNrGroupsSharedWith: 0,
     //         dashboardSystemMessage: '',
     //         dashboardUpdatedDateTime: '2016/09/08',
@@ -4468,20 +4462,6 @@ export class EazlService implements OnInit {
                 ).length > 0) {
                     dw.dashboardIsLiked = true;
                 }
-            });
-        };
-
-        // Add TOTAL dashboardNrUsersSharedWith calculated field
-        if (dashboardsWorking != null) {
-            dashboardsWorking.forEach( dw => {
-                dw.dashboardNrUsersSharedWith = 0;
-                dw.dashboardNrUsersSharedWith = this.dashboardUserRelationship.filter(dur =>
-                    (
-                        dur.dashboardID == dw.dashboardID
-                        &&
-                        dur.dashboardUserRelationshipType == 'SharedWith'
-                    )
-                ).length
             });
         };
 

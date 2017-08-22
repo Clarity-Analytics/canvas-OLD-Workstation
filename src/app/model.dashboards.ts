@@ -74,7 +74,6 @@ export class Dashboard {
     dashboardUrl: string;                       // URL used by RESTi
     dashboardNrGroups: number;                  // @Runtime: # of groups this dashboard belongs to
     dashboardIsLiked: boolean;                  // @RunTime: True if Dashboard is liked by me
-    dashboardNrUsersSharedWith: number;         // @RunTime: @ of UserNames shared with
 }
 
 export class DashboardUserPermissions {
