@@ -3692,6 +3692,7 @@ export class EazlService implements OnInit {
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
     systemConfiguration: SystemConfiguration;               // System wide settings
+    userModelPermissions: UserModelPermission[];            // List of model permissions per user
     users: User[] = [];                                     // List of Users
     // userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
     // widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
@@ -4558,14 +4559,25 @@ export class EazlService implements OnInit {
         )
             .toPromise()
             .then(eazlUsrMdlPerm => {
-console.log('EAZL eazlUsrMdlPerm', eazlUsrMdlPerm)  
-for (var i = 0; i <  eazlUsrMdlPerm.length; i++) {          
-console.log('i object_permissions', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions )
-console.log('i remove_permission_dashboard', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions.remove_permission_dashboard)
-}
-console.log('EAZL end')
+                let userModelPermissionWorking: UserModelPermission[];
+console.log('EAZL START eazlUsrMdlPerm', eazlUsrMdlPerm)  
+          
+                for (var i = 0; i < eazlUsrMdlPerm.length; i++) {
+console.log('EAZL i model', i, eazlUsrMdlPerm[i].model )
+console.log('EAZL i object_permissions', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions )
+console.log('EAZL i remove_permission_dashboard', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions.remove_permission_dashboard)
+                        let userModelPermissionSingle = new UserModelPermission();
+                        userModelPermissionSingle = this.cdal.loadUserModelPermission(eazlUsrMdlPerm[i]);
+                        // userModelPermissionWorking.push(userModelPermissionSingle);
+console.log('EAZL END loop', i)
+console.log('.')                        
+                }
+
+                // Replace
+                this.userModelPermissions = userModelPermissionWorking;
+
                 // Return
-                return userModelPermissionsWorking;
+                return this.userModelPermissions;
             })
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({

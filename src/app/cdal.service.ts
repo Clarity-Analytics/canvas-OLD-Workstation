@@ -54,6 +54,7 @@ import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
+import { EazlUserModelPermission }    from './model.userModelPermissions';
 // import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
 // import { EazlWidgetComment }          from './model.widget.comment';
@@ -68,6 +69,7 @@ import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
+import { UserModelPermission }        from './model.userModelPermissions';
 import { Widget }                     from './model.widget';
 // import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
@@ -1142,7 +1144,7 @@ console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
 
 
 
-        
+
         if (eazlDashboard.is_container_header_dark != null) {
             dashboardWorking.isContainerHeaderDark = eazlDashboard.is_container_header_dark;
         } else {
@@ -1250,12 +1252,149 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         return dashboardWorking;
     }
 
+    loadUserModelPermission(eazlUserModelPermission): UserModelPermission {
+        // Load User Permissions for a given Dashboard: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserPermissions', '@Start');
+
+        let userModelPermissionWorking = new UserModelPermission();
+
+        if (eazlUserModelPermission.model != null) {
+            userModelPermissionWorking.model = eazlUserModelPermission.model;
+        } else {
+            userModelPermissionWorking.model = '';
+        };
+
+        if (eazlUserModelPermission.model_permissions != null) {
+            userModelPermissionWorking.modelPermissions = eazlUserModelPermission.model_permissions;
+        } else {
+            userModelPermissionWorking.modelPermissions = [];
+        };
+
+        // Add an empty one - then we can push any one afterwards
+        userModelPermissionWorking.objectPermissions = [{
+            permission: '',
+            objectID: []
+        }]
+
+        if (eazlUserModelPermission.object_permissions.assign_permission_query != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'assign_permission_query',
+                    objectID: eazlUserModelPermission.object_permissions.assign_permission_query
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.change_query != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'change_query',
+                    objectID: eazlUserModelPermission.object_permissions.change_query
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.delete_query != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'delete_query',
+                    objectID: eazlUserModelPermission.object_permissions.delete_query
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.remove_permission_query != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'remove_permission_query',
+                    objectID: eazlUserModelPermission.object_permissions.remove_permission_query
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.view_query != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'view_query',
+                    objectID: eazlUserModelPermission.object_permissions.view_query
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.assign_permission_dashboard != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'assign_permission_dashboard',
+                    objectID: eazlUserModelPermission.object_permissions.assign_permission_dashboard
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.change_dashboard != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'change_dashboard',
+                    objectID: eazlUserModelPermission.object_permissions.change_dashboard
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.delete_dashboard != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'delete_dashboard',
+                    objectID: eazlUserModelPermission.object_permissions.delete_dashboard
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.remove_permission_dashboard != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'remove_permission_dashboard',
+                    objectID: eazlUserModelPermission.object_permissions.remove_permission_dashboard
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.view_dashboard != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'view_dashboard',
+                    objectID: eazlUserModelPermission.object_permissions.view_dashboard
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.assign_permission_package != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'assign_permission_package',
+                    objectID: eazlUserModelPermission.object_permissions.assign_permission_package
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.change_package != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'change_package',
+                    objectID: eazlUserModelPermission.object_permissions.change_package
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.delete_package != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'delete_package',
+                    objectID: eazlUserModelPermission.object_permissions.delete_package
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.remove_permission_package != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'remove_permission_package',
+                    objectID: eazlUserModelPermission.object_permissions.remove_permission_package
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.view_package != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'view_package',
+                    objectID: eazlUserModelPermission.object_permissions.view_package
+                });
+        };
+
+        // Remove the first dummy one
+        userModelPermissionWorking.objectPermissions.splice(0,1);
+
+        // Return result
+        return userModelPermissionWorking;
+    }
+
     loadDashboardUserPermissions(eazlDashboardUserPermissions): DashboardUserPermissions {
         // Load User Permissions for a given Dashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserPermissions', '@Start');
-        
+
         let dashboardUserPermissionsWorking = new DashboardUserPermissions();
-        
+
         if (eazlDashboardUserPermissions.username != null) {
             dashboardUserPermissionsWorking.username = eazlDashboardUserPermissions.username;
         } else {
@@ -1303,9 +1442,9 @@ console.log('CDAL dashboardWorking',dashboardWorking)
     loadDashboardGroupPermissions(eazlDashboardGroupPermissions): DashboardGroupPermissions {
         // Load Group Permissions for a given Dashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardGroupPermissions', '@Start');
-        
+
         let dashboardGroupPermissionsWorking = new DashboardGroupPermissions();
-        
+
         if (eazlDashboardGroupPermissions.groupName != null) {
             dashboardGroupPermissionsWorking.groupName = eazlDashboardGroupPermissions.groupName;
         } else {
