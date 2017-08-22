@@ -323,8 +323,10 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
 
-        this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user);
-
+//TODO -fix this        
+        // this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user);
+        let userModelPermissions: any = this.eazlService.getUserModelPermissions(3);
+console.log('userModelPermissions', userModelPermissions)
         // Show the popup
         this.displayUserDashboards = true;
     }

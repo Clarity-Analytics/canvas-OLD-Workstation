@@ -99,6 +99,7 @@ import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
+import { EazlUserModelPermission }    from './model.userModelPermissions';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { Filter }                     from './model.filter';
@@ -113,6 +114,7 @@ import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
+import { UserModelPermission }        from './model.userModelPermissions';
 import { Widget }                     from './model.widget';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
@@ -4534,6 +4536,57 @@ export class EazlService implements OnInit {
         // Return
         return dashboardTabNameWorking;
     }
+
+
+
+
+
+    getUserModelPermissions(
+        userID: number, 
+        model: string = '*'
+        ): Promise<any> {
+        // Returns model permissions per given user.  This is at a model level, or a 
+        // row (object) level
+        // - userID to filter on
+        // - model, Optional Model to filter on, ie query or dashboard.  * = all models
+        this.globalFunctionService.printToConsole(this.constructor.name,'getUserModelPermissions', '@Start');
+
+        let userModelPermissionsWorking: DashboardUserPermissions[] = [];
+        return this.get<EazlDashboardUserPermissions>(
+            'users/' + userID.toString() + 
+                '/model-permissions/'
+        )
+            .toPromise()
+            .then(eazlUsrMdlPerm => {
+console.log('EAZL eazlUsrMdlPerm', eazlUsrMdlPerm)  
+for (var i = 0; i <  eazlUsrMdlPerm.length; i++) {          
+console.log('i object_permissions', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions )
+console.log('i remove_permission_dashboard', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions.remove_permission_dashboard)
+}
+console.log('EAZL end')
+                // Return
+                return userModelPermissionsWorking;
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'User Permissions',
+                    detail:   'Unsuccessful in reading user permissions from the database'
+                });
+                error.message || error
+            })
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     getdashboardUserPermissions(
         dashboardID: number, 
