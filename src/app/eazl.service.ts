@@ -66,7 +66,6 @@ import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardGroupPermissions }  from './model.dashboards';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardTab }               from './model.dashboardTabs';
@@ -84,7 +83,6 @@ import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
-import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardUserRelationship }    from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
@@ -3669,7 +3667,6 @@ export class EazlService implements OnInit {
     canvasMessageRecipients: CanvasMessageRecipient[] = []; // List of canvasMessageRecipients
     dashboards: Dashboard[];                                // List of Dashboards
     dashboardTagMembership: DashboardTagMembership[];       //List of Dashboard-Group
-    dashboardGroupRelationship: DashboardGroupRelationship[]; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
