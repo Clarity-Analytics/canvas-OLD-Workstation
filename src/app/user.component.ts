@@ -114,9 +114,12 @@ export class UserComponent implements OnInit {
                 command: (event) => this.userMenuAccessToDatasources(this.selectedUser)
             },
             {
-                label: 'Show Datasources',
+                label: 'Related Datasources',
                 icon: 'fa-database',
-                command: (event) => this.userMenuShowDatasources(this.selectedUser)
+                command: (event) => this.userMenuModelPermissions(
+                    this.selectedUser,
+                    'package'
+                )
             },
             {
                 label: 'Related Dashboards',
