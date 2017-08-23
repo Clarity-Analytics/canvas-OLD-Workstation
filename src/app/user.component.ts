@@ -312,17 +312,6 @@ export class UserComponent implements OnInit {
         }
     }
 
-    userMenuShowDatasources(user: User) {
-        // Show all the Datasources that the user has access to, and via username or groups
-        // - user: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuShowDatasources', '@Start');
-
-        this.datasourcesPerUser = this.eazlService.getDatasourcesPerUser(user);
-
-        // Show the popup
-        this.displayUserDatasources = true;
-    }
-
     userMenuModelPermissions(user: User, model: string) {
         // Show Model Permissions (dashboard, dastasources) to which the given user has access
         // - user: currently selected row
