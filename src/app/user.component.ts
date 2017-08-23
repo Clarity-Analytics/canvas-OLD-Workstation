@@ -26,6 +26,8 @@ import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { ReportHistory }              from './model.reportHistory';
 import { User }                       from './model.user';
+import { UserModelPermissionFlat }    from './model.userModelPermissions';
+
 
 @Component({
     selector:    'user',
@@ -45,11 +47,11 @@ export class UserComponent implements OnInit {
     canvasUser: CanvasUser;                             // Current user
     canvasMessages: CanvasMessage[];                    // List of Canvas Messages
     datasourcesPerUser: DatasourcesPerUser[];           // @Runtime List of Datasources per User
-    dashboardsPerUser: DashboardsPerUser[];             // @Runtime List of Dashboards per User
+    userModelPermissionFlat: UserModelPermissionFlat[]; // @Runtime List of Model Permissions per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
-    displayUserDashboards: boolean = false;             // True to display popup for Dashboards
+    displayUserModelPermissions: boolean = false;       // True to display popup for Model Permissions
     displayMessages: boolean = false;                   // True to display popup for Messages
     displayReports: boolean = false;                    // True to display popup for Reports
     displayResetPassword: boolean = false;              // True to display popup for Reset Password
@@ -119,7 +121,7 @@ export class UserComponent implements OnInit {
             {
                 label: 'Related Dashboards',
                 icon: 'fa-list',
-                command: (event) => this.userMenuRelatedDashboards(
+                command: (event) => this.userMenuModelPermissions(
                     this.selectedUser, 'dashboard'
                 )
             },
@@ -321,38 +323,40 @@ export class UserComponent implements OnInit {
         this.displayUserDatasources = true;
     }
 
-    userMenuRelatedDashboards(user: User, model: string) {
-        // Show Dashboards to which the given user has access
+    userMenuModelPermissions(user: User, model: string) {
+        // Show Model Permissions (dashboard, dastasources) to which the given user has access
         // - user: currently selected row
         // - model to filter on, ie 'dashboard'
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuModelPermissions', '@Start');
         
         this.eazlService.getUserModelPermissions(
             user.id,
             model
         )
             .then(usrMdlPerm => {
-                this.dashboardsPerUser = [];
+                this.userModelPermissionFlat = [];
                 for (var i = 0; i < usrMdlPerm.length; i++) {
                     for (var j = 0; j < usrMdlPerm[i].objectPermissions.length; j++){
                         for (var k = 0; k < usrMdlPerm[i].objectPermissions[j].objectID.length; k++){
                             
-                            let lookupDashboard: Dashboard[] = 
-                                this.eazlService.getDashboards(
-                                    usrMdlPerm[i].objectPermissions[j].objectID[k]
-                                );
                             let name: string = '';
-                            if (lookupDashboard.length > 0) {
-                                name = lookupDashboard[0].dashboardName;
-                            };
+                            if (model == 'dashboard') {
+                                let lookupDashboard: Dashboard[] = 
+                                    this.eazlService.getDashboards(
+                                        usrMdlPerm[i].objectPermissions[j].objectID[k]
+                                    );
+                                if (lookupDashboard.length > 0) {
+                                    name = lookupDashboard[0].dashboardName;
+                                };
+                            }
 
-                            this.dashboardsPerUser.push(
+                            this.userModelPermissionFlat.push(
                                 {
-                                    dashboardID: usrMdlPerm[i].objectPermissions[j].objectID[k],
-                                    dashboardName: name,
+                                    modelID: usrMdlPerm[i].objectPermissions[j].objectID[k],
+                                    modelName: name,
                                     username: this.globalVariableService.canvasUser.getValue().username,
-                                    dashboardsPerUserAccessVia: '',
-                                    dashboardsPermission: usrMdlPerm[i].objectPermissions[j].permission
+                                    modelPermissionsAccessVia: '',
+                                    objectPermission: usrMdlPerm[i].objectPermissions[j].permission
                                 }
                             );
                         }
@@ -360,13 +364,13 @@ export class UserComponent implements OnInit {
                 }
 
                 // Show the popup
-                this.displayUserDashboards = true;
+                this.displayUserModelPermissions = true;
             })
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
-                    summary:  'Related Dashboards',
-                    detail:   'Unsuccessful in reading related dashboards from the database'
+                    summary:  'Related Model Permissions',
+                    detail:   'Unsuccessful in reading related model permissions from the database'
                 });
                 error.message || error
             })        

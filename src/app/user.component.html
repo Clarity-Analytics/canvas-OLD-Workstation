@@ -377,38 +377,37 @@
 </p-dialog>
 
 
-<!--Popup for Dashboards-->
+<!--Popup for Model Permissions-->
 <p-dialog
-    [(visible)]="displayUserDashboards"
-    header="Related Dashboards"
+    [(visible)]="displayUserModelPermissions"
+    header="Related model Permissions"
     [closeOnEscape]=false
     [closable]=true
     modal="true"
     responsive="true"
     >
     <p-dataTable
-        [value]="dashboardsPerUser"
+        [value]="userModelPermissionFlat"
         >
         <p-column
-            field="dashboardID"
+            field="modelID"
             header="ID"
             [style]="{width: '80px',
             'text-align': 'center'}"
     >
         </p-column>
         <p-column
-            field="dashboardName"
+            field="modelName"
             header="Name"
             >
         </p-column>
         <p-column
-            field="dashboardsPermission"
+            field="objectPermission"
             header="Permission"
             >
         </p-column>
     </p-dataTable>
 </p-dialog>
-
 
 
 <!--Popup for CanvasMessages-->
