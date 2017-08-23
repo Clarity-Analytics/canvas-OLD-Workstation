@@ -392,7 +392,9 @@
         <p-column
             field="dashboardID"
             header="ID"
-            >
+            [style]="{width: '80px',
+            'text-align': 'center'}"
+    >
         </p-column>
         <p-column
             field="dashboardName"
@@ -400,13 +402,8 @@
             >
         </p-column>
         <p-column
-            field="dashboardsPerUserAccessVia"
-            header="Access Via"
-            >
-        </p-column>
-        <p-column
-            field="dashboardsPerUserAccessType"
-            header="Type"
+            field="dashboardsPermission"
+            header="Permission"
             >
         </p-column>
     </p-dataTable>
