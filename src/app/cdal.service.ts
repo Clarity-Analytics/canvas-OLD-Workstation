@@ -1496,44 +1496,6 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
         return dashboardGroupPermissionsWorking;
     }
 
-    loadDashboardsPerUser(eazlDashboardsPerUser: EazlDashboardsPerUser): DashboardsPerUser {
-        // Load DashboardsPerUser: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardsPerUser', '@Start');
-
-        let dashboardsPerUserWorking = new DashboardsPerUser();
-
-        dashboardsPerUserWorking.dashboardID = eazlDashboardsPerUser.dashboard_id;
-
-        if (eazlDashboardsPerUser.name != null) {
-            dashboardsPerUserWorking.dashboardName = eazlDashboardsPerUser.name;
-        } else {
-            dashboardsPerUserWorking.dashboardName = '';
-        }
-
-        if (eazlDashboardsPerUser.username != null) {
-            dashboardsPerUserWorking.username = eazlDashboardsPerUser.username;
-        } else {
-            dashboardsPerUserWorking.username = '';
-        }
-
-        if (eazlDashboardsPerUser.accessVia != null) {
-            dashboardsPerUserWorking.dashboardsPerUserAccessVia =
-                eazlDashboardsPerUser.accessVia;
-        } else {
-            dashboardsPerUserWorking.dashboardsPerUserAccessVia = '';
-        }
-
-        if (eazlDashboardsPerUser.accessType != null) {
-            dashboardsPerUserWorking.dashboardsPerUserAccessType =
-                eazlDashboardsPerUser.accessType;
-        } else {
-            dashboardsPerUserWorking.dashboardsPerUserAccessType = '';
-        }
-
-        // Return the result
-        return dashboardsPerUserWorking;
-    }
-
     loadDashboardUserRelationship(
         eazlDashboardUserRelationship: EazlDashboardUserRelationship
         ): DashboardUserRelationship {

@@ -68,7 +68,6 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { DashboardGroupRelationship } from './model.dashboardGroupRelationship';
 import { DashboardGroupPermissions }  from './model.dashboards';
-import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserPermissions }   from './model.dashboards';
@@ -87,7 +86,6 @@ import { EazlDashboard }              from './model.dashboards';
 import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
 import { EazlDashboardGroupRelationship }   from './model.dashboardGroupRelationship';
 import { EazlDashboardTab }           from './model.dashboardTabs';
-import { EazlDashboardsPerUser }      from './model.dashboardsPerUser';
 import { EazlDashboardUserRelationship }    from './model.dashboardUserRelationship';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
@@ -3673,8 +3671,6 @@ export class EazlService implements OnInit {
     dashboardTagMembership: DashboardTagMembership[];       //List of Dashboard-Group
     dashboardGroupRelationship: DashboardGroupRelationship[]; // Dashboard-Group relationships
     dashboardUserRelationship: DashboardUserRelationship[] = DASHBOARDUSERRELATIONSHIP; // Dashboard-Group relationships
-    // dashboardTags: DashboardTag[] = DASHBOARDTAGS;          //List of Dashboard-Group
-    dashboardsPerUser: DashboardsPerUser[] = [];            // List of DashboardsPerUser
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
     datasourcesPerUser: DatasourcesPerUser[] = [];          // List of DatasourcesPerUser
@@ -5779,7 +5775,7 @@ export class EazlService implements OnInit {
         // Return the result
         return datasourcesPerUserWorking;
     }
-Z
+
     getDatasourcesPerGroup(groupID: number, include: boolean): DataSource[] {
         // Return list of DataSource for a given Group
         // - groupID filter
