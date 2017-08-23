@@ -1381,10 +1381,17 @@ console.log('CDAL dashboardWorking',dashboardWorking)
                     objectID: eazlUserModelPermission.object_permissions.view_package
                 });
         };
+        if (eazlUserModelPermission.object_permissions.execute_package != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'execute_package',
+                    objectID: eazlUserModelPermission.object_permissions.execute_package
+                });
+        };
 
         // Remove the first dummy one
         userModelPermissionWorking.objectPermissions.splice(0,1);
-
+console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
         // Return result
         return userModelPermissionWorking;
     }

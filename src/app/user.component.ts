@@ -323,12 +323,23 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
 
-//TODO -fix this        
-        // this.dashboardsPerUser = this.eazlService.getDashboardsPerUser(user);
-        let userModelPermissions: any = this.eazlService.getUserModelPermissions(3);
+        this.eazlService.getUserModelPermissions(
+            user.id,
+            'dashboard'
+        )
+            .then(userModelPermissions => {
 console.log('userModelPermissions', userModelPermissions)
-        // Show the popup
-        this.displayUserDashboards = true;
+            // Show the popup
+            this.displayUserDashboards = true;
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Related Dashboards',
+                    detail:   'Unsuccessful in reading related dashboards from the database'
+                });
+                error.message || error
+            })        
     }
 
     userMenuMessageHistory(user: User) {

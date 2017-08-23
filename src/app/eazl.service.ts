@@ -4427,7 +4427,7 @@ export class EazlService implements OnInit {
         let currentUser: string = this.globalFunctionService.currentUser();
 
         // Add dashboardIsLiked calculated field
-        if (dashboardsWorking != null) {            
+        if (dashboardsWorking != null) {
             dashboardsWorking.forEach( dw => {
                 dw.dashboardIsLiked = false;
                 if (this.dashboardUserRelationship.filter(dur =>
@@ -4538,43 +4538,45 @@ export class EazlService implements OnInit {
         return dashboardTabNameWorking;
     }
 
-
-
-
-
+    // TODO - cater for multiple models later
     getUserModelPermissions(
-        userID: number, 
-        model: string = '*'
+        userID: number,
+        model: string
         ): Promise<any> {
-        // Returns model permissions per given user.  This is at a model level, or a 
+        // Returns model permissions per given user.  This is at a model level, or a
         // row (object) level
         // - userID to filter on
-        // - model, Optional Model to filter on, ie query or dashboard.  * = all models
+        // - model to filter on, ie query or dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'getUserModelPermissions', '@Start');
 
-        let userModelPermissionsWorking: DashboardUserPermissions[] = [];
+        let userModelPermissionsWorking: UserModelPermission[] = [
+            {
+                model: '',
+                modelPermissions: [],
+                objectPermissions: [
+                    {
+                        permission: '',
+                        objectID: []
+                    }
+                ]
+            }
+        ];
+        console.log('check userModelPermissionsWorking', userModelPermissionsWorking)
         return this.get<EazlDashboardUserPermissions>(
-            'users/' + userID.toString() + 
+            'users/' + userID.toString() +
                 '/model-permissions/'
         )
             .toPromise()
             .then(eazlUsrMdlPerm => {
-                let userModelPermissionWorking: UserModelPermission[];
-console.log('EAZL START eazlUsrMdlPerm', eazlUsrMdlPerm)  
-          
+
                 for (var i = 0; i < eazlUsrMdlPerm.length; i++) {
-console.log('EAZL i model', i, eazlUsrMdlPerm[i].model )
-console.log('EAZL i object_permissions', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions )
-console.log('EAZL i remove_permission_dashboard', i, eazlUsrMdlPerm[i].model, eazlUsrMdlPerm[i].object_permissions.remove_permission_dashboard)
-                        let userModelPermissionSingle = new UserModelPermission();
-                        userModelPermissionSingle = this.cdal.loadUserModelPermission(eazlUsrMdlPerm[i]);
-                        // userModelPermissionWorking.push(userModelPermissionSingle);
-console.log('EAZL END loop', i)
-console.log('.')                        
+                    if(eazlUsrMdlPerm[i].model == model) {
+                        userModelPermissionsWorking[0] = this.cdal.loadUserModelPermission(eazlUsrMdlPerm[i]);
+                    }
                 }
 
                 // Replace
-                this.userModelPermissions = userModelPermissionWorking;
+                this.userModelPermissions = userModelPermissionsWorking;
 
                 // Return
                 return this.userModelPermissions;
@@ -4601,21 +4603,21 @@ console.log('.')
 
 
     getdashboardUserPermissions(
-        dashboardID: number, 
+        dashboardID: number,
         includeGroup:string = 'true'
         ): Promise<any> {
         // Returns an array of ALL users.  Each row shows booleans (T/F) wrt each permission
-        // that the user has.  So, a user with no permissions with have a row of False 
+        // that the user has.  So, a user with no permissions with have a row of False
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardUserPermissions', '@Start');
-        
+
         // Default to true if not correctly set to false
-        if (includeGroup != 'false') { 
+        if (includeGroup != 'false') {
             includeGroup = 'true';
         };
 
         let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
         return this.get<EazlDashboardUserPermissions>(
-            'dashboards/' + dashboardID.toString() + 
+            'dashboards/' + dashboardID.toString() +
                 '/user-permissions/?include-group-permissions=' + includeGroup
         )
             .toPromise()
@@ -4626,15 +4628,15 @@ console.log('.')
                     found = false;
                     for (var j = 0; j < eazlUsrPerm.length; j++) {
                         if (eazlUsrPerm[j].username == this.users[i].username) {
-                            dashboardUserPermissionsWorking.push( 
+                            dashboardUserPermissionsWorking.push(
                                 this.cdal.loadDashboardUserPermissions(eazlUsrPerm[j])
                             );
                             found = true;
                         }
                     }
-                    
+
                     if (!found) {
-                        dashboardUserPermissionsWorking.push( 
+                        dashboardUserPermissionsWorking.push(
                             {
                                 username: this.users[i].username,
                                 canAddDashboard: false,
@@ -4647,7 +4649,7 @@ console.log('.')
                         )
                     }
                 };
-                
+
                 // Return
                 return dashboardUserPermissionsWorking;
             })
@@ -4663,7 +4665,7 @@ console.log('.')
 
     getdashboardGroupPermissions(dashboardID: number): Promise<any> {
         // Returns an array of ALL groups.  Each row shows booleans (T/F) wrt each permission
-        // that the group has.  So, a user with no permissions with have a row of False 
+        // that the group has.  So, a user with no permissions with have a row of False
         this.globalFunctionService.printToConsole(this.constructor.name,'getdashboardGroupPermissions', '@Start');
 
         let dashboardGroupPermissionsWorking: DashboardGroupPermissions[] = [];
@@ -4678,15 +4680,15 @@ console.log('.')
                     found = false;
                     for (var j = 0; j < eazlGrpPerm.length; j++) {
                         if (eazlGrpPerm[j].groupName == this.groups[i].groupName) {
-                            dashboardGroupPermissionsWorking.push( 
+                            dashboardGroupPermissionsWorking.push(
                                 this.cdal.loadDashboardGroupPermissions(eazlGrpPerm[j])
                             );
                             found = true;
                         }
                     }
-                    
+
                     if (!found) {
-                        dashboardGroupPermissionsWorking.push( 
+                        dashboardGroupPermissionsWorking.push(
                             {
                                 groupName: this.groups[i].groupName,
                                 canAddDashboard: false,
@@ -4699,7 +4701,7 @@ console.log('.')
                         )
                     }
                 };
-                
+
                 // Return
                 return dashboardGroupPermissionsWorking;
             })
@@ -4711,7 +4713,7 @@ console.log('.')
                 });
                 error.message || error
             })
-            
+
     }
 
     updateDashboardModelPermissions(
@@ -4732,7 +4734,7 @@ console.log('.')
 
         this.post<any>(
             url + '/' + id.toString() + '/share/',
-            { 
+            {
                 name: name,
                 model_name: model_name,
                 assign:assignPermissions,
@@ -4741,7 +4743,7 @@ console.log('.')
 
             .toPromise()
             .then(element => {
-                
+
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'info',
                     summary:  'Update Permisions',
@@ -4759,7 +4761,7 @@ console.log('.')
                 });
                 error.message || error
             })
-    
+
     }
 
     getDashboardTabsSelectItems(selectedDashboardID: number): SelectItem[] {
