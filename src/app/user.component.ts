@@ -119,7 +119,9 @@ export class UserComponent implements OnInit {
             {
                 label: 'Related Dashboards',
                 icon: 'fa-list',
-                command: (event) => this.userMenuRelatedDashboards(this.selectedUser)
+                command: (event) => this.userMenuRelatedDashboards(
+                    this.selectedUser, 'dashboard'
+                )
             },
             {
                 label: 'Message History',
@@ -319,14 +321,15 @@ export class UserComponent implements OnInit {
         this.displayUserDatasources = true;
     }
 
-    userMenuRelatedDashboards(user: User) {
-        // Manage related Data Sources (owned, given rights and received rights)
+    userMenuRelatedDashboards(user: User, model: string) {
+        // Show Dashboards to which the given user has access
         // - user: currently selected row
+        // - model to filter on, ie 'dashboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuRelatedDashboards', '@Start');
-
+        
         this.eazlService.getUserModelPermissions(
             user.id,
-            'dashboard'
+            model
         )
             .then(usrMdlPerm => {
                 this.dashboardsPerUser = [];

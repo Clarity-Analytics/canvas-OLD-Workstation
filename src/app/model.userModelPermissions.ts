@@ -64,3 +64,12 @@ export class UserModelPermission {
         }
     ];
 }
+
+// Flattened version of the above, which works easier in p-tables, etc
+export class UserModelPermissionFlat {
+        dashboardID: number;                        // Dashboard ID
+        dashboardName: string;                      // Dashboard Name
+        username: string;                           // User who has access
+        dashboardsPerUserAccessVia: string;         // Username or Group
+        dashboardsPermission: string;               // Permission in DB: remove_permission_dashboard, etc
+    }
