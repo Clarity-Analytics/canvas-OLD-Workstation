@@ -20,11 +20,13 @@ import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { DataSource }                 from './model.datasource';
 import { DatasourcesPerUser }         from './model.datasourcesPerUser';
+import { Dashboard } from './model.dashboards';
 import { DashboardsPerUser }          from './model.dashboardsPerUser';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { ReportHistory }              from './model.reportHistory';
 import { User }                       from './model.user';
+import { UserModelPermission }        from './model.userModelPermissions';
 
 @Component({
     selector:    'user',
@@ -44,7 +46,7 @@ export class UserComponent implements OnInit {
     canvasUser: CanvasUser;                             // Current user
     canvasMessages: CanvasMessage[];                    // List of Canvas Messages
     datasourcesPerUser: DatasourcesPerUser[];           // @Runtime List of Datasources per User
-    dashboardsPerUser: DashboardsPerUser[];             // @Runtime List of Dashboards per User
+    dashboardsPerUser: UserModelPermission[];           // @Runtime List of Dashboards per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
@@ -327,8 +329,31 @@ export class UserComponent implements OnInit {
             user.id,
             'dashboard'
         )
-            .then(userModelPermissions => {
-console.log('userModelPermissions', userModelPermissions)
+            .then(usrMdlPerm => {
+                this.dashboardsPerUser = usrMdlPerm;
+
+                for (var i = 0; i < usrMdlPerm.length; i++) {
+                    for (var j = 0; j < usrMdlPerm[i].objectPermissions.length; j++){
+                        for (var k = 0; k < usrMdlPerm[i].objectPermissions[j].objectID.length; k++){
+                            
+                            let lookupDashboard: Dashboard[] = 
+                                this.eazlService.getDashboards(
+                                    usrMdlPerm[i].objectPermissions[j].objectID[k]
+                                );
+                            let name: string = '';
+                            if (lookupDashboard.length > 0) {
+                                name = lookupDashboard[0].dashboardName;
+                            };
+                            console.log('hh', i, j , usrMdlPerm[i].model, 
+                            usrMdlPerm[i].objectPermissions[j].permission, 
+                            usrMdlPerm[i].objectPermissions[j].objectID[k], name)
+
+                        }
+                    }
+                }
+console.log('this.dashboardsPerUser', usrMdlPerm, this.dashboardsPerUser)
+
+
             // Show the popup
             this.displayUserDashboards = true;
             })

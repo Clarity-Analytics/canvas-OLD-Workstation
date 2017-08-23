@@ -4591,17 +4591,6 @@ export class EazlService implements OnInit {
             })
     }
 
-
-
-
-
-
-
-
-
-
-
-
     getdashboardUserPermissions(
         dashboardID: number,
         includeGroup:string = 'true'
@@ -7094,49 +7083,6 @@ export class EazlService implements OnInit {
 
             }
         }
-
-        // DashboardsPerUser
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DashboardsPerUser') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DashboardsPerUser');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardsPerUser = true;
-
-            //         // Get all the data via API
-            //         let dashboardsPerUserWorking: DashboardsPerUser[] = [];
-            //         this.get<EazlDashboardsPerUser>('dashboards-per-user')
-            //             .subscribe(
-            //                 (eazlDashboardsPerUser) => {
-            //                     for (var i = 0; i < eazlDashboardsPerUser.length; i++) {
-            //                         let dashboardsPerUserSingle = new DashboardsPerUser();
-            //                         dashboardsPerUserSingle = this.cdal.loadDashboardsPerUser(eazlDashboardsPerUser[i]);
-            //                         dashboardsPerUserWorking.push(dashboardsPerUserSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.dashboardsPerUser = dashboardsPerUserWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDashboardsPerUser = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DashboardsPerUser');
-            //         this.dashboardsPerUser = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDashboardsPerUser = true;
-            //     }
-            // }
-        // Done
 
         // DatasourcesPerUser
             // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DatasourcesPerUser') {
