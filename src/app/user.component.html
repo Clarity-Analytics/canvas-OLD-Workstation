@@ -341,42 +341,6 @@
 </div>
 
 
-<!--Popup for Data Sources per User-->
-<p-dialog
-    [(visible)]="displayUserDatasources"
-    header="Related Datasources"
-    [closeOnEscape]=false
-    [closable]=true
-    modal="true"
-    responsive="true"
-    >
-    <p-dataTable
-        [value]="datasourcesPerUser"
-        >
-        <p-column
-            field="datasourceID"
-            header="ID"
-            >
-        </p-column>
-        <p-column
-            field="datasourceName"
-            header="Name"
-            >
-        </p-column>
-        <p-column
-            field="datasourcesPerUserAccessVia"
-            header="Access Via"
-            >
-        </p-column>
-        <p-column
-            field="datasourcesPerUserAccessType"
-            header="Type"
-            >
-        </p-column>
-    </p-dataTable>
-</p-dialog>
-
-
 <!--Popup for Model Permissions-->
 <p-dialog
     [(visible)]="displayUserModelPermissions"

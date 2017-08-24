@@ -19,7 +19,6 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { DataSource }                 from './model.datasource';
-import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { Dashboard } from './model.dashboards';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
@@ -45,7 +44,6 @@ export class UserComponent implements OnInit {
     belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
     canvasUser: CanvasUser;                             // Current user
     canvasMessages: CanvasMessage[];                    // List of Canvas Messages
-    datasourcesPerUser: DatasourcesPerUser[];           // @Runtime List of Datasources per User
     userModelPermissionFlat: UserModelPermissionFlat[]; // @Runtime List of Model Permissions per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
