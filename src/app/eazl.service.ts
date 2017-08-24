@@ -6289,6 +6289,7 @@ export class EazlService implements OnInit {
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
 
+    // TODO - refactor with action to do POST and DELETE (add/remove)
     modelFeedback(
         modelName: string, 
         modelID: number, 
@@ -6307,7 +6308,7 @@ export class EazlService implements OnInit {
         } else {
             feedbackType = { 'feedback_type': 'F'};
         }
-
+console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         return this.post<any>( modelName + '/' + modelID.toString() + '/feedback/', feedbackType)
         .toPromise()
         .then( fbck => {
@@ -6331,12 +6332,19 @@ export class EazlService implements OnInit {
         })
         // session.post(base_url + "packages/" + str(package['id']) + "/feedback/", json=feedback_type)
     }
+
     toggleDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
         // Adds / Removes a user from the Dashboard:
         // - dashboardID
         // - username to add / remove
         // - isLikedNewState = new state, so true -> add user, else delete
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleDashboardIsLiked', '@Start');
+
+        
+        this.modelFeedback('packages', 0, 'Like', 'add')
+        // this.modelFeedback('dashboards', 0, 'Like', 'add')
+console.log('after')
+
 
         for (var i = 0; i < this.dashboards.length; i++) {
             if (this.dashboards[i].dashboardID == dashboardID) {
