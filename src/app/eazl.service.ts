@@ -72,14 +72,12 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserPermissions }   from './model.dashboards';
 import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
-import { DatasourcesPerUser }         from './model.datasourcesPerUser';
 import { EazlAppData }                from './model.appdata';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroupPermissions }    from './model.dashboards';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
-import { EazlDatasourcesPerUser }     from './model.datasourcesPerUser';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
 import { EazlDashboardTab }           from './model.dashboardTabs';
@@ -3667,7 +3665,6 @@ export class EazlService implements OnInit {
     dashboardTagMembership: DashboardTagMembership[];       //List of Dashboard-Group
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
-    datasourcesPerUser: DatasourcesPerUser[] = [];          // List of DatasourcesPerUser
     dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
     graphTypes: GraphType[];                                // List of Graph Types
     groups: Group[];                                        // List of Groups
