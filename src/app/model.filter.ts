@@ -7,6 +7,7 @@ export class EazlFilter {
     owner: string;
     description: string;
 } 
+
 // Canvas
 export class Filter {
     filterID: number;

@@ -6289,6 +6289,48 @@ export class EazlService implements OnInit {
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
 
+    modelFeedback(
+        modelName: string, 
+        modelID: number, 
+        feedback: string, 
+        action: string) {
+        // Changes (add/delete) the feedback on a model for the current user
+        // - modelName for the feedback, ie packages
+        // - modelID is the record/object to change in the given model
+        // - feedback is type of feedback: Like, Favourite
+        this.globalFunctionService.printToConsole(this.constructor.name,'modelFeedback', '@Start');
+
+        // Set the feedback type
+        let feedbackType: { 'feedback_type': string};
+        if (feedback == 'Like') {
+            feedbackType = { 'feedback_type': 'L'};
+        } else {
+            feedbackType = { 'feedback_type': 'F'};
+        }
+
+        return this.post<any>( modelName + '/' + modelID.toString() + '/feedback/', feedbackType)
+        .toPromise()
+        .then( fbck => {
+
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'Changed Feedback',
+                detail:   'Successfully changed feedback for ' + modelName + ' to the database'
+            });
+
+            // Return the data
+            return this.users;
+        } )
+        .catch(error => {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Changed Feedback',
+                detail:   'Unsuccessful in changed feedback to the database'
+            });
+            error.message || error
+        })
+        // session.post(base_url + "packages/" + str(package['id']) + "/feedback/", json=feedback_type)
+    }
     toggleDashboardIsLiked(dashboardID: number, username:string, isLikedNewState:boolean) {
         // Adds / Removes a user from the Dashboard:
         // - dashboardID

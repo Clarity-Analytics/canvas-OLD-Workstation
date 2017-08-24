@@ -292,7 +292,7 @@ export class DashboardManagerComponent implements OnInit {
                 if (this.dashboardUserPermissions.length > 0) {
                     this.selectedUserPermission = this.dashboardUserPermissions[0];
                 };
-                
+
                 this.displayUserPermissions = true;
             })
             .catch(err => {
@@ -316,7 +316,7 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a user by clicking the username'
             });
-                
+
             return;
         }
 
@@ -349,7 +349,7 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a user by clicking the username'
             });
-                
+
             return;
         }
 
@@ -382,7 +382,7 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a user by clicking the username'
             });
-                
+
             return;
         }
 
@@ -415,10 +415,10 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a user by clicking the username'
             });
-                
+
             return;
         }
-        
+
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
@@ -448,10 +448,10 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a user by clicking the username'
             });
-                
+
             return;
         }
-        
+
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
@@ -481,10 +481,10 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a user by clicking the username'
             });
-                
+
             return;
         }
-        
+
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
@@ -531,7 +531,7 @@ export class DashboardManagerComponent implements OnInit {
                 if (this.dashboardGroupPermissions.length > 0) {
                     this.selectedGroupPermission = this.dashboardGroupPermissions[0];
                 };
-                
+
                 this.displayGroupPermissions = true;
             })
             .catch(err => {
@@ -555,7 +555,7 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a group by clicking the group name'
             });
-                
+
             return;
         }
 
@@ -588,7 +588,7 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a group by clicking the group name'
             });
-                
+
             return;
         }
 
@@ -621,7 +621,7 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a group by clicking the group name'
             });
-                
+
             return;
         }
 
@@ -654,10 +654,10 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a group by clicking the group name'
             });
-                
+
             return;
         }
-        
+
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
@@ -687,10 +687,10 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a group by clicking the group name'
             });
-                
+
             return;
         }
-        
+
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
@@ -720,10 +720,10 @@ export class DashboardManagerComponent implements OnInit {
                 summary:  'No selection',
                 detail:   'Select a group by clicking the group name'
             });
-                
+
             return;
         }
-        
+
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
