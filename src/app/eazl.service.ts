@@ -4370,13 +4370,9 @@ export class EazlService implements OnInit {
     }
 
     getDashboards(
-        dashboardID: number = -1,
-        relatedUsername: string = '*',
-        relationshipType: string = ''): Dashboard[] {
+        dashboardID: number = -1): Dashboard[] {
         // Return a list of Dashboards, with optional filters
         // - dashboardID Optional parameter to select ONE, else select ALL (if >= 0)
-        // - relatedUsername Optional username
-        // - relationshipType Optional type, ie SharedWith
         this.globalFunctionService.printToConsole(this.constructor.name,'getDashboards', '@Start');
 
         // Report to user if dirty at the moment
@@ -4399,21 +4395,6 @@ export class EazlService implements OnInit {
         let dashboardsWorking: Dashboard[] = this.dashboards;
         if (this.dashboardTagMembership == null) {
             this.dashboardTagMembership = [];
-        }
-
-        // Filter on related ones, IF so requested
-        if (relatedUsername != '*') {
-            let dashboardIDs: number[] = [];
-            for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
-                if (this.dashboardUserRelationship[i].userName == relatedUsername
-                   &&
-                   this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
-                        relationshipType) {
-                        dashboardIDs.push(this.dashboardUserRelationship[i].dashboardID)
-                }
-            }
-            dashboardsWorking = dashboardsWorking.filter( dw =>
-                (dashboardIDs.indexOf(dw.dashboardID) >= 0))
         }
 
         // Get current user
@@ -4466,11 +4447,7 @@ export class EazlService implements OnInit {
         }
 
         // Get a list of Dashboards
-        let dashboardsWorking: Dashboard[] = this.getDashboards(
-            dashboardID,
-            relatedUsername,
-            relationshipType
-        );
+        let dashboardsWorking: Dashboard[] = this.getDashboards(dashboardID);
 
         // Fill the dropdown format
         let dashboardsSelectItemsWorking: SelectItem[] = [];
