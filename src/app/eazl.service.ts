@@ -6175,50 +6175,6 @@ export class EazlService implements OnInit {
                 })
     }
 
-    addDashboardUserRelationship(
-        dashboardID: number,
-        username: string,
-        relationshipType: string) {
-        // Add user from a Dashboard Relationship
-        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboardUserRelationship', '@Start');
-
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        let found: boolean = false;
-        for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
-            if (this.dashboardUserRelationship[i].dashboardID == dashboardID
-               &&
-               this.dashboardUserRelationship[i].userName == username
-               &&
-               this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
-                relationshipType) {
-                    found = true;
-                    break;
-                }
-        }
-
-        if (!found) {
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-            this.dashboardUserRelationship.push(
-                {
-                    dashboardUserRelationshipID: 0,
-                    dashboardID: dashboardID,
-                    userName: username,
-                    dashboardUserRelationshipType: relationshipType,
-                    dashboardUserRelationshipRating: 0,
-                    dashboardUserRelationshipCreatedDateTime:
-                        this.canvasDate.now('standard'),
-                    dashboardUserRelationshipCreatedUserName: currentUser,
-                    dashboardUserRelationshipUpdatedDateTime:
-                        this.canvasDate.now('standard'),
-                    dashboardUserRelationshipUpdatedUserName: currentUser
-                });
-        }
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardUserRelationship = true;
-    }
 
     deleteDashboardUserRelationship(
         dashboardID: number,
