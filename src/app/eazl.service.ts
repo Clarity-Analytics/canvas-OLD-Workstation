@@ -6175,35 +6175,6 @@ export class EazlService implements OnInit {
                 })
     }
 
-
-    deleteDashboardUserRelationship(
-        dashboardID: number,
-        username: string,
-        relationshipType: string) {
-        // Removes user from a Dashboard Relationship
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDashboardUserRelationship', '@Start');
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboardUserRelationship = true;
-
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        for (var i = 0; i < this.dashboardUserRelationship.length; i++) {
-            if (this.dashboardUserRelationship[i].dashboardID == dashboardID
-               &&
-               this.dashboardUserRelationship[i].userName == username
-               &&
-               this.dashboardUserRelationship[i].dashboardUserRelationshipType ==
-                relationshipType) {
-                this.dashboardUserRelationship =
-                    this.dashboardUserRelationship.splice(i, 1);
-                }
-        }
-
-        // Mark the data as clean
-        this.globalVariableService.dirtyDataDashboardUserRelationship = false;
-    }
-
     getDataSources(dashboardID: number = -1): DataSource[] {
         // List of Data Sources
         // - dashboardID is optional Dashboard to filter on
