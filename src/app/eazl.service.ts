@@ -4400,23 +4400,24 @@ export class EazlService implements OnInit {
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
 
+        // TODO - fix the dashboardUserRelationshipType field
         // Add dashboardIsLiked calculated field
-        if (dashboardsWorking != null) {
-            dashboardsWorking.forEach( dw => {
-                dw.dashboardIsLiked = false;
-                if (this.dashboardUserRelationship.filter(dur =>
-                    (
-                        dur.dashboardID == dw.dashboardID
-                        &&
-                        dur.userName == currentUser
-                        &&
-                        dur.dashboardUserRelationshipType == 'Likes'
-                    )
-                ).length > 0) {
-                    dw.dashboardIsLiked = true;
-                }
-            });
-        };
+        // if (dashboardsWorking != null) {
+        //     dashboardsWorking.forEach( dw => {
+        //         dw.dashboardIsLiked = false;
+        //         if (this.dashboardUserRelationship.filter(dur =>
+        //             (
+        //                 dur.dashboardID == dw.dashboardID
+        //                 &&
+        //                 dur.userName == currentUser
+        //                 &&
+        //                 dur.dashboardUserRelationshipType == 'Likes'
+        //             )
+        //         ).length > 0) {
+        //             dw.dashboardIsLiked = true;
+        //         }
+        //     });
+        // };
 
         // Return the filtered result
         if (dashboardsWorking != null) {
