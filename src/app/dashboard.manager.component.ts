@@ -328,7 +328,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('add_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedUserPermission.username,
@@ -361,7 +361,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('assign_permission_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedUserPermission.username,
@@ -394,7 +394,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('change_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedUserPermission.username,
@@ -427,7 +427,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('delete_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedUserPermission.username,
@@ -460,7 +460,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('remove_permission_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedUserPermission.username,
@@ -493,7 +493,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('view_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedUserPermission.username,
@@ -567,7 +567,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('add_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedGroupPermission.groupName,
@@ -600,7 +600,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('assign_permission_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedGroupPermission.groupName,
@@ -633,7 +633,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('change_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedGroupPermission.groupName,
@@ -666,7 +666,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('delete_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedGroupPermission.groupName,
@@ -699,7 +699,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('remove_permission_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedGroupPermission.groupName,
@@ -732,7 +732,7 @@ export class DashboardManagerComponent implements OnInit {
             removePermissions.push('view_dashboard');
         }
 
-        this.eazlService.updateDashboardModelPermissions(
+        this.eazlService.updateModelPermissions(
             'dashboards',
             this.selectedDashboard.dashboardID,
             this.selectedGroupPermission.groupName,

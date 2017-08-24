@@ -3684,8 +3684,6 @@ export class EazlService implements OnInit {
     systemConfiguration: SystemConfiguration;               // System wide settings
     userModelPermissions: UserModelPermission[];            // List of model permissions per user
     users: User[] = [];                                     // List of Users
-    // userGroupMembership: UserGroupMembership[] = USERGROUPMEMBERSHIP;  // List of User-Group                               // List of Groups
-    // widgetComments: WidgetComment[] = WIDGETCOMMENTS;       // List of Widget Comments
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
     widgetTemplates: WidgetTemplate[] = []                  // List of Widget Templates
     widgetTypes: WidgetType[];                              // List of Widget types
@@ -4673,7 +4671,7 @@ export class EazlService implements OnInit {
 
     }
 
-    updateDashboardModelPermissions(
+    updateModelPermissions(
         url: string,
         id: number,
         name: string,
@@ -4687,7 +4685,7 @@ export class EazlService implements OnInit {
         //  model_name - user or group, ie group
         //  assignPermissions - list of permissions to add, ie ['view_package', 'execute_package']
         //  removePermissions - list of permissions to remove, ie ['view_package']
-        this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboardModelPermissions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateModelPermissions', '@Start');
 
         this.post<any>(
             url + '/' + id.toString() + '/share/',
@@ -5710,7 +5708,6 @@ export class EazlService implements OnInit {
             };
         }
 
-
         // Add the DS that those groups have access to
         // TODO - eliminate duplicates (already in User above)
         let groupWorking: Group[] = [];
@@ -6193,9 +6190,9 @@ export class EazlService implements OnInit {
 
     // TODO - refactor with action to do POST and DELETE (add/remove)
     modelFeedback(
-        modelName: string, 
-        modelID: number, 
-        feedback: string, 
+        modelName: string,
+        modelID: number,
+        feedback: string,
         action: string) {
         // Changes (add/delete) the feedback on a model for the current user
         // - modelName for the feedback, ie packages
@@ -6246,7 +6243,7 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         if (isLikedNewState) {
             action='add';
         }
-        
+
         this.modelFeedback('dashboards', dashboardID, 'Like', action)
     }
 
