@@ -6267,28 +6267,12 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         // - isLikedNewState = new state, so true -> add user, else delete
         this.globalFunctionService.printToConsole(this.constructor.name,'toggleDashboardIsLiked', '@Start');
 
-        
-        this.modelFeedback('packages', 0, 'Like', 'add')
-        // this.modelFeedback('dashboards', 0, 'Like', 'add')
-console.log('after')
-
-
-        for (var i = 0; i < this.dashboards.length; i++) {
-            if (this.dashboards[i].dashboardID == dashboardID) {
-                this.dashboards[i].dashboardIsLiked = isLikedNewState;
-                if (isLikedNewState) {
-                    this.addDashboardUserRelationship(
-                        dashboardID,
-                        username,
-                        'Likes');
-                } else {
-                    this.deleteDashboardUserRelationship(
-                        dashboardID,
-                        username,
-                        'Likes');
-                }
-            }
+        let action: string = 'delete';
+        if (isLikedNewState) {
+            action='add';
         }
+        
+        this.modelFeedback('dashboards', dashboardID, 'Like', action)
     }
 
     getCanvasMessages(
