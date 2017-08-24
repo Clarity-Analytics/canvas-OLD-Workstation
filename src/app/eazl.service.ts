@@ -447,6 +447,76 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //             dashboardGroupRelationshipUpdatedUserName: 'janniei'
     //         }
     //     ];
+// const DASHBOARDUSERRELATIONSHIP
+    //     export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
+    //         [
+    //             {
+    //                 dashboardUserRelationshipID: 0,
+    //                 dashboardID: 0,
+    //                 userName: 'janniei',
+    //                 dashboardUserRelationshipType: 'SharedWith',
+    //                 dashboardUserRelationshipRating: 0,
+    //                 dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipCreatedUserName: 'janniei',
+    //                 dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipUpdatedUserName: 'janniei'
+    //             },
+    //             {
+    //                 dashboardUserRelationshipID: 1,
+    //                 dashboardID: 0,
+    //                 userName: 'janniei',
+    //                 dashboardUserRelationshipType: 'Likes',
+    //                 dashboardUserRelationshipRating: 0,
+    //                 dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipCreatedUserName: 'janniei',
+    //                 dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipUpdatedUserName: 'janniei'
+    //             },
+    //             {
+    //                 dashboardUserRelationshipID: 2,
+    //                 dashboardID: 2,
+    //                 userName: 'bradleyk',
+    //                 dashboardUserRelationshipType: 'Likes',
+    //                 dashboardUserRelationshipRating: 0,
+    //                 dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipCreatedUserName: 'janniei',
+    //                 dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipUpdatedUserName: 'janniei'
+    //             },
+    //             {
+    //                 dashboardUserRelationshipID: 3,
+    //                 dashboardID: 0,
+    //                 userName: 'bradleyk',
+    //                 dashboardUserRelationshipType: 'SharedWith',
+    //                 dashboardUserRelationshipRating: 0,
+    //                 dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipCreatedUserName: 'janniei',
+    //                 dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipUpdatedUserName: 'janniei'
+    //             },
+    //             {
+    //                 dashboardUserRelationshipID: 4,
+    //                 dashboardID: 3,
+    //                 userName: 'bradleyk',
+    //                 dashboardUserRelationshipType: 'SharedWith',
+    //                 dashboardUserRelationshipRating: 0,
+    //                 dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipCreatedUserName: 'janniei',
+    //                 dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipUpdatedUserName: 'janniei'
+    //             },
+    //             {
+    //                 dashboardUserRelationshipID: 5,
+    //                 dashboardID: 3,
+    //                 userName: 'janniei',
+    //                 dashboardUserRelationshipType: 'Owns',
+    //                 dashboardUserRelationshipRating: 0,
+    //                 dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipCreatedUserName: 'janniei',
+    //                 dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
+    //                 dashboardUserRelationshipUpdatedUserName: 'janniei'
+    //             }
+    //         ];
 // Dead ones
 // End of const comments
     export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
@@ -700,76 +770,6 @@ export const DATASOURCES: DataSource[] =
             datasourceCreatedUserName: '',
             datasourceUpdatedDateTime: '',
             datasourceUpdatedUserName: ''
-        }
-    ];
-
-export const DASHBOARDUSERRELATIONSHIP: DashboardUserRelationship[] =
-    [
-        {
-            dashboardUserRelationshipID: 0,
-            dashboardID: 0,
-            userName: 'janniei',
-            dashboardUserRelationshipType: 'SharedWith',
-            dashboardUserRelationshipRating: 0,
-            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipCreatedUserName: 'janniei',
-            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipUpdatedUserName: 'janniei'
-        },
-        {
-            dashboardUserRelationshipID: 1,
-            dashboardID: 0,
-            userName: 'janniei',
-            dashboardUserRelationshipType: 'Likes',
-            dashboardUserRelationshipRating: 0,
-            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipCreatedUserName: 'janniei',
-            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipUpdatedUserName: 'janniei'
-        },
-        {
-            dashboardUserRelationshipID: 2,
-            dashboardID: 2,
-            userName: 'bradleyk',
-            dashboardUserRelationshipType: 'Likes',
-            dashboardUserRelationshipRating: 0,
-            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipCreatedUserName: 'janniei',
-            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipUpdatedUserName: 'janniei'
-        },
-        {
-            dashboardUserRelationshipID: 3,
-            dashboardID: 0,
-            userName: 'bradleyk',
-            dashboardUserRelationshipType: 'SharedWith',
-            dashboardUserRelationshipRating: 0,
-            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipCreatedUserName: 'janniei',
-            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipUpdatedUserName: 'janniei'
-        },
-        {
-            dashboardUserRelationshipID: 4,
-            dashboardID: 3,
-            userName: 'bradleyk',
-            dashboardUserRelationshipType: 'SharedWith',
-            dashboardUserRelationshipRating: 0,
-            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipCreatedUserName: 'janniei',
-            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipUpdatedUserName: 'janniei'
-        },
-        {
-            dashboardUserRelationshipID: 5,
-            dashboardID: 3,
-            userName: 'janniei',
-            dashboardUserRelationshipType: 'Owns',
-            dashboardUserRelationshipRating: 0,
-            dashboardUserRelationshipCreatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipCreatedUserName: 'janniei',
-            dashboardUserRelationshipUpdatedDateTime: '2017/05/01 16:01',
-            dashboardUserRelationshipUpdatedUserName: 'janniei'
         }
     ];
 
