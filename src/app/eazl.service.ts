@@ -6843,49 +6843,6 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
             }
         }
 
-        // DatasourcesPerUser
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DatasourcesPerUser') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DatasourcesPerUser');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDatasourcesPerUser = true;
-
-            //         // Get all the data via API
-            //         let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
-            //         this.get<EazlDatasourcesPerUser>('datasources-per-user')
-            //             .subscribe(
-            //                 (eazlDatasourcesPerUser) => {
-            //                     for (var i = 0; i < eazlDatasourcesPerUser.length; i++) {
-            //                         let datasourcesPerUserSingle = new DatasourcesPerUser();
-            //                         datasourcesPerUserSingle = this.cdal.loadDatasourcesPerUser(eazlDatasourcesPerUser[i]);
-            //                         datasourcesPerUserWorking.push(datasourcesPerUserSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.datasourcesPerUser = datasourcesPerUserWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDatasourcesPerUser = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DatasourcesPerUser');
-            //         this.datasourcesPerUser = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDatasourcesPerUser = true;
-            //     }
-            // }
-        // Done
-
         // DataSourceUserAccess
             // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DataSourceUserAccess') {
 
