@@ -4678,7 +4678,7 @@ export class EazlService implements OnInit {
         model_name: string,
         assignPermissions: string[],
         removePermissions: string[]) {
-        // Adds permissions for a given model
+        // Adds or Remove permissions for a given model
         //  url - url of model to add share to
         //  id - DB id for record / object to add share, ie 0
         //  name - user or group name, ie Admin
@@ -5652,97 +5652,6 @@ export class EazlService implements OnInit {
                   ||
                  (!include  &&  usernames.indexOf(u.username) < 0)
             );
-    }
-
-    getDatasourcesPerUser(user: User): DatasourcesPerUser[] {
-        // Return list of DataSource for a given user (via Username & Groups)
-        // - user filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourcesPerUser', '@Start');
-
-        let username: string = user.username;
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDatasourcesPerUser) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'DatasourcesPerUser data is dirty / not up to date',
-                detail:   'DatasourcesPerUser User data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        let datasourceWorking: DataSource[] = [];
-        let datasourceName: string = '';
-
-        // Get current user
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        // Filter on users
-        let datasourcesPerUserWorking: DatasourcesPerUser[] = [];
-        this.dataSourceUserAccess.forEach(du => {
-            if (du.userName == username) {
-                datasourceName = '';
-                datasourceWorking = this.datasources.filter(d =>
-                    d.datasourceID == du.datasourceID);
-                if (datasourceWorking.length > 0) {
-                    datasourceName = datasourceWorking[0].datasourceName;
-                }
-                datasourcesPerUserWorking.push( {
-                    datasourceID: du.datasourceID,
-                    userName: username,
-                    datasourceName: datasourceName,
-                    datasourcesPerUserAccessVia: 'User: ' + username,
-                    datasourcesPerUserAccessType: du.dataSourceUserAccessType,
-                    datasourcesPerUserCreatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserCreatedUserName: currentUser,
-                    datasourcesPerUserUpdatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserUpdatedUserName: currentUser
-                })
-            }
-        })
-
-        // Get list of GroupIDs that the User belongs to
-        let groupIDs: number[] = [];
-        for (var i = 0; i < this.groups.length; i++) {
-            if (user.groups.indexOf(this.groups[i].groupName) >= 0) {
-                groupIDs.push(this.groups[i].groupID);
-            };
-        }
-
-        // Add the DS that those groups have access to
-        // TODO - eliminate duplicates (already in User above)
-        let groupWorking: Group[] = [];
-        this.groupDatasourceAccess.forEach(gd => {
-            if (groupIDs.indexOf(gd.groupID) >= 0) {
-                groupWorking = this.groups.filter(g =>
-                    (g.groupID == gd.groupID)
-                )
-                datasourceName = '';
-                datasourceWorking = this.datasources.filter(d =>
-                    d.datasourceID == gd.datasourceID);
-                if (datasourceWorking.length > 0) {
-                    datasourceName = datasourceWorking[0].datasourceName;
-                }
-
-                // Get current user
-                let currentUser: string = this.globalFunctionService.currentUser();
-
-                // TODO - make the push once - this is not DRY
-                datasourcesPerUserWorking.push({
-                    datasourceID: gd.datasourceID,
-                    userName: username,
-                    datasourceName: datasourceName,
-                    datasourcesPerUserAccessVia: 'Group: ' + groupWorking[0].groupName,
-                    datasourcesPerUserAccessType: gd.groupDatasourceAccessAccessType,
-                    datasourcesPerUserCreatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserCreatedUserName: currentUser,
-                    datasourcesPerUserUpdatedDateTime: this.canvasDate.now('standard'),
-                    datasourcesPerUserUpdatedUserName: currentUser
-                })
-            }
-        })
-
-        // Return the result
-        return datasourcesPerUserWorking;
     }
 
     getDatasourcesPerGroup(groupID: number, include: boolean): DataSource[] {
