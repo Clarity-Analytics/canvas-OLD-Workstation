@@ -81,6 +81,7 @@ import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
 import { EazlDashboardTab }           from './model.dashboardTabs';
+import { EazlDataSource }             from './model.datasource';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
@@ -6926,6 +6927,47 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
             //     }
             // }
         // Done
+
+        // Datasource
+        if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Datasource') {
+
+            // Reset
+            if (resetAction == 'reset') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset Datasource');
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDatasource = true;
+
+                // Get all the data via API
+                let datasourceWorking: DataSource[] = [];
+                this.get<EazlDataSource>('packages')
+                    .subscribe(
+                        (eazlDS) => {
+                            for (var i = 0; i < eazlDS.length; i++) {
+                                let datasourceSingle = new DataSource();
+                                datasourceSingle = this.cdal.loadDatasource(eazlDS[i]);
+                                datasourceWorking.push(datasourceSingle);
+
+                            }
+
+                        // Replace
+                        this.datasources = datasourceWorking;
+
+                        // Mark the data as clean
+                        this.globalVariableService.dirtyDataDatasource = false;
+                        }
+                )
+            }
+
+            // Clear all
+            if (resetAction.toLowerCase() == 'clear') {
+                this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear Datasource');
+                this.datasources = [];
+
+                // Mark the data as dirty
+                this.globalVariableService.dirtyDataDatasource = true;
+            }
+        }
 
         // PackageTask
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'PackageTask') {
