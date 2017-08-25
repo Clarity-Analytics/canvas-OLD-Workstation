@@ -43,19 +43,8 @@ export class DataSource {
     datasourceUserEditable: boolean;        // *True if users may edit this DS
 	packageRepositoryID: number;            // Django repo 
 	packageCompiled: boolean;               // Django field, True = compiled
-	datasourceParameters: [                 // Array of Django parameters
-        {
-            name: string;                   // Django parameter name
-            value: string;                  // Django paramter value
-            parser: string;                 // Django parameter parser
-        }
-    ];
-	datasourceFields: [                     // Array of Django fields
-        {
-            name: string;                   // Django field name
-            dtype: string;                  // Django field type
-        }
-    ];
+	datasourceParameters: string[];         // Array of Django parameters
+	datasourceFields: string[];             // Array of Django fields
 	datasourceDateLastSynced: string;       // Django date when datasource was last synced
 	datasourceLastSyncSuccessful: boolean;  // Django True = sync okay
 	datasourceLastSyncError: string;        // Django last sync error

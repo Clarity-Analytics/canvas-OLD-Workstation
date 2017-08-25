@@ -26,6 +26,7 @@ import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardUserPermissions }   from './model.dashboards';
+import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { EazlAppData }                from './model.appdata';
 import { EazlCanvasMessage }          from './model.canvasMessage';
@@ -37,6 +38,7 @@ import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardTag }           from './model.dashboardTag';
 import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
+import { EazlDataSource }             from './model.datasource';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
@@ -69,7 +71,6 @@ import { Widget }                     from './model.widget';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
 
-// TODO - add loadDataSources
 
 @Injectable()
 export class CDAL {
@@ -1488,6 +1489,109 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
 
         // Return
         return dashboardGroupPermissionsWorking;
+    }
+
+    loadDatasource(eazlDataSource: EazlDataSource): DataSource {
+        // Load Datasource from Package: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDatasource', '@Start');
+
+        let dataSourceTaskWorking = new DataSource();
+
+        dataSourceTaskWorking.datasourceID = eazlDataSource.id;
+
+        if (eazlDataSource.name != null) {
+            dataSourceTaskWorking.datasourceName = eazlDataSource.name;
+        } else {
+            dataSourceTaskWorking.datasourceName = '';
+        }
+
+        dataSourceTaskWorking.datasourceDescription = '';
+        dataSourceTaskWorking.datasourceDBname = '';
+        dataSourceTaskWorking.datasourceSource = '';
+        dataSourceTaskWorking.datasourceDBType = '';
+        dataSourceTaskWorking.datasourceDBconnectionProd = '';
+        dataSourceTaskWorking.datasourceDBconnectionTest = '';
+        dataSourceTaskWorking.datasourceEnvironment = '';
+        dataSourceTaskWorking.datasourceDataQuality = '';
+        dataSourceTaskWorking.datasourceDataIssues = null;
+        dataSourceTaskWorking.datasourceMaxRowsReturned = -1;
+        dataSourceTaskWorking.datasourceDefaultReturnFormat = '';
+        dataSourceTaskWorking.datasourceUserEditable = false;
+
+        if (eazlDataSource.repository_id != null) {
+            dataSourceTaskWorking.packageRepositoryID = eazlDataSource.repository_id;
+        } else {
+            dataSourceTaskWorking.packageRepositoryID = -1;
+        }        
+
+        if (eazlDataSource.compiled != null) {
+            dataSourceTaskWorking.packageCompiled = eazlDataSource.compiled;
+        } else {
+            dataSourceTaskWorking.packageCompiled = false;
+        }        
+
+        if (eazlDataSource.parameters != null) {
+            dataSourceTaskWorking.datasourceParameters = eazlDataSource.parameters;
+        } else {
+            dataSourceTaskWorking.datasourceParameters = [];
+        }        
+
+        if (eazlDataSource.fields != null) {
+            dataSourceTaskWorking.datasourceFields = eazlDataSource.fields;
+        } else {
+            dataSourceTaskWorking.datasourceFields = [];
+        }        
+
+        if (eazlDataSource.date_last_synced != null) {
+            dataSourceTaskWorking.datasourceDateLastSynced = eazlDataSource.date_last_synced;
+        } else {
+            dataSourceTaskWorking.datasourceDateLastSynced = '';
+        }        
+
+        if (eazlDataSource.last_sync_successful != null) {
+            dataSourceTaskWorking.datasourceLastSyncSuccessful = eazlDataSource.last_sync_successful;
+        } else {
+            dataSourceTaskWorking.datasourceLastSyncSuccessful = false;
+        }        
+
+        if (eazlDataSource.last_sync_error != null) {
+            dataSourceTaskWorking.datasourceLastSyncError = eazlDataSource.last_sync_error;
+        } else {
+            dataSourceTaskWorking.datasourceLastSyncError = '';
+        }        
+
+        if (eazlDataSource.last_runtime_error != null) {
+            dataSourceTaskWorking.datasourceLastRuntimeError = eazlDataSource.last_runtime_error;
+        } else {
+            dataSourceTaskWorking.datasourceLastRuntimeError = '';
+        }        
+
+        if (eazlDataSource.execute != null) {
+            dataSourceTaskWorking.datasourceExecuteURL = eazlDataSource.execute;
+        } else {
+            dataSourceTaskWorking.datasourceExecuteURL = '';
+        }        
+
+        if (eazlDataSource.permissions != null) {
+            dataSourceTaskWorking.datasourcePermissions = eazlDataSource.permissions;
+        } else {
+            dataSourceTaskWorking.datasourcePermissions = [];
+        }        
+
+        if (eazlDataSource.url != null) {
+            dataSourceTaskWorking.datasourceUrl = eazlDataSource.url;
+        } else {
+            dataSourceTaskWorking.datasourceUrl = '';
+        }        
+
+        dataSourceTaskWorking.datasourceSQL = '';
+        dataSourceTaskWorking.datasourceCreatedDateTime = '';
+        dataSourceTaskWorking.datasourceCreatedUserName = '';
+        dataSourceTaskWorking.datasourceUpdatedDateTime = '';
+        dataSourceTaskWorking.datasourceUpdatedUserName = '';
+    
+        // Return the result
+        return dataSourceTaskWorking;
     }
 
     loadDataSourceUserAccess(eazlDataSourceUserAccess: EazlDataSourceUserAccess): DataSourceUserAccess {
