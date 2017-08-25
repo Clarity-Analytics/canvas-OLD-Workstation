@@ -649,125 +649,125 @@ export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
         }
     ];
 
-export const DATASOURCES: DataSource[] =
-    [
-        {
-            datasourceID: 0,
-            datasourceName: 'Overlay Packages',
-            datasourceDescription: 'Complete list of packages on Overlay',
-            datasourceDBname: '',
-            datasourceSource: '',
-            datasourceDBType: '',
-            datasourceDBconnectionProd: '',
-            datasourceDBconnectionTest: '',
-            datasourceEnvironment: '',
-            datasourceDataQuality: '',
-            datasourceDataIssues: [
-                {
-                    dataIssueCreatedDate: '',
-                    dataIssueCreatedUserName: '',
-                    dataIssueDescription: '',
-                    dataIssueStatus: '',
-                }
-            ],
-            datasourceMaxRowsReturned: 0,
-            datasourceDefaultReturnFormat: '',
-            datasourceUserEditable: false,
-            packagePk: 0,
-            packageName: '',
-            packageRepository: '',
-            packageCompiled: false,
-            datasourceParameters:
-            [
-                {
-                    name: '',
-                    value: '',
-                    parser: '',
-                }
-            ],
-            datasourceFields: [                     // Array of Django fields
-                {
-                    name: '',
-                    dtype: '',
-                }
-            ],
-            datasourceQueries: [
-                {
-                    name : '',
-                    parameters : '',
-                }
-            ],
-            datasourceDateLastSynced: '',
-            datasourceLastSyncSuccessful: false,
-            datasourceLastSyncError: '',
-            datasourceLastRuntimeError: '',
-            datasourceExecuteURL: '',
-            datasourceUrl: '',
-            datasourceSQL: '',
-            datasourceCreatedDateTime: '',
-            datasourceCreatedUserName: '',
-            datasourceUpdatedDateTime: '',
-            datasourceUpdatedUserName: ''
-        },
-        {
-            datasourceID: 1,
-            datasourceName: 'Overlay Reports',
-            datasourceDescription: 'Complete list of reports on Overlay',
-            datasourceDBname: '',
-            datasourceSource: '',
-            datasourceDBType: '',
-            datasourceDBconnectionProd: '',
-            datasourceDBconnectionTest: '',
-            datasourceEnvironment: '',
-            datasourceDataQuality: '',
-            datasourceDataIssues: [
-                {
-                    dataIssueCreatedDate: '',
-                    dataIssueCreatedUserName: '',
-                    dataIssueDescription: '',
-                    dataIssueStatus: '',
-                }
-            ],
-            datasourceMaxRowsReturned: 0,
-            datasourceDefaultReturnFormat: '',
-            datasourceUserEditable: false,
-            packagePk: 0,
-            packageName: '',
-            packageRepository: '',
-            packageCompiled: false,
-            datasourceParameters:
-            [
-                {
-                    name: '',
-                    value: '',
-                    parser: '',
-                }
-            ],
-            datasourceFields: [                     // Array of Django fields
-                {
-                    name: '',
-                    dtype: '',
-                }
-            ],
-            datasourceQueries: [
-                {
-                    name : '',
-                    parameters : '',
-                }
-            ],
-            datasourceDateLastSynced: '',
-            datasourceLastSyncSuccessful: false,
-            datasourceLastSyncError: '',
-            datasourceLastRuntimeError: '',
-            datasourceExecuteURL: '',
-            datasourceUrl: '',
-            datasourceSQL: '',
-            datasourceCreatedDateTime: '',
-            datasourceCreatedUserName: '',
-            datasourceUpdatedDateTime: '',
-            datasourceUpdatedUserName: ''
-        }
-    ];
+export const DATASOURCES: DataSource[] =[]
+    // [
+    //     {
+    //         datasourceID: 0,
+    //         datasourceName: 'Overlay Packages',
+    //         datasourceDescription: 'Complete list of packages on Overlay',
+    //         datasourceDBname: '',
+    //         datasourceSource: '',
+    //         datasourceDBType: '',
+    //         datasourceDBconnectionProd: '',
+    //         datasourceDBconnectionTest: '',
+    //         datasourceEnvironment: '',
+    //         datasourceDataQuality: '',
+    //         datasourceDataIssues: [
+    //             {
+    //                 dataIssueCreatedDate: '',
+    //                 dataIssueCreatedUserName: '',
+    //                 dataIssueDescription: '',
+    //                 dataIssueStatus: '',
+    //             }
+    //         ],
+    //         datasourceMaxRowsReturned: 0,
+    //         datasourceDefaultReturnFormat: '',
+    //         datasourceUserEditable: false,
+    //         packagePk: 0,
+    //         packageName: '',
+    //         packageRepository: '',
+    //         packageCompiled: false,
+    //         datasourceParameters:
+    //         [
+    //             {
+    //                 name: '',
+    //                 value: '',
+    //                 parser: '',
+    //             }
+    //         ],
+    //         datasourceFields: [                     // Array of Django fields
+    //             {
+    //                 name: '',
+    //                 dtype: '',
+    //             }
+    //         ],
+    //         datasourceQueries: [
+    //             {
+    //                 name : '',
+    //                 parameters : '',
+    //             }
+    //         ],
+    //         datasourceDateLastSynced: '',
+    //         datasourceLastSyncSuccessful: false,
+    //         datasourceLastSyncError: '',
+    //         datasourceLastRuntimeError: '',
+    //         datasourceExecuteURL: '',
+    //         datasourceUrl: '',
+    //         datasourceSQL: '',
+    //         datasourceCreatedDateTime: '',
+    //         datasourceCreatedUserName: '',
+    //         datasourceUpdatedDateTime: '',
+    //         datasourceUpdatedUserName: ''
+    //     },
+    //     {
+    //         datasourceID: 1,
+    //         datasourceName: 'Overlay Reports',
+    //         datasourceDescription: 'Complete list of reports on Overlay',
+    //         datasourceDBname: '',
+    //         datasourceSource: '',
+    //         datasourceDBType: '',
+    //         datasourceDBconnectionProd: '',
+    //         datasourceDBconnectionTest: '',
+    //         datasourceEnvironment: '',
+    //         datasourceDataQuality: '',
+    //         datasourceDataIssues: [
+    //             {
+    //                 dataIssueCreatedDate: '',
+    //                 dataIssueCreatedUserName: '',
+    //                 dataIssueDescription: '',
+    //                 dataIssueStatus: '',
+    //             }
+    //         ],
+    //         datasourceMaxRowsReturned: 0,
+    //         datasourceDefaultReturnFormat: '',
+    //         datasourceUserEditable: false,
+    //         packagePk: 0,
+    //         packageName: '',
+    //         packageRepository: '',
+    //         packageCompiled: false,
+    //         datasourceParameters:
+    //         [
+    //             {
+    //                 name: '',
+    //                 value: '',
+    //                 parser: '',
+    //             }
+    //         ],
+    //         datasourceFields: [                     // Array of Django fields
+    //             {
+    //                 name: '',
+    //                 dtype: '',
+    //             }
+    //         ],
+    //         datasourceQueries: [
+    //             {
+    //                 name : '',
+    //                 parameters : '',
+    //             }
+    //         ],
+    //         datasourceDateLastSynced: '',
+    //         datasourceLastSyncSuccessful: false,
+    //         datasourceLastSyncError: '',
+    //         datasourceLastRuntimeError: '',
+    //         datasourceExecuteURL: '',
+    //         datasourceUrl: '',
+    //         datasourceSQL: '',
+    //         datasourceCreatedDateTime: '',
+    //         datasourceCreatedUserName: '',
+    //         datasourceUpdatedDateTime: '',
+    //         datasourceUpdatedUserName: ''
+    //     }
+    // ];
 
 export const WIDGETS: Widget[] =
     [
