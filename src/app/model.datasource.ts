@@ -89,6 +89,7 @@ export class DataSourceUserPermissions {
 }
     
 export class DataSourceGroupPermissions {
+    groupName: string;
     add_package: boolean;
     canAssignPermissionPackage: boolean;
     canChangePackage: boolean;

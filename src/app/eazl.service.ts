@@ -72,12 +72,16 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserPermissions }   from './model.dashboards';
 import { DataSource }                 from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
+import { DataSourceGroupPermissions}  from './model.datasource';
+import { DataSourceUserPermissions}   from './model.datasource';
 import { EazlAppData }                from './model.appdata';
 import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroupPermissions }    from './model.dashboards';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
+import { EazlDataSourceGroupPermissions}    from './model.datasource';
+import { EazlDataSourceUserPermissions}     from './model.datasource';
 import { EazlDashboard }              from './model.dashboards';
 import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
 import { EazlDashboardTab }           from './model.dashboardTabs';
@@ -5970,7 +5974,6 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
     }
 
-
     getdatasourceUserPermissions(
         datasourceID: number,
         includeGroup:string = 'true'
@@ -5984,9 +5987,9 @@ export class EazlService implements OnInit {
             includeGroup = 'true';
         };
 
-        let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
-        return this.get<EazlDashboardUserPermissions>(
-            'dashboards/' + datasourceID.toString() +
+        let datasourceUserPermissionsWorking: DataSourceUserPermissions[] = [];
+        return this.get<EazlDataSourceUserPermissions>(
+            'packages/' + datasourceID.toString() +
                 '/user-permissions/?include-group-permissions=' + includeGroup
         )
             .toPromise()
@@ -5997,30 +6000,33 @@ export class EazlService implements OnInit {
                     found = false;
                     for (var j = 0; j < eazlUsrPerm.length; j++) {
                         if (eazlUsrPerm[j].username == this.users[i].username) {
-                            dashboardUserPermissionsWorking.push(
-                                this.cdal.loadDashboardUserPermissions(eazlUsrPerm[j])
+                            datasourceUserPermissionsWorking.push(
+                                this.cdal.loadDatasourceUserPermissions(eazlUsrPerm[j])
                             );
                             found = true;
                         }
                     }
 
                     if (!found) {
-                        dashboardUserPermissionsWorking.push(
+                        datasourceUserPermissionsWorking.push(
                             {
                                 username: this.users[i].username,
-                                canAddDashboard: false,
-                                canAssignPermissionDashboard: false,
-                                canChangeDashboard: false,
-                                canDeleteDashboard: false,
-                                canRemovePermissionDashboard: false,
-                                canViewDashboard: false
+                                add_package: false,
+                                canAssignPermissionPackage: false,
+                                canChangePackage: false,
+                                canDeletePackage: false,
+                                canExecutePackage: false,
+                                canPackageOwnedAccess: false,
+                                canPackageSharedAccess: false,
+                                canRemovePermissionPackage: false,
+                                canViewPackage: false
                             }
                         )
                     }
                 };
 
                 // Return
-                return dashboardUserPermissionsWorking;
+                return datasourceUserPermissionsWorking;
             })
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
