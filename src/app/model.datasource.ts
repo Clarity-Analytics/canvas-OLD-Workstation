@@ -31,7 +31,7 @@ export class EazlDataSourceGroupPermissions {
             // add_package, assign_permission_package, change_package, delete_package, 
             // execute_package, package_owned_access, package_shared_access, 
             // remove_permission_package, view_package
-        }
+}
 
 // Canvas
 // TODO: fields marked with * does NOT live in the packages

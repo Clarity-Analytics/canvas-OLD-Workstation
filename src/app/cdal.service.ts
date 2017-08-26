@@ -1414,11 +1414,11 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
         return userModelPermissionWorking;
     }
 
-    loadDatasourceUserPermissions(eazlDatasourceUserPermissions): DatasourceUserPermissions {
+    loadDatasourceUserPermissions(eazlDatasourceUserPermissions): DataSourceUserPermissions {
         // Load User Permissions for a given Datasource: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDatasourceUserPermissions', '@Start');
 
-        let datasourceUserPermissionsWorking = new DatasourceUserPermissions();
+        let datasourceUserPermissionsWorking = new DataSourceUserPermissions();
 
         if (eazlDatasourceUserPermissions.username != null) {
             datasourceUserPermissionsWorking.username = eazlDatasourceUserPermissions.username;
@@ -1427,16 +1427,16 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
         }
 
         // Set default to false
-        datasourceUserPermissionsWorking.add_package = false;
-        datasourceUserPermissionsWorking.assign_permission_package = false;
-        datasourceUserPermissionsWorking.change_package = false;
-        datasourceUserPermissionsWorking.delete_package = false;
-        datasourceUserPermissionsWorking.execute_package = false;
-        datasourceUserPermissionsWorking.package_owned_access = false;
-        datasourceUserPermissionsWorking.package_shared_access = false;
-        datasourceUserPermissionsWorking.remove_permission_package = false;
-        datasourceUserPermissionsWorking.view_package = false;
-
+        datasourceUserPermissionsWorking.canAddPackage = false;
+        datasourceUserPermissionsWorking.canAssignPermissionPackage = false;
+        datasourceUserPermissionsWorking.canChangePackage = false;
+        datasourceUserPermissionsWorking.canDeletePackage = false;
+        datasourceUserPermissionsWorking.canExecutePackage = false;
+        datasourceUserPermissionsWorking.canPackageOwnedAccess = false;
+        datasourceUserPermissionsWorking.canPackageSharedAccess = false;
+        datasourceUserPermissionsWorking.canRemovePermissionPackage = false;
+        datasourceUserPermissionsWorking.canViewPackage = false;
+    
         if (eazlDatasourceUserPermissions.permissions != null) {
 
             // Loop on those assigned
@@ -1471,6 +1471,9 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
                 }
             }
         }
+
+        // Return
+        return datasourceUserPermissionsWorking;
     }
 
     loadDashboardUserPermissions(eazlDatasourceUserPermissions): DashboardUserPermissions {

@@ -6011,7 +6011,7 @@ export class EazlService implements OnInit {
                         datasourceUserPermissionsWorking.push(
                             {
                                 username: this.users[i].username,
-                                add_package: false,
+                                canAddPackage: false,
                                 canAssignPermissionPackage: false,
                                 canChangePackage: false,
                                 canDeletePackage: false,

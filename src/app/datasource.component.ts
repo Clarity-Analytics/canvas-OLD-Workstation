@@ -20,6 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { DataSource }                 from './model.datasource';
+import { DataSourceUserPermissions}   from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
@@ -36,10 +37,11 @@ export class DataSourceComponent implements OnInit {
     // Local properties
     availableDatasourceGroupMembership: Group[] = [];   // List of Groups user does NOT belongs to
     belongstoDatasourceGroupMembership: Group[] = [];   // List of Groups user already belongs to
-    availableUserDatasource: User[] = [];         // List of Users that cannot access this DS
-    belongstoUserDatasource: User[] = [];         // List of Users that can access this DS
+    availableUserDatasource: User[] = [];               // List of Users that cannot access this DS
+    belongstoUserDatasource: User[] = [];               // List of Users that can access this DS
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     datasources: DataSource[];                          // List of DataSources
+    datasourceUserPermissions: DataSourceUserPermissions[];     // User permissions
     displayUserAccess: boolean;                         // True to display User access
     displayUserPermissions: boolean = false;            // True to show permissions panel
     displayGroupAccess: boolean;                        // True to display Group Access
@@ -50,8 +52,9 @@ export class DataSourceComponent implements OnInit {
     popuMenuItems: MenuItem[];                          // Items in popup
     reports: Report[];                                  // List of Reports
     selectedDatasource: DataSource;                     // Selected one
+    selectedUserPermission: DataSourceUserPermissions;  // Selected in table
     users: User[];                                      // List of Users with Access
-
+    
     constructor(
         private confirmationService: ConfirmationService,
         private canvasDate: CanvasDate,
@@ -218,24 +221,24 @@ export class DataSourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserPermissions', '@Start');
 
         // Get the current and available user shared with; as a Promise to cater for Async
-        this.eazlService.getdashboardUserPermissions(
+        this.eazlService.getdatasourceUserPermissions(
             datasource.datasourceID
         )
-            // .then(dashUsrPer => {
-            //     this.dashboardUserPermissions = dashUsrPer;
-            //     if (this.dashboardUserPermissions.length > 0) {
-            //         this.selectedUserPermission = this.dashboardUserPermissions[0];
-            //     };
+            .then(dashUsrPer => {
+                this.datasourceUserPermissions = dashUsrPer;
+                if (this.datasourceUserPermissions.length > 0) {
+                    this.selectedUserPermission = this.datasourceUserPermissions[0];
+                };
 
-            //     this.displayUserPermissions = true;
-            // })
-            // .catch(err => {
-            //     this.globalVariableService.growlGlobalMessage.next({
-            //         severity: 'warn',
-            //         summary:  'User permissions',
-            //         detail:   'Getting user permissions failed'
-            //     });
-            // });
+                this.displayUserPermissions = true;
+            })
+            .catch(err => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'User permissions',
+                    detail:   'Getting user permissions failed'
+                });
+            });
 
     }
 
