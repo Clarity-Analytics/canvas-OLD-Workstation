@@ -317,7 +317,7 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         // - model to filter on, ie 'dashboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuModelPermissions', '@Start');
-        
+
         this.eazlService.getUserModelPermissions(
             user.id,
             model
@@ -327,10 +327,10 @@ export class UserComponent implements OnInit {
                 for (var i = 0; i < usrMdlPerm.length; i++) {
                     for (var j = 0; j < usrMdlPerm[i].objectPermissions.length; j++){
                         for (var k = 0; k < usrMdlPerm[i].objectPermissions[j].objectID.length; k++){
-                            
+
                             let name: string = '';
                             if (model == 'dashboard') {
-                                let lookupDashboard: Dashboard[] = 
+                                let lookupDashboard: Dashboard[] =
                                     this.eazlService.getDashboards(
                                         usrMdlPerm[i].objectPermissions[j].objectID[k]
                                     );
@@ -362,7 +362,7 @@ export class UserComponent implements OnInit {
                     detail:   'Unsuccessful in reading related model permissions from the database'
                 });
                 error.message || error
-            })        
+            })
     }
 
     userMenuMessageHistory(user: User) {

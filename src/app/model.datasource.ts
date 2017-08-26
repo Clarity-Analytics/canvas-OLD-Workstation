@@ -17,6 +17,14 @@ export class EazlDataSource {
     url: string;
 }
 
+export class EazlDataSourceUserPermissions {
+    username: string;
+    permissions: string[];                      // Permissions at model level per dashboard: 
+            // add_package, assign_permission_package, change_package, delete_package, 
+            // execute_package, package_owned_access, package_shared_access, 
+            // remove_permission_package, view_package
+}
+
 // Canvas
 // TODO: fields marked with * does NOT live in the packages
 export class DataSource {
@@ -57,6 +65,17 @@ export class DataSource {
 	datasourceCreatedUserName: string;      // *Created by
 	datasourceUpdatedDateTime: string;      // *Updated on
     datasourceUpdatedUserName: string;      // *Updated by
-    
+}
 
+export class DataSourceUserPermissions {
+    username: string;
+    add_package: boolean;
+    canAssignPermissionPackage: boolean;
+    canChangePackage: boolean;
+    canDeletePackage: boolean;
+    canExecutePackage: boolean;
+    canPackageOwnedAccess: boolean;
+    canPackageSharedAccess: boolean;
+    canRemovePermissionPackage: boolean;
+    canViewPackage: boolean;
 }

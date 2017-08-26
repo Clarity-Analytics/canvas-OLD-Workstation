@@ -5619,6 +5619,47 @@ export class EazlService implements OnInit {
         return usersWorking;
     }
 
+    getDataSources(dashboardID: number = -1): DataSource[] {
+        // List of Data Sources
+        // - dashboardID is optional Dashboard to filter on
+        // Note: Dashboard <1-many> Widget <1-1> Report <1-1> DataSource
+        // TODO - agree design to integrate with Overlay, and do in DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDataSources', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataDatasource) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Datasource data is dirty / not up to date',
+                detail:   'The Datasource data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
+        // Return all if no filter
+        if (dashboardID == -1) {
+            return this.datasources;
+        }
+
+        // Get the ReportIDs from all the Widgets for the requested Dashboard
+        let widgetReportIDs: number[] = [];
+        for (var i = 0; i < this.widgets.length; i++) {
+            if (this.widgets[i].properties.dashboardID == dashboardID) {
+                    widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
+                }
+        }
+
+        // Return the DataSourceIDs from all the reports
+        let reportIDs: number[] = [];
+        for (var i = 0; i < this.reports.length; i++) {
+            if (widgetReportIDs.indexOf(this.reports[i].reportID) >= 0) {
+                    reportIDs.push(this.reports[i].dataSourceID);
+                }
+        }
+
+        // Return those Datasources
+        return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
+    }
+
     getUsersWhoCanAccessDatasource(
             datasourceID: number,
             include: boolean = true): User[] {
@@ -5929,6 +5970,70 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
     }
 
+
+    getdatasourceUserPermissions(
+        datasourceID: number,
+        includeGroup:string = 'true'
+        ): Promise<any> {
+        // Returns an array of ALL users.  Each row shows booleans (T/F) wrt each permission
+        // that the user has.  So, a user with no permissions with have a row of False
+        this.globalFunctionService.printToConsole(this.constructor.name,'getdatasourceUserPermissions', '@Start');
+
+        // Default to true if not correctly set to false
+        if (includeGroup != 'false') {
+            includeGroup = 'true';
+        };
+
+        let dashboardUserPermissionsWorking: DashboardUserPermissions[] = [];
+        return this.get<EazlDashboardUserPermissions>(
+            'dashboards/' + datasourceID.toString() +
+                '/user-permissions/?include-group-permissions=' + includeGroup
+        )
+            .toPromise()
+            .then(eazlUsrPerm => {
+                let found: boolean = false;
+                for (var i = 0; i < this.users.length; i++) {
+
+                    found = false;
+                    for (var j = 0; j < eazlUsrPerm.length; j++) {
+                        if (eazlUsrPerm[j].username == this.users[i].username) {
+                            dashboardUserPermissionsWorking.push(
+                                this.cdal.loadDashboardUserPermissions(eazlUsrPerm[j])
+                            );
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        dashboardUserPermissionsWorking.push(
+                            {
+                                username: this.users[i].username,
+                                canAddDashboard: false,
+                                canAssignPermissionDashboard: false,
+                                canChangeDashboard: false,
+                                canDeleteDashboard: false,
+                                canRemovePermissionDashboard: false,
+                                canViewDashboard: false
+                            }
+                        )
+                    }
+                };
+
+                // Return
+                return dashboardUserPermissionsWorking;
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'User Permissions',
+                    detail:   'Unsuccessful in reading user permissions from the database'
+                });
+                error.message || error
+            })
+    }
+
+
+
     getDashboardTagMembership(
             dashboardID:number = -1,
             dashboardTagName: string = '*'
@@ -6052,47 +6157,6 @@ export class EazlService implements OnInit {
                     });
                     error.message || error
                 })
-    }
-
-    getDataSources(dashboardID: number = -1): DataSource[] {
-        // List of Data Sources
-        // - dashboardID is optional Dashboard to filter on
-        // Note: Dashboard <1-many> Widget <1-1> Report <1-1> DataSource
-        // TODO - agree design to integrate with Overlay, and do in DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDataSources', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDatasource) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'Datasource data is dirty / not up to date',
-                detail:   'The Datasource data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        // Return all if no filter
-        if (dashboardID == -1) {
-            return this.datasources;
-        }
-
-        // Get the ReportIDs from all the Widgets for the requested Dashboard
-        let widgetReportIDs: number[] = [];
-        for (var i = 0; i < this.widgets.length; i++) {
-            if (this.widgets[i].properties.dashboardID == dashboardID) {
-                    widgetReportIDs.push(this.widgets[i].properties.widgetReportID);
-                }
-        }
-
-        // Return the DataSourceIDs from all the reports
-        let reportIDs: number[] = [];
-        for (var i = 0; i < this.reports.length; i++) {
-            if (widgetReportIDs.indexOf(this.reports[i].reportID) >= 0) {
-                    reportIDs.push(this.reports[i].dataSourceID);
-                }
-        }
-
-        // Return those Datasources
-        return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
 
     // TODO - refactor with action to do POST and DELETE (add/remove)

@@ -4,9 +4,9 @@ import { OnInit }                     from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
-import { ConfirmationService }        from 'primeng/primeng';  
-import { MenuItem }                   from 'primeng/primeng';  
-import { Message }                    from 'primeng/primeng';  
+import { ConfirmationService }        from 'primeng/primeng';
+import { MenuItem }                   from 'primeng/primeng';
+import { Message }                    from 'primeng/primeng';
 
 // Our Components
 
@@ -32,15 +32,16 @@ import { User }                       from './model.user';
     encapsulation: ViewEncapsulation.None
 })
 export class DataSourceComponent implements OnInit {
-    
+
     // Local properties
     availableDatasourceGroupMembership: Group[] = [];   // List of Groups user does NOT belongs to
-    belongstoDatasourceGroupMembership: Group[] = [];   // List of Groups user already belongs to   
+    belongstoDatasourceGroupMembership: Group[] = [];   // List of Groups user already belongs to
     availableUserDatasource: User[] = [];         // List of Users that cannot access this DS
     belongstoUserDatasource: User[] = [];         // List of Users that can access this DS
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     datasources: DataSource[];                          // List of DataSources
     displayUserAccess: boolean;                         // True to display User access
+    displayUserPermissions: boolean = false;            // True to show permissions panel
     displayGroupAccess: boolean;                        // True to display Group Access
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
     displayReports: boolean;                            // True to display Reports
@@ -59,7 +60,7 @@ export class DataSourceComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
         ) {
     }
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -68,29 +69,34 @@ export class DataSourceComponent implements OnInit {
 
         this.popuMenuItems = [
             {
-                label: 'User Access', 
-                icon: 'fa-database', 
+                label: 'Shared Users',
+                icon: 'fa-users',
+                command: (event) => this.datasourceMenuUserPermissions(this.selectedDatasource)
+            },
+            {
+                label: 'User Access',
+                icon: 'fa-database',
                 command: (event) => this.datasourceMenuUserMembership(this.selectedDatasource)
             },            {
-                label: 'List User Access', 
-                icon: 'fa-database', 
+                label: 'List User Access',
+                icon: 'fa-database',
                 command: (event) => this.datasourceMenuListUserAccess(this.selectedDatasource)
             },
             {
-                label: 'Group Membership', 
-                icon: 'fa-users', 
+                label: 'Group Membership',
+                icon: 'fa-users',
                 command: (event) => this.datasourceMenuGroupMembership(this.selectedDatasource)
             },            {
-                label: 'List Group Access', 
-                icon: 'fa-list', 
+                label: 'List Group Access',
+                icon: 'fa-list',
                 command: (event) => this.datasourceMenuListGroupAccess(this.selectedDatasource)
             },
             {
-                label: 'Related Reports', 
-                icon: 'fa-table', 
+                label: 'Related Reports',
+                icon: 'fa-table',
                 command: (event) => this.datasourceMenuReports(this.selectedDatasource)
             },
-            
+
         ];
 
     }
@@ -105,7 +111,7 @@ export class DataSourceComponent implements OnInit {
             '*',
             '*',
             selectedDatasource.datasourceID
-        ); 
+        );
 
         // Show popup
         this.displayReports = true;
@@ -122,7 +128,7 @@ export class DataSourceComponent implements OnInit {
         );
 
         // Show the popup
-        this.displayUserAccess = true;                
+        this.displayUserAccess = true;
     }
 
     datasourceMenuListGroupAccess(selectedDatasource: DataSource) {
@@ -133,7 +139,7 @@ export class DataSourceComponent implements OnInit {
         this.groups = this.eazlService.getGroupsPerDatasource(
             selectedDatasource.datasourceID,
             true
-        ); 
+        );
 
         // Show the popup
         this.displayGroupAccess = true;
@@ -143,13 +149,17 @@ export class DataSourceComponent implements OnInit {
         // User clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDatasourceTable', '@Start');
 
-        // For future use ...
+        // Refresh records in popup
+        if (this.displayUserPermissions) {
+            this.datasourceMenuUserPermissions(this.selectedDatasource)
+        };
+
         // Update the user group membership if it is open
         if (this.displayGroupMembership) {
-            this.datasourceMenuGroupMembership(this.selectedDatasource) 
+            this.datasourceMenuGroupMembership(this.selectedDatasource)
         }
         if (this.displayUserDatasourceAccess) {
-            this.datasourceMenuUserMembership(this.selectedDatasource) 
+            this.datasourceMenuUserMembership(this.selectedDatasource)
         }
     }
 
@@ -159,13 +169,13 @@ export class DataSourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
 
         // Get the current and available groups
-        this.belongstoDatasourceGroupMembership = 
+        this.belongstoDatasourceGroupMembership =
             this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,true);
-        this.availableDatasourceGroupMembership  = 
+        this.availableDatasourceGroupMembership  =
             this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,false);
 
         // Show popup
-        this.displayGroupMembership = true; 
+        this.displayGroupMembership = true;
     }
 
     onClickGroupMembershipCancel() {
@@ -173,7 +183,7 @@ export class DataSourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupMembershipCancel', '@Start');
 
         // Close popup
-        this.displayGroupMembership = false;        
+        this.displayGroupMembership = false;
     }
 
     onMoveToSourceDatasourceGroupMembership(event) {
@@ -183,7 +193,7 @@ export class DataSourceComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteGroupDatasourceAccess(
-                this.selectedDatasource.datasourceID, 
+                this.selectedDatasource.datasourceID,
                 event.items[i].groupID
             );
         }
@@ -196,11 +206,39 @@ export class DataSourceComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addGroupDatasourceAccess(
-                this.selectedDatasource.datasourceID, 
+                this.selectedDatasource.datasourceID,
                 event.items[i].groupID
             );
         }
     }
+
+    datasourceMenuUserPermissions(datasource: DataSource) {
+        // Users with their permissions for the selected Datasource
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserPermissions', '@Start');
+
+        // Get the current and available user shared with; as a Promise to cater for Async
+        this.eazlService.getdashboardUserPermissions(
+            datasource.datasourceID
+        )
+            // .then(dashUsrPer => {
+            //     this.dashboardUserPermissions = dashUsrPer;
+            //     if (this.dashboardUserPermissions.length > 0) {
+            //         this.selectedUserPermission = this.dashboardUserPermissions[0];
+            //     };
+
+            //     this.displayUserPermissions = true;
+            // })
+            // .catch(err => {
+            //     this.globalVariableService.growlGlobalMessage.next({
+            //         severity: 'warn',
+            //         summary:  'User permissions',
+            //         detail:   'Getting user permissions failed'
+            //     });
+            // });
+
+    }
+
 
     datasourceMenuUserMembership(selectedDatasource: DataSource) {
         // Manage group membership for the selected user
@@ -218,7 +256,7 @@ export class DataSourceComponent implements OnInit {
         );
 
         // Show the popup
-        this.displayUserDatasourceAccess = true;                
+        this.displayUserDatasourceAccess = true;
     }
 
     onClickUserMembershipCancel() {
@@ -226,7 +264,7 @@ export class DataSourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserMembershipCancel', '@Start');
 
         // Close popup
-        this.displayUserDatasourceAccess = false;        
+        this.displayUserDatasourceAccess = false;
     }
 
     onMoveToSourceDatasourceUserMembership(event) {
@@ -236,7 +274,7 @@ export class DataSourceComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.deleteDatasourceUserAccess(
-                this.selectedDatasource.datasourceID, 
+                this.selectedDatasource.datasourceID,
                 event.items[i].username
             );
         }
@@ -249,7 +287,7 @@ export class DataSourceComponent implements OnInit {
         // Add this / these makker(s) - array if multi select
         for (var i = 0; i < event.items.length; i++) {
             this.eazlService.addDatasourceUserAccess(
-                this.selectedDatasource.datasourceID, 
+                this.selectedDatasource.datasourceID,
                 event.items[i].username
             );
         }
@@ -259,9 +297,9 @@ export class DataSourceComponent implements OnInit {
 }
 
 // Notes for newbees:
-//  Filtering is enabled by setting the filter property as true in column object. 
+//  Filtering is enabled by setting the filter property as true in column object.
 //  Default match mode is "startsWith" and this can be configured
-//  using filterMatchMode property of column object that also accepts "contains", "endsWith", 
+//  using filterMatchMode property of column object that also accepts "contains", "endsWith",
 //  "equals" and "in". An optional global filter feature is available to search all fields with a keyword.
-//  By default input fields are generated as filter elements and using templating any component 
+//  By default input fields are generated as filter elements and using templating any component
 //  can be used as a filter.
