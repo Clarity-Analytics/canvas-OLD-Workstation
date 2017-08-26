@@ -27,6 +27,7 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardUserPermissions }   from './model.dashboards';
 import { DataSource }                 from './model.datasource';
+import { DataSourceUserPermissions}   from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { EazlAppData }                from './model.appdata';
 import { EazlCanvasMessage }          from './model.canvasMessage';
@@ -39,6 +40,7 @@ import { EazlDashboardTag }           from './model.dashboardTag';
 import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { EazlDataSource }             from './model.datasource';
+import { EazlDataSourceUserPermissions}     from './model.datasource';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
@@ -1412,14 +1414,73 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
         return userModelPermissionWorking;
     }
 
-    loadDashboardUserPermissions(eazlDashboardUserPermissions): DashboardUserPermissions {
+    loadDatasourceUserPermissions(eazlDatasourceUserPermissions): DatasourceUserPermissions {
+        // Load User Permissions for a given Datasource: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDatasourceUserPermissions', '@Start');
+
+        let datasourceUserPermissionsWorking = new DatasourceUserPermissions();
+
+        if (eazlDatasourceUserPermissions.username != null) {
+            datasourceUserPermissionsWorking.username = eazlDatasourceUserPermissions.username;
+        } else {
+            datasourceUserPermissionsWorking.username = '';
+        }
+
+        // Set default to false
+        datasourceUserPermissionsWorking.add_package = false;
+        datasourceUserPermissionsWorking.assign_permission_package = false;
+        datasourceUserPermissionsWorking.change_package = false;
+        datasourceUserPermissionsWorking.delete_package = false;
+        datasourceUserPermissionsWorking.execute_package = false;
+        datasourceUserPermissionsWorking.package_owned_access = false;
+        datasourceUserPermissionsWorking.package_shared_access = false;
+        datasourceUserPermissionsWorking.remove_permission_package = false;
+        datasourceUserPermissionsWorking.view_package = false;
+
+        if (eazlDatasourceUserPermissions.permissions != null) {
+
+            // Loop on those assigned
+            for (var i = 0; i < eazlDatasourceUserPermissions.permissions.length; i++) {
+
+                if (eazlDatasourceUserPermissions.permissions[i] == 'add_package') {
+                    datasourceUserPermissionsWorking.canAddPackage = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'assign_permission_package') {
+                    datasourceUserPermissionsWorking.canAssignPermissionPackage = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'change_package') {
+                    datasourceUserPermissionsWorking.canChangePackage = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'delete_package') {
+                    datasourceUserPermissionsWorking.canDeletePackage = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'execute_package') {
+                    datasourceUserPermissionsWorking.canExecutePackage = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'package_owned_access') {
+                    datasourceUserPermissionsWorking.canPackageOwnedAccess = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'package_shared_access') {
+                    datasourceUserPermissionsWorking.canPackageSharedAccess = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'remove_permission_package') {
+                    datasourceUserPermissionsWorking.canRemovePermissionPackage = true;
+                }
+                if (eazlDatasourceUserPermissions.permissions[i] == 'view_package') {
+                    datasourceUserPermissionsWorking.canViewPackage = true;
+                }
+            }
+        }
+    }
+
+    loadDashboardUserPermissions(eazlDatasourceUserPermissions): DashboardUserPermissions {
         // Load User Permissions for a given Dashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserPermissions', '@Start');
 
         let dashboardUserPermissionsWorking = new DashboardUserPermissions();
 
-        if (eazlDashboardUserPermissions.username != null) {
-            dashboardUserPermissionsWorking.username = eazlDashboardUserPermissions.username;
+        if (eazlDatasourceUserPermissions.username != null) {
+            dashboardUserPermissionsWorking.username = eazlDatasourceUserPermissions.username;
         } else {
             dashboardUserPermissionsWorking.username = '';
         }
@@ -1432,27 +1493,27 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
         dashboardUserPermissionsWorking.canRemovePermissionDashboard = false;
         dashboardUserPermissionsWorking.canViewDashboard = false;
 
-        if (eazlDashboardUserPermissions.permissions != null) {
+        if (eazlDatasourceUserPermissions.permissions != null) {
 
             // Loop on those assigned
-            for (var i = 0; i < eazlDashboardUserPermissions.permissions.length; i++) {
+            for (var i = 0; i < eazlDatasourceUserPermissions.permissions.length; i++) {
 
-                if (eazlDashboardUserPermissions.permissions[i] == 'add_dashboard') {
+                if (eazlDatasourceUserPermissions.permissions[i] == 'add_dashboard') {
                     dashboardUserPermissionsWorking.canAddDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] == 'assign_permission_dashboard') {
+                if (eazlDatasourceUserPermissions.permissions[i] == 'assign_permission_dashboard') {
                     dashboardUserPermissionsWorking.canAssignPermissionDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] == 'change_dashboard') {
+                if (eazlDatasourceUserPermissions.permissions[i] == 'change_dashboard') {
                     dashboardUserPermissionsWorking.canChangeDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] == 'delete_dashboard') {
+                if (eazlDatasourceUserPermissions.permissions[i] == 'delete_dashboard') {
                     dashboardUserPermissionsWorking.canDeleteDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] == 'remove_permission_dashboard') {
+                if (eazlDatasourceUserPermissions.permissions[i] == 'remove_permission_dashboard') {
                     dashboardUserPermissionsWorking.canRemovePermissionDashboard = true;
                 }
-                if (eazlDashboardUserPermissions.permissions[i] == 'view_dashboard') {
+                if (eazlDatasourceUserPermissions.permissions[i] == 'view_dashboard') {
                     dashboardUserPermissionsWorking.canViewDashboard = true;
                 }
             }

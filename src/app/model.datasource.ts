@@ -77,7 +77,7 @@ export class DataSource {
 
 export class DataSourceUserPermissions {
     username: string;
-    add_package: boolean;
+    canAddPackage: boolean;
     canAssignPermissionPackage: boolean;
     canChangePackage: boolean;
     canDeletePackage: boolean;
@@ -90,7 +90,7 @@ export class DataSourceUserPermissions {
     
 export class DataSourceGroupPermissions {
     groupName: string;
-    add_package: boolean;
+    canAddPackage: boolean;
     canAssignPermissionPackage: boolean;
     canChangePackage: boolean;
     canDeletePackage: boolean;
