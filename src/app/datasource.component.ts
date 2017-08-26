@@ -289,8 +289,269 @@ export class DataSourceComponent implements OnInit {
         );
     }
 
+    onChangeAssignUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAssignUserPermission', '@Start');
 
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
 
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeChangeUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeChangeUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeDeleteUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDeleteUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeExecuteUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeExecuteUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeOwnedUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeOwnedUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeSharedUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeSharedUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeRemoveUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
+
+    onChangeViewUserPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewUserPermission', '@Start');
+
+        if (this.selectedUserPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
+
+            return;
+        }
+
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('add_package');
+        } else {
+            removePermissions.push('add_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedUserPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
 
     datasourceMenuUserMembership(selectedDatasource: DataSource) {
         // Manage group membership for the selected user
