@@ -35,6 +35,9 @@ export class EazlUserModelPermission {
         view_dashboard: {
                 object_id: number[]
         };
+        add_package: {
+                object_id: number[]
+        };
         assign_permission_package: {
                 object_id: number[]
         };
@@ -48,6 +51,12 @@ export class EazlUserModelPermission {
                 object_id: number[]
         };
         view_package: {
+                object_id: number[]
+        };
+        package_owned_access: {
+                object_id: number[]
+        };
+        package_shared_access: {
                 object_id: number[]
         };
     };

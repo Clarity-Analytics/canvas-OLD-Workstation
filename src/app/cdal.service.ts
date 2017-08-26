@@ -1341,6 +1341,13 @@ console.log('CDAL dashboardWorking',dashboardWorking)
                     objectID: eazlUserModelPermission.object_permissions.view_dashboard
                 });
         };
+        if (eazlUserModelPermission.object_permissions.add_package != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'add_package',
+                    objectID: eazlUserModelPermission.object_permissions.add_package
+                });
+        };
         if (eazlUserModelPermission.object_permissions.assign_permission_package != null) {
             userModelPermissionWorking.objectPermissions.push(
                 {
@@ -1381,6 +1388,20 @@ console.log('CDAL dashboardWorking',dashboardWorking)
                 {
                     permission: 'execute_package',
                     objectID: eazlUserModelPermission.object_permissions.execute_package
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.package_owned_access != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'package_owned_access',
+                    objectID: eazlUserModelPermission.object_permissions.package_owned_access
+                });
+        };
+        if (eazlUserModelPermission.object_permissions.package_shared_access != null) {
+            userModelPermissionWorking.objectPermissions.push(
+                {
+                    permission: 'package_shared_access',
+                    objectID: eazlUserModelPermission.object_permissions.package_shared_access
                 });
         };
 
