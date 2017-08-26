@@ -307,9 +307,9 @@ export class DataSourceComponent implements OnInit {
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
-            assignPermissions.push('add_package');
+            assignPermissions.push('assign_permission_package');
         } else {
-            removePermissions.push('add_package');
+            removePermissions.push('assign_permission_package');
         }
 
         this.eazlService.updateModelPermissions(
