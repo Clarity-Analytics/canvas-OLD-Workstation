@@ -49,7 +49,6 @@ export class DataSourceComponent implements OnInit {
     displayGroupAccess: boolean;                        // True to display Group Access
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
     displayReports: boolean;                            // True to display Reports
-    displayUserDatasourceAccess: boolean = false;       // True to display popup for User access per Datasource
     groups: Group[];                                    // List of Groups
     popuMenuItems: MenuItem[];                          // Items in popup
     reports: Report[];                                  // List of Reports
@@ -154,9 +153,6 @@ export class DataSourceComponent implements OnInit {
         // Update the user group membership if it is open
         if (this.displayGroupMembership) {
             this.datasourceMenuGroupMembership(this.selectedDatasource)
-        }
-        if (this.displayUserDatasourceAccess) {
-            this.datasourceMenuUserMembership(this.selectedDatasource)
         }
     }
 
