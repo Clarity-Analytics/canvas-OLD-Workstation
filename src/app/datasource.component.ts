@@ -881,24 +881,6 @@ export class DataSourceComponent implements OnInit {
         );
     }
 
-    datasourceMenuUserMembership(selectedDatasource: DataSource) {
-        // Manage group membership for the selected user
-        // - selectedDatasource: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserMembership', '@Start');
-
-        // Get the current and available users
-        this.belongstoUserDatasource = this.eazlService.getUsersWhoCanAccessDatasource(
-            selectedDatasource.datasourceID,
-            true
-        );
-        this.availableUserDatasource = this.eazlService.getUsersWhoCanAccessDatasource(
-            selectedDatasource.datasourceID,
-            false
-        );
-
-        // Show the popup
-        this.displayUserDatasourceAccess = true;
-    }
 
     onMoveToSourceDatasourceUserMembership(event) {
         // User clicked onMoveToSource on User Membership: add grp membership
