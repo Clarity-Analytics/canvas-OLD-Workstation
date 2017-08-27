@@ -20,6 +20,7 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { DataSource }                 from './model.datasource';
+import { DataSourceGroupPermissions}  from './model.datasource';
 import { DataSourceUserPermissions}   from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
@@ -41,7 +42,9 @@ export class DataSourceComponent implements OnInit {
     belongstoUserDatasource: User[] = [];               // List of Users that can access this DS
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     datasources: DataSource[];                          // List of DataSources
+    datasourceGroupPermissions: DataSourceGroupPermissions[];   // User permissions
     datasourceUserPermissions: DataSourceUserPermissions[];     // User permissions
+    displayGroupPermissions: boolean = false;           // True to show permissions panel
     displayUserAccess: boolean;                         // True to display User access
     displayUserPermissions: boolean = false;            // True to show permissions panel
     displayGroupAccess: boolean;                        // True to display Group Access
@@ -52,6 +55,7 @@ export class DataSourceComponent implements OnInit {
     popuMenuItems: MenuItem[];                          // Items in popup
     reports: Report[];                                  // List of Reports
     selectedDatasource: DataSource;                     // Selected one
+    selectedGroupPermission: DataSourceUserPermissions; // Selected in table
     selectedUserPermission: DataSourceUserPermissions;  // Selected in table
     users: User[];                                      // List of Users with Access
     
@@ -538,9 +542,9 @@ export class DataSourceComponent implements OnInit {
         let assignPermissions: string[] = [];
         let removePermissions: string[] = [];
         if (event) {
-            assignPermissions.push('add_package');
+            assignPermissions.push('view_package');
         } else {
-            removePermissions.push('add_package');
+            removePermissions.push('view_package');
         }
 
         this.eazlService.updateModelPermissions(

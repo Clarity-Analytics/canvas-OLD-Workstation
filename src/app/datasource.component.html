@@ -33,180 +33,353 @@
 
 <!--User permissions panel-->
 <div
-class="groupMembershipPanel"
-*ngIf="displayUserPermissions"
->
-
-<div
-    class="userPermissionsHeading"
+    class="groupMembershipPanel"
+    *ngIf="displayUserPermissions"
     >
-    User permissions for {{ selectedDatasource.datasourceName }}
-    <button
-        class="panelButtonWithLabel"
-        pButton
-        type="button"
-        label="Close"
-        icon="fa-undo"
-        (click)="onClickUserPermissionCancel()"
+
+    <div
+        class="userPermissionsHeading"
         >
-    </button>
+        User permissions for {{ selectedDatasource.datasourceName }}
+        <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
+            label="Close"
+            icon="fa-undo"
+            (click)="onClickUserPermissionCancel()"
+            >
+        </button>
+    </div>
+
+    <div>
+        <p-dataTable
+            [value]="datasourceUserPermissions"
+            [(selection)]="selectedUserPermission"
+            dataKey="username"
+            selectionMode="single"
+            >
+            <p-column
+                field="username"
+                header="username"
+                [filter]="true"
+                >
+            </p-column>
+            <p-column
+                field="canAddPackage"
+                header="Add?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canAddPackage"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeAddUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canAssignPermissionPackage"
+                header="Assign?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canAssignPermissionPackage"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeAssignUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+
+            <p-column
+                field="canChangePackage"
+                header="Change?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canChangePackage"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeChangeUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canDeletePackage"
+                header="Delete?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canDeletePackage"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeDeleteUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canExecutePackage"
+                header="Execute?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canExecutePackage"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeExecuteUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canPackageOwnedAccess"
+                header="Owned?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canPackageOwnedAccess"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeOwnedUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canPackageSharedAccess"
+                header="Shared?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canPackageSharedAccess"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeSharedUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canRemovePermissionPackage"
+                header="Remove?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canRemovePermissionPackage"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeRemoveUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canViewPackage"
+                header="View?"
+                [filter]="true"
+                >
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canViewPackage"
+                        binary="true"
+                        [(ngModel)]="user[col.field]"
+                        (onChange)="onChangeViewUserPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
 </div>
 
-<div>
-    <p-dataTable
-        [value]="datasourceUserPermissions"
-        [(selection)]="selectedUserPermission"
-        dataKey="username"
-        selectionMode="single"
+
+
+<!--Group permissions panel-->
+<div
+    class="groupMembershipPanel"
+    *ngIf="displayGroupPermissions"
+    >
+
+    <div
+        class="userPermissionsHeading"
         >
-        <p-column
-            field="username"
-            header="username"
-            [filter]="true"
+        Group permissions for {{ selectedDatasource.datasourceName }}
+        <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
+            label="Close"
+            icon="fa-undo"
+            (click)="onClickGroupPermissionCancel()"
             >
-        </p-column>
-        <p-column
-            field="canAddPackage"
-            header="Add?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canAddPackage"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeAddUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column
-            field="canAssignPermissionPackage"
-            header="Assign?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canAssignPermissionPackage"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeAssignUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
+        </button>
+    </div>
 
-        <p-column
-            field="canChangePackage"
-            header="Change?"
-            [filter]="true"
+    <div>
+        <p-dataTable
+            [value]="datasourceGroupPermissions"
+            [(selection)]="selectedGroupPermission"
+            dataKey="groupName"
+            selectionMode="single"
             >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canChangePackage"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeChangeUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column
-            field="canDeletePackage"
-            header="Delete?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canDeletePackage"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeDeleteUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column
-            field="canExecutePackage"
-            header="Execute?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canExecutePackage"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeExecuteUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column
-            field="canPackageOwnedAccess"
-            header="Owned?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canPackageOwnedAccess"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeOwnedUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column
-            field="canPackageSharedAccess"
-            header="Shared?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canPackageSharedAccess"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeSharedUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column
-            field="canRemovePermissionPackage"
-            header="Remove?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canRemovePermissionPackage"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeRemoveUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-        <p-column
-            field="canViewPackage"
-            header="View?"
-            [filter]="true"
-            >
-            <ng-template let-col let-user="rowData" pTemplate="body">
-                <p-checkbox
-                    name="canViewPackage"
-                    binary="true"
-                    [(ngModel)]="user[col.field]"
-                    (onChange)="onChangeViewUserPermission($event)"
-                    >
-                </p-checkbox>
-            </ng-template>
-        </p-column>
-</p-dataTable>
+            <p-column
+                field="groupName"
+                header="groupName"
+                [filter]="true"
+                >
+            </p-column>
+            <p-column
+                field="canAddPackage"
+                header="Add?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canAddPackage"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeAddGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canAssignPermissionPackage"
+                header="Assign?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canAssignPermissionPackage"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeAssignGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+
+            <p-column
+                field="canChangePackage"
+                header="Change?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canChangePackage"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeChangeGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canDeletePackage"
+                header="Delete?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canDeletePackage"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeDeleteGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canExecutePackage"
+                header="Execute?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canExecutePackage"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeExecuteGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canPackageOwnedAccess"
+                header="Owned?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canPackageOwnedAccess"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeOwnedGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canPackageSharedAccess"
+                header="Shared?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canPackageSharedAccess"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeSharedGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canRemovePermissionPackage"
+                header="Remove?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canRemovePermissionPackage"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeRemoveGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+            <p-column
+                field="canViewPackage"
+                header="View?"
+                [filter]="true"
+                >
+                <ng-template let-col let-group="rowData" pTemplate="body">
+                    <p-checkbox
+                        name="canViewPackage"
+                        binary="true"
+                        [(ngModel)]="group[col.field]"
+                        (onChange)="onChangeViewGroupPermission($event)"
+                        >
+                    </p-checkbox>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
 </div>
-</div>
-
-
-
 
 
 <!--Popup for User Membership panel-->
