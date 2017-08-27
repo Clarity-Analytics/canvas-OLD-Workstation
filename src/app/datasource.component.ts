@@ -84,11 +84,6 @@ export class DataSourceComponent implements OnInit {
                 command: (event) => this.datasourceMenuGroupPermissions(this.selectedDatasource)
             },
             {
-                label: 'User Access',
-                icon: 'fa-database',
-                command: (event) => this.datasourceMenuUserMembership(this.selectedDatasource)
-            },            
-            {
                 label: 'Group Membership',
                 icon: 'fa-users',
                 command: (event) => this.datasourceMenuGroupMembership(this.selectedDatasource)
@@ -156,20 +151,6 @@ export class DataSourceComponent implements OnInit {
         }
     }
 
-    datasourceMenuGroupMembership(selectedDatasource: DataSource) {
-        // Manage group membership for the selected user
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuGroupMembership', '@Start');
-
-        // Get the current and available groups
-        this.belongstoDatasourceGroupMembership =
-            this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,true);
-        this.availableDatasourceGroupMembership  =
-            this.eazlService.getGroupsPerDatasource(selectedDatasource.datasourceID,false);
-
-        // Show popup
-        this.displayGroupMembership = true;
-    }
 
     onClickGroupMembershipCancel() {
         // User clicked Cancel
@@ -880,12 +861,6 @@ export class DataSourceComponent implements OnInit {
             removePermissions
         );
     }
-
-
-
-
-
-
 
 }
 
