@@ -378,56 +378,6 @@
 </div>
 
 
-<!--Popup for Group Membership panel-->
-<div
-    class="groupMembershipPanel"
-    *ngIf="displayGroupMembership"
-    >
-
-    <div
-        class="groupMembershipHeading"
-        >
-        Group Membership for {{ selectedDatasource.datasourceName }}
-        <button
-            class="panelButtonWithLabel"
-            pButton
-            type="button"
-            label="Cancel"
-            icon="fa-undo"
-            (click)="onClickGroupMembershipCancel()"
-            >
-        </button>
-    </div>
-
-    <!--Content-->
-    <form>
-
-        <div
-            >
-            <p-pickList
-                [source]="availableDatasourceGroupMembership"
-                [target]="belongstoDatasourceGroupMembership"
-                sourceHeader="Available Groups"
-                targetHeader="Belongs to these Groups"
-                (onMoveToTarget)="onMoveToTargetDatasourceGroupMembership($event)"
-                (onMoveToSource)="onMoveToSourceDatasourceGroupMembership($event)"
-                >
-                <ng-template let-grp pTemplate="item">
-                    <div class="ui-helper-clearfix">
-                        <div
-                            style="font-size:14px;float:left;margin:15px 5px 0 0"
-                            >
-                            {{ grp.groupName }}
-                        </div>
-                    </div>
-                </ng-template>
-            </p-pickList>
-
-        </div>
-
-    </form>
-</div>
-
 
 <!--Popup to List Group Access-->
 <p-dialog
