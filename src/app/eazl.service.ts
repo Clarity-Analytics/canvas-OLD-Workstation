@@ -5996,7 +5996,6 @@ export class EazlService implements OnInit {
             })
     }
 
-
     getDashboardTagMembership(
             dashboardID:number = -1,
             dashboardTagName: string = '*'
@@ -6868,49 +6867,6 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
             }
         }
 
-        // DataSourceUserAccess
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'DataSourceUserAccess') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset DataSourceUserAccess');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDataSourceUserAccess = true;
-
-            //         // Get all the data via API
-            //         let dataSourceUserAccessWorking: DataSourceUserAccess[] = [];
-            //         this.get<EazlDataSourceUserAccess>('datasource-user-accesss')
-            //             .subscribe(
-            //                 (eazlDataSourceUserAccess) => {
-            //                     for (var i = 0; i < eazlDataSourceUserAccess.length; i++) {
-            //                         let dataSourceUserAccessSingle = new DataSourceUserAccess();
-            //                         dataSourceUserAccessSingle =
-            //                             this.cdal.loadDataSourceUserAccess(eazlDataSourceUserAccess[i]);
-            //                         dataSourceUserAccessWorking.push(dataSourceUserAccessSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.dataSourceUserAccess = dataSourceUserAccessWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataDataSourceUserAccess = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear DataSourceUserAccess');
-            //         this.dataSourceUserAccess = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataDataSourceUserAccess = true;
-            //     }
-            // }
-        // Done
 
         // GroupDatasourceAccess
             // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GroupDatasourceAccess') {

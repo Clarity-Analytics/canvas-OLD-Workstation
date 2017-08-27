@@ -258,6 +258,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         this.globalVariableService.startupDashboardTabID
                 }
             }
+            
             // Load the session's Dashboard Tab
             if (this.globalVariableService.sessionDashboardTabID != -1) {
 
@@ -605,7 +606,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                                 +this.selectedContainerFontSize['name'];
 
                     // Remember for next time, permanently
-                    this.globalVariableService.lastContainerFontSize = 
+                    this.globalVariableService.lastContainerFontSize =
                         this.selectedContainerFontSize;
 
                 }
