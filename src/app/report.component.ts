@@ -39,7 +39,6 @@ export class ReportComponent implements OnInit {
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     datasourceUserPermissions: DataSourceUserPermissions[];     // User permissions
     displayGroupAccess: boolean;                        // True to display Group Access
-    displayUserAccess: boolean;                         // True to display User access
     displayUserPermissions: boolean = false;            // True to show permissions panel
     displayReportHistory: boolean;                      // True to display Report History
     groups: Group[];                                    // List of Groups
@@ -72,11 +71,6 @@ export class ReportComponent implements OnInit {
                 label: 'Shared Users',
                 icon: 'fa-users',
                 command: (event) => this.datasourceMenuUserPermissions(this.selectedReport)
-            },
-            {
-                label: 'User Access',
-                icon: 'fa-database',
-                command: (event) => this.reportMenuUserAccess(this.selectedReport)
             },
             {
                 label: 'Group Access',
@@ -136,9 +130,9 @@ export class ReportComponent implements OnInit {
 
     }
 
-    onClickGroupPermissionCancel() {
+    onClickUserPermissionCancel() {
         // Close Group Permissions panel
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupPermissionCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
@@ -148,19 +142,6 @@ export class ReportComponent implements OnInit {
 
         // Close popup
         this.displayUserPermissions = false;
-    }
-
-    reportMenuUserAccess(selectedReport: Report) {
-        // Show all the Users with Access to the selected Datasource
-        // - selectedReport: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuUserAccess', '@Start');
-
-        this.users = this.eazlService.getUsersWhoCanAccessDatasource(
-            selectedReport.dataSourceID
-        );
-
-        // Show the popup
-        this.displayUserAccess = true;
     }
 
     reportMenuGroupAccess(selectedReport: Report) {

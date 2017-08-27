@@ -5994,10 +5994,9 @@ export class EazlService implements OnInit {
         )
             .toPromise()
             .then(eazlUsrPerm => {
-console.log('EAZL eazlUsrPerm', eazlUsrPerm)                
+
                 let found: boolean = false;
                 for (var i = 0; i < this.users.length; i++) {
-console.log('EAZL i', i)
                     found = false;
                     for (var j = 0; j < eazlUsrPerm.length; j++) {
                         if (eazlUsrPerm[j].username == this.users[i].username) {
@@ -6025,7 +6024,7 @@ console.log('EAZL i', i)
                         )
                     }
                 };
-console.log('EAZL datasourceUserPermissionsWorking', datasourceUserPermissionsWorking)
+
                 // Return
                 return datasourceUserPermissionsWorking;
             })
