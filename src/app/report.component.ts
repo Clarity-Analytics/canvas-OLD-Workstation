@@ -38,7 +38,6 @@ export class ReportComponent implements OnInit {
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     datasourceUserPermissions: DataSourceUserPermissions[];     // User permissions
-    displayGroupAccess: boolean;                        // True to display Group Access
     displayUserPermissions: boolean = false;            // True to show permissions panel
     displayReportHistory: boolean;                      // True to display Report History
     groups: Group[];                                    // List of Groups
@@ -71,11 +70,6 @@ export class ReportComponent implements OnInit {
                 label: 'Shared Users',
                 icon: 'fa-users',
                 command: (event) => this.datasourceMenuUserPermissions(this.selectedReport)
-            },
-            {
-                label: 'Group Access',
-                icon: 'fa-list',
-                command: (event) => this.reportMenuGroupAccess(this.selectedReport)
             },
             {
                 label: 'Report History',
@@ -142,20 +136,6 @@ export class ReportComponent implements OnInit {
 
         // Close popup
         this.displayUserPermissions = false;
-    }
-
-    reportMenuGroupAccess(selectedReport: Report) {
-        // Show all the Groups with access to the selected Datasource
-        // - selectedReport: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'reportMenuGroupAccess', '@Start');
-
-        this.groups = this.eazlService.getGroupsPerDatasource(
-            selectedReport.dataSourceID,
-            true
-        );
-
-        // Show the popup
-        this.displayGroupAccess = true;
     }
 
     onClickUserDatasource() {
