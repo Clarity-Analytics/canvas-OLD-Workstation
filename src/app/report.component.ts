@@ -37,7 +37,9 @@ export class ReportComponent implements OnInit {
 
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
+    datasourceGroupPermissions: DataSourceGroupPermissions[];   // User permissions
     datasourceUserPermissions: DataSourceUserPermissions[];     // User permissions
+    displayGroupPermissions: boolean = false;           // True to show permissions panel
     displayUserPermissions: boolean = false;            // True to show permissions panel
     displayReportHistory: boolean;                      // True to display Report History
     groups: Group[];                                    // List of Groups
@@ -46,6 +48,7 @@ export class ReportComponent implements OnInit {
     popuMenuItems: MenuItem[];                          // Items in popup
     reportHistory: ReportHistory[];                     // List of Report History (ran)
     reports: Report[];                                  // List of Reports
+    selectedGroupPermission: DataSourceGroupPermissions;// Selected in table
     selectedUserPermission: DataSourceUserPermissions;  // Selected in table
     selectedReport: Report;                             // Selected one
     users: User[];                                      // List of Users with Access
@@ -70,6 +73,11 @@ export class ReportComponent implements OnInit {
                 label: 'Shared Users',
                 icon: 'fa-users',
                 command: (event) => this.datasourceMenuUserPermissions(this.selectedReport)
+            },
+            {
+                label: 'Shared Groups',
+                icon: 'fa-users',
+                command: (event) => this.datasourceMenuGroupPermissions(this.selectedReport)
             },
             {
                 label: 'Report History',
@@ -98,7 +106,7 @@ export class ReportComponent implements OnInit {
     }
 
     datasourceMenuUserPermissions(selectedReport: Report) {
-        // Users with their permissions for the selected Datasource
+        // Users with their permissions for the Datasource of the selected Report
         // - selectedReport: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserPermissions', '@Start');
 
@@ -118,6 +126,33 @@ export class ReportComponent implements OnInit {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
                     summary:  'User permissions',
+                    detail:   'Getting user permissions failed'
+                });
+            });
+
+    }
+
+    datasourceMenuGroupPermissions(selectedReport: Report) {
+        // Groups with their permissions for the Datasource of the selected Report
+        // - selectedReport: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuGroupPermissions', '@Start');
+
+        // Get the current and available user shared with; as a Promise to cater for Async
+        this.eazlService.getdatasourceGroupPermissions(
+            selectedReport.dataSourceID
+        )
+            .then(dashGrpPer => {
+                this.datasourceGroupPermissions = dashGrpPer;
+                if (this.datasourceGroupPermissions.length > 0) {
+                    this.selectedGroupPermission = this.datasourceGroupPermissions[0];
+                };
+
+                this.displayGroupPermissions = true;
+            })
+            .catch(err => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Group permissions',
                     detail:   'Getting user permissions failed'
                 });
             });
