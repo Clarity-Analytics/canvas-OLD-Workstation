@@ -5732,45 +5732,6 @@ export class EazlService implements OnInit {
         )
     }
 
-    getDatasourceUserAccess(
-            datasourceID: number = -1,
-            username: string = '*',
-            accessType: string = '*'): DataSourceUserAccess[] {
-        // Return a list of Datasource-User and their access
-        // - datasourceID Optional filter,
-        // - username Optional filter
-        // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDataSourceUserAccess) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'DatasourceUserAccess data is dirty / not up to date',
-                detail:   'The DatasourceUserAccess data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        let dataSourceUserAccessWorking = this.dataSourceUserAccess;
-
-        // Filter as needed
-        if (datasourceID != -1) {
-            dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.datasourceID == datasourceID)
-        };
-        if (username != '*') {
-            dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.userName == username)
-        };
-        if (accessType != '*') {
-            dataSourceUserAccessWorking = dataSourceUserAccessWorking.filter( da =>
-                da.dataSourceUserAccessType == accessType)
-        };
-
-        // Return
-        return dataSourceUserAccessWorking;
-    }
-
     getDatasourceAccessedByUser(
             username: string,
             accessType: string = '*',
@@ -5780,7 +5741,7 @@ export class EazlService implements OnInit {
         // - username Optional filter
         // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
         // - include Optional filter: True = include, False = complement (NO access)
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceUserAccess', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceAccessedByUser', '@Start');
 
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataDataSourceUserAccess) {
