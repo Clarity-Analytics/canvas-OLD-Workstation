@@ -569,7 +569,34 @@ export class DataSourceComponent implements OnInit {
 
 
 
+    datasourceMenuGroupPermissions(datasource: DataSource) {
+        // Groups with their permissions for the selected Datasource
+        // - dashboard: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuGroupPermissions', '@Start');
 
+        // Get the current and available user shared with; as a Promise to cater for Async
+        this.eazlService.getdatasourceGroupPermissions(
+            datasource.datasourceID
+        )
+            .then(dashGrpPer => {
+                this.datasourceUserPermissions = dashGrpPer;
+                if (this.datasourceGroupPermissions.length > 0) {
+                    this.selectedGroupPermission = this.datasourceGroupPermissions[0];
+                };
+
+                this.displayGroupPermissions = true;
+            })
+            .catch(err => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Group permissions',
+                    detail:   'Getting user permissions failed'
+                });
+            });
+
+    }
+
+  
 
 
 
