@@ -6038,6 +6038,60 @@ export class EazlService implements OnInit {
             })
     }
 
+    getdatasourceGroupPermissions(datasourceID: number): Promise<any> {
+        // Returns an array of ALL groups.  Each row shows booleans (T/F) wrt each permission
+        // that the group has.  So, a group with no permissions with have a row of False
+        this.globalFunctionService.printToConsole(this.constructor.name,'getdatasourceGroupPermissions', '@Start');
+
+        let datasourceGroupPermissionsWorking: DataSourceGroupPermissions[] = [];
+        return this.get<EazlDataSourceGroupPermissions>(
+            'packages/' + datasourceID.toString() + '/'
+        )
+            .toPromise()
+            .then(eazlGrpPerm => {
+                let found: boolean = false;
+                for (var i = 0; i < this.groups.length; i++) {
+
+                    found = false;
+                    for (var j = 0; j < eazlGrpPerm.length; j++) {
+                        if (eazlGrpPerm[j].groupName == this.groups[i].groupName) {
+                            datasourceGroupPermissionsWorking.push(
+                                this.cdal.loadDatasourceGroupPermissions(eazlGrpPerm[j])
+                            );
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        datasourceGroupPermissionsWorking.push(
+                            {
+                                groupName: this.groups[i].groupName,
+                                canAddPackage: false,
+                                canAssignPermissionPackage: false,
+                                canChangePackage: false,
+                                canDeletePackage: false,
+                                canExecutePackage: false,
+                                canPackageOwnedAccess: false,
+                                canPackageSharedAccess: false,
+                                canRemovePermissionPackage: false,
+                                canViewPackage: false
+                            }
+                        )
+                    }
+                };
+
+                // Return
+                return datasourceGroupPermissionsWorking;
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Group Permissions',
+                    detail:   'Unsuccessful in reading user permissions from the database'
+                });
+                error.message || error
+            })
+    }
 
 
     getDashboardTagMembership(

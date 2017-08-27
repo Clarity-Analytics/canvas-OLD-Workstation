@@ -81,6 +81,11 @@ export class DataSourceComponent implements OnInit {
                 command: (event) => this.datasourceMenuUserPermissions(this.selectedDatasource)
             },
             {
+                label: 'Shared Groupss',
+                icon: 'fa-users',
+                command: (event) => this.datasourceMenuGroupPermissions(this.selectedDatasource)
+            },
+            {
                 label: 'User Access',
                 icon: 'fa-database',
                 command: (event) => this.datasourceMenuUserMembership(this.selectedDatasource)
@@ -159,6 +164,9 @@ export class DataSourceComponent implements OnInit {
         // Refresh records in popup
         if (this.displayUserPermissions) {
             this.datasourceMenuUserPermissions(this.selectedDatasource)
+        };
+        if (this.displayGroupPermissions) {
+            this.datasourceMenuGroupPermissions(this.selectedDatasource)
         };
 
         // Update the user group membership if it is open
@@ -556,6 +564,15 @@ export class DataSourceComponent implements OnInit {
             removePermissions
         );
     }
+
+
+
+
+
+
+
+
+
 
     datasourceMenuUserMembership(selectedDatasource: DataSource) {
         // Manage group membership for the selected user
