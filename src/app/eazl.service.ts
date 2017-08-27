@@ -5664,39 +5664,6 @@ export class EazlService implements OnInit {
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
 
-    getUsersWhoCanAccessDatasource(
-            datasourceID: number,
-            include: boolean = true): User[] {
-        // Return list of Users who has access to a given DataSource
-        // - username filter
-        // - include: True = those who can access, False = CANNOT access
-        this.globalFunctionService.printToConsole(this.constructor.name,'getUsersWhoCanAccessDatasource', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDataSourceUserAccess) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'DataSourceUserAccess data is dirty / not up to date',
-                detail:   'DataSourceUserAccess User data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        // Get list of usernames with access
-        // TODO - when from DB, add access type as I think this will be useful
-        let usernames: string[] = [];
-        this.dataSourceUserAccess.forEach(du => {
-            if (du.datasourceID == datasourceID) {
-                usernames.push(du.userName)
-            };
-        });
-
-        return this.users.filter(
-            u => (include   &&  usernames.indexOf(u.username) >= 0)
-                  ||
-                 (!include  &&  usernames.indexOf(u.username) < 0)
-            );
-    }
-
     getDatasourcesPerGroup(groupID: number, include: boolean): DataSource[] {
         // Return list of DataSource for a given Group
         // - groupID filter
