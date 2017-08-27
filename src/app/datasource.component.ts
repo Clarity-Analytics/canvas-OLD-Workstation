@@ -84,15 +84,6 @@ export class DataSourceComponent implements OnInit {
                 command: (event) => this.datasourceMenuGroupPermissions(this.selectedDatasource)
             },
             {
-                label: 'Group Membership',
-                icon: 'fa-users',
-                command: (event) => this.datasourceMenuGroupMembership(this.selectedDatasource)
-            },            {
-                label: 'List Group Access',
-                icon: 'fa-list',
-                command: (event) => this.datasourceMenuListGroupAccess(this.selectedDatasource)
-            },
-            {
                 label: 'Related Reports',
                 icon: 'fa-table',
                 command: (event) => this.datasourceMenuReports(this.selectedDatasource)
@@ -119,20 +110,6 @@ export class DataSourceComponent implements OnInit {
 
     }
 
-    datasourceMenuListGroupAccess(selectedDatasource: DataSource) {
-        // Show all the Groups with access to the selected Datasource
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuListGroupAccess', '@Start');
-
-        this.groups = this.eazlService.getGroupsPerDatasource(
-            selectedDatasource.datasourceID,
-            true
-        );
-
-        // Show the popup
-        this.displayGroupAccess = true;
-    }
-
     onClickDatasourceTable() {
         // User clicked on a row
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDatasourceTable', '@Start');
@@ -144,11 +121,6 @@ export class DataSourceComponent implements OnInit {
         if (this.displayGroupPermissions) {
             this.datasourceMenuGroupPermissions(this.selectedDatasource)
         };
-
-        // Update the user group membership if it is open
-        if (this.displayGroupMembership) {
-            this.datasourceMenuGroupMembership(this.selectedDatasource)
-        }
     }
 
     datasourceMenuUserPermissions(datasource: DataSource) {
