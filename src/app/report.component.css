@@ -1,0 +1,37 @@
+
+/*Group Membership Panel*/
+.groupMembershipPanel {
+    background-color: white;
+    border-radius: 4px;
+    display: block;
+    font-size: 1em;
+    height:90%;
+    margin: 0;
+    padding: 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45%;
+    z-index: 999;
+}
+
+.groupMembershipHeading {
+    background-color: #669999;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+    padding: 6px 0 2px 6px;
+}
+
+.panelButtonWithLabel {
+    background-color: white;
+    border: 1px solid darkgray;
+    border-radius: 2px;
+    color: gray;
+    float: right;
+    height: 25px;
+    margin: -6px 0 0 15px;
+    padding: 1px;
+    width: 90px;
+}

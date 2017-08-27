@@ -229,7 +229,7 @@ export class DataSourceComponent implements OnInit {
 
     datasourceMenuUserPermissions(datasource: DataSource) {
         // Users with their permissions for the selected Datasource
-        // - dashboard: currently selected row
+        // - datasource: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserPermissions', '@Start');
 
         // Get the current and available user shared with; as a Promise to cater for Async
@@ -567,7 +567,7 @@ export class DataSourceComponent implements OnInit {
 
     datasourceMenuGroupPermissions(datasource: DataSource) {
         // Groups with their permissions for the selected Datasource
-        // - dashboard: currently selected row
+        // - datasource: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuGroupPermissions', '@Start');
 
         // Get the current and available groups shared with; as a Promise to cater for Async

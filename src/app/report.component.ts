@@ -18,6 +18,9 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our models
 import { CanvasDate }                 from './date.services';
 import { CanvasUser }                 from './model.user';
+import { DataSource}                  from './model.datasource';
+import { DataSourceGroupPermissions}  from './model.datasource';
+import { DataSourceUserPermissions}   from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { Report }                     from './model.report';
@@ -34,8 +37,10 @@ export class ReportComponent implements OnInit {
 
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
-    displayUserAccess: boolean;                         // True to display User access
+    datasourceUserPermissions: DataSourceUserPermissions[];     // User permissions
     displayGroupAccess: boolean;                        // True to display Group Access
+    displayUserAccess: boolean;                         // True to display User access
+    displayUserPermissions: boolean = false;            // True to show permissions panel
     displayReportHistory: boolean;                      // True to display Report History
     groups: Group[];                                    // List of Groups
     displayNewWidgetForm: boolean = false;              // True to show popup for New Widget
@@ -43,6 +48,7 @@ export class ReportComponent implements OnInit {
     popuMenuItems: MenuItem[];                          // Items in popup
     reportHistory: ReportHistory[];                     // List of Report History (ran)
     reports: Report[];                                  // List of Reports
+    selectedUserPermission: DataSourceUserPermissions;  // Selected in table
     selectedReport: Report;                             // Selected one
     users: User[];                                      // List of Users with Access
 
@@ -62,6 +68,11 @@ export class ReportComponent implements OnInit {
         this.reports = this.eazlService.getReports();
 
         this.popuMenuItems = [
+            {
+                label: 'Shared Users',
+                icon: 'fa-users',
+                command: (event) => this.datasourceMenuUserPermissions(this.selectedReport)
+            },
             {
                 label: 'User Access',
                 icon: 'fa-database',
@@ -96,6 +107,33 @@ export class ReportComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickReportTable', '@Start');
 
         // For later ...
+    }
+
+    datasourceMenuUserPermissions(selectedReport: Report) {
+        // Users with their permissions for the selected Datasource
+        // - selectedReport: currently selected row
+        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuUserPermissions', '@Start');
+
+        // Get the current and available user shared with; as a Promise to cater for Async
+        this.eazlService.getdatasourceUserPermissions(
+            selectedReport.dataSourceID
+        )
+            .then(dashUsrPer => {
+                this.datasourceUserPermissions = dashUsrPer;
+                if (this.datasourceUserPermissions.length > 0) {
+                    this.selectedUserPermission = this.datasourceUserPermissions[0];
+                };
+
+                this.displayUserPermissions = true;
+            })
+            .catch(err => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'User permissions',
+                    detail:   'Getting user permissions failed'
+                });
+            });
+
     }
 
     reportMenuUserAccess(selectedReport: Report) {

@@ -32,6 +32,97 @@
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
 
 
+
+
+
+<!--User permissions panel-->
+<div
+    class="groupMembershipPanel"
+    *ngIf="displayUserPermissions"
+    >
+
+    <div
+        class="userPermissionsHeading"
+        >
+        User permissions for {{ selectedReport.reportName }}
+        <button
+            class="panelButtonWithLabel"
+            pButton
+            type="button"
+            label="Close"
+            icon="fa-undo"
+            (click)="onClickUserPermissionCancel()"
+            >
+        </button>
+    </div>
+
+    <div>
+        <p-dataTable
+            [value]="datasourceUserPermissions"
+            [(selection)]="selectedUserPermission"
+            dataKey="username"
+            selectionMode="single"
+            >
+            <p-column
+                field="username"
+                header="username"
+                [filter]="true"
+                >
+            </p-column>
+            <p-column
+                field="canAddPackage"
+                header="Add?"
+                >
+            </p-column>
+            <p-column
+                field="canAssignPermissionPackage"
+                header="Assign?"
+                >
+            </p-column>
+
+            <p-column
+                field="canChangePackage"
+                header="Change?"
+                >
+            </p-column>
+            <p-column
+                field="canDeletePackage"
+                header="Delete?"
+                >
+            </p-column>
+            <p-column
+                field="canExecutePackage"
+                header="Execute?"
+                >
+            </p-column>
+            <p-column
+                field="canPackageOwnedAccess"
+                header="Owned?"
+                >
+            </p-column>
+            <p-column
+                field="canPackageSharedAccess"
+                header="Shared?"
+                >
+            </p-column>
+            <p-column
+                field="canRemovePermissionPackage"
+                header="Remove?"
+                >
+            </p-column>
+            <p-column
+                field="canViewPackage"
+                header="View?"
+                >
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>
+
+
+
+
+
 <!--Popup for User Access-->
 <p-dialog
     [(visible)]="displayUserAccess"
