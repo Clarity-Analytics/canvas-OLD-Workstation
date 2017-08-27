@@ -55,7 +55,7 @@ export class DataSourceComponent implements OnInit {
     popuMenuItems: MenuItem[];                          // Items in popup
     reports: Report[];                                  // List of Reports
     selectedDatasource: DataSource;                     // Selected one
-    selectedGroupPermission: DataSourceUserPermissions; // Selected in table
+    selectedGroupPermission: DataSourceGroupPermissions;// Selected in table
     selectedUserPermission: DataSourceUserPermissions;  // Selected in table
     users: User[];                                      // List of Users with Access
     
@@ -81,7 +81,7 @@ export class DataSourceComponent implements OnInit {
                 command: (event) => this.datasourceMenuUserPermissions(this.selectedDatasource)
             },
             {
-                label: 'Shared Groupss',
+                label: 'Shared Groups',
                 icon: 'fa-users',
                 command: (event) => this.datasourceMenuGroupPermissions(this.selectedDatasource)
             },
@@ -565,21 +565,17 @@ export class DataSourceComponent implements OnInit {
         );
     }
 
-
-
-
-
     datasourceMenuGroupPermissions(datasource: DataSource) {
         // Groups with their permissions for the selected Datasource
         // - dashboard: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuGroupPermissions', '@Start');
 
-        // Get the current and available user shared with; as a Promise to cater for Async
+        // Get the current and available groups shared with; as a Promise to cater for Async
         this.eazlService.getdatasourceGroupPermissions(
             datasource.datasourceID
         )
             .then(dashGrpPer => {
-                this.datasourceUserPermissions = dashGrpPer;
+                this.datasourceGroupPermissions = dashGrpPer;
                 if (this.datasourceGroupPermissions.length > 0) {
                     this.selectedGroupPermission = this.datasourceGroupPermissions[0];
                 };
@@ -590,14 +586,14 @@ export class DataSourceComponent implements OnInit {
                 this.globalVariableService.growlGlobalMessage.next({
                     severity: 'warn',
                     summary:  'Group permissions',
-                    detail:   'Getting user permissions failed'
+                    detail:   'Getting Group permissions failed'
                 });
             });
 
     }
 
     onClickGroupPermissionCancel() {
-        // Close User Permissions panel
+        // Close Group Permissions panel
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupPermissionCancel', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
@@ -611,7 +607,7 @@ export class DataSourceComponent implements OnInit {
     }
 
     onChangeAddGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAddGroupPermission', '@Start');
 
@@ -619,7 +615,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -636,15 +632,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeAssignGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeAssignGroupPermission', '@Start');
 
@@ -652,7 +648,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -669,15 +665,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeChangeGroupPermission(event) {
-        // User changed  user permission
+        // Group changed gropu permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeChangeGroupPermission', '@Start');
 
@@ -685,7 +681,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -702,15 +698,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeDeleteGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDeleteGroupPermission', '@Start');
 
@@ -718,7 +714,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -735,15 +731,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeExecuteGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeExecuteGroupPermission', '@Start');
 
@@ -751,7 +747,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -768,15 +764,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeOwnedGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeOwnedGroupPermission', '@Start');
 
@@ -784,7 +780,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -801,15 +797,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeSharedGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeSharedGroupPermission', '@Start');
 
@@ -817,7 +813,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -834,15 +830,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeRemoveGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeRemoveGroupPermission', '@Start');
 
@@ -850,7 +846,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -867,15 +863,15 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
     }
 
     onChangeViewGroupPermission(event) {
-        // User changed  user permission
+        // Group changed group permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewGroupPermission', '@Start');
 
@@ -883,7 +879,7 @@ export class DataSourceComponent implements OnInit {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
                 summary:  'No selection',
-                detail:   'Select a user by clicking the username'
+                detail:   'Select a group by clicking the groupName'
             });
 
             return;
@@ -900,8 +896,8 @@ export class DataSourceComponent implements OnInit {
         this.eazlService.updateModelPermissions(
             'packages',
             this.selectedDatasource.datasourceID,
-            this.selectedGroupPermission.username,
-            'user',
+            this.selectedGroupPermission.groupName,
+            'group',
             assignPermissions,
             removePermissions
         );
