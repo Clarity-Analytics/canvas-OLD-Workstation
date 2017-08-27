@@ -6867,50 +6867,6 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
             }
         }
 
-
-        // GroupDatasourceAccess
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'GroupDatasourceAccess') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset GroupDatasourceAccess');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
-
-            //         // Get all the data via API
-            //         let groupDatasourceAccessWorking: GroupDatasourceAccess[] = [];
-            //         this.get<EazlGroupDatasourceAccess>('group-datasource-accesss')
-            //             .subscribe(
-            //                 (eazlGroupDatasourceAccess) => {
-            //                     for (var i = 0; i < eazlGroupDatasourceAccess.length; i++) {
-            //                         let groupDatasourceAccessSingle = new GroupDatasourceAccess();
-            //                         groupDatasourceAccessSingle = this.cdal.loadGroupDatasourceAccess(eazlGroupDatasourceAccess[i]);
-            //                         groupDatasourceAccessWorking.push(groupDatasourceAccessSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.groupDatasourceAccess = groupDatasourceAccessWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataGroupDatasourceAccess = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear GroupDatasourceAccess');
-            //         this.groupDatasourceAccess = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataGroupDatasourceAccess = true;
-            //     }
-            // }
-        // Done
-
         // Datasource
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'Datasource') {
 
