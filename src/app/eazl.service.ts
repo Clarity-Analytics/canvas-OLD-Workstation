@@ -5777,31 +5777,6 @@ export class EazlService implements OnInit {
         });
     }
 
-    getGroupDatasourceAccess(
-        groupID: number = -1,
-        datasourceID: number = -1
-        ): GroupDatasourceAccess[] {
-        // Return of list with group - datasource access
-        // - groupID Optional filter, -1 = all
-        // - datasourceID Optional filter,-1 = all
-        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupDatasourceAccess', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGroupDatasourceAccess) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'GroupDatasourceAccess data is dirty / not up to date',
-                detail:   'The GroupDatasourceAccess data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        return this.groupDatasourceAccess.filter(gDS => (
-            (groupID == -1  ||  gDS.groupID == groupID)
-            &&
-            (datasourceID == -1 || gDS.datasourceID == datasourceID)
-        ));
-    }
-
     addDatasourceUserAccess(datasourceID: number, username: string) {
         // Adds a Datasource - User record to the DB
 
