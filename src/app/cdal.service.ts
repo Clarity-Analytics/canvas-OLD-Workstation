@@ -27,6 +27,7 @@ import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardUserPermissions }   from './model.dashboards';
 import { DataSource }                 from './model.datasource';
+import { DataSourceGroupPermissions}  from './model.datasource';
 import { DataSourceUserPermissions}   from './model.datasource';
 import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { EazlAppData }                from './model.appdata';
@@ -40,6 +41,7 @@ import { EazlDashboardTag }           from './model.dashboardTag';
 import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
 import { EazlDataSource }             from './model.datasource';
+import { EazlDataSourceGroupPermissions}    from './model.datasource';
 import { EazlDataSourceUserPermissions}     from './model.datasource';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
@@ -1467,6 +1469,68 @@ console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
                     datasourceUserPermissionsWorking.canRemovePermissionPackage = true;
                 }
                 if (eazlDatasourceUserPermissions.permissions[i] == 'view_package') {
+                    datasourceUserPermissionsWorking.canViewPackage = true;
+                }
+            }
+        }
+
+        // Return
+        return datasourceUserPermissionsWorking;
+    }
+
+    loadDatasourceGroupPermissions(eazlDatasourceGroupPermissions): DataSourceGroupPermissions {
+        // Load Group Permissions for a given Datasource: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDatasourceGroupPermissions', '@Start');
+
+        let datasourceUserPermissionsWorking = new DataSourceGroupPermissions();
+
+        if (eazlDatasourceGroupPermissions.groupName != null) {
+            datasourceUserPermissionsWorking.groupName = eazlDatasourceGroupPermissions.groupName;
+        } else {
+            datasourceUserPermissionsWorking.groupName = '';
+        }
+
+        // Set default to false
+        datasourceUserPermissionsWorking.canAddPackage = false;
+        datasourceUserPermissionsWorking.canAssignPermissionPackage = false;
+        datasourceUserPermissionsWorking.canChangePackage = false;
+        datasourceUserPermissionsWorking.canDeletePackage = false;
+        datasourceUserPermissionsWorking.canExecutePackage = false;
+        datasourceUserPermissionsWorking.canPackageOwnedAccess = false;
+        datasourceUserPermissionsWorking.canPackageSharedAccess = false;
+        datasourceUserPermissionsWorking.canRemovePermissionPackage = false;
+        datasourceUserPermissionsWorking.canViewPackage = false;
+    
+        if (eazlDatasourceGroupPermissions.permissions != null) {
+
+            // Loop on those assigned
+            for (var i = 0; i < eazlDatasourceGroupPermissions.permissions.length; i++) {
+
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'add_package') {
+                    datasourceUserPermissionsWorking.canAddPackage = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'assign_permission_package') {
+                    datasourceUserPermissionsWorking.canAssignPermissionPackage = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'change_package') {
+                    datasourceUserPermissionsWorking.canChangePackage = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'delete_package') {
+                    datasourceUserPermissionsWorking.canDeletePackage = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'execute_package') {
+                    datasourceUserPermissionsWorking.canExecutePackage = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'package_owned_access') {
+                    datasourceUserPermissionsWorking.canPackageOwnedAccess = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'package_shared_access') {
+                    datasourceUserPermissionsWorking.canPackageSharedAccess = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'remove_permission_package') {
+                    datasourceUserPermissionsWorking.canRemovePermissionPackage = true;
+                }
+                if (eazlDatasourceGroupPermissions.permissions[i] == 'view_package') {
                     datasourceUserPermissionsWorking.canViewPackage = true;
                 }
             }
