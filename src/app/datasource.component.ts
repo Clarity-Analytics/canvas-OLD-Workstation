@@ -900,14 +900,6 @@ export class DataSourceComponent implements OnInit {
         this.displayUserDatasourceAccess = true;
     }
 
-    onClickUserMembershipCancel() {
-        // User clicked Cancel
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserMembershipCancel', '@Start');
-
-        // Close popup
-        this.displayUserDatasourceAccess = false;
-    }
-
     onMoveToSourceDatasourceUserMembership(event) {
         // User clicked onMoveToSource on User Membership: add grp membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDatasourceUserMembership', '@Start');

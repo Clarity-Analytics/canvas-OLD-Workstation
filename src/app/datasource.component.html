@@ -378,57 +378,6 @@
 </div>
 
 
-<!--Popup for User Membership panel-->
-<div
-    class="groupMembershipPanel"
-    *ngIf="displayUserDatasourceAccess"
-    >
-
-    <div
-        class="groupMembershipHeading"
-        >
-        User Membership for {{ selectedDatasource.datasourceName }}
-        <button
-            class="panelButtonWithLabel"
-            pButton
-            type="button"
-            label="Cancel"
-            icon="fa-undo"
-            (click)="onClickUserMembershipCancel()"
-            >
-        </button>
-    </div>
-
-    <!--Content-->
-    <form>
-
-        <div
-            >
-            <p-pickList
-                [source]="availableUserDatasource"
-                [target]="belongstoUserDatasource"
-                sourceHeader="Available Users"
-                targetHeader="Users with access"
-                (onMoveToTarget)="onMoveToTargetDatasourceUserMembership($event)"
-                (onMoveToSource)="onMoveToSourceDatasourceUserMembership($event)"
-                >
-                <ng-template let-usr pTemplate="item">
-                    <div class="ui-helper-clearfix">
-                        <div
-                            style="font-size:14px;float:left;margin:15px 5px 0 0"
-                            >
-                            {{ usr.username }}
-                        </div>
-                    </div>
-                </ng-template>
-            </p-pickList>
-
-        </div>
-
-    </form>
-</div>
-
-
 <!--Popup for Group Membership panel-->
 <div
     class="groupMembershipPanel"
