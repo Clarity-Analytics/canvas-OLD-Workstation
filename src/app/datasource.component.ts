@@ -884,18 +884,7 @@ export class DataSourceComponent implements OnInit {
 
 
 
-    onMoveToTargetDatasourceUserMembership(event) {
-        // User clicked onMoveToTarget on User Membership: add grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDatasourceUserMembership', '@Start');
 
-        // Add this / these makker(s) - array if multi select
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addDatasourceUserAccess(
-                this.selectedDatasource.datasourceID,
-                event.items[i].username
-            );
-        }
-    }
 
 
 }
