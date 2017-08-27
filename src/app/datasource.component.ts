@@ -874,9 +874,38 @@ export class DataSourceComponent implements OnInit {
         );
     }
 
+    onChangeViewGroupPermission(event) {
+        // User changed  user permission
+        // - event is the new value of the checkbox
+        this.globalFunctionService.printToConsole(this.constructor.name,'onChangeViewGroupPermission', '@Start');
 
+        if (this.selectedGroupPermission == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Select a user by clicking the username'
+            });
 
+            return;
+        }
 
+        let assignPermissions: string[] = [];
+        let removePermissions: string[] = [];
+        if (event) {
+            assignPermissions.push('view_package');
+        } else {
+            removePermissions.push('view_package');
+        }
+
+        this.eazlService.updateModelPermissions(
+            'packages',
+            this.selectedDatasource.datasourceID,
+            this.selectedGroupPermission.username,
+            'user',
+            assignPermissions,
+            removePermissions
+        );
+    }
 
     datasourceMenuUserMembership(selectedDatasource: DataSource) {
         // Manage group membership for the selected user
