@@ -45,7 +45,6 @@ export class DataSourceComponent implements OnInit {
     datasourceGroupPermissions: DataSourceGroupPermissions[];   // User permissions
     datasourceUserPermissions: DataSourceUserPermissions[];     // User permissions
     displayGroupPermissions: boolean = false;           // True to show permissions panel
-    displayUserAccess: boolean;                         // True to display User access
     displayUserPermissions: boolean = false;            // True to show permissions panel
     displayGroupAccess: boolean;                        // True to display Group Access
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
@@ -89,11 +88,7 @@ export class DataSourceComponent implements OnInit {
                 label: 'User Access',
                 icon: 'fa-database',
                 command: (event) => this.datasourceMenuUserMembership(this.selectedDatasource)
-            },            {
-                label: 'List User Access',
-                icon: 'fa-database',
-                command: (event) => this.datasourceMenuListUserAccess(this.selectedDatasource)
-            },
+            },            
             {
                 label: 'Group Membership',
                 icon: 'fa-users',
@@ -128,19 +123,6 @@ export class DataSourceComponent implements OnInit {
         // Show popup
         this.displayReports = true;
 
-    }
-
-    datasourceMenuListUserAccess(selectedDatasource: DataSource) {
-        // Show all the Users with Access to the selected Datasource
-        // - User: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'datasourceMenuListUserAccess', '@Start');
-
-        this.users = this.eazlService.getUsersWhoCanAccessDatasource(
-            selectedDatasource.datasourceID
-        );
-
-        // Show the popup
-        this.displayUserAccess = true;
     }
 
     datasourceMenuListGroupAccess(selectedDatasource: DataSource) {
