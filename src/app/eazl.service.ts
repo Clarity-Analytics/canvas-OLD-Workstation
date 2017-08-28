@@ -71,7 +71,6 @@ import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserPermissions }   from './model.dashboards';
 import { DataSource }                 from './model.datasource';
-import { DataSourceUserAccess }       from './model.datasourceUserAccess';
 import { DataSourceGroupPermissions}  from './model.datasource';
 import { DataSourceUserPermissions}   from './model.datasource';
 import { EazlAppData }                from './model.appdata';
@@ -79,7 +78,6 @@ import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroupPermissions }    from './model.dashboards';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
-import { EazlDataSourceUserAccess }   from './model.datasourceUserAccess';
 import { EazlDataSourceGroupPermissions}    from './model.datasource';
 import { EazlDataSourceUserPermissions}     from './model.datasource';
 import { EazlDashboard }              from './model.dashboards';
@@ -519,50 +517,52 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //             }
     //         ];
 // Dead ones
+// const DATASOURCEUSERACCESS
+    // export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
+    // [
+    //     {
+    //         datasourceID: 0,
+    //         userName: 'janniei',
+    //         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+    //         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+    //         datasourceUserAccessCreatedDateTime: '2017/05/01',
+    //         datasourceUserAccessCreatedUserName: 'janniei',
+    //         datasourceUserAccessUpdatedDateTime: '2017/05/01',
+    //         datasourceUserAccessUpdatedUserName: 'janniei'
+    //     },
+    //     {
+    //         datasourceID: 1,
+    //         userName: 'janniei',
+    //         dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
+    //         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+    //         datasourceUserAccessCreatedDateTime: '2017/05/01',
+    //         datasourceUserAccessCreatedUserName: 'janniei',
+    //         datasourceUserAccessUpdatedDateTime: '2017/05/01',
+    //         datasourceUserAccessUpdatedUserName: 'janniei'
+    //     },
+    //     {
+    //         datasourceID: 0,
+    //         userName: 'bradleyk',
+    //         dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
+    //         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+    //         datasourceUserAccessCreatedDateTime: '2017/05/01',
+    //         datasourceUserAccessCreatedUserName: 'janniei',
+    //         datasourceUserAccessUpdatedDateTime: '2017/05/01',
+    //         datasourceUserAccessUpdatedUserName: 'janniei'
+    //     },
+    //     {
+    //         datasourceID: 1,
+    //         userName: 'bradleyk',
+    //         dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
+    //         dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
+    //         datasourceUserAccessCreatedDateTime: '2017/05/01',
+    //         datasourceUserAccessCreatedUserName: 'janniei',
+    //         datasourceUserAccessUpdatedDateTime: '2017/05/01',
+    //         datasourceUserAccessUpdatedUserName: 'janniei'
+    //     }
+    // ];
 // End of const comments
-    export const DATASOURCEUSERACCESS: DataSourceUserAccess[] =
-    [
-        {
-            datasourceID: 0,
-            userName: 'janniei',
-            dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-            datasourceUserAccessCreatedDateTime: '2017/05/01',
-            datasourceUserAccessCreatedUserName: 'janniei',
-            datasourceUserAccessUpdatedDateTime: '2017/05/01',
-            datasourceUserAccessUpdatedUserName: 'janniei'
-        },
-        {
-            datasourceID: 1,
-            userName: 'janniei',
-            dataSourceUserAccessType: 'Full',             // Type = Readonly, Update, Add, Delete, Full
-            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-            datasourceUserAccessCreatedDateTime: '2017/05/01',
-            datasourceUserAccessCreatedUserName: 'janniei',
-            datasourceUserAccessUpdatedDateTime: '2017/05/01',
-            datasourceUserAccessUpdatedUserName: 'janniei'
-        },
-        {
-            datasourceID: 0,
-            userName: 'bradleyk',
-            dataSourceUserAccessType: 'Readonly',         // Type = Readonly, Update, Add, Delete, Full
-            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-            datasourceUserAccessCreatedDateTime: '2017/05/01',
-            datasourceUserAccessCreatedUserName: 'janniei',
-            datasourceUserAccessUpdatedDateTime: '2017/05/01',
-            datasourceUserAccessUpdatedUserName: 'janniei'
-        },
-        {
-            datasourceID: 1,
-            userName: 'bradleyk',
-            dataSourceUserAccessType: 'Add',              // Type = Readonly, Update, Add, Delete, Full
-            dataSourceUserAccessScope: 'All',             // Applies to: All (records), context specific .. ?
-            datasourceUserAccessCreatedDateTime: '2017/05/01',
-            datasourceUserAccessCreatedUserName: 'janniei',
-            datasourceUserAccessUpdatedDateTime: '2017/05/01',
-            datasourceUserAccessUpdatedUserName: 'janniei'
-        }
-    ];
+
 
 export const REPORTHISTORY: ReportHistory[] =
     [
@@ -3670,7 +3670,6 @@ export class EazlService implements OnInit {
     dashboardTagMembership: DashboardTagMembership[];       //List of Dashboard-Group
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
     datasources: DataSource[] = DATASOURCES;                // List of Data Sources
-    dataSourceUserAccess: DataSourceUserAccess[] = DATASOURCEUSERACCESS;   // List of users with Access to a Datasource
     graphTypes: GraphType[];                                // List of Graph Types
     groups: Group[];                                        // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
