@@ -12,6 +12,7 @@ export class EazlReportHistory {
     state: string;                              // Result status: Failed, Success
     row_count: number;                          // Nr row returned
     error: string;                              // Optional Celery error message if Report failed
+    url: string;                                // Django url
 }
 
 // Canvas
@@ -26,4 +27,5 @@ export class ReportHistory {
     reportHistoryStatus: string;                // Result status: Failed, Success
     reportHistoryNrRowsReturned: number;        // Nr row returned
     error: string;                              // Optional Celery error message if Report failed
+    reportHistoryUrl: string;                   // Django url
 }
