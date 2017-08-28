@@ -40,8 +40,6 @@ export class UserComponent implements OnInit {
 
     availableUserGroupMembership: string[] = [];        // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: string[] = [];        // List of Groups user already belongs to
-    availableUserDatasource: DataSource[] = [];         // List of DS to which user has access
-    belongstoUserDatasource: DataSource[] = [];         // List of DS to which user has NO access
     canvasUser: CanvasUser;                             // Current user
     canvasMessages: CanvasMessage[];                    // List of Canvas Messages
     userModelPermissionFlat: UserModelPermissionFlat[]; // @Runtime List of Model Permissions per User
@@ -104,11 +102,6 @@ export class UserComponent implements OnInit {
                 label: 'Group Membership',
                 icon: 'fa-users',
                 command: (event) => this.userMenuGroupMembership(this.selectedUser)
-            },
-            {
-                label: 'Datasources',
-                icon: 'fa-database',
-                command: (event) => this.userMenuAccessToDatasources(this.selectedUser)
             },
             {
                 label: 'Related Datasources',
@@ -211,9 +204,6 @@ export class UserComponent implements OnInit {
         if (this.displayGroupMembership) {
             this.userMenuGroupMembership(this.selectedUser)
         }
-        if (this.displayUserDatasource) {
-            this.userMenuAccessToDatasources(this.selectedUser)
-        }
 
     }
 
@@ -255,27 +245,6 @@ export class UserComponent implements OnInit {
     onTargetReorderUserGroupMembership(event) {
         // User clicked onTargetReorder on Group Membership
         this.globalFunctionService.printToConsole(this.constructor.name,'onTargetReorderUserGroupMembership', '@Start');
-    }
-
-    userMenuAccessToDatasources(user: User) {
-        // Access to Data Sources for the selected user
-        // - user: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'userMenuAccessToDatasources', '@Start');
-
-        // Get the current and available users
-        this.availableUserDatasource = this.eazlService.getDatasourceAccessedByUser(
-            this.selectedUser.username,
-            '*',
-            false
-        );
-        this.belongstoUserDatasource = this.eazlService.getDatasourceAccessedByUser(
-            this.selectedUser.username,
-            '*',
-            true
-        );
-
-        // Show popup
-        this.displayUserDatasource = true;
     }
 
     onClickUserDatasourceCancel() {
