@@ -7069,49 +7069,6 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
             }
         }
 
-        // WidgetComment
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetComment') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset WidgetComment');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataWidgetComment = true;
-
-            //         // Get all the data via API
-            //         let widgetCommentWorking: WidgetComment[] = [];
-            //         this.get<EazlWidgetComment>('widget-comments')
-            //             .subscribe(
-            //                 (eazlWidgetComment) => {
-            //                     for (var i = 0; i < eazlWidgetComment.length; i++) {
-            //                         let widgetCommentSingle = new WidgetComment();
-            //                         widgetCommentSingle = this.cdal.loadWidgetComment(eazlWidgetComment[i]);
-            //                         widgetCommentWorking.push(widgetCommentSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.widgetComments = widgetCommentWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataWidgetComment = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear WidgetComment');
-            //         this.widgetComments = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataWidgetComment = true;
-            //     }
-            // }
-        // Done
-
         // WidgetTemplate
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'WidgetTemplate') {
 
