@@ -6960,49 +6960,6 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
             }
         }
 
-        // ReportUserRelationship
-            // if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'ReportUserRelationship') {
-
-            //     // Reset
-            //     if (resetAction == 'reset') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  reset ReportUserRelationship');
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataReportUserRelationship = true;
-
-            //         // Get all the data via API
-            //         let reportUserRelationshipWorking: ReportUserRelationship[] = [];
-            //         this.get<EazlReportUserRelationship>('report-user-relationships')
-            //             .subscribe(
-            //                 (eazlReportUserRelationship) => {
-            //                     for (var i = 0; i < eazlReportUserRelationship.length; i++) {
-            //                         let reportUserRelationshipSingle = new ReportUserRelationship();
-            //                         reportUserRelationshipSingle = this.cdal.loadReportUserRelationship(eazlReportUserRelationship[i]);
-            //                         reportUserRelationshipWorking.push(reportUserRelationshipSingle);
-
-            //                     }
-
-            //                 // Replace
-            //                 // TODO - replace local Array after Bradley's done initial upload
-            //                 //  this.reportUserRelationship = reportUserRelationshipWorking;
-
-            //                 // Mark the data as clean
-            //                 this.globalVariableService.dirtyDataReportUserRelationship = false;
-            //                 }
-            //         )
-            //     }
-
-            //     // Clear all
-            //     if (resetAction.toLowerCase() == 'clear') {
-            //         this.globalFunctionService.printToConsole(this.constructor.name,'cacheCanvasData', '  clear ReportUserRelationship');
-            //         this.reportUserRelationship = [];
-
-            //         // Mark the data as dirty
-            //         this.globalVariableService.dirtyDataReportUserRelationship = true;
-            //     }
-            // }
-        // Done
-
         // SystemConfiguration
         if (resetObject.toLowerCase() == 'all'   ||   resetObject == 'SystemConfiguration') {
 
