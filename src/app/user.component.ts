@@ -255,21 +255,6 @@ export class UserComponent implements OnInit {
         this.displayUserDatasource = false;
     }
 
-
-
-    onMoveToSourceUserDatasource(event) {
-        // User clicked onMoveToSource on Group Membership - remove grp membership
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceUserGroupMembership', '@Start');
-
-        // Remove the makker(s)
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteDatasourceUserAccess(
-                event.items[i].datasourceID,
-                this.selectedUser.username
-            );
-        }
-    }
-
     userMenuModelPermissions(user: User, model: string) {
         // Show Model Permissions (dashboard, dastasources) to which the given user has access
         // - user: currently selected row
