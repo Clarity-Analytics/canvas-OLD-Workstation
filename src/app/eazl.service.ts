@@ -5732,18 +5732,6 @@ export class EazlService implements OnInit {
         )
     }
 
-    deleteDatasourceUserAccess(datasourceID: number, username: string) {
-        // Deletes a Datasource - Group record from the DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteDatasourceUserAccess', '@Start');
-
-        this.dataSourceUserAccess = this.dataSourceUserAccess.filter(
-            item => (!(item.datasourceID == datasourceID  &&  item.userName == username))
-        );
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataDataSourceUserAccess = true;
-    }
-
     addGroupDatasourceAccess(datasourceID: number, groupID: number) {
         // Adds a Datasource - Group record to the DB
 
