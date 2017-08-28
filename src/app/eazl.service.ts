@@ -635,34 +635,34 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         },
     //     ];
 
+
+// const REPORTUSERRELATIONSHIP
+    export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
+        [
+            {
+                reportUserRelationshipID: 0,
+                userName: 'janniei',
+                reportID: 1,
+                reportUserRelationshipType: 'Owns',
+                reportUserRelationshipRating: 0,
+                reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+                reportUserRelationshipCreatedUserName: 'janniei',
+                reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+                reportUserRelationshipUpdatedUserName: 'janniei'
+            },
+            {
+                reportUserRelationshipID: 0,
+                userName: 'bradleyk',
+                reportID: 1,
+                reportUserRelationshipType: 'Owns',
+                reportUserRelationshipRating: 0,
+                reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+                reportUserRelationshipCreatedUserName: 'janniei',
+                reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+                reportUserRelationshipUpdatedUserName: 'janniei'
+            }
+        ];
 // End of const comments
-
-
-export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
-    [
-        {
-            reportUserRelationshipID: 0,
-            userName: 'janniei',
-            reportID: 1,
-            reportUserRelationshipType: 'Owns',
-            reportUserRelationshipRating: 0,
-            reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-            reportUserRelationshipCreatedUserName: 'janniei',
-            reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-            reportUserRelationshipUpdatedUserName: 'janniei'
-        },
-        {
-            reportUserRelationshipID: 0,
-            userName: 'bradleyk',
-            reportID: 1,
-            reportUserRelationshipType: 'Owns',
-            reportUserRelationshipRating: 0,
-            reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-            reportUserRelationshipCreatedUserName: 'janniei',
-            reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-            reportUserRelationshipUpdatedUserName: 'janniei'
-        }
-    ];
 
 export const DATASOURCES: DataSource[] =[]
     // [
@@ -5085,14 +5085,11 @@ export class EazlService implements OnInit {
 
     getReports(
         dashboardID: number = -1,
-        username: string = '*',
-        relationship: string = '*',
         dataSourceID: number = -1
         ): Report[] {
         // Return a list of Reports
         // - dashboardID Optional parameter to filter on
-        // - username Optional filter on relationships for this username
-        // - relationship Optiona filter of Type of relationship IF username: Likes, Rates, Owns
+        // - dataSourceID Optional parameter to filter on
         this.globalFunctionService.printToConsole(this.constructor.name,'getReports', '@Start');
 
         // Report to user if dirty at the moment
@@ -5101,15 +5098,6 @@ export class EazlService implements OnInit {
                 severity: 'warn',
                 summary:  'Report data is dirty / not up to date',
                 detail:   'The Report data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataReportUserRelationship) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'ReportUserRelationship data is dirty / not up to date',
-                detail:   'The ReportUserRelationship data is being refreshed; request again to get the latest from the database'
             });
         }
 
@@ -5128,23 +5116,6 @@ export class EazlService implements OnInit {
 
             reportsWorking = reportsWorking.filter(rpt =>
              (widgetReportIDs.indexOf(rpt.reportID) >= 0) )
-        }
-
-        if (username != '*') {
-
-            // Get the ReportIDs from all the Widgets for the requested Dashboard
-            let userRelatedRptIDs: number[] = [];
-            for (var i = 0; i < this.reportUserRelationship.length; i++) {
-                if (this.reportUserRelationship[i].userName == username
-                    && (relationship == '*'  ||
-                        this.reportUserRelationship[i].reportUserRelationshipType ==
-                            relationship)) {
-                        userRelatedRptIDs.push(this.reportUserRelationship[i].reportID);
-                }
-            }
-
-            reportsWorking = reportsWorking.filter(rpt =>
-                (userRelatedRptIDs.indexOf(rpt.reportID) >= 0) )
         }
 
         if (dataSourceID != -1) {

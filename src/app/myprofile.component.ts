@@ -89,7 +89,7 @@ export class MyProfileComponent implements OnInit {
         this.datasources = this.eazlService.getDataSources();
 
         // My Reports
-        this.reports = this.eazlService.getReports(-1, this.canvasUser.username, 'Owns');
+        this.reports = this.eazlService.getReports();
 
         // My Dashboards I own
         this.dashboardsIown = this.eazlService.getDashboards();

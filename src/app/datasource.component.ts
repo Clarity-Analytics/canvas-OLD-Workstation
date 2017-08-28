@@ -100,8 +100,6 @@ export class DataSourceComponent implements OnInit {
 
         this.reports = this.eazlService.getReports(
             -1,
-            '*',
-            '*',
             selectedDatasource.datasourceID
         );
 
