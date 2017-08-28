@@ -66,7 +66,6 @@ import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
 import { UserModelPermission }        from './model.userModelPermissions';
 import { Widget }                     from './model.widget';
-// import { WidgetComment }              from './model.widget.comment';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
 
