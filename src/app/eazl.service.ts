@@ -90,7 +90,6 @@ import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
-import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
@@ -104,7 +103,6 @@ import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { PackageTask }                from './model.package.task';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
-import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
 import { SystemConfiguration }        from './model.systemconfiguration';
@@ -637,31 +635,31 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
 
 
 // const REPORTUSERRELATIONSHIP
-    export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
-        [
-            {
-                reportUserRelationshipID: 0,
-                userName: 'janniei',
-                reportID: 1,
-                reportUserRelationshipType: 'Owns',
-                reportUserRelationshipRating: 0,
-                reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-                reportUserRelationshipCreatedUserName: 'janniei',
-                reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-                reportUserRelationshipUpdatedUserName: 'janniei'
-            },
-            {
-                reportUserRelationshipID: 0,
-                userName: 'bradleyk',
-                reportID: 1,
-                reportUserRelationshipType: 'Owns',
-                reportUserRelationshipRating: 0,
-                reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
-                reportUserRelationshipCreatedUserName: 'janniei',
-                reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
-                reportUserRelationshipUpdatedUserName: 'janniei'
-            }
-        ];
+    // export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
+    //     [
+    //         {
+    //             reportUserRelationshipID: 0,
+    //             userName: 'janniei',
+    //             reportID: 1,
+    //             reportUserRelationshipType: 'Owns',
+    //             reportUserRelationshipRating: 0,
+    //             reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+    //             reportUserRelationshipCreatedUserName: 'janniei',
+    //             reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+    //             reportUserRelationshipUpdatedUserName: 'janniei'
+    //         },
+    //         {
+    //             reportUserRelationshipID: 0,
+    //             userName: 'bradleyk',
+    //             reportID: 1,
+    //             reportUserRelationshipType: 'Owns',
+    //             reportUserRelationshipRating: 0,
+    //             reportUserRelationshipCreatedDateTime: '2017/05/01 14:21',
+    //             reportUserRelationshipCreatedUserName: 'janniei',
+    //             reportUserRelationshipUpdatedDateTime: '2017/05/01 14:21',
+    //             reportUserRelationshipUpdatedUserName: 'janniei'
+    //         }
+    //     ];
 // End of const comments
 
 export const DATASOURCES: DataSource[] =[]
@@ -3688,7 +3686,6 @@ export class EazlService implements OnInit {
     packageTask: PackageTask[] = [];                        // List of PackageTask
     reports: Report[] = REPORTS;                            // List of Reports
     reportHistory: ReportHistory[];                         // List of Report History (ran)
-    reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN;// List of IsSuperUser options for Dropdown
