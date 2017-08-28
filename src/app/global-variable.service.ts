@@ -79,7 +79,6 @@ export class GlobalVariableService {
     dirtyDataTextPaddingDropdown: boolean = true;
     dirtyDataTextPositionDropdown: boolean = true;
     dirtyDataWidget: boolean = true;
-    dirtyDataWidgetComment: boolean = true;
     dirtyDataWidgetTemplate: boolean = true;
     dirtyDataWidgetType: boolean = true;
     dirtyDataUser: boolean = true;
