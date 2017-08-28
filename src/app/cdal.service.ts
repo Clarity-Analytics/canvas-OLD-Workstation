@@ -44,7 +44,6 @@ import { EazlDataSourceUserPermissions}     from './model.datasource';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
 import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
-// import { EazlNotification }           from './model.notification';
 import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
@@ -53,9 +52,7 @@ import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
 import { EazlUserModelPermission }    from './model.userModelPermissions';
-// import { EazlUserGroupMembership }    from './model.userGroupMembership';
 import { EazlWidget }                 from './model.widget';
-// import { EazlWidgetComment }          from './model.widget.comment';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
@@ -2321,54 +2318,6 @@ eazlSystemConfigurationWorking.company_logo = null
         // Return the result
         return eazlSystemConfigurationWorking;
     }
-
-    // loadWidgetComment(eazlWidgetComment: EazlWidgetComment): WidgetComment {
-    //     // Load WidgetComment: move data Eazl -> Canvas
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadWidgetComment', '@Start');
-
-    //     let widgetCommentWorking = new WidgetComment();
-
-    //     widgetCommentWorking.widgetCommentID = eazlWidgetComment.id;
-
-    //     if (eazlWidgetComment.widget_id != null) {
-    //         widgetCommentWorking.widgetID = eazlWidgetComment.widget_id;
-    //     } else {
-    //         widgetCommentWorking.widgetID = -1;
-    //     }
-
-    //     if (eazlWidgetComment.thread_id != null) {
-    //         widgetCommentWorking.widgetCommentThreadID = eazlWidgetComment.thread_id;
-    //     } else {
-    //         widgetCommentWorking.widgetCommentThreadID = -1;
-    //     }
-
-    //     if (eazlWidgetComment.created_on != null) {
-    //         widgetCommentWorking.widgetCommentCreatedDateTime = eazlWidgetComment.created_on;
-    //     } else {
-    //         widgetCommentWorking.widgetCommentCreatedDateTime = '';
-    //     }
-
-    //     if (eazlWidgetComment.created_by != null) {
-    //         widgetCommentWorking.widgetCommentCreatedUserName = eazlWidgetComment.created_by;
-    //     } else {
-    //         widgetCommentWorking.widgetCommentCreatedUserName = '';
-    //     }
-
-    //     if (eazlWidgetComment.heading != null) {
-    //         widgetCommentWorking.widgetCommentHeading = eazlWidgetComment.heading;
-    //     } else {
-    //         widgetCommentWorking.widgetCommentHeading = '';
-    //     }
-
-    //     if (eazlWidgetComment.body != null) {
-    //         widgetCommentWorking.widgetCommentBody = eazlWidgetComment.body;
-    //     } else {
-    //         widgetCommentWorking.widgetCommentBody = '';
-    //     }
-
-    //     // Return the result
-    //     return widgetCommentWorking;
-    // }
 
     loadWidgetTemplate(eazlWidgetTemplate: EazlWidgetTemplate): WidgetTemplate {
         // Load WidgetTemplate: move data Eazl -> Canvas
