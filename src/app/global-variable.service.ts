@@ -73,7 +73,6 @@ export class GlobalVariableService {
     dirtyDataReport: boolean = true;
     dirtyDataReportWidgetSet: boolean = true;
     dirtyDataReportHistory: boolean = true;
-    dirtyDataReportUserRelationship: boolean = true;
     dirtyDataSystemConfiguration: boolean = true;
     dirtyDataTextMarginDropdown: boolean = true;
     dirtyDataTextPaddingDropdown: boolean = true;
