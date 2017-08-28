@@ -561,81 +561,82 @@ export const ISSUPERUSERDROPDOWN: SelectItem[] =
     //         datasourceUserAccessUpdatedUserName: 'janniei'
     //     }
     // ];
+// const REPORTHISTORY
+    // export const REPORTHISTORY: ReportHistory[] =
+    //     [
+    //         {
+    //             reportHistoryID: 0,
+    //             reportHistoryUserName: 'janniei',
+    //             reportHistoryReportID: 1,
+    //             reportHistoryChecksum: '',
+    //             reportHistoryDatasourceID: 0,
+    //             reportHistoryStartDateTime: '2017/05/01 08:21',
+    //             reportHistoryEndDateTime: '2017/05/01 08:24',
+    //             reportHistoryStatus: 'Succes',
+    //             reportHistoryNrRowsReturned: 12,
+    //             error: '',
+    //             reportHistoryUrl: ''
+    //         },
+    //         {
+    //             reportHistoryID: 1,
+    //             reportHistoryUserName: 'janniei',
+    //             reportHistoryReportID: 2,
+    //             reportHistoryDatasourceID: 0,
+    //             reportHistoryChecksum: '',
+    //             reportHistoryStartDateTime: '2017/05/01 08:21',
+    //             reportHistoryEndDateTime: '2017/05/01 08:24',
+    //             reportHistoryStatus: 'Succes',
+    //             reportHistoryNrRowsReturned: 12,
+    //             error: '',
+    //             reportHistoryUrl: ''
+
+    //         },
+    //         {
+    //             reportHistoryID: 2,
+    //             reportHistoryUserName: 'janniei',
+    //             reportHistoryReportID: 1,
+    //             reportHistoryDatasourceID: 0,
+    //             reportHistoryChecksum: '',
+    //             reportHistoryStartDateTime: '2017/05/01 08:21',
+    //             reportHistoryEndDateTime: '2017/05/01 08:24',
+    //             reportHistoryStatus: 'Failed',
+    //             reportHistoryNrRowsReturned: 12,
+    //             error: '',
+    //             reportHistoryUrl: ''
+
+    //         },
+    //         {
+    //             reportHistoryID: 3,
+    //             reportHistoryUserName: 'janniei',
+    //             reportHistoryReportID: 1,
+    //             reportHistoryDatasourceID: 1,
+    //             reportHistoryChecksum: '',
+    //             reportHistoryStartDateTime: '2017/05/01 08:21',
+    //             reportHistoryEndDateTime: '2017/05/01 08:24',
+    //             reportHistoryStatus: 'Succes',
+    //             reportHistoryNrRowsReturned: 12,
+    //             error: '',
+    //             reportHistoryUrl: ''
+
+    //         },
+    //         {
+    //             reportHistoryID: 4,
+    //             reportHistoryUserName: 'bradleyk',
+    //             reportHistoryReportID: 1,
+    //             reportHistoryDatasourceID: 1,
+    //             reportHistoryChecksum: '',
+    //             reportHistoryStartDateTime: '2017/05/01 08:21',
+    //             reportHistoryEndDateTime: '2017/05/01 08:24',
+    //             reportHistoryStatus: 'Succes',
+    //             reportHistoryNrRowsReturned: 12,
+    //             error: '',
+    //             reportHistoryUrl: ''
+
+    //         },
+    //     ];
+
 // End of const comments
 
-
-export const REPORTHISTORY: ReportHistory[] =
-    [
-        {
-            reportHistoryID: 0,
-            reportHistoryUserName: 'janniei',
-            reportHistoryReportID: 1,
-            reportHistoryChecksum: '',
-            reportHistoryDatasourceID: 0,
-            reportHistoryStartDateTime: '2017/05/01 08:21',
-            reportHistoryEndDateTime: '2017/05/01 08:24',
-            reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            error: '',
-            reportHistoryUrl: ''
-        },
-        {
-            reportHistoryID: 1,
-            reportHistoryUserName: 'janniei',
-            reportHistoryReportID: 2,
-            reportHistoryDatasourceID: 0,
-            reportHistoryChecksum: '',
-            reportHistoryStartDateTime: '2017/05/01 08:21',
-            reportHistoryEndDateTime: '2017/05/01 08:24',
-            reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            error: '',
-            reportHistoryUrl: ''
-
-        },
-        {
-            reportHistoryID: 2,
-            reportHistoryUserName: 'janniei',
-            reportHistoryReportID: 1,
-            reportHistoryDatasourceID: 0,
-            reportHistoryChecksum: '',
-            reportHistoryStartDateTime: '2017/05/01 08:21',
-            reportHistoryEndDateTime: '2017/05/01 08:24',
-            reportHistoryStatus: 'Failed',
-            reportHistoryNrRowsReturned: 12,
-            error: '',
-            reportHistoryUrl: ''
-
-        },
-        {
-            reportHistoryID: 3,
-            reportHistoryUserName: 'janniei',
-            reportHistoryReportID: 1,
-            reportHistoryDatasourceID: 1,
-            reportHistoryChecksum: '',
-            reportHistoryStartDateTime: '2017/05/01 08:21',
-            reportHistoryEndDateTime: '2017/05/01 08:24',
-            reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            error: '',
-            reportHistoryUrl: ''
-
-        },
-        {
-            reportHistoryID: 4,
-            reportHistoryUserName: 'bradleyk',
-            reportHistoryReportID: 1,
-            reportHistoryDatasourceID: 1,
-            reportHistoryChecksum: '',
-            reportHistoryStartDateTime: '2017/05/01 08:21',
-            reportHistoryEndDateTime: '2017/05/01 08:24',
-            reportHistoryStatus: 'Succes',
-            reportHistoryNrRowsReturned: 12,
-            error: '',
-            reportHistoryUrl: ''
-
-        },
-    ];
 
 export const REPORTUSERRELATIONSHIP: ReportUserRelationship[] =
     [
@@ -3686,11 +3687,11 @@ export class EazlService implements OnInit {
     notifications: Notification[] = [];                     // List of Notifications
     packageTask: PackageTask[] = [];                        // List of PackageTask
     reports: Report[] = REPORTS;                            // List of Reports
-    reportHistory: ReportHistory[] = REPORTHISTORY;         // List of Report History (ran)
+    reportHistory: ReportHistory[];                         // List of Report History (ran)
     reportUserRelationship: ReportUserRelationship[] = REPORTUSERRELATIONSHIP; // List of relationships
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
-    isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN; // List of IsSuperUser options for Dropdown
+    isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN;// List of IsSuperUser options for Dropdown
     systemConfiguration: SystemConfiguration;               // System wide settings
     userModelPermissions: UserModelPermission[];            // List of model permissions per user
     users: User[] = [];                                     // List of Users
