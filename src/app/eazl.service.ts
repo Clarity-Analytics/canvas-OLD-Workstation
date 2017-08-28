@@ -5732,43 +5732,6 @@ export class EazlService implements OnInit {
         )
     }
 
-    addDatasourceUserAccess(datasourceID: number, username: string) {
-        // Adds a Datasource - User record to the DB
-
-        this.globalFunctionService.printToConsole(this.constructor.name,'addDatasourceUserAccess', '@Start');
-
-        let found: boolean = false;
-        for (var i = 0; i < this.dataSourceUserAccess.length; i++) {
-            if (this.dataSourceUserAccess[i].datasourceID == datasourceID  &&
-                this.dataSourceUserAccess[i].userName == username) {
-                    found = true;
-                    break;
-                }
-        }
-
-        // Get current user
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        // Only add if not already there
-        if (!found) {
-            this.dataSourceUserAccess.push(
-                {
-                    datasourceID: datasourceID,
-	                userName: username,
-                    dataSourceUserAccessType: 'Readonly',
-                    dataSourceUserAccessScope: 'All',
-                datasourceUserAccessCreatedDateTime: this.canvasDate.now('standard'),
-                datasourceUserAccessCreatedUserName: currentUser,
-                datasourceUserAccessUpdatedDateTime: this.canvasDate.now('standard'),
-                datasourceUserAccessUpdatedUserName: currentUser
-                }
-            )
-        }
-
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataDataSourceUserAccess = true;
-    }
-
     deleteDatasourceUserAccess(datasourceID: number, username: string) {
         // Deletes a Datasource - Group record from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteDatasourceUserAccess', '@Start');
