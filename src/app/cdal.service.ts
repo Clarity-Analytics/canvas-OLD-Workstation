@@ -2127,7 +2127,6 @@ console.log('CDAL dashboardWorking',dashboardWorking)
             reportHistoryWorking.reportHistoryEndDateTime = '';
         }
 
-
         if (eazlReportHistory.state != null) {
             reportHistoryWorking.reportHistoryStatus = eazlReportHistory.state;
         } else {
@@ -2144,6 +2143,12 @@ console.log('CDAL dashboardWorking',dashboardWorking)
             reportHistoryWorking.error = eazlReportHistory.error;
         } else {
             reportHistoryWorking.error = '';
+        }
+
+        if (eazlReportHistory.url != null) {
+            reportHistoryWorking.reportHistoryUrl = eazlReportHistory.url;
+        } else {
+            reportHistoryWorking.reportHistoryUrl = '';
         }
 
         // Return the result

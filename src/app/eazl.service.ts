@@ -576,7 +576,8 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
             reportHistoryNrRowsReturned: 12,
-            error: ''
+            error: '',
+            reportHistoryUrl: ''
         },
         {
             reportHistoryID: 1,
@@ -588,7 +589,9 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
             reportHistoryNrRowsReturned: 12,
-            error: ''
+            error: '',
+            reportHistoryUrl: ''
+
         },
         {
             reportHistoryID: 2,
@@ -600,7 +603,9 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Failed',
             reportHistoryNrRowsReturned: 12,
-            error: ''
+            error: '',
+            reportHistoryUrl: ''
+
         },
         {
             reportHistoryID: 3,
@@ -612,7 +617,9 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
             reportHistoryNrRowsReturned: 12,
-            error: ''
+            error: '',
+            reportHistoryUrl: ''
+
         },
         {
             reportHistoryID: 4,
@@ -624,7 +631,9 @@ export const REPORTHISTORY: ReportHistory[] =
             reportHistoryEndDateTime: '2017/05/01 08:24',
             reportHistoryStatus: 'Succes',
             reportHistoryNrRowsReturned: 12,
-            error: ''
+            error: '',
+            reportHistoryUrl: ''
+
         },
     ];
 
@@ -6961,8 +6970,7 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
                             }
 
                         // Replace
-                        // TODO - replace local Array after Bradley's done initial upload
-                        //  this.reportHistory = reportHistoryWorking;
+                         this.reportHistory = reportHistoryWorking;
 
                         // Mark the data as clean
                         this.globalVariableService.dirtyDataReportHistory = false;
