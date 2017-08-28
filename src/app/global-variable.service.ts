@@ -61,7 +61,6 @@ export class GlobalVariableService {
     dirtyDataDashboardTagMembership: boolean = true;
     dirtyDataDashboard: boolean = true;
     dirtyDataDatasource: boolean = true;
-    dirtyDataDataSourceUserAccess: boolean = true;
     dirtyDataFilter: boolean = true;
     dirtyDataFontSizeDropdown: boolean = true;
     dirtyDataFontWeightDropdown: boolean = true;
