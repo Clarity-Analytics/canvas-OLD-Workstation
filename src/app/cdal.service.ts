@@ -1743,66 +1743,6 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         return dataSourceTaskWorking;
     }
 
-    loadDataSourceUserAccess(eazlDataSourceUserAccess: EazlDataSourceUserAccess): DataSourceUserAccess {
-        // Load DataSourceUserAccess: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadDataSourceUserAccess', '@Start');
-
-        let dataSourceUserAccessWorking = new DataSourceUserAccess();
-
-        dataSourceUserAccessWorking.datasourceID = eazlDataSourceUserAccess.id;
-
-        if (eazlDataSourceUserAccess.username != null) {
-            dataSourceUserAccessWorking.userName = eazlDataSourceUserAccess.username;
-        } else {
-            dataSourceUserAccessWorking.userName = '';
-        }
-
-        if (eazlDataSourceUserAccess.type != null) {
-            dataSourceUserAccessWorking.dataSourceUserAccessType =
-                eazlDataSourceUserAccess.type;
-        } else {
-            dataSourceUserAccessWorking.dataSourceUserAccessType = '';
-        }
-
-        if (eazlDataSourceUserAccess.scope != null) {
-            dataSourceUserAccessWorking.dataSourceUserAccessScope =
-                eazlDataSourceUserAccess.scope;
-        } else {
-            dataSourceUserAccessWorking.dataSourceUserAccessScope = '';
-        }
-
-        if (eazlDataSourceUserAccess.created_on != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedDateTime =
-                eazlDataSourceUserAccess.created_on;
-        } else {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedDateTime = '';
-        }
-
-        if (eazlDataSourceUserAccess.created_by != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserName =
-                eazlDataSourceUserAccess.created_by;
-        } else {
-            dataSourceUserAccessWorking.datasourceUserAccessCreatedUserName = '';
-        }
-
-        if (eazlDataSourceUserAccess.updated_on != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedDateTime =
-                eazlDataSourceUserAccess.updated_on;
-        } else {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedDateTime = '';
-        }
-
-        if (eazlDataSourceUserAccess.updated_by != null) {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserName =
-                eazlDataSourceUserAccess.updated_by;
-        } else {
-            dataSourceUserAccessWorking.datasourceUserAccessUpdatedUserName = '';
-        }
-
-        // Return the result
-        return dataSourceUserAccessWorking;
-    }
-
     // loadFilter(eazlFilter: EazlFilter): Filter {
     //     // Load Filter: move data Eazl -> Canvas
     //     this.globalFunctionService.printToConsole(this.constructor.name,'loadFilter', '@Start');
