@@ -290,57 +290,6 @@
 </div>
 
 
-<!--User Datasource panel-->
-<div
-    class="groupMembershipPanel"
-    *ngIf="displayUserDatasource"
-    >
-
-    <div
-        class="groupMembershipHeading"
-        >
-        Datasource Access for {{ selectedUser.username }}
-        <button
-            class="panelButtonWithLabel"
-            pButton
-            type="button"
-            label="Cancel"
-            icon="fa-undo"
-            (click)="onClickUserDatasourceCancel()"
-            >
-        </button>
-    </div>
-
-    <!--Content-->
-    <form>
-
-        <div
-            >
-            <p-pickList
-                [source]="availableUserDatasource"
-                [target]="belongstoUserDatasource"
-                sourceHeader="Available Datasources"
-                targetHeader="Access to these Datasources"
-                (onMoveToTarget)="onMoveToTargetUserDatasource($event)"
-                (onMoveToSource)="onMoveToSourceUserDatasource($event)"
-                >
-                <ng-template let-ds pTemplate="item">
-                    <div class="ui-helper-clearfix">
-                        <div
-                            style="font-size:14px;float:left;margin:15px 5px 0 0"
-                            >
-                            {{ ds.datasourceName }}
-                        </div>
-                    </div>
-                </ng-template>
-            </p-pickList>
-
-        </div>
-
-    </form>
-</div>
-
-
 <!--Popup for Model Permissions-->
 <p-dialog
     [(visible)]="displayUserModelPermissions"
