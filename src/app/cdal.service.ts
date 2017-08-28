@@ -681,7 +681,7 @@ export class CDAL {
         } else {
             eazlDashboardTabWorking.updatedUserName = '';
         }
-console.log('CDAL eazlDashboardTabWorking', eazlDashboardTabWorking)
+
         // Return the result
         return eazlDashboardTabWorking;
     }
@@ -1411,7 +1411,7 @@ console.log('CDAL dashboardWorking',dashboardWorking)
 
         // Remove the first dummy one
         userModelPermissionWorking.objectPermissions.splice(0,1);
-console.log('   CDAL userModelPermissionWorking', userModelPermissionWorking)
+
         // Return result
         return userModelPermissionWorking;
     }

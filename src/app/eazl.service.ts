@@ -5732,51 +5732,6 @@ export class EazlService implements OnInit {
         )
     }
 
-    getDatasourceAccessedByUser(
-            username: string,
-            accessType: string = '*',
-            include: boolean = true
-        ): DataSource[] {
-        // Return a list of Datasources accessed by a User
-        // - username Optional filter
-        // - accessType Optional filter ( Readonly, Update, Add, Delete, Full)
-        // - include Optional filter: True = include, False = complement (NO access)
-        this.globalFunctionService.printToConsole(this.constructor.name,'getDatasourceAccessedByUser', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataDataSourceUserAccess) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'DatasourceUserAccess data is dirty / not up to date',
-                detail:   'The DatasourceUserAccess data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        // Create list of Datasource IDs that are relevant
-        let dataSourceIDs: number[] = [];
-
-        // Filter as needed
-        this.dataSourceUserAccess.forEach( da => {
-                if ( (username == '*'    ||   da.userName == username)
-                     &&
-                     (accessType == '*'  ||  da.dataSourceUserAccessType == accessType)
-                   ) {
-                    dataSourceIDs.push(da.datasourceID)
-                   }
-        });
-
-        // Return
-        return this.datasources.filter(ds => {
-            if (
-                 (include   &&   dataSourceIDs.indexOf(ds.datasourceID) >= 0)
-                 ||
-                 (!include  &&   dataSourceIDs.indexOf(ds.datasourceID) < 0)
-               ) {
-                    return ds;
-                 }
-        });
-    }
-
     addDatasourceUserAccess(datasourceID: number, username: string) {
         // Adds a Datasource - User record to the DB
 
