@@ -8,9 +8,9 @@ import { OnInit }                     from '@angular/core';
 import { Input }                      from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
+
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
@@ -32,7 +32,7 @@ export class ChangePasswordComponent implements OnInit {
 
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formChangePasswordSubmit: EventEmitter<string> = new EventEmitter();
-    
+
     // Local properties
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
@@ -52,10 +52,10 @@ export class ChangePasswordComponent implements OnInit {
             'username': new FormControl('', Validators.required),
             'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
             'passwordRetyped': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-            
-        });            
+
+        });
     }
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -80,7 +80,7 @@ export class ChangePasswordComponent implements OnInit {
             summary:  'Cancel',
             detail:   'No changes as requested'
         });
-        
+
         this.formChangePasswordSubmit.emit('Cancel');
     }
 
@@ -92,13 +92,13 @@ export class ChangePasswordComponent implements OnInit {
         this.formIsValid = false;
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
-        if (this.userform.controls['password'].value == ''  || 
+        if (this.userform.controls['password'].value == ''  ||
             this.userform.controls['password'].value == null) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Password is compulsory.'
         }
-        if (this.userform.controls['password'].value != 
+        if (this.userform.controls['password'].value !=
             this.userform.controls['passwordRetyped'].value) {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
@@ -115,7 +115,7 @@ export class ChangePasswordComponent implements OnInit {
             });
             return;
         }
- 
+
         // Adding new user
         let result = this.eazlService.changePassword(
             this.selectedUser.username,
@@ -145,4 +145,4 @@ export class ChangePasswordComponent implements OnInit {
 
 
 
-} 
+}

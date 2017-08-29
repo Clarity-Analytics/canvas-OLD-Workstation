@@ -8,9 +8,9 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
+
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
@@ -29,14 +29,14 @@ import { SelectedItem }               from './model.selectedItem';
     styleUrls:  ['dashboard-tab-editor.component.css']
 })
 export class DashboardTabEditorComponent implements OnInit {
- 
+
     @Input() selectedDashboardID: number;
-    @Input() selectedDashboardTab: SelectedItem; 
+    @Input() selectedDashboardTab: SelectedItem;
     // @Input() displayTabDetails: boolean;
 
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formDashboarTabSubmit: EventEmitter<boolean> = new EventEmitter();
-    
+
     // Local properties
     currentDashboardTab: DashboardTab;                  // Dashboard Tab selected on parent form
     dashboardTabForm: FormGroup;                        // FormBuilder Group
@@ -50,7 +50,7 @@ export class DashboardTabEditorComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-      
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -73,7 +73,7 @@ export class DashboardTabEditorComponent implements OnInit {
     refreshForm() {
         // Reacts to changes in selectedWidget
         this.globalFunctionService.printToConsole(this.constructor.name, 'refreshForm', '@Start');
-     
+
         // Get the selected Dashboard
         this.currentDashboardTab = this.eazlService.getDashboardTabs(
             this.selectedDashboardID, this.selectedDashboardTab.id)[0];
@@ -81,9 +81,9 @@ export class DashboardTabEditorComponent implements OnInit {
         // First ngOnChanges runs before the OnInit
         if (this.dashboardTabForm != undefined) {
 
-            // Clear the form 
+            // Clear the form
             this.dashboardTabForm.reset();
-            
+
             // Populate
             this.dashboardTabForm.controls['dashboardID'].setValue(
                 this.currentDashboardTab.dashboardID
@@ -112,7 +112,7 @@ export class DashboardTabEditorComponent implements OnInit {
         }
 
     }
-         
+
     onClickCancel (){
         // User clicked cancel button
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickCancel', '@Start');
@@ -133,18 +133,18 @@ export class DashboardTabEditorComponent implements OnInit {
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
-        if (this.dashboardTabForm.controls['dashboardTabName'].value == ''  || 
+        if (this.dashboardTabForm.controls['dashboardTabName'].value == ''  ||
             this.dashboardTabForm.controls['dashboardTabName'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Tab Name is compulsory.';
         }
-        if (this.dashboardTabForm.controls['dashboardTabDescription'].value == ''  || 
+        if (this.dashboardTabForm.controls['dashboardTabDescription'].value == ''  ||
             this.dashboardTabForm.controls['dashboardTabDescription'].value == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Tab Description is compulsory.';
         }
 
@@ -161,7 +161,7 @@ export class DashboardTabEditorComponent implements OnInit {
 
         // Update DB
         this.eazlService.updateDashboardTab(
-            this.currentDashboardTab.dashboardID, 
+            this.currentDashboardTab.dashboardID,
             this.currentDashboardTab.dashboardTabID,
             this.dashboardTabForm.controls['dashboardTabDescription'].value
         );

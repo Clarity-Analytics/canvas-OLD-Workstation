@@ -15,7 +15,7 @@ export class GlobalFunctionService {
     snapToGrid: boolean = true;                 // If true, snap widgets to gridSize
 
     constructor(
-      private globalVariableService: GlobalVariableService) { 
+      private globalVariableService: GlobalVariableService) {
     }
 
     // Prints a message to the console if in debugging mode GLOBALLY

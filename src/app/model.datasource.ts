@@ -19,17 +19,17 @@ export class EazlDataSource {
 
 export class EazlDataSourceUserPermissions {
     username: string;
-    permissions: string[];                      // Permissions at model level per dashboard: 
-            // add_package, assign_permission_package, change_package, delete_package, 
-            // execute_package, package_owned_access, package_shared_access, 
+    permissions: string[];                      // Permissions at model level per dashboard:
+            // add_package, assign_permission_package, change_package, delete_package,
+            // execute_package, package_owned_access, package_shared_access,
             // remove_permission_package, view_package
 }
 
 export class EazlDataSourceGroupPermissions {
     username: string;
-    permissions: string[];                      // Permissions at model level per dashboard: 
-            // add_package, assign_permission_package, change_package, delete_package, 
-            // execute_package, package_owned_access, package_shared_access, 
+    permissions: string[];                      // Permissions at model level per dashboard:
+            // add_package, assign_permission_package, change_package, delete_package,
+            // execute_package, package_owned_access, package_shared_access,
             // remove_permission_package, view_package
 }
 
@@ -57,7 +57,7 @@ export class DataSource {
     datasourceMaxRowsReturned: number;      // *Max number of row returned, 0 = all
     datasourceDefaultReturnFormat: string;  // *Data returned in JSON, csv, etc by default
     datasourceUserEditable: boolean;        // *True if users may edit this DS
-	packageRepositoryID: number;            // Django repo 
+	packageRepositoryID: number;            // Django repo
 	packageCompiled: boolean;               // Django field, True = compiled
 	datasourceParameters: string[];         // Array of Django parameters
 	datasourceFields: string[];             // Array of Django fields
@@ -67,7 +67,7 @@ export class DataSource {
 	datasourceLastRuntimeError: string;     // Django last runtime error
     datasourceExecuteURL: string;           // Django datasource execute url
     datasourcePermissions: string[];        // Array of Django permissions
-	datasourceUrl: string;                  // Django datasource url 
+	datasourceUrl: string;                  // Django datasource url
     datasourceSQL: string;                  // *Django datasource SQL ?
 	datasourceCreatedDateTime: string;      // *Created on
 	datasourceCreatedUserName: string;      // *Created by
@@ -87,7 +87,7 @@ export class DataSourceUserPermissions {
     canRemovePermissionPackage: boolean;
     canViewPackage: boolean;
 }
-    
+
 export class DataSourceGroupPermissions {
     groupName: string;
     canAddPackage: boolean;

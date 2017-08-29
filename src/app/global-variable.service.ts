@@ -39,7 +39,7 @@ export class GlobalVariableService {
     sessionLogging: boolean = false;
     sessionLoadOnOpenDashboardID: number = -1;     // Dashboard to load when form opens, 0 = none
     sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
-    
+
     // At startup
     startupDashboardID: number = 0;                             // Dashboard to load @start, 0 = none
     startupDashboardName: string = 'Collection of Bar charts';  // Dashboard to load @start, '' = none
@@ -48,7 +48,7 @@ export class GlobalVariableService {
 
     // Environment
     testEnvironmentName: string = '';                           // Spaces = in PROD
-    
+
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     dirtyDataTextAlignDropdown: boolean = true;
     dirtyDataBorderDropdown: boolean = true;

@@ -56,7 +56,7 @@ export class DataSourceComponent implements OnInit {
     selectedGroupPermission: DataSourceGroupPermissions;// Selected in table
     selectedUserPermission: DataSourceUserPermissions;  // Selected in table
     users: User[];                                      // List of Users with Access
-    
+
     constructor(
         private confirmationService: ConfirmationService,
         private canvasDate: CanvasDate,

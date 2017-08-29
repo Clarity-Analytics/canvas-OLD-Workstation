@@ -211,8 +211,8 @@ export class GroupPopupComponent implements OnInit {
                 groupCreatedUserName: currentUser,
                 groupUpdatedDateTime:this.canvasDate.now('standard'),
                 groupUpdatedUserName: currentUser
-            };              
-            
+            };
+
             this.eazlService.addGroup(groupWorking);
         }
 

@@ -1,24 +1,24 @@
-<p 
-    class="iserror" 
-    *ngIf="formIsValid"> 
+<p
+    class="iserror"
+    *ngIf="formIsValid">
     {{ errorMessageOnForm }}
 </p>
 
-<form 
-    [formGroup]="groupForm" 
+<form
+    [formGroup]="groupForm"
     >
-    <div 
-        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+    <div
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
         style="margin: 10px 0px">
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
-                Group Name : 
+                Group Name :
             </div>
             <div class="ui-grid-col-6">
-                <input pInputText 
-                        type="text" 
-                        formControlName="groupName" 
+                <input pInputText
+                        type="text"
+                        formControlName="groupName"
                         placeholder="Required"
                         pTooltip="Enter your Group Name"
                         autofocus
@@ -28,20 +28,20 @@
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
-                Description : 
+                Description :
             </div>
             <div class="ui-grid-col-6">
-                <input pInputText 
-                        type="text" 
-                        formControlName="groupDescription" 
+                <input pInputText
+                        type="text"
+                        formControlName="groupDescription"
                         placeholder="Required"
                         pTooltip="Enter a detailed Description"
                         />
             </div>
         </div>
 
-    </div>   
-</form> 
+    </div>
+</form>
 <div *ngIf="selectedGroup">   {{ selectedGroup.groupName }}  ....  </div>
 
 
@@ -49,21 +49,21 @@
 <p-toolbar>
 
     <div class="ui-toolbar-group-left">
-        <button 
-            pButton 
-            type="button" 
+        <button
+            pButton
+            type="button"
             label="Cancel"
             icon="fa-undo"
             (click)="onClickCancel()"
             >
         </button>
     </div>
-    
+
     <div class="ui-toolbar-group-right">
-        <button 
-            pButton 
-            type="submit" 
-            label="Submit" 
+        <button
+            pButton
+            type="submit"
+            label="Submit"
             icon="fa-refresh"
             (click)="onSubmit()"
             >

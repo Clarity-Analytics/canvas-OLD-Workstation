@@ -8,9 +8,9 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
+
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Models
@@ -32,7 +32,7 @@ export class WhoAmIComponent implements OnInit {
     @Input() displayWhoAmIForm: boolean;
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() handleWhoAmISubmit: EventEmitter<boolean> = new EventEmitter();
-    
+
     // Local properties
     canvasUser: CanvasUser;                         // Current user
     userform: FormGroup;
@@ -43,7 +43,7 @@ export class WhoAmIComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -82,7 +82,7 @@ export class WhoAmIComponent implements OnInit {
             this.userform.controls['last_login'].setValue(this.canvasUser.last_login);
         }
     }
-    
+
     onClickCancel(value: string) {
         // User clicked submit button
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickCancel', '@Start');
@@ -90,4 +90,4 @@ export class WhoAmIComponent implements OnInit {
         // Trigger event emitter 'emit' method
         this.handleWhoAmISubmit.emit(true);
     }
-} 
+}

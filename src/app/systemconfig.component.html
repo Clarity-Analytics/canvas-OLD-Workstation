@@ -1,26 +1,26 @@
-<p 
-    class="iserror" 
-    *ngIf="formIsValid"> 
+<p
+    class="iserror"
+    *ngIf="formIsValid">
     {{ errorMessageOnForm }}
 </p>
 
 
-<form 
+<form
     class="formBody"
-    [formGroup]="configForm" 
+    [formGroup]="configForm"
     >
-    <div 
-        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+    <div
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
         style="margin: 10px 0px">
 
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
-                Company Name : 
+                Company Name :
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="companyName" 
+                <input pInputText
+                        type="text"
+                        formControlName="companyName"
                         placeholder="Required"
                         pTooltip="Enter your Company Name"
                         tooltipPosition="top"
@@ -29,12 +29,12 @@
             </div>
 
             <div class="ui-grid-col-2">
-                Company Logo: 
+                Company Logo:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="companyLogo" 
+                <input pInputText
+                        type="text"
+                        formControlName="companyLogo"
                         placeholder="(Optional)"
                         pTooltip="Enter your Company Logo filename"
                         tooltipPosition="top"
@@ -47,9 +47,9 @@
                 Backend Url:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="backendUrl" 
+                <input pInputText
+                        type="text"
+                        formControlName="backendUrl"
                         placeholder="Required"
                         pTooltip="Enter your URL for Backend Server (RESTi)"
                         tooltipPosition="top"
@@ -60,9 +60,9 @@
                 Days ToKeep:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
-                        formControlName="defaultDaysToKeepResultSet" 
+                <input pInputText
+                        type="text"
+                        formControlName="defaultDaysToKeepResultSet"
                         placeholder="Required"
                         pTooltip="Enter default number of days to keep ResultSets"
                         tooltipPosition="top"
@@ -75,8 +75,8 @@
                 Max RowsData:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText    
-                        type="text" 
+                <input pInputText
+                        type="text"
                         formControlName="maxRowsDataReturned"
                         placeholder="Required"
                         pTooltip="Enter maximum number of data rows to be returned from the server"
@@ -88,8 +88,8 @@
                 Max RowsGraph:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                        type="text" 
+                <input pInputText
+                        type="text"
                         formControlName="maxRowsPerWidgetGraph"
                         placeholder="Required"
                         pTooltip="Enter maximum number of rows returned per WidgetGraph"
@@ -98,28 +98,28 @@
             </div>
         </div>
     </div>
-</form> 
+</form>
 
 
 <!--Toolbar-->
 <p-toolbar>
 
     <div class="ui-toolbar-group-left">
-        <button 
-            pButton 
-            type="button" 
+        <button
+            pButton
+            type="button"
             label="Reset"
             icon="fa-undo"
             (click)="loadForm()"
             >
         </button>
     </div>
-    
+
     <div class="ui-toolbar-group-right">
-        <button 
-            pButton 
-            type="submit" 
-            label="Submit" 
+        <button
+            pButton
+            type="submit"
+            label="Submit"
             icon="fa-refresh"
             (click)="onSubmit()"
             >

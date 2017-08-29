@@ -258,7 +258,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                         this.globalVariableService.startupDashboardTabID
                 }
             }
-            
+
             // Load the session's Dashboard Tab
             if (this.globalVariableService.sessionDashboardTabID != -1) {
 

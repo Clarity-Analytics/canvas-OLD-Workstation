@@ -1,9 +1,9 @@
-<form 
-    [formGroup]="userform" 
+<form
+    [formGroup]="userform"
     >
-    <div 
+    <div
         *ngIf="displayWhoAmIForm"
-        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
+        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
         style="margin: 10px 0px"
         >
         <div class="ui-grid-row">
@@ -11,9 +11,9 @@
                 User Name:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="username" 
+                <input pInputText
+                       type="text"
+                       formControlName="username"
                        placeholder="Required"
                        readonly
                        >
@@ -23,9 +23,9 @@
                 First Name:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="first_name" 
+                <input pInputText
+                       type="text"
+                       formControlName="first_name"
                        readonly
                        >
             </div>
@@ -36,9 +36,9 @@
                 Last Name:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="last_name" 
+                <input pInputText
+                       type="text"
+                       formControlName="last_name"
                        readonly
                        >
             </div>
@@ -47,9 +47,9 @@
                 Email:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="email" 
+                <input pInputText
+                       type="text"
+                       formControlName="email"
                        readonly
                        >
             </div>
@@ -60,9 +60,9 @@
                 Super Usr?:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="is_superuser" 
+                <input pInputText
+                       type="text"
+                       formControlName="is_superuser"
                        readonly
                        >
             </div>
@@ -71,9 +71,9 @@
                 Is Staff?:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="is_staff" 
+                <input pInputText
+                       type="text"
+                       formControlName="is_staff"
                        readonly
                        >
             </div>
@@ -84,9 +84,9 @@
                 Active?:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="is_active" 
+                <input pInputText
+                       type="text"
+                       formControlName="is_active"
                        readonly
                        >
             </div>
@@ -95,22 +95,22 @@
                 Joined on:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="date_joined" 
+                <input pInputText
+                       type="text"
+                       formControlName="date_joined"
                        readonly
                        >
             </div>
         </div>
-    
+
         <div class="ui-grid-row">
             <div class="ui-grid-col-2">
                 Last Login:
             </div>
             <div class="ui-grid-col-4">
-                <input pInputText 
-                       type="text" 
-                       formControlName="last_login" 
+                <input pInputText
+                       type="text"
+                       formControlName="last_login"
                        readonly
                        >
             </div>
@@ -119,9 +119,9 @@
         <div class="ui-grid-row">
 
             <div>
-                <button 
-                    pButton 
-                    type="button" 
+                <button
+                    pButton
+                    type="button"
                     label="Cancel"
                     icon="fa-undo"
                     (click)="onClickCancel()"
@@ -129,5 +129,5 @@
                 </button>
             </div>
         </div>
-    </div>   
-</form> 
+    </div>
+</form>

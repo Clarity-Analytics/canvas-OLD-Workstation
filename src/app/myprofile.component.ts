@@ -7,9 +7,9 @@ import { FormGroup }                  from '@angular/forms';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
+
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Models
@@ -34,7 +34,7 @@ import { SystemConfiguration }        from './model.systemconfiguration';
     styleUrls:  ['myprofile.component.css']
 })
 export class MyProfileComponent implements OnInit {
-     
+
     // Local properties
     canvasUser: CanvasUser;                             // Current user
     configForm: FormGroup;
@@ -55,7 +55,7 @@ export class MyProfileComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -107,4 +107,4 @@ export class MyProfileComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickChangePassword', '@Start');
 
     }
-} 
+}

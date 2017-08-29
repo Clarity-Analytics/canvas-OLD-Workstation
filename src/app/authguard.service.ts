@@ -16,12 +16,12 @@ import { GlobalFunctionService }      from './global-function.service';
 @Injectable()
 export class AuthGuard implements OnInit, CanActivate {
     currentUserName: string = '';
-    
+
     constructor(
         // private alertService: AlertService,
         private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService,
-        private router: Router,  
+        private router: Router,
         @Inject(DOCUMENT) private document: Document,
 
         ) { }
@@ -39,29 +39,29 @@ export class AuthGuard implements OnInit, CanActivate {
         if (this.globalVariableService.canvasUser.getValue() == null) {
             return false;
         }
-        
+
         this.currentUserName = this.globalVariableService.canvasUser.getValue().username;
         this.globalFunctionService.printToConsole(
-            this.constructor.name,'canActivate', 'Found user: ' 
+            this.constructor.name,'canActivate', 'Found user: '
                 + this.currentUserName
         );
 
         if (this.currentUserName != "") {
             return true;
         }
- 
+
         // Sorry, not logged in
         this.globalFunctionService.printToConsole(
-            this.constructor.name,'canActivate', 
+            this.constructor.name,'canActivate',
                 'Registration NOT successful for ' + this.currentUserName + ' ...'
         );
 
         this.globalVariableService.growlGlobalMessage.next({
-            severity: 'warn', 
-            summary:  'Not Logged in', 
+            severity: 'warn',
+            summary:  'Not Logged in',
             detail:   'User ' + this.currentUserName + ' not logged in'
         });
-        
+
         // this.router.navigate(['pagenotfound']);
         return false;
    }

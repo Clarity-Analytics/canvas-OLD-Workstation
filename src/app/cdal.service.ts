@@ -1432,7 +1432,7 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         datasourceUserPermissionsWorking.canPackageSharedAccess = false;
         datasourceUserPermissionsWorking.canRemovePermissionPackage = false;
         datasourceUserPermissionsWorking.canViewPackage = false;
-    
+
         if (eazlDatasourceUserPermissions.permissions != null) {
 
             // Loop on those assigned
@@ -1494,7 +1494,7 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         datasourceUserPermissionsWorking.canPackageSharedAccess = false;
         datasourceUserPermissionsWorking.canRemovePermissionPackage = false;
         datasourceUserPermissionsWorking.canViewPackage = false;
-    
+
         if (eazlDatasourceGroupPermissions.permissions != null) {
 
             // Loop on those assigned
@@ -1665,74 +1665,74 @@ console.log('CDAL dashboardWorking',dashboardWorking)
             dataSourceTaskWorking.packageRepositoryID = eazlDataSource.repository_id;
         } else {
             dataSourceTaskWorking.packageRepositoryID = -1;
-        }        
+        }
 
         if (eazlDataSource.compiled != null) {
             dataSourceTaskWorking.packageCompiled = eazlDataSource.compiled;
         } else {
             dataSourceTaskWorking.packageCompiled = false;
-        }        
+        }
 
         if (eazlDataSource.parameters != null) {
             dataSourceTaskWorking.datasourceParameters = eazlDataSource.parameters;
         } else {
             dataSourceTaskWorking.datasourceParameters = [];
-        }        
+        }
 
         if (eazlDataSource.fields != null) {
             dataSourceTaskWorking.datasourceFields = eazlDataSource.fields;
         } else {
             dataSourceTaskWorking.datasourceFields = [];
-        }        
+        }
 
         if (eazlDataSource.date_last_synced != null) {
             dataSourceTaskWorking.datasourceDateLastSynced = eazlDataSource.date_last_synced;
         } else {
             dataSourceTaskWorking.datasourceDateLastSynced = '';
-        }        
+        }
 
         if (eazlDataSource.last_sync_successful != null) {
             dataSourceTaskWorking.datasourceLastSyncSuccessful = eazlDataSource.last_sync_successful;
         } else {
             dataSourceTaskWorking.datasourceLastSyncSuccessful = false;
-        }        
+        }
 
         if (eazlDataSource.last_sync_error != null) {
             dataSourceTaskWorking.datasourceLastSyncError = eazlDataSource.last_sync_error;
         } else {
             dataSourceTaskWorking.datasourceLastSyncError = '';
-        }        
+        }
 
         if (eazlDataSource.last_runtime_error != null) {
             dataSourceTaskWorking.datasourceLastRuntimeError = eazlDataSource.last_runtime_error;
         } else {
             dataSourceTaskWorking.datasourceLastRuntimeError = '';
-        }        
+        }
 
         if (eazlDataSource.execute != null) {
             dataSourceTaskWorking.datasourceExecuteURL = eazlDataSource.execute;
         } else {
             dataSourceTaskWorking.datasourceExecuteURL = '';
-        }        
+        }
 
         if (eazlDataSource.permissions != null) {
             dataSourceTaskWorking.datasourcePermissions = eazlDataSource.permissions;
         } else {
             dataSourceTaskWorking.datasourcePermissions = [];
-        }        
+        }
 
         if (eazlDataSource.url != null) {
             dataSourceTaskWorking.datasourceUrl = eazlDataSource.url;
         } else {
             dataSourceTaskWorking.datasourceUrl = '';
-        }        
+        }
 
         dataSourceTaskWorking.datasourceSQL = '';
         dataSourceTaskWorking.datasourceCreatedDateTime = '';
         dataSourceTaskWorking.datasourceCreatedUserName = '';
         dataSourceTaskWorking.datasourceUpdatedDateTime = '';
         dataSourceTaskWorking.datasourceUpdatedUserName = '';
-    
+
         // Return the result
         return dataSourceTaskWorking;
     }

@@ -5,7 +5,7 @@ export class EazlReportHistory {
     id: number;                                 // Unique ID
     executor: string;                           // User who ran report
     model_name: string;                         // Model linked to: package, query
-    object_id: number;                          // Id of model-object 
+    object_id: number;                          // Id of model-object
     checksum: string;                           // Checksum to make name & parameters unique
     date_created: string;                       // Start DateTime
     run_time: number;                           // End DateTime
@@ -21,7 +21,7 @@ export class ReportHistory {
     reportHistoryUserName: string;              // User who ran report
     reportHistoryReportID: number;              // Report ID
     reportHistoryDatasourceID: number;          // Underlying Datasource for the report
-    reportHistoryChecksum: string;              // Checksum to make name & parameters unique    
+    reportHistoryChecksum: string;              // Checksum to make name & parameters unique
     reportHistoryStartDateTime: string;         // Start DateTime
     reportHistoryEndDateTime: string;           // End DateTime
     reportHistoryStatus: string;                // Result status: Failed, Success

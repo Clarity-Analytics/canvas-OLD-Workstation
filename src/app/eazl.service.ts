@@ -1,47 +1,47 @@
 // Service that manages all Canvas data (to and from the DB)
 
-// There are two types of data:
-// a. system related data (users, groups, etc).  These are read async at login.
-// b. application / user data, stored in a DB.  These are only read on request, where
-//    small sets are read and stored as local Arrays, and large sets can point to a url
-//    that keeps the json file.  Application data is reuested async, and notification
-//    about the completion (fail or pass) is done via the WebSocket.
+    // There are two types of data:
+    // a. system related data (users, groups, etc).  These are read async at login.
+    // b. application / user data, stored in a DB.  These are only read on request, where
+    //    small sets are read and stored as local Arrays, and large sets can point to a url
+    //    that keeps the json file.  Application data is reuested async, and notification
+    //    about the completion (fail or pass) is done via the WebSocket.
 
-// Process for reading system data:
-// 1. At start (before login) all system resources are marked as dirty.
-// 2. At login, Canvas issues async requests for all system data.
-// 3. This component will issue an http-get request, and transform the result
-//    (Eazl -> Canvas format).  This method currently lives in CDAL, but will probably move.
-// 4. The Canvas formatted data is stored in local Arrays.
-// 5. All DSs are now marked as clean.
-// 6. When a Canvas module needs data, it issues a get-DS (DS = DataSource) request to
-//    this module.
-// 7. It simply returns the local Array (with filtering and additional calculated
-//    data where necessary).
-// Note:  it does not check if there is data in the Array, or if the data is clean.
-//        It knows when a DS is dirty, so in time we may issue a warning to the user.
+    // Process for reading system data:
+    // 1. At start (before login) all system resources are marked as dirty.
+    // 2. At login, Canvas issues async requests for all system data.
+    // 3. This component will issue an http-get request, and transform the result
+    //    (Eazl -> Canvas format).  This method currently lives in CDAL, but will probably move.
+    // 4. The Canvas formatted data is stored in local Arrays.
+    // 5. All DSs are now marked as clean.
+    // 6. When a Canvas module needs data, it issues a get-DS (DS = DataSource) request to
+    //    this module.
+    // 7. It simply returns the local Array (with filtering and additional calculated
+    //    data where necessary).
+    // Note:  it does not check if there is data in the Array, or if the data is clean.
+    //        It knows when a DS is dirty, so in time we may issue a warning to the user.
 
-// Keeping system data in sync (up to date):
-// 1. At login, a single WebSocket is opened to the API that listens permanently.
-// 2. When system data is changed on the server, the API sends a message to all active
-//    users (logged in at that point in time).
-// 3. On receipt of a message, Canvas marks that data-source as dirty.
-// 4. This component will issue an http-get request to get the latest copy of the data,
-//    and transform the result (Eazl -> Canvas format).  This method currently lives
-//    in CDAL, but will probably move.
-// 5. The Canvas formatted data is stored in a local Array.
-// 6. It will mark the DS as clean.
-// 7. These updates happens in the background, and no feedback is given to users about it.
+    // Keeping system data in sync (up to date):
+    // 1. At login, a single WebSocket is opened to the API that listens permanently.
+    // 2. When system data is changed on the server, the API sends a message to all active
+    //    users (logged in at that point in time).
+    // 3. On receipt of a message, Canvas marks that data-source as dirty.
+    // 4. This component will issue an http-get request to get the latest copy of the data,
+    //    and transform the result (Eazl -> Canvas format).  This method currently lives
+    //    in CDAL, but will probably move.
+    // 5. The Canvas formatted data is stored in a local Array.
+    // 6. It will mark the DS as clean.
+    // 7. These updates happens in the background, and no feedback is given to users about it.
 
-// Process for changes to system data:
-// 1. This component is the only place where data is read or updated.
-// 2. The Canvas component issues data-related requests to this component as
-//    add-, delete-, update-DS requests.
-// 3. This component will transform the data (Canvas -> Eazl or API format).
-// 4. It will issue a http-put or -post request.
-// 5. It will update the local Array to make sure it is in sync.
-// 6. It will inform the calling component if the request was sucessful.
-
+    // Process for changes to system data:
+    // 1. This component is the only place where data is read or updated.
+    // 2. The Canvas component issues data-related requests to this component as
+    //    add-, delete-, update-DS requests.
+    // 3. This component will transform the data (Canvas -> Eazl or API format).
+    // 4. It will issue a http-put or -post request.
+    // 5. It will update the local Array to make sure it is in sync.
+    // 6. It will inform the calling component if the request was sucessful.
+// The End
 import { Injectable }                 from '@angular/core';
 import { Headers }                    from '@angular/http';
 import { Http }                       from '@angular/http';
@@ -62,55 +62,55 @@ import { GlobalVariableService }      from './global-variable.service';
 import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our models
-import { CanvasMessage }              from './model.canvasMessage';
-import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
-import { CanvasUser }                 from './model.user';
-import { Dashboard }                  from './model.dashboards';
-import { DashboardGroupPermissions }  from './model.dashboards';
-import { DashboardTagMembership }     from './model.dashboardTagMembership';
-import { DashboardTab }               from './model.dashboardTabs';
-import { DashboardUserPermissions }   from './model.dashboards';
-import { DataSource }                 from './model.datasource';
-import { DataSourceGroupPermissions}  from './model.datasource';
-import { DataSourceUserPermissions}   from './model.datasource';
-import { EazlAppData }                from './model.appdata';
-import { EazlCanvasMessage }          from './model.canvasMessage';
-import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
-import { EazlDashboardGroupPermissions }    from './model.dashboards';
-import { EazlDashboardUserPermissions }     from './model.dashboards';
-import { EazlDataSourceGroupPermissions}    from './model.datasource';
-import { EazlDataSourceUserPermissions}     from './model.datasource';
-import { EazlDashboard }              from './model.dashboards';
-import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
-import { EazlDashboardTab }           from './model.dashboardTabs';
-import { EazlDataSource }             from './model.datasource';
-import { EazlFilter }                 from './model.filter';
-import { EazlGroup }                  from './model.group';
-import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
-import { EazlPackageTask }            from './model.package.task';
-import { EazlReport }                 from './model.report';
-import { EazlReportHistory }          from './model.reportHistory';
-import { EazlReportWidgetSet }        from './model.report.widgetSets';
-import { EazlSystemConfiguration }    from './model.systemconfiguration';
-import { EazlUser }                   from './model.user';
-import { EazlUserModelPermission }    from './model.userModelPermissions';
-import { EazlWidget }                 from './model.widget';
-import { EazlWidgetTemplate }         from './model.widgetTemplates';
-import { Filter }                     from './model.filter';
-import { GraphType }                  from './model.graph.type';
-import { Group }                      from './model.group';
-import { GroupDatasourceAccess }      from './model.groupDSaccess';
-import { PackageTask }                from './model.package.task';
-import { Report }                     from './model.report';
-import { ReportHistory }              from './model.reportHistory';
-import { ReportWidgetSet }            from './model.report.widgetSets';
-import { SelectedItem }               from './model.selectedItem';
-import { SystemConfiguration }        from './model.systemconfiguration';
-import { User }                       from './model.user';
-import { UserModelPermission }        from './model.userModelPermissions';
-import { Widget }                     from './model.widget';
-import { WidgetTemplate }             from './model.widgetTemplates';
-import { WidgetType }                 from './model.widget.type';
+    import { CanvasMessage }              from './model.canvasMessage';
+    import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
+    import { CanvasUser }                 from './model.user';
+    import { Dashboard }                  from './model.dashboards';
+    import { DashboardGroupPermissions }  from './model.dashboards';
+    import { DashboardTagMembership }     from './model.dashboardTagMembership';
+    import { DashboardTab }               from './model.dashboardTabs';
+    import { DashboardUserPermissions }   from './model.dashboards';
+    import { DataSource }                 from './model.datasource';
+    import { DataSourceGroupPermissions}  from './model.datasource';
+    import { DataSourceUserPermissions}   from './model.datasource';
+    import { EazlAppData }                from './model.appdata';
+    import { EazlCanvasMessage }          from './model.canvasMessage';
+    import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
+    import { EazlDashboardGroupPermissions }    from './model.dashboards';
+    import { EazlDashboardUserPermissions }     from './model.dashboards';
+    import { EazlDataSourceGroupPermissions}    from './model.datasource';
+    import { EazlDataSourceUserPermissions}     from './model.datasource';
+    import { EazlDashboard }              from './model.dashboards';
+    import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
+    import { EazlDashboardTab }           from './model.dashboardTabs';
+    import { EazlDataSource }             from './model.datasource';
+    import { EazlFilter }                 from './model.filter';
+    import { EazlGroup }                  from './model.group';
+    import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
+    import { EazlPackageTask }            from './model.package.task';
+    import { EazlReport }                 from './model.report';
+    import { EazlReportHistory }          from './model.reportHistory';
+    import { EazlReportWidgetSet }        from './model.report.widgetSets';
+    import { EazlSystemConfiguration }    from './model.systemconfiguration';
+    import { EazlUser }                   from './model.user';
+    import { EazlUserModelPermission }    from './model.userModelPermissions';
+    import { EazlWidget }                 from './model.widget';
+    import { EazlWidgetTemplate }         from './model.widgetTemplates';
+    import { Filter }                     from './model.filter';
+    import { GraphType }                  from './model.graph.type';
+    import { Group }                      from './model.group';
+    import { GroupDatasourceAccess }      from './model.groupDSaccess';
+    import { PackageTask }                from './model.package.task';
+    import { Report }                     from './model.report';
+    import { ReportHistory }              from './model.reportHistory';
+    import { ReportWidgetSet }            from './model.report.widgetSets';
+    import { SelectedItem }               from './model.selectedItem';
+    import { SystemConfiguration }        from './model.systemconfiguration';
+    import { User }                       from './model.user';
+    import { UserModelPermission }        from './model.userModelPermissions';
+    import { Widget }                     from './model.widget';
+    import { WidgetTemplate }             from './model.widgetTemplates';
+    import { WidgetType }                 from './model.widget.type';
 
 // Token for RESTi
 export interface Token {
@@ -2637,184 +2637,184 @@ export const WIDGETS: Widget[] =
             }
         }
     ];
+// const REPORTS
+    // export const REPORTS: Report[] =
+    //     [
+    //         {
+    //             "reportID": 1,
+    //             "reportCode": 'EDM Val',
+    //             "reportName": "EDM weekly Values",
+    //             "reportDescription": 'Description ...  etc arranged by Date',
+    //             "dataSourceID": 0,
+    //             "reportPackagePermissions": [
+    //                 {"package_permission": "add_package"},
+    //                 {"package_permission": "assign_permission_package"},
+    //                 {"package_permission": "change_package"},
+    //                 {"package_permission": "delete_package"},
+    //                 {"package_permission": "execute_package"},
+    //                 {"package_permission": "package_owned_access"},
+    //                 {"package_permission": "package_shared_access"},
+    //                 {"package_permission": "remove_permission_package"},
+    //                 {"package_permission": "view_package"}
+    //             ],
+    //             "reportSpecification": '',
+    //             "reportFields": [
+    //                 {
+    //                     "name": "category",
+    //                     "alias": "category",
+    //                     "aggfunc": null,
+    //                     "scalarfunc": null
+    //                 },
+    //                 {
+    //                     "name": "amount",
+    //                     "alias": "amount",
+    //                     "aggfunc": "sum",
+    //                     "scalarfunc": null
+    //                 }
+    //             ],
+    //             "reportFieldsString": "InvoiceDate Total ",
+    //             "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
+    //             "reportPermissions": [
+    //                 {"permission": "add_query"},
+    //                 {"permission": "assign_permission_query"},
+    //                 {"permission": "change_query"},
+    //                 {"permission": "delete_query"},
+    //                 {"permission": "remove_permission_query"},
+    //                 {"permission": "view_query"}
+    //             ],
+    //             "reportChecksum": '',
+    //             "reportVersion": '',
+    //             "reportFetch": '',
+    //             "reportCreatedUserName": 'janniei',
+    //             "reportCreatedDateTime": '2017/05/01',
+    //             "reportUpdatedUserName": 'janniei',
+    //             "reportUpdatedDateTime": '2017/05/01',
+    //             "reportUrl": "http://localhost:8000/api/queries/2/",
+    //             "reportData":
+    //                     [
+    //                         {"category": "A0", "amount": 38},
+    //                         {"category": "B0", "amount": 45},
+    //                         {"category": "C0", "amount": 53},
+    //                         {"category": "D0", "amount": 61},
+    //                         {"category": "E0", "amount": 71},
+    //                         {"category": "F0", "amount": 83},
+    //                         {"category": "G0", "amount": 99},
+    //                         {"category": "H0", "amount": 107}
+    //                     ],
+    //         },
+    //         {
+    //             "reportID": 2,
+    //             "reportCode": 'Bond Val',
+    //             "reportName": "Bond monthly Values",
+    //             "reportDescription": 'Description ...  etc arranged by Date',
+    //             "dataSourceID": 1,
+    //             "reportPackagePermissions": [
+    //                 {"package_permission": "add_package"},
+    //                 {"package_permission": "assign_permission_package"},
+    //                 {"package_permission": "change_package"},
+    //                 {"package_permission": "delete_package"},
+    //                 {"package_permission": "execute_package"},
+    //                 {"package_permission": "package_owned_access"},
+    //                 {"package_permission": "package_shared_access"},
+    //                 {"package_permission": "remove_permission_package"},
+    //                 {"package_permission": "view_package"}
+    //             ],
+    //             "reportSpecification": '',
+    //             "reportFields": [
+    //                 {
+    //                     "name": "category",
+    //                     "alias": "category",
+    //                     "aggfunc": null,
+    //                     "scalarfunc": null
+    //                 },
+    //                 {
+    //                     "name": "amount",
+    //                     "alias": "amount",
+    //                     "aggfunc": "sum",
+    //                     "scalarfunc": null
+    //                 }
+    //             ],
+    //             "reportFieldsString": "InvoiceDate Total ",
+    //             "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
+    //             "reportPermissions": [
+    //                 {"permission": "add_query"},
+    //                 {"permission": "assign_permission_query"},
+    //                 {"permission": "change_query"},
+    //                 {"permission": "delete_query"},
+    //                 {"permission": "remove_permission_query"},
+    //                 {"permission": "view_query"}
+    //             ],
+    //             "reportChecksum": '',
+    //             "reportVersion": '',
+    //             "reportFetch": '',
+    //             "reportCreatedUserName": 'janniei',
+    //             "reportCreatedDateTime": '2017/05/01',
+    //             "reportUpdatedUserName": 'janniei',
+    //             "reportUpdatedDateTime": '2017/05/01',
+    //             "reportUrl": "http://localhost:8000/api/queries/2/",
+    //             "reportData":
+    //                     [
+    //                         {"category": "A0", "amount": 38},
+    //                         {"category": "B0", "amount": 45},
+    //                         {"category": "C0", "amount": 53},
+    //                         {"category": "D0", "amount": 61},
+    //                         {"category": "E0", "amount": 71},
+    //                         {"category": "F0", "amount": 83},
+    //                         {"category": "G0", "amount": 99},
+    //                         {"category": "H0", "amount": 107}
+    //                     ],
+    //         }
 
-export const REPORTS: Report[] =
-    [
-        {
-            "reportID": 1,
-            "reportCode": 'EDM Val',
-            "reportName": "EDM weekly Values",
-            "reportDescription": 'Description ...  etc arranged by Date',
-            "dataSourceID": 0,
-            "reportPackagePermissions": [
-                {"package_permission": "add_package"},
-                {"package_permission": "assign_permission_package"},
-                {"package_permission": "change_package"},
-                {"package_permission": "delete_package"},
-                {"package_permission": "execute_package"},
-                {"package_permission": "package_owned_access"},
-                {"package_permission": "package_shared_access"},
-                {"package_permission": "remove_permission_package"},
-                {"package_permission": "view_package"}
-            ],
-            "reportSpecification": '',
-            "reportFields": [
-                {
-                    "name": "category",
-                    "alias": "category",
-                    "aggfunc": null,
-                    "scalarfunc": null
-                },
-                {
-                    "name": "amount",
-                    "alias": "amount",
-                    "aggfunc": "sum",
-                    "scalarfunc": null
-                }
-            ],
-            "reportFieldsString": "InvoiceDate Total ",
-            "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
-            "reportPermissions": [
-                {"permission": "add_query"},
-                {"permission": "assign_permission_query"},
-                {"permission": "change_query"},
-                {"permission": "delete_query"},
-                {"permission": "remove_permission_query"},
-                {"permission": "view_query"}
-            ],
-            "reportChecksum": '',
-            "reportVersion": '',
-            "reportFetch": '',
-            "reportCreatedUserName": 'janniei',
-            "reportCreatedDateTime": '2017/05/01',
-            "reportUpdatedUserName": 'janniei',
-            "reportUpdatedDateTime": '2017/05/01',
-            "reportUrl": "http://localhost:8000/api/queries/2/",
-            "reportData":
-                    [
-                        {"category": "A0", "amount": 38},
-                        {"category": "B0", "amount": 45},
-                        {"category": "C0", "amount": 53},
-                        {"category": "D0", "amount": 61},
-                        {"category": "E0", "amount": 71},
-                        {"category": "F0", "amount": 83},
-                        {"category": "G0", "amount": 99},
-                        {"category": "H0", "amount": 107}
-                    ],
-        },
-        {
-            "reportID": 2,
-            "reportCode": 'Bond Val',
-            "reportName": "Bond monthly Values",
-            "reportDescription": 'Description ...  etc arranged by Date',
-            "dataSourceID": 1,
-            "reportPackagePermissions": [
-                {"package_permission": "add_package"},
-                {"package_permission": "assign_permission_package"},
-                {"package_permission": "change_package"},
-                {"package_permission": "delete_package"},
-                {"package_permission": "execute_package"},
-                {"package_permission": "package_owned_access"},
-                {"package_permission": "package_shared_access"},
-                {"package_permission": "remove_permission_package"},
-                {"package_permission": "view_package"}
-            ],
-            "reportSpecification": '',
-            "reportFields": [
-                {
-                    "name": "category",
-                    "alias": "category",
-                    "aggfunc": null,
-                    "scalarfunc": null
-                },
-                {
-                    "name": "amount",
-                    "alias": "amount",
-                    "aggfunc": "sum",
-                    "scalarfunc": null
-                }
-            ],
-            "reportFieldsString": "InvoiceDate Total ",
-            "reportExecute": "http://localhost:8000/api/queries/2/execute-query/",
-            "reportPermissions": [
-                {"permission": "add_query"},
-                {"permission": "assign_permission_query"},
-                {"permission": "change_query"},
-                {"permission": "delete_query"},
-                {"permission": "remove_permission_query"},
-                {"permission": "view_query"}
-            ],
-            "reportChecksum": '',
-            "reportVersion": '',
-            "reportFetch": '',
-            "reportCreatedUserName": 'janniei',
-            "reportCreatedDateTime": '2017/05/01',
-            "reportUpdatedUserName": 'janniei',
-            "reportUpdatedDateTime": '2017/05/01',
-            "reportUrl": "http://localhost:8000/api/queries/2/",
-            "reportData":
-                    [
-                        {"category": "A0", "amount": 38},
-                        {"category": "B0", "amount": 45},
-                        {"category": "C0", "amount": 53},
-                        {"category": "D0", "amount": 61},
-                        {"category": "E0", "amount": 71},
-                        {"category": "F0", "amount": 83},
-                        {"category": "G0", "amount": 99},
-                        {"category": "H0", "amount": 107}
-                    ],
-        }
-
-        // {
-        //     reportID: 1,
-        //     reportCode: 'EDM Val',
-        //     reportName: 'EDM weekly Values',
-        //     description: 'Description ...  etc',
-        //     reportParameters: '',
-        //     dataSourceID: 0,
-        //     dataSourceParameters: '',
-        //     reportFields:
-        //         [ "category", "amount"],
-        //     reportData:
-        //         [
-        //             {"category": "A0", "amount": 38},
-        //             {"category": "B0", "amount": 45},
-        //             {"category": "C0", "amount": 53},
-        //             {"category": "D0", "amount": 61},
-        //             {"category": "E0", "amount": 71},
-        //             {"category": "F0", "amount": 83},
-        //             {"category": "G0", "amount": 99},
-        //             {"category": "H0", "amount": 107}
-        //         ],
-        //     reportCreatedDateTime: '2017/05/01',
-        //     reportCreatedUserName: 'jannie'
-        // },
-        // {
-        //     reportID: 2,
-        //     reportCode: 'Bond Val',
-        //     reportName: 'Bond monthly Values',
-        //     description: 'Description ...  etc',
-        //     reportParameters: '',
-        //     dataSourceID: 1,
-        //     dataSourceParameters: '',
-        //     reportFields:
-        //         [ "category", "amount"],
-        //     reportData:
-        //         [
-        //             {"category": "A22", "amount": 108},
-        //             {"category": "B22", "amount": 115},
-        //             {"category": "C22", "amount": 123},
-        //             {"category": "D22", "amount": 131},
-        //             {"category": "E22", "amount": 144},
-        //             {"category": "F22", "amount": 153},
-        //             {"category": "G22", "amount": 169},
-        //             {"category": "H22", "amount": 177}
-        //         ],
-        //     reportCreatedDateTime: '2017/05/01',
-        //     reportCreatedUserName: 'jannie'
-        // }
-    ];
-
+    //         // {
+    //         //     reportID: 1,
+    //         //     reportCode: 'EDM Val',
+    //         //     reportName: 'EDM weekly Values',
+    //         //     description: 'Description ...  etc',
+    //         //     reportParameters: '',
+    //         //     dataSourceID: 0,
+    //         //     dataSourceParameters: '',
+    //         //     reportFields:
+    //         //         [ "category", "amount"],
+    //         //     reportData:
+    //         //         [
+    //         //             {"category": "A0", "amount": 38},
+    //         //             {"category": "B0", "amount": 45},
+    //         //             {"category": "C0", "amount": 53},
+    //         //             {"category": "D0", "amount": 61},
+    //         //             {"category": "E0", "amount": 71},
+    //         //             {"category": "F0", "amount": 83},
+    //         //             {"category": "G0", "amount": 99},
+    //         //             {"category": "H0", "amount": 107}
+    //         //         ],
+    //         //     reportCreatedDateTime: '2017/05/01',
+    //         //     reportCreatedUserName: 'jannie'
+    //         // },
+    //         // {
+    //         //     reportID: 2,
+    //         //     reportCode: 'Bond Val',
+    //         //     reportName: 'Bond monthly Values',
+    //         //     description: 'Description ...  etc',
+    //         //     reportParameters: '',
+    //         //     dataSourceID: 1,
+    //         //     dataSourceParameters: '',
+    //         //     reportFields:
+    //         //         [ "category", "amount"],
+    //         //     reportData:
+    //         //         [
+    //         //             {"category": "A22", "amount": 108},
+    //         //             {"category": "B22", "amount": 115},
+    //         //             {"category": "C22", "amount": 123},
+    //         //             {"category": "D22", "amount": 131},
+    //         //             {"category": "E22", "amount": 144},
+    //         //             {"category": "F22", "amount": 153},
+    //         //             {"category": "G22", "amount": 169},
+    //         //             {"category": "H22", "amount": 177}
+    //         //         ],
+    //         //     reportCreatedDateTime: '2017/05/01',
+    //         //     reportCreatedUserName: 'jannie'
+    //         // }
+    //     ];
+// Need to fix groups/model-permissions for this ...
 export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
     [
         {
@@ -3175,7 +3175,7 @@ export class EazlService implements OnInit {
     isStaffDropdown: SelectItem[] = ISSTAFFDROPDOWN;        // List of IsStaff dropdown options
     notifications: Notification[] = [];                     // List of Notifications
     packageTask: PackageTask[] = [];                        // List of PackageTask
-    reports: Report[] = REPORTS;                            // List of Reports
+    reports: Report[];                                      // List of Reports
     reportHistory: ReportHistory[];                         // List of Report History (ran)
     reportWidgetSet: ReportWidgetSet[] = REPORTWIDGETSET;   // List of WidgetSets per Report
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
