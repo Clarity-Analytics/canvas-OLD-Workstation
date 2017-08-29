@@ -1966,6 +1966,7 @@ console.log('CDAL dashboardWorking',dashboardWorking)
 
         if (eazlReport.fields != null) {
             ReportWorking.reportFields = eazlReport.fields;
+            ReportWorking.reportFieldsString = '';
             for (var i = 0; i < eazlReport.fields.length; i++) {
                 ReportWorking.reportFieldsString = ReportWorking.reportFieldsString + ' ' +
                     eazlReport.fields[i].name;
