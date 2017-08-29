@@ -1817,43 +1817,6 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         return groupDatasourceAccessWorking;
     }
 
-    // loadNotification(eazlNotification: EazlNotification): Notification {
-    //     // Load Notification: move data Eazl -> Canvas
-    //     // TODO - do we really need this guy (see CanvasMessage), else add fields like id
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'loadNotification', '@Start');
-
-    //     let notificationWorking = new Notification();
-
-    //     notificationWorking.notificationID = eazlNotification.id;
-
-    //     if (eazlNotification.author != null) {
-    //         notificationWorking.author = eazlNotification.author;
-    //     } else {
-    //         notificationWorking.author = '';
-    //     }
-
-    //     if (eazlNotification.date_send != null) {
-    //         notificationWorking.dateSend = eazlNotification.date_send;
-    //     } else {
-    //         notificationWorking.dateSend = '';
-    //     }
-
-    //     if (eazlNotification.message_type != null) {
-    //         notificationWorking.messageType = eazlNotification.message_type;
-    //     } else {
-    //         notificationWorking.messageType = '';
-    //     }
-
-    //     if (eazlNotification.message != null) {
-    //         notificationWorking.message = eazlNotification.message;
-    //     } else {
-    //         notificationWorking.message = '';
-    //     }
-
-    //     // Return the result
-    //     return notificationWorking;
-    // }
-
     loadPackageTask(eazlPackageTask: EazlPackageTask): PackageTask {
         // Load PackageTask: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadPackageTask', '@Start');

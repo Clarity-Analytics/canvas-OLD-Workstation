@@ -6551,7 +6551,7 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
                     .subscribe(
                         (eazlWidget) => {
                             for (var i = 0; i < eazlWidget.length; i++) {
-
+console.log('EAZL eazlWidget', eazlWidget)
             // TODO - fix code here
                                 // widgetsWorking.push({
                                 //     id: eazlWidget[i].id,
