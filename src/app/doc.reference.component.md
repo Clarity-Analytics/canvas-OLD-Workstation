@@ -2,7 +2,7 @@
 
 This guide aims to provide technical descriptions of the machinery and how to operate it.
 
-## Table of Contentt
+## Table of Content
 
 1. Overview
 2. Installation

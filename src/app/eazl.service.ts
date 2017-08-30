@@ -5860,7 +5860,7 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         this.globalVariableService.dirtyDataCanvasMessage = true;
 
         return this.put<EazlCanvasMessage>(
-            'messages/', this.cdal.saveCanvasMessage(canvasMessage)
+            'messages/' + canvasMessage.canvasMessageID + '/', this.cdal.saveCanvasMessage(canvasMessage)
             )
                 .toPromise()
                 .then(eazlCanvasMessage => {

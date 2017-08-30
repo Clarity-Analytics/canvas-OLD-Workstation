@@ -261,7 +261,8 @@ export class AppComponent implements OnInit {
 
         // Count Nr of unread messages for me
         this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
-            cm => (cm.canvasMessageSentToMe == true  &&  cm.canvasMessageMyStatus == 'UnRead')).length;
+            cm => (cm.canvasMessageSentToMe == true  &&  
+                   cm.canvasMessageMyStatus.toLowerCase() == 'unread')).length;
 
         // Show the related popup form
         this.displayNewMessage = true;

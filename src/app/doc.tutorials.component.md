@@ -5,7 +5,7 @@ of a small project.  It is aimed at learning by doing, helps the user to get sta
 build confidence.  After each tutorial there should be an immediate sense of achievement.
 The tutorials do not provide abstractions and explanations.
 
-## Table of Contentt
+## Table of Content
 
 1. Installing / running Canvas, Overlay and Eazl
 

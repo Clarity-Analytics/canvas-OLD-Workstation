@@ -120,7 +120,8 @@ console.log(basic, ref)
 
         // Count Nr of unread messages for me
         this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
-            cm => (cm.canvasMessageSentToMe == true  &&  cm.canvasMessageMyStatus == 'UnRead')).length;
+            cm => (cm.canvasMessageSentToMe == true  &&  
+                   cm.canvasMessageMyStatus.toLowerCase() == 'unread')).length;
 
         // Clear old recipients and load new ones, if there are any
         this.previousMessageRecipients = '';
@@ -270,7 +271,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
             canvasMessageRecipientID: 0,
             canvasMessageRecipientUsername:  this.sendToTheseUsers[0],
             canvasMessageRecipientIsSender: false,
-            canvasMessageRecipientStatus: 'UnRead',
+            canvasMessageRecipientStatus: 'unread',
         }];
 
         if (this.sendToTheseUsers[0] == currentUser) {
@@ -294,7 +295,7 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
                 canvasMessageRecipientID: null,
                 canvasMessageRecipientUsername: this.sendToTheseUsers[i],
                 canvasMessageRecipientIsSender:  false,
-                canvasMessageRecipientStatus:  'UnRead',
+                canvasMessageRecipientStatus:  'unread',
             });
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';

@@ -123,9 +123,9 @@ export class MessageManagerComponent implements OnInit {
 
                 if (canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus
                     .toLowerCase() == 'read') {
-                        recordStatus = 'UnRead';
+                        recordStatus = 'unread';
                 } else {
-                        recordStatus = 'Read';
+                        recordStatus = 'read';
                 }
 
                 canvasMessage.canvasMessageRecipients[i].canvasMessageRecipientStatus =
@@ -163,7 +163,8 @@ export class MessageManagerComponent implements OnInit {
 
         // Count Nr of unread messages for me
         this.nrUnReadMessagesForMe = this.eazlService.getCanvasMessages(-1, -1, -1).filter(
-            cm => (cm.canvasMessageSentToMe == true  &&  cm.canvasMessageMyStatus == 'UnRead')).length;
+            cm => (cm.canvasMessageSentToMe == true  &&  
+                   cm.canvasMessageMyStatus.toLowerCase() == 'unread')).length;
 
         // Show the related popup form
         this.displayNewMessage = true;

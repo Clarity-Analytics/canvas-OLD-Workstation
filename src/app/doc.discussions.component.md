@@ -4,7 +4,7 @@ This document aims to to enhance understanding of the product with explanations 
 use multiple examples, and alternative approaches while making connections between different
 aspects of the system.
 
-## Table of Contentt
+## Table of Content
 
 1. Basic philospophy 
 2. The flow / steps in creating a report
