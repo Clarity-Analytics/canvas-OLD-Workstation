@@ -1580,7 +1580,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.widgetToEdit = this.eazlService.getDefaultWidgetConfig();
         this.addEditModeWidgetEditor = 'Add';
         this.displayEditWidget = true;
-console.log('this.widgetToEdit', this.widgetToEdit)
     }
 
     onWidgetDragHandleMouseDown(idWidget: number) {
@@ -1998,13 +1997,11 @@ console.log('this.widgetToEdit', this.widgetToEdit)
         // Else, we assume no data has to be used for rendering
         // NOTE: we only store a report used once in this Array, even if used by >1 Widget
         for (var i = 0; i < this.widgets.length; i++) {
-            console.log('dashboardRefresh i',i)
-            console.log('dashboardRefresh this.widgets[i].properties.widgetReportID', this.widgets[i].properties.widgetReportID)
             let foundReport: boolean = false;
             if (this.widgets[i].areas.showWidgetGraph  ||
                 this.widgets[i].areas.showWidgetTable)    {
                     for (var j = 0; j < this.reports.length; j++) {
-                        console.log('dashboardRefresh this.reports[j].reportID', this.reports[j].reportID)
+
                         if (this.widgets[i].properties.widgetReportID ==
                             this.reports[j].reportID) {
                                 foundReport = true;
@@ -2017,17 +2014,16 @@ console.log('this.widgetToEdit', this.widgetToEdit)
                 reportToAdd = this.eazlService.getReport(
                     this.widgets[i].properties.widgetReportID
                 );
-                console.log('reportToAdd',reportToAdd)
+
                 if (reportToAdd != null) {
                     this.reports.push(reportToAdd);
                 }
             }
         }
-console.log('this.childrenWidgetContainers.toArray().length',this.childrenWidgetContainers.toArray().length)
+
         // Loop on the container ElementRefs, and set properties ala widget[].properties
         if (this.childrenWidgetContainers.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
-console.log('dashboardRefresh 2 this.widgets[i].properties.widgetReportID', this.widgets[i].properties.widgetReportID)
                 
                 // Get report data for this Widget
                 this.widgets[i].properties.widgetReportID
@@ -2185,7 +2181,6 @@ console.log('dashboardRefresh 2 this.widgets[i].properties.widgetReportID', this
                         this.childrenWidgets.toArray()[i].nativeElement,
                         'top', this.widgets[i].graph.graphTop.toString() + 'px'
                     );
-console.log('dashboardRefresh 3 this.widgets[i].properties.widgetReportID', this.widgets[i].properties.widgetReportID)
                     
                     // Replace the data, if reportID != -1
                     if (this.widgets[i].properties.widgetReportID != -1) {
@@ -2231,7 +2226,6 @@ console.log('dashboardRefresh 3 this.widgets[i].properties.widgetReportID', this
         if (this.childrenWidgetTable.toArray().length > 0) {
             for (var i = 0; i < this.widgets.length; i++) {
                 if (this.widgets[i].areas.showWidgetTable) {
-console.log('dashboardRefresh 4 this.widgets[i].properties.widgetReportID', this.widgets[i].properties.widgetReportID)
                     
                     // Other Attributes, like ID
                     this.renderer.setElementAttribute(
@@ -2245,10 +2239,12 @@ console.log('dashboardRefresh 4 this.widgets[i].properties.widgetReportID', this
                     let reportData: any[] = [
                         {
                             "Error": "No data found",
-                            "reportID": this.widgets[i].properties.widgetReportID}
+                            "reportID": this.widgets[i].properties.widgetReportID
+                        }
                     ];
 
                     for (var j = 0; j < this.reports.length; j++) {
+               
                         if (this.widgets[i].properties.widgetReportID ==
                             this.reports[j].reportID) {
                                 for (var k = 0; k < this.reports.length; k++) {

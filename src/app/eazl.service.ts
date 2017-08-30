@@ -455,7 +455,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 1,
                 dashboardID: 0,
                 dashboardName: 'Collection of Bar charts',
-                dashboardTabID: 0,
+                dashboardTabID: 1,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstBar',
                 widgetName: 'Bar Chart 1',
@@ -496,27 +496,229 @@ export const WIDGETS: Widget[] =
             }
         },
 
+        // {
+        //     container: {
+        //         backgroundColor: 'transparent',
+        //         border: '1px solid black',
+        //         boxShadow: '',
+        //         color: 'brown',
+        //         fontSize: 1,
+        //         height: 440,
+        //         left: 640,
+        //         widgetTitle: 'Headcount Comparison',
+        //         top: 80,
+        //         width: 440,
+        //     },
+        //     areas: {
+        //         showWidgetText: true,
+        //         showWidgetGraph: true,
+        //         showWidgetTable: true,
+        //         showWidgetImage: false,
+        //     },
+        //     textual: {
+        //         textText: '<strong>Headcount </strong> for ##today##',
+        //         textBackgroundColor: 'transparent',
+        //         textBorder: 'none',
+        //         textColor: 'black',
+        //         textFontSize: 1,
+        //         textFontWeight: 'normal',
+        //         textHeight: 16,
+        //         textLeft: 0,
+        //         textMargin: '0 5px 0 5px',
+        //         textPadding:  '5px 0 5px',
+        //         textPosition: 'absolute',
+        //         textTextAlign: 'center',
+        //         textTop: 25,
+        //         textWidth: 300,
+        //     },
+        //     graph: {
+        //         graphID: 0,
+        //         graphLeft: 5,
+        //         graphTop: 75,
+        //         vegaParameters: {
+        //             vegaGraphHeight: 200,
+        //             vegaGraphWidth: 180,
+        //             vegaGraphPadding: 10,
+        //             vegaHasSignals: true,
+        //             vegaXcolumn: 'category',
+        //             vegaYcolumn: 'amount',
+        //             vegaFillColor: 'pink',
+        //             vegaHoverColor: 'lightgray'
+        //         },
+        //         spec: {
+        //         "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+        //         "width": 290,
+        //         "height": 220,
+        //         "padding": 5,
+
+        //         "data": [
+        //             {
+        //             "name": "table",
+        //             "values": [
+        //                 {"category": "A1", "amount": 28},
+        //                 {"category": "B1", "amount": 55},
+        //                 {"category": "C1", "amount": 43},
+        //                 {"category": "D1", "amount": 91},
+        //                 {"category": "E1", "amount": 81},
+        //                 {"category": "F1", "amount": 53},
+        //                 {"category": "G1", "amount": 19},
+        //                 {"category": "H1", "amount": 87}
+        //             ]
+        //             }
+        //         ],
+
+        //         "signals": [
+        //             {
+        //             "name": "tooltip",
+        //             "value": {},
+        //             "on": [
+        //                 {"events": "rect:mouseover", "update": "datum"},
+        //                 {"events": "rect:mouseout",  "update": "{}"}
+        //             ]
+        //             }
+        //         ],
+
+        //         "scales": [
+        //             {
+        //             "name": "xscale",
+        //             "type": "band",
+        //             "domain": {"data": "table", "field": "category"},
+        //             "range": "width"
+        //             },
+        //             {
+        //             "name": "yscale",
+        //             "domain": {"data": "table", "field": "amount"},
+        //             "nice": true,
+        //             "range": "height"
+        //             }
+        //         ],
+
+        //         "axes": [
+        //             { "orient": "bottom", "scale": "xscale" },
+        //             { "orient": "left", "scale": "yscale" }
+        //         ],
+
+        //         "marks": [
+        //             {
+        //             "type": "rect",
+        //             "from": {"data":"table"},
+        //             "encode": {
+        //                 "enter": {
+        //                 "x": {"scale": "xscale", "field": "category", "offset": 1},
+        //                 "width": {"scale": "xscale", "band": 1, "offset": -1},
+        //                 "y": {"scale": "yscale", "field": "amount"},
+        //                 "y2": {"scale": "yscale", "value": 0}
+        //                 },
+        //                 "update": {
+        //                 "fill": {"value": "darkslategray"}
+        //                 },
+        //                 "hover": {
+        //                 "fill": {"value": "red"}
+        //                 }
+        //             }
+        //             },
+        //             {
+        //             "type": "text",
+        //             "encode": {
+        //                 "enter": {
+        //                 "align": {"value": "center"},
+        //                 "baseline": {"value": "bottom"},
+        //                 "fill": {"value": "#333"}
+        //                 },
+        //                 "update": {
+        //                 "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+        //                 "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
+        //                 "text": {"signal": "tooltip.amount"},
+        //                 "fillOpacity": [
+        //                     {"test": "datum === tooltip", "value": 0},
+        //                     {"value": 1}
+        //                 ]
+        //                 }
+        //             }
+        //             }
+        //         ]
+        //         }
+        //     },
+        //     table:{
+        //         tableColor: 'red',
+        //         tableCols: 2,
+        //         tableHeight: 120,
+        //         tableHideHeader: true,
+        //         tableLeft: 50,
+        //         tableRows: 10,
+        //         tableTop: 340,
+        //         tableWidth: 340,
+        //     },
+        //     image: {
+        //         imageAlt: '',
+        //         imageHeigt: 200,
+        //         imageLeft: 5,
+        //         imageSource: '', //  <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+        //         imageTop: 300,
+        //         imageWidth: 200,
+        //     },
+        //     properties: {
+        //         widgetID: 2,
+        //         dashboardID: 0,
+        //         dashboardName: 'Collection of Bar charts',
+        //         dashboardTabID: 1,
+        //         dashboardTabName: "Value",
+        //         widgetCode: 'SecondBar',
+        //         widgetName: 'Bar Chart 2',
+        //         widgetAddRestRow: true,
+        //         widgetCreatedDateTime: '',
+        //         widgetCreatedUserName: '',
+        //         widgetComments: '',
+        //         widgetDefaultExportFileType: '',
+        //         widgetDescription: 'This graph showing ...',
+        //         widgetIndex: 1,
+        //         widgetIsLocked: true,
+        //         widgetHyperLinkTabNr: '',
+        //         widgetHyperLinkWidgetID: '',
+        //         widgetIsLiked: false,
+        //         widgetLiked: [
+        //             {
+        //                 widgetLikedUserName: 'janniei',
+        //             }
+        //         ],
+        //         widgetPassword: '',
+        //         widgetRefreshedDateTime: '',
+        //         widgetRefreshedUserName: '',
+        //         widgetRefreshFrequency: 3,
+        //         widgetRefreshMode: '',
+        //         widgetReportID: 1,
+        //         widgetReportName: '',
+        //         widgetReportParameters: '',
+        //         widgetShowLimitedRows: 0,
+        //         widgetSize: '',
+        //         widgetSystemMessage: '',
+        //         widgetTypeID: 1,
+        //         widgetType: 'BarChart',
+        //         widgetUpdatedDateTime: '',
+        //         widgetUpdatedUserName: ''
+        //     }
+        // },
         {
             container: {
                 backgroundColor: 'transparent',
                 border: '1px solid black',
                 boxShadow: '',
-                color: 'brown',
+                color: 'gray',
                 fontSize: 1,
-                height: 440,
-                left: 640,
-                widgetTitle: 'Headcount Comparison',
+                height: 360,
+                left: 650,
+                widgetTitle: 'Weather forecast',
                 top: 80,
-                width: 440,
+                width: 430,
             },
             areas: {
                 showWidgetText: true,
                 showWidgetGraph: true,
-                showWidgetTable: true,
+                showWidgetTable: false,
                 showWidgetImage: false,
             },
             textual: {
-                textText: '<strong>Headcount </strong> for ##today##',
+                textText: '<table> <tr>    <th>Firstname</th>    <th>Lastname</th>     <th>Age</th>  </tr>  <tr>    <td>Jill</td>    <td>Smith</td>     <td>50</td>  </tr>  <tr>    <td>Eve</td>    <td>Jackson</td>     <td>94</td>  </tr></table>',
                 textBackgroundColor: 'transparent',
                 textBorder: 'none',
                 textColor: 'black',
@@ -529,12 +731,12 @@ export const WIDGETS: Widget[] =
                 textPosition: 'absolute',
                 textTextAlign: 'center',
                 textTop: 25,
-                textWidth: 300,
+                textWidth: 0,
             },
             graph: {
                 graphID: 0,
                 graphLeft: 5,
-                graphTop: 75,
+                graphTop: 110,
                 vegaParameters: {
                     vegaGraphHeight: 200,
                     vegaGraphWidth: 180,
@@ -546,108 +748,96 @@ export const WIDGETS: Widget[] =
                     vegaHoverColor: 'lightgray'
                 },
                 spec: {
-                "$schema": "https://vega.github.io/schema/vega/v3.0.json",
-                "width": 290,
-                "height": 220,
-                "padding": 5,
+                    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+                    "width": 300,
+                    "height": 200,
+                    "padding": 5,
 
-                "data": [
-                    {
-                    "name": "table",
-                    "values": [
-                        {"category": "A1", "amount": 28},
-                        {"category": "B1", "amount": 55},
-                        {"category": "C1", "amount": 43},
-                        {"category": "D1", "amount": 91},
-                        {"category": "E1", "amount": 81},
-                        {"category": "F1", "amount": 53},
-                        {"category": "G1", "amount": 19},
-                        {"category": "H1", "amount": 87}
-                    ]
-                    }
-                ],
-
-                "signals": [
-                    {
-                    "name": "tooltip",
-                    "value": {},
-                    "on": [
-                        {"events": "rect:mouseover", "update": "datum"},
-                        {"events": "rect:mouseout",  "update": "{}"}
-                    ]
-                    }
-                ],
-
-                "scales": [
-                    {
-                    "name": "xscale",
-                    "type": "band",
-                    "domain": {"data": "table", "field": "category"},
-                    "range": "width"
-                    },
-                    {
-                    "name": "yscale",
-                    "domain": {"data": "table", "field": "amount"},
-                    "nice": true,
-                    "range": "height"
-                    }
-                ],
-
-                "axes": [
-                    { "orient": "bottom", "scale": "xscale" },
-                    { "orient": "left", "scale": "yscale" }
-                ],
-
-                "marks": [
-                    {
-                    "type": "rect",
-                    "from": {"data":"table"},
-                    "encode": {
-                        "enter": {
-                        "x": {"scale": "xscale", "field": "category", "offset": 1},
-                        "width": {"scale": "xscale", "band": 1, "offset": -1},
-                        "y": {"scale": "yscale", "field": "amount"},
-                        "y2": {"scale": "yscale", "value": 0}
-                        },
-                        "update": {
-                        "fill": {"value": "darkslategray"}
-                        },
-                        "hover": {
-                        "fill": {"value": "red"}
-                        }
-                    }
-                    },
-                    {
-                    "type": "text",
-                    "encode": {
-                        "enter": {
-                        "align": {"value": "center"},
-                        "baseline": {"value": "bottom"},
-                        "fill": {"value": "#333"}
-                        },
-                        "update": {
-                        "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
-                        "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -2},
-                        "text": {"signal": "tooltip.amount"},
-                        "fillOpacity": [
-                            {"test": "datum === tooltip", "value": 0},
-                            {"value": 1}
+                    "data": [
+                        {
+                        "name": "table",
+                        "values": [
+                            {"x": 10, "y": 28, "c":0}, {"x": 10, "y": 55, "c":1},
+                            {"x": 11, "y": 43, "c":0}, {"x": 11, "y": 91, "c":1},
+                            {"x": 12, "y": 81, "c":0}, {"x": 12, "y": 53, "c":1},
+                            {"x": 13, "y": 19, "c":0}, {"x": 13, "y": 87, "c":1},
+                            {"x": 14, "y": 52, "c":0}, {"x": 14, "y": 48, "c":1},
+                            {"x": 15, "y": 24, "c":0}, {"x": 15, "y": 49, "c":1},
+                            {"x": 16, "y": 87, "c":0}, {"x": 16, "y": 66, "c":1},
+                            {"x": 17, "y": 17, "c":0}, {"x": 17, "y": 27, "c":1},
+                            {"x": 18, "y": 68, "c":0}, {"x": 18, "y": 16, "c":1},
+                            {"x": 19, "y": 49, "c":0}, {"x": 19, "y": 15, "c":1}
+                        ],
+                        "transform": [
+                            {
+                            "type": "stack",
+                            "groupby": ["x"],
+                            "sort": {"field": "c"},
+                            "field": "y"
+                            }
                         ]
                         }
-                    }
-                    }
-                ]
+                    ],
+
+                    "scales": [
+                        {
+                        "name": "x",
+                        "type": "band",
+                        "range": "width",
+                        "domain": {"data": "table", "field": "x"}
+                        },
+                        {
+                        "name": "y",
+                        "type": "linear",
+                        "range": "height",
+                        "nice": true, "zero": true,
+                        "domain": {"data": "table", "field": "y1"}
+                        },
+                        {
+                        "name": "color",
+                        "type": "ordinal",
+                        "range": "category",
+                        "domain": {"data": "table", "field": "c"}
+                        }
+                    ],
+
+                    "axes": [
+                        {"orient": "bottom", "scale": "x", "zindex": 1},
+                        {"orient": "left", "scale": "y", "zindex": 1}
+                    ],
+
+                    "marks": [
+                        {
+                        "type": "rect",
+                        "from": {"data": "table"},
+                        "encode": {
+                            "enter": {
+                            "x": {"scale": "x", "field": "x"},
+                            "width": {"scale": "x", "band": 1, "offset": -1},
+                            "y": {"scale": "y", "field": "y0"},
+                            "y2": {"scale": "y", "field": "y1"},
+                            "fill": {"scale": "color", "field": "c"}
+                            },
+                            "update": {
+                            "fillOpacity": {"value": 1}
+                            },
+                            "hover": {
+                            "fillOpacity": {"value": 0.5}
+                            }
+                        }
+                        }
+                    ]
                 }
             },
             table:{
-                tableColor: 'red',
-                tableCols: 2,
-                tableHeight: 120,
-                tableHideHeader: true,
-                tableLeft: 50,
-                tableRows: 10,
-                tableTop: 340,
-                tableWidth: 340,
+                tableColor: 'white',
+                tableCols: 1,
+                tableHeight: 25,
+                tableHideHeader: false,
+                tableLeft: 5,
+                tableRows: 1,
+                tableTop: 300,
+                tableWidth: 25,
             },
             image: {
                 imageAlt: '',
@@ -661,7 +851,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 2,
                 dashboardID: 0,
                 dashboardName: 'Collection of Bar charts',
-                dashboardTabID: 0,
+                dashboardTabID: 1,
                 dashboardTabName: "Value",
                 widgetCode: 'SecondBar',
                 widgetName: 'Bar Chart 2',
@@ -678,7 +868,7 @@ export const WIDGETS: Widget[] =
                 widgetIsLiked: false,
                 widgetLiked: [
                     {
-                        widgetLikedUserName: 'janniei',
+                        widgetLikedUserName: '',
                     }
                 ],
                 widgetPassword: '',
@@ -686,7 +876,7 @@ export const WIDGETS: Widget[] =
                 widgetRefreshedUserName: '',
                 widgetRefreshFrequency: 3,
                 widgetRefreshMode: '',
-                widgetReportID: 1,
+                widgetReportID: -1,
                 widgetReportName: '',
                 widgetReportParameters: '',
                 widgetShowLimitedRows: 0,
@@ -851,7 +1041,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 3,
                 dashboardID: 0,
                 dashboardName: 'Collection of Bar charts',
-                dashboardTabID: 0,
+                dashboardTabID: 1,
                 dashboardTabName: "Value",
                 widgetCode: 'ThirdBar',
                 widgetName: 'Bar Chart 3',
@@ -1078,7 +1268,7 @@ export const WIDGETS: Widget[] =
             },
             properties: {
                 widgetID: 4,
-                dashboardID: 0,
+                dashboardID: 2,
                 dashboardName: 'Collection of Bar charts',
                 dashboardTabID: 1,
                 dashboardTabName: "Volume",
@@ -1527,7 +1717,7 @@ export const WIDGETS: Widget[] =
                 widgetID: 11,
                 dashboardID: 2,
                 dashboardName: 'Collection of Pie charts',
-                dashboardTabID: 2,
+                dashboardTabID: 3,
                 dashboardTabName: "Value",
                 widgetCode: 'FirstPie',
                 widgetName: 'Pie contracts per Broker 2',
