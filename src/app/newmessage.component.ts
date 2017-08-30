@@ -83,33 +83,36 @@ export class NewMessageComponent implements OnInit {
         this.userformNewMessage.controls['messageSubject'].setValue('');
         this.userformNewMessage.controls['messageBody'].setValue('');
         this.userformNewMessage.controls['messageDashboardID'].setValue('');
-
-        // Fill combos
-        this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
     }
 
     ngOnChanges() {
         // Reacts to changes in selectedGroup
         this.globalFunctionService.printToConsole(this.constructor.name, 'ngOnChanges', '@Start');
 
-// TODO - delete
-let basic = new WebSocketBasicMessage();
 
-basic =  {
-	webSocketDatetime: new Date,
-	webSocketSenderUsername: 'TESTING in newmessage component',
-	webSocketMessageType: 'WebSocketRefDataMessage',
-	webSocketMessageBody: 					
-		{
-			webSocketTableName: 'Table that was amended',
-			webSocketAction: 'What was done at one of two levels:',
-			webSocketRecordID: 5,
-			webSocketMessage: 'Optional message'
-		}
-}
-    
-let ref: WebSocketRefDataMessage = basic;
-console.log(basic, ref)
+        // Fill combos
+        this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
+
+        
+
+        // TODO - delete
+        let basic = new WebSocketBasicMessage();
+
+        basic =  {
+            webSocketDatetime: new Date,
+            webSocketSenderUsername: 'TESTING in newmessage component',
+            webSocketMessageType: 'WebSocketRefDataMessage',
+            webSocketMessageBody: 					
+                {
+                    webSocketTableName: 'Table that was amended',
+                    webSocketAction: 'What was done at one of two levels:',
+                    webSocketRecordID: 5,
+                    webSocketMessage: 'Optional message'
+                }
+        }
+            
+        let ref: WebSocketRefDataMessage = basic;
+        console.log(basic, ref)
 
 
 
