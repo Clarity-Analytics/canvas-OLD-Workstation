@@ -41,6 +41,7 @@ This guide aims to provide technical descriptions of the machinery and how to op
 * Overlay task management
 
 
+
 ## 1. Overview
 
 Our purpose is to create a workspace for knowledge workers to visualise any existing data sources in order to obtain information, understanding and insight, with easy collaboration.  Just like a canvas provides a painter with a workspace, our Canvas provides a knowledge worker with a working space.
@@ -87,12 +88,17 @@ Once logged in successfully, the user will be presented with a single form conta
 
 A menu with the following options is displayed at the top of the page:
 
-|  Visualise  |  Collaborate  | Manage |  My Account  |  Help  |
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/MainMenu.png)
+
 
 
 ## 4. Visualisation
 
 The Visualise menu option is used to display data; in fact, it is the only way for users to extract data and show (visualise) data.  Data shown can be a mixture of tabular data (tables) and graphs, customiseable by the user.  So, the term visualise includes ‘standard reports’.
+
+The following submenu option is available:
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/VisualiseSubmenu.png)
 
 Visualisation is done onto a blank space called a Dashboard.  Each Dashboard is a collection of existing Reports, completed as part of the preparation above.  A user can create any number of Dashboards.  A Report is placed onto the Dashboard as a Widget, which is simply the data from the selected Report as formatted by the user.  For example, lets say we have a Report that provides the sales volumes per region and per month.  Any number of Widgets can now be created using this Report, for example: Widget A can be a pie chart per region, Widget B can be a bar chart of the total sales volumes per month, Widget C can be a table with the detail data, etc.
 
@@ -253,10 +259,8 @@ A key objective of the system is to make collaboration between users easier.  In
 
 The Collaboration menu option has two sub options:
 
-|   Visualise   |
-|---------------|
-| New Messages  |
-| Show Messages |
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/CollaborateSubmenu.png)
+
 
 The New Messages allows the user to enter the following information:
 - Subject
@@ -298,14 +302,8 @@ Each messages can be marked as Read or UnRead by right-clicking on it.
 
 Administrative tasks are performed using this menu.  It has the following sub-menu options:
 
-|   Manage              |
-|-----------------------|
-|  Users                |
-|  Groups               |
-|  Data Sources         |
-|  Reports              |
-|  Dashboards           |
-|  System configuration |
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/ManageSubmenu.png)
+
 
 Access is assigned per group and / or per user.  No access is not given by default, and must be explicitly assigned.  The only exception is Admin who has rights to all entities.  
 
@@ -586,12 +584,8 @@ There is no visual clue when in a production environment, and a very clear one w
 
 The My Account menu option allows personalisation of the system. The following sub-menu options are available:
 
-|   My Account      |
-|-------------------|
-|  Who Am I         |
-|  Logout           |
-|  My Profile       |
-|  Personalisation  |
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/MyAccountSubmenu.png)
+
 
 - Who am I / Current UserName and DateTime logged in.
 - Logout (will show the initial login form, and will not proceed until successfully logged in again).  All cached data (data stored locally from the server) will be cleared.
@@ -616,13 +610,8 @@ Personalistion includes:
 
 Help menu options are:
 
-|   Help            |
-|-------------------|
-|  System Info      |
-|  Feedback         |
-|  Tutorials        |
-|  Reference Guide  |
-|  Discussions      |
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/HelpSubmenu.png)
+
 
 - System info, for example the current version of the system that is useful for responding to support calls.
 - Feedback: when the user wants to give feedback on the usage of the system, or log a support call.
