@@ -84,6 +84,7 @@ The above assumes that you are connected to an Eazl server.  The instructions to
 
 On startup of Canvas a login form will be presented, requesting a username and password.  These must have been created before by the system administrator.  The password is case sensitive, and the user will remain logged in until he closes the tab in the browser.  When the tab is re-opened, he / she will have to log in again.
 
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/LoginPopupForm.png)
 
 Once logged in successfully, the user will be presented with a single form containing a menu at the top.  The menu is adapted for access rights of the user, and inaccessable menu options are dimmed out.  This form will remain in focus, showing different parts of the system as the user clicks the menu options (in techno-speack, Canvas is a SPA or Single Page Application which enhances the user experience).
 
