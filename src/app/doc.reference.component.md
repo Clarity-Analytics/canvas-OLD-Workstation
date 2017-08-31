@@ -110,15 +110,25 @@ Hover the cursor over the Visualise menu optio, and select Dashboard editor.  Fo
 * Dashboard Editor to create new Dashboard, select an existing Dashboard and an advanced filter on Dashboards to show in the dropdown.
 * Widget tools to manage individual Widgets.
 
-![Dashboard Palette](../assets/Dashboard Palette.png)
+![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/DashboardPalette.png)
 
 
-To select an existing Dashboard, select one from the dropdown.  In case too many options are presented, one can filter it down using the advanced editor.  The number in the heading indicats how many of the total number of Dashboards are shown in the dropdown after using the filter.  Note that the icons on the left have tooltips, which will be shown when the cursor hovers over it.  A Dashboard can have one or more tabs, and it is important to know since the required information may be on another tab in the Dashboard.  It the selected Dashboard only has one tab, this tab will be shown automatically.  In case the Dashboard has more than one tab, one has to select the desire tab from the tabs dropdown.  More actions on tabs are shown just below the tab dropdown:
+To select an existing Dashboard, select one from the dropdown (*Dashboard to open*).  In case too many options are presented, one can filter it down using the advanced editor (*filter button next to Actions*).  The number in the heading indicats how many of the total number of Dashboards are shown in the dropdown after using the filter; for example 1/6 shows that only one of a total of 6 dashboards are shown in the dropdown.  
+
+The Advanced Filter popup:
+
+//TODO - fix and add
+
+Note that the icons have tooltips, which will be shown when the cursor hovers over it.  To create a new Dashboard, click on the + sign in the Dashboard Editor to create a new Dashboard.  Canvas will assign a name to it (*'Untitled - 1' for the first one*).  In order to rename the Dashboard or change more properties (like who has access to it), please use the *Admin -> Dashboards* menu option.  To add a new Widget, drag the top left icon in the Widget tools area onto the open space of the Dashboard.
+
+A Dashboard can have one or more tabs, and it is important to know since the required information may be on another tab in the Dashboard.  It the selected Dashboard only has one tab, this tab will be shown automatically.  In case the Dashboard has more than one tab, one has to select the desire tab from the tabs dropdown.  More actions on tabs are shown just below the tab dropdown:
 - edit a dashboard, where a name or description can be amended.
 - add a tab, with a name.
 - delete a tab.  Note that all Widgets on a tab must be deleted before the whole tab can be deleted.
 
-To create a new Dashboard, click on the + sign in the Dashboard Editor to create a new Dashboard.  Canvas will assign a name to it.  In order to rename the Dashboard or change more properties (like who has access to it), please use the Admin -> Dashboards menu option.  To add a new Widget, drag the top left icon in the Widget tools area onto the open space of the Dashboard.  
+The Add or Edit buttons open a form:
+   ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/DashboardTabEditor.png)
+
 
 Now, lets go about the practical job of creating Widgets.  The first step is to identify the source of the data: 
 - define a Data Source using the Manage menu option tells the system where the data lives, and how how different data portions are related.  
@@ -139,8 +149,12 @@ The header of each Widget has the following icons:
 - selected checkbox.  This is only active when a Widget has been selected, by clicking on it. 
 - Comments button.  Users can leave comments on individual Widgets.  Click this button to show the message trail.
 
-Widgets are manipulated with the Widgets tools, on the left of the screen.  The following actions are available in the Widget tools area:
-- Add a new Widget to the Dashboard
+Widgets are manipulated with the Widgets tools, on the left of the screen:
+
+   ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/DashboardWidgetTools.png)
+
+ The following actions are available in the Widget tools area:
+- Add a new Widget to the Dashboard by dragging the icon onto the open canvas
 - Left align selected Widgets.  Alignments is only applicable to multiple selected Widgets.  The selection of a Widget is indicated with a check in the right hand top corner.
 - Center align selected Widgets
 - Right align selected Widgets.
@@ -149,21 +163,27 @@ Widgets are manipulated with the Widgets tools, on the left of the screen.  The 
 - Descrease the horison distance between selected Widgets.
 - Align the top of selected Widget containers.
 - Align the middle of selected Widgets.
-- Align the middle of selected Widgets.
+- Align the bottom of selected Widgets.
 - Set an equal vertical distance between (3 or more) selected Widgets.
 - Increase the vertical distance between selected Widgets.
 - Decrease the vertical distance between selected Widgets.
+- Set the same width for the selected Widgets.
+- Increase the width for the selected Widgets.
+- Decrease the width for the selected Widgets.
+- Set the same height for the selected Widgets.
+- Increase the height for the selected Widgets.
+- Decrease the height for the selected Widgets.
 - Select all the Widgets on the current Tab of the Dashboard
 - Toggle the Widget header between dark and light.  Remember to select one or more Widgets before using this tool.
 - Copy the selected Widget(s).
 - Bring the selected Widget(s) to the front (on the z-index), which is useful if Widgets are placed partially on top of one another.
-- Background selection opens up an area where the background color of the Dashboard tab, and / or the background image can be set.  If both are set, the image will take preferrence.  This setting, is remembered for future Dashboard Tabs.
+- Expand the Dashboard settings area, like Background selection where the background color of the Dashboard tab, and / or the background image can be set.  If both are set, the image will take preferrence.  This setting, is remembered for future Dashboard Tabs.
 - The snap-to-grid option can be toggled with this tool.  There is an invisible grid at the base of the Dashboard that can be used for alignment.  When the snap-to-grid option is set to on, all Widgets will snap to the closest grid point when manipulated.  
 - The toggle headers on or off tool will show all the Widget headers, or hide them.  It may be useful to show headers during the design process, where Widgets can be dragged, editted, deleted, etc. while these headers dont any value when viewing.  
 - The Widget Background tool allows the background color of the individual Widget to be modified.  Tranparent is a valid color selection, thus allowing one to 'see through' a Widget.
 - The Widget border tool allows the user to set the border of the Widget container.  Valid options include None, thin black line and so on.
 - The Widget box shadow tool can be used to give the Widget container an optional shadow.
-- The Widget color tool can be used to change the color of the text in the container.
+- The Widget text color tool can be used to change the color of the text in the container.
 - The Font Size tool changes the font size.
 - The Grid Size tool allows to change the size of the grid.  This is measured in px, a technical measurement (16px is a normal line height).  A good choice is 3.  Note that if the grid size is very big, say 30px, Widgets cannot be placed closer than 30 px of each other (as they will snap to the closest grid point when created or moved).
 
@@ -173,7 +193,12 @@ The Widget container can have any of the following areas:
 - graph
 - table
 
-A Widget can be editted with the Widget Editor (the button to open it is in the Widget header).  The Widget Editor shows the left top fo the form, and is a modal form (while open, one cannot work on other forms).  It has the following options:
+A Widget can be editted with the Widget Editor (the button to open it is in the Widget header):
+
+   ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/WidgetEditor.png)
+
+
+The Widget Editor shows the left top fo the form, and is a modal form (while open, one cannot work on other forms).  It has the following areas (which are closed by default):
 - Content, which is used to indicate the 1 - 4 areas that a Widget must contain.
 - Idenfication, which give information to identify the Widget.
 - Behaviour, an optional area to specify how the Widget should behave.
@@ -182,7 +207,7 @@ A Widget can be editted with the Widget Editor (the button to open it is in the 
 - Graph (optional)
 - Table (optional)
 
-The Identification info are:
+To open an area, click on the drop-down caret on the right hand side.  The Identification are contains the following info:
 - Dashboard on which the Widget lives.
 - Dashboard Tab where the Widget is placed.  If a Widget has to be shown on where than one tab, it has to be copied.
 - Title, which is shown in the container.  It is thus important to be brief and concise.
@@ -190,7 +215,7 @@ The Identification info are:
 - Name, which is descriptive and complete.
 - Description, with detail.
 
-The Behaviour info are:
+The Behaviour are contains the following info:
 - Export F-Type is the default file type when a Widget is exported.
 - Hyper-TabNr: a Widget can be hyper linked to another Tab.  This is useful for dril down: show a summary Widget, which has a whole tab of detail information should one wants to explore further.
 - Hyper-Widget, when a Widget is linked to a single Widget.
@@ -199,13 +224,13 @@ The Behaviour info are:
 - Password is an optional feature to protect information.  Passwords can only be added and deleted by Owners.  Users with the appropriate access rights may see the underlying information if they know the password.
 - Nr Liked is the number of users that likes this Widget.  This is a good indication of how useful the information in the Widget is.
 
-The Data info are:
+The Data contains the following info:
 - ReportName.  The data used in a Widget is provided by a predefined Report.  See Admin -> Reports for more detail.
 - Rpt Params: optional report parameters.
 - Limit Rows is a limit on the number of data rows to ue in the extraction of the Widget.  This is a good saveguard to prevent an accidental extraction of a million rows into a pie chart.
 - Rest Row: is a useful feature to show proportion when selecting a limited dataset.  For example, show the value traded by the top 5 brokers in a pie chart.  While this is good to know in itself, it does not say what percentage the top 5 makes of the total value traded.  Check Add Rest to add a new row to the data (it will thus return 6 rows) that shows the total for the rest of the brokers.
 
-The Text info are:
+The Text contains the following info:
 - Text is the text to show in the container.  This text can include HTML tags, if the user is familiar with it.  For example, to make the word August show in bold, one can add the following text: <bold>August</bold>
 - Background indicates the background color of the text area (not the whole container).
 - Text Border is the border around the text area.
@@ -221,7 +246,7 @@ The Text info are:
 - Text Top is the position of the top area in px.
 - Text Width is the width of the text area in px.
 
-The Graph info are:
+The Graph contains the following info:
 - Widget Type indicates the type of graph, i.e. Bar Chart.
 - Height is the Height of the Graph area.
 - Width is the Width of the Graph area.
@@ -231,7 +256,7 @@ The Graph info are:
 - Fill Color is the color with which the graph (i.e. bars in the barchar) must be filled.
 - Hover Color is the color when hovering over an item, i.e. an individual bar.
 
-The Table info are:
+The Table contains the following info:
 - HideHeader is a toggle to show the headers (top row) of the table.
 - Text Color is the color of the text in the table.
 - Nr Cols is the optional number of columns to show from the data.  When this is larger than the total number of columns in the data, all the columns will be shown.
@@ -241,7 +266,7 @@ The Table info are:
 - Left is the left of the table in px inside the container.
 - Top is the top of the table area in px.
 
-The Image info are:
+The Image contains the following info:
 - Alt is the alternative text shown when the image is not available.
 - Height is the height of the image.
 - Left is the left of the image, in px inside the container.
