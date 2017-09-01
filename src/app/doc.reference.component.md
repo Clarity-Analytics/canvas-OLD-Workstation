@@ -506,6 +506,7 @@ File (we provide location and format).
 Web url & say table name.   
 
 * Reports
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/ReportsTable.png)
 
 As mentioned before, Datasources are defined in the backend and represents a (potentially) large block of data with rows and columns.  A report is an extraction from that data.  It may contain all or some rows and columns.  It may also manipulate the data.  For example, the Datasource can be a list of all trades in a given year.  One report can be the value traded by month, resulting in 12 records with 2 columns.  One or more reports can be created on each Datasource.
 
@@ -519,14 +520,30 @@ The Reports sub-menu option will show a table with the following columns:
 - DS Parameters is an optional field, that is a set of parameters required for this datasource.
 - Fields
 
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/ReportsPopupMenu.png)
+
 The following context menu will be shown when right-clicking on a Report:
-- User Access shows a table with all users that have access to the selected Report.
-- Group Access shows a table with all groups that have access to the selected Report.
+- Shared Users shows a table with all users that have access to the selected Report.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/ReportUserPermissionsPopupForm.png)
+
+- Shared Group shows a table with all groups that have access to the selected Report.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/ReportGroupPermissionsPopupForm.png)
+
 - Report history, including who ran it when as well as the status (for example completed or still pending ones.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/ReportHistory.png)
+
 - Create Widget: this is a shortcut to quickly and easily build a Widget on the selected Report.  The user has to provide the Dashboard and Tab where the report has to live, the type of graph (i.e. BarChart), and the fields to show on the X axix and Y axis (where appropriate).
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/ReportCreateWidgetPopupForm.png)
+
 - Report Builder // TODO
 A Report is defined as a rectangular block of data selected from a Data Source.  It is created by means of the following steps, some of which are optional:
 Select a Data Source (which is a pre-created large block of data, and includes database location(s), database type, defined relationships / business rules between different data sets and optional parameters).  This equates to a base package in Eazl.
+
+// TODO - design & code the following paragraphs
 If the Data Source contains a parameter set, a default one must be creatd for the Report.  It will open up with the same values as that of the Data Source parameter set.  Multiple parameter sets can be defined per Data Source; each one will be uniquely identified and useable as the input to a Widget on a Dashboard. 
 
 Select fields (columns) and rows to show, using filters.
