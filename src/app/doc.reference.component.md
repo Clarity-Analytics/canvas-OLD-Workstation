@@ -193,6 +193,22 @@ The Widget container can have any of the following areas:
 - graph
 - table
 
+Here are two examples of Widgets, showing different combinations of areas, borders and headers:
+
+   ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/WidgetNoBorders.png)
+
+   ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/WidgetWithBordersHeader.png)
+
+The header has the following:
+- drag handle. Note, widgets can only be dragged if selected. 
+- Widget Editor: when clicking this button, the Widget Editor will be shown (discussed below in detail).
+- Delete: a confirmation message will pop up, as per all deletes.  Note that only a person with the required permissions to the Dashboard can delete a Widget.
+- Liked: clicking this button toggles whether a user likes a Widget or not.
+- Locked: a locked Widget cannot be editted.  This feature is useful during design to indicate which Widgets have been finalised.
+- Title: this is short text to indicate the content of the Widget.
+- Comments: optional comments per Widget that users can add.  It is darker when the Widget has already got comments.
+- Selected (shows a check).  Multiple Widgets can be selected by holding in the Shift key and clicking on them.  If the Shift key is not held down, only the last Widget clicked stays selected.
+
 A Widget can be editted with the Widget Editor (the button to open it is in the Widget header):
 
    ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/WidgetEditor.png)
@@ -294,7 +310,10 @@ The New Messages allows the user to enter the following information:
 - Body
 - Recipients in the form of a picklist (the left hand column shows all available users while the right hand column shows recipients already selected).  At least one recipient is required.
 
-The form shows the number of unread message at the top.
+The form shows the number of unread message at the top:
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/NewMeesageForm.png)
+
 
 The Show Messages sub-menu option shows a grid with the following fields:
 - Conversation ID: messages can be grouped together in the same converstation ID, which is similar to a topic.  Each conversation ID will have one or more messages linked to it.
