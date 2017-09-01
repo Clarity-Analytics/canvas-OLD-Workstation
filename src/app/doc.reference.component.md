@@ -213,6 +213,11 @@ A Widget can be editted with the Widget Editor (the button to open it is in the 
 
    ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/WidgetEditor.png)
 
+Canvas use messages for collaboration and to describe.  See *Collaboration* for more detail.  Messages can optionally refer to a specific Dashboard or Widget.  A comment on a Widget is just a message that refers to a specific Widget.  When clicking the Widget comments button in the heading, the following information pops up:
+
+
+   ![Dashboard Palette](file:///home/jannie/Projects/canvas/src/documentation/WidgetComments.png)
+
 
 The Widget Editor shows the left top fo the form, and is a modal form (while open, one cannot work on other forms).  It has the following areas (which are closed by default):
 - Content, which is used to indicate the 1 - 4 areas that a Widget must contain.
