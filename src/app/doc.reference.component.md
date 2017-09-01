@@ -741,6 +741,10 @@ Help menu options are:
 
 
 - System info, for example the current version of the system that is useful for responding to support calls.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/SystemConfigurationPopupForm.png)
+
+// TODO - design and code
 - Feedback: when the user wants to give feedback on the usage of the system, or log a support call.
 - Tutorials: short instruction sets to get going quickly, without elaborate explanations.
 - Reference Guide: this guide.
