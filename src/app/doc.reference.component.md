@@ -368,6 +368,9 @@ Users, Groups, Reports, Access, etc. exist per environment.  This way one can in
 
 * Users
 
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/UsersTable.png)
+
+
 A data table of users will be display, with the following columns:
 - Username is the unique username in the system.  In some companies this is called the UserID.  It can contain text and numbers.
 - First Name of the user
@@ -386,17 +389,28 @@ A data table of users will be display, with the following columns:
 - Is Superuser: true if this use has superuser or admin powers, thus being able to create and delete any user or group.
 
 The following context menu is available by right-clicking on a record:
+
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/UsersPopupMenu.png)
+
 - Add (a new user)
-- Delete:  A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the InactiveDate field.  An inactive user (and its memberships) can be re-activated again.  Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.
 - Edit (if the user has the appropriate rights)
+- Delete:  A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the InactiveDate field.  An inactive user (and its memberships) can be re-activated again.  Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.
 - Group Membership: groups to which the user belongs.  A popup form with a picklist is shown.  A user can belong to zero or many groups.  Groups live in a flat structure, with no hierarchy.  So, groups cannot belong to groups.  Groups and how they are created is described in the next section.  Once a group or membership has been editted, the affected users will be send a message.
-- Datasources shows the Datasources to which this user has access.
-- Show Datasources shows all the Datasources.
+- Related Datasources shows the Datasources to which this user has access.
 - Related Dashboards shows all the Dashboards that this user owns or has access to.
 - Message History: all messages where this user was the Sender or one of the recipients.
 - Report History: reports previously ran by this user.  History of previous activity is not on a separate form, but build into each entity.  This provides a readonly history of all Reports previously requested by the user.  Each Report already processed has a status of Completed Successfully or Failed, with additional information like StartDateTime, CompletionDateTime, ErrorMessage, etc.  When a Report has been submitted, but not yet completed is has a status of Pending.  In case it has been scheduled to only start at a later time, the ScheduledDateTime will be displayed.  Each record in the history has a Requestor, which is the UserName of the user who requested the Report, or scheduled it.
+- Rest password: a popup form will be displayed where the password can be changed.  A person with Admin rights can change the password of any other user.  
 
-When editting a user record, there is a button to the password.  Admin can use this to reset the password for any user.  The new password will be a 4 digit truly random number.  On the next login, the user will be forced to select a new password (no work can be done with this random password at all).  
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/UserResetPasswordPopupForm.png)
+
+Adding a new user or editting an existing user uses the same form.  It has two tabs with information:
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/UserMaintenanceIdForm.png)
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/UserMaintenanceActForm.png)
 
 * Groups
 
