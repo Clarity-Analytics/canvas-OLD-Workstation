@@ -704,10 +704,21 @@ The My Account menu option allows personalisation of the system. The following s
 
 
 - Who am I / Current UserName and DateTime logged in.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/WhoAmIpopupForm.png)
+
 - Logout (will show the initial login form, and will not proceed until successfully logged in again).  All cached data (data stored locally from the server) will be cleared.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/LogoutConfirmation.png)
+
 - My Profile: User Detail (a user can edit all details via a popup form except the blocked ones like UserName, which can only be editted by Admin).  Fields are firstname, lastname, etc.
 Change password, via a popup form.  It also shows a table with my group membership (popup readonly form of the groups the current user belong to), my Data Source access (popup readonly form of actions that the current user is allowed per Data Source), my Report Ownership (popup readonly form of the Reports that the current user has created), my Dashboard Ownership (popup readonly form of the Dashboards that the current user has created, indicating which ones that have shared with others), my Shared Dashboards (Dashboards that others have shared with me) and my History (popup readonly form of previous activities, i.e. Reports run).
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/MyProfilePopupForm.png)
+
 - Personalisation is where the user indicates how the system should function. 
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/PersonalisationPopupForm.png)
 
 Personalistion includes:
 - Startup Dashboard: optional Dashboard to open and show when the frontend starts up.
