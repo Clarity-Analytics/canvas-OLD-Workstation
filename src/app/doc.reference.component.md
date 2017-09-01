@@ -303,7 +303,7 @@ A key objective of the system is to make collaboration between users easier.  In
 - Widgets can be liked.  This is an indication of its popularity / usefulness.
 - The natural display order of Reports and Dashboards are per number of times used.
 - Report suggestions: it will show the top n Reports used by other users that belong to the same groups as a user, and not yet run by this user.
-- Widgets allows for comments by users.
+- Widgets allows for comments (messages) by users.
 
 The Collaboration menu option has two sub options:
 
@@ -320,33 +320,32 @@ The form shows the number of unread message at the top:
 ![alt text](file:///home/jannie/Projects/canvas/src/documentation/NewMeesageForm.png)
 
 
-The Show Messages sub-menu option shows a grid with the following fields:
-- Conversation ID: messages can be grouped together in the same converstation ID, which is similar to a topic.  Each conversation ID will have one or more messages linked to it.
-- Message ID: internal ID of the message, which is unique.
-- Sender: username of the user who sent the message.
-- Sent on: date-time the message was sent.
-- System?: True if the message was system generated, i.e. by the software and not a human.  This is handy for informing users when the system picks up problems or issues.
-- Dashboard ID: optional Dashboard to which the message is linked.  This means tht the recipient can open the same Dashbord, which is more optimal than emails which creats multiple copied of the same Widget.  Versioning is thus not an issue.
-- Report ID: optional Report to which the message is linked.   
-- Widget ID: optional Widget to which the message is linked.  In addition, specific comments can be included on Widgets.
-- Subject
-- Body
-- To me? is true when this message was sent to me.
-- My Status indicates whether I have read the message or not.
+The *Show Messages* sub-menu option shows a grid:
 
-It is possible to filter on any fields in the grid.
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/MessagesTable.png)
+
+Right clicking on a message provides the following popup menu:
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/MessagesPopupMenu.png)
+
+The *Read/UnRead* option simply marks the message accordingly.  As mentioned, messages can be linked to a specific Dashboard.  The *Go Dashboard* option opens up a Dashboard if one has been linked.  The *Reply* option opens up the following popup form:
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/MessageReply.png)
+
+It shows the detail for the Previous message, which is being replied to.  The detail in the Reply portion is the same as that for a new message.
+
+Each message has a Conversation ID that can group them together.  Each new message gets a new conversation ID, while each Reply keeps the same converstation ID.   Messages in the same conversation can thus be shown together.
 
 Messages can be sent to one or more users, and / or to one or more groups: note that each user will only get one message even if a member of multiple groups.  A user can only share Dashboards to which he has access, and to recipients with whom this Dashboard has been shared.  If a user is online in the system, his name will be shown in green (and not black).  When hovering on a user, the last datetime logged into the system will be shown as a tooltippie text.  For now, it will not read Outlook to determine Out of office notification status.  Messages do not have any priority (i.e. urgent).
     
 
-The icon for the Collaborate menu option will change when a new message has arrived.  New messages can result from: 
+An alert will be shown (Growl at the top right of the form) when a new message has arrived.  New messages can result from: 
 - A previously requested (async) Report has completed and the Result set is ready.  This is an example of a system generated message.
 - A Message from another user has arrived.
 - Alerts (system generated messages, i.e. an error occurred).
 
 Messages are non-intrusive; the user can send and receive Messages while leaving the forms on their work space intact.
 
-Each messages can be marked as Read or UnRead by right-clicking on it.
 
 
 ## 6. Manage / Admin
