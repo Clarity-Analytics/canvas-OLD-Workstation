@@ -398,7 +398,13 @@ The following context menu is available by right-clicking on a record:
 - Delete:  A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the InactiveDate field.  An inactive user (and its memberships) can be re-activated again.  Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.
 - Group Membership: groups to which the user belongs.  A popup form with a picklist is shown.  A user can belong to zero or many groups.  Groups live in a flat structure, with no hierarchy.  So, groups cannot belong to groups.  Groups and how they are created is described in the next section.  Once a group or membership has been editted, the affected users will be send a message.
 - Related Datasources shows the Datasources to which this user has access.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/UsersRelatedDatasources.png)
+
 - Related Dashboards shows all the Dashboards that this user owns or has access to.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/UserRelatedPermissionsPopupForm.png)
+
 - Message History: all messages where this user was the Sender or one of the recipients.
 - Report History: reports previously ran by this user.  History of previous activity is not on a separate form, but build into each entity.  This provides a readonly history of all Reports previously requested by the user.  Each Report already processed has a status of Completed Successfully or Failed, with additional information like StartDateTime, CompletionDateTime, ErrorMessage, etc.  When a Report has been submitted, but not yet completed is has a status of Pending.  In case it has been scheduled to only start at a later time, the ScheduledDateTime will be displayed.  Each record in the history has a Requestor, which is the UserName of the user who requested the Report, or scheduled it.
 - Rest password: a popup form will be displayed where the password can be changed.  A person with Admin rights can change the password of any other user.  
@@ -418,18 +424,35 @@ As noted before, groups have a flat structure: users can belong to zero or more 
 Canvas has no functionality to import or sync to the company hierarchy.  Groups and group member ship can be exported to Excel as per usual, where it can be compared if necessary.
 It also does not cater for restructuring (where for example all users from Group A and Group B are merged into Group C).
 
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/GroupsTable.png)
+
 The table for groups has the following columsn:
 - ID (unique)
 - Name, for example HR, Sales, etc.
 - Description: detailed description.
 
 The following context menu will be displayed when one right-clicks on a group record:
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/GroupsPopupMenu.png)
+
+
 - Add
 - Edit
 - Delete
 - Users in Group: shows a picklist of users that belongs to a group.
+
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/GroupsUserMembershipPopupForm.png)
+
 - Related Datasources to which the group has access.
 
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/GroupsRelatedDatasourcesPopupForm.png)
+
+Adding a new group or editting an existing group uses the same form:
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/GroupMaintenancePopupForm.png)
+
+// TODO - fix this in code
 The following groups are permanent and not deleteable:
 Admin – can be used to easily manage admin access.  By default, no one belongs to the Admin group.
 Everyone – simplified access to innocent Reports. On creation, a user belongs by default to this group.  This membership can be deleted.  Only the owner has access to a new Report, other users or Everyone has to be explicitly added.
@@ -441,6 +464,8 @@ Currently Canvas does not access Active Directory (users or groups) and does not
 
 * Datasources
 
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/DatasourcesTable.png)
+
 A Data Source (called a base package in the backend) is a large block of data from which Reports are constructed.  In techno speak: they are SQL packages that collect data from one or more databases or other sources, and collate it in a rectangular block of data.  The Datasource thus defines the universe of information to work with.  A report is an extraction from a Datasource.  For example, in the case of a list of codes, the Datasource will be used as is in the Reports (select all records), while it will be too large in some cases (and the Report will have to filter down the data to selected columns and rows, say to a particular month). 
 
 The Datasource is the basic building block for overlay, which is a backend component.  Each Data Source is versioned, keeping all associated data for each version.  When a Data Source changes, it will recompile all Reports (queries) based on it and mark the bad / dirty ones (which cannot be run).
@@ -451,13 +476,23 @@ When the Datasource sub-menu option is chosen, a grid is shown with the followin
  - Description
 
 The following context menu is shown by right-clicking on a Datasource in the grid:
-- User Access shows a picklist to add or remove users that has access to this Datasource.
-- List User Access shows a grid with all users that have acces to this Datasource.  It is useful for an overall view, and also allows the export to a CSV file.
-- Group Membership shows a picklist to add or remove groups that has access to this Datasource.
-- List Group Access shows a grid with all groups that have acces to this Datasource.  It is useful for an overall view, and also allows the export to a CSV file.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/DatasourcesPopupMenu.png)
+
+- Shared Users: shows a popup form to add or remove users that has access to this Datasource.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/DatasourcePermissionsPopupForm.png)
+
+The Owned permission indicates that this person is an owner, who has all rights.  The Assign permission allows a user to assign / give permissions to other users. 
+// TODO get correct defs from Bradley
+- Group Membership shows a popup form to add or remove groups that has access to this Datasource.
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/DatasourceGroupPermissionsPopupForm.png)
+
 - Related Reports shows a table of all the reports that are based on the selected Datasource.
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/DatasourceRelatedReports.png)
 
-
+// TODO - sort out how the parameters will work
 Each Data Source has a maximum one set of parameters, it is however optional.
 The parameters are embedded filters that are required to make the SQL work.  It also serves to limit the amount of data returned.
 
