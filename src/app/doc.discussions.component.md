@@ -18,15 +18,54 @@ aspects of the system.
 10. Problem solving / fault finding
 11. Technology and software used
 12. Design limits
- 
+13. Passwords
+
+## 1. Basic philospophy 
+
+The goal is to make any required information available easily.  That is a tall order by any standard.  In order to achieve this, we have created two components that can interact with your existing environment:
+* backend: a server that runs in the background, connects to the required datasource (database or file) and makes the data available.
+* frontend: a web page that links to the backend, and can show (visualise) the data, either as a tabular report or in graphical format.
+
+It is possible to mix and match the above with your existing environment.  The following products can link to the backend:
+* Power BI
+* Excel
+* Python programming language
+* R programming language
+* Javascript programming language
+* Typescript programming language
+* Jupyter Notebook (popular with data scientists)
+
+The frontend can connect to any dataprovider that use a REST API (technical term for a general way to obtain data from servers).
+
+In order to make as many datasources available as possible, the following are supported:
+* Microsoft SQL
+* Mongo DB
+* MySQL
+* SQLite
+* Postgress
+* text files
+* Excel files
+
+The ability for a programming language to connect to the backend makes the solution very powerful: one can integrate the data from the backend with existing solutions, perform any possible data manipulation and use existing data libraries (like Pandas, Numpy, D3, Matplotlib, etc).
 
 
+## 2. The flow / steps in creating a report
+// TODO - Bradley to confirm ...
+Lets assume we want to create a simple report that show a list in tabular format.  And lets also assume that the data is available in a database supported by the backend.  The following steps are involved:
+* create a connection string to the datasource
+* create a SQL string to extract the data from the database; this is a query string
+* create a query (report) definition in the backend
+* create a Dashboard on the frontend
+* create a Widget on the frontend that points to the report (query)
 
+
+## 3. The actions when running a report
+// TODO - refine !!!
+A report can be run on demand (ad hoc) or it can be scheduled.  A report is run when the Widget that displays it is refreshed.  Widgets can be set to refresh when they are displayed, on demand or recurring (say every 20 seconds).  
 
 ##  Points for discussion: whether to include in the system or not ?
 * What Vega graph types to include?
 * How and should we stream real-time data?
-* Should we keep the password?  If so, add code for it.
 * How should we do drill-down - to see more detail?
 * How do we activate the hyperlink to another tab or widget?
 * How and where do we keep data quality info?

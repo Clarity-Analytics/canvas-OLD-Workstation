@@ -459,7 +459,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     applyDashboardSettings() {
         // Apply the Dashboard Settings
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickContainerApply', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'applyDashboardSettings', '@Start');
 
         // Set the document / body background color
         if (this.dashboardBackgroundColor) {
@@ -542,6 +542,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 // Border
+console.log('this.selectedBorder', this.selectedBorder['name'])                
                 if (this.displayExpandBorder) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
                         'border', this.selectedBorder['name']
