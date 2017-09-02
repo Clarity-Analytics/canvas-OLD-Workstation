@@ -63,6 +63,61 @@ Lets assume we want to create a simple report that show a list in tabular format
 // TODO - refine !!!
 A report can be run on demand (ad hoc) or it can be scheduled.  A report is run when the Widget that displays it is refreshed.  Widgets can be set to refresh when they are displayed, on demand or recurring (say every 20 seconds).  
 
+## 4. Why some reports take longer / async processing
+All reports are run asynchronisely.  This simply means that the frontend issues the request for the data to the backend, and then continues without waiting for the answer.  Once the backend has retrieved the data, it stores the result set and then sends a message to the frontend to let it know.  If the user is signed on, a message (growl) will popup to notify the user that the results of the report is ready. 
+
+The user can retrieve the results by opening the Widget based on it, which will obtain the data from the result set.
+
+Unless specified specifically, the result set will be deleted within a set time.  This time is a system parameter that can be set by the user.  For as long as the result set remains available, the Widget will refresh immediately as it does not have to run the extraction process again from the database.  Caution should be taken not to let result sets get stale unnecessarily, as updates to the database will not be reflected.
+
+
+## 5. How a deleted a user is treated
+
+After a user is created, the record is written to the database.  Deleting a user depends on whether he has been active in the system.  If this user has not had any activity, for example not logged in or run any reports, the record will physically be deleted.  This caters for the situation where a user was entered in error.  However, if the user has logged in at least once, the record cannot be deleted.  The record can only be made inactive.  This way the log and history for the user is kept indefinately.
+
+
+## 6. Audit information kept by the system
+// TODO - finalise
+
+
+## 7. Explain datastructures in Canvas (ER in words)
+
+Canvas keeps a list of valid users that may use the system.  Associated information is username, admin user or not, date created and so on.  A list of groups are also kept.  A user can belong to zero or many groups, and a group can have zero or many users.  Groups are flat: a group cannot belong to another group.
+
+Canvas also keeps the following:
+* Datasources (created in the backend)
+* Reports (created in the backend)
+* Dashboards
+* Widgets
+
+The Dashboard is the canvas on which information is displayed, and the Widget is the presentation of data.  This can be a tabular report, text, image or a graph.  Each Dashboard can contain zero or more Widgets.
+
+The creator of a Dashboard is the owner, and at that point in time the Dashboard is only visible and accessable by the owner.  The Owner can however assign permissions to other users.  Permissioning states the specific actions that another user may perform to the Dashboard.
+
+
+## 8. Different types and uses of a Dashboard
+
+A Dashboard is just a blank canvas where information can be used.  Think of it as a blank Excel workbook.  Each Dashboard can have one or more tabs, similar to worksheets in Excel.  Each tab can contain one or more Widgets; similar to a tables and graphs on an Excel worksheet.
+
+One use of a Dashboard is to show monthly management accounts.  Another can be a single report.  Or ....  // TODO
+
+// TODO - show examples (fancy ones too !!!)
+
+
+## 9. Dashboard design principles
+// TODO get from article
+
+
+## 10. Problem solving / fault finding
+
+## 11. Technology and software used
+
+## 12. Design limits
+
+## 13. Passwords
+
+The passwords of users are stored in the backend database, but encrypted.  This means that it is not human readable, and will never be displayed.  It is possible to change one's own password.  If a user has admin rights, he can change the password of any user.
+
 ##  Points for discussion: whether to include in the system or not ?
 * What Vega graph types to include?
 * How and should we stream real-time data?
