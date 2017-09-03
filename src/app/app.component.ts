@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     frontendName: string = this.globalVariableService.frontendName;
     growlLife: number = this.globalVariableService.growlLife;
-    growlSticky: boolean = false; //this.globalVariableService.growlSticky;
+    growlSticky: boolean = this.globalVariableService.growlSticky;
     systemTitle: string = this.globalVariableService.systemTitle;
     testEnvironmentName: string = this.globalVariableService.testEnvironmentName;
 
