@@ -90,7 +90,7 @@ export class GlobalVariableService {
     environment: string = '';
     frontendColorScheme: string = '';
     growlSticky: boolean = false;
-    growlLife: number = 7000;
+    growlLife: number = 3000;
     gridSize: number = 3;
     snapToGrid: boolean = true;
 

@@ -145,7 +145,7 @@ export class AppComponent implements OnInit {
 
                             // Kill old message if not sticky (else user have to delete them each time)
                             if (!this.growlSticky) {
-                                // this.growlMsgs = [];
+                                this.growlMsgs = [];
                             }
 
                             if (newgrowlmsg.detail != '') {
