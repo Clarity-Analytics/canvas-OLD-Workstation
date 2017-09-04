@@ -3916,12 +3916,12 @@ export class EazlService implements OnInit {
         // Mark as dirty
         this.globalVariableService.dirtyDataDashboard = true;
         
-        return this.post<EazlGroup>('groups',this.cdal.saveDashboard(dashboard))
+        return this.post<EazlDashboard>('dashboards',this.cdal.saveDashboard(dashboard))
             .toPromise()
-            .then( eazlGroup => {
+            .then( eazlDashboard => {
 
                 // Update local store
-                dashboard.dashboardID = eazlGroup.id;
+                dashboard.dashboardID = eazlDashboard.id;
                 this.dashboards.push(dashboard);
 
                 // TODO - reGet the local => always in sync
@@ -3935,7 +3935,7 @@ export class EazlService implements OnInit {
                 });
 
                 // Return the data
-                return this.groups;
+                return this.dashboards;
             } )
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({

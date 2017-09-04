@@ -834,6 +834,9 @@ export class DashboardManagerComponent implements OnInit {
             this.dashboardToEdit.dashboardCreatedUserName = this.canvasUser.username;
             this.dashboards.push(this.dashboardToEdit);
 
+            // Add to DB
+            this.eazlService.addDashboard(this.dashboardToEdit);
+
             // Inform the user
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',

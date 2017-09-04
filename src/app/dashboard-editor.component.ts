@@ -247,7 +247,6 @@ export class DashboardEditorComponent implements OnInit {
             // Space to worry about EDIT only mode - for future use
         }
 
-
         // Editing existing Dashboard
         if (this.addEditMode == 'Edit' && this.displayDashboardPopup) {
             // Space to worry about EDIT only mode - for future use
@@ -268,8 +267,10 @@ export class DashboardEditorComponent implements OnInit {
             this.dashboardForm.controls['isContainerHeaderDark'].value;
         this.dashboardToEdit.showContainerHeader =
             this.dashboardForm.controls['showContainerHeader'].value;
-        this.dashboardToEdit.dashboardBackgroundColor =
+        if (this.selectedTextBackground != null) {
+            this.dashboardToEdit.dashboardBackgroundColor =
             this.selectedTextBackground.name;
+        };
         this.dashboardToEdit.dashboardIsLiked =
             this.dashboardForm.controls['dashboardIsLiked'].value;
         this.dashboardToEdit.dashboardDefaultExportFileType =
@@ -291,7 +292,6 @@ export class DashboardEditorComponent implements OnInit {
             this.canvasDate.now('standard');
         this.dashboardToEdit.dashboardUpdatedUserName =
             this.canvasUser.username;
-
 
 //         // Set last updated, created and refreshed properties
 //         let d = new Date();
