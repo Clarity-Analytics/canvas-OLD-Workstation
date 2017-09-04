@@ -1268,13 +1268,13 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         if (dashboard.dashboardDescription != null) {
             eazlDashboardWorking.description = dashboard.dashboardDescription;
         } else {
-            eazlDashboardWorking.description = '';
+            eazlDashboardWorking.description = ' ';
         }
 
         if (dashboard.dashboardRefreshMode != null) {
             eazlDashboardWorking.refresh_mode = dashboard.dashboardRefreshMode;
         } else {
-            eazlDashboardWorking.refresh_mode = '';
+            eazlDashboardWorking.refresh_mode = 'manual';  // Cannot be blank
         }
 
         if (dashboard.dashboardRefreshFrequency != null) {
@@ -1304,7 +1304,7 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         if (dashboard.dashboardBackgroundImageSrc != null) {
             eazlDashboardWorking.background_image = dashboard.dashboardBackgroundImageSrc;
         } else {
-            eazlDashboardWorking.background_image = '';
+            eazlDashboardWorking.background_image = null;
         }
 
         if (dashboard.dashboardComments != null) {
