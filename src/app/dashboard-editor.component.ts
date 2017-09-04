@@ -230,6 +230,13 @@ export class DashboardEditorComponent implements OnInit {
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Dashboard Name is compulsory.';
         }
+        if (this.dashboardForm.controls['dashboardDescription'].value == ''  ||
+            this.dashboardForm.controls['dashboardDescription'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
+                    'The Dashboard Description is compulsory.';
+        }
 
         // Oi, something is not right
         if (this.errorMessageOnForm != '') {
