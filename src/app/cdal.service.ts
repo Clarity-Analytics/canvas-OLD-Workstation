@@ -1245,6 +1245,145 @@ console.log('CDAL dashboardWorking',dashboardWorking)
         return dashboardWorking;
     }
 
+    saveDashboard(dashboard: Dashboard): EazlDashboard {
+        // Load dashboard: move data Canvas -> Eazl
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveDashboard', '@Start');
+
+        let eazlDashboardWorking = new EazlDashboard();
+
+        eazlDashboardWorking.id = dashboard.dashboardID;
+
+        if (dashboard.dashboardCode != null) {
+            eazlDashboardWorking.code = dashboard.dashboardCode;
+        } else {
+            eazlDashboardWorking.code = '';
+        }
+
+        if (dashboard.dashboardName != null) {
+            eazlDashboardWorking.name = dashboard.dashboardName;
+        } else {
+            eazlDashboardWorking.name = '';
+        }
+
+        if (dashboard.dashboardDescription != null) {
+            eazlDashboardWorking.description = dashboard.dashboardDescription;
+        } else {
+            eazlDashboardWorking.description = '';
+        }
+
+        if (dashboard.dashboardRefreshMode != null) {
+            eazlDashboardWorking.refresh_mode = dashboard.dashboardRefreshMode;
+        } else {
+            eazlDashboardWorking.refresh_mode = '';
+        }
+
+        if (dashboard.dashboardRefreshFrequency != null) {
+            eazlDashboardWorking.refresh_timer = dashboard.dashboardRefreshFrequency;
+        } else {
+            eazlDashboardWorking.refresh_timer = 0;
+        }
+
+        if (dashboard.isContainerHeaderDark != null) {
+            eazlDashboardWorking.is_container_header_dark = dashboard.isContainerHeaderDark;
+        } else {
+            eazlDashboardWorking.is_container_header_dark = false;
+        }
+
+        if (dashboard.showContainerHeader != null) {
+            eazlDashboardWorking.show_container_header = dashboard.showContainerHeader;
+        } else {
+            eazlDashboardWorking.show_container_header = false;
+        }
+
+        if (dashboard.dashboardBackgroundColor != null) {
+            eazlDashboardWorking.background_color = dashboard.dashboardBackgroundColor;
+        } else {
+            eazlDashboardWorking.background_color = '';
+        }
+
+        if (dashboard.dashboardBackgroundImageSrc != null) {
+            eazlDashboardWorking.background_image = dashboard.dashboardBackgroundImageSrc;
+        } else {
+            eazlDashboardWorking.background_image = '';
+        }
+
+        if (dashboard.dashboardComments != null) {
+            eazlDashboardWorking.comments = dashboard.dashboardComments;
+        } else {
+            eazlDashboardWorking.comments = '';
+        }
+
+        if (dashboard.dashboardDefaultExportFileType != null) {
+            eazlDashboardWorking.default_export_file_type = dashboard.dashboardDefaultExportFileType;
+        } else {
+            eazlDashboardWorking.default_export_file_type = '';
+        }
+
+        if (dashboard.dashboardIsLocked != null) {
+            eazlDashboardWorking.is_locked = dashboard.dashboardIsLocked;
+        } else {
+            eazlDashboardWorking.is_locked = false;
+        }
+
+        if (dashboard.dashboardOpenTabNr != null) {
+            eazlDashboardWorking.default_tab_id = dashboard.dashboardOpenTabNr;
+        } else {
+            eazlDashboardWorking.default_tab_id = 0;
+        }
+
+        if (dashboard.dashboardPassword != null) {
+            eazlDashboardWorking.password = dashboard.dashboardPassword;
+        } else {
+            eazlDashboardWorking.password = '';
+        }
+
+        if (dashboard.dashboardSystemMessage != null) {
+            eazlDashboardWorking.system_message = dashboard.dashboardSystemMessage;
+        } else {
+            eazlDashboardWorking.system_message = '';
+        }
+
+        if (dashboard.dashboardRefreshedDateTime != null) {
+            eazlDashboardWorking.date_refreshed = dashboard.dashboardRefreshedDateTime;
+        } else {
+            eazlDashboardWorking.date_refreshed = '';
+        }
+
+        if (dashboard.dashboardRefreshedUserName != null) {
+            eazlDashboardWorking.refresher = dashboard.dashboardRefreshedUserName;
+        } else {
+            eazlDashboardWorking.refresher = '';
+        }
+
+        if (dashboard.dashboardUpdatedDateTime != null) {
+            eazlDashboardWorking.date_edited = dashboard.dashboardUpdatedDateTime;
+        } else {
+            eazlDashboardWorking.date_edited = '';
+        }
+
+        if (dashboard.dashboardUpdatedUserName != null) {
+            eazlDashboardWorking.editor = dashboard.dashboardUpdatedUserName;
+        } else {
+            eazlDashboardWorking.editor = '';
+        }
+
+        if (dashboard.dashboardCreatedDateTime != null) {
+            eazlDashboardWorking.date_created = dashboard.dashboardCreatedDateTime;
+        } else {
+            eazlDashboardWorking.date_created = '';
+        }
+
+        if (dashboard.dashboardCreatedUserName != null) {
+            eazlDashboardWorking.creator = dashboard.dashboardCreatedUserName;
+        } else {
+            eazlDashboardWorking.creator = '';
+        }
+
+console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
+        // Return the result
+        return eazlDashboardWorking;
+    }
+
     loadUserModelPermission(eazlUserModelPermission): UserModelPermission {
         // Load User Permissions for a given Dashboard: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserPermissions', '@Start');
