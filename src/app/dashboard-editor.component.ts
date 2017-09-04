@@ -25,6 +25,22 @@ import { CanvasUser }                 from './model.user';
 import { Dashboard }                  from './model.dashboards';
 import { SelectedItemColor }          from './model.selectedItemColor';
 
+export const DEFAULTFILETYPE: SelectItem[] =
+[
+    {
+        label: 'Select option',
+        value: ''
+    },
+    {
+        label: 'HTML',
+        value: 'html'
+    },
+    {
+        label: 'PDF',
+        value: 'pdf'
+    }
+]
+
 @Component({
     selector:    'dashboard-editor',
     templateUrl: 'dashboard-editor.component.html',
@@ -43,12 +59,14 @@ export class DashboardEditorComponent implements OnInit {
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     chartColor: SelectItem[];                       // Options for Backgroun-dColor DropDown
+    defaultFileType: SelectItem[] = DEFAULTFILETYPE;// List of IsSuperUser options for Dropdown
     dashboardForm: FormGroup;                       // FormBuilder Group
     errorMessageOnForm: string = '';                // Error handling on form
     formIsValid: boolean = false;                   // Error handling on form
     numberErrors: number = 0;                       // Error handling on form
-    selectedTextBackground: SelectedItemColor;      // Selected option for Text Background
+    selectedFileType: SelectItem;                   // Selected in Dropdown
     selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
+    selectedTextBackground: SelectedItemColor;      // Selected option for Text Background
 
     constructor(
         private canvasColors: CanvasColors,
@@ -236,6 +254,13 @@ export class DashboardEditorComponent implements OnInit {
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Dashboard Description is compulsory.';
+        }
+        if (this.dashboardForm.controls['dashboardDefaultExportFileType'].value == ''  ||
+            this.dashboardForm.controls['dashboardDefaultExportFileType'].value == null) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
+                    'The Default Export File Type is compulsory - please select from the dropdown.';
         }
 
         // Oi, something is not right
