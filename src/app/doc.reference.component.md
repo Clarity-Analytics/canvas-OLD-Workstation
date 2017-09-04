@@ -355,14 +355,13 @@ Administrative tasks are performed using this menu.  It has the following sub-me
 ![alt text](file:///home/jannie/Projects/canvas/src/documentation/ManageSubmenu.png)
 
 
-Access is assigned per group and / or per user.  No access is not given by default, and must be explicitly assigned.  The only exception is Admin who has rights to all entities.  
+Access is assigned per group and / or per user.  No access is not given by default, and must be explicitly assigned.  The only exception is an admin user, who has rights to all entities.  An admin user is indicated in the Django backend as a superuser.
 
 Access to data is controlled by granting rights to Data Sources.  All the Reports based on a this Data Source inherits its access; and similarly the Widgets based on the Report.  A Dashboard can have one or more Data Sources.  When a Dashboard is shared, the recipient may will only see those Widgets where he has access to.  Access assignments are inclusive: if a user has no access to a Report, but belongs to a group that does have access, the user will have access to the Report.  There are no exclusion rights (once included via a group, the user stays included).
 
-// TODO - where does superuser fit in?
-Admin rights are not granted to individual users; users get admin rights when they belong to the Admin group.  
+Admin rights are granted to individual users and not at a group level.  The group called Admin has no special powers, and is merely a group to organise users like all other groups.
 
-Admin has access to all users, groups, Reports and Dashboards.  Once part of the Admin group, specific access cannot be excluded (its all of nothing).  Admin can reset a user password, but the user will be notified and has to change his password at the next logon.  Admin can also change the system configuration: for example the location of the backend server.  It goes without saying that Admin rights should be used sparingly.
+An Admin user has access to all users, groups, Reports and Dashboards.  Once an admin user (superuser), specific access cannot be excluded (its all of nothing).  An admin user can reset a user password, but the user will be notified and has to change his password at the next logon.  Admin can also change the system configuration: for example the location of the backend server.  It goes without saying that Admin rights should be used sparingly.
 
 Users, Groups, Reports, Access, etc. exist per environment.  This way one can introduce a new Report into test without the production environment knowing about it.
 
@@ -454,11 +453,11 @@ Adding a new group or editting an existing group uses the same form:
 
 // TODO - fix this in code
 The following groups are permanent and not deleteable:
-Admin – can be used to easily manage admin access.  By default, no one belongs to the Admin group.
+Admin – can be used to easily manage admin access.  By default, no one belongs to the Admin group.   Do we create this in backend & check user as superuser ???
 Everyone – simplified access to innocent Reports. On creation, a user belongs by default to this group.  This membership can be deleted.  Only the owner has access to a new Report, other users or Everyone has to be explicitly added.
 
 // TODO - refine
-Each group has an owner, which is the creator.  This owner and Admin are the only ones that can add / delete other users as owners.  These owners manage group membership.
+Each group has an owner, which is the creator.  This owner and an admin user are the only ones that can add / delete other users as owners.  These owners manage group membership.
 Each group can be marked a public (visible by all users) or private (only visible to owners and members).  The latter is a similar feature to groups on WhatsApp, and equates to a personal distribution list.  All lists can be edited and deleted by an Admin person.  Once a group or membership has been editted, the affected users will be send a message.
 Currently Canvas does not access Active Directory (users or groups) and does not authenticate against it.
 

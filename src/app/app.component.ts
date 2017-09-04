@@ -3,9 +3,11 @@
  */
 import { ActivatedRoute }             from '@angular/router';
 import { Component }                  from '@angular/core';
-import { OnInit }                     from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 import { isDevMode }                  from '@angular/core';
+import { OnInit }                     from '@angular/core';
 import { Router }                     from '@angular/router';
+import { ViewChild }                  from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
@@ -36,7 +38,9 @@ import { WebSocketSystemMessage }     from './model.notification';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-
+    @ViewChild('localFile', {read: ElementRef}) localFile: ElementRef;  //ElementRef;    // Chose File
+    // @ViewChild("tref", {read: ElementRef}) tref: ElementRef;
+    
     // Local Variables
     availableUsers: string[] = [];                  // List of UserNames available to share with
     devMode: boolean = false;
@@ -629,6 +633,13 @@ export class AppComponent implements OnInit {
 
 testFn() {
 // TODO - remove once done
+if (this.localFile != null) {
+    if (this.localFile.nativeElement.files.length > 0) {
+console.log('localFile', this.localFile.nativeElement.files[0])
+    } else {console.log('NO SELECTION')}
+} else {
+    console.log('localFile is null')
+}
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
 
