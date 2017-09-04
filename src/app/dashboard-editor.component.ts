@@ -39,7 +39,28 @@ export const DEFAULTFILETYPE: SelectItem[] =
         label: 'PDF',
         value: 'pdf'
     }
-]
+];
+
+export const REFRESHMODE: SelectItem[] =
+[
+    {
+        label: 'Select option',
+        value: ''
+    },
+    {
+        label: 'Manual',
+        value: 'manual'
+    },
+    {
+        label: 'On Open',
+        value: 'onopen'
+    },
+    {
+        label: 'Timer',
+        value: 'timer'
+    }
+];
+
 
 @Component({
     selector:    'dashboard-editor',
@@ -59,12 +80,14 @@ export class DashboardEditorComponent implements OnInit {
     // Local properties
     canvasUser: CanvasUser = this.globalVariableService.canvasUser.getValue();
     chartColor: SelectItem[];                       // Options for Backgroun-dColor DropDown
-    defaultFileType: SelectItem[] = DEFAULTFILETYPE;// List of IsSuperUser options for Dropdown
+    defaultFileType: SelectItem[] = DEFAULTFILETYPE;// List of Deft File Type options for Dropdown
     dashboardForm: FormGroup;                       // FormBuilder Group
     errorMessageOnForm: string = '';                // Error handling on form
     formIsValid: boolean = false;                   // Error handling on form
     numberErrors: number = 0;                       // Error handling on form
+    refreshMode: SelectItem[] = REFRESHMODE;        // List of Refresh Mode options for Dropdown
     selectedFileType: SelectItem;                   // Selected in Dropdown
+    selectedRefreshMode: SelectItem;                   // Selected in Dropdown
     selectedItemColor: SelectedItemColor;           // Selected Object: note ANY to cater for ID number, string
     selectedTextBackground: SelectedItemColor;      // Selected option for Text Background
 
