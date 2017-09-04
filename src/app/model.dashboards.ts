@@ -14,7 +14,7 @@ export class EazlDashboard {
     tags: string[];
     comments: string;
     system_message: string;
-    is_locked: false;
+    is_locked: boolean;
     is_container_header_dark: boolean;
     show_container_header: boolean;
     background_color: string;
