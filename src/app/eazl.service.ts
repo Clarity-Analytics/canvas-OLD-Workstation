@@ -3909,6 +3909,45 @@ export class EazlService implements OnInit {
         };
     }
 
+    addDashboard(dashboard: Dashboard) {
+        // Adds a new Dashboard to the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'addDashboard', '@Start');
+
+        // Mark as dirty
+        this.globalVariableService.dirtyDataDashboard = true;
+        
+        return this.post<EazlGroup>('groups',this.cdal.saveDashboard(dashboard))
+            .toPromise()
+            .then( eazlGroup => {
+
+                // Update local store
+                dashboard.dashboardID = eazlGroup.id;
+                this.dashboards.push(dashboard);
+
+                // TODO - reGet the local => always in sync
+                // Not dirty any longer
+                this.globalVariableService.dirtyDataDashboard = false;
+
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'info',
+                    summary:  'Add Dashboard',
+                    detail:   'Successfully added dashboard to the database'
+                });
+
+                // Return the data
+                return this.groups;
+            } )
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Add Dashboard',
+                    detail:   'Unsuccessful in adding dashboard to the database'
+                });
+                error.message || error
+            })
+
+    }
+
     getDashboardSelectionItems(
         dashboardID: number = -1,
         relatedUsername: string = '*',
@@ -4920,34 +4959,34 @@ export class EazlService implements OnInit {
         this.globalVariableService.dirtyDataGroup = true;
 
         return this.post<EazlGroup>('groups',this.cdal.saveGroup(group))
-                .toPromise()
-                .then( eazlGroup => {
+            .toPromise()
+            .then( eazlGroup => {
 
-                    // Update local store
-                    group.groupID = eazlGroup.id;
-                    this.groups.push(group);
+                // Update local store
+                group.groupID = eazlGroup.id;
+                this.groups.push(group);
 
-                    // TODO - reGet the local => always in sync
-                    // Not dirty any longer
-                    this.globalVariableService.dirtyDataGroup = false;
+                // TODO - reGet the local => always in sync
+                // Not dirty any longer
+                this.globalVariableService.dirtyDataGroup = false;
 
-                    this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'info',
-                        summary:  'Add Group',
-                        detail:   'Successfully added group to the database'
-                    });
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'info',
+                    summary:  'Add Group',
+                    detail:   'Successfully added group to the database'
+                });
 
-                    // Return the data
-                    return this.groups;
-                } )
-                .catch(error => {
-                    this.globalVariableService.growlGlobalMessage.next({
-                        severity: 'warn',
-                        summary:  'Add Group',
-                        detail:   'Unsuccessful in adding group to the database'
-                    });
-                    error.message || error
-                })
+                // Return the data
+                return this.groups;
+            } )
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Add Group',
+                    detail:   'Unsuccessful in adding group to the database'
+                });
+                error.message || error
+            })
     }
 
     updateGroup(group: Group) {
