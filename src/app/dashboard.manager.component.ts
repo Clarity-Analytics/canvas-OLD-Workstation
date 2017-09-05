@@ -900,6 +900,8 @@ export class DashboardManagerComponent implements OnInit {
                 }
             }
 
+            // Update DB
+            
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
                 summary:  'Success',

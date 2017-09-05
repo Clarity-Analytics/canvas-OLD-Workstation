@@ -3948,6 +3948,57 @@ export class EazlService implements OnInit {
 
     }
 
+    updateDashboard(dashboard: Dashboard) {
+        // Update a given Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateDashboard', '@Start');
+
+        // Mark the data as dirty
+        this.globalVariableService.dirtyDataDashboard = true;
+
+        return this.put<EazlDashboard>(
+            'dashboards/' + dashboard.dashboardID.toString() + '/',
+            this.cdal.saveDashboard(dashboard)
+            )
+                .toPromise()
+                .then(eazlDashboard => {
+
+                    // Get the index in the Dashboard array
+                    let index: number = -1;
+                    for (var i = 0; i < this.dashboards.length; i++) {
+                        if (dashboard.dashboardID == this.dashboards[i].dashboardID) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index == -1) {
+                        alert ("Error - dashboard id does not exist in the local dashboard object !")
+                    }
+
+                    // Update local array
+                    this.dashboards[i] = dashboard;
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataDashboard = false;
+
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Update Dashboard',
+                        detail:   'Successfully updated dashboard in the database'
+                    });
+
+                    // Return the data
+                    return eazlDashboard;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Update Dashboard',
+                        detail:   'Unsuccessful in updating your dashboard info to the database'
+                    });
+                    error.message || error
+                })
+    }
+
     getDashboardSelectionItems(
         dashboardID: number = -1,
         relatedUsername: string = '*',
