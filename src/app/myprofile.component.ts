@@ -85,7 +85,6 @@ export class MyProfileComponent implements OnInit {
         }
 
         // My Datasources
-        // TODO - filter on me?
         this.datasources = this.eazlService.getDataSources();
 
         // My Reports

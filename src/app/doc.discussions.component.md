@@ -105,7 +105,26 @@ One use of a Dashboard is to show monthly management accounts.  Another can be a
 
 
 ## 9. Dashboard design principles
-// TODO get from article
+
+Canvas provides for both reports or dashboard.  These could be produced in an automated fashion or ad hoc on request.  Automated or scheduled reports improves productivity since the user dont have to run it, and can provide the required information in a timely fashion.  For example, it can produce the information about the performance of different departments on a daily or weekly basis.  It could also be triggered by an event, typically used for exception reporting.  For example, it will alert business that a certain level has been reached that requires action.
+
+We make no distinction between reporting and business intelligence.  Most often, a report provides a view on historic information - what has happened or what is the status.  The format is usually static.  In contrast, a dashboard summarises information from different sources to help make proactive decisions.  The different sources may be from different systems inside the company, or it may be external sources.  Dashboards allows to user to slice and dice the information, answering questions as the data is consumed.  Dashboards are also better at telling stories, telling why something happened, discover new relationships and possibilities.  In both cases, the ultimate goal is to better understand your business and enhance decisions based on data.
+
+Building an effective dashboard is no different from building a report: it needs a clear goal and requirements, and has to be cognisent about the data.  Often the required data is not availalbe, or incomplete and dirty at best.
+
+In designing your dashboard, consider the following:
+* quick to understand the information
+It should take a few seconds to observe and understand the relevant information.  It is thus aimed at answering the frequently asked business questions at a glance, and not intended to provide all the detail on all the information.  
+* pyramid of relevant information 
+Display the most relevant information on the top part of the dashboard, trends in the middle, and lower level details towards the bottom.  This is similar to the layout of a newpaper report.
+* simplify (less is more)
+The dashboard must be simple to understand, irrespective of the complexity of the data or the business.  Guard against craming in too much information: it should contain no more than 7+-2 visualisations, which is easy to comprehend.  An effective technical is to use filters, hierarchies and drill down to reduce clutter.
+* tell a story
+The dashboard must relate to the context of the business, and address the user's questions. 
+* honest
+The layout and data visualisations used must express the meaning of the data accurately, and help the user to make the correct conclusions.
+* type of data visualization
+The appropriate data visualization must be chosen fit for purpose.  The following purposes of the information must be considered: relationship (between data sets), comparison, composition, and distribution.
 
 
 ## 10. Problem solving / fault finding

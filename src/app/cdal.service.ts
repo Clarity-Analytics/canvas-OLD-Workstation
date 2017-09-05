@@ -478,7 +478,6 @@ export class CDAL {
 
     loadGroup(eazlGroup: EazlGroup): Group {
         // Load Group: move data Eazl -> Canvas
-        // TODO - add more fields in time
         this.globalFunctionService.printToConsole(this.constructor.name,'loadGroup', '@Start');
 
         let groupWorking = new Group();

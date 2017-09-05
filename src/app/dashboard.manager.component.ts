@@ -828,13 +828,12 @@ export class DashboardManagerComponent implements OnInit {
                 this.dashboards.length;
 
             // Set the Widget ID & Add to Array
-            // TODO - do via Eazl into DB
             this.dashboardToEdit.dashboardID = lastDashboardID;
             this.dashboardToEdit.dashboardCreatedDateTime = this.canvasDate.now('standard');
             this.dashboardToEdit.dashboardCreatedUserName = this.canvasUser.username;
             this.dashboards.push(this.dashboardToEdit);
 
-            // Add to DB
+            // Add Dashboard to DB
             this.eazlService.addDashboard(this.dashboardToEdit);
 
             // Inform the user
@@ -902,7 +901,7 @@ export class DashboardManagerComponent implements OnInit {
 
             // Update DB
             this.eazlService.updateDashboard(this.dashboardToEdit);
-            
+
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
                 summary:  'Success',
