@@ -901,6 +901,7 @@ export class DashboardManagerComponent implements OnInit {
             }
 
             // Update DB
+            this.eazlService.updateDashboard(this.dashboardToEdit);
             
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'info',
