@@ -1701,6 +1701,16 @@ console.log('this.selectedBorder', this.selectedBorder['name'])
         // Bring the selected Widgets to the front via z-index
         this.globalFunctionService.printToConsole(this.constructor.name, 'bringWidgetToFront', '@Start');
 
+        // Some validation
+        if (this.selectedDashboard == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Please select a Dashboard before editing properties'
+            });
+            return;
+        }
+
         // Get Max z-Index
         let maxZindex: number = 0;
         maxZindex = this.eazlService.maxZindex(this.selectedDashboard.id);
