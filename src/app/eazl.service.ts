@@ -3893,15 +3893,53 @@ export class EazlService implements OnInit {
         // Mark the data as dirty
         this.globalVariableService.dirtyDataDashboard = true;
 
-        // TODO - update for real in DB
+        // Udpdate local array
+        let index: number = -1;
         for (var i = 0; i < this.dashboards.length; i++) {
             if (this.dashboards[i].dashboardID == dashboardID) {
                 this.dashboards[i].dashboardBackgroundColor = dashboardBackgroundColor;
+                index = i;
+                break;
             }
         }
 
-        // Mark the data as dirty
-        this.globalVariableService.dirtyDataDashboard = false;
+        if (index == -1) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'Update Dashboard',
+                detail:   'Unsuccessful in updating message in the database for dashboardID: ' 
+                + dashboardID.toString()
+            });
+            return;
+        }
+
+        return this.put<EazlDashboard>(
+            'dashboards/' + dashboardID + '/', this.dashboards[index]
+            )
+                .toPromise()
+                .then(eazlDashboard => {
+
+                    // Mark as clean
+                    this.globalVariableService.dirtyDataDashboard = false;
+
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'info',
+                        summary:  'Update Dashboard',
+                        detail:   'Successfully updated dashboard in the database'
+                    });
+
+                    // Return the data
+                    return eazlDashboard;
+                } )
+                .catch(error => {
+                    this.globalVariableService.growlGlobalMessage.next({
+                        severity: 'warn',
+                        summary:  'Update Dashboard',
+                        detail:   'Unsuccessful in updating dashboard in the database'
+                    });
+                    error.message || error
+                })
+    
     }
 
     updateDashboardBackgroundImageSrc(
