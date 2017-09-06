@@ -1943,7 +1943,8 @@ console.log('this.selectedBorder', this.selectedBorder['name'])
     onclickContainerHeaderDark(){
         // Toggles the container buttons dark / light.  Then update array and DB
         this.globalFunctionService.printToConsole(this.constructor.name, 'onclickContainerHeaderDark', '@Start');
-        
+
+        // Some validation
         if (this.selectedDashboard == null) {
             this.globalVariableService.growlGlobalMessage.next({
                 severity: 'warn',
@@ -1966,6 +1967,16 @@ console.log('this.selectedBorder', this.selectedBorder['name'])
     onclickShowContainerHeader(){
         // Toggles the container header on / off.  Then update array and DB
         this.globalFunctionService.printToConsole(this.constructor.name, 'onclickShowContainerHeader', '@Start');
+
+        // Some validation
+        if (this.selectedDashboard == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Please select a Dashboard before editing properties'
+            });
+            return;
+        }
 
         this.showContainerHeader = !this.showContainerHeader;
         this.dashboards.filter(
