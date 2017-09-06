@@ -3161,7 +3161,6 @@ export class EazlService implements OnInit {
     groups: Group[];                                        // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     isStaffDropdown: SelectItem[] = ISSTAFFDROPDOWN;        // List of IsStaff dropdown options
-    notifications: Notification[] = [];                     // List of Notifications
     packageTask: PackageTask[] = [];                        // List of PackageTask
     reports: Report[];                                      // List of Reports
     reportHistory: ReportHistory[];                         // List of Report History (ran)

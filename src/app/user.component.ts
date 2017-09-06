@@ -20,7 +20,7 @@ import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageFlat }          from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { DataSource }                 from './model.datasource';
-import { Dashboard } from './model.dashboards';
+import { Dashboard }                  from './model.dashboards';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
 import { ReportHistory }              from './model.reportHistory';
@@ -38,7 +38,6 @@ export class UserComponent implements OnInit {
 
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
-
     availableUserGroupMembership: string[] = [];        // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: string[] = [];        // List of Groups user already belongs to
     canvasUser: CanvasUser;                             // Current user
