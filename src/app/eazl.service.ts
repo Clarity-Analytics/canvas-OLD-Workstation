@@ -63,6 +63,7 @@ import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our models
     import { CanvasMessage }              from './model.canvasMessage';
+    import { CanvasMessageFlat }          from './model.canvasMessage';
     import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
     import { CanvasUser }                 from './model.user';
     import { Dashboard }                  from './model.dashboards';
@@ -5696,16 +5697,9 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         })
     }
 
-    getCanvasMessagesFlat(
-        dashboardID: number = -1,
-        reportID: number = -1,
-        widgetID: number = -1
-        ): CanvasMessage[] {
-        // Returns CanvasMessages
-        // - dashboardID Optional filter, -1 = all
-        // - reportID Optional filter, -1 = all
-        // - widgetID Optional filter, -1 = all
-        this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
+    getCanvasMessagesFlat(): CanvasMessageFlat[] {
+        // Returns CanvasMessagesFlat from CanvasMessage array 
+        this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessagesFlat', '@Start');
 
         // Report to user if dirty at the moment
         if (this.globalVariableService.dirtyDataCanvasMessage) {
@@ -5717,48 +5711,28 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         }
 
         // Return the necessary
-        let found: boolean = false;
-        let myStatus: string = '';
-        let userID: number = -1;
-        if (this.globalVariableService.canvasUser.getValue() != null) {
-            userID = +this.globalVariableService.canvasUser.getValue().id;
-        }
-        return this.canvasMessages.filter(cm => {
-            if (
-                (dashboardID == -1  || cm.canvasMessageDashboardID == dashboardID)
-                &&
-                (reportID == -1     || cm.canvasMessageReportID == reportID)
-                &&
-                (widgetID == -1     || cm.canvasMessageWidgetID == widgetID)
-            ) {
-                // Determine calced fields: messageSentToMe, messageMyStatus, etc
-                for (var i = 0; i < this.canvasMessages.length; i++) {
-                    found = false;
-                    myStatus= '';
-
-                    for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
-
-                        if (this.canvasMessages[i].canvasMessageRecipients[j].
-                            canvasMessageRecipientUsername ==
-                            this.globalVariableService.canvasUser.getValue().username
-                        ) {
-                                found = true;
-                                myStatus = this.canvasMessages[i].canvasMessageRecipients[j].
-                                    canvasMessageRecipientStatus;
-                          }
-                    };
-
-                    this.canvasMessages[i].canvasMessageMyStatus = myStatus
-                    if (found) {
-                        this.canvasMessages[i].canvasMessageSentToMe = true;
-                    } else {
-                        this.canvasMessages[i].canvasMessageSentToMe = false;
-                    }
-
+        let canvasMessageFlatWorking: CanvasMessageFlat[];
+        this.canvasMessages.forEach( cm => {
+            canvasMessageFlatWorking.push(
+                {
+                    canvasMessageID: cm.canvasMessageID,
+                    canvasMessageConversationID: cm.canvasMessageConversationID,
+                    canvasMessageSenderUserName: cm.canvasMessageSenderUserName,
+                    canvasMessageSentDateTime: cm.canvasMessageSentDateTime,
+                    canvasMessageIsSystemGenerated: cm.canvasMessageIsSystemGenerated,
+                    canvasMessageDashboardID: cm.canvasMessageDashboardID,
+                    canvasMessageReportID: cm.canvasMessageReportID,
+                    canvasMessageWidgetID: cm.canvasMessageWidgetID,
+                    canvasMessageSubject: cm.canvasMessageSubject,
+                    canvasMessageBody: cm.canvasMessageBody,
+                    canvasMessageSentToMe: cm.canvasMessageSentToMe,
+                    canvasMessageMyStatus: cm.canvasMessageMyStatus,
                 }
-                return cm;
-            }
+            )
         })
+
+        // Return
+        return canvasMessageFlatWorking;
     }
 
     addCanvasMessage(canvasMessage: CanvasMessage) {
