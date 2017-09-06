@@ -316,7 +316,7 @@ export class UserComponent implements OnInit {
 
         // The user can filter on all fields (ie sent by me), or show all
         this.canvasMessages = this.eazlService.getCanvasMessagesFlat();
-console.log('USERS this.canvasMessages', this.canvasMessages)
+
         // Show the popup
         this.displayMessages = true;
     }
