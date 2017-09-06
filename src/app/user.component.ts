@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
     availableUserGroupMembership: string[] = [];        // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: string[] = [];        // List of Groups user already belongs to
     canvasUser: CanvasUser;                             // Current user
-    canvasMessages: CanvasMessageFlat[];                    // List of Canvas Messages
+    canvasMessages: CanvasMessageFlat[];                // List of Canvas Messages
     userModelPermissionFlat: UserModelPermissionFlat[]; // @Runtime List of Model Permissions per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
@@ -315,8 +315,8 @@ export class UserComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
 
         // The user can filter on all fields (ie sent by me), or show all
-        this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);
-
+        this.canvasMessages = this.eazlService.getCanvasMessagesFlat();
+console.log('USERS this.canvasMessages', this.canvasMessages)
         // Show the popup
         this.displayMessages = true;
     }

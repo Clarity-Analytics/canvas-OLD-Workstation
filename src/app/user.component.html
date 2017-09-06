@@ -332,163 +332,23 @@
     modal="true"
     responsive="true"
     >
-    <p-dataTable  
-        columnResizeMode="expand"
-        exportFilename="messages"
-        [paginator]="true"
-        [pageLinks]="3"
-        [reorderableColumns]="true"
-        [resizableColumns]="true"
-        [responsive]="true"
-        [rows]="10"
-        [rowsPerPageOptions]="[5,10,20]"
-        selectionMode="single"
-        [scrollable]="false"
-        [sortMode]="multiple"
-        [value]="canvasMessages"
-        >
-        <p-header
-            [style]="{'background-color': 'darkgray'}">
-            <span>
-                List of Canvas Messages
-            </span>
-            <span style="float:right"
-                class="ui-helper-clearfix csvButton"
-                >
-                <button
-                    type="button"
-                    pButton
-                    icon="fa-file-o"
-                    iconPos="left"
-                    label="CSV"
-                    (click)="dt.exportCSV()"
-                    >
-                </button>
-            </span>
+    <p-dataTable 
+    [value]="canvasMessages"
+    >
+        <p-column field="canvasMessageID" header="ID"></p-column>
+        <p-column field="canvasMessageConversationID" header="ConversationID"></p-column>
+        <p-column field="canvasMessageSenderUserName" header="SenderUserName"></p-column>
+        <p-column field="canvasMessageSentDateTime" header="SentDateTime"></p-column>
+        <p-column field="canvasMessageIsSystemGenerated" header="IsSystemGenerated"></p-column>
+        <p-column field="canvasMessageDashboardID" header="DashboardID"></p-column>
+        <p-column field="canvasMessageReportID" header="ReportID"></p-column>
+        <p-column field="canvasMessageWidgetID" header="WidgetID"></p-column>
+        <p-column field="canvasMessageSubject" header="Subject"></p-column>
+        <p-column field="canvasMessageBody" header="Body"></p-column>
+        <p-column field="canvasMessageSentToMe" header="SentToMe"></p-column>
+        <p-column field="canvasMessageMyStatus" header="MyStatus"></p-column>
+</p-dataTable>
 
-        </p-header>
-
-        <p-column
-            field="messageConversationID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Convers. ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageSenderUserName"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Sender"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageSentDateTime"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Sent on"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageIsSystemGenerated"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="System?"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageDashboardID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Dashboard ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageReportID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Report ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageWidgetID"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Widget ID"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageSubject"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Subject"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageBody"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="Body"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageSentToMe"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="To me?"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-        <p-column
-            field="messageMyStatus"
-            [filter]="true"
-            filterMatchMode="contains"
-            header="My Status"
-            [sortable]="true"
-            [style]="{width: '80px',
-                    'text-align': 'center'}"
-            >
-        </p-column>
-    </p-dataTable>
 </p-dialog>
 
 

@@ -5710,8 +5710,8 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
             });
         }
 
-        // Return the necessary
-        let canvasMessageFlatWorking: CanvasMessageFlat[];
+        // Flatten
+        let canvasMessageFlatWorking: CanvasMessageFlat[] = [];
         this.canvasMessages.forEach( cm => {
             canvasMessageFlatWorking.push(
                 {
@@ -5730,7 +5730,7 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
                 }
             )
         })
-
+        
         // Return
         return canvasMessageFlatWorking;
     }
