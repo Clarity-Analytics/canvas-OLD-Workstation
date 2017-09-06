@@ -335,18 +335,126 @@
     <p-dataTable 
     [value]="canvasMessages"
     >
-        <p-column field="canvasMessageID" header="ID"></p-column>
-        <p-column field="canvasMessageConversationID" header="ConversationID"></p-column>
-        <p-column field="canvasMessageSenderUserName" header="SenderUserName"></p-column>
-        <p-column field="canvasMessageSentDateTime" header="SentDateTime"></p-column>
-        <p-column field="canvasMessageIsSystemGenerated" header="IsSystemGenerated"></p-column>
-        <p-column field="canvasMessageDashboardID" header="DashboardID"></p-column>
-        <p-column field="canvasMessageReportID" header="ReportID"></p-column>
-        <p-column field="canvasMessageWidgetID" header="WidgetID"></p-column>
-        <p-column field="canvasMessageSubject" header="Subject"></p-column>
-        <p-column field="canvasMessageBody" header="Body"></p-column>
-        <p-column field="canvasMessageSentToMe" header="SentToMe"></p-column>
-        <p-column field="canvasMessageMyStatus" header="MyStatus"></p-column>
+        <p-column 
+            field="canvasMessageID" 
+            header="ID"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageConversationID" 
+            header="Conversation"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageSenderUserName" 
+            header="Sender"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageSentDateTime" 
+            header="Sent on"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageIsSystemGenerated" 
+            header="System?"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageDashboardID" 
+            header="DashboardID"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageReportID" 
+            header="ReportID"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageWidgetID" 
+            header="WidgetID"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageSubject" 
+            header="Subject"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageBody" 
+            header="Body"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageSentToMe" 
+            header="SentToMe"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column 
+            field="canvasMessageMyStatus" 
+            header="MyStatus"
+            [filter]="true"
+            filterMatchMode="contains"
+            [sortable]="true"
+            [style]="{width: '80px',
+                    'text-align': 'center'}"
+            >
+        </p-column>
 </p-dataTable>
 
 </p-dialog>
