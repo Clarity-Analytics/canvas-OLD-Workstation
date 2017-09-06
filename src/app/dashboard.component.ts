@@ -1842,6 +1842,16 @@ console.log('this.selectedBorder', this.selectedBorder['name'])
         // Select all the widgets
         this.globalFunctionService.printToConsole(this.constructor.name, 'onWidgetSelectAll', '@Start');
 
+        // Some validation
+        if (this.widgets == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Please select a Dashboard before editing properties'
+            });
+            return;
+        }
+
         // Kill and rebuild.  This destroys select-order, but for now I think it is okay ...
         this.selectedWidgetIDs = [];
 
