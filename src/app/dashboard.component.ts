@@ -1943,7 +1943,17 @@ console.log('this.selectedBorder', this.selectedBorder['name'])
     onclickContainerHeaderDark(){
         // Toggles the container buttons dark / light.  Then update array and DB
         this.globalFunctionService.printToConsole(this.constructor.name, 'onclickContainerHeaderDark', '@Start');
-console.log('hier', this.selectedDashboard)
+        
+        if (this.selectedDashboard == null) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No selection',
+                detail:   'Please select a Dashboard before editing properties'
+            });
+            return;
+        }
+
+        // Update
         this.dashboards.filter(
             dash => dash.dashboardID == this.selectedDashboard.id
         )[0].isContainerHeaderDark = this.isContainerHeaderDark;
