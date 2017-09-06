@@ -1,12 +1,10 @@
 // Schema for the Group (for Users) class
 
-// TODO - we need more fields in DB - sort out somehow
 // Eazl
 export class EazlGroup {
-    // Defines data model for User Entity
     id: number;
     name: string;
-    profile: {
+    profile: {                              // Separate model in Django
         description: string;
         date_created: Date;
     };
@@ -14,15 +12,15 @@ export class EazlGroup {
     url: string;
 }
 
-// Users registered to use the system
+// Canvas
 export class Group {
-    groupID: number;
-    groupName: string;
-    groupDescription: string;
-    users: string[];
-    url: string;
-    groupCreatedDateTime: string;          // Created on
-    groupCreatedUserName: string;          // Created by
-    groupUpdatedDateTime: string;          // Updated on
-    groupUpdatedUserName: string;          // Updated by
+    groupID: number;                        // RESTi unique id
+    groupName: string;                      // Name
+    groupDescription: string;               // Description
+    users: string[];                        // Array of Users in this group
+    url: string;                            // DRF url
+    groupCreatedDateTime: string;           // Created on
+    groupCreatedUserName: string;           // Created by
+    groupUpdatedDateTime: string;           // Updated on
+    groupUpdatedUserName: string;           // Updated by
 }

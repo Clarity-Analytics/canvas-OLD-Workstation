@@ -332,7 +332,7 @@
     modal="true"
     responsive="true"
     >
-    <p-dataTable  #dt
+    <p-dataTable  
         columnResizeMode="expand"
         exportFilename="messages"
         [paginator]="true"
@@ -342,7 +342,6 @@
         [responsive]="true"
         [rows]="10"
         [rowsPerPageOptions]="[5,10,20]"
-        [(selection)]="selectedCanvasMessage"
         selectionMode="single"
         [scrollable]="false"
         [sortMode]="multiple"
@@ -502,7 +501,9 @@
     modal="true"
     responsive="true"
     >
-    <p-dataTable [value]="reportHistory">
+    <p-dataTable 
+        [value]="reportHistory"
+        >
             <p-column field="reportHistoryID" header="ID"></p-column>
             <p-column field="reportHistoryUserName" header="User"></p-column>
             <p-column field="reportHistoryReportID" header="ReportID"></p-column>

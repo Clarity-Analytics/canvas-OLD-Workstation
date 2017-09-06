@@ -5696,6 +5696,71 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         })
     }
 
+    getCanvasMessagesFlat(
+        dashboardID: number = -1,
+        reportID: number = -1,
+        widgetID: number = -1
+        ): CanvasMessage[] {
+        // Returns CanvasMessages
+        // - dashboardID Optional filter, -1 = all
+        // - reportID Optional filter, -1 = all
+        // - widgetID Optional filter, -1 = all
+        this.globalFunctionService.printToConsole(this.constructor.name,'getCanvasMessages', '@Start');
+
+        // Report to user if dirty at the moment
+        if (this.globalVariableService.dirtyDataCanvasMessage) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'CanvasMessages data is dirty / not up to date',
+                detail:   'The CanvasMessages data is being refreshed; request again to get the latest from the database'
+            });
+        }
+
+        // Return the necessary
+        let found: boolean = false;
+        let myStatus: string = '';
+        let userID: number = -1;
+        if (this.globalVariableService.canvasUser.getValue() != null) {
+            userID = +this.globalVariableService.canvasUser.getValue().id;
+        }
+        return this.canvasMessages.filter(cm => {
+            if (
+                (dashboardID == -1  || cm.canvasMessageDashboardID == dashboardID)
+                &&
+                (reportID == -1     || cm.canvasMessageReportID == reportID)
+                &&
+                (widgetID == -1     || cm.canvasMessageWidgetID == widgetID)
+            ) {
+                // Determine calced fields: messageSentToMe, messageMyStatus, etc
+                for (var i = 0; i < this.canvasMessages.length; i++) {
+                    found = false;
+                    myStatus= '';
+
+                    for (var j = 0; j < this.canvasMessages[i].canvasMessageRecipients.length; j++) {
+
+                        if (this.canvasMessages[i].canvasMessageRecipients[j].
+                            canvasMessageRecipientUsername ==
+                            this.globalVariableService.canvasUser.getValue().username
+                        ) {
+                                found = true;
+                                myStatus = this.canvasMessages[i].canvasMessageRecipients[j].
+                                    canvasMessageRecipientStatus;
+                          }
+                    };
+
+                    this.canvasMessages[i].canvasMessageMyStatus = myStatus
+                    if (found) {
+                        this.canvasMessages[i].canvasMessageSentToMe = true;
+                    } else {
+                        this.canvasMessages[i].canvasMessageSentToMe = false;
+                    }
+
+                }
+                return cm;
+            }
+        })
+    }
+
     addCanvasMessage(canvasMessage: CanvasMessage) {
         // Adds CanvasMessage, and also refresh (.next) global variables
         // - systemConfiguration New data

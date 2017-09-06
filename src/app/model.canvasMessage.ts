@@ -48,3 +48,19 @@ export class CanvasMessage {
 }
 
 // TODO - consider canvasMessageReadDateTime per Recipient
+
+// Canvas - Flattened Version
+export class CanvasMessageFlat {
+    canvasMessageID: number;                        // Unique DB id
+    canvasMessageConversationID: string;            // Conversation thread that joins msgs
+    canvasMessageSenderUserName: string;            // Created by
+    canvasMessageSentDateTime: string;              // Created on
+    canvasMessageIsSystemGenerated: boolean;        // True if a system message, not created by User
+    canvasMessageDashboardID: number;               // Optional Dashboard to which msg is linked, -1 = none
+    canvasMessageReportID: number;                  // Optional Report to which msg is linked, -1 = none
+    canvasMessageWidgetID: number;                  // Optional Widget to which msg is linked, -1 = none
+    canvasMessageSubject: string;                   // Message Subject
+    canvasMessageBody: string;                      // Message Body text
+    canvasMessageSentToMe: boolean;                 // True if this msg was sent to me, calced at Runtime
+    canvasMessageMyStatus: string;                  // Read, UnRead by me, calced at Runtime
+}

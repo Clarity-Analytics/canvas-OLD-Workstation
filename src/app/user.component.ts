@@ -17,6 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
 import { CanvasMessage }              from './model.canvasMessage';
+import { CanvasMessageFlat }          from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
 import { DataSource }                 from './model.datasource';
 import { Dashboard } from './model.dashboards';
@@ -41,7 +42,7 @@ export class UserComponent implements OnInit {
     availableUserGroupMembership: string[] = [];        // List of Groups user does NOT belongs to
     belongstoUserGroupMembership: string[] = [];        // List of Groups user already belongs to
     canvasUser: CanvasUser;                             // Current user
-    canvasMessages: CanvasMessage[];                    // List of Canvas Messages
+    canvasMessages: CanvasMessageFlat[];                    // List of Canvas Messages
     userModelPermissionFlat: UserModelPermissionFlat[]; // @Runtime List of Model Permissions per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
@@ -313,7 +314,7 @@ export class UserComponent implements OnInit {
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuMessageHistory', '@Start');
 
-        // TODO -decide whether to show all, sent by me, received by me, unread, top 10, etc
+        // The user can filter on all fields (ie sent by me), or show all
         this.canvasMessages = this.eazlService.getCanvasMessages(-1, -1, -1);
 
         // Show the popup
