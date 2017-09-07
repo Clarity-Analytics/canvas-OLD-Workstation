@@ -281,6 +281,9 @@ export class NewMessageComponent implements OnInit {
         // Add to DB
         this.eazlService.addCanvasMessage(canvasMessageWorking);
 
+        // Send to Websocket
+        this.eazlService.sendWSCanvasMessage(canvasMessageWorking);
+
         // Trigger event emitter 'emit' method
         this.formNewMessageSubmit.emit('Submit');
 
