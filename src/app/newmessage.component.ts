@@ -240,6 +240,7 @@ export class NewMessageComponent implements OnInit {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
+        let sendToMe: boolean = false;
 
         canvasMessageWorking.canvasMessageSentDateTime = null;
         
@@ -261,10 +262,12 @@ export class NewMessageComponent implements OnInit {
         
         for (var i = 1; i < this.sendToTheseUsers.length; i++) {
 
+            sendToMe = false;
             canvasMessageWorking.canvasMessageSentDateTime = null;
             if (this.sendToTheseUsers[i] == currentUser) {
                 canvasMessageWorking.canvasMessageSentToMe = true;
                 canvasMessageWorking.canvasMessageMyStatus = 'Read';
+                sendToMe = true;
             };
             canvasMessageWorking.canvasMessageRecipients.push(
                {
@@ -273,7 +276,7 @@ export class NewMessageComponent implements OnInit {
                 canvasMessageRecipientIsSender:  false,
                 canvasMessageRecipientStatus:  'unread',
             });
-            canvasMessageWorking.canvasMessageSentToMe = false;
+            canvasMessageWorking.canvasMessageSentToMe = sendToMe;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
         console.log('5')
