@@ -6233,6 +6233,10 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
         let websocketWorking: WebSocketCanvasMessage;
+        let recipients: string = '';
+        canvasMessage.canvasMessageRecipients.forEach(
+            r => recipients = recipients + r + '; '
+        );
         websocketWorking = {
             webSocketDatetime: new Date(this.canvasDate.now('standard')),
             webSocketSenderUsername: currentUser,
@@ -6242,13 +6246,13 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
                                                 // - WebSocketCeleryMessage
                                                 // - WebSocketRefDataMessage
             webSocketMessageBody: {
-                webSocketRecipients: 'recips',
-                webSocketDashboardID: -1,
-                webSocketWidgetID: -1,
-                webSocketReportID: -1,
-                webSocketSubject: 'sub',
-                webSocketBody: 'body',
-                webSocketMessage: 'message'
+                webSocketRecipients: recipients,
+                webSocketDashboardID: canvasMessage.canvasMessageDashboardID,
+                webSocketWidgetID: canvasMessage.canvasMessageWidgetID,
+                webSocketReportID: canvasMessage.canvasMessageReportID,
+                webSocketSubject: canvasMessage.canvasMessageSubject,
+                webSocketBody: canvasMessage.canvasMessageBody,
+                webSocketMessage: ''
                 }
         }
 
