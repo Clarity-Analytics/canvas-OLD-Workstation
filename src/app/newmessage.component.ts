@@ -20,10 +20,6 @@ import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// TODO - delete
-import { WebSocketBasicMessage }      from './model.notification';
-import { WebSocketRefDataMessage }    from './model.notification';
-
 
 @Component({
     selector:    'newmessage',

@@ -1,8 +1,5 @@
 // Schema for the Notification (message layout) class
 
-// TODO - merge with CanvasMessage once it has been compeleted
-
-
 // Basic message
 export class WebSocketBasicMessage {
 	webSocketDatetime: Date;			// DateTime when the WS server sent the message

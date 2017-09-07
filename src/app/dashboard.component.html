@@ -1,4 +1,23 @@
 <!--Form to show Messages pertaining to THIS Widget only-->
+
+<!--Popup Advanced Dashboard Filter-->
+<div *ngIf="displayAdvancedDashboardFilter">
+    <p-dialog header="Advanced Dashboard Filter"
+    [(visible)]="displayAdvancedDashboardFilter"
+    modal="modal"
+    width="450"
+    responsive="true"
+    >
+    Adv Filter
+        <dashboardadvancedfilter
+            (formAdvancedFilterSubmit)="handleFormSubmit($event)"
+            >
+        </dashboardadvancedfilter>
+
+    </p-dialog>
+</div>
+
+
 <div *ngIf="displayMessageManager">
     <p-dialog
         [header]="selectedWidgetName"
@@ -1386,20 +1405,7 @@
 
 
 <!--Section for popup forms and dialogues-->
-<!--Popup Advanced Dashboard Filter-->
-<p-dialog header="Advanced Dashboard Filter"
-    [(visible)]="displayAdvancedDashboardFilter"
-    modal="modal"
-    width="450"
-    responsive="true"
-    >
 
-    <dashboardadvancedfilter
-        (formAdvancedFilterSubmit)="handleFormSubmit($event)"
-        >
-    </dashboardadvancedfilter>
-
-</p-dialog>
 
 
 <!--Confirmation Dialogue Box-->

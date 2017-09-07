@@ -61,7 +61,7 @@ export class DashboardAdvFilterComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onSubmit', '@Start');
 
         this.filterDescription = this.userform.get('description').value;
-
+console.log('formValues',formValues)
         // Set hasAtLeastOneFilter = true if anything was entered.
         // TODO - make this a loop on formValues or this.userform
         let totalFilters: string  = this.filterDescription;
