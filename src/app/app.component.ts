@@ -79,44 +79,6 @@ export class AppComponent implements OnInit {
         private reconnectingWebSocket: ReconnectingWebSocket,
         ) {
 
-// class Foo {
-//     foo = 123;
-//     common = '123';
-// }
-
-// class Bar {
-//     bar = 123;
-//     common = '123';
-// }
-
-// function doStuff(arg: Foo | Bar) {
-//     if (arg instanceof Foo) {
-//         console.log(arg.foo); // OK
-//         console.log(arg.bar); // Error!
-//     }
-//     if (arg instanceof Bar) {
-//         console.log(arg.foo); // Error!
-//         console.log(arg.bar); // OK
-//     }
-
-//     console.log(arg.common); // OK
-//     console.log(arg.foo); // Error!
-//     console.log(arg.bar); // Error!
-// }
-
-
-
-            // handleNotificationFromWS.messages.subscribe(msg => {
-
-            //     if (msg.messageType != '' ) {
-            //         this.globalVariableService.growlGlobalMessage.next({
-            //             severity: 'info',
-            //             summary:  'Nofication from ' + msg.author,
-            //             detail:   msg.dateSend + ' :' + msg.message
-            //         });
-            //     }
-            // });
-
             // Default stuffies, for now ...
             this.globalVariableService.sessionDebugging = true;
 
@@ -188,24 +150,8 @@ export class AppComponent implements OnInit {
         // - message can be of any type, see model.notification.ts for detail
         this.globalFunctionService.printToConsole(this.constructor.name,'handleNotificationFromWS', '@Start');
 
-        // // Refresh the data
-        // this.eazlService.cacheCanvasData();
-
-        // TODO - remove once webSocketBasicMessage is working
-        // Temp solution to generate a Web Socket message
-        // this.notificationFromServer = {
-        //     notificationID: 0,
-        //     author:  'James Lawrance',
-        //     dateSend: this.canvasDate.now('standard'),
-        //     messageType: 'UserMessage',
-        //     message: 'Your Magnum PI report has completed'
-        // }
-		// this.notificationService.messages.next(this.notificationFromServer);
-		// this.notificationFromServer.message = '';
-
         // Decide on type of message
         console.log('handleNotificationFromWS message',message)
-console.log('handleNotificationFromWS message.webSocketMessageType', message.webSocketMessageType)
         // Reset Reference Data
         if (message.webSocketMessageType == 'WebSocketRefDataMessage') {
             let webSocketRefDataMessage: WebSocketRefDataMessage = message;
@@ -229,20 +175,6 @@ console.log('handleNotificationFromWS message.webSocketMessageType', message.web
             });
 
         }
-
-
-
-
-        // this.webSocketSystemMessage = {
-        //     webSocketDatetime: new Date(),
-        //     webSocketSenderUsername: this.globalVariableService.canvasUser.getValue().username,
-        //     webSocketMessageType: 'WebSocketSystemMessage',
-        //     webSocketMessageBody:
-        //         {
-        //             webSocketMessage: 'SystemMessage'
-        //         }
-        // }
-        // this.reconnectingWebSocket.webSocketSystemMessage.next(this.webSocketSystemMessage);
 
         // let d = new Date();
         // console.log(d);
@@ -345,28 +277,6 @@ console.log('handleNotificationFromWS message.webSocketMessageType', message.web
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-
-        // TODO - proper websocket message, remove this one
-        // Send the message
-        this.webSocketBasicMessage = {
-            webSocketDatetime: new Date(this.canvasDate.now('standard')),
-            webSocketSenderUsername: currentUser,
-            webSocketMessageType: 'WebSocketRefDataMessage',
-                                                // - WebSocketCanvasMessage
-                                                // - WebSocketSystemMessage
-                                                // - WebSocketCeleryMessage
-                                                // - WebSocketRefDataMessage
-            webSocketMessageBody: {
-                webSocketTableName: 'SystemConfiguration',
-                webSocketAction: 'Add',
-                webSocketRecordID: 14,
-                webSocketMessage: ''
-            }
-        }
-        // WS should be sent from the children, methinks !?
-        // if (event == 'Submit') {
-        //     this.handleNotificationFromWS(this.webSocketBasicMessage);
-        // }
 
         // Rip away popup
         this.displayNewMessage = false;
@@ -651,5 +561,20 @@ console.log('handleNotificationFromWS message.webSocketMessageType', message.web
         } else {
             console.log('localFile is null')
         }
+        let testWebsocketMessage = 
+            {
+                webSocketDatetime: null,
+                webSocketSenderUsername: 'jannie',
+                webSocketMessageType: 'WebSocketRefDataMessage',
+                webSocketMessageBody: 
+                    {
+                        webSocketTableName: 'Dashboard',
+                        webSocketAction: 'refresh',
+                        webSocketRecordID: -1,
+                        webSocketMessage: 'string;		// Optional message'
+                    }
+            }
+        this.reconnectingWebSocket.webSocketSystemMessage.next(testWebsocketMessage);
+            
     }
 }

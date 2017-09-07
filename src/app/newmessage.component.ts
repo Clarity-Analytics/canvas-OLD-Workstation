@@ -258,7 +258,6 @@ export class NewMessageComponent implements OnInit {
             canvasMessageWorking.canvasMessageRecipients[0].canvasMessageRecipientIsSender
                 = true;
         };
-        console.log('4')
         
         for (var i = 1; i < this.sendToTheseUsers.length; i++) {
 
@@ -279,7 +278,6 @@ export class NewMessageComponent implements OnInit {
             canvasMessageWorking.canvasMessageSentToMe = sendToMe;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
-        console.log('5')
         
         // Add to DB
         this.eazlService.addCanvasMessage(canvasMessageWorking);
