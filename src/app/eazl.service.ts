@@ -62,56 +62,60 @@ import { GlobalVariableService }      from './global-variable.service';
 import { ReconnectingWebSocket }      from './websocket.service';
 
 // Our models
-    import { CanvasMessage }              from './model.canvasMessage';
-    import { CanvasMessageFlat }          from './model.canvasMessage';
-    import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
-    import { CanvasUser }                 from './model.user';
-    import { Dashboard }                  from './model.dashboards';
-    import { DashboardGroupPermissions }  from './model.dashboards';
-    import { DashboardTagMembership }     from './model.dashboardTagMembership';
-    import { DashboardTab }               from './model.dashboardTabs';
-    import { DashboardUserPermissions }   from './model.dashboards';
-    import { DataSource }                 from './model.datasource';
-    import { DataSourceGroupPermissions}  from './model.datasource';
-    import { DataSourceUserPermissions}   from './model.datasource';
-    import { EazlAppData }                from './model.appdata';
-    import { EazlCanvasMessage }          from './model.canvasMessage';
-    import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
-    import { EazlDashboardGroupPermissions }    from './model.dashboards';
-    import { EazlDashboardUserPermissions }     from './model.dashboards';
-    import { EazlDataSourceGroupPermissions}    from './model.datasource';
-    import { EazlDataSourceUserPermissions}     from './model.datasource';
-    import { EazlDashboard }              from './model.dashboards';
-    import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
-    import { EazlDashboardTab }           from './model.dashboardTabs';
-    import { EazlDataSource }             from './model.datasource';
-    import { EazlFilter }                 from './model.filter';
-    import { EazlGroup }                  from './model.group';
-    import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
-    import { EazlPackageTask }            from './model.package.task';
-    import { EazlReport }                 from './model.report';
-    import { EazlReportHistory }          from './model.reportHistory';
-    import { EazlReportWidgetSet }        from './model.report.widgetSets';
-    import { EazlSystemConfiguration }    from './model.systemconfiguration';
-    import { EazlUser }                   from './model.user';
-    import { EazlUserModelPermission }    from './model.userModelPermissions';
-    import { EazlWidget }                 from './model.widget';
-    import { EazlWidgetTemplate }         from './model.widgetTemplates';
-    import { Filter }                     from './model.filter';
-    import { GraphType }                  from './model.graph.type';
-    import { Group }                      from './model.group';
-    import { GroupDatasourceAccess }      from './model.groupDSaccess';
-    import { PackageTask }                from './model.package.task';
-    import { Report }                     from './model.report';
-    import { ReportHistory }              from './model.reportHistory';
-    import { ReportWidgetSet }            from './model.report.widgetSets';
-    import { SelectedItem }               from './model.selectedItem';
-    import { SystemConfiguration }        from './model.systemconfiguration';
-    import { User }                       from './model.user';
-    import { UserModelPermission }        from './model.userModelPermissions';
-    import { Widget }                     from './model.widget';
-    import { WidgetTemplate }             from './model.widgetTemplates';
-    import { WidgetType }                 from './model.widget.type';
+import { CanvasMessage }              from './model.canvasMessage';
+import { CanvasMessageFlat }          from './model.canvasMessage';
+import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
+import { CanvasUser }                 from './model.user';
+import { Dashboard }                  from './model.dashboards';
+import { DashboardGroupPermissions }  from './model.dashboards';
+import { DashboardTagMembership }     from './model.dashboardTagMembership';
+import { DashboardTab }               from './model.dashboardTabs';
+import { DashboardUserPermissions }   from './model.dashboards';
+import { DataSource }                 from './model.datasource';
+import { DataSourceGroupPermissions}  from './model.datasource';
+import { DataSourceUserPermissions}   from './model.datasource';
+import { EazlAppData }                from './model.appdata';
+import { EazlCanvasMessage }          from './model.canvasMessage';
+import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
+import { EazlDashboardGroupPermissions }    from './model.dashboards';
+import { EazlDashboardUserPermissions }     from './model.dashboards';
+import { EazlDataSourceGroupPermissions}    from './model.datasource';
+import { EazlDataSourceUserPermissions}     from './model.datasource';
+import { EazlDashboard }              from './model.dashboards';
+import { EazlDashboardTagMembership } from './model.dashboardTagMembership';
+import { EazlDashboardTab }           from './model.dashboardTabs';
+import { EazlDataSource }             from './model.datasource';
+import { EazlFilter }                 from './model.filter';
+import { EazlGroup }                  from './model.group';
+import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
+import { EazlPackageTask }            from './model.package.task';
+import { EazlReport }                 from './model.report';
+import { EazlReportHistory }          from './model.reportHistory';
+import { EazlReportWidgetSet }        from './model.report.widgetSets';
+import { EazlSystemConfiguration }    from './model.systemconfiguration';
+import { EazlUser }                   from './model.user';
+import { EazlUserModelPermission }    from './model.userModelPermissions';
+import { EazlWidget }                 from './model.widget';
+import { EazlWidgetTemplate }         from './model.widgetTemplates';
+import { Filter }                     from './model.filter';
+import { GraphType }                  from './model.graph.type';
+import { Group }                      from './model.group';
+import { GroupDatasourceAccess }      from './model.groupDSaccess';
+import { PackageTask }                from './model.package.task';
+import { Report }                     from './model.report';
+import { ReportHistory }              from './model.reportHistory';
+import { ReportWidgetSet }            from './model.report.widgetSets';
+import { SelectedItem }               from './model.selectedItem';
+import { SystemConfiguration }        from './model.systemconfiguration';
+import { User }                       from './model.user';
+import { UserModelPermission }        from './model.userModelPermissions';
+import { WebSocketRefDataMessage }    from './model.notification';
+import { WebSocketBasicMessage }      from './model.notification';
+import { WebSocketCanvasMessage }     from './model.notification';
+
+import { Widget }                     from './model.widget';
+import { WidgetTemplate }             from './model.widgetTemplates';
+import { WidgetType }                 from './model.widget.type';
 
 // Token for RESTi
 export interface Token {
@@ -6220,6 +6224,36 @@ console.log('before post', modelName + '/' + modelID.toString() + '/feedback/')
         }
 
         return this.imageSourceDropdowns;
+    }
+
+    sendWSCanvasMessage(canvasMessage: CanvasMessage) {
+        // Sends a given CanvasMessage to the WebSocket
+        this.globalFunctionService.printToConsole(this.constructor.name,'sendWSCanvasMessage', '@Start');
+
+        // Get current user
+        let currentUser: string = this.globalFunctionService.currentUser();
+        let websocketWorking: WebSocketCanvasMessage;
+        websocketWorking = {
+            webSocketDatetime: new Date(this.canvasDate.now('standard')),
+            webSocketSenderUsername: currentUser,
+            webSocketMessageType: 'WebSocketCanvasMessage',
+                                                // - WebSocketCanvasMessage
+                                                // - WebSocketSystemMessage
+                                                // - WebSocketCeleryMessage
+                                                // - WebSocketRefDataMessage
+            webSocketMessageBody: {
+                webSocketRecipients: 'recips',
+                webSocketDashboardID: -1,
+                webSocketWidgetID: -1,
+                webSocketReportID: -1,
+                webSocketSubject: 'sub',
+                webSocketBody: 'body',
+                webSocketMessage: 'message'
+                }
+        }
+
+        this.reconnectingWebSocket.webSocketSystemMessage.next(websocketWorking);
+            
     }
 
     cacheCanvasData(

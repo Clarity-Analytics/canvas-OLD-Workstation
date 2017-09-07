@@ -40,7 +40,7 @@ export class ReconnectingWebSocket {
 export class WebSocketServiceX {
     private subject: Rx.Subject<MessageEvent>;
     
-    constructor() { }
+    // constructor() { }
 
     public connectX(url): Rx.Subject<MessageEvent> {
         // if(!this.subject) {

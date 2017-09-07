@@ -140,8 +140,11 @@ export class AppComponent implements OnInit {
 
                     // Subscribe to Web Socket
                     this.reconnectingWebSocket.webSocketSystemMessage.subscribe(
-                            message => console.log('WebSocketSystemMessage', message)
-                    )
+                        message => {
+                            console.log('WS received this WebSocketSystemMessage', message);
+                            this.handleNotificationFromWS(message);
+                        }
+                    );
 
                     // Subscribe to the global alerts (that are growled)
                     this.globalVariableService.growlGlobalMessage.subscribe (
@@ -201,7 +204,8 @@ export class AppComponent implements OnInit {
 		// this.notificationFromServer.message = '';
 
         // Decide on type of message
-
+        console.log('handleNotificationFromWS message',message)
+console.log('handleNotificationFromWS message.webSocketMessageType', message.webSocketMessageType)
         // Reset Reference Data
         if (message.webSocketMessageType == 'WebSocketRefDataMessage') {
             let webSocketRefDataMessage: WebSocketRefDataMessage = message;
@@ -217,22 +221,28 @@ export class AppComponent implements OnInit {
 
         }
         if (message.webSocketMessageType == 'WebSocketCanvasMessage') {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'info',
+                summary:  'New Message',
+                detail:   'You have received a new message: ' + 
+                    message.webSocketMessageBody.webSocketSubject
+            });
 
         }
 
 
 
 
-        this.webSocketSystemMessage = {
-            webSocketDatetime: new Date(),
-            webSocketSenderUsername: this.globalVariableService.canvasUser.getValue().username,
-            webSocketMessageType: 'WebSocketSystemMessage',
-            webSocketMessageBody:
-                {
-                    webSocketMessage: 'SystemMessage'
-                }
-        }
-        this.reconnectingWebSocket.webSocketSystemMessage.next(this.webSocketSystemMessage);
+        // this.webSocketSystemMessage = {
+        //     webSocketDatetime: new Date(),
+        //     webSocketSenderUsername: this.globalVariableService.canvasUser.getValue().username,
+        //     webSocketMessageType: 'WebSocketSystemMessage',
+        //     webSocketMessageBody:
+        //         {
+        //             webSocketMessage: 'SystemMessage'
+        //         }
+        // }
+        // this.reconnectingWebSocket.webSocketSystemMessage.next(this.webSocketSystemMessage);
 
         // let d = new Date();
         // console.log(d);
@@ -353,9 +363,10 @@ export class AppComponent implements OnInit {
                 webSocketMessage: ''
             }
         }
-        if (event == 'Submit') {
-            this.handleNotificationFromWS(this.webSocketBasicMessage);
-        }
+        // WS should be sent from the children, methinks !?
+        // if (event == 'Submit') {
+        //     this.handleNotificationFromWS(this.webSocketBasicMessage);
+        // }
 
         // Rip away popup
         this.displayNewMessage = false;
@@ -631,33 +642,14 @@ export class AppComponent implements OnInit {
         return this.menuItems;
     }
 
-testFn() {
-// TODO - remove once done
-if (this.localFile != null) {
-    if (this.localFile.nativeElement.files.length > 0) {
-console.log('localFile', this.localFile.nativeElement.files[0])
-    } else {console.log('NO SELECTION')}
-} else {
-    console.log('localFile is null')
-}
-        // Get current user
-        let currentUser: string = this.globalFunctionService.currentUser();
-
-        this.webSocketBasicMessage = {
-            webSocketDatetime: new Date(this.canvasDate.now('standard')),
-            webSocketSenderUsername: currentUser,
-            webSocketMessageType: 'WebSocketRefDataMessage',
-                                                // - WebSocketCanvasMessage
-                                                // - WebSocketSystemMessage
-                                                // - WebSocketCeleryMessage
-                                                // - WebSocketRefDataMessage
-            webSocketMessageBody: {
-                webSocketTableName: 'SystemConfiguration',
-                webSocketAction: 'Add',
-                webSocketRecordID: 14,
-                webSocketMessage: ''
-            }
+    testFn() {
+        // TODO - remove once done
+        if (this.localFile != null) {
+            if (this.localFile.nativeElement.files.length > 0) {
+        console.log('localFile SELECTed', this.localFile.nativeElement.files[0])
+            } else {console.log('NO File SELECTed')}
+        } else {
+            console.log('localFile is null')
         }
-this.handleNotificationFromWS(this.webSocketBasicMessage)
-}
+    }
 }

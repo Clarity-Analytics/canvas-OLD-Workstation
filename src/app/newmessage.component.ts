@@ -93,31 +93,6 @@ export class NewMessageComponent implements OnInit {
         // Fill combos
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
 
-        
-
-        // TODO - delete
-        let basic = new WebSocketBasicMessage();
-
-        basic =  {
-            webSocketDatetime: new Date,
-            webSocketSenderUsername: 'TESTING in newmessage component',
-            webSocketMessageType: 'WebSocketRefDataMessage',
-            webSocketMessageBody: 					
-                {
-                    webSocketTableName: 'Table that was amended',
-                    webSocketAction: 'What was done at one of two levels:',
-                    webSocketRecordID: 5,
-                    webSocketMessage: 'Optional message'
-                }
-        }
-            
-        let ref: WebSocketRefDataMessage = basic;
-        console.log(basic, ref)
-
-
-
-
-
         // Refresh the data from the DB
         this.globalVariableService.dirtyDataCanvasMessage = true;
 
@@ -154,7 +129,6 @@ export class NewMessageComponent implements OnInit {
             this.userformPreviousMessage.controls['previousMessageRecipients'].setValue(
                 this.previousMessageRecipients.trim());
 
-console.log('this.previousMessageRecipients', this.previousMessageRecipients)
         } else {
             this.displayPreviousMessage = false;
         }
@@ -304,7 +278,8 @@ console.log('this.previousMessageRecipients', this.previousMessageRecipients)
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
 
-        this.eazlService.addCanvasMessage(canvasMessageWorking)
+        // Add to DB
+        this.eazlService.addCanvasMessage(canvasMessageWorking);
 
         // Trigger event emitter 'emit' method
         this.formNewMessageSubmit.emit('Submit');
