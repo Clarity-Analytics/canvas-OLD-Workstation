@@ -242,7 +242,7 @@ export class NewMessageComponent implements OnInit {
         let currentUser: string = this.globalFunctionService.currentUser();
 
         canvasMessageWorking.canvasMessageSentDateTime = null;
-
+        
         canvasMessageWorking.canvasMessageRecipients = [
             {
             canvasMessageRecipientID: 0,
@@ -257,15 +257,14 @@ export class NewMessageComponent implements OnInit {
             canvasMessageWorking.canvasMessageRecipients[0].canvasMessageRecipientIsSender
                 = true;
         };
-
+        console.log('4')
+        
         for (var i = 1; i < this.sendToTheseUsers.length; i++) {
 
             canvasMessageWorking.canvasMessageSentDateTime = null;
             if (this.sendToTheseUsers[i] == currentUser) {
                 canvasMessageWorking.canvasMessageSentToMe = true;
                 canvasMessageWorking.canvasMessageMyStatus = 'Read';
-                canvasMessageWorking.canvasMessageRecipients[i].canvasMessageRecipientIsSender
-                    = true;
             };
             canvasMessageWorking.canvasMessageRecipients.push(
                {
@@ -277,7 +276,8 @@ export class NewMessageComponent implements OnInit {
             canvasMessageWorking.canvasMessageSentToMe = false;
             canvasMessageWorking.canvasMessageMyStatus = '';
         }
-
+        console.log('5')
+        
         // Add to DB
         this.eazlService.addCanvasMessage(canvasMessageWorking);
 
