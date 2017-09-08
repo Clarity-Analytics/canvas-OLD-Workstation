@@ -823,12 +823,9 @@ export class DashboardManagerComponent implements OnInit {
         if (this.addEditMode == "Add") {
 
             // Add the new guy to the Array, if it belongs to current Dashboar
-            // TODO - this is crude & error prone: eventually autoIndex in DB
-            let lastDashboardID =
-                this.dashboards.length;
 
             // Set the Widget ID & Add to Array
-            this.dashboardToEdit.dashboardID = lastDashboardID;
+            this.dashboardToEdit.dashboardID = this.dashboards.length;
             this.dashboardToEdit.dashboardCreatedDateTime = this.canvasDate.now('standard');
             this.dashboardToEdit.dashboardCreatedUserName = this.canvasUser.username;
             this.dashboards.push(this.dashboardToEdit);

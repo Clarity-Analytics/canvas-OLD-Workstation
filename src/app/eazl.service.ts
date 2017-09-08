@@ -3467,7 +3467,7 @@ export class EazlService implements OnInit {
         // Return '' if good, else return error message
         this.globalFunctionService.printToConsole(this.constructor.name,'changePassword', '@Start');
 
-        // TODO - this must be done in DB
+        // TODO - this must be done in DB. Finalise this with Bradley
         return '';
     }
 
@@ -3488,13 +3488,13 @@ export class EazlService implements OnInit {
 
     handleError(response: Response | any): Observable<Response> {
         // Error for observable
-        // TODO - figure out why this guy errors when there is an http-error
+        // TODO - Error Handling: figure out why this guy errors when there is an http-error - finalise this with Bradley
         // this.globalFunctionService.printToConsole(this.constructor.name,'handleError', '@Start');
 
         var error: string = '';
          // Do some logging one day
         if (response instanceof Response) {
-            // TODO - this must be sorted IF return is html - since it errors (in the error)
+            // TODO - Error Handling: this must be sorted IF return is html - since it errors (in the error) - finalise this with Bradley
             // var payload = response.json() || '';
             //  error = payload.body || JSON.stringify(payload);
             console.log('CDAL testing response', response);
@@ -3548,7 +3548,6 @@ export class EazlService implements OnInit {
         // Mark as dirty
         this.globalVariableService.dirtyDataUser = true;
 
-        // TODO - remove this hack once Users in separate DB
         let today = new Date();
         let workingUser: any = {
             username: user.username,
@@ -3577,7 +3576,6 @@ export class EazlService implements OnInit {
                     user.id = eazlUser.id
                     this.users.push(user);
 
-                    // TODO - reGet the local => always in sync
                     // Not dirty any longer
                     this.globalVariableService.dirtyDataUser = false;
 
@@ -3660,7 +3658,7 @@ export class EazlService implements OnInit {
         // - user = user to delete
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteUser', '@Start');
 
-        // TODO - finalise this
+        // TODO - finalise this with Bradley
         // Mark as dirty
         this.globalVariableService.dirtyDataUser = true;
 

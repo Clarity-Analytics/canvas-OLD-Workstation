@@ -735,7 +735,6 @@ export class CDAL {
             canvasMessageWorking.canvasMessageSentDateTime = '';
         }
 
-        // TODO - add ReadDateTime field for all recipients
         // Defaults
         canvasMessageWorking.canvasMessageSenderUserName = '';
         canvasMessageWorking.canvasMessageSentToMe = false;
@@ -763,7 +762,6 @@ export class CDAL {
             };
         }
 
-        // TODO - there must be a cleaner way to add an array of recipients !
         // Do the first one - NOTE 1 in for loop
         if (eazlCanvasMessage.recipients[0] == undefined) {
             canvasMessageWorking.canvasMessageRecipients = [

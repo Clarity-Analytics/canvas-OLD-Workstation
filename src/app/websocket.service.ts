@@ -37,40 +37,40 @@ export class ReconnectingWebSocket {
 }
 
 // TODO - physically delete this one: it give a weird Zone runtime error if I delete it !!
-export class WebSocketServiceX {
-    private subject: Rx.Subject<MessageEvent>;
+export class WebSocketServiceXyyyy {
+    // private subject: Rx.Subject<MessageEvent>;
     
     // constructor() { }
 
-    public connectX(url): Rx.Subject<MessageEvent> {
-        // if(!this.subject) {
-        //     this.subject = this.createX(url);
-        //     console.log("Successfully connected: " + url);
-        // }
+    // private connectXy(url): Rx.Subject<MessageEvent> {
+    //     // if(!this.subject) {
+    //     //     this.subject = this.createX(url);
+    //     //     console.log("Successfully connected: " + url);
+    //     // }
 
-        return this.subject;
-    }
+    //     return this.subject;
+    // }
 
     private createX(url): Rx.Subject<MessageEvent> {
-        let ws = new WebSocket(url);
+        // let ws = new WebSocket(url);
 
-        let observable = Rx.Observable.create((obs: Rx.Observer<MessageEvent>) => {
-            ws.onmessage = obs.next.bind(obs);
-            ws.onerror = obs.error.bind(obs);
-            ws.onclose = obs.complete.bind(obs);
+        // let observabley = Rx.Observable.create((obs: Rx.Observer<MessageEvent>) => {
+        //     ws.onmessage = obs.next.bind(obs);
+        //     ws.onerror = obs.error.bind(obs);
+        //     ws.onclose = obs.complete.bind(obs);
 
-            return ws.close.bind(ws);
-        });
+        //     return ws.close.bind(ws);
+        // });
 
-        let observer = {
-            next: (data: Object) => {
-                if (ws.readyState === WebSocket.OPEN) {
-                    ws.send(JSON.stringify(data));
-                }
-            },
-        };
+        // let observery = {
+        //     next: (data: Object) => {
+        //         if (ws.readyState === WebSocket.OPEN) {
+        //             ws.send(JSON.stringify(data));
+        //         }
+        //     },
+        // };
 
-        return Rx.Subject.create(observer, observable);
+        return Rx.Subject.create( null);
     }
 }
 

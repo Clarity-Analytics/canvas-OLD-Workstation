@@ -213,7 +213,7 @@ export class NewMessageComponent implements OnInit {
 
         // Create a Message object, and then add it
         let canvasMessageWorking = new CanvasMessage();
-        // TODO - fix the conversation ID properly in time
+
         canvasMessageWorking.canvasMessageID = 0;
         canvasMessageWorking.canvasMessageConversationID = null; 
         canvasMessageWorking.canvasMessageSenderUserName = this.globalVariableService.canvasUser.getValue().username;
@@ -232,7 +232,6 @@ export class NewMessageComponent implements OnInit {
         canvasMessageWorking.canvasMessageIsSystemGenerated = false;
         canvasMessageWorking.canvasMessageSentToMe = false;
         canvasMessageWorking.canvasMessageMyStatus = 'Read';
-        // TODO - add ReadDateTime field for all recipients
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
