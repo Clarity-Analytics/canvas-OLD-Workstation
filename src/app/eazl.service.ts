@@ -4020,10 +4020,6 @@ export class EazlService implements OnInit {
         // TODO - when from DB, fill the properties.widgetComments field with the latest
         //        comment from the widgetComments table.  This is used in *ngIf
 
-        // TODO - get a standard set of methods, ie getXXX returns all, findXXX returns one.
-        //        OR, use TS standard with .filter, .find, etc .... ??
-        // IF an ID was provided, only return that one.  Else, al
-
         // Start with all
         let dashboardsWorking: Dashboard[] = this.dashboards;
         if (this.dashboardTagMembership == null) {
@@ -4032,25 +4028,6 @@ export class EazlService implements OnInit {
 
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
-
-        // TODO - fix the dashboardUserRelationshipType field
-        // Add dashboardIsLiked calculated field
-        // if (dashboardsWorking != null) {
-        //     dashboardsWorking.forEach( dw => {
-        //         dw.dashboardIsLiked = false;
-        //         if (this.dashboardUserRelationship.filter(dur =>
-        //             (
-        //                 dur.dashboardID == dw.dashboardID
-        //                 &&
-        //                 dur.userName == currentUser
-        //                 &&
-        //                 dur.dashboardUserRelationshipType == 'Likes'
-        //             )
-        //         ).length > 0) {
-        //             dw.dashboardIsLiked = true;
-        //         }
-        //     });
-        // };
 
         // Return the filtered result
         if (dashboardsWorking != null) {
@@ -4076,7 +4053,6 @@ export class EazlService implements OnInit {
                 dashboard.dashboardID = eazlDashboard.id;
                 this.dashboards.push(dashboard);
 
-                // TODO - reGet the local => always in sync
                 // Not dirty any longer
                 this.globalVariableService.dirtyDataDashboard = false;
 
@@ -4550,7 +4526,6 @@ export class EazlService implements OnInit {
                     dashboardTab.dashboardID = eazlDashboardTab.id;
                     this.dashboardTabs.push(dashboardTab);
 
-                    // TODO - reGet the local => always in sync
                     // Not dirty any longer
                     this.globalVariableService.dirtyDataDashboardTab = false;
 
@@ -5661,7 +5636,6 @@ export class EazlService implements OnInit {
                     dashboardTagMembership.dashboardID = eazlDashboardTagMembership.id;
                     this.dashboardTagMembership.push(dashboardTagMembership);
 
-                    // TODO - reGet the local => always in sync
                     // Not dirty any longer
                     this.globalVariableService.dirtyDataDashboardTagMembership = false;
 
