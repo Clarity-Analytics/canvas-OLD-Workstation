@@ -4600,7 +4600,7 @@ export class EazlService implements OnInit {
             });
         }
 
-        // TODO - do via Eazl into DB
+        // TODO - do via Eazl into DB - discuss with Bradley
         let lastWidgetID = this.widgets[this.widgets.length - 1].properties.widgetID;
 
         // Return
@@ -4621,7 +4621,6 @@ export class EazlService implements OnInit {
         }
 
         // Calc WIDGET certain fields, as it is easy to use in *ngIf or *ngFor
-        // TODO - this is impure - do better
         let username: string = '';
         if (this.globalVariableService.canvasUser.getValue() != null) {
             username = this.globalVariableService.canvasUser.getValue().username;
@@ -5144,7 +5143,6 @@ export class EazlService implements OnInit {
                 group.groupID = eazlGroup.id;
                 this.groups.push(group);
 
-                // TODO - reGet the local => always in sync
                 // Not dirty any longer
                 this.globalVariableService.dirtyDataGroup = false;
 
@@ -5299,7 +5297,6 @@ export class EazlService implements OnInit {
         // List of Data Sources
         // - dashboardID is optional Dashboard to filter on
         // Note: Dashboard <1-many> Widget <1-1> Report <1-1> DataSource
-        // TODO - agree design to integrate with Overlay, and do in DB
         this.globalFunctionService.printToConsole(this.constructor.name,'getDataSources', '@Start');
 
         // Report to user if dirty at the moment
