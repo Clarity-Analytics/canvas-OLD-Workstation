@@ -62,11 +62,12 @@ export class ReportBuilderComponent implements OnInit {
 
         // FormBuilder
         this.userform = this.fb.group({
-            'dashboardName':        new FormControl('', Validators.required),
-            'dashboardTabName':     new FormControl('', Validators.required),
-            'reportFieldsX':        new FormControl('', Validators.required),
-            'reportFieldsY':        new FormControl('', Validators.required),
-            'graphType':            new FormControl('', Validators.required)
+            'hostName':         new FormControl('', Validators.required),
+            'port':             new FormControl('', Validators.required),
+            'database':         new FormControl('', Validators.required),
+            'userName':         new FormControl('', Validators.required),
+            'password':         new FormControl('', Validators.required),
+            'tableName':        new FormControl('', Validators.required)
         });
 
         // Fill the DropDowns
@@ -93,40 +94,33 @@ export class ReportBuilderComponent implements OnInit {
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
-        if (this.userform.controls['dashboardName'].value.name == ''  ||
-            this.userform.controls['dashboardName'].value.name == null) {
+        if (this.userform.controls['hostName'].value.name == ''  ||
+            this.userform.controls['hostName'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
-                    'The Dashboard Name is compulsory.';
+                    'The hostName is compulsory.';
         }
-        if (this.userform.controls['dashboardTabName'].value.name == ''  ||
-            this.userform.controls['dashboardTabName'].value.name == null) {
+        if (this.userform.controls['database'].value.name == ''  ||
+            this.userform.controls['database'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
-                    'The Dashboard Tab Name is compulsory.';
+                    'The database Name is compulsory.';
         }
-        if (this.userform.controls['reportFieldsX'].value.name == ''  ||
-            this.userform.controls['reportFieldsX'].value.name == null) {
+        if (this.userform.controls['userName'].value.name == ''  ||
+            this.userform.controls['userName'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
-                    'The X Axis is compulsory.';
+                    'The userName is compulsory.';
         }
-        if (this.userform.controls['reportFieldsY'].value.name == ''  ||
-            this.userform.controls['reportFieldsY'].value.name == null) {
+        if (this.userform.controls['tableName'].value.name == ''  ||
+            this.userform.controls['tableName'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
                 this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
-                    'The Y Axis is compulsory.';
-        }
-        if (this.userform.controls['graphType'].value.name == ''  ||
-            this.userform.controls['graphType'].value.name == null) {
-                this.formIsValid = false;
-                this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
-                    'The Graph Type is compulsory.';
+                    'The tableName is compulsory.';
         }
 
         // Oi, something is not right
@@ -142,150 +136,8 @@ export class ReportBuilderComponent implements OnInit {
 
         // Prep: get template for this graph type, then insert the report data, then axes
         let currentUser: string = this.globalFunctionService.currentUser();
-        this.widgetTemplate = this.eazlService.getWidgetTemplates (
-            this.userform.controls['graphType'].value.name
-        );
-        this.widgetTemplate.vegaSpec.data[0].values = this.selectedReport.reportData;
-        this.widgetTemplate.vegaSpec.scales[0].domain.field =
-            this.userform.controls['reportFieldsX'].value.name;
-        this.widgetTemplate.vegaSpec.marks[0].encode.enter.x.field =
-            this.userform.controls['reportFieldsX'].value.name;
-        this.widgetTemplate.vegaSpec.marks[1].encode.update.x.signal =
-            'tooltip.' + this.userform.controls['reportFieldsX'].value.name;
-        this.widgetTemplate.vegaSpec.scales[1].domain.field =
-            this.userform.controls['reportFieldsY'].value.name;
-        this.widgetTemplate.vegaSpec.marks[0].encode.enter.y.field =
-            this.userform.controls['reportFieldsY'].value.name;
-        this.widgetTemplate.vegaSpec.marks[1].encode.update.y.signal =
-            'tooltip.' + this.userform.controls['reportFieldsY'].value.name;
 
-        // Get Max z-Index
-        let maxZindex: number = 0;
-        maxZindex = this.eazlService.maxZindex(this.userform.controls['dashboardName'].value.id);
-
-        // Increment Max z-Index
-        maxZindex = maxZindex + 1;
-
-        // Adding new Widget, using defaults as far as possible
-        this.eazlService.addWidget(
-            {
-                container: {
-                    backgroundColor: this.globalVariableService.lastBackgroundColor.name,
-                    border: this.globalVariableService.lastBorder.name,
-                    boxShadow: this.globalVariableService.lastBoxShadow.name,
-                    color: this.globalVariableService.lastColor.name,
-                    fontSize: +this.globalVariableService.lastContainerFontSize.name,
-                    height: this.globalVariableService.lastWidgetHeight,
-                    left: 240,
-                    widgetTitle: this.selectedReport.reportName,
-                    top: 80,
-                    width: this.globalVariableService.lastWidgetWidth,
-                },
-                areas:
-                    {
-                        showWidgetText: false,
-                        showWidgetGraph: true,
-                        showWidgetTable: false,
-                        showWidgetImage: false,
-                    },
-                textual:
-                    {
-                        textText: '',
-                        textBackgroundColor: '',
-                        textBorder: '',
-                        textColor: '',
-                        textFontSize: 0,
-                        textFontWeight: '',
-                        textHeight: 0,
-                        textLeft: 0,
-                        textMargin: '',
-                        textPadding: '',
-                        textPosition: '',
-                        textTextAlign: '',
-                        textTop: 0,
-                        textWidth: 0,
-                },
-                graph:
-                    {
-                        graphID: 0,
-                        graphLeft: 5,
-                        graphTop: 25,   // NB 0 meanse the top buttons are dead (unclickable)
-                        vegaParameters:
-                            {
-                                vegaGraphHeight: 200,
-                                vegaGraphWidth: 200,
-                                vegaGraphPadding: 0,
-                                vegaHasSignals: true,
-                                vegaXcolumn: this.userform.controls['reportFieldsX'].value.name,
-                                vegaYcolumn: this.userform.controls['reportFieldsY'].value.name,
-                                vegaFillColor: 'black',
-                                vegaHoverColor: 'pink',
-                            },
-                        spec: this.widgetTemplate.vegaSpec,
-                    },
-                table:
-                    {
-                        tableColor: '',
-                        tableCols: 0,
-                        tableHeight: 0,
-                        tableHideHeader: false,
-                        tableLeft: 0,
-                        tableRows: 0,
-                        tableTop: 0,
-                        tableWidth: 0,
-                    },
-                image:
-                    {
-                        imageAlt: '',
-                        imageHeigt: 10,
-                        imageLeft: 0,
-                        imageSource: '',
-                        imageTop: 0,
-                        imageWidth: 10,
-                    },
-                properties:
-                    {
-                        widgetID: this.eazlService.getWidgetLastWidgetID(),
-                        dashboardID: this.userform.controls['dashboardName'].value.id,
-                        dashboardName: this.userform.controls['dashboardName'].value.name,
-                        dashboardTabID: this.userform.controls['dashboardTabName'].value.id,
-                        dashboardTabName: this.userform.controls['dashboardTabName'].value.name,
-                        widgetCode: this.selectedReport.reportCode,
-                        widgetName: this.selectedReport.reportName,
-                        widgetDescription: 'Added for report ' + this.selectedReport.reportName,
-                        widgetDefaultExportFileType: '.png',
-                        widgetHyperLinkTabNr: '',
-                        widgetHyperLinkWidgetID: '',
-                        widgetRefreshMode: '',
-                        widgetRefreshFrequency: 0,
-                        widgetPassword: '',
-                        widgetIsLiked: false,
-                        widgetLiked: [
-                            {
-                                widgetLikedUserName: ''
-                            }
-                        ],
-                        widgetReportID: this.selectedReport.reportID,
-                        widgetReportName: this.selectedReport.reportName,
-                        widgetReportParameters: '',
-                        widgetShowLimitedRows: 0,
-                        widgetAddRestRow: false,
-                        widgetType: this.userform.controls['graphType'].value.name,
-                        widgetComments: '',
-                        widgetIndex: maxZindex,
-                        widgetIsLocked: false,
-                        widgetSize: '',
-                        widgetSystemMessage: '',
-                        widgetTypeID: this.userform.controls['graphType'].value.id,
-                        widgetRefreshedDateTime: '',
-                        widgetRefreshedUserName: '',
-                        widgetCreatedDateTime: this.canvasDate.now('standard'),
-                        widgetCreatedUserName: currentUser,
-                        widgetUpdatedDateTime: '',
-                        widgetUpdatedUserName: '',
-                    }
-            }
-        );
+console.log('ReportBuilder ...')        
 
     }
 }
