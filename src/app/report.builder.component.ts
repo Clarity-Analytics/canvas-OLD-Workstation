@@ -8,9 +8,9 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Validators }                 from '@angular/forms';
- 
+
 // PrimeNG
-import { Message }                    from 'primeng/primeng';  
+import { Message }                    from 'primeng/primeng';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Models
@@ -35,7 +35,7 @@ export class ReportBuilderComponent implements OnInit {
     @Input() selectedReport: Report;
     // Event emitter sends event back to parent component once Submit button was clicked
     @Output() formSubmit: EventEmitter<boolean> = new EventEmitter();
-    
+
     // Local properties
     dashboardDropDown: SelectItem[] = [];       // Dashboards in DropDown
     dashboardTabsDropDown: SelectItem[] = [];   // DashboardTab in DropDown
@@ -55,7 +55,7 @@ export class ReportBuilderComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         ) {}
-    
+
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -73,15 +73,15 @@ export class ReportBuilderComponent implements OnInit {
         this.dashboardDropDown = this.eazlService.getDashboardSelectionItems();
         this.graphTypeDropDown = this.eazlService.getGraphTypes();
     }
-    
+
     onChangeDashboardDrowdown(event) {
         // User changed Dashboard dropdown, so now populate array of tabs
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeDashboardDrowdown', '@Start');
 
         // Load its tabs, etc
-        this.dashboardTabsDropDown = 
+        this.dashboardTabsDropDown =
             this.eazlService.getDashboardTabsSelectItems(+event.value.id);
-        this.reportFieldsDropDown = 
+        this.reportFieldsDropDown =
             this.eazlService.getReportFieldSelectedItems(this.selectedReport.reportID);
     }
 
@@ -93,39 +93,39 @@ export class ReportBuilderComponent implements OnInit {
         this.errorMessageOnForm = '';
         this.numberErrors = 0;
 
-        if (this.userform.controls['dashboardName'].value.name == ''  || 
+        if (this.userform.controls['dashboardName'].value.name == ''  ||
             this.userform.controls['dashboardName'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Dashboard Name is compulsory.';
         }
-        if (this.userform.controls['dashboardTabName'].value.name == ''  || 
+        if (this.userform.controls['dashboardTabName'].value.name == ''  ||
             this.userform.controls['dashboardTabName'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Dashboard Tab Name is compulsory.';
-        }    
-        if (this.userform.controls['reportFieldsX'].value.name == ''  || 
+        }
+        if (this.userform.controls['reportFieldsX'].value.name == ''  ||
             this.userform.controls['reportFieldsX'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The X Axis is compulsory.';
-        }        
-        if (this.userform.controls['reportFieldsY'].value.name == ''  || 
+        }
+        if (this.userform.controls['reportFieldsY'].value.name == ''  ||
             this.userform.controls['reportFieldsY'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Y Axis is compulsory.';
         }
-        if (this.userform.controls['graphType'].value.name == ''  || 
+        if (this.userform.controls['graphType'].value.name == ''  ||
             this.userform.controls['graphType'].value.name == null) {
                 this.formIsValid = false;
                 this.numberErrors = this.numberErrors + 1;
-                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' +
                     'The Graph Type is compulsory.';
         }
 
@@ -146,13 +146,13 @@ export class ReportBuilderComponent implements OnInit {
             this.userform.controls['graphType'].value.name
         );
         this.widgetTemplate.vegaSpec.data[0].values = this.selectedReport.reportData;
-        this.widgetTemplate.vegaSpec.scales[0].domain.field =  
+        this.widgetTemplate.vegaSpec.scales[0].domain.field =
             this.userform.controls['reportFieldsX'].value.name;
         this.widgetTemplate.vegaSpec.marks[0].encode.enter.x.field =
             this.userform.controls['reportFieldsX'].value.name;
         this.widgetTemplate.vegaSpec.marks[1].encode.update.x.signal =
             'tooltip.' + this.userform.controls['reportFieldsX'].value.name;
-        this.widgetTemplate.vegaSpec.scales[1].domain.field =  
+        this.widgetTemplate.vegaSpec.scales[1].domain.field =
             this.userform.controls['reportFieldsY'].value.name;
         this.widgetTemplate.vegaSpec.marks[0].encode.enter.y.field =
             this.userform.controls['reportFieldsY'].value.name;
@@ -167,7 +167,7 @@ export class ReportBuilderComponent implements OnInit {
         maxZindex = maxZindex + 1;
 
         // Adding new Widget, using defaults as far as possible
-        this.eazlService.addWidget( 
+        this.eazlService.addWidget(
             {
                 container: {
                     backgroundColor: this.globalVariableService.lastBackgroundColor.name,
@@ -181,14 +181,14 @@ export class ReportBuilderComponent implements OnInit {
                     top: 80,
                     width: this.globalVariableService.lastWidgetWidth,
                 },
-                areas: 
+                areas:
                     {
                         showWidgetText: false,
                         showWidgetGraph: true,
                         showWidgetTable: false,
                         showWidgetImage: false,
                     },
-                textual: 
+                textual:
                     {
                         textText: '',
                         textBackgroundColor: '',
@@ -205,12 +205,12 @@ export class ReportBuilderComponent implements OnInit {
                         textTop: 0,
                         textWidth: 0,
                 },
-                graph: 
+                graph:
                     {
                         graphID: 0,
                         graphLeft: 5,
                         graphTop: 25,   // NB 0 meanse the top buttons are dead (unclickable)
-                        vegaParameters: 
+                        vegaParameters:
                             {
                                 vegaGraphHeight: 200,
                                 vegaGraphWidth: 200,
@@ -223,7 +223,7 @@ export class ReportBuilderComponent implements OnInit {
                             },
                         spec: this.widgetTemplate.vegaSpec,
                     },
-                table: 
+                table:
                     {
                         tableColor: '',
                         tableCols: 0,
@@ -234,7 +234,7 @@ export class ReportBuilderComponent implements OnInit {
                         tableTop: 0,
                         tableWidth: 0,
                     },
-                image: 
+                image:
                     {
                         imageAlt: '',
                         imageHeigt: 10,
@@ -243,7 +243,7 @@ export class ReportBuilderComponent implements OnInit {
                         imageTop: 0,
                         imageWidth: 10,
                     },
-                properties: 
+                properties:
                     {
                         widgetID: this.eazlService.getWidgetLastWidgetID(),
                         dashboardID: this.userform.controls['dashboardName'].value.id,
@@ -288,4 +288,4 @@ export class ReportBuilderComponent implements OnInit {
         );
 
     }
-} 
+}

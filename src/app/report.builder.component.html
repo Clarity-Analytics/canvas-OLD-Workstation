@@ -1,162 +1,112 @@
-<!--Errors-->
-<p
-    class="iserror"
-    *ngIf="formIsValid">
-    {{ errorMessageOnForm }}
-</p>
+    <!--Errors-->
+    <p
+        class="iserror"
+        *ngIf="formIsValid">
+        {{ errorMessageOnForm }}
+    </p>
 
 
-<form 
-    [formGroup]="userform"
-    >
-    <div 
-        class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" 
-        style="margin: 10px 0px"
+    <form
+        [formGroup]="userform"
         >
-        Report Builder - detail to follow ... <br>
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4">
-                Dashboard Name :
-            </div>
-            <div class="ui-grid-col-8">
-                <p-dropdown
-                    [options]="dashboardDropDown"
-                    [style]="{
-                            'autofocus':'true',
-                            'background-color':'538cc6',
-                            'border':'1px solid lightgray',
-                            'border-radius':'2px',
-                            'float':'right',
-                            'font-size':'0.85em',
-                            'margin':'-2px 5px 0 0',
-                            'padding':'0',
-                            'width':'200px'
-                            }"
+        <div
+            class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
+            style="margin: 10px 0px"
+            >
+            Report Builder - detail to follow ... <br>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4">
+                    HostName/IP :
+                </div>
+                <div class="ui-grid-col-8">
+                    <input pInputText
+                    type="text"
+                    formControlName="companyName"
                     placeholder="Required"
-                    formControlName="dashboardName"
-                    filter="true"
-                    (onChange)="onChangeDashboardDrowdown($event)"
-                    >
-                </p-dropdown>
+                    pTooltip="Enter Host Name or IP address"
+                    tooltipPosition="top"
+                    autofocus
+                    />
+                </div>
+                <div class="ui-grid-col-4">
+                    Port :
+                </div>
+                <div class="ui-grid-col-8">
+                    <input pInputText
+                    type="text"
+                    formControlName="companyName"
+                    placeholder="(Optional)"
+                    pTooltip="Enter port number"
+                    tooltipPosition="top"
+                    autofocus
+                    />
+                </div>
             </div>
-        </div>
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4">
-                Tab Name :
-            </div>
-            <div class="ui-grid-col-8">
-                <p-dropdown
-                    [options]="dashboardTabsDropDown"
-                    [style]="{
-                            'autofocus':'true',
-                            'background-color':'538cc6',
-                            'border':'1px solid lightgray',
-                            'border-radius':'2px',
-                            'float':'right',
-                            'font-size':'0.85em',
-                            'margin':'-2px 5px 0 0',
-                            'padding':'0',
-                            'width':'200px'
-                            }"
-                    placeholder="Required"
-                    formControlName="dashboardTabName"
-                    filter="true"
-                    >
-                </p-dropdown>
-            </div>
-        </div>
 
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4">
-                X-Axis :
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4">
+                    Database :
+                </div>
+                <div class="ui-grid-col-8">
+                    <input pInputText
+                    type="text"
+                    formControlName="companyName"
+                    placeholder="Required"
+                    pTooltip="Enter Database Name"
+                    tooltipPosition="top"
+                    autofocus
+                    />
+                </div>
+                <div class="ui-grid-col-4">
+                    User :
+                </div>
+                <div class="ui-grid-col-8">
+                    <input pInputText
+                    type="text"
+                    formControlName="companyName"
+                    placeholder="Required"
+                    pTooltip="Enter user name"
+                    tooltipPosition="top"
+                    autofocus
+                    />
+                </div>
             </div>
-            <div class="ui-grid-col-8">
-                <p-dropdown
-                    [options]="reportFieldsDropDown"
-                    [style]="{
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4">
+                    Password :
+                </div>
+                <div class="ui-grid-col-8">
+                    <input pInputText
+                    type="text"
+                    formControlName="companyName"
+                    placeholder="Required"
+                    pTooltip="Enter password"
+                    tooltipPosition="top"
+                    autofocus
+                    />
+                </div>
+                <div class="ui-grid-col-4">
+                    Table :
+                </div>
+                <div class="ui-grid-col-4">
+                    <p-dropdown
+                        [options]="dashboardDropDown"
+                        [(ngModel)]="selectedDashboard"
+                        [style]="{
                             'autofocus':'true',
-                            'background-color':'538cc6',
                             'border':'1px solid lightgray',
                             'border-radius':'2px',
-                            'float':'right',
-                            'font-size':'0.85em',
                             'margin':'-2px 5px 0 0',
                             'padding':'0',
-                            'width':'200px'
-                            }"
-                    placeholder="Required"
-                    formControlName="reportFieldsX"
-                    filter="true"
-                    >
-                </p-dropdown>
+                            'width':'300px'
+                        }"
+                        placeholder="Required"
+                        formControlName="dashboardStartupName"
+                        filter="true"
+                        >
+                    </p-dropdown>
+                </div>
             </div>
         </div>
-
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4">
-                Y-Axis :
-            </div>
-            <div class="ui-grid-col-8">
-                <p-dropdown
-                    [options]="reportFieldsDropDown"
-                    [style]="{
-                            'autofocus':'true',
-                            'background-color':'538cc6',
-                            'border':'1px solid lightgray',
-                            'border-radius':'2px',
-                            'float':'right',
-                            'font-size':'0.85em',
-                            'margin':'-2px 5px 0 0',
-                            'padding':'0',
-                            'width':'200px'
-                            }"
-                    placeholder="Required"
-                    formControlName="reportFieldsY"
-                    filter="true"
-                    >
-                </p-dropdown>
-            </div>
-        </div>
-
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4">
-                Graph Type :
-            </div>
-            <div class="ui-grid-col-8">
-                <p-dropdown
-                    [options]="graphTypeDropDown"
-                    [style]="{
-                            'autofocus':'true',
-                            'background-color':'538cc6',
-                            'border':'1px solid lightgray',
-                            'border-radius':'2px',
-                            'float':'right',
-                            'font-size':'0.85em',
-                            'margin':'-2px 5px 0 0',
-                            'padding':'0',
-                            'width':'200px'
-                            }"
-                    placeholder="Required"
-                    formControlName="graphType"
-                    filter="true"
-                    >
-                </p-dropdown>
-            </div>
-        </div>
-
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4">
-            </div>
-            <div class="ui-grid-col-4">
-                <button pButton 
-                        type="button" 
-                        label="Submit" 
-                        (click)="onSubmit($event)"
-                >
-                </button>
-            </div>
-            <div class="ui-grid-col-4">
-            </div>
-        </div>
-    </div>   
-</form> 
+    </form>
