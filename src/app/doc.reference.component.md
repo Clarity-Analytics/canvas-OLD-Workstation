@@ -496,6 +496,14 @@ Each Data Source has a maximum one set of parameters, it is however optional.
 The parameters are embedded filters that are required to make the SQL work.  It also serves to limit the amount of data returned.
 
 // TODO - add ReportBuilder stuffies here once done
+The following fields are used to connect to MySQL and Postgress:
+hostName
+port
+database
+userName
+password
+tableName
+
 The SQL for a Data Source is created outside of Canvas.  Data Source may require parameters and default values for some fields; indicating which are changeable by users.  Examples will be a date range for very large amounts of data.  Some values will be set conservatively to ensure that a Report does not return 1bn rows if the user does not enter a value.
 The system stores a list of all fields.  This can be supplemented, for example: field description (allowing to build a data dictionary if this is not available in the underlying database), quality of the data, and so on.
 
