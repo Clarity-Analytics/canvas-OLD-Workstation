@@ -37,7 +37,35 @@ Overlay
 24. Add your own Report
 
 Eazl
-25.  How to start the Django console
+25. How to start the Django console
+26. How to connect to the REST API from the command line
+
+...
+
+# 26. How to connect to the REST API from the command line
+
+**cURL**
+
+ curl -s -H "Content-Type: application/json" 
+      -X POST 
+      -d '{"username":"admin","password":"canvas100*"}' localhost:8000/api/auth-token/
+
+ curl -X GET 
+      -H 'Authorization: Token a06cde11c930393b73e04278daa21c68f06aa875' 
+      localhost:8000/api/users/
+
+The -H is for headers, -X is the verb and -d is the payload.
+
+
+**httpie**
+
+  http POST :8000/api/auth-token/ username=admin password=canvas100*
+  http GET :8000/api/users/ Authorization:'Token 
+               a06cde11c930393b73e04278daa21c68f06aa875'
+               
+  Append ‘ > filename’ without the quotes to pipe the result to a file.
+
+A \ character the end of a line will give a shell continue more commands, making it slightly easier to read.
 
 
 

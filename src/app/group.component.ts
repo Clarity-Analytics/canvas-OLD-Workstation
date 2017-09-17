@@ -90,7 +90,13 @@ export class GroupComponent implements OnInit {
                 icon: 'fa-list',
                 command: (event) => this.groupMenuRelatedDataSources(this.selectedGroup)
             },
-
+            // {
+            //     label: 'Related Dashboards',
+            //     icon: 'fa-list',
+            //     command: (event) => this.groupMenuModelPermissions(
+            //         this.selectedGroup, 'dashboard'
+            //     )
+            // },
         ];
 
     }
@@ -179,7 +185,6 @@ export class GroupComponent implements OnInit {
         this.displayGroupMembership = false;
     }
 
-
     onClickDataSourceCancel() {
         // User clicked Cancel button for DS access panel
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDataSourceCancel', '@Start');
@@ -199,6 +204,59 @@ export class GroupComponent implements OnInit {
         // Show popup
         this.displayDatasourceAccess = true;
     }
+
+    // groupMenuModelPermissions(user: User, model: string) {
+    //     // Show Model Permissions (dashboard, dastasources) to which the given user has access
+    //     // - user: currently selected row
+    //     // - model to filter on, ie 'dashboard'
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuModelPermissions', '@Start');
+
+    //     this.eazlService.getUserModelPermissions(
+    //         user.id,
+    //         model
+    //     )
+    //         .then(usrMdlPerm => {
+    //             this.userModelPermissionFlat = [];
+    //             for (var i = 0; i < usrMdlPerm.length; i++) {
+    //                 for (var j = 0; j < usrMdlPerm[i].objectPermissions.length; j++){
+    //                     for (var k = 0; k < usrMdlPerm[i].objectPermissions[j].objectID.length; k++){
+
+    //                         let name: string = '';
+    //                         if (model == 'dashboard') {
+    //                             let lookupDashboard: Dashboard[] =
+    //                                 this.eazlService.getDashboards(
+    //                                     usrMdlPerm[i].objectPermissions[j].objectID[k]
+    //                                 );
+    //                             if (lookupDashboard.length > 0) {
+    //                                 name = lookupDashboard[0].dashboardName;
+    //                             };
+    //                         }
+
+    //                         this.userModelPermissionFlat.push(
+    //                             {
+    //                                 modelID: usrMdlPerm[i].objectPermissions[j].objectID[k],
+    //                                 modelName: name,
+    //                                 username: this.globalVariableService.canvasUser.getValue().username,
+    //                                 modelPermissionsAccessVia: '',
+    //                                 objectPermission: usrMdlPerm[i].objectPermissions[j].permission
+    //                             }
+    //                         );
+    //                     }
+    //                 }
+    //             }
+
+    //             // Show the popup
+    //             this.displayUserModelPermissions = true;
+    //         })
+    //         .catch(error => {
+    //             this.globalVariableService.growlGlobalMessage.next({
+    //                 severity: 'warn',
+    //                 summary:  'Related Model Permissions',
+    //                 detail:   'Unsuccessful in reading related model permissions from the database'
+    //             });
+    //             error.message || error
+    //         })
+    // }
 
     onMoveToTargetDatasourceGroup(event) {
         // User clicked onMoveToTarget: add Datasource access
@@ -231,7 +289,7 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleGroupPopupFormClosed', '@Start');
 
         this.displayGroupPopup = false;
-  }
+    }
 }
 
 // Notes for PrimeNG p-table newbees:
