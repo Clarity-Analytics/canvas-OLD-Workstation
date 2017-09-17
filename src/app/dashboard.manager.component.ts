@@ -503,9 +503,9 @@ export class DashboardManagerComponent implements OnInit {
         );
     }
 
-    onClickUserPermissionCancel() {
+    onClickUserPermissionClose() {
         // Close User Permissions panel
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickUserPermissionClose', '@Start');
 
         this.globalVariableService.growlGlobalMessage.next({
             severity: 'warn',
