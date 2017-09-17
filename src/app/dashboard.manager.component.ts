@@ -742,9 +742,9 @@ export class DashboardManagerComponent implements OnInit {
         );
     }
 
-    onClickGroupPermissionCancel() {
+    onClickGroupPermissionClose() {
         // Close Group Permissions panel
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupPermissionCancel', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupPermissionClose', '@Start');
 
         // Close popup
         this.displayGroupPermissions = false;
