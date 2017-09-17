@@ -1298,7 +1298,7 @@ console.log('CDAL dashboardWorking',dashboardWorking)
             eazlDashboardWorking.background_color = '';
         };
 
-        if (dashboard.dashboardBackgroundImageSrc != null  ||  
+        if (dashboard.dashboardBackgroundImageSrc != null  ||
             dashboard.dashboardBackgroundImageSrc != '') {
                 eazlDashboardWorking.background_image = dashboard.dashboardBackgroundImageSrc;
         } else {
@@ -1382,9 +1382,9 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
         return eazlDashboardWorking;
     }
 
-    loadUserModelPermission(eazlUserModelPermission): UserModelPermission {
+    loadModelPermission(eazlUserModelPermission): UserModelPermission {
         // Load User Permissions for a given Dashboard: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadDashboardUserPermissions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadModelPermission', '@Start');
 
         let userModelPermissionWorking = new UserModelPermission();
 

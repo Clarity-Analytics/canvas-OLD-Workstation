@@ -4241,7 +4241,7 @@ export class EazlService implements OnInit {
 
                 for (var i = 0; i < eazlUsrMdlPerm.length; i++) {
                     if(eazlUsrMdlPerm[i].model == model) {
-                        userModelPermissionsWorking[0] = this.cdal.loadUserModelPermission(eazlUsrMdlPerm[i]);
+                        userModelPermissionsWorking[0] = this.cdal.loadModelPermission(eazlUsrMdlPerm[i]);
                     }
                 }
 
