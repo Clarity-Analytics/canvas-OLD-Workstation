@@ -372,7 +372,7 @@ export class DashboardManagerComponent implements OnInit {
     }
 
     onChangeChangeUserPermission(event) {
-        // User changed  user permission
+        // User changed user permission
         // - event is the new value of the checkbox
         this.globalFunctionService.printToConsole(this.constructor.name,'onChangeChangeUserPermission', '@Start');
 
@@ -745,12 +745,6 @@ export class DashboardManagerComponent implements OnInit {
     onClickGroupPermissionCancel() {
         // Close Group Permissions panel
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickGroupPermissionCancel', '@Start');
-
-        this.globalVariableService.growlGlobalMessage.next({
-            severity: 'warn',
-            summary:  'Cancel',
-            detail:   'As requested, no changes were applied'
-        });
 
         // Close popup
         this.displayGroupPermissions = false;
