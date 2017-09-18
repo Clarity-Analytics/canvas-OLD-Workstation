@@ -81,4 +81,4 @@ export class UserModelPermissionFlat {
         username: string;                           // User who has access
         modelPermissionsAccessVia: string;          // Username or Group
         objectPermission: string   ;                // Permission in DB: remove_permission_dashboard, etc
-    }
+}
