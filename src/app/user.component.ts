@@ -104,7 +104,7 @@ export class UserComponent implements OnInit {
                 command: (event) => this.userMenuGroupMembership(this.selectedUser)
             },
             {
-                label: 'Related Datasources',
+                label: 'Datasource Permis.',
                 icon: 'fa-database',
                 command: (event) => this.userMenuModelPermissions(
                     this.selectedUser,
@@ -112,7 +112,7 @@ export class UserComponent implements OnInit {
                 )
             },
             {
-                label: 'Related Dashboards',
+                label: 'Dashboards Permis.',
                 icon: 'fa-list',
                 command: (event) => this.userMenuModelPermissions(
                     this.selectedUser, 'dashboard'
