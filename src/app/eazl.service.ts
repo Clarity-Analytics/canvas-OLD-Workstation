@@ -4260,32 +4260,29 @@ export class EazlService implements OnInit {
                 ];
 
                 for (var i = 0; i < eazlDataPerm.length; i++) {
-console.log('EAZL i', i)
                     if(eazlDataPerm[i].model == model) {
-                        // this.userModelPermissions[0] = this.cdal.loadModelPermission(eazlDataPerm[i]);
-
+// this.userModelPermissions[0] = this.cdal.loadModelPermission(eazlDataPerm[i]);
+                        
                         // Structured (json-like) of all permissions (Model + Obejct)
                         dataPermissionsWorking[0] = this.cdal.loadDataPermission(eazlDataPerm[i]);
-console.log('EAZL done 1st CDAL', eazlDataPerm[i].modelPermissions.length)
-                        // Flattened Model Array - easier to use with NgPrime tables
-                        for (var j = 0; j < eazlDataPerm[i].modelPermissions.length; j++){
-console.log('EAZL j', j)
-                            
-                            this.dataModelPermissionsFlat.push(
-                                {
-                                    model: eazlDataPerm[i].model,
-                                    holderName: this.globalVariableService.canvasUser.getValue().username,
-                                    permissionVia: 'User',
-                                    modelPermission: eazlDataPerm[i].modelPermissions[j]
-                                }
-                            );
-                        }
-    
 
+                        // Flattened Model Array - easier to use with NgPrime tables
+                        if (eazlDataPerm[i].model_permissions != null) {
+                            for (var j = 0; j < eazlDataPerm[i].model_permissions.length; j++){
+                                
+                                this.dataModelPermissionsFlat.push(
+                                    {
+                                        model: eazlDataPerm[i].model,
+                                        holderName: this.globalVariableService.canvasUser.getValue().username,
+                                        permissionVia: 'User',
+                                        modelPermission: eazlDataPerm[i].model_permissions[j]
+                                    }
+                                );
+                            }
+                        } 
                     }
                 }
                 
-console.log('EAZL this.dataModelPermissionFlat', this.dataModelPermissionsFlat)
                 // Flattend Object Array
                 // this.dataObjectPermissionFlat = [];
                 // for (var i = 0; i < eazlDataPerm.length; i++) {
