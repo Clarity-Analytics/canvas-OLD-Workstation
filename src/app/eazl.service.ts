@@ -4255,6 +4255,16 @@ export class EazlService implements OnInit {
                         modelPermission: ''
                     }
                 ];
+                this.dataObjectPermissionsFlat = [
+                    {
+                        model: '',
+                        objectID: 0,
+                        objectName: '',
+                        holderName: '',
+                        permissionVia: '',
+                        objectPermission: ''
+                    }
+                ];
 
                 for (var i = 0; i < eazlDataPerm.length; i++) {
                     if(eazlDataPerm[i].model == model) {
@@ -4263,26 +4273,55 @@ export class EazlService implements OnInit {
                         dataPermissionsWorking[0] = this.cdal.loadDataPermission(eazlDataPerm[i]);
 
                         // Flattened Model Array - easier to use with NgPrime tables
-                        if (eazlDataPerm[i].model_permissions != null) {
-                            for (var j = 0; j < eazlDataPerm[i].model_permissions.length; j++){
-                                
-                                this.dataModelPermissionsFlat.push(
-                                    {
-                                        model: eazlDataPerm[i].model,
-                                        holderName: this.globalVariableService.canvasUser.getValue().username,
-                                        permissionVia: 'User',
-                                        modelPermission: eazlDataPerm[i].model_permissions[j]
+                        for (var j = 0; j < eazlDataPerm[i].model_permissions.length; j++){
+                            
+                            this.dataModelPermissionsFlat.push(
+                                {
+                                    model: eazlDataPerm[i].model,
+                                    holderName: this.globalVariableService.canvasUser.getValue().username,
+                                    permissionVia: 'User',
+                                    modelPermission: eazlDataPerm[i].model_permissions[j]
+                                }
+                            );
+                        }
+                        
+                        // Flattend Object Array
+                        for (var j = 0; j < eazlDataPerm[i].object_permissions.length; j++){
+                            for (var k = 0; k < eazlDataPerm[i].object_permissions[j]
+                                .object_id.length; k++){
+
+                                    let name: string = '';
+                                    if (model == 'dashboard') {
+                                        let lookupDashboard: Dashboard[] =
+                                            this.getDashboards(
+                                                eazlDataPerm[i].object_permissions[j].object_id[k]
+                                            );
+                                        if (lookupDashboard.length > 0) {
+                                            name = lookupDashboard[0].dashboardName;
+                                        };
                                     }
-                                );
-                            }
-                        } 
-                    }
-                }
+
+
+                                    this.dataObjectPermissionsFlat.push(
+                                        {
+                                            model:  eazlDataPerm[i].model,
+                                            objectID:  eazlDataPerm[i].object_permissions[j].object_id[k],
+                                            objectName: name,
+                                            holderName: this.globalVariableService.canvasUser.getValue().username,
+                                            permissionVia: 'User',
+                                            objectPermission: eazlDataPerm[i].object_permissions[j]
+                                                .permission
+                                        }
+                                    );
+                            };
+                        };
+                    };
+                };
 
                 // Remove first, empty one
                 this.dataModelPermissionsFlat.splice(0,1);
+                this.dataObjectPermissionsFlat.splice(0,1);
                 
-                // Flattend Object Array
                 // this.dataObjectPermissionFlat = [];
                 // for (var i = 0; i < eazlDataPerm.length; i++) {
                 //     for (var j = 0; j < eazlDataPerm[i].objectPermissions.length; j++){
