@@ -263,7 +263,8 @@ export class UserComponent implements OnInit {
 
         this.eazlService.getUserModelPermissions(
             user.id,
-            model
+            model,
+            'ModelFlat'
         )
             .then(usrMdlPerm => {
                 this.userModelPermissionFlat = [];

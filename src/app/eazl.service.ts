@@ -3149,9 +3149,9 @@ export class EazlService implements OnInit {
     // Local Arrays to keep data for the rest of the Application
     borderDropdowns: SelectItem[];                          // List of Border dropdown options
     boxShadowDropdowns: SelectItem[];                       // List of Box Shadow dropdown options
-    dataPermission: DataPermission[];                       // List of permissions, json format
-    dataModelPermissionFlat: DataModelPermissionFlat[];     // List of Flat Model permissions
-    dataObjectPermissionFlat: DataObjectPermissionFlat[];   // List of Flat Object permissions
+    dataPermissions: DataPermission[];                       // List of permissions, json format
+    dataModelPermissionsFlat: DataModelPermissionFlat[];     // List of Flat Model permissions
+    dataObjectPermissionsFlat: DataObjectPermissionFlat[];   // List of Flat Object permissions
     fontSizeDropdowns: SelectItem[];                        // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[];                       // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
@@ -4217,14 +4217,18 @@ export class EazlService implements OnInit {
     // TODO - cater for multiple models later
     getUserModelPermissions(
         userID: number,
-        model: string
+        model: string,
+        format: string
         ): Promise<any> {
         // Returns model permissions per given user.  This is at a model level, or a
         // row (object) level
         // - userID to filter on
         // - model to filter on, ie query or dashboard
+        // - format: ModelFlat (flat array of model permissions), ObjectFlat (flat array of
+        //           object permissions), All (json-like structure of ALL the permission)
         this.globalFunctionService.printToConsole(this.constructor.name,'getUserModelPermissions', '@Start');
 
+        // Define empty working array
         let dataPermissionsWorking: DataPermission[] = [
             {
                 model: '',
@@ -4248,18 +4252,18 @@ export class EazlService implements OnInit {
                 for (var i = 0; i < eazlDataPerm.length; i++) {
                     if(eazlDataPerm[i].model == model) {
                         dataPermissionsWorking[0] = this.cdal.loadModelPermission(eazlDataPerm[i]);
-
                         dataPermissionsWorking[0] = this.cdal.loadDataPermission(eazlDataPerm[i]);
-                        
                     }
                 }
-
+                
                 // Flattened Model Array - easier to use with NgPrime tables
-                this.dataModelPermissionFlat = [];
+                this.dataModelPermissionsFlat = [];
                 for (var i = 0; i < eazlDataPerm.length; i++) {
+console.log('EAZL i', i, eazlDataPerm[i].modelPermissions.length)
                     for (var j = 0; j < eazlDataPerm[i].modelPermissions.length; j++){
-
-                        this.dataModelPermissionFlat.push(
+console.log('EAZL j', j)
+                        
+                        this.dataModelPermissionsFlat.push(
                             {
                                 model: eazlDataPerm[i].model,
                                 holderName: this.globalVariableService.canvasUser.getValue().username,
@@ -4269,7 +4273,7 @@ export class EazlService implements OnInit {
                         );
                     }
                 }
-console.log('EAZL this.dataModelPermissionFlat', this.dataModelPermissionFlat)
+console.log('EAZL this.dataModelPermissionFlat', this.dataModelPermissionsFlat)
                 // Flattend Object Array
                 // this.dataObjectPermissionFlat = [];
                 // for (var i = 0; i < eazlDataPerm.length; i++) {
@@ -4307,10 +4311,19 @@ console.log('EAZL this.dataModelPermissionFlat', this.dataModelPermissionFlat)
                 // }
 
                 // Replace
-                this.userModelPermissions = dataPermissionsWorking;
+                this.dataPermissions = dataPermissionsWorking;
 
-                // Return
-                return this.userModelPermissions;
+                // Return, depending on the format requested.  Like an OverLoad
+                if (format == 'ModelFlat') {
+                    return this.dataModelPermissionsFlat;
+                } else if (format == 'ObjectFlat') {
+                    return this.dataObjectPermissionsFlat;
+                } else if (format == 'ObjectFlat') {
+                    return this.dataPermissions;
+                } else {
+                    return null;
+                }
+
             })
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
