@@ -4278,6 +4278,9 @@ export class EazlService implements OnInit {
                         } 
                     }
                 }
+
+                // Remove first, empty one
+                this.dataModelPermissionsFlat.splice(0,1);
                 
                 // Flattend Object Array
                 // this.dataObjectPermissionFlat = [];
