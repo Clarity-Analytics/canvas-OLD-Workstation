@@ -4261,7 +4261,6 @@ export class EazlService implements OnInit {
 
                 for (var i = 0; i < eazlDataPerm.length; i++) {
                     if(eazlDataPerm[i].model == model) {
-// this.userModelPermissions[0] = this.cdal.loadModelPermission(eazlDataPerm[i]);
                         
                         // Structured (json-like) of all permissions (Model + Obejct)
                         dataPermissionsWorking[0] = this.cdal.loadDataPermission(eazlDataPerm[i]);
