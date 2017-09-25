@@ -19,7 +19,8 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageFlat }          from './model.canvasMessage';
 import { CanvasUser }                 from './model.user';
-import { DataPermission }             from './model.dataPermissions';
+import { DataModelPermissionFlat }    from './model.dataPermissions';
+import { DataObjectPermissionFlat }   from './model.dataPermissions';
 import { DataSource }                 from './model.datasource';
 import { Dashboard }                  from './model.dashboards';
 import { EazlUser }                   from './model.user';
@@ -42,11 +43,13 @@ export class UserComponent implements OnInit {
     belongstoUserGroupMembership: string[] = [];        // List of Groups user already belongs to
     canvasUser: CanvasUser;                             // Current user
     canvasMessages: CanvasMessageFlat[];                // List of Canvas Messages
-    dataModelPermissionsFlat: DataPermission[];         // @Runtime List of Model Permissions per User
+    dataModelPermissionsFlat: DataModelPermissionFlat[];        // @Runtime List of Model Permissions per User
+    dataObjectPermissionsFlat: DataObjectPermissionFlat[];      // @Runtime List of Model Permissions per User
     deleteMode: boolean = false;                        // True while busy deleting
     displayUserDatasources: boolean;                    // True to display Datasource per user
     displayGroupMembership: boolean = false;            // True to display popup for Datasources
     displayDataModelPermissions: boolean = false;       // True to display popup for Model Permissions
+    displayDataObjectPermissions: boolean = false;      // True to display popup for Object Permissions
     displayMessages: boolean = false;                   // True to display popup for Messages
     displayReports: boolean = false;                    // True to display popup for Reports
     displayResetPassword: boolean = false;              // True to display popup for Reset Password
@@ -116,7 +119,7 @@ export class UserComponent implements OnInit {
                 label: 'Dashboard Permis.',
                 icon: 'fa-list',
                 command: (event) => this.userMenuModelPermissions(
-                    this.selectedUser, 
+                    this.selectedUser,
                     'dashboard',
                     'ModelFlat'
                 )
@@ -292,39 +295,16 @@ export class UserComponent implements OnInit {
             format
         )
             .then(dataMdlPerm => {
-                this.dataModelPermissionsFlat = dataMdlPerm;
-console.log('users this.dataModelPermissionsFlat', this.dataModelPermissionsFlat)                
-                // this.dataModelPermissionsFlat = [];
-                // for (var i = 0; i < dataMdlPerm.length; i++) {
-                //     for (var j = 0; j < dataMdlPerm[i].objectPermissions.length; j++){
-                //         for (var k = 0; k < dataMdlPerm[i].objectPermissions[j].objectID.length; k++){
-
-                //             let name: string = '';
-                //             if (model == 'dashboard') {
-                //                 let lookupDashboard: Dashboard[] =
-                //                     this.eazlService.getDashboards(
-                //                         dataMdlPerm[i].objectPermissions[j].objectID[k]
-                //                     );
-                //                 if (lookupDashboard.length > 0) {
-                //                     name = lookupDashboard[0].dashboardName;
-                //                 };
-                //             }
-
-                //             this.dataModelPermissionsFlat.push(
-                //                 {
-                //                     modelID: dataMdlPerm[i].objectPermissions[j].objectID[k],
-                //                     modelName: name,
-                //                     username: this.globalVariableService.canvasUser.getValue().username,
-                //                     modelPermissionsAccessVia: '',
-                //                     objectPermission: dataMdlPerm[i].objectPermissions[j].permission
-                //                 }
-                //             );
-                //         }
-                //     }
-                // }
-
-                // Show the popup
-                this.displayDataModelPermissions = true;
+console.log('users this.dataModelPermissionsFlat', this.dataModelPermissionsFlat)
+                
+                // Show the correct popup
+                if (format == 'ModelFlat') {
+                    this.dataModelPermissionsFlat = dataMdlPerm;
+                    this.displayDataModelPermissions = true;
+                } else {
+                    this.dataObjectPermissionsFlat = dataMdlPerm;
+                    this.displayDataObjectPermissions = true;
+                }
             })
             .catch(error => {
                 this.globalVariableService.growlGlobalMessage.next({
