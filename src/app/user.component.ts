@@ -108,16 +108,39 @@ export class UserComponent implements OnInit {
                 icon: 'fa-database',
                 command: (event) => this.userMenuModelPermissions(
                     this.selectedUser,
-                    'package'
+                    'package',
+                    'ModelFlat'
                 )
             },
             {
-                label: 'Dashboards Permis.',
+                label: 'Dashboard Permis.',
                 icon: 'fa-list',
                 command: (event) => this.userMenuModelPermissions(
-                    this.selectedUser, 'dashboard'
+                    this.selectedUser, 
+                    'dashboard',
+                    'ModelFlat'
                 )
             },
+
+            {
+                label: 'Datasources',
+                icon: 'fa-database',
+                command: (event) => this.userMenuModelPermissions(
+                    this.selectedUser,
+                    'package',
+                    'ObjectFlat'
+                )
+            },
+            {
+                label: 'Dashboards',
+                icon: 'fa-database',
+                command: (event) => this.userMenuModelPermissions(
+                    this.selectedUser,
+                    'dashboard',
+                    'ObjectFlat'
+                )
+            },
+
             {
                 label: 'Message History',
                 icon: 'fa-comments',
@@ -255,19 +278,22 @@ export class UserComponent implements OnInit {
         this.displayUserDatasource = false;
     }
 
-    userMenuModelPermissions(user: User, model: string) {
+    userMenuModelPermissions(user: User, model: string, format: string) {
         // Show Model Permissions (dashboard, dastasources) to which the given user has access
         // - user: currently selected row
         // - model to filter on, ie 'dashboard'
+        // - format: ModelFlat (flat array of model permissions), ObjectFlat (flat array of
+        //           object permissions), All (json-like structure of ALL the permission)
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuModelPermissions', '@Start');
 
         this.eazlService.getUserModelPermissions(
             user.id,
             model,
-            'ModelFlat'
+            format
         )
             .then(dataMdlPerm => {
                 this.dataModelPermissionsFlat = dataMdlPerm;
+console.log('users this.dataModelPermissionsFlat', this.dataModelPermissionsFlat)                
                 // this.dataModelPermissionsFlat = [];
                 // for (var i = 0; i < dataMdlPerm.length; i++) {
                 //     for (var j = 0; j < dataMdlPerm[i].objectPermissions.length; j++){
