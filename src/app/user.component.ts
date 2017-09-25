@@ -295,7 +295,6 @@ export class UserComponent implements OnInit {
             format
         )
             .then(dataMdlPerm => {
-console.log('users this.dataModelPermissionsFlat', this.dataModelPermissionsFlat)
                 
                 // Show the correct popup
                 if (format == 'ModelFlat') {

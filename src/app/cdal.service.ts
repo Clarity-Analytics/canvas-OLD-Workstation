@@ -54,7 +54,6 @@ import { EazlReportUserRelationship } from './model.reportUserRelationship';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
-import { EazlUserModelPermission }    from './model.userModelPermissions';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { GraphType }                  from './model.graph.type';
@@ -67,7 +66,6 @@ import { ReportUserRelationship }     from './model.reportUserRelationship';
 import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
-import { UserModelPermission }        from './model.userModelPermissions';
 import { Widget }                     from './model.widget';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
@@ -1385,7 +1383,7 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
         return eazlDashboardWorking;
     }
 
-    loadDataPermission(eazlDataModelPermission): UserModelPermission {
+    loadDataPermission(eazlDataModelPermission): DataPermission {
         // Load data Permissions: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDataPermission', '@Start');
 
