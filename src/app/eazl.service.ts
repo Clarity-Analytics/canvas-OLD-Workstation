@@ -4231,7 +4231,7 @@ export class EazlService implements OnInit {
                 ]
             }
         ];
-        console.log('check userModelPermissionsWorking', userModelPermissionsWorking)
+
         return this.get<EazlDashboardUserPermissions>(
             'users/' + userID.toString() +
                 '/model-permissions/'
@@ -4242,6 +4242,9 @@ export class EazlService implements OnInit {
                 for (var i = 0; i < eazlUsrMdlPerm.length; i++) {
                     if(eazlUsrMdlPerm[i].model == model) {
                         userModelPermissionsWorking[0] = this.cdal.loadModelPermission(eazlUsrMdlPerm[i]);
+console.log('EAZL before new call', eazlUsrMdlPerm)                        
+                        userModelPermissionsWorking[0] = this.cdal.loadDataPermission(eazlUsrMdlPerm[i]);
+                        
                     }
                 }
 

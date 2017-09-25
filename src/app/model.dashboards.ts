@@ -3,7 +3,7 @@
 // Eazl
 export class EazlDashboard {
     id: number;
-    code: string; 
+    code: string;
     name: string;
     description: string;
     password: string;
@@ -25,21 +25,21 @@ export class EazlDashboard {
     date_created: string;
     editor: string;
     date_edited: string;
-    refresher: string; 
-    date_refreshed: string; 
+    refresher: string;
+    date_refreshed: string;
     url: string;
 }
 
 export class EazlDashboardUserPermissions {
     username: string;
-    permissions: string[];                      // Permissions at model level per dashboard: 
+    permissions: string[];                      // Permissions at model level per dashboard:
             // add_dashboard, assign_permission_dashboard, change_dashboard,
             // delete_dashboard, remove_permission_dashboard, view_dashboard
 }
 
 export class EazlDashboardGroupPermissions {
     username: string;
-    permissions: string[];                      // Permissions at model level per dashboard: 
+    permissions: string[];                      // Permissions at model level per dashboard:
             // add_dashboard, assign_permission_dashboard, change_dashboard,
             // delete_dashboard, remove_permission_dashboard, view_dashboard
 }
@@ -54,7 +54,7 @@ export class Dashboard {
     dashboardRefreshMode: string;               // Manual, onOpen
     dashboardRefreshFrequency: number;          // Frequency to refresh Dashboard in seconds
     dashboardOpenTabNr: number;                 // Optional Tab Nr to open on (default = 0)
-    dashboardTabs: number[]; 
+    dashboardTabs: number[];
     dashboardTags: string[];
     dashboardComments: string;                  // Optional comments
     dashboardSystemMessage: string;             // Optional for Canvas to say something to user
@@ -84,7 +84,7 @@ export class DashboardUserPermissions {
     canRemovePermissionDashboard: boolean;
     canViewDashboard: boolean;
 }
-    
+
 
 export class DashboardGroupPermissions {
     groupName: string;
@@ -95,5 +95,5 @@ export class DashboardGroupPermissions {
     canRemovePermissionDashboard: boolean;
     canViewDashboard: boolean;
 }
-    
+
 

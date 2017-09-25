@@ -12,7 +12,6 @@ import { Injectable }                 from '@angular/core';
 import { SelectItem }                 from 'primeng/primeng';
 
 // Our Services
-// import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
@@ -21,11 +20,14 @@ import { CanvasDate }                 from './date.services';
 import { CanvasMessage }              from './model.canvasMessage';
 import { CanvasMessageRecipient }     from './model.canvasMessageRecipient';
 import { Dashboard }                  from './model.dashboards';
-import { DashboardGroupPermissions }   from './model.dashboards';
+import { DashboardGroupPermissions }  from './model.dashboards';
 import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardUserPermissions }   from './model.dashboards';
+import { dataPermission }             from './model.dataPermissions';
+import { dataModelPermissionFlat }    from './model.dataPermissions';
+import { dataObjectPermissionFlat  }  from './model.dataPermissions';
 import { DataSource }                 from './model.datasource';
 import { DataSourceGroupPermissions}  from './model.datasource';
 import { DataSourceUserPermissions}   from './model.datasource';
@@ -38,6 +40,7 @@ import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDashboardTag }           from './model.dashboardTag';
 import { EazlDashboardTagMembership }       from './model.dashboardTagMembership';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
+import { EazlDataPermission }         from './model.dataPermissions';
 import { EazlDataSource }             from './model.datasource';
 import { EazlDataSourceGroupPermissions}    from './model.datasource';
 import { EazlDataSourceUserPermissions}     from './model.datasource';
@@ -1546,6 +1549,53 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
         // Return result
         return userModelPermissionWorking;
     }
+
+    loadDataPermission(eazlDataModelPermission): UserModelPermission {
+        // Load data Permissions: move data Eazl -> Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadDataPermission', '@Start');
+
+        let dataPermissionWorking = new dataPermission();
+
+        if (eazlDataModelPermission.model != null) {
+            dataPermissionWorking.model = eazlDataModelPermission.model;
+        } else {
+            dataPermissionWorking.model = '';
+        };
+
+        if (eazlDataModelPermission.model_permissions != null) {
+            dataPermissionWorking.modelPermissions = eazlDataModelPermission.model_permissions;
+        } else {
+            dataPermissionWorking.modelPermissions = [];
+        };
+
+        if (eazlDataModelPermission.object_permissions != null) {
+            // Create an empty one to allow push
+            dataPermissionWorking.objectPermissions = [
+                {
+                    permission: '',
+                    objectID: []
+                }];
+
+                // Loop and add
+            for (var i = 0; i < eazlDataModelPermission.object_permissions.length; i++) {
+                dataPermissionWorking.objectPermissions.push(
+                    {
+                        permission: eazlDataModelPermission.object_permissions.permission,
+                        objectID: eazlDataModelPermission.object_permissions.object_id
+                    }
+                );
+            } 
+        } else {
+            eazlDataModelPermission.objectPermissions = null;
+        }
+
+        // Remove the first dummy one - splice on [] does not error
+        dataPermissionWorking.objectPermissions.splice(0,1);
+
+        // Return result
+        return dataPermissionWorking;
+    }
+
 
     loadDatasourceUserPermissions(eazlDatasourceUserPermissions): DataSourceUserPermissions {
         // Load User Permissions for a given Datasource: move data Eazl -> Canvas
