@@ -98,7 +98,6 @@ import { EazlReportHistory }          from './model.reportHistory';
 import { EazlReportWidgetSet }        from './model.report.widgetSets';
 import { EazlSystemConfiguration }    from './model.systemconfiguration';
 import { EazlUser }                   from './model.user';
-import { EazlUserModelPermission }    from './model.userModelPermissions';
 import { EazlWidget }                 from './model.widget';
 import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { Filter }                     from './model.filter';
@@ -112,7 +111,6 @@ import { ReportWidgetSet }            from './model.report.widgetSets';
 import { SelectedItem }               from './model.selectedItem';
 import { SystemConfiguration }        from './model.systemconfiguration';
 import { User }                       from './model.user';
-import { UserModelPermission }        from './model.userModelPermissions';
 import { WebSocketRefDataMessage }    from './model.notification';
 import { WebSocketBasicMessage }      from './model.notification';
 import { WebSocketCanvasMessage }     from './model.notification';
@@ -3178,7 +3176,6 @@ export class EazlService implements OnInit {
     storage: Storage = isDevMode() ? window.localStorage: window.sessionStorage;
     isSuperuserDropdown: SelectItem[] = ISSUPERUSERDROPDOWN;// List of IsSuperUser options for Dropdown
     systemConfiguration: SystemConfiguration;               // System wide settings
-    userModelPermissions: UserModelPermission[];            // List of model permissions per user
     users: User[] = [];                                     // List of Users
     widgets: Widget[] = WIDGETS;                            // List of Widgets for a selected Dashboard
     widgetTemplates: WidgetTemplate[] = []                  // List of Widget Templates
