@@ -71,6 +71,9 @@ import { DashboardGroupPermissions }  from './model.dashboards';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardUserPermissions }   from './model.dashboards';
+import { DataPermission }             from './model.dataPermissions';
+import { DataModelPermissionFlat }    from './model.dataPermissions';
+import { DataObjectPermissionFlat }   from './model.dataPermissions';
 import { DataSource }                 from './model.datasource';
 import { DataSourceGroupPermissions}  from './model.datasource';
 import { DataSourceUserPermissions}   from './model.datasource';
@@ -79,6 +82,7 @@ import { EazlCanvasMessage }          from './model.canvasMessage';
 import { EazlCanvasMessageRecipient } from './model.canvasMessageRecipient';
 import { EazlDashboardGroupPermissions }    from './model.dashboards';
 import { EazlDashboardUserPermissions }     from './model.dashboards';
+import { EazlDataPermission }         from './model.dataPermissions';
 import { EazlDataSourceGroupPermissions}    from './model.datasource';
 import { EazlDataSourceUserPermissions}     from './model.datasource';
 import { EazlDashboard }              from './model.dashboards';
@@ -112,7 +116,6 @@ import { UserModelPermission }        from './model.userModelPermissions';
 import { WebSocketRefDataMessage }    from './model.notification';
 import { WebSocketBasicMessage }      from './model.notification';
 import { WebSocketCanvasMessage }     from './model.notification';
-
 import { Widget }                     from './model.widget';
 import { WidgetTemplate }             from './model.widgetTemplates';
 import { WidgetType }                 from './model.widget.type';
@@ -3146,6 +3149,9 @@ export class EazlService implements OnInit {
     // Local Arrays to keep data for the rest of the Application
     borderDropdowns: SelectItem[];                          // List of Border dropdown options
     boxShadowDropdowns: SelectItem[];                       // List of Box Shadow dropdown options
+    dataPermission: DataPermission[];                       // List of permissions, json format
+    dataModelPermissionFlat: DataModelPermissionFlat[];     // List of Flat Model permissions
+    dataObjectPermissionFlat: DataObjectPermissionFlat[];   // List of Flat Object permissions
     fontSizeDropdowns: SelectItem[];                        // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[];                       // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
@@ -4219,7 +4225,7 @@ export class EazlService implements OnInit {
         // - model to filter on, ie query or dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'getUserModelPermissions', '@Start');
 
-        let userModelPermissionsWorking: UserModelPermission[] = [
+        let dataPermissionsWorking: DataPermission[] = [
             {
                 model: '',
                 modelPermissions: [],
@@ -4237,19 +4243,71 @@ export class EazlService implements OnInit {
                 '/model-permissions/'
         )
             .toPromise()
-            .then(eazlUsrMdlPerm => {
+            .then(eazlDataPerm => {
 
-                for (var i = 0; i < eazlUsrMdlPerm.length; i++) {
-                    if(eazlUsrMdlPerm[i].model == model) {
-                        userModelPermissionsWorking[0] = this.cdal.loadModelPermission(eazlUsrMdlPerm[i]);
-console.log('EAZL before new call', eazlUsrMdlPerm)                        
-                        userModelPermissionsWorking[0] = this.cdal.loadDataPermission(eazlUsrMdlPerm[i]);
+                for (var i = 0; i < eazlDataPerm.length; i++) {
+                    if(eazlDataPerm[i].model == model) {
+                        dataPermissionsWorking[0] = this.cdal.loadModelPermission(eazlDataPerm[i]);
+
+                        dataPermissionsWorking[0] = this.cdal.loadDataPermission(eazlDataPerm[i]);
                         
                     }
                 }
 
+                // Flattened Model Array - easier to use with NgPrime tables
+                this.dataModelPermissionFlat = [];
+                for (var i = 0; i < eazlDataPerm.length; i++) {
+                    for (var j = 0; j < eazlDataPerm[i].modelPermissions.length; j++){
+
+                        this.dataModelPermissionFlat.push(
+                            {
+                                model: eazlDataPerm[i].model,
+                                holderName: this.globalVariableService.canvasUser.getValue().username,
+                                permissionVia: 'User',
+                                modelPermission: eazlDataPerm[i].modelPermissions[j]
+                            }
+                        );
+                    }
+                }
+console.log('EAZL this.dataModelPermissionFlat', this.dataModelPermissionFlat)
+                // Flattend Object Array
+                // this.dataObjectPermissionFlat = [];
+                // for (var i = 0; i < eazlDataPerm.length; i++) {
+                //     for (var j = 0; j < eazlDataPerm[i].objectPermissions.length; j++){
+                //         for (var k = 0; k < eazlDataPerm[i].objectPermissions[j].objectID.length; k++){
+
+                //             let name: string = '';
+                //             if (model == 'dashboard') {
+                //                 let lookupDashboard: Dashboard[] =
+                //                     this.getDashboards(
+                //                         eazlDataPerm[i].objectPermissions[j].objectID[k]
+                //                     );
+                //                 if (lookupDashboard.length > 0) {
+                //                     name = lookupDashboard[0].dashboardName;
+                //                 };
+                //             }
+
+                //             this.dataModelPermissionFlat.push(
+                //                 {
+                //                     modelName: name,
+                //                     username: this.globalVariableService.canvasUser.getValue().username,
+                //                     modelPermissionsAccessVia: '',
+                //                     objectPermission: eazlDataPerm[i].objectPermissions[j].permission
+                //                 }
+                                // model: string;                              // Model, ie Dashboard
+                                // objectID: number;                           // ID of the row, ie 3
+                                // objectName: string;                         // Name of the row, ie 'Bar Chart'
+                                // holderName: string;                         // Username/GroupName with access
+                                // permissionVia: string;                      // Granted to: User or Group
+                                // objectPermission: string;                   // Row-level Permission in DB: 
+                               
+                //             );
+                //         }
+                //     }
+                // }
+
                 // Replace
-                this.userModelPermissions = userModelPermissionsWorking;
+                this.userModelPermissions = dataPermissionsWorking;
 
                 // Return
                 return this.userModelPermissions;

@@ -12,7 +12,7 @@ export class EazlDataPermission {
 }
 
 // Canvas
-export class dataPermission {
+export class DataPermission {
     model: string;
     modelPermissions: string[];
     objectPermissions: [
@@ -24,7 +24,7 @@ export class dataPermission {
 }
 
 // Flattened version of the above, which works easier in p-tables, etc
-export class dataModelPermissionFlat {
+export class DataModelPermissionFlat {
     model: string;                              // Model, ie Dashboard
     holderName: string;                         // Username/GroupName with access
     permissionVia: string;                      // User or Group
@@ -32,9 +32,8 @@ export class dataModelPermissionFlat {
                                                 //   add_package, etc
 }
 
-
 // Flattened version of the above, which works easier in p-tables, etc
-export class dataObjectPermissionFlat {
+export class DataObjectPermissionFlat {
     model: string;                              // Model, ie Dashboard
     objectID: number;                           // ID of the row, ie 3
     objectName: string;                         // Name of the row, ie 'Bar Chart'

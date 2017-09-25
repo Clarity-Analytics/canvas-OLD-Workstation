@@ -25,9 +25,9 @@ import { DashboardTag }               from './model.dashboardTag';
 import { DashboardTab }               from './model.dashboardTabs';
 import { DashboardTagMembership }     from './model.dashboardTagMembership';
 import { DashboardUserPermissions }   from './model.dashboards';
-import { dataPermission }             from './model.dataPermissions';
-import { dataModelPermissionFlat }    from './model.dataPermissions';
-import { dataObjectPermissionFlat  }  from './model.dataPermissions';
+import { DataPermission }             from './model.dataPermissions';
+import { DataModelPermissionFlat }    from './model.dataPermissions';
+import { DataObjectPermissionFlat  }  from './model.dataPermissions';
 import { DataSource }                 from './model.datasource';
 import { DataSourceGroupPermissions}  from './model.datasource';
 import { DataSourceUserPermissions}   from './model.datasource';
@@ -1554,7 +1554,7 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
         // Load data Permissions: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDataPermission', '@Start');
 
-        let dataPermissionWorking = new dataPermission();
+        let dataPermissionWorking = new DataPermission();
 
         if (eazlDataModelPermission.model != null) {
             dataPermissionWorking.model = eazlDataModelPermission.model;
@@ -1595,7 +1595,6 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
         // Return result
         return dataPermissionWorking;
     }
-
 
     loadDatasourceUserPermissions(eazlDatasourceUserPermissions): DataSourceUserPermissions {
         // Load User Permissions for a given Datasource: move data Eazl -> Canvas
