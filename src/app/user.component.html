@@ -292,7 +292,7 @@
 
 <!--Popup for Model Permissions-->
 <p-dialog
-    [(visible)]="displayUserModelPermissions"
+    [(visible)]="displayDataModelPermissions"
     header="Related model Permissions"
     [closeOnEscape]=false
     [closable]=true
@@ -300,22 +300,28 @@
     responsive="true"
     >
     <p-dataTable
-        [value]="userModelPermissionFlat"
+        [value]="dataModelPermissionsFlat"
         >
         <p-column
-            field="modelID"
-            header="ID"
+            field="model"
+            header="Model"
             [style]="{width: '80px',
             'text-align': 'center'}"
     >
         </p-column>
         <p-column
-            field="modelName"
+            field="holderName"
             header="Name"
             >
         </p-column>
+        modelPermission
         <p-column
-            field="objectPermission"
+            field="permissionVia"
+            header="Via"
+            >
+        </p-column>
+        <p-column
+            field="modelPermission"
             header="Permission"
             >
         </p-column>

@@ -3149,9 +3149,9 @@ export class EazlService implements OnInit {
     // Local Arrays to keep data for the rest of the Application
     borderDropdowns: SelectItem[];                          // List of Border dropdown options
     boxShadowDropdowns: SelectItem[];                       // List of Box Shadow dropdown options
-    dataPermissions: DataPermission[];                       // List of permissions, json format
-    dataModelPermissionsFlat: DataModelPermissionFlat[];     // List of Flat Model permissions
-    dataObjectPermissionsFlat: DataObjectPermissionFlat[];   // List of Flat Object permissions
+    dataPermissions: DataPermission[];                      // List of permissions, json format
+    dataModelPermissionsFlat: DataModelPermissionFlat[];    // List of Flat Model permissions
+    dataObjectPermissionsFlat: DataObjectPermissionFlat[];  // List of Flat Object permissions
     fontSizeDropdowns: SelectItem[];                        // List of FontSize dropdown options
     fontWeightDropdown: SelectItem[];                       // List of FontWeight dropwdown options
     gridSizeDropdowns: SelectItem[];                        // List of Grid Size dropdown options
@@ -3166,7 +3166,7 @@ export class EazlService implements OnInit {
     dashboards: Dashboard[];                                // List of Dashboards
     dashboardTagMembership: DashboardTagMembership[];       //List of Dashboard-Group
     dashboardTabs: DashboardTab[];                          // List of Dashboard Tabs
-    datasources: DataSource[];                // List of Data Sources
+    datasources: DataSource[];                              // List of Data Sources
     graphTypes: GraphType[];                                // List of Graph Types
     groups: Group[];                                        // List of Groups
     groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
@@ -4249,30 +4249,42 @@ export class EazlService implements OnInit {
             .toPromise()
             .then(eazlDataPerm => {
 
+                // Create empty array to allow push
+                this.dataModelPermissionsFlat = [
+                    {
+                        model: '',
+                        holderName: '',
+                        permissionVia: '',
+                        modelPermission: ''
+                    }
+                ];
+
                 for (var i = 0; i < eazlDataPerm.length; i++) {
+console.log('EAZL i', i)
                     if(eazlDataPerm[i].model == model) {
-                        dataPermissionsWorking[0] = this.cdal.loadModelPermission(eazlDataPerm[i]);
+                        // this.userModelPermissions[0] = this.cdal.loadModelPermission(eazlDataPerm[i]);
+
+                        // Structured (json-like) of all permissions (Model + Obejct)
                         dataPermissionsWorking[0] = this.cdal.loadDataPermission(eazlDataPerm[i]);
+console.log('EAZL done 1st CDAL', eazlDataPerm[i].modelPermissions.length)
+                        // Flattened Model Array - easier to use with NgPrime tables
+                        for (var j = 0; j < eazlDataPerm[i].modelPermissions.length; j++){
+console.log('EAZL j', j)
+                            
+                            this.dataModelPermissionsFlat.push(
+                                {
+                                    model: eazlDataPerm[i].model,
+                                    holderName: this.globalVariableService.canvasUser.getValue().username,
+                                    permissionVia: 'User',
+                                    modelPermission: eazlDataPerm[i].modelPermissions[j]
+                                }
+                            );
+                        }
+    
+
                     }
                 }
                 
-                // Flattened Model Array - easier to use with NgPrime tables
-                this.dataModelPermissionsFlat = [];
-                for (var i = 0; i < eazlDataPerm.length; i++) {
-console.log('EAZL i', i, eazlDataPerm[i].modelPermissions.length)
-                    for (var j = 0; j < eazlDataPerm[i].modelPermissions.length; j++){
-console.log('EAZL j', j)
-                        
-                        this.dataModelPermissionsFlat.push(
-                            {
-                                model: eazlDataPerm[i].model,
-                                holderName: this.globalVariableService.canvasUser.getValue().username,
-                                permissionVia: 'User',
-                                modelPermission: eazlDataPerm[i].modelPermissions[j]
-                            }
-                        );
-                    }
-                }
 console.log('EAZL this.dataModelPermissionFlat', this.dataModelPermissionsFlat)
                 // Flattend Object Array
                 // this.dataObjectPermissionFlat = [];

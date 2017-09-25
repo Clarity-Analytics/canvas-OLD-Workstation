@@ -1555,19 +1555,18 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
         this.globalFunctionService.printToConsole(this.constructor.name,'loadDataPermission', '@Start');
 
         let dataPermissionWorking = new DataPermission();
-
+        
         if (eazlDataModelPermission.model != null) {
             dataPermissionWorking.model = eazlDataModelPermission.model;
         } else {
             dataPermissionWorking.model = '';
         };
-
         if (eazlDataModelPermission.model_permissions != null) {
             dataPermissionWorking.modelPermissions = eazlDataModelPermission.model_permissions;
         } else {
             dataPermissionWorking.modelPermissions = [];
         };
-
+        
         if (eazlDataModelPermission.object_permissions != null) {
             // Create an empty one to allow push
             dataPermissionWorking.objectPermissions = [
@@ -1575,23 +1574,23 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
                     permission: '',
                     objectID: []
                 }];
-
-                // Loop and add
+                
+            // Loop and add
             for (var i = 0; i < eazlDataModelPermission.object_permissions.length; i++) {
                 dataPermissionWorking.objectPermissions.push(
                     {
-                        permission: eazlDataModelPermission.object_permissions.permission,
-                        objectID: eazlDataModelPermission.object_permissions.object_id
+                        permission: eazlDataModelPermission.object_permissions[i].permission,
+                        objectID: eazlDataModelPermission.object_permissions[i].object_id
                     }
                 );
             } 
         } else {
             eazlDataModelPermission.objectPermissions = null;
         }
-
+        
         // Remove the first dummy one - splice on [] does not error
         dataPermissionWorking.objectPermissions.splice(0,1);
-
+        
         // Return result
         return dataPermissionWorking;
     }
