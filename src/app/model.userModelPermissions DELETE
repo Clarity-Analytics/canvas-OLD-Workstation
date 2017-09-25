@@ -1,6 +1,9 @@
 // Schema for types of permissions per user:
 // At model level, and at object level
 
+// TODO - physically delete this file
+
+
 export class EazlUserModelPermission {
     model: string;                                  // Model, ie query or dashboard
     model_permissions: string[];                    // Type, ie add_dashboard, change_dashboard

@@ -4212,7 +4212,7 @@ export class EazlService implements OnInit {
     }
 
     // TODO - cater for multiple models later
-    getUserModelPermissions(
+    getUserPermissions(
         userID: number,
         model: string,
         format: string
@@ -4223,7 +4223,7 @@ export class EazlService implements OnInit {
         // - model to filter on, ie query or dashboard
         // - format: ModelFlat (flat array of model permissions), ObjectFlat (flat array of
         //           object permissions), All (json-like structure of ALL the permission)
-        this.globalFunctionService.printToConsole(this.constructor.name,'getUserModelPermissions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'getUserPermissions', '@Start');
 
         // Define empty working array
         let dataPermissionsWorking: DataPermission[] = [

@@ -289,7 +289,7 @@ export class UserComponent implements OnInit {
         //           object permissions), All (json-like structure of ALL the permission)
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuModelPermissions', '@Start');
 
-        this.eazlService.getUserModelPermissions(
+        this.eazlService.getUserPermissions(
             user.id,
             model,
             format
