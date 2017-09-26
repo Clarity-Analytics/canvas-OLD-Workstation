@@ -32,12 +32,9 @@ export class GroupComponent implements OnInit {
 
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
-    availableGroupDS: DataSource[];                     // List of DS Group NOT have access
     availableUserGroupMembership: string[] = [];          // List of Users NOT belonging to Group
-    belongstoGroupDS: DataSource[];                     // List of DS to which Group has access
     belongstoUserGroupMembership: string[] = [];          // List of Users already in Group
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
-    displayDatasourceAccess: boolean = false;           // True to display popup for Datasources
     displayGroupPopup: boolean = false;                 // True to display single User
     groups: Group[] = [];                               // List of Groups
     popupHeader: string = 'Group Maintenance';          // Popup header
@@ -85,11 +82,7 @@ export class GroupComponent implements OnInit {
                 icon: 'fa-users',
                 command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
             },
-            {
-                label: 'Related Datasources',
-                icon: 'fa-list',
-                command: (event) => this.groupMenuRelatedDataSources(this.selectedGroup)
-            },
+
             // {
             //     label: 'Related Dashboards',
             //     icon: 'fa-list',
@@ -150,9 +143,6 @@ export class GroupComponent implements OnInit {
             this.groupMenuGroupMembership(this.selectedGroup)
         }
 
-        if (this.displayDatasourceAccess) {
-            this.groupMenuRelatedDataSources(this.selectedGroup)
-        }
     }
 
     groupMenuGroupMembership(group: Group) {
@@ -190,73 +180,7 @@ export class GroupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'onClickDataSourceCancel', '@Start');
 
         // Close popup
-        this.displayDatasourceAccess = false;
     }
-
-    groupMenuRelatedDataSources(group: Group) {
-        // Manage related Data Sources (owned, given rights and received rights)
-        // - group: currently selected row
-        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuRelatedDataSources', '@Start');
-
-        this.availableGroupDS = this.eazlService.getDatasourcesPerGroup(group.groupID, false);
-        this.belongstoGroupDS = this.eazlService.getDatasourcesPerGroup(group.groupID, true);
-
-        // Show popup
-        this.displayDatasourceAccess = true;
-    }
-
-    // groupMenuModelPermissions(user: User, model: string) {
-    //     // Show Model Permissions (dashboard, dastasources) to which the given user has access
-    //     // - user: currently selected row
-    //     // - model to filter on, ie 'dashboard'
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuModelPermissions', '@Start');
-
-    //     this.eazlService.getUserModelPermissions(
-    //         user.id,
-    //         model
-    //     )
-    //         .then(usrMdlPerm => {
-    //             this.userModelPermissionFlat = [];
-    //             for (var i = 0; i < usrMdlPerm.length; i++) {
-    //                 for (var j = 0; j < usrMdlPerm[i].objectPermissions.length; j++){
-    //                     for (var k = 0; k < usrMdlPerm[i].objectPermissions[j].objectID.length; k++){
-
-    //                         let name: string = '';
-    //                         if (model == 'dashboard') {
-    //                             let lookupDashboard: Dashboard[] =
-    //                                 this.eazlService.getDashboards(
-    //                                     usrMdlPerm[i].objectPermissions[j].objectID[k]
-    //                                 );
-    //                             if (lookupDashboard.length > 0) {
-    //                                 name = lookupDashboard[0].dashboardName;
-    //                             };
-    //                         }
-
-    //                         this.userModelPermissionFlat.push(
-    //                             {
-    //                                 modelID: usrMdlPerm[i].objectPermissions[j].objectID[k],
-    //                                 modelName: name,
-    //                                 username: this.globalVariableService.canvasUser.getValue().username,
-    //                                 modelPermissionsAccessVia: '',
-    //                                 objectPermission: usrMdlPerm[i].objectPermissions[j].permission
-    //                             }
-    //                         );
-    //                     }
-    //                 }
-    //             }
-
-    //             // Show the popup
-    //             this.displayUserModelPermissions = true;
-    //         })
-    //         .catch(error => {
-    //             this.globalVariableService.growlGlobalMessage.next({
-    //                 severity: 'warn',
-    //                 summary:  'Related Model Permissions',
-    //                 detail:   'Unsuccessful in reading related model permissions from the database'
-    //             });
-    //             error.message || error
-    //         })
-    // }
 
     onMoveToTargetDatasourceGroup(event) {
         // User clicked onMoveToTarget: add Datasource access
