@@ -28,6 +28,45 @@
 </p-dialog>
 
 
+<!--Popup for Model Permissions-->
+<p-dialog
+    [(visible)]="displayDataModelPermissions"
+    header="Related Model Permissions (applicable to all objects / rows)"
+    [closeOnEscape]=false
+    [closable]=true
+    modal="true"
+    responsive="true"
+    >
+    <p-dataTable
+        [value]="dataModelPermissionsFlat"
+        >
+        <p-column
+            field="model"
+            header="Model"
+            [style]="{width: '80px',
+            'text-align': 'center'}"
+            >
+        </p-column>
+        <p-column
+            field="holderName"
+            header="Name"
+            >
+        </p-column>
+        <p-column
+            field="permissionVia"
+            header="Via"
+            >
+        </p-column>
+        <p-column
+            field="modelPermission"
+            header="Permission"
+            >
+        </p-column>
+    </p-dataTable>
+</p-dialog>
+
+
+
 <!--Context (popup) menu  -->
 <p-contextMenu #cm [model]="popuMenuItems"></p-contextMenu>
 

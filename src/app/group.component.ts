@@ -175,13 +175,6 @@ export class GroupComponent implements OnInit {
         this.displayGroupMembership = false;
     }
 
-    onClickDataSourceCancel() {
-        // User clicked Cancel button for DS access panel
-        this.globalFunctionService.printToConsole(this.constructor.name,'onClickDataSourceCancel', '@Start');
-
-        // Close popup
-    }
-
     onMoveToTargetDatasourceGroup(event) {
         // User clicked onMoveToTarget: add Datasource access
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDatasourceGroup', '@Start');
