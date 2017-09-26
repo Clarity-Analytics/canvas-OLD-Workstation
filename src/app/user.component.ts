@@ -124,7 +124,6 @@ export class UserComponent implements OnInit {
                     'ModelFlat'
                 )
             },
-
             {
                 label: 'Datasources',
                 icon: 'fa-database',
@@ -143,7 +142,6 @@ export class UserComponent implements OnInit {
                     'ObjectFlat'
                 )
             },
-
             {
                 label: 'Message History',
                 icon: 'fa-comments',

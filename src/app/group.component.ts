@@ -88,14 +88,16 @@ export class GroupComponent implements OnInit {
                 icon: 'fa-users',
                 command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
             },
+            {
+                label: 'Dashboard Permis.',
+                icon: 'fa-list',
+                command: (event) => this.groupMenuModelPermissions(
+                    this.selectedGroup,
+                    'dashboard',
+                    'ModelFlat'
+                )
+            },
 
-            // {
-            //     label: 'Related Dashboards',
-            //     icon: 'fa-list',
-            //     command: (event) => this.groupMenuModelPermissions(
-            //         this.selectedGroup, 'dashboard'
-            //     )
-            // },
         ];
 
     }
