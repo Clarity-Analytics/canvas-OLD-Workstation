@@ -210,19 +210,6 @@ export class GroupComponent implements OnInit {
         this.displayGroupMembership = false;
     }
 
-    onMoveToSourceDatasourceGroup(event) {
-        // User clicked onMoveToSource: remove Datasource access
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDatasourceGroup', '@Start');
-
-        // Remove the makker(s)
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.deleteGroupDatasourceAccess(
-                event.items[i].datasourceID,
-                this.selectedGroup.groupID
-            );
-        }
-    }
-
     groupMenuModelPermissions(group: Group, model: string, format: string) {
         // Show Model Permissions (dashboard, dastasources) to which the given group has access
         // - group: currently selected row
