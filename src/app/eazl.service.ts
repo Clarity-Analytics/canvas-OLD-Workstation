@@ -5457,40 +5457,6 @@ export class EazlService implements OnInit {
         return this.datasources.filter(ds => (reportIDs.indexOf(ds.datasourceID) >= 0));
     }
 
-    getGroupsPerDatasource(datasourceID: number, include: boolean): Group[] {
-        // Return list of Groups for a given DataSource
-        // - datasourceID filter
-        // - include: True means that has access, False means has NO access
-        this.globalFunctionService.printToConsole(this.constructor.name,'getGroupsPerDatasource', '@Start');
-
-        // Report to user if dirty at the moment
-        if (this.globalVariableService.dirtyDataGroupDatasourceAccess) {
-            this.globalVariableService.growlGlobalMessage.next({
-                severity: 'warn',
-                summary:  'GroupDatasourceAccess data is dirty / not up to date',
-                detail:   'The GroupDatasourceAccess data is being refreshed; request again to get the latest from the database'
-            });
-        }
-
-        // TODO - from DB
-        // Get Array of all Groups IDs
-        let resultGroup: number[] = [];
-
-        this.groupDatasourceAccess.forEach(
-            (gDS) => {
-                        if (gDS.datasourceID == datasourceID)
-                        resultGroup.push(gDS.groupID)
-                     }
-        );
-
-        // Return necesary Datasources, selectively depending on in/exclude
-        return this.groups.filter(
-            ds => (include  &&  resultGroup.indexOf(ds.groupID) >= 0)
-                    ||
-                  (!include && resultGroup.indexOf(ds.groupID) < 0)
-        )
-    }
-
     addGroupDatasourceAccess(datasourceID: number, groupID: number) {
         // Adds a Datasource - Group record to the DB
 
