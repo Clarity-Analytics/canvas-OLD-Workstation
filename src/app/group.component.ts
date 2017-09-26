@@ -16,6 +16,8 @@ import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our models
+import { DataModelPermissionFlat }    from './model.dataPermissions';
+import { DataObjectPermissionFlat }   from './model.dataPermissions';
 import { DataSource }                 from './model.datasource';
 import { EazlUser }                   from './model.user';
 import { Group }                      from './model.group';
@@ -34,8 +36,12 @@ export class GroupComponent implements OnInit {
     addEditMode: string;                                // Add/Edit to indicate mode
     availableUserGroupMembership: string[] = [];          // List of Users NOT belonging to Group
     belongstoUserGroupMembership: string[] = [];          // List of Users already in Group
+    dataModelPermissionsFlat: DataModelPermissionFlat[];        // @Runtime List of Model Permissions per User
+    dataObjectPermissionsFlat: DataObjectPermissionFlat[];      // @Runtime List of Model Permissions per User
     displayGroupMembership: boolean = false;            // True to display popup for GrpMbrship
     displayGroupPopup: boolean = false;                 // True to display single User
+    displayDataModelPermissions: boolean = false;       // True to display popup for Model Permissions
+    displayDataObjectPermissions: boolean = false;      // True to display popup for Object Permissions
     groups: Group[] = [];                               // List of Groups
     popupHeader: string = 'Group Maintenance';          // Popup header
     popuMenuItems: MenuItem[];                          // Items in popup
@@ -199,6 +205,41 @@ export class GroupComponent implements OnInit {
                 this.selectedGroup.groupID
             );
         }
+    }
+
+    groupMenuModelPermissions(group: Group, model: string, format: string) {
+        // Show Model Permissions (dashboard, dastasources) to which the given group has access
+        // - group: currently selected row
+        // - model to filter on, ie 'dashboard'
+        // - format: ModelFlat (flat array of model permissions), ObjectFlat (flat array of
+        //           object permissions), All (json-like structure of ALL the permission)
+        this.globalFunctionService.printToConsole(this.constructor.name,'groupMenuModelPermissions', '@Start');
+
+        this.eazlService.getUserPermissions(
+            group.groupID,
+            'groups',
+            model,
+            format
+        )
+            .then(dataMdlPerm => {
+                
+                // Show the correct popup
+                if (format == 'ModelFlat') {
+                    this.dataModelPermissionsFlat = dataMdlPerm;
+                    this.displayDataModelPermissions = true;
+                } else {
+                    this.dataObjectPermissionsFlat = dataMdlPerm;
+                    this.displayDataObjectPermissions = true;
+                }
+            })
+            .catch(error => {
+                this.globalVariableService.growlGlobalMessage.next({
+                    severity: 'warn',
+                    summary:  'Related Model Permissions',
+                    detail:   'Unsuccessful in reading related model permissions from the database'
+                });
+                error.message || error
+            })
     }
 
     handleGroupPopupFormClosed(howClosed: string) {
