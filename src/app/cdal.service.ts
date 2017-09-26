@@ -1779,62 +1779,6 @@ console.log('CDAL eazlDashboardWorking',eazlDashboardWorking)
     //     return filterWorking;
     // }
 
-    loadGroupDatasourceAccess(
-        eazlGroupDatasourceAccess: EazlGroupDatasourceAccess
-        ): GroupDatasourceAccess {
-        // Load GroupDatasourceAccess: move data Eazl -> Canvas
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadGroupDatasourceAccess', '@Start');
-
-        let groupDatasourceAccessWorking = new GroupDatasourceAccess();
-
-        groupDatasourceAccessWorking.groupID = eazlGroupDatasourceAccess.id;
-
-        if (eazlGroupDatasourceAccess.datasource_id != null) {
-            groupDatasourceAccessWorking.datasourceID =
-                eazlGroupDatasourceAccess.datasource_id;
-        } else {
-            groupDatasourceAccessWorking.datasourceID = -1;
-        }
-
-        if (eazlGroupDatasourceAccess.access_type != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessAccessType =
-                eazlGroupDatasourceAccess.access_type;
-        } else {
-            groupDatasourceAccessWorking.groupDatasourceAccessAccessType = '';
-        }
-
-        if (eazlGroupDatasourceAccess.created_on != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedDateTime =
-                eazlGroupDatasourceAccess.created_on;
-        } else {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedDateTime = '';
-        }
-
-        if (eazlGroupDatasourceAccess.created_by != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserName =
-                eazlGroupDatasourceAccess.created_by;
-        } else {
-            groupDatasourceAccessWorking.groupDatasourceAccessCreatedUserName = '';
-        }
-
-        if (eazlGroupDatasourceAccess.updated_on != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedDateTime =
-                eazlGroupDatasourceAccess.updated_on;
-        } else {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedDateTime = '';
-        }
-
-        if (eazlGroupDatasourceAccess.updated_by != null) {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserName =
-                eazlGroupDatasourceAccess.updated_by;
-        } else {
-            groupDatasourceAccessWorking.groupDatasourceAccessUpdatedUserName = '';
-        }
-
-        // Return the result
-        return groupDatasourceAccessWorking;
-    }
-
     loadPackageTask(eazlPackageTask: EazlPackageTask): PackageTask {
         // Load PackageTask: move data Eazl -> Canvas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadPackageTask', '@Start');
