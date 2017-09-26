@@ -210,19 +210,6 @@ export class GroupComponent implements OnInit {
         this.displayGroupMembership = false;
     }
 
-    onMoveToTargetDatasourceGroup(event) {
-        // User clicked onMoveToTarget: add Datasource access
-        this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToTargetDatasourceGroup', '@Start');
-
-        // Add this / these makker(s) - array if multi select
-        for (var i = 0; i < event.items.length; i++) {
-            this.eazlService.addGroupDatasourceAccess(
-                event.items[i].datasourceID,
-                this.selectedGroup.groupID
-            );
-        }
-    }
-
     onMoveToSourceDatasourceGroup(event) {
         // User clicked onMoveToSource: remove Datasource access
         this.globalFunctionService.printToConsole(this.constructor.name,'onMoveToSourceDatasourceGroup', '@Start');
