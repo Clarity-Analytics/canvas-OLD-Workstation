@@ -4213,13 +4213,14 @@ export class EazlService implements OnInit {
 
     // TODO - cater for multiple models later
     getUserPermissions(
-        userID: number,
+        holderID: number,
+        
         model: string,
         format: string
         ): Promise<any> {
         // Returns model permissions per given user.  This is at a model level, or a
         // row (object) level
-        // - userID to filter on
+        // - holderID is the user/groups to whom right is give, to filter on
         // - model to filter on, ie query or dashboard
         // - format: ModelFlat (flat array of model permissions), ObjectFlat (flat array of
         //           object permissions), All (json-like structure of ALL the permission)
@@ -4240,12 +4241,13 @@ export class EazlService implements OnInit {
         ];
 
         return this.get<EazlDashboardUserPermissions>(
-            'users/' + userID.toString() +
+            'groups/' + holderID.toString() +
                 '/model-permissions/'
         )
             .toPromise()
             .then(eazlDataPerm => {
-
+console.log('EAZL eazlDataPerm', eazlDataPerm,  'groups/' + holderID.toString() +
+'/model-permissions/')
                 // Create empty array to allow push
                 this.dataModelPermissionsFlat = [
                     {
