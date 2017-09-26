@@ -115,6 +115,15 @@ export class GroupComponent implements OnInit {
                     'ObjectFlat'
                 )
             },
+            {
+                label: 'Dashboards',
+                icon: 'fa-database',
+                command: (event) => this.groupMenuModelPermissions(
+                    this.selectedGroup,
+                    'dashboard',
+                    'ObjectFlat'
+                )
+            },
 
         ];
 
