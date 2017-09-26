@@ -89,6 +89,15 @@ export class GroupComponent implements OnInit {
                 command: (event) => this.groupMenuGroupMembership(this.selectedGroup)
             },
             {
+                label: 'Datasource Permis.',
+                icon: 'fa-list',
+                command: (event) => this.groupMenuModelPermissions(
+                    this.selectedGroup,
+                    'package',
+                    'ModelFlat'
+                )
+            },
+            {
                 label: 'Dashboard Permis.',
                 icon: 'fa-list',
                 command: (event) => this.groupMenuModelPermissions(
