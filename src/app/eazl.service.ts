@@ -4050,9 +4050,9 @@ export class EazlService implements OnInit {
 
         // Costruct the path
         let path: string = holderModel.toLowerCase() == 'user'? 'users' : 'groups';
-        holderModel = holderModel + '/' + holderID.toString() + '/model-permissions/';
+        path = path + '/' + holderID.toString() + '/model-permissions/';
 
-        return this.get<EazlDashboardUserPermissions>(holderModel)
+        return this.get<EazlDashboardUserPermissions>(path)
             .toPromise()
             .then(eazlDataPerm => {
 
@@ -4089,7 +4089,7 @@ export class EazlService implements OnInit {
                                 {
                                     model: eazlDataPerm[i].model,
                                     holderName: this.globalVariableService.canvasUser.getValue().username,
-                                    permissionVia: 'User',
+                                    permissionVia: holderModel,
                                     modelPermission: eazlDataPerm[i].model_permissions[j]
                                 }
                             );
@@ -4118,7 +4118,7 @@ export class EazlService implements OnInit {
                                             objectID:  eazlDataPerm[i].object_permissions[j].object_id[k],
                                             objectName: name,
                                             holderName: this.globalVariableService.canvasUser.getValue().username,
-                                            permissionVia: 'User',
+                                            permissionVia: holderModel,
                                             objectPermission: eazlDataPerm[i].object_permissions[j]
                                                 .permission
                                         }
@@ -4132,41 +4132,6 @@ export class EazlService implements OnInit {
                 this.dataModelPermissionsFlat.splice(0,1);
                 this.dataObjectPermissionsFlat.splice(0,1);
                 
-                // this.dataObjectPermissionFlat = [];
-                // for (var i = 0; i < eazlDataPerm.length; i++) {
-                //     for (var j = 0; j < eazlDataPerm[i].objectPermissions.length; j++){
-                //         for (var k = 0; k < eazlDataPerm[i].objectPermissions[j].objectID.length; k++){
-
-                //             let name: string = '';
-                //             if (model == 'dashboard') {
-                //                 let lookupDashboard: Dashboard[] =
-                //                     this.getDashboards(
-                //                         eazlDataPerm[i].objectPermissions[j].objectID[k]
-                //                     );
-                //                 if (lookupDashboard.length > 0) {
-                //                     name = lookupDashboard[0].dashboardName;
-                //                 };
-                //             }
-
-                //             this.dataModelPermissionFlat.push(
-                //                 {
-                //                     modelName: name,
-                //                     username: this.globalVariableService.canvasUser.getValue().username,
-                //                     modelPermissionsAccessVia: '',
-                //                     objectPermission: eazlDataPerm[i].objectPermissions[j].permission
-                //                 }
-                                // model: string;                              // Model, ie Dashboard
-                                // objectID: number;                           // ID of the row, ie 3
-                                // objectName: string;                         // Name of the row, ie 'Bar Chart'
-                                // holderName: string;                         // Username/GroupName with access
-                                // permissionVia: string;                      // Granted to: User or Group
-                                // objectPermission: string;                   // Row-level Permission in DB: 
-                               
-                //             );
-                //         }
-                //     }
-                // }
-
                 // Replace
                 this.dataPermissions = dataPermissionsWorking;
 
