@@ -91,7 +91,6 @@ import { EazlDashboardTab }           from './model.dashboardTabs';
 import { EazlDataSource }             from './model.datasource';
 import { EazlFilter }                 from './model.filter';
 import { EazlGroup }                  from './model.group';
-import { EazlGroupDatasourceAccess }  from './model.groupDSaccess';
 import { EazlPackageTask }            from './model.package.task';
 import { EazlReport }                 from './model.report';
 import { EazlReportHistory }          from './model.reportHistory';
@@ -103,7 +102,6 @@ import { EazlWidgetTemplate }         from './model.widgetTemplates';
 import { Filter }                     from './model.filter';
 import { GraphType }                  from './model.graph.type';
 import { Group }                      from './model.group';
-import { GroupDatasourceAccess }      from './model.groupDSaccess';
 import { PackageTask }                from './model.package.task';
 import { Report }                     from './model.report';
 import { ReportHistory }              from './model.reportHistory';
@@ -2808,18 +2806,19 @@ export const WIDGETS: Widget[] =
     //         // }
     //     ];
 // Need to fix groups/model-permissions for this ...
-export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
-    [
-        {
-            groupID: 0,
-            datasourceID: 0,
-            groupDatasourceAccessAccessType: 'Read',
-            groupDatasourceAccessCreatedDateTime: '2017/05/01',
-            groupDatasourceAccessCreatedUserName: 'PatricOS',
-            groupDatasourceAccessUpdatedDateTime: '2017/05/01',
-            groupDatasourceAccessUpdatedUserName: 'PatricOS'
-        }
-    ];
+// const GroupDatasourceAccess
+    // export const GROUPDATASOURCEACCESS: GroupDatasourceAccess[] =
+    //     [
+    //         {
+    //             groupID: 0,
+    //             datasourceID: 0,
+    //             groupDatasourceAccessAccessType: 'Read',
+    //             groupDatasourceAccessCreatedDateTime: '2017/05/01',
+    //             groupDatasourceAccessCreatedUserName: 'PatricOS',
+    //             groupDatasourceAccessUpdatedDateTime: '2017/05/01',
+    //             groupDatasourceAccessUpdatedUserName: 'PatricOS'
+    //         }
+    //     ];
 
 export const REPORTWIDGETSET: ReportWidgetSet[] =
     [
@@ -3167,7 +3166,6 @@ export class EazlService implements OnInit {
     datasources: DataSource[];                              // List of Data Sources
     graphTypes: GraphType[];                                // List of Graph Types
     groups: Group[];                                        // List of Groups
-    groupDatasourceAccess: GroupDatasourceAccess[] = GROUPDATASOURCEACCESS;     // List of group access to DS
     isStaffDropdown: SelectItem[] = ISSTAFFDROPDOWN;        // List of IsStaff dropdown options
     packageTask: PackageTask[] = [];                        // List of PackageTask
     reports: Report[];                                      // List of Reports
