@@ -4214,14 +4214,15 @@ export class EazlService implements OnInit {
     // TODO - cater for multiple models later
     getUserPermissions(
         holderID: number,
-        
-        model: string,
+        holderModel: string,
+        modelName: string,
         format: string
         ): Promise<any> {
         // Returns model permissions per given user.  This is at a model level, or a
         // row (object) level
         // - holderID is the user/groups to whom right is give, to filter on
-        // - model to filter on, ie query or dashboard
+        // - holderModel is users or groups to whom rights were given
+        // - modelName to filter on, ie query or dashboard
         // - format: ModelFlat (flat array of model permissions), ObjectFlat (flat array of
         //           object permissions), All (json-like structure of ALL the permission)
         this.globalFunctionService.printToConsole(this.constructor.name,'getUserPermissions', '@Start');
@@ -4240,14 +4241,14 @@ export class EazlService implements OnInit {
             }
         ];
 
-        return this.get<EazlDashboardUserPermissions>(
-            'groups/' + holderID.toString() +
-                '/model-permissions/'
-        )
+        // Costruct the path
+        let path: string = holderModel.toLowerCase() == 'user'? 'users' : 'groups';
+        holderModel = holderModel + '/' + holderID.toString() + '/model-permissions/';
+
+        return this.get<EazlDashboardUserPermissions>(holderModel)
             .toPromise()
             .then(eazlDataPerm => {
-console.log('EAZL eazlDataPerm', eazlDataPerm,  'groups/' + holderID.toString() +
-'/model-permissions/')
+
                 // Create empty array to allow push
                 this.dataModelPermissionsFlat = [
                     {
@@ -4269,7 +4270,7 @@ console.log('EAZL eazlDataPerm', eazlDataPerm,  'groups/' + holderID.toString() 
                 ];
 
                 for (var i = 0; i < eazlDataPerm.length; i++) {
-                    if(eazlDataPerm[i].model == model) {
+                    if(eazlDataPerm[i].model == modelName) {
                         
                         // Structured (json-like) of all permissions (Model + Obejct)
                         dataPermissionsWorking[0] = this.cdal.loadDataPermission(eazlDataPerm[i]);
@@ -4293,7 +4294,7 @@ console.log('EAZL eazlDataPerm', eazlDataPerm,  'groups/' + holderID.toString() 
                                 .object_id.length; k++){
 
                                     let name: string = '';
-                                    if (model == 'dashboard') {
+                                    if (modelName == 'dashboard') {
                                         let lookupDashboard: Dashboard[] =
                                             this.getDashboards(
                                                 eazlDataPerm[i].object_permissions[j].object_id[k]

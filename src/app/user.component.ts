@@ -291,6 +291,7 @@ export class UserComponent implements OnInit {
 
         this.eazlService.getUserPermissions(
             user.id,
+            'users',
             model,
             format
         )
