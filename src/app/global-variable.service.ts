@@ -67,7 +67,6 @@ export class GlobalVariableService {
     dirtyDataGraphType: boolean = true;
     dirtyDataGridSizeDropdown: boolean = true;
     dirtyDataGroup: boolean = true;
-    dirtyDataGroupDatasourceAccess: boolean = true;
     dirtyDataImageSourceDropdown: boolean = true;
     dirtyDataPackageTask: boolean = true;
     dirtyDataReport: boolean = true;
