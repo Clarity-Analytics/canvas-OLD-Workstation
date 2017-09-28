@@ -3835,9 +3835,15 @@ export class EazlService implements OnInit {
         if (this.dashboardTagMembership == null) {
             this.dashboardTagMembership = [];
         }
-
+        
         // Get current user
         let currentUser: string = this.globalFunctionService.currentUser();
+
+        // Filter on optional creator
+        // if (dataSourceID != -1) {
+        //     reportsWorking = reportsWorking.filter(rpt =>
+        //         (rpt.dataSourceID == dataSourceID) )
+        // }
 
         // Return the filtered result
         if (dashboardsWorking != null) {
@@ -4709,6 +4715,7 @@ export class EazlService implements OnInit {
             reportsWorking = reportsWorking.filter(rpt =>
                 (rpt.dataSourceID == dataSourceID) )
         }
+        
         // Return the (filtered) Reports
         return reportsWorking;
     }

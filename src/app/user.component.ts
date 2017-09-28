@@ -11,6 +11,7 @@ import { Message }                    from 'primeng/primeng';
 // Our Components
 
 // Our Services
+import { CanvasDate }                 from './date.services';
 import { EazlService }                from './eazl.service';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -63,6 +64,7 @@ export class UserComponent implements OnInit {
     users: User[];
 
     constructor(
+        private canvasDate: CanvasDate,
         private confirmationService: ConfirmationService,
         private eazlService: EazlService,
         private globalFunctionService: GlobalFunctionService,
@@ -189,35 +191,51 @@ export class UserComponent implements OnInit {
         // Delete the selected user, but first confirm
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuDelete', '@Start');
+console.log('user', user.lastDatetimeLoggedIn, user.inactiveDate)
 
-        this.deleteMode = true;
-        this.confirmationService.confirm({
-            message: 'Are you sure that you want to delete this record?',
-            reject: () => {
-                this.deleteMode = false;
-                return;
-            },
-            accept: () => {
+        // Only delete a user who has not logged in before
+        if (user.lastDatetimeLoggedIn != null) {
+            this.deleteMode = true;
+            this.confirmationService.confirm({
+                message: 'Are you sure that you want to delete this record?',
+                reject: () => {
+                    this.deleteMode = false;
+                    return;
+                },
+                accept: () => {
 
-                // // - User: currently selected row
-                // let index = -1;
-                // for(let i = 0; i < this.users.length; i++) {
-                //     if(this.users[i].username == user.firstName) {
-                //         index = i;
-                //         break;
-                //     }
-                // }
-                // this.users.splice(index, 1);
-                this.deleteMode = false;
+                    this.deleteMode = false;
 
-                // Update DB
-                this.eazlService.deleteUser(this.selectedUser);
+                    // Update DB
+                    this.eazlService.deleteUser(this.selectedUser);
 
-                // Refresh local variable
-                this.users = this.eazlService.getUsers();
+                    // Refresh local variable
+                    this.users = this.eazlService.getUsers();
 
-            }
-        })
+                }
+            });
+        } else {
+            this.deleteMode = true;
+            this.confirmationService.confirm({
+                message: 'This user has logged on before.  Do you want to make the record inactive?',
+                reject: () => {
+                    this.deleteMode = false;
+                    return;
+                },
+                accept: () => {
+
+                    this.deleteMode = false;
+
+                    // Update DB
+                    user.inactiveDate = this.canvasDate.now('standard');
+                    this.eazlService.updateUser(user);
+
+                    // Refresh local variable
+                    this.users = this.eazlService.getUsers();
+
+                }
+            });
+        };
     }
 
     onClickUserTable() {

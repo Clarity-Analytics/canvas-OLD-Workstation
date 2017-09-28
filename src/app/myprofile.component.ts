@@ -90,7 +90,7 @@ export class MyProfileComponent implements OnInit {
         // My Reports
         this.reports = this.eazlService.getReports();
 
-        // My Dashboards I own
+        // My Dashboards I created
         this.dashboardsIown = this.eazlService.getDashboards();
 
         // My Dashboards shared with me
