@@ -8,14 +8,10 @@ export class EazlUser
         email: string;
         first_name: string;
         groups: string[];
-        //     {
-        //         name: string;
-        //     }
-        // ];
         id: number;
         is_active: boolean;
-        is_superuser: boolean;
         is_staff: boolean;
+        is_superuser: boolean;
         last_login: Date;
         last_name: string;
         password: string;

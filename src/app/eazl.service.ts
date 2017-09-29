@@ -3360,24 +3360,37 @@ export class EazlService implements OnInit {
 
         let today = new Date();
         let workingUser: any = {
-            username: user.username,
-            first_name: user.firstName,
-            last_name: user.lastName,
+            date_joined: this.canvasDate.now('standard'),
             email: user.emailAddress,
-            password: 'canvas100*',
-            is_superuser: false,        //ro
-            is_staff: user.isStaff, //ro
+            first_name: user.firstName,
             is_active: true,
-            last_login: null,
+            is_staff: user.isStaff, 
+            is_superuser: user.isSuperUser,    
+            last_login: null,    
+            last_name: user.lastName,
+            password: 'canvas100*',
+            username: user.username,
             profile:
                 {
-                    nick_name: user.profile.nickName,
                     cell_number: user.profile.cellNumber,
-                    work_number: user.profile.workTelephoneNumber,
-                    profile_picture: user.profile.photoPath
+                    color_scheme: user.profile.frontendColorScheme,
+                    startup_dashboard_id: user.profile.dashboardIDStartup,
+                    startup_dashboard_tab_id: user.profile.dashboardTabIDStartup,
+                    default_report_filters: user.profile.defaultReportFilters,
+                    default_widget_configuration: user.profile.defaultWidgetConfiguration,
+                    environment: user.profile.environment,
+                    grid_size: user.profile.gridSize,
+                    growl_life: user.profile.growlLife,
+                    growl_sticky: user.profile.growlSticky,
+                    nick_name: user.profile.nickName,
+                    profile_picture: user.profile.photoPath,
+                    query_runtime_warning: user.profile.averageWarningRuntime,
+                    snap_to_grid: user.profile.snapToGrid,
+                    work_number: user.profile.workTelephoneNumber,    
                 }
         }
 
+console.log('EAZL workingUser', workingUser)
         return this.post<EazlUser>('users',workingUser)
                 .toPromise()
                 .then( eazlUser => {
