@@ -326,6 +326,14 @@ export class UserPopupComponent implements OnInit {
         // Editing existing user
         if (this.addEditMode == 'Edit' && this.displayUserPopup) {
 
+            // Make sure some ids not <0
+            if ( this.selectedUser.profile.dashboardIDStartup < 0) {  
+                this.selectedUser.profile.dashboardIDStartup = null
+            };
+            if ( this.selectedUser.profile.dashboardTabIDStartup < 0) {  
+                this.selectedUser.profile.dashboardTabIDStartup = null
+            };
+
             // Only worry about changes when we are not loading
             if (!this.isLoadingForm) {
                 this.selectedUser.username = this.userformID.controls['username'].value;
