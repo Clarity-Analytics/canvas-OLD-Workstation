@@ -265,8 +265,15 @@ export class UserPopupComponent implements OnInit {
             this.formIsValid = false;
             this.numberErrors = this.numberErrors + 1;
             this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Email Address is compulsory.'
+        } else {
+            if (this.userformID.controls['emailAddress'].value.indexOf('@') < 0 ||
+                this.userformID.controls['emailAddress'].value.indexOf('.') < 0 ) {
+                this.formIsValid = false;
+                this.numberErrors = this.numberErrors + 1;
+                this.errorMessageOnForm = this.errorMessageOnForm + ' ' + 'The Email Address must contain: @ and .'
+            }
         }
-
+        
         // Error(s) encountered
         if (this.errorMessageOnForm != '') {
             this.formIsValid = true;
