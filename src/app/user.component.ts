@@ -191,7 +191,19 @@ export class UserComponent implements OnInit {
         // Delete the selected user, but first confirm
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuDelete', '@Start');
-console.log('user', user.lastDatetimeLoggedIn, user.isActive)
+
+        this.canvasUser = this.globalVariableService.canvasUser.getValue();
+        
+        // Cannot delay yourself
+        if(user.username == this.canvasUser.username) {
+            this.globalVariableService.growlGlobalMessage.next({
+                severity: 'warn',
+                summary:  'No Delete possible',
+                detail:   'Unsuccessful in deleting user since one cannot delete oneself'
+            });
+
+            return;
+        }
 
         // Only delete a user who has not logged in before
         if (user.lastDatetimeLoggedIn == null  ||  user.lastDatetimeLoggedIn == '') {
