@@ -394,7 +394,7 @@ The following context menu is available by right-clicking on a record:
 
 - Add (a new user)
 - Edit (if the user has the appropriate rights)
-- Delete:  A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the InactiveDate field.  An inactive user (and its memberships) can be re-activated again.  Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.
+- Delete:  A user can only be deleted if he/she has never used the system; for example was added in error.  In this case the record is physically deleted.  Once a user has start using the system, the record cannot be deleted – it can only be made inactive by setting the isActive field.  An inactive user (and its memberships) can be re-activated again.  Deleting or inactivating a user requires the appropriate access rights.  Like all Delete actions, a Are you sure - Yes/No confirmation will popup.
 - Group Membership: groups to which the user belongs.  A popup form with a picklist is shown.  A user can belong to zero or many groups.  Groups live in a flat structure, with no hierarchy.  So, groups cannot belong to groups.  Groups and how they are created is described in the next section.  Once a group or membership has been editted, the affected users will be send a message.
 - Related Datasources shows the Datasources to which this user has access.
 

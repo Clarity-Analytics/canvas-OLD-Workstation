@@ -4,7 +4,7 @@
 export class EazlUser
     {
         // Defines data model for User Entity
-        date_joined: Date;
+        date_joined: Date;                              // activeFromDate
         email: string;
         first_name: string;
         groups: string[];
@@ -45,7 +45,7 @@ export class User
         firstName: string;
         groups: string[];
         id: number;
-        inactiveDate: string;
+        isActive: boolean;
         isStaff: boolean;
         isSuperUser: boolean;
         lastName: string;

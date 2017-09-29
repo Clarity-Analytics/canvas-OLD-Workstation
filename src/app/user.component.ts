@@ -191,10 +191,10 @@ export class UserComponent implements OnInit {
         // Delete the selected user, but first confirm
         // - user: currently selected row
         this.globalFunctionService.printToConsole(this.constructor.name,'userMenuDelete', '@Start');
-console.log('user', user.lastDatetimeLoggedIn, user.inactiveDate)
+console.log('user', user.lastDatetimeLoggedIn, user.isActive)
 
         // Only delete a user who has not logged in before
-        if (user.lastDatetimeLoggedIn != null) {
+        if (user.lastDatetimeLoggedIn == null  ||  user.lastDatetimeLoggedIn == '') {
             this.deleteMode = true;
             this.confirmationService.confirm({
                 message: 'Are you sure that you want to delete this record?',
@@ -227,7 +227,7 @@ console.log('user', user.lastDatetimeLoggedIn, user.inactiveDate)
                     this.deleteMode = false;
 
                     // Update DB
-                    user.inactiveDate = this.canvasDate.now('standard');
+                    user.isActive = false;
                     this.eazlService.updateUser(user);
 
                     // Refresh local variable

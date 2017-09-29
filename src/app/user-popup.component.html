@@ -229,15 +229,15 @@
 
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-2">
-                        Inactive Date:
+                        Is Active?:
                     </div>
                     <div class="ui-grid-col-6">
-                        <input pInputText
-                               type="text"
-                               formControlName="inactiveDate"
-                               placeholder="(Optional)"
-                               pTooltip="Date from which user is inactive (cannot work)"
-                               >
+                        <p-checkbox
+                            pTooltip="Check if user is active"
+                            formControlName="isActive"
+                            binary="true"
+                            >
+                        </p-checkbox>
                     </div>
                     <div class="ui-grid-col-4">
                     </div>

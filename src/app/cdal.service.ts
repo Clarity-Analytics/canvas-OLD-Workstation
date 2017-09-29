@@ -134,9 +134,9 @@ export class CDAL {
         }
 
         if (eazlUser.is_active != null) {
-            userWorking.inactiveDate = eazlUser.is_active? this.canvasDate.now('standard') : '';
+            userWorking.isActive = eazlUser.is_active;
         } else {
-            userWorking.inactiveDate  = '';
+            userWorking.isActive  = false;
         }
 
         if (eazlUser.date_joined != null) {
@@ -329,8 +329,8 @@ export class CDAL {
             eazlUserWorking.date_joined = null;
         }
 
-        if (user.inactiveDate != null) {
-            eazlUserWorking.is_active = true;
+        if (user.isActive != null) {
+            eazlUserWorking.is_active = user.isActive;
         } else {
             eazlUserWorking.is_active  = false;
         }

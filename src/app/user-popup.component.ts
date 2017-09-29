@@ -76,7 +76,7 @@ export class UserPopupComponent implements OnInit {
             'lastDatetimeLoggedIn':     new FormControl(''),
             'lastDatetimeReportWasRun': new FormControl(''),
             'activeFromDate':           new FormControl(''),
-            'inactiveDate':             new FormControl(''),
+            'isActive':                 new FormControl(''),
             'dateCreated':              new FormControl(''),
             'userNameLastUpdated':      new FormControl('')
         }
@@ -194,8 +194,8 @@ export class UserPopupComponent implements OnInit {
                 if (this.selectedUser.activeFromDate) {
                     this.userformActivity.controls['activeFromDate'].setValue(this.selectedUser.activeFromDate);
                 }
-                if (this.selectedUser.inactiveDate) {
-                    this.userformActivity.controls['inactiveDate'].setValue(this.selectedUser.inactiveDate);
+                if (this.selectedUser.isActive) {
+                    this.userformActivity.controls['isActive'].setValue(this.selectedUser.isActive);
                 }
                 if (this.selectedUser.dateCreated) {
                     this.userformActivity.controls['dateCreated'].setValue(this.selectedUser.dateCreated);
@@ -296,7 +296,7 @@ export class UserPopupComponent implements OnInit {
                 lastDatetimeReportWasRun:   this.userformActivity.controls['lastDatetimeReportWasRun'].value,
                 emailAddress:               this.userformID.controls['emailAddress'].value,
                 activeFromDate:             this.userformActivity.controls['activeFromDate'].value,
-                inactiveDate:               this.userformActivity.controls['inactiveDate'].value,
+                isActive:                   this.userformActivity.controls['isActive'].value,
                 dateCreated:                this.userformActivity.controls['dateCreated'].value,
                 userNameLastUpdated:        this.userformActivity.controls['userNameLastUpdated'].value,
                 isStaff:                    this.userformID.controls['isStaff'].valuel,
@@ -352,7 +352,7 @@ export class UserPopupComponent implements OnInit {
                 this.selectedUser.lastDatetimeLoggedIn = this.userformActivity.controls['lastDatetimeLoggedIn'].value;
                 this.selectedUser.lastDatetimeReportWasRun = this.userformActivity.controls['lastDatetimeReportWasRun'].value;
                 this.selectedUser.activeFromDate = this.userformActivity.controls['activeFromDate'].value;
-                this.selectedUser.inactiveDate = this.userformActivity.controls['inactiveDate'].value;
+                this.selectedUser.isActive = this.userformActivity.controls['isActive'].value;
                 this.selectedUser.dateCreated = this.userformActivity.controls['dateCreated'].value;
                 this.selectedUser.userNameLastUpdated = this.userformActivity.controls['userNameLastUpdated'].value;
             }
