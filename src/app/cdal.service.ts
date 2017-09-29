@@ -213,13 +213,13 @@ export class CDAL {
             if (eazlUser.profile.startup_dashboard_id != null) {
                 userWorking.profile.dashboardIDStartup = eazlUser.profile.startup_dashboard_id;
             } else {
-                userWorking.profile.dashboardIDStartup = -1;
+                userWorking.profile.dashboardIDStartup = null;
             }
 
             if (eazlUser.profile.startup_dashboard_tab_id != null) {
                 userWorking.profile.dashboardTabIDStartup = eazlUser.profile.startup_dashboard_tab_id;
             } else {
-                userWorking.profile.dashboardTabIDStartup = -1;
+                userWorking.profile.dashboardTabIDStartup = null;
             }
 
             if (eazlUser.profile.environment != null) {
@@ -413,13 +413,13 @@ export class CDAL {
             if (user.profile.dashboardIDStartup != null) {
                 eazlUserWorking.profile.startup_dashboard_id = user.profile.dashboardIDStartup;
             } else {
-                eazlUserWorking.profile.startup_dashboard_id = -1;
+                eazlUserWorking.profile.startup_dashboard_id = null;
             }
 
             if (user.profile.dashboardTabIDStartup != null) {
                 eazlUserWorking.profile.startup_dashboard_tab_id = user.profile.dashboardTabIDStartup;
             } else {
-                eazlUserWorking.profile.startup_dashboard_tab_id = -1;
+                eazlUserWorking.profile.startup_dashboard_tab_id = null;
             }
 
             if (user.profile.environment != null) {
