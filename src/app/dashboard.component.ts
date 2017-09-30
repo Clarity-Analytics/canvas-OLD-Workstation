@@ -238,7 +238,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.globalVariableService.sessionLoadOnOpenDashboardID =
                     this.globalVariableService.startupDashboardID;
                 this.globalVariableService.sessionLoadOnOpenDashboardName =
-                    // this.globalVariableService.startupDashboardName;
                     this.dashboards.filter(dash =>
                         dash.dashboardID == this.globalVariableService.startupDashboardID)
                         [0].dashboardName
