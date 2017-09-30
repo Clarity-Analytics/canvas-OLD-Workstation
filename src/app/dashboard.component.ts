@@ -238,8 +238,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 this.globalVariableService.sessionLoadOnOpenDashboardID =
                     this.globalVariableService.startupDashboardID;
                 this.globalVariableService.sessionLoadOnOpenDashboardName =
-                    this.globalVariableService.startupDashboardName;
-            }
+                    // this.globalVariableService.startupDashboardName;
+                    this.dashboards.filter(dash =>
+                        dash.dashboardID == this.globalVariableService.startupDashboardID)
+                        [0].dashboardName
+                    }
         }
 
         // Call if anyone is eligible
@@ -249,7 +252,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     id: this.globalVariableService.sessionLoadOnOpenDashboardID,
                     name: this.globalVariableService.sessionLoadOnOpenDashboardName
                 }
-            // Load the Tabs for this Dashboard
+
+                // Load the Tabs for this Dashboard
             this.loadDashboardTabsBody(this.globalVariableService.sessionLoadOnOpenDashboardID);
             // Use startup Dashboard Tab ID at the very beginning
             if (this.globalVariableService.sessionDashboardTabID == null) {
@@ -299,7 +303,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Called after the ngAfterViewInit and every subsequent ngAfterContentChecked().
 
         // TODO - this thing fires ALL the time.  Should we have it ?
-        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
 
         // Refresh the Dashboard; once
         if (this.refreshDashboard) {
@@ -489,6 +493,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
             return;
         }
+
         // Dashboard wide settings
         if (this.displayExpandDashboardSettings) {
 
@@ -542,7 +547,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 }
 
                 // Border
-console.log('this.selectedBorder', this.selectedBorder['name'])                
                 if (this.displayExpandBorder) {
                     this.renderer.setElementStyle(selectedElement.nativeElement,
                         'border', this.selectedBorder['name']

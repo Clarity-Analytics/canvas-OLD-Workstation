@@ -3390,7 +3390,6 @@ export class EazlService implements OnInit {
                 }
         }
 
-console.log('EAZL workingUser', workingUser)
         return this.post<EazlUser>('users',workingUser)
                 .toPromise()
                 .then( eazlUser => {
