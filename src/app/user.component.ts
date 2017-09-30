@@ -221,9 +221,6 @@ export class UserComponent implements OnInit {
                     // Update DB
                     this.eazlService.deleteUser(this.selectedUser);
 
-                    // Refresh local variable
-                    this.users = this.eazlService.getUsers();
-
                 }
             });
         } else {

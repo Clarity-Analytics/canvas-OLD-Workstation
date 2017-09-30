@@ -103,7 +103,6 @@ export class AppComponent implements OnInit {
                     // Subscribe to Web Socket
                     this.reconnectingWebSocket.webSocketSystemMessage.subscribe(
                         message => {
-                            console.log('WS received this WebSocketSystemMessage', message);
                             this.handleNotificationFromWS(message);
                         }
                     );
