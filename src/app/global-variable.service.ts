@@ -32,13 +32,13 @@ export class GlobalVariableService {
     isAuthenticatedOnEazl: boolean = false;        // True if authenticated
 
     // This session
-    isSystemConfiguration: boolean = true;          // Menu option called = True: SystemConfiguration, False: System Info
+    showSystemConfigButtons: boolean = true;       // Menu option called = True: SystemConfiguration, False: System Info
     growlGlobalMessage = new BehaviorSubject<Message>({severity:'', summary:'', detail:'' });
     sessionDateTimeLoggedin: string = '';
-    sessionDashboardTabID: number = null;            // Tab ID to load when form opens, -1 = none
+    sessionDashboardTabID: number = null;          // Tab ID to load when form opens, -1 = none
     sessionDebugging: boolean = false;
     sessionLogging: boolean = false;
-    sessionLoadOnOpenDashboardID: number = null;     // Dashboard to load when form opens, 0 = none
+    sessionLoadOnOpenDashboardID: number = null;   // Dashboard to load when form opens, 0 = none
     sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
 
     // At startup

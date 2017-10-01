@@ -6,7 +6,6 @@ import { FormControl }                from '@angular/forms';
 import { FormGroup }                  from '@angular/forms';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
 import { Validators }                 from '@angular/forms';
 
 // PrimeNG
@@ -33,6 +32,7 @@ export class SystemConfigComponent implements OnInit {
     errorMessageOnForm: string = '';
     formIsValid: boolean = false;
     numberErrors: number = 0;
+    showSystemConfigButtons: boolean = true;        // Show buttons on System config form
     systemConfiguration: SystemConfiguration;       // System wide settings
 
     constructor(
@@ -40,16 +40,15 @@ export class SystemConfigComponent implements OnInit {
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private router: Router,
         ) {}
 
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let currentUrl = this.router.url
-        let previousUrl = this.router.navigated 
-console.log('currentUrl', currentUrl, previousUrl, this.globalVariableService.isSystemConfiguration)        
+        // Determine if buttons must be shown
+        this.showSystemConfigButtons = this.globalVariableService.showSystemConfigButtons;
+        console.log('this.showSystemConfigButtons', this.showSystemConfigButtons )        
         // FormBuilder
         this.configForm = this.fb.group({
             'companyName':                  new FormControl('', Validators.required),
