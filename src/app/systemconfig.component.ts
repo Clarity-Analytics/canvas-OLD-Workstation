@@ -6,6 +6,7 @@ import { FormControl }                from '@angular/forms';
 import { FormGroup }                  from '@angular/forms';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
+import { Router }                     from '@angular/router';
 import { Validators }                 from '@angular/forms';
 
 // PrimeNG
@@ -39,12 +40,16 @@ export class SystemConfigComponent implements OnInit {
         private fb: FormBuilder,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private router: Router,
         ) {}
 
     ngOnInit() {
         //   Form initialisation
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        let currentUrl = this.router.url
+        let previousUrl = this.router.navigated 
+console.log('currentUrl', currentUrl, previousUrl, this.globalVariableService.isSystemConfiguration)        
         // FormBuilder
         this.configForm = this.fb.group({
             'companyName':                  new FormControl('', Validators.required),

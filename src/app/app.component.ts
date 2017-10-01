@@ -283,6 +283,21 @@ export class AppComponent implements OnInit {
         });
     }
 
+    menuActionSystemInfo() {
+        // Pops up form for logging in
+        this.globalFunctionService.printToConsole(this.constructor.name,'menuActionLoginLogout', '@Start');
+console.log('this.lastSelectedMenuItemLabel', this.lastSelectedMenuItemLabel)
+        // Lets confirm - everyone deserves a second chance
+        if (this.lastSelectedMenuItemLabel == 'System Configuration') {
+            this.globalVariableService.isSystemConfiguration = true;
+        } else {
+            this.globalVariableService.isSystemConfiguration = false;
+        }
+
+        // Navigate to the page
+        this.router.navigate(['systemconfig']);
+    }        
+
     handleCanvasMessageFormSubmit(event) {
         // Is triggered after the new Message form is submitted
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCanvasMessageFormSubmit', '@Start');
@@ -514,10 +529,14 @@ export class AppComponent implements OnInit {
                     {
                         label: 'System Info',
                         icon:  'fa-info',
-                        routerLink: ['startup'],
+                        routerLink: ['systemconfig'],
                         disabled: false,
+                        // command: (event) => {
+                        //     this.lastSelectedMenuItemLabel = event.item.label;
+                        // }
                         command: (event) => {
                             this.lastSelectedMenuItemLabel = event.item.label;
+                            this.menuActionSystemInfo();
                         }
                     },
                     {
