@@ -1,6 +1,8 @@
 // User form
 import { Component }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 import { OnInit }                     from '@angular/core';
+import { ViewChild }                  from '@angular/core';
 import { ViewEncapsulation }          from '@angular/core';
 
 // PrimeNG
@@ -37,7 +39,8 @@ import { User }                       from './model.user';
     encapsulation: ViewEncapsulation.None
 })
 export class UserComponent implements OnInit {
-
+    @ViewChild('dt', {read: ElementRef}) dt: ElementRef;  //DataTable
+    
     // Local properties
     addEditMode: string;                                // Add/Edit to indicate mode
     availableUserGroupMembership: string[] = [];        // List of Groups user does NOT belongs to
@@ -220,6 +223,9 @@ export class UserComponent implements OnInit {
 
                     // Update DB
                     this.eazlService.deleteUser(this.selectedUser);
+
+                    // Refresh local variable
+                    this.users = this.eazlService.getUsers();
 
                 }
             });

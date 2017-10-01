@@ -147,10 +147,23 @@ export class AppComponent implements OnInit {
     handleNotificationFromWS(message: any) {
         // Receive and act upon the notification received from the WebSocket
         // - message can be of any type, see model.notification.ts for detail
+        // The messageType determines the action
         this.globalFunctionService.printToConsole(this.constructor.name,'handleNotificationFromWS', '@Start');
 
         // Decide on type of message
         console.log('handleNotificationFromWS message',message)
+
+        // TODO - this is a TEMP solution, remove once permanent
+        if (message.message_type == 'model') {
+            let resetAction: string = '';
+            if (message.message.action.toLowerCase() == 'users') {
+                resetAction = 'User';
+            }
+            this.eazlService.cacheCanvasData(resetAction, 'reset');
+            
+        };
+            
+
         // Reset Reference Data
         if (message.webSocketMessageType == 'WebSocketRefDataMessage') {
             let webSocketRefDataMessage: WebSocketRefDataMessage = message;

@@ -688,6 +688,10 @@ Dashboard Shared with (list of users; either ReadOnly, Full).  ReadOnly access m
 Dashboard Mode: Tab mode will show the Dashboard with diferent tabs (allowing for modification), while View mode will show the Dashboard as a slideshow (and no option to modify).  The slidehow is a view-only presentation of all the Widgets on all the tabs onto one big canvas.  By default, the tabs will be organised below each other, with the maximum number of columns are per the user default.  This user has freedom to arrange the Widgets dynamically with the mouse.  The user has the following buttons for the slideshow: Print, Show Comments or Show as full screen (allowing for the Dashboard to be used in a presentation).
 
 * System Configuration
+
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/SystemConfigurationPopupForm.png)
+
+
 The system configuration includes all the necessary options and actions to make the system work.  It is typically done once off, and not changed unless something in the environment changes (i.e. servers renamed).  The following information can be editted:
 - Company Name
 - Company Logo
@@ -749,7 +753,7 @@ Help menu options are:
 
 - System info, for example the current version of the system that is useful for responding to support calls.
 
-![alt text](file:///home/jannie/Projects/canvas/src/documentation/SystemConfigurationPopupForm.png)
+![alt text](file:///home/jannie/Projects/canvas/src/documentation/SystemInfoPopupForm.png)
 
 // TODO - design and code
 - Feedback: when the user wants to give feedback on the usage of the system, or log a support call.
