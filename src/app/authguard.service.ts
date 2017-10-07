@@ -73,7 +73,7 @@ export class AuthGuard implements OnInit, CanActivate {
         let oldRouterPath: string = state.url[0]['path'];
 
         if (oldRouterPath == 'users') {
-            return window.confirm('Demo to prevent leaving Canvas.  Do you really want to go to ' + routes['url'] + ' ?');
+            // return window.confirm('Demo to prevent leaving Canvas.  Do you really want to go to ' + routes['url'] + ' ?');
         }
         if (oldRouterPath == 'dashboard') {
 
