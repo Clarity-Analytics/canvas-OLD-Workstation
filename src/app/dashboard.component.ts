@@ -302,7 +302,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // Called after the ngAfterViewInit and every subsequent ngAfterContentChecked().
 
         // TODO - this thing fires ALL the time.  Should we have it ?
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
 
         // Refresh the Dashboard; once
         if (this.refreshDashboard) {

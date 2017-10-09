@@ -3663,9 +3663,9 @@ export class EazlService implements OnInit {
         for (var i = 0; i < this.dashboards.length; i++) {
             if (this.dashboards[i].dashboardID == dashboardID) {
                 this.dashboards[i].showContainerHeader = showContainerHeader;
+                index = i;
+                break;
             }
-            index = i;
-            break;
         }
 
         if (index == -1) {
@@ -3677,9 +3677,10 @@ export class EazlService implements OnInit {
             });
             return;
         }
-
+console.log('this.dashboards[index]',dashboardID, this.dashboards[index])
+console.log('saveDashboard', index, this.cdal.saveDashboard(this.dashboards[index]))
         return this.put<EazlDashboard>(
-            'dashboards/' + dashboardID + '/', this.dashboards[index]
+            'dashboards/' + dashboardID + '/', this.cdal.saveDashboard(this.dashboards[index])
             )
                 .toPromise()
                 .then(eazlDashboard => {

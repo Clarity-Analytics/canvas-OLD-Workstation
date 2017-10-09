@@ -1291,13 +1291,14 @@ console.log('CDAL dashboardWorking',dashboardWorking)
             eazlDashboardWorking.show_container_header = false;
         };
 
-        if (dashboard.dashboardBackgroundColor != null) {
+        if (dashboard.dashboardBackgroundColor != null   &&  
+            dashboard.dashboardBackgroundColor != '') {
             eazlDashboardWorking.background_color = dashboard.dashboardBackgroundColor;
         } else {
-            eazlDashboardWorking.background_color = '';
+            eazlDashboardWorking.background_color = null;
         };
 
-        if (dashboard.dashboardBackgroundImageSrc != null  ||
+        if (dashboard.dashboardBackgroundImageSrc != null  &&
             dashboard.dashboardBackgroundImageSrc != '') {
                 eazlDashboardWorking.background_image = dashboard.dashboardBackgroundImageSrc;
         } else {
